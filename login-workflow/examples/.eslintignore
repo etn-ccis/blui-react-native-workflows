@@ -1,0 +1,5 @@
+node_modules/
+coverage/
+metro.config.js
+checkIfMovedOutOfModule.js
+react-native.config.js

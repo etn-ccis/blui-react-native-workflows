@@ -1,0 +1,41 @@
+{
+    "theme": "./node_modules/typedoc-neo-theme/bin/default",
+    "out": "docs",
+    "mode": "file",
+    "exclude": [
+        "**/__tests__/**/*",
+        "**/data/**/*",
+        "**/constants/**/*",
+        "**/types/general.tsx",
+        "**/types/TextInputHTMLAttributes.tsx",
+        "**/__mocks__/*",
+        "**/__lib__/*"
+    ],
+    "excludeExternals": false,
+    "excludePrivate": false,
+    "defaultCategory": "Main",
+    "categorizeByGroup": true,
+    "excludeNotExported": false,
+    "includeVersion": true,
+    "readme": "README.MD",
+    "toc": [
+        "AuthNavigationContainer",
+        "AuthUIActions",
+        "AuthUIContextProvider",
+        "ChangePassword",
+        "RegistrationUIActions",
+        "SecurityActionContext",
+        "SecurityContextActions",
+        "SecurityContextProvider",
+        "SecurityContextProvider",
+        "useSecurityActions",
+        "useSecurityState"
+    ],
+    "outline": [
+        {
+            "Auto Outline doesnt work": {
+                "Overview": "AuthNavigationContainer"
+            }
+        }
+    ]
+}

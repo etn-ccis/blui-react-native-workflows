@@ -1,0 +1,754 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>AuthUIContextProvider | @etn-sst/react-native-auth-ui</title>
+	<meta name="description" content="Documentation for @etn-sst/react-native-auth-ui">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title">@etn-sst/react-native-auth-ui</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../globals.html">Globals</a>
+				</li>
+				<li>
+					<a href="authuicontextprovider.html">AuthUIContextProvider</a>
+				</li>
+			</ul>
+			<h1>Module AuthUIContextProvider</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>The AuthUIContextProvider allows for application code to pass in middleware
+							actions that result from the Authentication and Registration user interface.
+							Often the actions will be the local storage and API calls satisfying
+							<a href="authuicontextprovider.html#authuiactions">AuthUIActions</a> and <a href="authuicontextprovider.html#registrationuiactions">RegistrationUIActions</a>. UI configuration properties
+						are also passed in.</p>
+					</div>
+				</div>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Type aliases</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="authuicontextprovider.html#authuiactions" class="tsd-kind-icon">AuthUIActions</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="authuicontextprovider.html#authuicontextproviderprops" class="tsd-kind-icon">AuthUIContext<wbr>Provider<wbr>Props</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="authuicontextprovider.html#registrationuiactions" class="tsd-kind-icon">RegistrationUIActions</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Hooks Functions</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-private"><a href="authuicontextprovider.html#useinjecteduicontext" class="tsd-kind-icon">use<wbr>InjectedUIContext</a></li>
+							</ul>
+							<h3>Other Functions</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="authuicontextprovider.html#authuicontextprovider-1" class="tsd-kind-icon">AuthUIContext<wbr>Provider</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Type aliases</h2>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
+					<a name="authuiactions" class="tsd-anchor"></a>
+					<h3>AuthUIActions</h3>
+					<div class="tsd-signature tsd-kind-icon">AuthUIActions<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>changePassword<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>forgotPassword<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>initiateSecurity<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>logIn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>setPassword<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>verifyResetCode<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/contexts/AuthUIContextProvider/authTypes.ts:12</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Authentication Actions to be performed based on the user&#39;s UI actions. The application will create
+								appropriate actions (often api calls, local network storage, credential updates, etc) and update
+								the global security state based on the actionable needs of the user.
+							A MockAuthUIActions implementation is provided in the examples folder for getting started with during development.</p>
+						</div>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5>change<wbr>Password<span class="tsd-signature-symbol">: </span>function</h5>
+								<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-type-literal">
+									<li class="tsd-signature tsd-kind-icon">change<wbr>Password<span class="tsd-signature-symbol">(</span>oldPassword<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, newPassword<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<aside class="tsd-sources">
+											<ul>
+												<li>Defined in src/contexts/AuthUIContextProvider/authTypes.ts:95</li>
+											</ul>
+										</aside>
+										<div class="tsd-comment tsd-typography">
+											<div class="lead">
+												<p>An authenticated user wants to change their password.
+													The application should try to change the user&#39;s password. Upon completion,
+													the user will be logged out of the application. Upon cancellation, the user
+												will be taken back to the application&#39;s home screen.</p>
+											</div>
+										</div>
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>oldPassword: <span class="tsd-signature-type">string</span></h5>
+												<div class="tsd-comment tsd-typography">
+													<p>The user&#39;s current password as entered into the UI.</p>
+												</div>
+											</li>
+											<li>
+												<h5>newPassword: <span class="tsd-signature-type">string</span></h5>
+												<div class="tsd-comment tsd-typography">
+													<p>The user&#39;s new password as entered into the UI.</p>
+												</div>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+										<p>Resolve if successful, otherwise reject with an error message.</p>
+									</li>
+								</ul>
+							</li>
+							<li class="tsd-parameter">
+								<h5>forgot<wbr>Password<span class="tsd-signature-symbol">: </span>function</h5>
+								<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-type-literal">
+									<li class="tsd-signature tsd-kind-icon">forgot<wbr>Password<span class="tsd-signature-symbol">(</span>email<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<aside class="tsd-sources">
+											<ul>
+												<li>Defined in src/contexts/AuthUIContextProvider/authTypes.ts:59</li>
+											</ul>
+										</aside>
+										<div class="tsd-comment tsd-typography">
+											<div class="lead">
+												<p>The user has forgotten their password and wants help.
+													The application generally should call an API which will then send a password reset
+												link to the user&#39;s email.</p>
+											</div>
+										</div>
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>email: <span class="tsd-signature-type">string</span></h5>
+												<div class="tsd-comment tsd-typography">
+													<p>Email address the user entered into the UI.</p>
+												</div>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+										<p>Resolve if email sending was successful, otherwise reject.</p>
+									</li>
+								</ul>
+							</li>
+							<li class="tsd-parameter">
+								<h5>initiate<wbr>Security<span class="tsd-signature-symbol">: </span>function</h5>
+								<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-type-literal">
+									<li class="tsd-signature tsd-kind-icon">initiate<wbr>Security<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<aside class="tsd-sources">
+											<ul>
+												<li>Defined in src/contexts/AuthUIContextProvider/authTypes.ts:24</li>
+											</ul>
+										</aside>
+										<div class="tsd-comment tsd-typography">
+											<div class="lead">
+												<p>Initialize the application security state. This will involve reading any local storage,
+													validating existing credentials (token expiration, for example). At the end of validation,
+													the <a href="securitycontextprovider.html#securitycontextactions-1">SecurityContextActions</a> should be called with either:
+													<a href="securitycontextprovider.html#securitycontextactions-1.__type.onuserauthenticated">onUserAuthenticated</a> (which will present the application), or
+												<a href="securitycontextprovider.html#securitycontextactions-1.__type.onusernotauthenticated">onUserNotAuthenticated</a> (which will present the Auth UI).</p>
+											</div>
+											<p>Note: Until this method returns, the applications Splash screen will be presented.</p>
+										</div>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+										<p>Should always resolve. Never throw.</p>
+									</li>
+								</ul>
+							</li>
+							<li class="tsd-parameter">
+								<h5>log<wbr>In<span class="tsd-signature-symbol">: </span>function</h5>
+								<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-type-literal">
+									<li class="tsd-signature tsd-kind-icon">log<wbr>In<span class="tsd-signature-symbol">(</span>email<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, password<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, rememberMe<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<aside class="tsd-sources">
+											<ul>
+												<li>Defined in src/contexts/AuthUIContextProvider/authTypes.ts:49</li>
+											</ul>
+										</aside>
+										<div class="tsd-comment tsd-typography">
+											<div class="lead">
+												<p>The user wants to log into the application. Perform a login with the user&#39;s credentials.
+												The application should provide the user&#39;s email and password to the authentication server.</p>
+											</div>
+											<p>In the case of valid credentials, the applications code should store the returned data
+												(such as token, user information, etc.). Then the <a href="securitycontextprovider.html#securitycontextactions-1.__type.onuserauthenticated">onUserAuthenticated</a> function should
+											be called on the <a href="securitycontextprovider.html#securitycontextactions-1">SecurityContextActions</a> object.</p>
+											<p>For example:</p>
+											<pre><code><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">LocalStorage</span>.</span></span>save<span class="hljs-constructor">AuthCredentials(<span class="hljs-params">email</span>, <span class="hljs-params">email</span>)</span>;
+<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">LocalStorage</span>.</span></span>save<span class="hljs-constructor">RememberMeData(<span class="hljs-params">email</span>, <span class="hljs-params">rememberMe</span>)</span>;
+
+securityHelper.on<span class="hljs-constructor">UserAuthenticated({ <span class="hljs-params">email</span>: <span class="hljs-params">email</span>, <span class="hljs-params">userId</span>: <span class="hljs-params">email</span>, <span class="hljs-params">rememberMe</span>: <span class="hljs-params">rememberMe</span> })</span>;</code></pre><p>In the case of invalid credentials, an error should be thrown.</p>
+										</div>
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>email: <span class="tsd-signature-type">string</span></h5>
+												<div class="tsd-comment tsd-typography">
+													<p>Email address the user entered into the UI.</p>
+												</div>
+											</li>
+											<li>
+												<h5>password: <span class="tsd-signature-type">string</span></h5>
+												<div class="tsd-comment tsd-typography">
+													<p>Password the user entered into the UI.</p>
+												</div>
+											</li>
+											<li>
+												<h5>rememberMe: <span class="tsd-signature-type">boolean</span></h5>
+												<div class="tsd-comment tsd-typography">
+													<p>Indicates whether the user&#39;s email should be remembered on success.</p>
+												</div>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+										<p>Resolve if code is credentials are valid, otherwise reject.</p>
+									</li>
+								</ul>
+							</li>
+							<li class="tsd-parameter">
+								<h5>set<wbr>Password<span class="tsd-signature-symbol">: </span>function</h5>
+								<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-type-literal">
+									<li class="tsd-signature tsd-kind-icon">set<wbr>Password<span class="tsd-signature-symbol">(</span>code<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, password<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<aside class="tsd-sources">
+											<ul>
+												<li>Defined in src/contexts/AuthUIContextProvider/authTypes.ts:83</li>
+											</ul>
+										</aside>
+										<div class="tsd-comment tsd-typography">
+											<div class="lead">
+												<p>A user who has previously used &quot;forgotPassword&quot; now has a valid password reset code
+													and has entered a new password.
+													The application should take the user&#39;s password reset code and the newly entered
+												password and then reset the user&#39;s password.</p>
+											</div>
+											<p>Note: Upon success, the user will be taken to the Login screen.</p>
+										</div>
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>code: <span class="tsd-signature-type">string</span></h5>
+												<div class="tsd-comment tsd-typography">
+													<p>Password reset code from a link</p>
+												</div>
+											</li>
+											<li>
+												<h5>password: <span class="tsd-signature-type">string</span></h5>
+												<div class="tsd-comment tsd-typography">
+													<p>New Password the user entered into the UI</p>
+												</div>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+										<p>Resolve if successful, otherwise reject with an error message.</p>
+									</li>
+								</ul>
+							</li>
+							<li class="tsd-parameter">
+								<h5>verify<wbr>Reset<wbr>Code<span class="tsd-signature-symbol">: </span>function</h5>
+								<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-type-literal">
+									<li class="tsd-signature tsd-kind-icon">verify<wbr>Reset<wbr>Code<span class="tsd-signature-symbol">(</span>code<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<aside class="tsd-sources">
+											<ul>
+												<li>Defined in src/contexts/AuthUIContextProvider/authTypes.ts:69</li>
+											</ul>
+										</aside>
+										<div class="tsd-comment tsd-typography">
+											<div class="lead">
+												<p>The user has tapped on an email with a password reset link, which they received after
+													requesting help for forgetting their password.
+													The application should take the password reset code and then verify that it is still
+												valid.</p>
+											</div>
+										</div>
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>code: <span class="tsd-signature-type">string</span></h5>
+												<div class="tsd-comment tsd-typography">
+													<p>Password reset code from a reset password link.</p>
+												</div>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+										<p>Resolve if code is valid, otherwise reject.</p>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
+					<a name="authuicontextproviderprops" class="tsd-anchor"></a>
+					<h3>AuthUIContext<wbr>Provider<wbr>Props</h3>
+					<div class="tsd-signature tsd-kind-icon">AuthUIContext<wbr>Provider<wbr>Props<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>allowDebugMode<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol">; </span>authActions<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="authuicontextprovider.html#authuiactions" class="tsd-signature-type">AuthUIActions</a><span class="tsd-signature-symbol">; </span>contactEmail<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>contactPhone<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>projectImage<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">ImageSourcePropType</span><span class="tsd-signature-symbol">; </span>registrationActions<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="authuicontextprovider.html#registrationuiactions" class="tsd-signature-type">RegistrationUIActions</a><span class="tsd-signature-symbol">; </span>showSelfRegistration<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol">; </span>title<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/contexts/AuthUIContextProvider/types.ts:15</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The application provides various action functions and properties
+								to the authentication user interface. These properties are set
+							from this type.</p>
+						</div>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> allow<wbr>Debug<wbr>Mode<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>When true, presents a button to access link based flows.</p>
+									</div>
+									<p>Default: false</p>
+								</div>
+							</li>
+							<li class="tsd-parameter">
+								<h5>auth<wbr>Actions<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="authuicontextprovider.html#authuiactions" class="tsd-signature-type">AuthUIActions</a></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>Provides application actions for the user&#39;s authentication needs.</p>
+									</div>
+								</div>
+								<ul class="tsd-parameters">
+									<li class="tsd-parameter-signature">
+										<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-variable">
+											<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="authuicontextprovider.html#authuiactions" class="tsd-signature-type">AuthUIActions</a></li>
+										</ul>
+										<ul class="tsd-descriptions">
+											<li class="tsd-description">
+												<h4 class="tsd-returns-title">Returns <a href="authuicontextprovider.html#authuiactions" class="tsd-signature-type">AuthUIActions</a></h4>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+							<li class="tsd-parameter">
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> contact<wbr>Email<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>Contact email to be shown for support.</p>
+									</div>
+									<p>Default: Provides a fake email.</p>
+								</div>
+							</li>
+							<li class="tsd-parameter">
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> contact<wbr>Phone<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>Contact phone number to be shown for support.</p>
+									</div>
+									<p>Default: Provides a fake phone number.</p>
+								</div>
+							</li>
+							<li class="tsd-parameter">
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> project<wbr>Image<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">ImageSourcePropType</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>Project image shown on splash screen and login screen.</p>
+									</div>
+									<p>Dimensions of the image should be 534w x 152h with a transparent background.
+									Differently sized images may not render properly on all devices.</p>
+									<p>Default: Provides an example project image.</p>
+								</div>
+							</li>
+							<li class="tsd-parameter">
+								<h5>registration<wbr>Actions<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="authuicontextprovider.html#registrationuiactions" class="tsd-signature-type">RegistrationUIActions</a></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>Provides application actions for the user&#39;s registration needs.</p>
+									</div>
+								</div>
+								<ul class="tsd-parameters">
+									<li class="tsd-parameter-signature">
+										<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-variable">
+											<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="authuicontextprovider.html#registrationuiactions" class="tsd-signature-type">RegistrationUIActions</a></li>
+										</ul>
+										<ul class="tsd-descriptions">
+											<li class="tsd-description">
+												<h4 class="tsd-returns-title">Returns <a href="authuicontextprovider.html#registrationuiactions" class="tsd-signature-type">RegistrationUIActions</a></h4>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+							<li class="tsd-parameter">
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> show<wbr>Self<wbr>Registration<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>When true, shows the Create Account button to allow for self registration.</p>
+									</div>
+									<p>Default: true</p>
+								</div>
+							</li>
+							<li class="tsd-parameter">
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> title<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>Title of the application.</p>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
+					<a name="registrationuiactions" class="tsd-anchor"></a>
+					<h3>RegistrationUIActions</h3>
+					<div class="tsd-signature tsd-kind-icon">RegistrationUIActions<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>completeRegistration<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>loadEULA<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>validateUserRegistrationRequest<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/contexts/AuthUIContextProvider/registrationTypes.ts:13</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Registration Actions to be performed based on the user&#39;s actions. The application will create appropriate actions
+								(often API calls, local network storage, credential updates, etc.) based on the actionable needs of the user.
+							A MockRegistrationUIActions implementation is provided in the examples to start with during development.</p>
+						</div>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5>complete<wbr>Registration<span class="tsd-signature-symbol">: </span>function</h5>
+								<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-type-literal">
+									<li class="tsd-signature tsd-kind-icon">complete<wbr>Registration<span class="tsd-signature-symbol">(</span>userData<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>accountDetails<span class="tsd-signature-symbol">: </span><a href="sub_screens.html#accountdetailinformation" class="tsd-signature-type">AccountDetailInformation</a><span class="tsd-signature-symbol">; </span>password<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span>, validationCode<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>email<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>organizationName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<aside class="tsd-sources">
+											<ul>
+												<li>Defined in src/contexts/AuthUIContextProvider/registrationTypes.ts:44</li>
+											</ul>
+										</aside>
+										<div class="tsd-comment tsd-typography">
+											<div class="lead">
+												<p>The user has been invited to register and has entered the necessary account and
+													password information.
+												The application should now complete the registration process given the user&#39;s data.</p>
+											</div>
+											<p>Note: Upon resolution, the user will be brought back to the Login screen.</p>
+										</div>
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>userData: <span class="tsd-signature-symbol">{ </span>accountDetails<span class="tsd-signature-symbol">: </span><a href="sub_screens.html#accountdetailinformation" class="tsd-signature-type">AccountDetailInformation</a><span class="tsd-signature-symbol">; </span>password<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></h5>
+												<div class="tsd-comment tsd-typography">
+													<p>Account details and password entered by the user.</p>
+												</div>
+												<ul class="tsd-parameters">
+													<li class="tsd-parameter">
+														<h5>account<wbr>Details<span class="tsd-signature-symbol">: </span><a href="sub_screens.html#accountdetailinformation" class="tsd-signature-type">AccountDetailInformation</a></h5>
+													</li>
+													<li class="tsd-parameter">
+														<h5>password<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+													</li>
+												</ul>
+											</li>
+											<li>
+												<h5>validationCode: <span class="tsd-signature-type">string</span></h5>
+												<div class="tsd-comment tsd-typography">
+													<p>Registration code provided from the invitation email link.</p>
+												</div>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>email<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>organizationName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></h4>
+										<p>Resolve when account creation succeeds, otherwise reject with an error message.</p>
+									</li>
+								</ul>
+							</li>
+							<li class="tsd-parameter">
+								<h5>loadEULA<span class="tsd-signature-symbol">: </span>function</h5>
+								<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-type-literal">
+									<li class="tsd-signature tsd-kind-icon">loadEULA<span class="tsd-signature-symbol">(</span>language<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<aside class="tsd-sources">
+											<ul>
+												<li>Defined in src/contexts/AuthUIContextProvider/registrationTypes.ts:22</li>
+											</ul>
+										</aside>
+										<div class="tsd-comment tsd-typography">
+											<div class="lead">
+												<p>The user wants to complete an action but must first accept the EULA.
+												The application should retrieve an application-specific EULA for the user.</p>
+											</div>
+										</div>
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>language: <span class="tsd-signature-type">string</span></h5>
+												<div class="tsd-comment tsd-typography">
+													<p>The i18n language the user is requesting for the EULA text.</p>
+												</div>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+										<p>Resolve with EULA, otherwise reject with an error message.</p>
+									</li>
+								</ul>
+							</li>
+							<li class="tsd-parameter">
+								<h5>validate<wbr>User<wbr>Registration<wbr>Request<span class="tsd-signature-symbol">: </span>function</h5>
+								<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-type-literal">
+									<li class="tsd-signature tsd-kind-icon">validate<wbr>User<wbr>Registration<wbr>Request<span class="tsd-signature-symbol">(</span>validationCode<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<aside class="tsd-sources">
+											<ul>
+												<li>Defined in src/contexts/AuthUIContextProvider/registrationTypes.ts:31</li>
+											</ul>
+										</aside>
+										<div class="tsd-comment tsd-typography">
+											<div class="lead">
+												<p>The user has tapped on an email link inviting them to register with the application.
+												The application should validate the code provided by the link.</p>
+											</div>
+										</div>
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>validationCode: <span class="tsd-signature-type">string</span></h5>
+												<div class="tsd-comment tsd-typography">
+													<p>Registration code provided from the link.</p>
+												</div>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+										<p>Resolve when the code is valid, otherwise reject with an error message.</p>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Hooks Functions</h2>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-private">
+					<a name="useinjecteduicontext" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> use<wbr>InjectedUIContext</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">use<wbr>InjectedUIContext<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="authuicontextprovider.html#authuicontextproviderprops" class="tsd-signature-type">AuthUIContextProviderProps</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/contexts/AuthUIContextProvider/index.ts:25</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Allows for the module to grab the properties / actions passed in from the applications.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>internal</dt>
+									<dd></dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="authuicontextprovider.html#authuicontextproviderprops" class="tsd-signature-type">AuthUIContextProviderProps</a></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Other Functions</h2>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="authuicontextprovider-1" class="tsd-anchor"></a>
+					<h3>AuthUIContext<wbr>Provider</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">AuthUIContext<wbr>Provider<span class="tsd-signature-symbol">(</span>props<span class="tsd-signature-symbol">: </span><a href="authuicontextprovider.html#authuicontextproviderprops" class="tsd-signature-type">AuthUIContextProviderProps</a><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-symbol">{ </span>children<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">React.ReactNode</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Element</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/contexts/AuthUIContextProvider/provider.tsx:10</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>props: <a href="authuicontextprovider.html#authuicontextproviderprops" class="tsd-signature-type">AuthUIContextProviderProps</a><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-symbol">{ </span>children<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">React.ReactNode</span><span class="tsd-signature-symbol"> }</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Element</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="../globals.html"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_etn_sst_react_native_auth_ui.html">@etn-<wbr>sst/react-<wbr>native-<wbr>auth-<wbr>ui</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="accountuicontext.html">AccountUIContext</a>
+					</li>
+					<li class="current tsd-kind-module">
+						<a href="authuicontextprovider.html">AuthUIContext<wbr>Provider</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="components.html">Components</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="helpers.html">Helpers</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="hooks.html">Hooks</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="registrationuicontext.html">RegistrationUIContext</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="screens.html">Screens</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="securitycontextprovider.html">Security<wbr>Context<wbr>Provider</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="stores.html">Stores</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="sub_screens.html">Sub-<wbr><wbr>Screens</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="transitstate.html">Transit<wbr>State</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="types.html">Types</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="authuicontextprovider.html#authuiactions" class="tsd-kind-icon">AuthUIActions</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="authuicontextprovider.html#authuicontextproviderprops" class="tsd-kind-icon">AuthUIContext<wbr>Provider<wbr>Props</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="authuicontextprovider.html#registrationuiactions" class="tsd-kind-icon">RegistrationUIActions</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="authuicontextprovider.html#authuicontextprovider-1" class="tsd-kind-icon">AuthUIContext<wbr>Provider</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-private">
+						<a href="authuicontextprovider.html#useinjecteduicontext" class="tsd-kind-icon">use<wbr>InjectedUIContext</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>

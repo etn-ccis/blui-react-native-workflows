@@ -1,0 +1,1764 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>AccountUIContext | @etn-sst/react-native-auth-ui</title>
+	<meta name="description" content="Documentation for @etn-sst/react-native-auth-ui">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title">@etn-sst/react-native-auth-ui</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../globals.html">Globals</a>
+				</li>
+				<li>
+					<a href="accountuicontext.html">AccountUIContext</a>
+				</li>
+			</ul>
+			<h1>Module AccountUIContext</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>AccountUIStateContext and AccountUIActionContext provide access to global state and actions for account related information (login, forgot password, verify reset password code, etc.).</p>
+					</div>
+					<dl class="tsd-comment-tags">
+						<dt>internal</dt>
+						<dd></dd>
+					</dl>
+				</div>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>References</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="accountuicontext.html#accountuiactioncontext" class="tsd-kind-icon">AccountUIAction<wbr>Context</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="accountuicontext.html#accountuiactions" class="tsd-kind-icon">AccountUIActions</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="accountuicontext.html#accountuiactionscreator" class="tsd-kind-icon">AccountUIActions<wbr>Creator</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="accountuicontext.html#accountuicontextactions" class="tsd-kind-icon">AccountUIContext<wbr>Actions</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="accountuicontext.html#accountuireducer" class="tsd-kind-icon">AccountUIReducer</a></li>
+								<li class="tsd-kind-reference tsd-parent-kind-module"><a href="accountuicontext.html#defaultaccountuireducer" class="tsd-kind-icon">default<wbr>AccountUIReducer</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Type aliases</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="accountuicontext.html#accountactions" class="tsd-kind-icon">Account<wbr>Actions</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="accountuicontext.html#accountuiactions-1" class="tsd-kind-icon">AccountUIActions</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="accountuicontext.html#accountuiactionscreator-1" class="tsd-kind-icon">AccountUIActions<wbr>Creator</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-is-not-exported"><a href="accountuicontext.html#accountuiactionscreator-2" class="tsd-kind-icon">AccountUIActions<wbr>Creator</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-is-not-exported"><a href="accountuicontext.html#accountuiactionsfunction" class="tsd-kind-icon">AccountUIActions<wbr>Function</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="accountuicontext.html#accountuicontextactions-1" class="tsd-kind-icon">AccountUIContext<wbr>Actions</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="accountuicontext.html#accountuireducer-1" class="tsd-kind-icon">AccountUIReducer</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module"><a href="accountuicontext.html#accountuistate" class="tsd-kind-icon">AccountUIState</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-is-not-exported"><a href="accountuicontext.html#forgotpasswordstate" class="tsd-kind-icon">Forgot<wbr>Password<wbr>State</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-is-not-exported"><a href="accountuicontext.html#loginstate" class="tsd-kind-icon">Login<wbr>State</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-is-not-exported"><a href="accountuicontext.html#setpasswordstate" class="tsd-kind-icon">Set<wbr>Password<wbr>State</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Variables</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="accountuicontext.html#actioncontext" class="tsd-kind-icon">Action<wbr>Context</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-module"><a href="accountuicontext.html#statecontext" class="tsd-kind-icon">State<wbr>Context</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Hooks Functions</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="accountuicontext.html#useaccountuiactions" class="tsd-kind-icon">use<wbr>AccountUIActions</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="accountuicontext.html#useaccountuistate" class="tsd-kind-icon">use<wbr>AccountUIState</a></li>
+							</ul>
+							<h3>Other Functions</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="accountuicontext.html#accountactionscreator" class="tsd-kind-icon">Account<wbr>Actions<wbr>Creator</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="accountuicontext.html#defaultaccountuireducer-1" class="tsd-kind-icon">default<wbr>AccountUIReducer</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Object literals</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-object-literal tsd-parent-kind-module"><a href="accountuicontext.html#accountactions-1" class="tsd-kind-icon">Account<wbr>Actions</a></li>
+								<li class="tsd-kind-object-literal tsd-parent-kind-module"><a href="accountuicontext.html#initialaccountuistate" class="tsd-kind-icon">initial<wbr>AccountUIState</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>References</h2>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="accountuiactioncontext" class="tsd-anchor"></a>
+					<h3>AccountUIAction<wbr>Context</h3>
+					Renames and re-exports <a href="accountuicontext.html#actioncontext">ActionContext</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="accountuiactions" class="tsd-anchor"></a>
+					<h3>AccountUIActions</h3>
+					Re-exports <a href="accountuicontext.html#accountuiactions-1">AccountUIActions</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="accountuiactionscreator" class="tsd-anchor"></a>
+					<h3>AccountUIActions<wbr>Creator</h3>
+					Re-exports <a href="accountuicontext.html#accountuiactionscreator-1">AccountUIActionsCreator</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="accountuicontextactions" class="tsd-anchor"></a>
+					<h3>AccountUIContext<wbr>Actions</h3>
+					Re-exports <a href="accountuicontext.html#accountuicontextactions-1">AccountUIContextActions</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="accountuireducer" class="tsd-anchor"></a>
+					<h3>AccountUIReducer</h3>
+					Re-exports <a href="accountuicontext.html#accountuireducer-1">AccountUIReducer</a>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-reference tsd-parent-kind-module">
+					<a name="defaultaccountuireducer" class="tsd-anchor"></a>
+					<h3>default<wbr>AccountUIReducer</h3>
+					Re-exports <a href="accountuicontext.html#defaultaccountuireducer-1">defaultAccountUIReducer</a>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Type aliases</h2>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
+					<a name="accountactions" class="tsd-anchor"></a>
+					<h3>Account<wbr>Actions</h3>
+					<div class="tsd-signature tsd-kind-icon">Account<wbr>Actions<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ActionType</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">typeof </span><a href="accountuicontext.html#accountactions-1" class="tsd-signature-type">AccountActions</a><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/contexts/AccountUIContext/dispatchActions.ts:110</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
+					<a name="accountuiactions-1" class="tsd-anchor"></a>
+					<h3>AccountUIActions</h3>
+					<div class="tsd-signature tsd-kind-icon">AccountUIActions<span class="tsd-signature-symbol">:</span> <a href="authuicontextprovider.html#authuiactions" class="tsd-signature-type">AuthUIActions</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/contexts/AccountUIContext/types.ts:10</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
+					<a name="accountuiactionscreator-1" class="tsd-anchor"></a>
+					<h3>AccountUIActions<wbr>Creator</h3>
+					<div class="tsd-signature tsd-kind-icon">AccountUIActions<wbr>Creator<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>dispatch<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">React.Dispatch</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="accountuicontext.html#accountuiactions" class="tsd-signature-type">AccountUIActions</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/contexts/AccountUIContext/types.ts:17</li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-signature">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>dispatch<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">React.Dispatch</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="accountuicontext.html#accountuiactions" class="tsd-signature-type">AccountUIActions</a></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>dispatch: <span class="tsd-signature-type">React.Dispatch</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <a href="accountuicontext.html#accountuiactions" class="tsd-signature-type">AccountUIActions</a></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-is-not-exported">
+					<a name="accountuiactionscreator-2" class="tsd-anchor"></a>
+					<h3>AccountUIActions<wbr>Creator</h3>
+					<div class="tsd-signature tsd-kind-icon">AccountUIActions<wbr>Creator<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>injectedActions<span class="tsd-signature-symbol">: </span><a href="accountuicontext.html#accountuiactions" class="tsd-signature-type">AccountUIActions</a>, dispatch<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">React.Dispatch</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">DispatchActions</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="accountuicontext.html#accountuiactionsfunction" class="tsd-signature-type">AccountUIActionsFunction</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/contexts/AccountUIContext/actions.ts:10</li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-signature">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias tsd-is-not-exported">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>injectedActions<span class="tsd-signature-symbol">: </span><a href="accountuicontext.html#accountuiactions" class="tsd-signature-type">AccountUIActions</a>, dispatch<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">React.Dispatch</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">DispatchActions</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="accountuicontext.html#accountuiactionsfunction" class="tsd-signature-type">AccountUIActionsFunction</a></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>injectedActions: <a href="accountuicontext.html#accountuiactions" class="tsd-signature-type">AccountUIActions</a></h5>
+											</li>
+											<li>
+												<h5>dispatch: <span class="tsd-signature-type">React.Dispatch</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">DispatchActions</span><span class="tsd-signature-symbol">&gt;</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <a href="accountuicontext.html#accountuiactionsfunction" class="tsd-signature-type">AccountUIActionsFunction</a></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-is-not-exported">
+					<a name="accountuiactionsfunction" class="tsd-anchor"></a>
+					<h3>AccountUIActions<wbr>Function</h3>
+					<div class="tsd-signature tsd-kind-icon">AccountUIActions<wbr>Function<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="accountuicontext.html#accountuiactions" class="tsd-signature-type">AccountUIActions</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/contexts/AccountUIContext/actions.ts:9</li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-signature">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias tsd-is-not-exported">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="accountuicontext.html#accountuiactions" class="tsd-signature-type">AccountUIActions</a></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-returns-title">Returns <a href="accountuicontext.html#accountuiactions" class="tsd-signature-type">AccountUIActions</a></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
+					<a name="accountuicontextactions-1" class="tsd-anchor"></a>
+					<h3>AccountUIContext<wbr>Actions</h3>
+					<div class="tsd-signature tsd-kind-icon">AccountUIContext<wbr>Actions<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>actions<span class="tsd-signature-symbol">: </span><a href="accountuicontext.html#accountuiactions" class="tsd-signature-type">AccountUIActions</a><span class="tsd-signature-symbol">; </span>dispatch<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">React.Dispatch</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> }</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/contexts/AccountUIContext/types.ts:12</li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5>actions<span class="tsd-signature-symbol">: </span><a href="accountuicontext.html#accountuiactions" class="tsd-signature-type">AccountUIActions</a></h5>
+							</li>
+							<li class="tsd-parameter">
+								<h5>dispatch<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">React.Dispatch</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
+					<a name="accountuireducer-1" class="tsd-anchor"></a>
+					<h3>AccountUIReducer</h3>
+					<div class="tsd-signature tsd-kind-icon">AccountUIReducer<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>prevState<span class="tsd-signature-symbol">: </span><a href="accountuicontext.html#accountuistate" class="tsd-signature-type">AccountUIState</a>, action<span class="tsd-signature-symbol">: </span><a href="accountuicontext.html#accountactions" class="tsd-signature-type">AccountActions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="accountuicontext.html#accountuistate" class="tsd-signature-type">AccountUIState</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/contexts/AccountUIContext/types.ts:18</li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-signature">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>prevState<span class="tsd-signature-symbol">: </span><a href="accountuicontext.html#accountuistate" class="tsd-signature-type">AccountUIState</a>, action<span class="tsd-signature-symbol">: </span><a href="accountuicontext.html#accountactions" class="tsd-signature-type">AccountActions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="accountuicontext.html#accountuistate" class="tsd-signature-type">AccountUIState</a></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>prevState: <a href="accountuicontext.html#accountuistate" class="tsd-signature-type">AccountUIState</a></h5>
+											</li>
+											<li>
+												<h5>action: <a href="accountuicontext.html#accountactions" class="tsd-signature-type">AccountActions</a></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <a href="accountuicontext.html#accountuistate" class="tsd-signature-type">AccountUIState</a></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module">
+					<a name="accountuistate" class="tsd-anchor"></a>
+					<h3>AccountUIState</h3>
+					<div class="tsd-signature tsd-kind-icon">AccountUIState<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>email<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">; </span>forgotPassword<span class="tsd-signature-symbol">: </span><a href="accountuicontext.html#forgotpasswordstate" class="tsd-signature-type">ForgotPasswordState</a><span class="tsd-signature-symbol">; </span>login<span class="tsd-signature-symbol">: </span><a href="accountuicontext.html#loginstate" class="tsd-signature-type">LoginState</a><span class="tsd-signature-symbol">; </span>setPassword<span class="tsd-signature-symbol">: </span><a href="accountuicontext.html#setpasswordstate" class="tsd-signature-type">SetPasswordState</a><span class="tsd-signature-symbol">; </span>userToken<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> }</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/contexts/AccountUIContext/state.ts:46</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Global state for authentication-related activities and forgotten password retrieval.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>param</dt>
+							<dd><p>The current user&#39;s authentication token.</p>
+							</dd>
+							<dt>param</dt>
+							<dd><p>The email of the current user.</p>
+							</dd>
+							<dt>param</dt>
+							<dd><p>State of authentication for the current user, including transit state of the call.</p>
+							</dd>
+							<dt>param</dt>
+							<dd><p>State of a forgot password request (which then sends an email to the user&#39;s account).</p>
+							</dd>
+							<dt>param</dt>
+							<dd><p>State of the setPassword request, after a user begins resetting a forgotten password using the deep link token from their email.</p>
+							</dd>
+						</dl>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5>email<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h5>
+							</li>
+							<li class="tsd-parameter">
+								<h5>forgot<wbr>Password<span class="tsd-signature-symbol">: </span><a href="accountuicontext.html#forgotpasswordstate" class="tsd-signature-type">ForgotPasswordState</a></h5>
+							</li>
+							<li class="tsd-parameter">
+								<h5>login<span class="tsd-signature-symbol">: </span><a href="accountuicontext.html#loginstate" class="tsd-signature-type">LoginState</a></h5>
+							</li>
+							<li class="tsd-parameter">
+								<h5>set<wbr>Password<span class="tsd-signature-symbol">: </span><a href="accountuicontext.html#setpasswordstate" class="tsd-signature-type">SetPasswordState</a></h5>
+							</li>
+							<li class="tsd-parameter">
+								<h5>user<wbr>Token<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h5>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-is-not-exported">
+					<a name="forgotpasswordstate" class="tsd-anchor"></a>
+					<h3>Forgot<wbr>Password<wbr>State</h3>
+					<div class="tsd-signature tsd-kind-icon">Forgot<wbr>Password<wbr>State<span class="tsd-signature-symbol">:</span> <a href="transitstate.html" class="tsd-signature-type">TransitState</a><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-symbol">{ </span>email<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> }</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/contexts/AccountUIContext/state.ts:22</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Network state and email for a user requesting forgot password.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>param</dt>
+							<dd><p>The email belonging to the account for which a user is doing a forgot password request.</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-is-not-exported">
+					<a name="loginstate" class="tsd-anchor"></a>
+					<h3>Login<wbr>State</h3>
+					<div class="tsd-signature tsd-kind-icon">Login<wbr>State<span class="tsd-signature-symbol">:</span> <a href="transitstate.html" class="tsd-signature-type">TransitState</a><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-symbol">{ </span>email<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> }</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/contexts/AccountUIContext/state.ts:13</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Network state and email for a user attempting to authenticate into the app.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>param</dt>
+							<dd><p>The email with which a user is attempting to authenticate into the app.</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-is-not-exported">
+					<a name="setpasswordstate" class="tsd-anchor"></a>
+					<h3>Set<wbr>Password<wbr>State</h3>
+					<div class="tsd-signature tsd-kind-icon">Set<wbr>Password<wbr>State<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>setPasswordTransit<span class="tsd-signature-symbol">: </span><a href="transitstate.html" class="tsd-signature-type">TransitState</a><span class="tsd-signature-symbol">; </span>verifyResetCodeTransit<span class="tsd-signature-symbol">: </span><a href="transitstate.html" class="tsd-signature-type">TransitState</a><span class="tsd-signature-symbol"> }</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/contexts/AccountUIContext/state.ts:32</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Network state for a user attempting to set a new password using a verify reset code after requestion forgot password.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>param</dt>
+							<dd><p>Network state for setting a new password for a user who has made a forgot password request.</p>
+							</dd>
+							<dt>param</dt>
+							<dd><p>Network state for verifying the reset password code for a user who has made a forgot password request.</p>
+							</dd>
+						</dl>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5>set<wbr>Password<wbr>Transit<span class="tsd-signature-symbol">: </span><a href="transitstate.html" class="tsd-signature-type">TransitState</a></h5>
+							</li>
+							<li class="tsd-parameter">
+								<h5>verify<wbr>Reset<wbr>Code<wbr>Transit<span class="tsd-signature-symbol">: </span><a href="transitstate.html" class="tsd-signature-type">TransitState</a></h5>
+							</li>
+						</ul>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Variables</h2>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+					<a name="actioncontext" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> Action<wbr>Context</h3>
+					<div class="tsd-signature tsd-kind-icon">Action<wbr>Context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Context</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span>actions<span class="tsd-signature-symbol">: </span><a href="accountuicontext.html#accountuiactions" class="tsd-signature-type">AccountUIActions</a><span class="tsd-signature-symbol">; </span>dispatch<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">React.Dispatch</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = createContext&lt;AccountUIContextActions | null&gt;(null)</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/contexts/AccountUIContext/context.ts:11</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-module">
+					<a name="statecontext" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> State<wbr>Context</h3>
+					<div class="tsd-signature tsd-kind-icon">State<wbr>Context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Context</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>email<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">; </span>forgotPassword<span class="tsd-signature-symbol">: </span><a href="accountuicontext.html#forgotpasswordstate" class="tsd-signature-type">ForgotPasswordState</a><span class="tsd-signature-symbol">; </span>login<span class="tsd-signature-symbol">: </span><a href="accountuicontext.html#loginstate" class="tsd-signature-type">LoginState</a><span class="tsd-signature-symbol">; </span>setPassword<span class="tsd-signature-symbol">: </span><a href="accountuicontext.html#setpasswordstate" class="tsd-signature-type">SetPasswordState</a><span class="tsd-signature-symbol">; </span>userToken<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = createContext&lt;AccountUIState&gt;(initialAccountUIState)</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/contexts/AccountUIContext/context.ts:10</li>
+						</ul>
+					</aside>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Hooks Functions</h2>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="useaccountuiactions" class="tsd-anchor"></a>
+					<h3>use<wbr>AccountUIActions</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">use<wbr>AccountUIActions<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="accountuicontext.html#accountuicontextactions" class="tsd-signature-type">AccountUIContextActions</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/contexts/AccountUIContext/index.ts:37</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Hook for using the global <a href="accountuicontext.html#accountuiactions">AccountUIActions</a> actions (i.e. logIn, forgotPassword, etc.) which change the global <a href="accountuicontext.html#accountuistate">AccountUIState</a>.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="accountuicontext.html#accountuicontextactions" class="tsd-signature-type">AccountUIContextActions</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="useaccountuistate" class="tsd-anchor"></a>
+					<h3>use<wbr>AccountUIState</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">use<wbr>AccountUIState<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="accountuicontext.html#accountuistate" class="tsd-signature-type">AccountUIState</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/contexts/AccountUIContext/index.ts:24</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Hook for using the global account state for account-related global <a href="accountuicontext.html#accountuistate">AccountUIState</a> state changes (i.e. login, forgot password, set password, verify reset code).</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="accountuicontext.html#accountuistate" class="tsd-signature-type">AccountUIState</a></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Other Functions</h2>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="accountactionscreator" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> Account<wbr>Actions<wbr>Creator</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">Account<wbr>Actions<wbr>Creator<span class="tsd-signature-symbol">(</span>injectedActions<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>changePassword<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>forgotPassword<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>initiateSecurity<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>logIn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>setPassword<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>verifyResetCode<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span>, dispatch<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">(Anonymous function)</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/contexts/AccountUIContext/actions.ts:23</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Implementation of actions for altering the global <a href="accountuicontext.html#accountuistate">AccountUIState</a> via <a href="authuicontextprovider.html#authuiactions">AuthUIActions</a> calls.
+										Uses actions injected into the app to make network calls, and then updates the global state accordingly
+									using by dispatching <a href="accountuicontext.html#accountactions">AccountActions</a> to the <a href="accountuicontext.html#defaultaccountuireducer">defaultAccountUIReducer</a>.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>injectedActions: <span class="tsd-signature-symbol">{ </span>changePassword<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>forgotPassword<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>initiateSecurity<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>logIn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>setPassword<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>verifyResetCode<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>Implementation of network activities.</p>
+										</div>
+									</div>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter">
+											<h5>change<wbr>Password<span class="tsd-signature-symbol">: </span>function</h5>
+											<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-type-literal">
+												<li class="tsd-signature tsd-kind-icon">change<wbr>Password<span class="tsd-signature-symbol">(</span>oldPassword<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, newPassword<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<aside class="tsd-sources">
+														<ul>
+															<li>Defined in src/contexts/AuthUIContextProvider/authTypes.ts:95</li>
+														</ul>
+													</aside>
+													<div class="tsd-comment tsd-typography">
+														<div class="lead">
+															<p>An authenticated user wants to change their password.
+																The application should try to change the user&#39;s password. Upon completion,
+																the user will be logged out of the application. Upon cancellation, the user
+															will be taken back to the application&#39;s home screen.</p>
+														</div>
+													</div>
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>oldPassword: <span class="tsd-signature-type">string</span></h5>
+															<div class="tsd-comment tsd-typography">
+																<p>The user&#39;s current password as entered into the UI.</p>
+															</div>
+														</li>
+														<li>
+															<h5>newPassword: <span class="tsd-signature-type">string</span></h5>
+															<div class="tsd-comment tsd-typography">
+																<p>The user&#39;s new password as entered into the UI.</p>
+															</div>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+													<p>Resolve if successful, otherwise reject with an error message.</p>
+												</li>
+											</ul>
+										</li>
+										<li class="tsd-parameter">
+											<h5>forgot<wbr>Password<span class="tsd-signature-symbol">: </span>function</h5>
+											<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-type-literal">
+												<li class="tsd-signature tsd-kind-icon">forgot<wbr>Password<span class="tsd-signature-symbol">(</span>email<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<aside class="tsd-sources">
+														<ul>
+															<li>Defined in src/contexts/AuthUIContextProvider/authTypes.ts:59</li>
+														</ul>
+													</aside>
+													<div class="tsd-comment tsd-typography">
+														<div class="lead">
+															<p>The user has forgotten their password and wants help.
+																The application generally should call an API which will then send a password reset
+															link to the user&#39;s email.</p>
+														</div>
+													</div>
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>email: <span class="tsd-signature-type">string</span></h5>
+															<div class="tsd-comment tsd-typography">
+																<p>Email address the user entered into the UI.</p>
+															</div>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+													<p>Resolve if email sending was successful, otherwise reject.</p>
+												</li>
+											</ul>
+										</li>
+										<li class="tsd-parameter">
+											<h5>initiate<wbr>Security<span class="tsd-signature-symbol">: </span>function</h5>
+											<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-type-literal">
+												<li class="tsd-signature tsd-kind-icon">initiate<wbr>Security<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<aside class="tsd-sources">
+														<ul>
+															<li>Defined in src/contexts/AuthUIContextProvider/authTypes.ts:24</li>
+														</ul>
+													</aside>
+													<div class="tsd-comment tsd-typography">
+														<div class="lead">
+															<p>Initialize the application security state. This will involve reading any local storage,
+																validating existing credentials (token expiration, for example). At the end of validation,
+																the <a href="securitycontextprovider.html#securitycontextactions-1">SecurityContextActions</a> should be called with either:
+																<a href="securitycontextprovider.html#securitycontextactions-1.__type.onuserauthenticated">onUserAuthenticated</a> (which will present the application), or
+															<a href="securitycontextprovider.html#securitycontextactions-1.__type.onusernotauthenticated">onUserNotAuthenticated</a> (which will present the Auth UI).</p>
+														</div>
+														<p>Note: Until this method returns, the applications Splash screen will be presented.</p>
+													</div>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+													<p>Should always resolve. Never throw.</p>
+												</li>
+											</ul>
+										</li>
+										<li class="tsd-parameter">
+											<h5>log<wbr>In<span class="tsd-signature-symbol">: </span>function</h5>
+											<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-type-literal">
+												<li class="tsd-signature tsd-kind-icon">log<wbr>In<span class="tsd-signature-symbol">(</span>email<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, password<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, rememberMe<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<aside class="tsd-sources">
+														<ul>
+															<li>Defined in src/contexts/AuthUIContextProvider/authTypes.ts:49</li>
+														</ul>
+													</aside>
+													<div class="tsd-comment tsd-typography">
+														<div class="lead">
+															<p>The user wants to log into the application. Perform a login with the user&#39;s credentials.
+															The application should provide the user&#39;s email and password to the authentication server.</p>
+														</div>
+														<p>In the case of valid credentials, the applications code should store the returned data
+															(such as token, user information, etc.). Then the <a href="securitycontextprovider.html#securitycontextactions-1.__type.onuserauthenticated">onUserAuthenticated</a> function should
+														be called on the <a href="securitycontextprovider.html#securitycontextactions-1">SecurityContextActions</a> object.</p>
+														<p>For example:</p>
+														<pre><code><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">LocalStorage</span>.</span></span>save<span class="hljs-constructor">AuthCredentials(<span class="hljs-params">email</span>, <span class="hljs-params">email</span>)</span>;
+<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">LocalStorage</span>.</span></span>save<span class="hljs-constructor">RememberMeData(<span class="hljs-params">email</span>, <span class="hljs-params">rememberMe</span>)</span>;
+
+securityHelper.on<span class="hljs-constructor">UserAuthenticated({ <span class="hljs-params">email</span>: <span class="hljs-params">email</span>, <span class="hljs-params">userId</span>: <span class="hljs-params">email</span>, <span class="hljs-params">rememberMe</span>: <span class="hljs-params">rememberMe</span> })</span>;</code></pre><p>In the case of invalid credentials, an error should be thrown.</p>
+													</div>
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>email: <span class="tsd-signature-type">string</span></h5>
+															<div class="tsd-comment tsd-typography">
+																<p>Email address the user entered into the UI.</p>
+															</div>
+														</li>
+														<li>
+															<h5>password: <span class="tsd-signature-type">string</span></h5>
+															<div class="tsd-comment tsd-typography">
+																<p>Password the user entered into the UI.</p>
+															</div>
+														</li>
+														<li>
+															<h5>rememberMe: <span class="tsd-signature-type">boolean</span></h5>
+															<div class="tsd-comment tsd-typography">
+																<p>Indicates whether the user&#39;s email should be remembered on success.</p>
+															</div>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+													<p>Resolve if code is credentials are valid, otherwise reject.</p>
+												</li>
+											</ul>
+										</li>
+										<li class="tsd-parameter">
+											<h5>set<wbr>Password<span class="tsd-signature-symbol">: </span>function</h5>
+											<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-type-literal">
+												<li class="tsd-signature tsd-kind-icon">set<wbr>Password<span class="tsd-signature-symbol">(</span>code<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, password<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<aside class="tsd-sources">
+														<ul>
+															<li>Defined in src/contexts/AuthUIContextProvider/authTypes.ts:83</li>
+														</ul>
+													</aside>
+													<div class="tsd-comment tsd-typography">
+														<div class="lead">
+															<p>A user who has previously used &quot;forgotPassword&quot; now has a valid password reset code
+																and has entered a new password.
+																The application should take the user&#39;s password reset code and the newly entered
+															password and then reset the user&#39;s password.</p>
+														</div>
+														<p>Note: Upon success, the user will be taken to the Login screen.</p>
+													</div>
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>code: <span class="tsd-signature-type">string</span></h5>
+															<div class="tsd-comment tsd-typography">
+																<p>Password reset code from a link</p>
+															</div>
+														</li>
+														<li>
+															<h5>password: <span class="tsd-signature-type">string</span></h5>
+															<div class="tsd-comment tsd-typography">
+																<p>New Password the user entered into the UI</p>
+															</div>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+													<p>Resolve if successful, otherwise reject with an error message.</p>
+												</li>
+											</ul>
+										</li>
+										<li class="tsd-parameter">
+											<h5>verify<wbr>Reset<wbr>Code<span class="tsd-signature-symbol">: </span>function</h5>
+											<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-type-literal">
+												<li class="tsd-signature tsd-kind-icon">verify<wbr>Reset<wbr>Code<span class="tsd-signature-symbol">(</span>code<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<aside class="tsd-sources">
+														<ul>
+															<li>Defined in src/contexts/AuthUIContextProvider/authTypes.ts:69</li>
+														</ul>
+													</aside>
+													<div class="tsd-comment tsd-typography">
+														<div class="lead">
+															<p>The user has tapped on an email with a password reset link, which they received after
+																requesting help for forgetting their password.
+																The application should take the password reset code and then verify that it is still
+															valid.</p>
+														</div>
+													</div>
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>code: <span class="tsd-signature-type">string</span></h5>
+															<div class="tsd-comment tsd-typography">
+																<p>Password reset code from a reset password link.</p>
+															</div>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+													<p>Resolve if code is valid, otherwise reject.</p>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<h5>dispatch: <span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>For updating reducer upon completion of network activities.</p>
+										</div>
+									</div>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-signature">
+											<ul class="tsd-signatures tsd-kind-type-literal">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>value: <span class="tsd-signature-type">A</span></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">(Anonymous function)</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="defaultaccountuireducer-1" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> default<wbr>AccountUIReducer</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">default<wbr>AccountUIReducer<span class="tsd-signature-symbol">(</span>prevState<span class="tsd-signature-symbol">: </span><a href="accountuicontext.html#accountuistate" class="tsd-signature-type">AccountUIState</a>, action<span class="tsd-signature-symbol">: </span><a href="accountuicontext.html#accountactions" class="tsd-signature-type">AccountActions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>email<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">; </span>forgotPassword<span class="tsd-signature-symbol">: </span><a href="accountuicontext.html#forgotpasswordstate" class="tsd-signature-type">ForgotPasswordState</a><span class="tsd-signature-symbol">; </span>login<span class="tsd-signature-symbol">: </span><a href="accountuicontext.html#loginstate" class="tsd-signature-type">LoginState</a><span class="tsd-signature-symbol">; </span>setPassword<span class="tsd-signature-symbol">: </span><a href="accountuicontext.html#setpasswordstate" class="tsd-signature-type">SetPasswordState</a><span class="tsd-signature-symbol">; </span>userToken<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span>isLogOut<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> }</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/contexts/AccountUIContext/reducer.ts:17</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Default reducer for global <a href="accountuicontext.html#accountuistate">AccountUIState</a>.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>prevState: <a href="accountuicontext.html#accountuistate" class="tsd-signature-type">AccountUIState</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>Previous <a href="accountuicontext.html#accountuistate">AccountUIState</a> to update.</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5>action: <a href="accountuicontext.html#accountactions" class="tsd-signature-type">AccountActions</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>State change action, which should be of type <a href="accountuicontext.html#accountactions">AccountActions</a>.</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">{ </span>email<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">; </span>forgotPassword<span class="tsd-signature-symbol">: </span><a href="accountuicontext.html#forgotpasswordstate" class="tsd-signature-type">ForgotPasswordState</a><span class="tsd-signature-symbol">; </span>login<span class="tsd-signature-symbol">: </span><a href="accountuicontext.html#loginstate" class="tsd-signature-type">LoginState</a><span class="tsd-signature-symbol">; </span>setPassword<span class="tsd-signature-symbol">: </span><a href="accountuicontext.html#setpasswordstate" class="tsd-signature-type">SetPasswordState</a><span class="tsd-signature-symbol">; </span>userToken<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span>isLogOut<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> }</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Object literals</h2>
+				<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-module">
+					<a name="accountactions-1" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> Account<wbr>Actions</h3>
+					<div class="tsd-signature tsd-kind-icon">Account<wbr>Actions<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/contexts/AccountUIContext/dispatchActions.ts:11</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Named dispatch actions for account-related global state changes (i.e. login, forgot password, set password, verify reset code).</p>
+						</div>
+					</div>
+					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
+						<a name="accountactions-1.loginfailed" class="tsd-anchor"></a>
+						<h3>login<wbr>Failed</h3>
+						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal">
+							<li class="tsd-signature tsd-kind-icon">login<wbr>Failed<span class="tsd-signature-symbol">(</span>email<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, transitId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span>, errorMessage<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"Authentication/Login/Failed"</span><span class="tsd-signature-symbol">; </span>payload<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> }</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in src/contexts/AccountUIContext/dispatchActions.ts:25</li>
+									</ul>
+								</aside>
+								<h4 class="tsd-parameters-title">Parameters</h4>
+								<ul class="tsd-parameters">
+									<li>
+										<h5>email: <span class="tsd-signature-type">string</span></h5>
+									</li>
+									<li>
+										<h5>transitId: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h5>
+									</li>
+									<li>
+										<h5>errorMessage: <span class="tsd-signature-type">string</span></h5>
+									</li>
+								</ul>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">{ </span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"Authentication/Login/Failed"</span><span class="tsd-signature-symbol">; </span>payload<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> }</span></h4>
+								<ul class="tsd-parameters">
+									<li class="tsd-parameter">
+										<h5>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"Authentication/Login/Failed"</span></h5>
+									</li>
+									<li class="tsd-parameter">
+										<h5>payload<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+										<ul class="tsd-parameters">
+											<li class="tsd-parameter">
+												<h5>email<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+											</li>
+											<li class="tsd-parameter">
+												<h5>error<wbr>Message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+											</li>
+											<li class="tsd-parameter">
+												<h5>transit<wbr>Id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
+						<a name="accountactions-1.loginstarted" class="tsd-anchor"></a>
+						<h3>login<wbr>Started</h3>
+						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal">
+							<li class="tsd-signature tsd-kind-icon">login<wbr>Started<span class="tsd-signature-symbol">(</span>email<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, transitId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"Authentication/Login/Started"</span><span class="tsd-signature-symbol">; </span>payload<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> }</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in src/contexts/AccountUIContext/dispatchActions.ts:13</li>
+									</ul>
+								</aside>
+								<h4 class="tsd-parameters-title">Parameters</h4>
+								<ul class="tsd-parameters">
+									<li>
+										<h5>email: <span class="tsd-signature-type">string</span></h5>
+									</li>
+									<li>
+										<h5>transitId: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h5>
+									</li>
+								</ul>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">{ </span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"Authentication/Login/Started"</span><span class="tsd-signature-symbol">; </span>payload<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> }</span></h4>
+								<ul class="tsd-parameters">
+									<li class="tsd-parameter">
+										<h5>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"Authentication/Login/Started"</span></h5>
+									</li>
+									<li class="tsd-parameter">
+										<h5>payload<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+										<ul class="tsd-parameters">
+											<li class="tsd-parameter">
+												<h5>email<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+											</li>
+											<li class="tsd-parameter">
+												<h5>transit<wbr>Id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
+						<a name="accountactions-1.loginsucceeded" class="tsd-anchor"></a>
+						<h3>login<wbr>Succeeded</h3>
+						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal">
+							<li class="tsd-signature tsd-kind-icon">login<wbr>Succeeded<span class="tsd-signature-symbol">(</span>email<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, transitId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"Authentication/Login/Succeeded"</span><span class="tsd-signature-symbol">; </span>payload<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> }</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in src/contexts/AccountUIContext/dispatchActions.ts:19</li>
+									</ul>
+								</aside>
+								<h4 class="tsd-parameters-title">Parameters</h4>
+								<ul class="tsd-parameters">
+									<li>
+										<h5>email: <span class="tsd-signature-type">string</span></h5>
+									</li>
+									<li>
+										<h5>transitId: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h5>
+									</li>
+								</ul>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">{ </span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"Authentication/Login/Succeeded"</span><span class="tsd-signature-symbol">; </span>payload<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> }</span></h4>
+								<ul class="tsd-parameters">
+									<li class="tsd-parameter">
+										<h5>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"Authentication/Login/Succeeded"</span></h5>
+									</li>
+									<li class="tsd-parameter">
+										<h5>payload<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+										<ul class="tsd-parameters">
+											<li class="tsd-parameter">
+												<h5>email<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+											</li>
+											<li class="tsd-parameter">
+												<h5>transit<wbr>Id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
+						<a name="accountactions-1.logout" class="tsd-anchor"></a>
+						<h3>logout</h3>
+						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal">
+							<li class="tsd-signature tsd-kind-icon">logout<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"Authentication/Logout/Reset"</span><span class="tsd-signature-symbol"> }</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in src/contexts/AccountUIContext/dispatchActions.ts:32</li>
+									</ul>
+								</aside>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">{ </span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"Authentication/Logout/Reset"</span><span class="tsd-signature-symbol"> }</span></h4>
+								<ul class="tsd-parameters">
+									<li class="tsd-parameter">
+										<h5>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"Authentication/Logout/Reset"</span></h5>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
+						<a name="accountactions-1.resetpasswordfailed" class="tsd-anchor"></a>
+						<h3>reset<wbr>Password<wbr>Failed</h3>
+						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal">
+							<li class="tsd-signature tsd-kind-icon">reset<wbr>Password<wbr>Failed<span class="tsd-signature-symbol">(</span>email<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, transitId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span>, errorMessage<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"Authentication/ResetPassword/Failed"</span><span class="tsd-signature-symbol">; </span>payload<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> }</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in src/contexts/AccountUIContext/dispatchActions.ts:55</li>
+									</ul>
+								</aside>
+								<h4 class="tsd-parameters-title">Parameters</h4>
+								<ul class="tsd-parameters">
+									<li>
+										<h5>email: <span class="tsd-signature-type">string</span></h5>
+									</li>
+									<li>
+										<h5>transitId: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h5>
+									</li>
+									<li>
+										<h5>errorMessage: <span class="tsd-signature-type">string</span></h5>
+									</li>
+								</ul>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">{ </span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"Authentication/ResetPassword/Failed"</span><span class="tsd-signature-symbol">; </span>payload<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> }</span></h4>
+								<ul class="tsd-parameters">
+									<li class="tsd-parameter">
+										<h5>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"Authentication/ResetPassword/Failed"</span></h5>
+									</li>
+									<li class="tsd-parameter">
+										<h5>payload<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+										<ul class="tsd-parameters">
+											<li class="tsd-parameter">
+												<h5>email<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+											</li>
+											<li class="tsd-parameter">
+												<h5>error<wbr>Message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+											</li>
+											<li class="tsd-parameter">
+												<h5>transit<wbr>Id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
+						<a name="accountactions-1.resetpasswordreset" class="tsd-anchor"></a>
+						<h3>reset<wbr>Password<wbr>Reset</h3>
+						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal">
+							<li class="tsd-signature tsd-kind-icon">reset<wbr>Password<wbr>Reset<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"Authentication/ResetPassword/Reset"</span><span class="tsd-signature-symbol"> }</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in src/contexts/AccountUIContext/dispatchActions.ts:38</li>
+									</ul>
+								</aside>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">{ </span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"Authentication/ResetPassword/Reset"</span><span class="tsd-signature-symbol"> }</span></h4>
+								<ul class="tsd-parameters">
+									<li class="tsd-parameter">
+										<h5>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"Authentication/ResetPassword/Reset"</span></h5>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
+						<a name="accountactions-1.resetpasswordstarted" class="tsd-anchor"></a>
+						<h3>reset<wbr>Password<wbr>Started</h3>
+						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal">
+							<li class="tsd-signature tsd-kind-icon">reset<wbr>Password<wbr>Started<span class="tsd-signature-symbol">(</span>email<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, transitId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"Authentication/ResetPassword/Started"</span><span class="tsd-signature-symbol">; </span>payload<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> }</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in src/contexts/AccountUIContext/dispatchActions.ts:43</li>
+									</ul>
+								</aside>
+								<h4 class="tsd-parameters-title">Parameters</h4>
+								<ul class="tsd-parameters">
+									<li>
+										<h5>email: <span class="tsd-signature-type">string</span></h5>
+									</li>
+									<li>
+										<h5>transitId: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h5>
+									</li>
+								</ul>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">{ </span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"Authentication/ResetPassword/Started"</span><span class="tsd-signature-symbol">; </span>payload<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> }</span></h4>
+								<ul class="tsd-parameters">
+									<li class="tsd-parameter">
+										<h5>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"Authentication/ResetPassword/Started"</span></h5>
+									</li>
+									<li class="tsd-parameter">
+										<h5>payload<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+										<ul class="tsd-parameters">
+											<li class="tsd-parameter">
+												<h5>email<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+											</li>
+											<li class="tsd-parameter">
+												<h5>transit<wbr>Id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
+						<a name="accountactions-1.resetpasswordsucceeded" class="tsd-anchor"></a>
+						<h3>reset<wbr>Password<wbr>Succeeded</h3>
+						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal">
+							<li class="tsd-signature tsd-kind-icon">reset<wbr>Password<wbr>Succeeded<span class="tsd-signature-symbol">(</span>email<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, transitId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"Authentication/ResetPassword/Succeeded"</span><span class="tsd-signature-symbol">; </span>payload<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> }</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in src/contexts/AccountUIContext/dispatchActions.ts:49</li>
+									</ul>
+								</aside>
+								<h4 class="tsd-parameters-title">Parameters</h4>
+								<ul class="tsd-parameters">
+									<li>
+										<h5>email: <span class="tsd-signature-type">string</span></h5>
+									</li>
+									<li>
+										<h5>transitId: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h5>
+									</li>
+								</ul>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">{ </span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"Authentication/ResetPassword/Succeeded"</span><span class="tsd-signature-symbol">; </span>payload<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> }</span></h4>
+								<ul class="tsd-parameters">
+									<li class="tsd-parameter">
+										<h5>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"Authentication/ResetPassword/Succeeded"</span></h5>
+									</li>
+									<li class="tsd-parameter">
+										<h5>payload<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+										<ul class="tsd-parameters">
+											<li class="tsd-parameter">
+												<h5>email<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+											</li>
+											<li class="tsd-parameter">
+												<h5>transit<wbr>Id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
+						<a name="accountactions-1.setpasswordfailed" class="tsd-anchor"></a>
+						<h3>set<wbr>Password<wbr>Failed</h3>
+						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal">
+							<li class="tsd-signature tsd-kind-icon">set<wbr>Password<wbr>Failed<span class="tsd-signature-symbol">(</span>transitId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span>, errorMessage<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"Authentication/SetPassword/Failed"</span><span class="tsd-signature-symbol">; </span>payload<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> }</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in src/contexts/AccountUIContext/dispatchActions.ts:103</li>
+									</ul>
+								</aside>
+								<h4 class="tsd-parameters-title">Parameters</h4>
+								<ul class="tsd-parameters">
+									<li>
+										<h5>transitId: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h5>
+									</li>
+									<li>
+										<h5>errorMessage: <span class="tsd-signature-type">string</span></h5>
+									</li>
+								</ul>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">{ </span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"Authentication/SetPassword/Failed"</span><span class="tsd-signature-symbol">; </span>payload<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> }</span></h4>
+								<ul class="tsd-parameters">
+									<li class="tsd-parameter">
+										<h5>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"Authentication/SetPassword/Failed"</span></h5>
+									</li>
+									<li class="tsd-parameter">
+										<h5>payload<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+										<ul class="tsd-parameters">
+											<li class="tsd-parameter">
+												<h5>error<wbr>Message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+											</li>
+											<li class="tsd-parameter">
+												<h5>transit<wbr>Id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
+						<a name="accountactions-1.setpasswordreset" class="tsd-anchor"></a>
+						<h3>set<wbr>Password<wbr>Reset</h3>
+						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal">
+							<li class="tsd-signature tsd-kind-icon">set<wbr>Password<wbr>Reset<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"Authentication/SetPassword/Reset"</span><span class="tsd-signature-symbol"> }</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in src/contexts/AccountUIContext/dispatchActions.ts:86</li>
+									</ul>
+								</aside>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">{ </span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"Authentication/SetPassword/Reset"</span><span class="tsd-signature-symbol"> }</span></h4>
+								<ul class="tsd-parameters">
+									<li class="tsd-parameter">
+										<h5>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"Authentication/SetPassword/Reset"</span></h5>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
+						<a name="accountactions-1.setpasswordstarted" class="tsd-anchor"></a>
+						<h3>set<wbr>Password<wbr>Started</h3>
+						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal">
+							<li class="tsd-signature tsd-kind-icon">set<wbr>Password<wbr>Started<span class="tsd-signature-symbol">(</span>transitId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"Authentication/SetPassword/Started"</span><span class="tsd-signature-symbol">; </span>payload<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> }</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in src/contexts/AccountUIContext/dispatchActions.ts:91</li>
+									</ul>
+								</aside>
+								<h4 class="tsd-parameters-title">Parameters</h4>
+								<ul class="tsd-parameters">
+									<li>
+										<h5>transitId: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h5>
+									</li>
+								</ul>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">{ </span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"Authentication/SetPassword/Started"</span><span class="tsd-signature-symbol">; </span>payload<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> }</span></h4>
+								<ul class="tsd-parameters">
+									<li class="tsd-parameter">
+										<h5>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"Authentication/SetPassword/Started"</span></h5>
+									</li>
+									<li class="tsd-parameter">
+										<h5>payload<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+										<ul class="tsd-parameters">
+											<li class="tsd-parameter">
+												<h5>transit<wbr>Id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
+						<a name="accountactions-1.setpasswordsucceeded" class="tsd-anchor"></a>
+						<h3>set<wbr>Password<wbr>Succeeded</h3>
+						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal">
+							<li class="tsd-signature tsd-kind-icon">set<wbr>Password<wbr>Succeeded<span class="tsd-signature-symbol">(</span>transitId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"Authentication/SetPassword/Succeeded"</span><span class="tsd-signature-symbol">; </span>payload<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> }</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in src/contexts/AccountUIContext/dispatchActions.ts:97</li>
+									</ul>
+								</aside>
+								<h4 class="tsd-parameters-title">Parameters</h4>
+								<ul class="tsd-parameters">
+									<li>
+										<h5>transitId: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h5>
+									</li>
+								</ul>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">{ </span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"Authentication/SetPassword/Succeeded"</span><span class="tsd-signature-symbol">; </span>payload<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> }</span></h4>
+								<ul class="tsd-parameters">
+									<li class="tsd-parameter">
+										<h5>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"Authentication/SetPassword/Succeeded"</span></h5>
+									</li>
+									<li class="tsd-parameter">
+										<h5>payload<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+										<ul class="tsd-parameters">
+											<li class="tsd-parameter">
+												<h5>transit<wbr>Id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
+						<a name="accountactions-1.verifyresetcodefailed" class="tsd-anchor"></a>
+						<h3>verify<wbr>Reset<wbr>Code<wbr>Failed</h3>
+						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal">
+							<li class="tsd-signature tsd-kind-icon">verify<wbr>Reset<wbr>Code<wbr>Failed<span class="tsd-signature-symbol">(</span>transitId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span>, errorMessage<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"Authentication/VerifyResetCode/Failed"</span><span class="tsd-signature-symbol">; </span>payload<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> }</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in src/contexts/AccountUIContext/dispatchActions.ts:79</li>
+									</ul>
+								</aside>
+								<h4 class="tsd-parameters-title">Parameters</h4>
+								<ul class="tsd-parameters">
+									<li>
+										<h5>transitId: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h5>
+									</li>
+									<li>
+										<h5>errorMessage: <span class="tsd-signature-type">string</span></h5>
+									</li>
+								</ul>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">{ </span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"Authentication/VerifyResetCode/Failed"</span><span class="tsd-signature-symbol">; </span>payload<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> }</span></h4>
+								<ul class="tsd-parameters">
+									<li class="tsd-parameter">
+										<h5>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"Authentication/VerifyResetCode/Failed"</span></h5>
+									</li>
+									<li class="tsd-parameter">
+										<h5>payload<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+										<ul class="tsd-parameters">
+											<li class="tsd-parameter">
+												<h5>error<wbr>Message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+											</li>
+											<li class="tsd-parameter">
+												<h5>transit<wbr>Id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
+						<a name="accountactions-1.verifyresetcodereset" class="tsd-anchor"></a>
+						<h3>verify<wbr>Reset<wbr>Code<wbr>Reset</h3>
+						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal">
+							<li class="tsd-signature tsd-kind-icon">verify<wbr>Reset<wbr>Code<wbr>Reset<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"Authentication/VerifyResetCode/Reset"</span><span class="tsd-signature-symbol"> }</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in src/contexts/AccountUIContext/dispatchActions.ts:62</li>
+									</ul>
+								</aside>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">{ </span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"Authentication/VerifyResetCode/Reset"</span><span class="tsd-signature-symbol"> }</span></h4>
+								<ul class="tsd-parameters">
+									<li class="tsd-parameter">
+										<h5>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"Authentication/VerifyResetCode/Reset"</span></h5>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
+						<a name="accountactions-1.verifyresetcodestarted" class="tsd-anchor"></a>
+						<h3>verify<wbr>Reset<wbr>Code<wbr>Started</h3>
+						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal">
+							<li class="tsd-signature tsd-kind-icon">verify<wbr>Reset<wbr>Code<wbr>Started<span class="tsd-signature-symbol">(</span>transitId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"Authentication/VerifyResetCode/Started"</span><span class="tsd-signature-symbol">; </span>payload<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> }</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in src/contexts/AccountUIContext/dispatchActions.ts:67</li>
+									</ul>
+								</aside>
+								<h4 class="tsd-parameters-title">Parameters</h4>
+								<ul class="tsd-parameters">
+									<li>
+										<h5>transitId: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h5>
+									</li>
+								</ul>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">{ </span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"Authentication/VerifyResetCode/Started"</span><span class="tsd-signature-symbol">; </span>payload<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> }</span></h4>
+								<ul class="tsd-parameters">
+									<li class="tsd-parameter">
+										<h5>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"Authentication/VerifyResetCode/Started"</span></h5>
+									</li>
+									<li class="tsd-parameter">
+										<h5>payload<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+										<ul class="tsd-parameters">
+											<li class="tsd-parameter">
+												<h5>transit<wbr>Id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-object-literal">
+						<a name="accountactions-1.verifyresetcodesucceeded" class="tsd-anchor"></a>
+						<h3>verify<wbr>Reset<wbr>Code<wbr>Succeeded</h3>
+						<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-object-literal">
+							<li class="tsd-signature tsd-kind-icon">verify<wbr>Reset<wbr>Code<wbr>Succeeded<span class="tsd-signature-symbol">(</span>transitId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"Authentication/VerifyResetCode/Succeeded"</span><span class="tsd-signature-symbol">; </span>payload<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> }</span></li>
+						</ul>
+						<ul class="tsd-descriptions">
+							<li class="tsd-description">
+								<aside class="tsd-sources">
+									<ul>
+										<li>Defined in src/contexts/AccountUIContext/dispatchActions.ts:73</li>
+									</ul>
+								</aside>
+								<h4 class="tsd-parameters-title">Parameters</h4>
+								<ul class="tsd-parameters">
+									<li>
+										<h5>transitId: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h5>
+									</li>
+								</ul>
+								<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">{ </span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"Authentication/VerifyResetCode/Succeeded"</span><span class="tsd-signature-symbol">; </span>payload<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> }</span></h4>
+								<ul class="tsd-parameters">
+									<li class="tsd-parameter">
+										<h5>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"Authentication/VerifyResetCode/Succeeded"</span></h5>
+									</li>
+									<li class="tsd-parameter">
+										<h5>payload<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+										<ul class="tsd-parameters">
+											<li class="tsd-parameter">
+												<h5>transit<wbr>Id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-module">
+					<a name="initialaccountuistate" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> initial<wbr>AccountUIState</h3>
+					<div class="tsd-signature tsd-kind-icon">initial<wbr>AccountUIState<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/contexts/AccountUIContext/state.ts:57</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Default initial state for <a href="accountuicontext.html#accountuistate">AccountUIState</a> upon app start.</p>
+						</div>
+					</div>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="initialaccountuistate.email-1" class="tsd-anchor"></a>
+						<h3>email</h3>
+						<div class="tsd-signature tsd-kind-icon">email<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> = null</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in src/contexts/AccountUIContext/state.ts:59</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+						<a name="initialaccountuistate.usertoken-1" class="tsd-anchor"></a>
+						<h3>user<wbr>Token</h3>
+						<div class="tsd-signature tsd-kind-icon">user<wbr>Token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> = null</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in src/contexts/AccountUIContext/state.ts:58</li>
+							</ul>
+						</aside>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-object-literal">
+						<a name="initialaccountuistate.forgotpassword-1" class="tsd-anchor"></a>
+						<h3>forgot<wbr>Password</h3>
+						<div class="tsd-signature tsd-kind-icon">forgot<wbr>Password<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in src/contexts/AccountUIContext/state.ts:64</li>
+							</ul>
+						</aside>
+						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+							<a name="initialaccountuistate.forgotpassword-1.email-2" class="tsd-anchor"></a>
+							<h3>email</h3>
+							<div class="tsd-signature tsd-kind-icon">email<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> = null</span></div>
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/contexts/AccountUIContext/state.ts:66</li>
+								</ul>
+							</aside>
+						</section>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-object-literal">
+						<a name="initialaccountuistate.login-1" class="tsd-anchor"></a>
+						<h3>login</h3>
+						<div class="tsd-signature tsd-kind-icon">login<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in src/contexts/AccountUIContext/state.ts:60</li>
+							</ul>
+						</aside>
+						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+							<a name="initialaccountuistate.login-1.email-3" class="tsd-anchor"></a>
+							<h3>email</h3>
+							<div class="tsd-signature tsd-kind-icon">email<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> = null</span></div>
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/contexts/AccountUIContext/state.ts:62</li>
+								</ul>
+							</aside>
+						</section>
+					</section>
+					<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-object-literal">
+						<a name="initialaccountuistate.setpassword-1" class="tsd-anchor"></a>
+						<h3>set<wbr>Password</h3>
+						<div class="tsd-signature tsd-kind-icon">set<wbr>Password<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in src/contexts/AccountUIContext/state.ts:68</li>
+							</ul>
+						</aside>
+						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+							<a name="initialaccountuistate.setpassword-1.setpasswordtransit-1" class="tsd-anchor"></a>
+							<h3>set<wbr>Password<wbr>Transit</h3>
+							<div class="tsd-signature tsd-kind-icon">set<wbr>Password<wbr>Transit<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>transitComplete<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>transitErrorMessage<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">; </span>transitId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">; </span>transitInProgress<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>transitSuccess<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> = initialTransitState</span></div>
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/contexts/AccountUIContext/state.ts:69</li>
+								</ul>
+							</aside>
+							<div class="tsd-type-declaration">
+								<h4>Type declaration</h4>
+								<ul class="tsd-parameters">
+									<li class="tsd-parameter">
+										<h5>transit<wbr>Complete<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
+									</li>
+									<li class="tsd-parameter">
+										<h5>transit<wbr>Error<wbr>Message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h5>
+									</li>
+									<li class="tsd-parameter">
+										<h5>transit<wbr>Id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h5>
+									</li>
+									<li class="tsd-parameter">
+										<h5>transit<wbr>InProgress<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
+									</li>
+									<li class="tsd-parameter">
+										<h5>transit<wbr>Success<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
+									</li>
+								</ul>
+							</div>
+						</section>
+						<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
+							<a name="initialaccountuistate.setpassword-1.verifyresetcodetransit-1" class="tsd-anchor"></a>
+							<h3>verify<wbr>Reset<wbr>Code<wbr>Transit</h3>
+							<div class="tsd-signature tsd-kind-icon">verify<wbr>Reset<wbr>Code<wbr>Transit<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>transitComplete<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>transitErrorMessage<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">; </span>transitId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">; </span>transitInProgress<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>transitSuccess<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> = initialTransitState</span></div>
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/contexts/AccountUIContext/state.ts:70</li>
+								</ul>
+							</aside>
+							<div class="tsd-type-declaration">
+								<h4>Type declaration</h4>
+								<ul class="tsd-parameters">
+									<li class="tsd-parameter">
+										<h5>transit<wbr>Complete<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
+									</li>
+									<li class="tsd-parameter">
+										<h5>transit<wbr>Error<wbr>Message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h5>
+									</li>
+									<li class="tsd-parameter">
+										<h5>transit<wbr>Id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h5>
+									</li>
+									<li class="tsd-parameter">
+										<h5>transit<wbr>InProgress<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
+									</li>
+									<li class="tsd-parameter">
+										<h5>transit<wbr>Success<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
+									</li>
+								</ul>
+							</div>
+						</section>
+					</section>
+				</section>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="../globals.html"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="_etn_sst_react_native_auth_ui.html">@etn-<wbr>sst/react-<wbr>native-<wbr>auth-<wbr>ui</a>
+					</li>
+					<li class="current tsd-kind-module">
+						<a href="accountuicontext.html">AccountUIContext</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="authuicontextprovider.html">AuthUIContext<wbr>Provider</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="components.html">Components</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="helpers.html">Helpers</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="hooks.html">Hooks</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="registrationuicontext.html">RegistrationUIContext</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="screens.html">Screens</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="securitycontextprovider.html">Security<wbr>Context<wbr>Provider</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="stores.html">Stores</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="sub_screens.html">Sub-<wbr><wbr>Screens</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="transitstate.html">Transit<wbr>State</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="types.html">Types</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="accountuicontext.html#accountuiactioncontext" class="tsd-kind-icon">AccountUIAction<wbr>Context</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="accountuicontext.html#accountuiactions" class="tsd-kind-icon">AccountUIActions</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="accountuicontext.html#accountuiactionscreator" class="tsd-kind-icon">AccountUIActions<wbr>Creator</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="accountuicontext.html#accountuicontextactions" class="tsd-kind-icon">AccountUIContext<wbr>Actions</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="accountuicontext.html#accountuireducer" class="tsd-kind-icon">AccountUIReducer</a>
+					</li>
+					<li class=" tsd-kind-reference tsd-parent-kind-module">
+						<a href="accountuicontext.html#defaultaccountuireducer" class="tsd-kind-icon">default<wbr>AccountUIReducer</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="accountuicontext.html#accountactions" class="tsd-kind-icon">Account<wbr>Actions</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="accountuicontext.html#accountuiactions-1" class="tsd-kind-icon">AccountUIActions</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="accountuicontext.html#accountuiactionscreator-1" class="tsd-kind-icon">AccountUIActions<wbr>Creator</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-is-not-exported">
+						<a href="accountuicontext.html#accountuiactionscreator-2" class="tsd-kind-icon">AccountUIActions<wbr>Creator</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-is-not-exported">
+						<a href="accountuicontext.html#accountuiactionsfunction" class="tsd-kind-icon">AccountUIActions<wbr>Function</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="accountuicontext.html#accountuicontextactions-1" class="tsd-kind-icon">AccountUIContext<wbr>Actions</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="accountuicontext.html#accountuireducer-1" class="tsd-kind-icon">AccountUIReducer</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module">
+						<a href="accountuicontext.html#accountuistate" class="tsd-kind-icon">AccountUIState</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-is-not-exported">
+						<a href="accountuicontext.html#forgotpasswordstate" class="tsd-kind-icon">Forgot<wbr>Password<wbr>State</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-is-not-exported">
+						<a href="accountuicontext.html#loginstate" class="tsd-kind-icon">Login<wbr>State</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-is-not-exported">
+						<a href="accountuicontext.html#setpasswordstate" class="tsd-kind-icon">Set<wbr>Password<wbr>State</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="accountuicontext.html#actioncontext" class="tsd-kind-icon">Action<wbr>Context</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-module">
+						<a href="accountuicontext.html#statecontext" class="tsd-kind-icon">State<wbr>Context</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="accountuicontext.html#accountactionscreator" class="tsd-kind-icon">Account<wbr>Actions<wbr>Creator</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="accountuicontext.html#defaultaccountuireducer-1" class="tsd-kind-icon">default<wbr>AccountUIReducer</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="accountuicontext.html#useaccountuiactions" class="tsd-kind-icon">use<wbr>AccountUIActions</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="accountuicontext.html#useaccountuistate" class="tsd-kind-icon">use<wbr>AccountUIState</a>
+					</li>
+					<li class=" tsd-kind-object-literal tsd-parent-kind-module">
+						<a href="accountuicontext.html#accountactions-1" class="tsd-kind-icon">Account<wbr>Actions</a>
+					</li>
+					<li class=" tsd-kind-object-literal tsd-parent-kind-module">
+						<a href="accountuicontext.html#initialaccountuistate" class="tsd-kind-icon">initial<wbr>AccountUIState</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>

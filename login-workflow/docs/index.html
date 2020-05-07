@@ -1,0 +1,404 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>@etn-sst/react-native-auth-ui</title>
+	<meta name="description" content="Documentation for @etn-sst/react-native-auth-ui">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">@etn-sst/react-native-auth-ui</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1>@etn-sst/react-native-auth-ui</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<a href="#react-native-auth-ui" id="react-native-auth-ui" style="color: inherit; text-decoration: none;">
+					<h1>React Native Auth UI</h1>
+				</a>
+				<p><a href="https://dev.azure.com/etn-sst/Washington/_packaging?_a=package&amp;feed=ea659b01-3c7c-4772-83bd-060ccc12bfe2&amp;package=813ed6c4-8e40-4fc2-a4ff-92c7ef3a4630&amp;preferRelease=true"><img src="https://feeds.dev.azure.com/etn-sst/522ba214-f560-465b-9c35-da1396524fdd/_apis/public/Packaging/Feeds/ea659b01-3c7c-4772-83bd-060ccc12bfe2/Packages/813ed6c4-8e40-4fc2-a4ff-92c7ef3a4630/Badge" alt="@etn-sst/react-native-auth-ui package in Components feed in Azure Artifacts"></a></p>
+				<p><a href="https://dev.azure.com/etn-sst/Washington/_build/latest?definitionId=10&amp;branchName=dev"><img src="https://dev.azure.com/etn-sst/Washington/_apis/build/status/Component-Validation?branchName=dev" alt="Dev Build Status"></a></p>
+				<p>The React Native Authentication UI Component provides a consistant authentication and registraton experience across Eaton mobile applications. </p>
+				<p><strong>iOS</strong></p>
+				<p><img src="/media/login_ios.png" alt="Login iOS"> <img src="/media/home_ios.png" alt="Home iOS"> <img src="/media/pass_ios.png" alt="Password iOS"></p>
+				<p><strong>Android</strong></p>
+				<p><img src="/media/login_android.png" alt="Login Android"> <img src="/media/home_android.png" alt="Home Android"> <img src="/media/pass_android.png" alt="Password Android"></p>
+				<a href="#user-interface" id="user-interface" style="color: inherit; text-decoration: none;">
+					<h2>User Interface</h2>
+				</a>
+				<p>The <strong>React Native Auth UI</strong> provides iOS and Android support for Login, Forgot Password, Contact Information, Self Registration, Registration by Invitation, and Change Password.</p>
+				<p>Integrating the user interface into your application is as easy as providing the API calls for the various authentication and registration actions performed by the user. The <code>AuthNavigationContainer</code> automatically handles the presentation of the non-secure (pre-authorization) and secure (custom application) portions of a mobile application. </p>
+				<hr>
+				<a href="#1-setup-and-configuration" id="1-setup-and-configuration" style="color: inherit; text-decoration: none;">
+					<h2>1. Setup and configuration</h2>
+				</a>
+				<a href="#scenario-1-recommended-integration-into-an-existing-react-native-project" id="scenario-1-recommended-integration-into-an-existing-react-native-project" style="color: inherit; text-decoration: none;">
+					<h3>Scenario 1 (recommended): Integration into an existing React Native project</h3>
+				</a>
+				<p>We recommend using the PX Blue CLI or React CLI to initalize your project. Follow these instructions to integrate React Native Auth UI into an existing React Native project.</p>
+				<a href="#initial-setup" id="initial-setup" style="color: inherit; text-decoration: none;">
+					<h4>Initial setup</h4>
+				</a>
+				<p>Follow these <a href="https://dev.azure.com/etn-sst/Washington/_packaging?_a=package&amp;feed=Components&amp;package=%40etn-sst%2Freact-native-auth-ui&amp;protocolType=Npm">instructions</a> to connect to the @etn-sst/react-native-auth-ui feed and run <code>yarn add @etn-sst/react-native-auth-ui</code> to install the package. (Pass <code>@&lt;version&gt;</code> to specify a particular version to install).</p>
+				<p>You will see &quot;unmet peer dependencies&quot; errors after you run <code>yarn</code> in the parent directory. You need to install all the peer dependencies required by react-native-auth-ui:</p>
+				<pre><code><span class="hljs-string">"@pxblue/colors"</span>: <span class="hljs-string">"^1.0.13"</span>,
+<span class="hljs-string">"@pxblue/react-native-components"</span>: <span class="hljs-string">"^2.0.2"</span>,
+<span class="hljs-string">"@pxblue/react-native-themes"</span>: <span class="hljs-string">"^4.0.0"</span>,
+<span class="hljs-string">"@react-navigation/native"</span>: <span class="hljs-string">"^5.1.1"</span>,
+<span class="hljs-string">"@react-navigation/stack"</span>: <span class="hljs-string">"^5.2.3"</span>,
+<span class="hljs-string">"react"</span>: <span class="hljs-string">"*"</span>,
+<span class="hljs-string">"react-i18next"</span>: <span class="hljs-string">"^11.3.4"</span>,
+<span class="hljs-string">"i18next"</span>: <span class="hljs-string">"^19.3.4"</span>,
+<span class="hljs-string">"react-native"</span>: <span class="hljs-string">"^0.61.5"</span>,
+<span class="hljs-string">"react-native-vector-icons"</span>: <span class="hljs-string">"*"</span>,
+<span class="hljs-string">"react-native-elements"</span>: <span class="hljs-string">"^1.2.7"</span>,
+<span class="hljs-string">"react-native-paper"</span>: <span class="hljs-string">"^3.7.0"</span>,
+<span class="hljs-string">"date-fns"</span>: <span class="hljs-string">"^2.11.1"</span>,
+<span class="hljs-string">"@react-native-community/viewpager"</span>: <span class="hljs-string">"^3.3.0"</span>,
+<span class="hljs-string">"@react-native-community/masked-view"</span>: <span class="hljs-string">"^0.1.7"</span>,
+<span class="hljs-string">"react-native-gesture-handler"</span>: <span class="hljs-string">"^1.6.1"</span>,
+<span class="hljs-string">"react-native-safe-area-context"</span>: <span class="hljs-string">"^0.7.3"</span>,
+<span class="hljs-string">"react-native-screens"</span>: <span class="hljs-string">"^2.4.0"</span>,
+<span class="hljs-string">"react-native-keyboard-aware-scroll-view"</span>: <span class="hljs-string">"0.9.1"</span></code></pre><p>You may also want to use <code>&quot;@react-native-community/async-storage&quot;: &quot;^1.9.0&quot;</code> if you copy over and use <code>store/local-strage.ts</code> in a later step, as it requires AsyncStorage.</p>
+				<p>Don&#39;t forget to do a <code>pod install</code> in your iOS folder.</p>
+				<a href="#implement-authuiactions-and-registrationuiactions" id="implement-authuiactions-and-registrationuiactions" style="color: inherit; text-decoration: none;">
+					<h4>Implement AuthUIActions and RegistrationUIActions</h4>
+				</a>
+				<p>You need to implement the backend networking for all networking within react-native-auth-ui. </p>
+				<p>Your implementation will likely involve writing calls to your APIs and caching the returned data, as needed, depending on the requirements of your application.</p>
+				<ol>
+					<li>Create a folder called <code>actions</code> inside your root directory.</li>
+					<li>Create two empty files in the <code>actions</code> directory called <code>&lt;proj&gt;AuthUIActions.tsx</code> and <code>&lt;proj&gt;RegistrationUIActions.tsx</code>, where <code>&lt;proj&gt;</code> is the name of your project.</li>
+					<li>Fill in the implementation details for the two files you already created in the <code>actions</code> directory. <ul>
+							<li>The first file you created, <code>&lt;proj&gt;AuthUIActions.tsx</code>, will handle the implementation of the authentication related actions (such as login and forgot pasword).<ul>
+									<li>The easiest way to create this file will be to copy the example mock implementation within the react-native-auth-ui repository. This is found in <code>examples/src/actions/MockAuthUIActions.ts</code>. Copy and paste the file&#39;s contents into your <code>&lt;proj&gt;AuthUIActions.tsx</code> file. You will likely want to rename the occurrences of <code>MockAuthUIActions</code> to <code>&lt;proj&gt;AuthUIActions</code>.         </li>
+								</ul>
+							</li>
+							<li>The second file you created, <code>&lt;proj&gt;RegistrationActions.tsx</code>, will handle the implementation of the registration related actions (such as loading the EULA and registration by invitation).<ul>
+									<li>The easiest way to create this file will be to copy the example mock implementation within the react-native-auth-ui repository. This is found in <code>examples/src/actions/MockRegistrationUIActions</code>. Copy and paste the file&#39;s contents into your <code>&lt;proj&gt;RegistrationActions.tsx</code> file. You will likely want to rename the occurrences of <code>MockRegistrationUIActions</code> to <code>&lt;proj&gt;RegistrationUIActions</code>.</li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					<li>You may also wish to copy over the <code>examples/src/store</code> and <code>examples/src/constants</code> folders from react-native-auth-ui for the purposes of compiling with the mock <code>MockAuthUIActions</code> and <code>MockRegistrationUIActions</code> before you write your own implementation. (Note you will need some dependencies if you use this <code>local-storage.ts</code>. Run <code>yarn add @react-native-community/async-storage</code>.)</li>
+					<li>Import these two actions files inside your root app file (generally App.tsx):</li>
+				</ol>
+				<pre><code><span class="hljs-keyword">import</span> &lt;proj&gt;AuthUIActions <span class="hljs-keyword">from</span> <span class="hljs-string">'./src/actions/&lt;proj&gt;AuthUIActions'</span>;
+<span class="hljs-keyword">import</span> &lt;proj&gt;RegistrationUIActions <span class="hljs-keyword">from</span> <span class="hljs-string">'./src/actions/&lt;proj&gt;RegistrationUIActions'</span>;</code></pre>
+				<a href="#root-application-structure" id="root-application-structure" style="color: inherit; text-decoration: none;">
+					<h4>Root application structure</h4>
+				</a>
+				<ol>
+					<li><p>In the root app file (generally App.tsx), add the following imports to the top of the file:</p>
+						<pre><code> import {
+<span class="hljs-built_in">     SecurityContextProvider,</span>
+<span class="hljs-built_in">     AuthNavigationContainer,</span>
+<span class="hljs-built_in">     AuthUIContextProvider,</span>
+<span class="hljs-built_in">     useSecurityActions,</span>
+ } from '@etn-sst/react-native-auth-ui'<span class="hljs-comment">;</span></code></pre></li>
+					<li><p>Inside your default export, wrap your entire application as follows, where <code>&lt;your_app_xml&gt;</code> is your existing app structure XML:</p>
+					</li>
+				</ol>
+				<pre><code><span class="hljs-section">&lt;SecurityContextProvider&gt;</span>
+    <span class="hljs-section">&lt;AuthUIConfiguration&gt;</span>
+        <span class="hljs-section">&lt;AuthNavigationContainer&gt;</span>
+            <span class="hljs-section">&lt;your_app_xml&gt;</span>   <span class="hljs-section">&lt;--- Your existing app
+        &lt;/AuthNavigationContainer&gt;</span>
+    <span class="hljs-section">&lt;/AuthUIConfiguration&gt;</span>
+<span class="hljs-section">&lt;/SecurityContextProvider&gt;</span></code></pre>
+				<a href="#set-authuicontextprovider-options" id="set-authuicontextprovider-options" style="color: inherit; text-decoration: none;">
+					<h4>Set AuthUIContextProvider options</h4>
+				</a>
+				<ol>
+					<li>Create a function called <code>AuthUIConfiguration</code> in your root app file which specifies your configuration options for the React Native Auth UI component. The function should look something like this, where <code>&lt;proj&gt;</code> refers to a prefix with your project&#39;s name:</li>
+				</ol>
+				<pre><code>export <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">AuthUIConfiguration</span><span class="hljs-params">(props: { children: JSX.Element })</span>: <span class="hljs-title">JSX</span>.<span class="hljs-title">Element</span> </span>{
+    <span class="hljs-keyword">const</span> securityContextActions = useSecurityActions();
+
+    <span class="hljs-keyword">return</span> (
+        &lt;AuthUIContextProvider
+            authActions={&lt;proj&gt;AuthUIActions(securityContextActions)}
+            registrationActions={&lt;proj&gt;RegistrationUIActions}
+            showSelfRegistration={<span class="hljs-keyword">true</span>}
+            allowDebugMode={<span class="hljs-keyword">true</span>}
+            contactEmail={<span class="hljs-string">'something@email.com'</span>}
+            contactPhone={<span class="hljs-string">'1-800-123-4567'</span>}
+            projectImage={<span class="hljs-keyword">require</span>(<span class="hljs-string">'./src/assets/images/some_image.png'</span>)}
+        &gt;
+            {props.children}
+        &lt;/AuthUIContextProvider&gt;
+    );
+}</code></pre><p>You can skip passing the <code>projectImage</code> property if you don&#39;t have one yet.</p>
+				<p>Explanations of the various configuration options can be found in the generated code documentation in the <code>docs</code> folder.</p>
+				<a href="#set-up-deep-linking" id="set-up-deep-linking" style="color: inherit; text-decoration: none;">
+					<h4>Set up Deep Linking</h4>
+				</a>
+				<p>Currently, your have not implemented deep linking, so the XML in your root app file is not correct for <code>AuthNavigationContainer</code>.</p>
+				<ol>
+					<li>Copy the <code>examples/src/navigation</code> folder into your project for an example implementation of the deep linking options and the <code>resolveInitialState</code> method.</li>
+					<li>Make sure to install your peer dependencies (e.g. <code>yarn add @react-navigation/native</code> to add react navigation to your project).</li>
+					<li>Set up state for deep link handling in your App.tsx file before the XML return:<pre><code><span class="hljs-keyword">import</span> { useLinking } <span class="hljs-keyword">from</span> <span class="hljs-string">'@react-navigation/native'</span>;
+<span class="hljs-keyword">import</span> { authLinkMapping, resolveInitialState } <span class="hljs-keyword">from</span> <span class="hljs-string">'./src/navigation/DeepLinking'</span>;
+</code></pre></li>
+				</ol>
+				<p>...</p>
+				<p>const ref = React.useRef();</p>
+				<p>// Setup deep links. Check DeepLinking file for path to screen mapping
+					const { getInitialState } = useLinking(ref, authLinkMapping);
+					const [initialState, setInitialState] = React.useState();
+					React.useEffect(() =&gt; {
+					resolveInitialState(getInitialState, setInitialState);
+				}, [getInitialState]);</p>
+				<pre><code>
+Now you should be able to run your app <span class="hljs-keyword">with</span> react-<span class="hljs-keyword">native</span>-auth-ui integrated.
+
+<span class="hljs-comment">### Scenario 2: From the example project ###</span>
+
+<span class="hljs-keyword">If</span> you don<span class="hljs-string">'t have an existing React Native project and would like an example as a springboard, consider using the provided example project in the `examples` folder.
+
+#### Copy the examples folder ####
+
+Clone or download this repo and then copy out the `examples` folder. Navigate into this folder and run `yarn` to install the required dependencies. The `.npmrc` file allows you to download the `react-native-auth-ui` dependency from the Azure DevOps feed. Follow these [instructions](https://dev.azure.com/etn-sst/Washington/_packaging?_a=package&amp;feed=Components&amp;package=%40etn-sst%2Freact-native-auth-ui&amp;protocolType=Npm) to connect to the @etn-sst/react-native-auth-ui feed.
+
+#### Rename the example project ####
+
+Now you can rename your copied `examples` folder to whatever you'</span>d <span class="hljs-keyword">like</span> <span class="hljs-keyword">to</span> <span class="hljs-keyword">call</span> your project. You can <span class="hljs-keyword">update</span> the relevant <span class="hljs-keyword">project</span>-related configuration options <span class="hljs-keyword">in</span> the <span class="hljs-string">`package.json`</span> file. It <span class="hljs-keyword">is</span> recommended you <span class="hljs-keyword">use</span> something <span class="hljs-keyword">like</span> [react-<span class="hljs-keyword">native</span>-<span class="hljs-keyword">rename</span>](https://www.npmjs.com/<span class="hljs-keyword">package</span>/react-<span class="hljs-keyword">native</span>-<span class="hljs-keyword">rename</span>) <span class="hljs-keyword">to</span> <span class="hljs-keyword">rename</span> the <span class="hljs-keyword">project</span> <span class="hljs-keyword">as</span> there <span class="hljs-keyword">are</span> numerous iOS <span class="hljs-keyword">and</span> Android <span class="hljs-keyword">project</span> files that must be updated.
+
+<span class="hljs-comment">#### Set AuthUIContextProvider options ####</span>
+
+You should also <span class="hljs-keyword">open</span> the root app <span class="hljs-keyword">file</span> (<span class="hljs-string">`App.tsx`</span>) <span class="hljs-keyword">and</span> adjust the configuration options <span class="hljs-keyword">of</span> the <span class="hljs-string">`AuthUIContextProvider`</span> <span class="hljs-keyword">as</span> necessary <span class="hljs-keyword">for</span> the React <span class="hljs-keyword">Native</span> Auth UI component. Explanations <span class="hljs-keyword">of</span> the various configuration options can be <span class="hljs-keyword">found</span> <span class="hljs-keyword">in</span> the <span class="hljs-keyword">generated</span> code documentation <span class="hljs-keyword">for</span> [AuthUiContextProviderProps](/docs/modules/authuicontextprovider.html<span class="hljs-comment">#authuicontextproviderprops) in the `docs` folder. For example, you will probably want to create a brand logo image (`projectImage`) for your app. </span>
+
+<span class="hljs-comment">#### Implement the actions ####</span>
+
+<span class="hljs-keyword">In</span> the example <span class="hljs-keyword">project</span>, <span class="hljs-keyword">all</span> network calls <span class="hljs-keyword">are</span> mocked <span class="hljs-keyword">with</span> sleeps. The EULA <span class="hljs-keyword">is</span> also a <span class="hljs-keyword">static</span> <span class="hljs-keyword">sample</span> file.
+
+Provide <span class="hljs-built_in">real</span> implementation details <span class="hljs-keyword">within</span> the <span class="hljs-string">`examples/src/actions/MockAuthUIActions.tsx`</span> <span class="hljs-keyword">and</span> <span class="hljs-string">`examples/src/actions/MockRegistrationUIActions.tsx`</span> files, which <span class="hljs-keyword">are</span> currently mocking network behaviour. Most likely, your implementation will involve making calls <span class="hljs-keyword">to</span> an API <span class="hljs-keyword">and</span> <span class="hljs-keyword">using</span> <span class="hljs-keyword">local</span> <span class="hljs-keyword">storage</span> <span class="hljs-keyword">to</span> retain information <span class="hljs-keyword">as</span> needed <span class="hljs-keyword">by</span> your application (such <span class="hljs-keyword">as</span> the <span class="hljs-keyword">user</span><span class="hljs-string">'s name and email).
+
+You may also want to take this time to rename those two files, prefixing "AuthUIActions" and "RegistrationUIActions" with the name of your project. Make sure you update your imports if so.
+
+---
+
+## 2. Security state ##
+
+After setup, you are now able to access various security actions and state from within your application. Importing `useSecurityActions` and `useSecurityState` allows you use these hooks as follows:
+</span></code></pre><p>import {useSecurityActions, useSecurityState } from &#39;@etn-sst/react-native-auth-ui&#39;;</p>
+				<p>const securityActions = useSecurityActions();
+				const securityState = useSecurityState();</p>
+				<pre><code>
+The `securityActions` allows you to access actions related to user authentication and deauthentication. You can <span class="hljs-keyword">call</span> <span class="hljs-string">`securityActions.onUserNotAuthenticated();`</span> <span class="hljs-keyword">to</span> unauthenticate <span class="hljs-keyword">from</span> the application.
+
+The <span class="hljs-string">`securityState`</span> allows you <span class="hljs-keyword">to</span> <span class="hljs-keyword">access</span> state related <span class="hljs-keyword">to</span> <span class="hljs-keyword">security</span>, such <span class="hljs-keyword">as</span> the currently <span class="hljs-keyword">authenticated</span> <span class="hljs-keyword">user</span><span class="hljs-string">'s email (`securityState.email`).
+
+More information about React Native Auth UI'</span>s exported objects can <span class="hljs-keyword">found</span> <span class="hljs-keyword">in</span> the <span class="hljs-keyword">generated</span> code documentation <span class="hljs-keyword">in</span> the <span class="hljs-string">`docs`</span> folder.
+
+<span class="hljs-comment">---</span>
+
+<span class="hljs-comment">## 3. Deep Linking ##</span>
+
+<span class="hljs-comment">### Setup ###</span>
+
+There <span class="hljs-keyword">are</span> certain screens <span class="hljs-keyword">in</span> the React <span class="hljs-keyword">Native</span> Auth UI that <span class="hljs-keyword">are</span> <span class="hljs-keyword">only</span> <span class="hljs-keyword">accessible</span> <span class="hljs-keyword">from</span> an email link. <span class="hljs-keyword">For</span> these screens, deep linking <span class="hljs-keyword">is</span> required. Follow the React Navigation v5 [Deep <span class="hljs-keyword">Link</span> guide](https://reactnavigation.org/docs/deep-linking/) <span class="hljs-keyword">to</span> configure your <span class="hljs-keyword">project</span> <span class="hljs-keyword">for</span> deep-<span class="hljs-keyword">link</span> integration. (The example <span class="hljs-keyword">project</span> <span class="hljs-keyword">is</span> already properly configured <span class="hljs-keyword">in</span> <span class="hljs-string">`src/navigation/DeepLinking.ts`</span>).
+
+See the <span class="hljs-keyword">file</span> <span class="hljs-keyword">at</span> <span class="hljs-string">`examples/src/navigation/DeepLinking.ts`</span> <span class="hljs-keyword">for</span> an example <span class="hljs-keyword">on</span> how <span class="hljs-keyword">to</span> <span class="hljs-keyword">set</span> up deep linking <span class="hljs-keyword">in</span> your project.
+
+<span class="hljs-comment">### Handled screens and parameters ###</span>
+
+The <span class="hljs-keyword">following</span> <span class="hljs-keyword">is</span> a <span class="hljs-keyword">list</span> <span class="hljs-keyword">of</span> the screens <span class="hljs-keyword">and</span> their <span class="hljs-keyword">parameters</span> which a deep <span class="hljs-keyword">link</span> may launch <span class="hljs-keyword">to</span>:
+
+- <span class="hljs-string">`login`</span>: the login screen.
+- <span class="hljs-string">`PasswordResetInitiation`</span>: the <span class="hljs-keyword">first</span> screen <span class="hljs-keyword">of</span> the <span class="hljs-keyword">Password</span> <span class="hljs-keyword">Reset</span> flow.
+- <span class="hljs-string">`PasswordResetCompletion`</span>: the later half <span class="hljs-keyword">of</span> the <span class="hljs-keyword">Password</span> <span class="hljs-keyword">Reset</span> flow, takes parameter <span class="hljs-string">`verifyCode`</span>.
+- <span class="hljs-string">`RegistrationInvite`</span>: the Registration via Invitation flow, takes parameter <span class="hljs-string">`validationCode`</span>.
+- <span class="hljs-string">`Registration`</span>: the later half <span class="hljs-keyword">of</span> the <span class="hljs-keyword">Self</span> Registration flow, takes parameter: <span class="hljs-string">`verificationCode`</span>.
+- <span class="hljs-string">`SupportContact`</span>: the Contact Support screen.
+
+<span class="hljs-comment">### Testing Deep Links ###</span>
+
+- <span class="hljs-keyword">Test</span> iOS simulator <span class="hljs-keyword">with</span> <span class="hljs-string">`xcrun simctl openurl booted authui://invite/8k27jshInvite234Code`</span>
+- <span class="hljs-keyword">Test</span> Android <span class="hljs-keyword">with</span> <span class="hljs-string">`adb shell am start -W -a android.intent.action.VIEW -d "authui://invite/8k27jshInvite234Code" com.shiverware.eaton.authui`</span>
+- <span class="hljs-keyword">Test</span> <span class="hljs-keyword">on</span> device <span class="hljs-keyword">from</span> browser <span class="hljs-string">`authui://invite/8k27jshInvite234Code`</span>
+
+Note that the <span class="hljs-string">`authui://`</span> prefix <span class="hljs-keyword">is</span> <span class="hljs-keyword">set</span> <span class="hljs-keyword">by</span> your application, <span class="hljs-keyword">as</span> <span class="hljs-keyword">in</span> the <span class="hljs-keyword">file</span> <span class="hljs-keyword">at</span> <span class="hljs-string">`examples/src/navigation/DeepLinking.ts`</span>.
+
+<span class="hljs-comment">---</span>
+
+<span class="hljs-comment">## 4. Building ##</span>
+
+**Note:** Building <span class="hljs-keyword">is</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">required</span> <span class="hljs-keyword">for</span> <span class="hljs-keyword">using</span> <span class="hljs-keyword">module</span> since this <span class="hljs-keyword">is</span> an NPM package. However, <span class="hljs-keyword">if</span> you <span class="hljs-keyword">are</span> contributing, please follow this <span class="hljs-keyword">section</span> <span class="hljs-keyword">on</span> how <span class="hljs-keyword">to</span> <span class="hljs-keyword">build</span> the module.
+
+<span class="hljs-comment">### Installation ###</span>
+
+Run <span class="hljs-string">`yarn boostrap`</span> <span class="hljs-keyword">in</span> the top <span class="hljs-keyword">level</span> <span class="hljs-keyword">directory</span> <span class="hljs-keyword">to</span> <span class="hljs-keyword">install</span> dependencies. This will <span class="hljs-keyword">install</span> dependencies <span class="hljs-keyword">for</span> this <span class="hljs-keyword">project</span>, <span class="hljs-keyword">as</span> well <span class="hljs-keyword">as</span> <span class="hljs-keyword">for</span> the example projects.
+
+<span class="hljs-comment">### Running ###</span>
+
+iOS: <span class="hljs-string">`yarn ios`</span> <span class="hljs-keyword">in</span> the top-<span class="hljs-keyword">level</span> <span class="hljs-keyword">directory</span> (this also <span class="hljs-keyword">install</span> pods)
+
+Android: <span class="hljs-string">`yarn android`</span> <span class="hljs-keyword">in</span> the top-<span class="hljs-keyword">level</span> <span class="hljs-keyword">directory</span>
+
+<span class="hljs-keyword">Both</span> these commands <span class="hljs-keyword">choose</span> a <span class="hljs-keyword">default</span> simulator <span class="hljs-keyword">or</span> emulator.
+
+<span class="hljs-comment">#### Running on a Specific Simulator ####</span>
+
+<span class="hljs-comment">##### iOS #####</span>
+
+- Run <span class="hljs-string">`yarn ios --simulator="DEVICE_NAME"`</span> (<span class="hljs-keyword">Replace</span> DEVICE_NAME <span class="hljs-keyword">with</span> the exact <span class="hljs-keyword">name</span> <span class="hljs-keyword">of</span> the simulator <span class="hljs-keyword">or</span> device <span class="hljs-keyword">as</span> you see it <span class="hljs-keyword">in</span> Xcode, e.g. <span class="hljs-string">"iPhone 11 Pro"</span>).
+
+<span class="hljs-comment">##### Android #####</span>
+- Make sure your desired emulator <span class="hljs-keyword">is</span> already running. <span class="hljs-keyword">Then</span> run <span class="hljs-string">`adb devices`</span> <span class="hljs-keyword">to</span> <span class="hljs-keyword">get</span> a <span class="hljs-keyword">list</span> <span class="hljs-keyword">of</span> the identifiers <span class="hljs-keyword">for</span> the available emulators. <span class="hljs-keyword">Next</span>, run <span class="hljs-string">`yarn react-native run-android --deviceId=DEVICE_ID`</span> (<span class="hljs-keyword">Replace</span> DEVICE_ID <span class="hljs-keyword">with</span> the exact <span class="hljs-keyword">ID</span> <span class="hljs-keyword">of</span> the device, e.g. <span class="hljs-string">"emulator-5554"</span>).
+
+<span class="hljs-keyword">For</span> additional information (<span class="hljs-keyword">like</span> how <span class="hljs-keyword">to</span> run <span class="hljs-keyword">on</span> a <span class="hljs-built_in">real</span> device), [<span class="hljs-keyword">read</span> the React <span class="hljs-keyword">Native</span> documentation](https://reactnative.dev/docs/running-<span class="hljs-keyword">on</span>-device).
+
+<span class="hljs-comment">---</span>
+
+<span class="hljs-comment">## 5. Updating React Native Auth UI ##</span>
+
+You can <span class="hljs-keyword">update</span> the <span class="hljs-string">`@etn-sst/react-native-auth-ui`</span> dependency <span class="hljs-keyword">by</span> running <span class="hljs-string">`yarn upgrade @etn-sst/react-native-auth-ui`</span>.
+
+<span class="hljs-comment">---</span>
+
+<span class="hljs-comment">## 6. Developing ##</span>
+
+<span class="hljs-keyword">If</span> you want <span class="hljs-keyword">to</span> continue development <span class="hljs-keyword">of</span> this <span class="hljs-keyword">package</span>, you can generate development documentation <span class="hljs-keyword">by</span> running <span class="hljs-string">`yarn docs`</span> (which uses [TypeDoc](<span class="hljs-keyword">http</span>://typedoc.org/) <span class="hljs-keyword">to</span> generate a code documentation suite <span class="hljs-keyword">in</span> <span class="hljs-string">`/docs`</span>). You can run <span class="hljs-string">`yarn docs:open`</span> <span class="hljs-keyword">to</span> <span class="hljs-keyword">then</span> <span class="hljs-keyword">open</span> the <span class="hljs-keyword">generated</span> documentation <span class="hljs-keyword">to</span> learn more about this project.
+
+<span class="hljs-keyword">Prior</span> <span class="hljs-keyword">to</span> commiting, make sure <span class="hljs-keyword">to</span> run <span class="hljs-string">`yarn precommit`</span>. This will run the various <span class="hljs-keyword">validation</span> scripts <span class="hljs-keyword">and</span> generate <span class="hljs-keyword">new</span> documentation <span class="hljs-keyword">and</span> licenses. 
+
+<span class="hljs-comment">---</span>
+
+<span class="hljs-comment">## 7. Publishing ##</span>
+
+<span class="hljs-keyword">Update</span> the <span class="hljs-keyword">version</span> numbers <span class="hljs-keyword">and</span> <span class="hljs-keyword">then</span> run <span class="hljs-string">`npm publish`</span>. Afterward, <span class="hljs-keyword">create</span> a <span class="hljs-keyword">commit</span> <span class="hljs-keyword">and</span> a tag <span class="hljs-keyword">with</span> your <span class="hljs-keyword">version</span> <span class="hljs-built_in">number</span> prefixed <span class="hljs-keyword">by</span> <span class="hljs-string">"v"</span>, e.g. <span class="hljs-string">`v0.1.0`</span>.
+
+<span class="hljs-comment">---</span>
+
+<span class="hljs-comment">## 8. More Information ##</span>
+
+<span class="hljs-keyword">For</span> more information about the specifics <span class="hljs-keyword">of</span> the React <span class="hljs-keyword">Native</span> Auth UI <span class="hljs-keyword">package</span>, please refer <span class="hljs-keyword">to</span> the <span class="hljs-keyword">generated</span> code documentation <span class="hljs-keyword">in</span> the <span class="hljs-string">`docs`</span> folder.</code></pre>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="globals.html"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_etn_sst_react_native_auth_ui.html">@etn-<wbr>sst/react-<wbr>native-<wbr>auth-<wbr>ui</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/accountuicontext.html">AccountUIContext</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/authuicontextprovider.html">AuthUIContext<wbr>Provider</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/components.html">Components</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/helpers.html">Helpers</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/hooks.html">Hooks</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/registrationuicontext.html">RegistrationUIContext</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/screens.html">Screens</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/securitycontextprovider.html">Security<wbr>Context<wbr>Provider</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/stores.html">Stores</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/sub_screens.html">Sub-<wbr><wbr>Screens</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/transitstate.html">Transit<wbr>State</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/types.html">Types</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+{
+    "@etn-sst/react-native-auth-ui@0.2.1": {
+        "licenses": "UNKNOWN",
+        "parents": "react-native-auth-ui-example"
+    },
+    "i18next@19.3.4": {
+        "licenses": "MIT",
+        "repository": "https://github.com/i18next/i18next",
+        "licenseUrl": "https://github.com/i18next/i18next/raw/master/LICENSE",
+        "parents": "react-native-auth-ui-example"
+    },
+    "react-native-status-bar-height@2.5.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/ovr/react-native-status-bar-height",
+        "licenseUrl": "https://github.com/ovr/react-native-status-bar-height/raw/master/LICENSE",
+        "parents": "@etn-sst/react-native-auth-ui"
+    }
+}
