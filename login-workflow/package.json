@@ -1,8 +1,17 @@
 {
-    "name": "@joebochill/test-auth",
+    "name": "@pxblue/react-native-auth-workflow",
     "description": "Re-usable workflow components for Authentication and Registration within Eaton applications.",
-    "version": "0.1.1",
+    "version": "1.0.0-alpha.0",
     "license": "BSD-3-Clause",
+    "author": {
+        "name": "PX Blue",
+        "email": "pxblue@eaton.com"
+    },
+    "homepage": "https://github.com/pxblue/react-native-workflows/tree/dev/login-workflow",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/pxblue/react-native-workflows/tree/dev/login-workflow"
+    },
     "prettier": "@pxblue/prettier-config",
     "main": "lib/commonjs/index.js",
     "module": "lib/module/index.js",
@@ -28,7 +37,6 @@
         "lint": "eslint \"**/**.{tsx,ts}\"",
         "validate": "yarn prettier && yarn lint && yarn typescript && yarn test",
         "precommit": "yarn validate && yarn docs:clean && yarn generate-licenses",
-        "release": "release-it",
         "prepare": "bob build",
         "bootstrap": "yarn --cwd examples && yarn",
         "example": "yarn --cwd examples",
@@ -67,7 +75,6 @@
         "@react-native-community/eslint-config": "^1.0.0",
         "@react-navigation/native": "^5.1.1",
         "@react-navigation/stack": "^5.2.3",
-        "@release-it/conventional-changelog": "^1.1.0",
         "@types/enzyme": "^3.10.5",
         "@types/enzyme-adapter-react-16": "^1.0.6",
         "@types/jest": "^25.2.1",
@@ -106,7 +113,6 @@
         "date-fns": "^2.11.1",
         "metro-react-native-babel-preset": "^0.56.0",
         "react-test-renderer": "16.9.0",
-        "release-it": "^13.5.1",
         "typedoc": "^0.17.4",
         "typedoc-neo-theme": "^1.0.7",
         "typedoc-plugin-external-module-name": "^3.0.0",

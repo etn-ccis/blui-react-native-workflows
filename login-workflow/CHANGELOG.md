@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v1.0.0
+### Changed
+- Package published under the @pxblue scope and made publicly available
+
 ## v0.2.3
 ### Added
 
@@ -68,7 +72,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Linting and prettifying
 
 ### Changed
-- Rearchitecture Android and iOS examples into seperate directory
+- Rearchitecture Android and iOS examples into separate directory
 - Refactor security context
 - Replace promises with await/async pattern
 
