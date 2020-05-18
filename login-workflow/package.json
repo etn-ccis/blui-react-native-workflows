@@ -1,15 +1,17 @@
 {
-    "name": "@etn-sst/react-native-auth-ui",
-    "description": "Provide a React Native component to handle the user interface for Authentication and Registration of Eaton applications.",
-    "version": "0.2.3",
+    "name": "@joebochill/test-auth",
+    "description": "Re-usable workflow components for Authentication and Registration within Eaton applications.",
+    "version": "0.1.0-alpha.1",
+    "license": "BSD-3-Clause",
     "prettier": "@pxblue/prettier-config",
     "main": "lib/commonjs/index.js",
-    "react-native": "src/index.ts",
     "module": "lib/module/index.js",
     "types": "lib/typescript/src/index.d.ts",
     "files": [
-        "src",
-        "lib"
+        "lib",
+        "CHANGELOG.md",
+        "LICENSE.md",
+        "package.json"
     ],
     "scripts": {
         "android": "yarn --cwd examples android",
@@ -36,7 +38,7 @@
         "react-native-status-bar-height": "^2.5.0"
     },
     "peerDependencies": {
-        "@pxblue/colors": "^1.0.13",
+        "@pxblue/colors": "^3.0.0",
         "@pxblue/react-native-components": "^2.0.2",
         "@pxblue/react-native-themes": "^4.0.0",
         "@react-navigation/native": "^5.1.1",
@@ -44,12 +46,12 @@
         "react": "*",
         "react-i18next": "^11.3.4",
         "i18next": "^19.3.4",
-        "react-native": "^0.61.5",
+        "react-native": "^0.62.0",
         "react-native-vector-icons": "^6.4.4",
-        "react-native-elements": "^1.2.7",
+        "react-native-elements": "2.0.0",
         "react-native-paper": "^3.7.0",
         "date-fns": "^2.11.1",
-        "@react-native-community/viewpager": "^3.3.0",
+        "@react-native-community/viewpager": "^4.0.0",
         "react-native-keyboard-aware-scroll-view": "0.9.1"
     },
     "devDependencies": {
