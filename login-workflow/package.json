@@ -23,7 +23,7 @@
         "package.json"
     ],
     "scripts": {
-        "install:dependencies": "yarn && yarn build && cd example && yarn",
+        "install:dependencies": "yarn && yarn build && cd example && yarn && cd ios && pod install",
         "link:components": "bash ./scripts/linkWorkflow.sh",
         "start:example": "yarn start:example-ios",
         "start:example-ios": "yarn install:dependencies && yarn link:components && cd example && yarn ios",
