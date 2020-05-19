@@ -3,7 +3,6 @@ jobs:
     build_library:
         docker:
             - image: circleci/node:12.9.1-browsers
-        working_directory: ~/login-workflow
         environment:
             - MASTER_BRANCH: master
             - DEV_BRANCH: dev
