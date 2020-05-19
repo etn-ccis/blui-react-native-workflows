@@ -33,6 +33,7 @@ We recommend using the PX Blue CLI or React CLI to initalize your project. Follo
 Follow these [instructions](https://dev.azure.com/etn-sst/Washington/_packaging?_a=package&feed=Components&package=%40etn-sst%2Freact-native-auth-ui&protocolType=Npm) to connect to the @etn-sst/react-native-auth-ui feed and run `yarn add @etn-sst/react-native-auth-ui` to install the package. (Pass `@<version>` to specify a particular version to install).
 
 You will see "unmet peer dependencies" errors after you run `yarn` in the parent directory. You need to install all the peer dependencies required by react-native-auth-ui:
+> TODO: Add a copy/paste blurb with all of the peerDependencies
 
 ```
 "@pxblue/colors": "^1.0.13",

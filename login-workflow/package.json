@@ -1,15 +1,26 @@
 {
-    "name": "@etn-sst/react-native-auth-ui",
-    "description": "Provide a React Native component to handle the user interface for Authentication and Registration of Eaton applications.",
-    "version": "0.2.3",
+    "name": "@pxblue/react-native-auth-workflow",
+    "description": "Re-usable workflow components for Authentication and Registration within Eaton applications.",
+    "version": "1.0.0-alpha.0",
+    "license": "BSD-3-Clause",
+    "author": {
+        "name": "PX Blue",
+        "email": "pxblue@eaton.com"
+    },
+    "homepage": "https://github.com/pxblue/react-native-workflows/tree/dev/login-workflow",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/pxblue/react-native-workflows/tree/dev/login-workflow"
+    },
     "prettier": "@pxblue/prettier-config",
     "main": "lib/commonjs/index.js",
-    "react-native": "src/index.ts",
     "module": "lib/module/index.js",
     "types": "lib/typescript/src/index.d.ts",
     "files": [
-        "src",
-        "lib"
+        "lib",
+        "CHANGELOG.md",
+        "LICENSE.md",
+        "package.json"
     ],
     "scripts": {
         "android": "yarn --cwd examples android",
@@ -26,7 +37,6 @@
         "lint": "eslint \"**/**.{tsx,ts}\"",
         "validate": "yarn prettier && yarn lint && yarn typescript && yarn test",
         "precommit": "yarn validate && yarn docs:clean && yarn generate-licenses",
-        "release": "release-it",
         "prepare": "bob build",
         "bootstrap": "yarn --cwd examples && yarn",
         "example": "yarn --cwd examples",
@@ -36,7 +46,7 @@
         "react-native-status-bar-height": "^2.5.0"
     },
     "peerDependencies": {
-        "@pxblue/colors": "^1.0.13",
+        "@pxblue/colors": "^3.0.0",
         "@pxblue/react-native-components": "^2.0.2",
         "@pxblue/react-native-themes": "^4.0.0",
         "@react-navigation/native": "^5.1.1",
@@ -44,12 +54,12 @@
         "react": "*",
         "react-i18next": "^11.3.4",
         "i18next": "^19.3.4",
-        "react-native": "^0.61.5",
+        "react-native": "^0.62.0",
         "react-native-vector-icons": "^6.4.4",
-        "react-native-elements": "^1.2.7",
+        "react-native-elements": "2.0.0",
         "react-native-paper": "^3.7.0",
         "date-fns": "^2.11.1",
-        "@react-native-community/viewpager": "^3.3.0",
+        "@react-native-community/viewpager": "^4.0.0",
         "react-native-keyboard-aware-scroll-view": "0.9.1"
     },
     "devDependencies": {
@@ -65,7 +75,6 @@
         "@react-native-community/eslint-config": "^1.0.0",
         "@react-navigation/native": "^5.1.1",
         "@react-navigation/stack": "^5.2.3",
-        "@release-it/conventional-changelog": "^1.1.0",
         "@types/enzyme": "^3.10.5",
         "@types/enzyme-adapter-react-16": "^1.0.6",
         "@types/jest": "^25.2.1",
@@ -104,7 +113,6 @@
         "date-fns": "^2.11.1",
         "metro-react-native-babel-preset": "^0.56.0",
         "react-test-renderer": "16.9.0",
-        "release-it": "^13.5.1",
         "typedoc": "^0.17.4",
         "typedoc-neo-theme": "^1.0.7",
         "typedoc-plugin-external-module-name": "^3.0.0",
