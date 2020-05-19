@@ -33,7 +33,7 @@ jobs:
                       cd login-workflow
                       yarn prettier --check
             - run:
-                  name: Test
+                  name: Tests
                   command: |
                       yarn test
             - run:
