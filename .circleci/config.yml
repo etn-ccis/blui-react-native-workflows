@@ -38,4 +38,4 @@ jobs:
           name: Build
           command: |
             cd login-workflow
-            yarn prepare
+            yarn build
