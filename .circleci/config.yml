@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/login-workflow
     docker:
-      - image: circleci/node:10
+      - image: circleci/node:12.6
     steps:
       - checkout
       - restore_cache:
