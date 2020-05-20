@@ -1,0 +1,41 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/login-workflow
+    docker:
+      - image: circleci/node:12.6
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v2-dependencies-{{ checksum "login-workflow/yarn.lock" }}
+      - run:
+          name: Install Dependencies
+          command: |
+            cd login-workflow
+            yarn install --frozen-lockfile
+      - save_cache:
+          name: Save Cache
+          paths:
+            - node_modules
+          key: v2-dependencies-{{ checksum "login-workflow/yarn.lock" }}
+      - run:
+          name: Lint
+          command: |
+            cd login-workflow
+            yarn lint
+      - run:
+          name: Prettier Check
+          command: |
+            cd login-workflow
+            yarn prettier --check
+      - run:
+          name: Tests
+          command: |
+            cd login-workflow
+            yarn test
+      - run:
+          name: Build
+          command: |
+            cd login-workflow
+            yarn build
