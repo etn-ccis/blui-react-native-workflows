@@ -32,8 +32,10 @@ jobs:
       - run:
           name: Tests
           command: |
+            cd login-workflow
             yarn test
       - run:
           name: Build
           command: |
+            cd login-workflow
             yarn prepare
