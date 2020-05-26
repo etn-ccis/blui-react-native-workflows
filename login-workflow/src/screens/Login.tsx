@@ -10,7 +10,7 @@ import { EMAIL_REGEX } from '../constants/index';
 
 // Components
 import { Platform, View, StyleSheet, SafeAreaView, StatusBar } from 'react-native';
-import { Text, Button } from 'react-native-paper';
+import { Text, Button, Theme } from 'react-native-paper';
 import { TextInput } from '../components/TextInput';
 import { TextInputSecure } from '../components/TextInputSecure';
 import { Checkbox } from '../components/Checkbox';
@@ -24,7 +24,7 @@ import { ToggleButton } from '../components/ToggleButton';
 
 // Styles
 import * as Colors from '@pxblue/colors';
-import { Theme, withTheme, Label } from '@pxblue/react-native-components';
+import { Label } from '@pxblue/react-native-components';
 
 // Hooks
 import { useLanguageLocale } from '../hooks/language-locale-hooks';
@@ -88,20 +88,27 @@ const makeContainerStyles = () =>
  * @ignore
  */
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeStyles = (theme: Theme) =>
+const makeStyles = () =>
     StyleSheet.create({
         signUpText: {
-            fontSize: theme.sizes.medium,
+            fontSize: 16, //theme.sizes.medium,
             alignSelf: 'center',
             color: Colors.gray['300'],
         },
         clearButton: {
-            fontSize: theme.sizes.medium,
+            fontSize: 16, //theme.sizes.medium,
         },
         securityBadge: {
             height: 60,
         },
     });
+
+/**
+ * @param theme (Optional) react-native-paper theme partial to style the component.
+ */
+type LoginProps = {
+    theme?: Theme;
+};
 
 /**
  * Login screen with loading and error states, as well as "remember me" functionality to store a user's email between logins.
@@ -113,7 +120,7 @@ const makeStyles = (theme: Theme) =>
  * @category Component
  */
 
-function Login(props: any): JSX.Element {
+export const Login: React.FC<LoginProps> = () => {
     const securityState = useSecurityState();
     const [rememberPassword, setRememberPassword] = React.useState(securityState.rememberMeDetails.rememberMe ?? false);
     const [emailInput, setEmailInput] = React.useState(securityState.rememberMeDetails.email ?? '');
@@ -123,13 +130,12 @@ function Login(props: any): JSX.Element {
 
     const navigation = useNavigation();
     const { t } = useLanguageLocale();
-    const { theme } = props;
     const authUIActions = useAccountUIActions();
     const authUIState = useAccountUIState();
     const authProps = useInjectedUIContext();
 
     const containerStyles = makeContainerStyles();
-    const styles = makeStyles(theme);
+    const styles = makeStyles();
 
     const loginTapped = (): void => {
         setHasAcknowledgedError(false);
@@ -346,5 +352,4 @@ function Login(props: any): JSX.Element {
             </ScrollViewWithBackground>
         </>
     );
-}
-export default withTheme(Login);
+};

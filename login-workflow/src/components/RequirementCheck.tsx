@@ -6,11 +6,12 @@
 import React from 'react';
 
 import { View, StyleSheet } from 'react-native';
-import { Text } from 'react-native-paper';
-import { Icon } from 'react-native-elements';
+import { useTheme } from 'react-native-paper';
+import MatIcon from 'react-native-vector-icons/MaterialIcons';
 
 // Styles
 import * as Colors from '@pxblue/colors';
+import { Subtitle } from '@pxblue/react-native-components';
 
 /**
  * @ignore
@@ -19,7 +20,7 @@ import * as Colors from '@pxblue/colors';
 const makeStyles = () =>
     StyleSheet.create({
         itemContainer: {
-            paddingHorizontal: 10,
+            // paddingHorizontal: 10,
             flexDirection: 'row',
             justifyContent: 'flex-start',
             alignItems: 'center',
@@ -30,8 +31,8 @@ const makeStyles = () =>
     });
 
 /**
- * @param isChecked  If the requirement is met / a checkmark is shown.
- * @param text  The text to show next to the checkmark.
+ * @param isChecked  If the requirement is met / a check mark is shown.
+ * @param text  The text to show next to the check mark.
  */
 type RequirementCheckProps = {
     isChecked: boolean;
@@ -46,15 +47,18 @@ type RequirementCheckProps = {
  */
 export const RequirementCheck = (props: RequirementCheckProps): JSX.Element => {
     const styles = makeStyles();
+    const theme = useTheme();
 
     function colorIfValid(valid: boolean): string {
-        return valid ? Colors.blue['500'] : Colors.gray['100'];
+        return valid ? theme.colors.primary : Colors.gray['100'];
     }
 
     return (
         <View style={styles.itemContainer}>
-            <Icon name={'check'} color={colorIfValid(props.isChecked)}></Icon>
-            <Text style={styles.text}>{props.text}</Text>
+            <MatIcon name={'check'} size={24} color={colorIfValid(props.isChecked)} />
+            <Subtitle font={'regular'} style={styles.text}>
+                {props.text}
+            </Subtitle>
         </View>
     );
 };

@@ -21,17 +21,11 @@ export const ExampleHome: React.FC = () => {
 
     return (
         <>
-            <Header
-                expandable={true}
-                title={'Home'}
-                subtitle={'Sample Screen'}
-                info={`You'll need to replace this`}
-            />
+            <Header expandable={true} title={'Home'} subtitle={'Sample Screen'} info={`You'll need to replace this`} />
             <SafeAreaView style={{ flex: 1, backgroundColor: Colors.white[50] }}>
-                <View style={{flex: 1, padding: 20 }}>
+                <View style={{ flex: 1, padding: 20 }}>
                     <View style={{ flex: 1 }}>
                         <EmptyState
-
                             title={`Welcome, ${securityState.email}!`}
                             description={'This is a placeholder screen that you should replace with your application.'}
                             IconClass={Welcome}
@@ -49,4 +43,4 @@ export const ExampleHome: React.FC = () => {
             </SafeAreaView>
         </>
     );
-}
+};

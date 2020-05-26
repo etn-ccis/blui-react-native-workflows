@@ -19,7 +19,7 @@ const defaultFontConfig = {
         fontWeight: '400' as FontWeight,
     },
     medium: {
-        fontFamily: BlueTheme.fonts.semiBold.fontFamily || fallbackFont,
+        fontFamily: BlueTheme.fonts.medium.fontFamily || fallbackFont,
         fontWeight: '500' as FontWeight,
     },
     light: {

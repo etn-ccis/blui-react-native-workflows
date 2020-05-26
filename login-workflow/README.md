@@ -46,7 +46,6 @@ You will see "unmet peer dependencies" errors after you run `yarn` in the parent
 "i18next": "^19.3.4",
 "react-native": "^0.61.5",
 "react-native-vector-icons": "*",
-"react-native-elements": "^1.2.7",
 "react-native-paper": "^3.7.0",
 "date-fns": "^2.11.1",
 "@react-native-community/viewpager": "^3.3.0",

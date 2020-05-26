@@ -15,8 +15,7 @@ import RegistrationUIActions from './src/actions/RegistrationUIActions';
 import { useLinking } from '@react-navigation/native';
 import { authLinkMapping, resolveInitialState } from './src/navigation/DeepLinking';
 
-import { ThemeProvider } from '@pxblue/react-native-components';
-import * as PXBThemes from '@pxblue/react-native-themes';
+import { Provider as ThemeProvider } from 'react-native-paper';
 
 const Stack = createStackNavigator();
 
@@ -47,16 +46,16 @@ export const App: React.FC = () => {
     }, [getInitialState]);
 
     return (
-        <SecurityContextProvider>
-            <AuthUIConfiguration>
-                <AuthNavigationContainer initialState={initialState} ref={ref}>
-                    <ThemeProvider theme={PXBThemes.blue}>
+        <ThemeProvider /*theme={PXBThemes.blue}*/>
+            <SecurityContextProvider>
+                <AuthUIConfiguration>
+                    <AuthNavigationContainer initialState={initialState} ref={ref}>
                         <Stack.Navigator initialRouteName="Home" headerMode={'none'}>
                             <Stack.Screen name="Home" component={ExampleHome} />
                         </Stack.Navigator>
-                    </ThemeProvider>
-                </AuthNavigationContainer>
-            </AuthUIConfiguration>
-        </SecurityContextProvider>
+                    </AuthNavigationContainer>
+                </AuthUIConfiguration>
+            </SecurityContextProvider>
+        </ThemeProvider>
     );
 };

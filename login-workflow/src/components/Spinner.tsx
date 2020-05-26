@@ -7,7 +7,7 @@ import React from 'react';
 
 // Components
 import { Platform, View, StyleSheet } from 'react-native';
-import { ActivityIndicator, Portal } from 'react-native-paper';
+import { ActivityIndicator, Portal, Theme } from 'react-native-paper';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 
 // Styles
@@ -35,9 +35,11 @@ const makeStyles = (hasHeader: boolean) =>
 
 /**
  * @param hasHeader  If true, will allocate extra top space to not cover the header bar with the spinner.
+ * @param theme (Optional) react-native-paper theme partial to style the component.
  */
 type SpinnerProps = {
     hasHeader?: boolean;
+    theme?: Theme;
 };
 
 /**
@@ -45,7 +47,7 @@ type SpinnerProps = {
  *
  * @category Component
  */
-export function Spinner(props: SpinnerProps): JSX.Element {
+export const Spinner: React.FC<SpinnerProps> = (props) => {
     const styles = makeStyles(props.hasHeader ?? true); // default has header is true
 
     return (
@@ -55,4 +57,4 @@ export function Spinner(props: SpinnerProps): JSX.Element {
             </View>
         </Portal>
     );
-}
+};

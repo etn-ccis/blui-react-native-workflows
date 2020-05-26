@@ -7,7 +7,8 @@ import React from 'react';
 
 // Components
 import { View, StyleSheet, StyleProp, ViewStyle } from 'react-native';
-import { Icon } from 'react-native-elements';
+import { Theme, useTheme } from 'react-native-paper';
+import MatIcon from 'react-native-vector-icons/MaterialIcons';
 
 // Styles
 import * as Colors from '@pxblue/colors';
@@ -28,15 +29,16 @@ const makeContainerStyles = () =>
  * @ignore
  */
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeStyles = (iconSize: number) =>
+const makeStyles = (theme: Theme, iconSize: number) =>
     StyleSheet.create({
         circleIconBackground: {
             marginTop: 20,
             width: iconSize,
             height: iconSize,
             borderRadius: iconSize / 2,
-            backgroundColor: Colors.blue['500'],
+            backgroundColor: theme.colors.primary,
             justifyContent: 'center',
+            alignItems: 'center',
             alignSelf: 'center',
         },
     });
@@ -45,11 +47,13 @@ const makeStyles = (iconSize: number) =>
  * @param icon  (Optional) Icon to use in the icon splash component. Icon 'vpn-key' used if not specified.
  * @param style  (Optional) Custom style to style the icon splash.
  * @param iconSize  (Optional) Size to use for the icon. Size of 90 is used if not specified.
+ * @param theme (Optional) react-native-paper theme partial to style the component.
  */
 type IconSplashProps = {
     icon?: string;
     style?: StyleProp<ViewStyle>;
     iconSize?: number;
+    theme?: Theme;
 };
 
 /**
@@ -57,24 +61,17 @@ type IconSplashProps = {
  *
  * @category Component
  */
-export function IconSplash(props: IconSplashProps): JSX.Element {
-    const BASE_SIZE = 90;
+export const IconSplash: React.FC<IconSplashProps> = (props) => {
+    const { iconSize = 90 } = props;
+    const theme = useTheme(props.theme);
+    const styles = makeStyles(theme, iconSize);
     const containerStyles = makeContainerStyles();
-    const styles = makeStyles(props.iconSize ?? BASE_SIZE);
-
-    let smallSize = BASE_SIZE * 0.55;
-    if (props.iconSize) {
-        smallSize = props.iconSize * 0.55;
-    }
 
     return (
         <View style={[containerStyles.iconContainer, props.style]}>
-            <Icon
-                name={props.icon ?? 'vpn-key'}
-                containerStyle={styles.circleIconBackground}
-                size={smallSize}
-                color={Colors.white['50']}
-            />
+            <View style={styles.circleIconBackground}>
+                <MatIcon name={props.icon || 'vpn-key'} size={iconSize * 0.55} color={Colors.white[50]} />
+            </View>
         </View>
     );
-}
+};

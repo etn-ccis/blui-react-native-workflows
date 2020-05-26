@@ -16,7 +16,7 @@ import {
 
 // Components
 import { Platform, View, StyleSheet, SafeAreaView, StatusBar } from 'react-native';
-import { Icon } from 'react-native-elements';
+import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import { PasswordRequirements } from '../components/PasswordRequirements';
 import { TextInputSecure } from '../components/TextInputSecure';
 import { Instruction } from '../components/Instruction';
@@ -26,7 +26,7 @@ import { ToggleButton } from '../components/ToggleButton';
 
 // Styles
 import * as Colors from '@pxblue/colors';
-import { Theme, withTheme, Label, H6 } from '@pxblue/react-native-components';
+import { Label, H6 } from '@pxblue/react-native-components';
 
 // Hooks
 import { useSecurityActions } from '../contexts/SecurityContextProvider';
@@ -34,6 +34,7 @@ import { useLanguageLocale } from '../hooks/language-locale-hooks';
 import { ScrollView } from 'react-native-gesture-handler';
 import { initialTransitState, transitSuccess, transitStart, transitFailed } from '../contexts/TransitState';
 import { SimpleDialog } from '../components/SimpleDialog';
+import { Theme, useTheme } from 'react-native-paper';
 
 /**
  * @ignore
@@ -60,6 +61,7 @@ const makeContainerStyles = () =>
         iconContainer: {
             marginTop: 80,
             marginBottom: 30,
+            alignSelf: 'center',
         },
     });
 
@@ -97,13 +99,13 @@ const makeStyles = () =>
  * @param onChangePassword  Function to handle change password action.
  * @param onCancel  Function to handle cancel action.
  * @param onChangeComplete  Function to handle the on change complete action.
- * @param theme  Theme for the change password screen.
+ * @param theme (Optional) react-native-paper theme partial to style the component.
  */
 type ChangePasswordProps = {
     onChangePassword(oldPassword: string, newPassword: string): Promise<void>;
     onCancel(): void;
     onChangeComplete(): void;
-    theme: Theme;
+    theme?: Theme;
 };
 
 /**
@@ -112,7 +114,8 @@ type ChangePasswordProps = {
  *
  * @category Component
  */
-function ChangePassword(props: ChangePasswordProps): JSX.Element {
+export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
+    const theme = useTheme(props.theme);
     const [currentPasswordInput, setCurrentPasswordInput] = React.useState('');
     const [newPasswordInput, setNewPasswordInput] = React.useState('');
     const [confirmInput, setConfirmInput] = React.useState('');
@@ -177,13 +180,12 @@ function ChangePassword(props: ChangePasswordProps): JSX.Element {
             {statusBar}
             <View style={[containerStyles.mainContainer]}>
                 <ScrollView>
-                    <Icon
+                    <MatIcon
                         name={'check'}
-                        color={Colors.gray['500']}
-                        containerStyle={containerStyles.iconContainer}
+                        color={theme.colors.placeholder}
+                        style={containerStyles.iconContainer}
                         size={100}
                     />
-
                     <View style={[containerStyles.containerMargins, containerStyles.containerSpacing]}>
                         <H6 style={[styles.headerText, styles.textSpacing]}>{t('CHANGE_PASSWORD.PASSWORD_CHANGED')}</H6>
                         <Label style={[styles.bodyText, styles.textSpacing]}>
@@ -213,7 +215,7 @@ function ChangePassword(props: ChangePasswordProps): JSX.Element {
                 <ScrollView>
                     <View style={[containerStyles.containerMargins, containerStyles.mainContainer]}>
                         <TextInputSecure
-                            label={t('USER_SETTINGS.CHANGE_PASSWORD')}
+                            label={t('Current Password')} // TODO Add a translation
                             value={currentPasswordInput}
                             style={styles.inputMargin}
                             autoCapitalize={'none'}
@@ -272,6 +274,4 @@ function ChangePassword(props: ChangePasswordProps): JSX.Element {
             </SafeAreaView>
         </KeyboardAwareScrollView>
     );
-}
-
-export default withTheme(ChangePassword);
+};

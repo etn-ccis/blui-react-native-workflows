@@ -7,9 +7,9 @@ import React from 'react';
 
 // Components
 import { Linking, View, StyleSheet, SafeAreaView } from 'react-native';
-import { Text } from 'react-native-paper';
+import { Text, Theme, useTheme } from 'react-native-paper';
 import { CloseHeader } from '../components/CloseHeader';
-import { Icon } from 'react-native-elements';
+import MatIcon from 'react-native-vector-icons/MaterialIcons';
 
 // Styles
 import * as Colors from '@pxblue/colors';
@@ -47,6 +47,7 @@ const makeContainerStyles = () =>
         iconContainer: {
             marginTop: 80,
             marginBottom: 30,
+            alignSelf: 'center',
         },
     });
 
@@ -68,12 +69,20 @@ const makeStyles = () =>
     });
 
 /**
+ * @param theme (Optional) react-native-paper theme partial to style the component.
+ */
+type ContactSupportProps = {
+    theme?: Theme;
+};
+
+/**
  * Renders the contact support screen with a tappable contact email and contact phone.
  *
  * @category Component
  */
-export default function ContactSupport(): JSX.Element {
+export const ContactSupport: React.FC<ContactSupportProps> = (props) => {
     const { t } = useLanguageLocale();
+    const theme = useTheme(props.theme);
     const navigation = useNavigation();
     const route = useRoute();
 
@@ -90,11 +99,11 @@ export default function ContactSupport(): JSX.Element {
             <CloseHeader title={t('USER_MENU.CONTACT_US')} backAction={(): void => navigation.goBack()} />
             <SafeAreaView style={containerStyles.safeContainer}>
                 <View>
-                    <Icon
+                    <MatIcon
                         name={'chat-bubble-outline'}
-                        containerStyle={containerStyles.iconContainer}
+                        style={containerStyles.iconContainer}
                         size={70}
-                        color={Colors.blue['500']}
+                        color={theme.colors.primary}
                     />
 
                     <View style={[containerStyles.containerMargins, containerStyles.containerSpacing]}>
@@ -131,4 +140,4 @@ export default function ContactSupport(): JSX.Element {
             </SafeAreaView>
         </>
     );
-}
+};

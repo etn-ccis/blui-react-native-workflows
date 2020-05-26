@@ -21,7 +21,7 @@ import ResetPasswordSuccess from '../../subScreens/ResetPasswordSuccess';
 import { View } from 'react-native';
 import CloseHeader from '../../components/CloseHeader';
 import { Spinner } from '../../components/Spinner';
-import ErrorState from '../../components/ErrorState';
+import { ErrorState } from '../../components/ErrorState';
 
 /**
  * Stack navigator for reset password handle deep link navigation.

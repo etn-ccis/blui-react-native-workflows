@@ -7,7 +7,7 @@ import { View } from 'react-native';
 import { Checkbox } from '../../components/Checkbox';
 import { CloseHeader } from '../../components/CloseHeader';
 import { CybersecurityBadge } from '../../components/CybersecurityBadge';
-import ErrorState from '../../components/ErrorState';
+import { ErrorState } from '../../components/ErrorState';
 import { IconSplash } from '../../components/IconSplash';
 import { Instruction } from '../../components/Instruction';
 import { LoginHeaderSplash } from '../../components/LoginHeaderSplash';

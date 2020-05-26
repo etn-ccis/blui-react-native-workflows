@@ -8,7 +8,8 @@ import React from 'react';
 // Components
 import { View, StyleSheet, SafeAreaView } from 'react-native';
 import { Instruction } from '../components/Instruction';
-import { Icon } from 'react-native-elements';
+import { Theme, useTheme } from 'react-native-paper';
+import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import { ToggleButton } from '../components/ToggleButton';
 
 // Styles
@@ -42,6 +43,7 @@ const makeContainerStyles = () =>
         iconContainer: {
             marginTop: 60,
             marginBottom: 20,
+            alignSelf: 'center',
         },
     });
 
@@ -58,11 +60,19 @@ const makeStyles = () =>
     });
 
 /**
+ * @param theme (Optional) react-native-paper theme partial to style the component.
+ */
+type ResetPasswordSentProps = {
+    theme?: Theme;
+};
+
+/**
  * Renders the screen with the reset password sent message.
  *
  * @category Component
  */
-export default function ResetPasswordSent(): JSX.Element {
+export const ResetPasswordSent: React.FC<ResetPasswordSentProps> = (props) => {
+    const theme = useTheme(props.theme);
     const { t } = useLanguageLocale();
     const navigation = useNavigation();
     const route = useRoute();
@@ -76,11 +86,11 @@ export default function ResetPasswordSent(): JSX.Element {
     return (
         <SafeAreaView style={containerStyles.safeContainer}>
             <View>
-                <Icon
+                <MatIcon
                     name={'mail-outline'}
-                    containerStyle={containerStyles.iconContainer}
+                    style={containerStyles.iconContainer}
                     size={100}
-                    color={Colors.gray['500']}
+                    color={theme.colors.placeholder}
                 />
 
                 <Instruction
@@ -99,4 +109,4 @@ export default function ResetPasswordSent(): JSX.Element {
             </View>
         </SafeAreaView>
     );
-}
+};

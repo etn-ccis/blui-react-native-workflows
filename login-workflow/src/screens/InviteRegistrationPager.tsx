@@ -35,7 +35,7 @@ import { PageIndicator } from '../components/PageIndicator';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Spinner } from '../components/Spinner';
 import { SimpleDialog } from '../components/SimpleDialog';
-import ErrorState from '../components/ErrorState';
+import { ErrorState } from '../components/ErrorState';
 import { ToggleButton } from '../components/ToggleButton';
 
 // Styles

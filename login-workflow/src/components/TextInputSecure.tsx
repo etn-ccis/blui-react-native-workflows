@@ -7,11 +7,9 @@ import React, { useState } from 'react';
 
 // Components
 import { View, StyleSheet, TouchableOpacity, KeyboardTypeOptions, StyleProp, ViewStyle } from 'react-native';
-import { Icon } from 'react-native-elements';
+import MatIcon from 'react-native-vector-icons/MaterialIcons';
+import { Theme, useTheme } from 'react-native-paper';
 import { TextInput } from './TextInput';
-
-// Styles
-import * as Colors from '@pxblue/colors';
 
 /**
  * @ignore
@@ -46,6 +44,7 @@ const makeStyles = () =>
  * @param blurOnSubmit  (Optional) Blurs the text field when submitted. Default true.
  * @param error  (Optional) If the text input is currently in error state. Default false.
  * @param errorText  (Optional) The text to show if the text input is in error state.
+ * @param theme (Optional) react-native-paper theme partial to style the component.
  */
 type TextInputSecureRenderProps = {
     label: string;
@@ -59,6 +58,7 @@ type TextInputSecureRenderProps = {
     blurOnSubmit?: boolean;
     error?: boolean;
     errorText?: string;
+    theme?: Theme;
 };
 
 /**
@@ -68,6 +68,7 @@ type TextInputSecureRenderProps = {
  * @category Component
  */
 export function TextInputSecureRender(props: TextInputSecureRenderProps, ref: any): JSX.Element {
+    const theme = useTheme(props.theme);
     const [shouldShowText, setShouldShowText] = useState(true);
 
     // Necessary to allow use of ref (to pass focus to next TextInput on submit)
@@ -108,7 +109,11 @@ export function TextInputSecureRender(props: TextInputSecureRenderProps, ref: an
                 style={styles.visibilityToggleTouchable}
                 onPress={(): void => setShouldShowText(!shouldShowText)}
             >
-                <Icon name={shouldShowText ? 'visibility-off' : 'visibility'} color={Colors.gray['500']} size={30} />
+                <MatIcon
+                    name={shouldShowText ? 'visibility-off' : 'visibility'}
+                    color={theme.colors.placeholder}
+                    size={30}
+                />
             </TouchableOpacity>
         </View>
     );

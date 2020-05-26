@@ -17,5 +17,5 @@ export type {
 export type { AccountDetailInformation } from './subScreens/AccountDetails';
 /** @ignore */
 export type { SecurityContextActions } from './contexts/SecurityContextProvider';
-export { default as ChangePassword } from './screens/ChangePassword';
+export { ChangePassword } from './screens/ChangePassword';
 export { LoginHeaderSplash } from './components/LoginHeaderSplash';

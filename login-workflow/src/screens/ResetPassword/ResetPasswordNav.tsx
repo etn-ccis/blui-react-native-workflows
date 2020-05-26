@@ -14,7 +14,7 @@ import { useRoute } from '@react-navigation/native';
 
 // Screens
 import ResetPassword from '../../subScreens/ResetPassword';
-import ResetPasswordSent from '../../subScreens/ResetPasswordSent';
+import { ResetPasswordSent } from '../../subScreens/ResetPasswordSent';
 
 // Components
 import CloseHeader from '../../components/CloseHeader';
@@ -61,7 +61,7 @@ function ResetPasswordNav(): JSX.Element {
     return (
         <Stack.Navigator
             screenOptions={{
-                headerTintColor: BlueTheme.colors.onPrimary,
+                headerTintColor: 'white',
                 headerStyle: { backgroundColor: BlueTheme.colors.primary },
             }}
         >

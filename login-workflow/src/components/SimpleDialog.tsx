@@ -6,7 +6,7 @@
 import React from 'react';
 
 // Components
-import { Button, Paragraph, Dialog, Portal } from 'react-native-paper';
+import { Button, Paragraph, Dialog, Portal, Theme } from 'react-native-paper';
 
 // Hooks
 import { useLanguageLocale } from '../hooks/language-locale-hooks';
@@ -16,12 +16,14 @@ import { useLanguageLocale } from '../hooks/language-locale-hooks';
  * @param onDismiss  The function to handle the on dismiss action.
  * @param title  The title text of the dialog box.
  * @param bodyText  The body text of the dialog box.
+ * @param theme (Optional) react-native-paper theme partial to style the component.
  */
 type SimpleDialogProps = {
     isVisible: boolean;
     onDismiss: Function;
     title: string;
     bodyText: string | null;
+    theme?: Theme;
 };
 
 /**
@@ -29,9 +31,8 @@ type SimpleDialogProps = {
  *
  * @category Component
  */
-export function SimpleDialog(props: SimpleDialogProps): JSX.Element {
+export const SimpleDialog: React.FC<SimpleDialogProps> = (props) => {
     const { t } = useLanguageLocale();
-
     return (
         <Portal>
             <Dialog visible={props.isVisible} dismissable={false}>
@@ -52,4 +53,4 @@ export function SimpleDialog(props: SimpleDialogProps): JSX.Element {
             </Dialog>
         </Portal>
     );
-}
+};
