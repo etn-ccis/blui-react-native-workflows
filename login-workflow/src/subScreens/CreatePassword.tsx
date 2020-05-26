@@ -71,7 +71,7 @@ type CreatePasswordProps = {
  *
  * @category Component
  */
-export function CreatePassword(props: CreatePasswordProps): JSX.Element {
+export const CreatePassword: React.FC<CreatePasswordProps> = (props) => {
     const [passwordInput, setPasswordInput] = React.useState('');
     const [confirmInput, setConfirmInput] = React.useState('');
     const { t } = useLanguageLocale();
@@ -130,4 +130,4 @@ export function CreatePassword(props: CreatePasswordProps): JSX.Element {
             </ScrollView>
         </SafeAreaView>
     );
-}
+};

@@ -6,7 +6,7 @@
 import React from 'react';
 import 'react-native';
 import { shallow, mount } from 'enzyme';
-import VerifyEmail from '../../subScreens/VerifyEmail';
+import { VerifyEmail } from '../../subScreens/VerifyEmail';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 import { TextInputHTMLAttributes } from '../../types/TextInputHTMLAttributes';

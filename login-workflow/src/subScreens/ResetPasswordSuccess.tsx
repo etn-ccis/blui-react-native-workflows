@@ -7,7 +7,7 @@ import React from 'react';
 
 // Components
 import { StyleSheet, SafeAreaView } from 'react-native';
-import CompleteSplash from './CompleteSplash';
+import { CompleteSplashScreen } from './CompleteSplash';
 import { ToggleButton } from '../components/ToggleButton';
 
 // Styles
@@ -47,7 +47,7 @@ const makeContainerStyles = () =>
  *
  * @category Component
  */
-function ResetPasswordSuccess(): JSX.Element {
+export const ResetPasswordSuccess: React.FC = () => {
     const { t } = useLanguageLocale();
     const navigation = useNavigation();
 
@@ -58,7 +58,7 @@ function ResetPasswordSuccess(): JSX.Element {
 
     return (
         <SafeAreaView style={containerStyles.safeContainer}>
-            <CompleteSplash boldTitle={titleText} bodyText={bodyText} icon={'vpn-key'} />
+            <CompleteSplashScreen boldTitle={titleText} bodyText={bodyText} icon={'vpn-key'} />
 
             <ToggleButton
                 text={t('ACTIONS.DONE')}
@@ -67,6 +67,4 @@ function ResetPasswordSuccess(): JSX.Element {
             />
         </SafeAreaView>
     );
-}
-
-export default ResetPasswordSuccess;
+};

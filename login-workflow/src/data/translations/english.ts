@@ -22,6 +22,7 @@ const resources = {
         LABELS: {
             EMAIL: 'Email Address',
             PASSWORD: 'Password',
+            CURRENT_PASSWORD: 'Current Password',
             NEW_PASSWORD: 'New Password',
             FORGOT_PASSWORD: 'Forgot your password?',
             NEED_ACCOUNT: 'Need an account?',

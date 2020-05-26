@@ -34,7 +34,7 @@ type PasswordRequirementsProps = {
  *
  * @category Component
  */
-export const PasswordRequirements = (props: PasswordRequirementsProps): JSX.Element => {
+export const PasswordRequirements: React.FC<PasswordRequirementsProps> = (props) => {
     const { t } = useLanguageLocale();
 
     const hasValidLength = new RegExp(LENGTH_REGEX).test(props.passwordText);

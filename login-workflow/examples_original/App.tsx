@@ -8,8 +8,8 @@ import {
     useSecurityActions,
 } from '@etn-sst/react-native-auth-ui';
 
-import { default as MockAuthUIActions } from './src/actions/MockAuthUIActions';
-import { default as MockRegistrationUIActions } from './src/actions/MockRegistrationUIActions';
+import { ProjectAuthUIActions } from './src/actions/MockAuthUIActions';
+import { ProjectRegistrationUIActions } from './src/actions/MockRegistrationUIActions';
 import FakeHome from './src/screens/FakeHome';
 import { useLinking } from '@react-navigation/native';
 import { authLinkMapping, resolveInitialState } from './src/navigation/DeepLinking';
@@ -21,8 +21,8 @@ function AuthUIConfiguration(props: { children: JSX.Element }): JSX.Element {
 
     return (
         <AuthUIContextProvider
-            authActions={MockAuthUIActions(securityContextActions)}
-            registrationActions={MockRegistrationUIActions}
+            authActions={ProjectAuthUIActions(securityContextActions)}
+            registrationActions={ProjectRegistrationUIActions}
             showSelfRegistration={true}
             allowDebugMode={true}
             contactEmail={'washingtonsupport@eaton.com'}
@@ -33,7 +33,7 @@ function AuthUIConfiguration(props: { children: JSX.Element }): JSX.Element {
     );
 }
 
-export default function App(): JSX.Element {
+export const App: React.FC = () => {
     const ref = React.useRef();
 
     // Setup deep links. Check DeepLinking file for path to screen mapping
@@ -55,4 +55,4 @@ export default function App(): JSX.Element {
             </AuthUIConfiguration>
         </SecurityContextProvider>
     );
-}
+};

@@ -67,7 +67,10 @@ type TextInputSecureRenderProps = {
  *
  * @category Component
  */
-export function TextInputSecureRender(props: TextInputSecureRenderProps, ref: any): JSX.Element {
+export const TextInputSecureRender: React.ForwardRefRenderFunction<{}, TextInputSecureRenderProps> = (
+    props: TextInputSecureRenderProps,
+    ref: any
+) => {
     const theme = useTheme(props.theme);
     const [shouldShowText, setShouldShowText] = useState(true);
 
@@ -117,7 +120,7 @@ export function TextInputSecureRender(props: TextInputSecureRenderProps, ref: an
             </TouchableOpacity>
         </View>
     );
-}
+};
 // Necessary to allow use of ref (to pass focus to next TextInput on submit)
 export const TextInputSecure = React.forwardRef(TextInputSecureRender);
 TextInputSecure.displayName = 'TextInputSecure'; // Set a display name for testing with shallow renders

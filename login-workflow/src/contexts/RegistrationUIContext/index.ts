@@ -12,7 +12,7 @@ import { RegistrationStateContext, RegistrationActionContext } from './context';
 
 export * from './types';
 export * from './reducer';
-import RegistrationActionsCreator from './actions';
+import { RegistrationActionsCreator } from './actions';
 import { RegistrationActions } from './dispatchActions';
 import { RegistrationUIState } from './state';
 import { RegistrationUIContextActions } from './types';
@@ -22,25 +22,25 @@ import { RegistrationUIContextActions } from './types';
  *
  * @category Hooks
  */
-export function useRegistrationUIState(): RegistrationUIState {
+export const useRegistrationUIState = (): RegistrationUIState => {
     const context = useContext(RegistrationStateContext);
     if (context === null) {
         throw new Error('useRegistrationUIState must be used within an RegistrationUIContext');
     }
     return context;
-}
+};
 
 /**
  * Hook for using the global [[RegistrationUIActions]] actions (i.e. loadEULA, completeRegistration, etc.) which change the global [[RegistrationUIState]].
  *
  * @category Hooks
  */
-export function useRegistrationUIActions(): RegistrationUIContextActions {
+export const useRegistrationUIActions = (): RegistrationUIContextActions => {
     const context = useContext(RegistrationActionContext);
     if (context === null) {
         throw new Error('useRegistrationUIActions must be used within an RegistrationUIContext');
     }
     return context;
-}
+};
 
 export { RegistrationActionContext, RegistrationStateContext, RegistrationActionsCreator, RegistrationActions };

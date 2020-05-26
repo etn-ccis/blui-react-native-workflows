@@ -99,7 +99,7 @@ type SplashProps = {
  *
  * @category Component
  */
-function Splash(props: SplashProps): JSX.Element {
+export const Splash: React.FC<SplashProps> = (props) => {
     const containerStyles = makeContainerStyles();
     const styles = makeStyles();
 
@@ -119,5 +119,4 @@ function Splash(props: SplashProps): JSX.Element {
             </View>
         </SafeAreaView>
     );
-}
-export default Splash;
+};

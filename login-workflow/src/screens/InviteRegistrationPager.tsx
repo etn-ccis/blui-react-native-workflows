@@ -18,14 +18,14 @@ import {
 import i18n from '../data/translations/i18n';
 
 // Screens
-import Eula from '../subScreens/Eula';
+import { Eula } from '../subScreens/Eula';
 import { CreatePassword as CreatePasswordScreen } from '../subScreens/CreatePassword';
 import {
     AccountDetails as AccountDetailsScreen,
     AccountDetailInformation,
     emptyAccountDetailInformation,
 } from '../subScreens/AccountDetails';
-import RegistrationComplete from '../subScreens/RegistrationComplete';
+import { RegistrationComplete } from '../subScreens/RegistrationComplete';
 
 // Components
 import { View, StyleSheet, SafeAreaView, BackHandler } from 'react-native';
@@ -103,7 +103,7 @@ type InviteRegistrationPagerParams = {
  *
  * @category Component
  */
-function InviteRegistrationPager(): JSX.Element {
+export const InviteRegistrationPager: React.FC = () => {
     enum Pages /* eslint-disable no-shadow */ {
         Eula = 0,
         CreatePassword,
@@ -409,6 +409,4 @@ function InviteRegistrationPager(): JSX.Element {
             />
         </View>
     );
-}
-
-export default InviteRegistrationPager;
+};

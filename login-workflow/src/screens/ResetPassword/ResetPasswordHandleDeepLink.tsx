@@ -14,12 +14,12 @@ import { useLanguageLocale } from '../../hooks/language-locale-hooks';
 import { useAccountUIActions, useAccountUIState, AccountActions } from '../../contexts/AccountUIContext';
 
 // Screens
-import ResetPasswordConfirm from '../../subScreens/ResetPasswordConfirm';
-import ResetPasswordSuccess from '../../subScreens/ResetPasswordSuccess';
+import { ResetPasswordConfirm } from '../../subScreens/ResetPasswordConfirm';
+import { ResetPasswordSuccess } from '../../subScreens/ResetPasswordSuccess';
 
 // Components
 import { View } from 'react-native';
-import CloseHeader from '../../components/CloseHeader';
+import { CloseHeader } from '../../components/CloseHeader';
 import { Spinner } from '../../components/Spinner';
 import { ErrorState } from '../../components/ErrorState';
 
@@ -37,7 +37,7 @@ type ResetPasswordHandleDeepLinkParams = {
  *
  * @category Component
  */
-function ResetPasswordHandleDeepLink(): JSX.Element {
+export const ResetPasswordHandleDeepLink: React.FC = () => {
     const { t } = useLanguageLocale();
     const accountUIState = useAccountUIState();
     const accountUIActions = useAccountUIActions();
@@ -132,6 +132,4 @@ function ResetPasswordHandleDeepLink(): JSX.Element {
             />
         </View>
     );
-}
-
-export default ResetPasswordHandleDeepLink;
+};

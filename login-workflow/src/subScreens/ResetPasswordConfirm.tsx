@@ -73,7 +73,7 @@ type ResetPasswordConfirmParams = {
  *
  * @category Component
  */
-export function ResetPasswordConfirm(): JSX.Element {
+export const ResetPasswordConfirm: React.FC = () => {
     const [password, setPassword] = React.useState('');
     const [hasAcknowledgedError, setHasAcknowledgedError] = React.useState(false);
     const { t } = useLanguageLocale();
@@ -127,5 +127,4 @@ export function ResetPasswordConfirm(): JSX.Element {
             </View>
         </SafeAreaView>
     );
-}
-export default ResetPasswordConfirm;
+};

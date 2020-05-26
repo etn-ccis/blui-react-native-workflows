@@ -56,7 +56,7 @@ type ToggleButtonProps = {
  *
  * @category Component
  */
-export const ToggleButton = (props: ToggleButtonProps): JSX.Element => {
+export const ToggleButton: React.FC<ToggleButtonProps> = (props) => {
     const isDisabled = props.disabled ?? false;
     const isOutlineOnly = props.isOutlineOnly ?? false;
     const styles = makeStyles(isOutlineOnly, isDisabled);

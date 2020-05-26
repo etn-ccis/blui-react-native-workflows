@@ -14,12 +14,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import 'react-native-gesture-handler';
 const Stack = createStackNavigator();
 
-// Theme
-// import { ThemeProvider } from '@pxblue/react-native-components';
-// import { blue as BlueTheme } from '@pxblue/react-native-themes';
-// import { Provider as PaperProvider } from 'react-native-paper';
-// import { paperBlueTheme } from '../../helpers/paperBlueTheme';
-
 // mock hooks
 jest.mock('src/contexts/AccountUIContext', () => ({
     useAccountUIActions: (): any => ({ dispatch: jest.fn(() => true) }),
@@ -41,8 +35,6 @@ describe('Login screen tested with enzyme', () => {
 
     function baseXML(): JSX.Element {
         return (
-            // <PaperProvider theme={paperBlueTheme}>
-            //     <ThemeProvider theme={BlueTheme}>
             <NavigationContainer>
                 <Stack.Navigator>
                     <Stack.Screen
@@ -55,8 +47,6 @@ describe('Login screen tested with enzyme', () => {
                     />
                 </Stack.Navigator>
             </NavigationContainer>
-            //     </ThemeProvider>
-            // </PaperProvider>
         );
     }
 

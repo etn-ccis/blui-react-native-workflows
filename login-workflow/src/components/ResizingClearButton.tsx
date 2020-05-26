@@ -56,7 +56,7 @@ export type ResizingClearButtonProps = {
  *
  * @category Component
  */
-export function ResizingClearButton(props: ResizingClearButtonProps): JSX.Element {
+export const ResizingClearButton: React.FC<ResizingClearButtonProps> = (props) => {
     const fontSize = props.fontSize ?? 16;
     const numberOfLines = props.numberOfLines ?? 1;
     const [currentFont, setCurrentFont] = React.useState(fontSize); // This is for Android
@@ -93,4 +93,4 @@ export function ResizingClearButton(props: ResizingClearButtonProps): JSX.Elemen
             </View>
         </TouchableHighlight>
     );
-}
+};

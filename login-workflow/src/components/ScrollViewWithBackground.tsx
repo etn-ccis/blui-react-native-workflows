@@ -48,11 +48,12 @@ export type ScrollViewWithBackgroundProps = {
  *
  * @category Component
  */
-export const ScrollViewWithBackground = ({ children, ...props }: any & ScrollViewWithBackgroundProps): JSX.Element => {
+export const ScrollViewWithBackground: React.FC<ScrollViewWithBackgroundProps> = (props) => {
+    const { children, ...other } = props;
     const styles = makeStyles(500, props.topColor ?? 'white', props.bottomColor ?? 'white');
 
     return (
-        <ScrollView {...props}>
+        <ScrollView {...other}>
             <View style={styles.scrollViewTopCover} />
             <View style={styles.scrollViewBottomCover} />
             {children}

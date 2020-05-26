@@ -47,7 +47,6 @@
     "peerDependencies": {
         "@pxblue/colors": "^3.0.0",
         "@pxblue/react-native-components": "3.0.0-beta.0",
-        "@pxblue/react-native-themes": "5.0.0-beta.0",
         "@react-native-community/viewpager": "^4.0.0",
         "@react-navigation/native": "^5.1.1",
         "@react-navigation/stack": "^5.2.3",
@@ -67,7 +66,6 @@
         "@pxblue/eslint-config": "^1.1.5",
         "@pxblue/prettier-config": "^1.0.2",
         "@pxblue/react-native-components": "3.0.0-beta.0",
-        "@pxblue/react-native-themes": "5.0.0-beta.0",
         "@react-native-community/async-storage": "^1.9.0",
         "@react-native-community/bob": "^0.10.0",
         "@react-native-community/eslint-config": "^1.0.0",

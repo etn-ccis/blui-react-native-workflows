@@ -7,7 +7,7 @@
  */
 
 export * from './contexts/SecurityContextProvider';
-export { default as AuthNavigationContainer } from './screens/AuthNavigationContainer';
+export { AuthNavigationContainer } from './screens/AuthNavigationContainer';
 export { AuthUIContextProvider } from './contexts/AuthUIContextProvider';
 export type {
     AuthUIContextProviderProps,

@@ -61,7 +61,7 @@ type LoginHeaderSplashProps = {
  *
  * @category Component
  */
-export function LoginHeaderSplash(props: LoginHeaderSplashProps): JSX.Element {
+export const LoginHeaderSplash: React.FC<LoginHeaderSplashProps> = (props) => {
     const styles = makeStyles();
 
     return (
@@ -82,4 +82,4 @@ export function LoginHeaderSplash(props: LoginHeaderSplashProps): JSX.Element {
             />
         </>
     );
-}
+};

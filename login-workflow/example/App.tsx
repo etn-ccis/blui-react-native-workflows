@@ -9,8 +9,8 @@ import {
     AuthUIContextProvider,
     useSecurityActions,
 } from '@pxblue/react-native-auth-workflow';
-import AuthUIActions from './src/actions/AuthUIActions';
-import RegistrationUIActions from './src/actions/RegistrationUIActions';
+import { ProjectAuthUIActions } from './src/actions/AuthUIActions';
+import { ProjectRegistrationUIActions } from './src/actions/RegistrationUIActions';
 
 import { useLinking } from '@react-navigation/native';
 import { authLinkMapping, resolveInitialState } from './src/navigation/DeepLinking';
@@ -24,8 +24,8 @@ export function AuthUIConfiguration(props: { children: JSX.Element }): JSX.Eleme
 
     return (
         <AuthUIContextProvider
-            authActions={AuthUIActions(securityContextActions)}
-            registrationActions={RegistrationUIActions}
+            authActions={ProjectAuthUIActions(securityContextActions)}
+            registrationActions={ProjectRegistrationUIActions}
             showSelfRegistration={true}
             allowDebugMode={true}
             contactEmail={'something@email.com'}

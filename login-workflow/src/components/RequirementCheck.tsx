@@ -45,7 +45,7 @@ type RequirementCheckProps = {
  *
  * @category Component
  */
-export const RequirementCheck = (props: RequirementCheckProps): JSX.Element => {
+export const RequirementCheck: React.FC<RequirementCheckProps> = (props) => {
     const styles = makeStyles();
     const theme = useTheme();
 

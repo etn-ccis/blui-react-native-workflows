@@ -69,7 +69,7 @@ type VerifyEmailProps = {
  *
  * @category Component
  */
-export default function VerifyEmail(props: VerifyEmailProps): JSX.Element {
+export const VerifyEmail: React.FC<VerifyEmailProps> = (props) => {
     const { t } = useLanguageLocale();
     const [verifyCode, setVerifyCode] = React.useState('');
 
@@ -113,4 +113,4 @@ export default function VerifyEmail(props: VerifyEmailProps): JSX.Element {
             </KeyboardAwareScrollView>
         </SafeAreaView>
     );
-}
+};

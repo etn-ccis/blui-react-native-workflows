@@ -5,7 +5,7 @@ import { subMilliseconds, differenceInMilliseconds } from 'date-fns';
 let timeTravelOffset = 0;
 let frozenTime: Date | undefined;
 
-function internalNow(): Date {
+const internalNow = (): Date => {
     if (frozenTime) {
         return frozenTime;
     }
@@ -13,29 +13,29 @@ function internalNow(): Date {
     return subMilliseconds(new Date(), timeTravelOffset);
 }
 
-function now(): Date {
+const now = (): Date => {
     return internalNow();
 }
 
-function assertInTest(): void {
+const assertInTest = (): void => {
     if (process.env.NODE_ENV !== 'test') {
         throw new Error('Time travel is only allowed in tests!');
     }
 }
 
-async function timeTravel(time: Date | string): Promise<void> {
+const timeTravel = async (time: Date | string): Promise<void> => {
     assertInTest();
     timeTravelOffset = differenceInMilliseconds(new Date(), typeof time === 'string' ? new Date(time) : time);
     frozenTime = undefined;
 }
 
-async function restoreTime(): Promise<void> {
+const restoreTime = async (): Promise<void> => {
     assertInTest();
     timeTravelOffset = 0;
     frozenTime = undefined;
 }
 
-async function freezeTime(time: Date | string | undefined): Promise<void> {
+const freezeTime = async (time: Date | string | undefined): Promise<void> => {
     assertInTest();
     if (time) {
         await timeTravel(time);
@@ -44,14 +44,13 @@ async function freezeTime(time: Date | string | undefined): Promise<void> {
     frozenTime = internalNow();
 }
 
-async function unfreezeTime(): Promise<void> {
+const unfreezeTime = async (): Promise<void> => {
     assertInTest();
     frozenTime = undefined;
 }
 
 export const Clock = {
     now,
-
     Testing: {
         timeTravel,
         restoreTime,

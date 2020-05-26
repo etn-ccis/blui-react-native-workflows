@@ -41,7 +41,7 @@ type CybersecurityBadgeProps = {
  *
  * @category Component
  */
-export function CybersecurityBadge(props: CybersecurityBadgeProps): JSX.Element {
+export const CybersecurityBadge: React.FC<CybersecurityBadgeProps> = (props) => {
     const styles = makeStyles();
 
     return (
@@ -53,4 +53,4 @@ export function CybersecurityBadge(props: CybersecurityBadgeProps): JSX.Element 
             />
         </View>
     );
-}
+};

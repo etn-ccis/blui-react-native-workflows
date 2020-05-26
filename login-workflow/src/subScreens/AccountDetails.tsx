@@ -83,7 +83,7 @@ export type AccountDetailsProps = {
  *
  * @category Component
  */
-export function AccountDetails(props: AccountDetailsProps): JSX.Element {
+export const AccountDetails: React.FC<AccountDetailsProps> = (props) => {
     const [firstNameInput, setFirstNameInput] = React.useState('');
     const [lastNameInput, setLastNameInput] = React.useState('');
     const [phoneInput, setPhoneInput] = React.useState('');
@@ -158,4 +158,4 @@ export function AccountDetails(props: AccountDetailsProps): JSX.Element {
             </KeyboardAwareScrollView>
         </SafeAreaView>
     );
-}
+};

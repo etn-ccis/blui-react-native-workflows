@@ -13,14 +13,14 @@ import { useLanguageLocale } from '../../hooks/language-locale-hooks';
 import { useRoute } from '@react-navigation/native';
 
 // Screens
-import ResetPassword from '../../subScreens/ResetPassword';
+import { ResetPassword } from '../../subScreens/ResetPassword';
 import { ResetPasswordSent } from '../../subScreens/ResetPasswordSent';
 
 // Components
-import CloseHeader from '../../components/CloseHeader';
+import { CloseHeader } from '../../components/CloseHeader';
 
 // Theme
-import { blue as BlueTheme } from '@pxblue/react-native-themes';
+import { Theme, useTheme } from 'react-native-paper';
 import { useAccountUIState, useAccountUIActions, AccountActions } from '../../contexts/AccountUIContext';
 
 // Types
@@ -32,12 +32,20 @@ import { ContactParams } from '../../types/ContactParams';
 const Stack = createStackNavigator();
 
 /**
+ * @param theme  (Optional) react-native-paper theme partial to style the component.
+ */
+type ResetPasswordNavProps = {
+    theme?: Theme;
+};
+
+/**
  * Renders a screen stack which handles the reset password flow.
  *
  * @category Component
  */
-function ResetPasswordNav(): JSX.Element {
+export const ResetPasswordNav: React.FC<ResetPasswordNavProps> = (props) => {
     const { t } = useLanguageLocale();
+    const theme = useTheme(props.theme);
     const accountUIState = useAccountUIState();
     const accountUIActions = useAccountUIActions();
     const route = useRoute();
@@ -62,7 +70,7 @@ function ResetPasswordNav(): JSX.Element {
         <Stack.Navigator
             screenOptions={{
                 headerTintColor: 'white',
-                headerStyle: { backgroundColor: BlueTheme.colors.primary },
+                headerStyle: { backgroundColor: theme.colors.primary },
             }}
         >
             {accountUIState.forgotPassword.transitSuccess !== true ? (
@@ -99,6 +107,4 @@ function ResetPasswordNav(): JSX.Element {
             )}
         </Stack.Navigator>
     );
-}
-
-export default ResetPasswordNav;
+};

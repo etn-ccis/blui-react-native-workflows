@@ -65,7 +65,10 @@ type TextInputRenderProps = {
  *
  * @category Component
  */
-function TextInputRender(props: TextInputRenderProps, ref: any): JSX.Element {
+const TextInputRender: React.ForwardRefRenderFunction<{}, TextInputRenderProps> = (
+    props: TextInputRenderProps,
+    ref: any
+) => {
     // Necessary to allow use of ref (to pass focus to next TextInput on submit)
     const inputRef: any = React.useRef();
     React.useImperativeHandle(ref, () => ({
@@ -103,7 +106,7 @@ function TextInputRender(props: TextInputRenderProps, ref: any): JSX.Element {
             {props.error ? <ErrorText errorText={props.errorText} /> : null}
         </View>
     );
-}
+};
 // Necessary to allow use of ref (to pass focus to next TextInput on submit)
 export const TextInput = React.forwardRef(TextInputRender);
 TextInput.displayName = 'TextInput'; // Set a display name for testing with shallow renders
@@ -117,8 +120,7 @@ type ErrorTextProps = {
     style?: StyleProp<ViewStyle>;
 };
 
-function ErrorText(props: ErrorTextProps): JSX.Element | null {
+const ErrorText: React.FC<ErrorTextProps> = (props) => {
     const styles = makeStyles();
-
     return <Text style={styles.errorText}>{props.errorText || null}</Text>;
-}
+};

@@ -7,7 +7,7 @@ import React from 'react';
 
 // Components
 import { View, StyleSheet, StyleProp, ViewStyle } from 'react-native';
-import FormattedText from './FormattedText';
+import { FormattedText } from './FormattedText';
 import { Label } from '@pxblue/react-native-components';
 
 // Styles
@@ -49,7 +49,7 @@ type InstructionProps = {
  *
  * @category Component
  */
-export const Instruction = (props: InstructionProps): JSX.Element => {
+export const Instruction: React.FC<InstructionProps> = (props) => {
     const styles = makeStyles();
     const hasButtonBorder = props.hasBottomBorder ?? true;
 

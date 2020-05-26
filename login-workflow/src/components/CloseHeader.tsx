@@ -21,7 +21,7 @@ const CloseIcon = wrapIcon({ IconClass: Icon, name: 'close' });
  */
 type CloseHeaderProps = {
     title: string;
-    backAction: Function;
+    backAction: () => void;
 };
 
 /**
@@ -29,8 +29,6 @@ type CloseHeaderProps = {
  *
  * @category Component
  */
-export function CloseHeader(props: CloseHeaderProps): JSX.Element {
-    return <Header title={props.title} navigation={{ icon: CloseIcon, onPress: props.backAction }} />;
-}
-
-export default CloseHeader;
+export const CloseHeader: React.FC<CloseHeaderProps> = (props) => (
+    <Header title={props.title} navigation={{ icon: CloseIcon, onPress: props.backAction }} />
+);

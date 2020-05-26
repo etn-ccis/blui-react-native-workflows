@@ -80,7 +80,7 @@ function isValidEmail(text: string): boolean {
  *
  * @category Component
  */
-export default function CreateAccount(props: CreateAccountProps): JSX.Element {
+export const CreateAccount: React.FC<CreateAccountProps> = (props) => {
     const [emailInput, setEmailInput] = React.useState('');
     const { t } = useLanguageLocale();
 
@@ -119,4 +119,4 @@ export default function CreateAccount(props: CreateAccountProps): JSX.Element {
             </KeyboardAwareScrollView>
         </SafeAreaView>
     );
-}
+};

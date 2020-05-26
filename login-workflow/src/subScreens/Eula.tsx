@@ -67,7 +67,7 @@ type EulaProps = {
  *
  * @category Component
  */
-export default function Eula(props: EulaProps): JSX.Element {
+export const Eula: React.FC<EulaProps> = (props) => {
     const { t } = useLanguageLocale();
     const containerStyles = makeContainerStyles();
     const eulaIsChecked = props.eulaAccepted ?? false;
@@ -101,4 +101,4 @@ export default function Eula(props: EulaProps): JSX.Element {
             </View>
         </SafeAreaView>
     );
-}
+};

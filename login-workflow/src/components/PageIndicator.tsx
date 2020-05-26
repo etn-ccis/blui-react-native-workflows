@@ -56,7 +56,7 @@ export type PageIndicatorProps = {
  *
  * @category Component
  */
-export function PageIndicator(props: PageIndicatorProps): JSX.Element {
+export const PageIndicator: React.FC<PageIndicatorProps> = (props) => {
     const pageIndicies = [...Array(props.totalPages).keys()];
     const styles = makeStyles();
 
@@ -78,4 +78,4 @@ export function PageIndicator(props: PageIndicatorProps): JSX.Element {
             </View>
         </View>
     );
-}
+};

@@ -13,17 +13,17 @@ import { useLanguageLocale } from '../hooks/language-locale-hooks';
 import { useRegistrationUIActions, useRegistrationUIState } from '../contexts/RegistrationUIContext';
 
 // Screens
-import Eula from '../subScreens/Eula';
-import CreateAccount from '../subScreens/CreateAccount';
-import VerifyEmail from '../subScreens/VerifyEmail';
+import { Eula } from '../subScreens/Eula';
+import { CreateAccount } from '../subScreens/CreateAccount';
+import { VerifyEmail } from '../subScreens/VerifyEmail';
 import { CreatePassword } from '../subScreens/CreatePassword';
 import { AccountDetails, AccountDetailInformation } from '../subScreens/AccountDetails';
-import RegistrationComplete from '../subScreens/RegistrationComplete';
+import { RegistrationComplete } from '../subScreens/RegistrationComplete';
 
 // Components
 import { View, StyleSheet, SafeAreaView, BackHandler } from 'react-native';
 import ViewPager from '@react-native-community/viewpager';
-import CloseHeader from '../components/CloseHeader';
+import { CloseHeader } from '../components/CloseHeader';
 import { PageIndicator } from '../components/PageIndicator';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import i18n from '../data/translations/i18n';
@@ -94,7 +94,7 @@ type SelfRegistrationPagerParams = {
  *
  * @category Component
  */
-function SelfRegistrationPager(): JSX.Element {
+export const SelfRegistrationPager: React.FC = () => {
     const [email, setEmail] = React.useState('');
     const [eulaAccepted, setEulaAccepted] = React.useState(false);
     const [password, setPassword] = React.useState('');
@@ -313,6 +313,4 @@ function SelfRegistrationPager(): JSX.Element {
             </SafeAreaView>
         </View>
     );
-}
-
-export default SelfRegistrationPager;
+};

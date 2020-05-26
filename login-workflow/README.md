@@ -33,12 +33,10 @@ We recommend using the PX Blue CLI or React CLI to initalize your project. Follo
 Follow these [instructions](https://dev.azure.com/etn-sst/Washington/_packaging?_a=package&feed=Components&package=%40etn-sst%2Freact-native-auth-ui&protocolType=Npm) to connect to the @etn-sst/react-native-auth-ui feed and run `yarn add @etn-sst/react-native-auth-ui` to install the package. (Pass `@<version>` to specify a particular version to install).
 
 You will see "unmet peer dependencies" errors after you run `yarn` in the parent directory. You need to install all the peer dependencies required by react-native-auth-ui:
-> TODO: Add a copy/paste blurb with all of the peerDependencies
 
 ```
 "@pxblue/colors": "^1.0.13",
 "@pxblue/react-native-components": "^2.0.2",
-"@pxblue/react-native-themes": "^4.0.0",
 "@react-navigation/native": "^5.1.1",
 "@react-navigation/stack": "^5.2.3",
 "react": "*",
@@ -56,7 +54,14 @@ You will see "unmet peer dependencies" errors after you run `yarn` in the parent
 "react-native-keyboard-aware-scroll-view": "0.9.1"
 ```
 
-You may also want to use `"@react-native-community/async-storage": "^1.9.0"` if you copy over and use `store/local-strage.ts` in a later step, as it requires AsyncStorage.
+To install the latest version of all of these peer dependencies, run the following command in your project root:
+```
+npm install --save @pxblue/colors @pxblue/react-native-components @react-navigation/native @react-navigation/stack react react-i18next i18next react-native react-native-vector-icons react-native-paper date-fns @react-native-community/viewpager @react-native-community/masked-view react-native-gesture-handler react-native-safe-area-context react-native-screens react-native-keyboard-aware-scroll-view
+// or
+yarn add @pxblue/colors @pxblue/react-native-components @react-navigation/native @react-navigation/stack react react-i18next i18next react-native react-native-vector-icons react-native-paper date-fns @react-native-community/viewpager @react-native-community/masked-view react-native-gesture-handler react-native-safe-area-context react-native-screens react-native-keyboard-aware-scroll-view
+```
+
+You may also want to use `"@react-native-community/async-storage": "^1.9.0"` if you copy over and use `store/local-storage.ts` in a later step, as it requires AsyncStorage.
 
 Don't forget to do a `pod install` in your iOS folder.
 

@@ -8,7 +8,7 @@ import React from 'react';
 // Components
 import { View, StyleSheet, SafeAreaView, Image, ScrollView } from 'react-native';
 import { IconSplash } from '../components/IconSplash';
-import FormattedText from '../components/FormattedText';
+import { FormattedText } from '../components/FormattedText';
 
 // Styles
 import * as Colors from '@pxblue/colors';
