@@ -79,7 +79,7 @@ type ResetPasswordParams = {
  *
  * @category Component
  */
-export default function ResetPassword(): JSX.Element {
+export const ResetPassword: React.FC = () => {
     const [emailInput, setEmailInput] = React.useState('');
     const [hasAcknowledgedError, setHasAcknowledgedError] = React.useState(false);
     const { t } = useLanguageLocale();

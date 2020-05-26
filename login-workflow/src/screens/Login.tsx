@@ -10,7 +10,7 @@ import { EMAIL_REGEX } from '../constants/index';
 
 // Components
 import { Platform, View, StyleSheet, SafeAreaView, StatusBar } from 'react-native';
-import { Text, Button, Theme } from 'react-native-paper';
+import { Text, Button, Theme, useTheme } from 'react-native-paper';
 import { TextInput } from '../components/TextInput';
 import { TextInputSecure } from '../components/TextInputSecure';
 import { Checkbox } from '../components/Checkbox';
@@ -24,7 +24,7 @@ import { ToggleButton } from '../components/ToggleButton';
 
 // Styles
 import * as Colors from '@pxblue/colors';
-import { Label } from '@pxblue/react-native-components';
+import { Label, H6, Body } from '@pxblue/react-native-components';
 
 // Hooks
 import { useLanguageLocale } from '../hooks/language-locale-hooks';
@@ -88,10 +88,9 @@ const makeContainerStyles = () =>
  * @ignore
  */
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeStyles = () =>
+const makeStyles = (theme: Theme) =>
     StyleSheet.create({
         signUpText: {
-            fontSize: 16, //theme.sizes.medium,
             alignSelf: 'center',
             color: Colors.gray['300'],
         },
@@ -120,7 +119,8 @@ type LoginProps = {
  * @category Component
  */
 
-export const Login: React.FC<LoginProps> = () => {
+export const Login: React.FC<LoginProps> = (props) => {
+    const theme = useTheme(props.theme);
     const securityState = useSecurityState();
     const [rememberPassword, setRememberPassword] = React.useState(securityState.rememberMeDetails.rememberMe ?? false);
     const [emailInput, setEmailInput] = React.useState(securityState.rememberMeDetails.email ?? '');
@@ -135,7 +135,7 @@ export const Login: React.FC<LoginProps> = () => {
     const authProps = useInjectedUIContext();
 
     const containerStyles = makeContainerStyles();
-    const styles = makeStyles();
+    const styles = makeStyles(theme);
 
     const loginTapped = (): void => {
         setHasAcknowledgedError(false);
@@ -174,7 +174,7 @@ export const Login: React.FC<LoginProps> = () => {
     if (showSelfRegistration || debugMode) {
         createAccountOption = (
             <View>
-                <Text style={styles.signUpText}>{t('LABELS.NEED_ACCOUNT')}</Text>
+                <Label style={styles.signUpText}>{t('LABELS.NEED_ACCOUNT')}</Label>
                 <Button
                     mode={'text'}
                     labelStyle={styles.clearButton}
@@ -188,7 +188,7 @@ export const Login: React.FC<LoginProps> = () => {
     } else {
         contactEatonRepresentative = (
             <View style={{ alignSelf: 'center', flexShrink: 1 }}>
-                <Text style={styles.signUpText}>{t('LABELS.NEED_ACCOUNT')}</Text>
+                <Label style={styles.signUpText}>{t('LABELS.NEED_ACCOUNT')}</Label>
                 <ResizingClearButton
                     title={t('MESSAGES.CONTACT')}
                     style={{ width: '100%' }}
@@ -216,7 +216,7 @@ export const Login: React.FC<LoginProps> = () => {
     let debugMessage: JSX.Element = <></>;
     if (debugMode) {
         debugMessage = (
-            <Text style={{ fontSize: 16, textAlign: 'center', backgroundColor: 'yellow' }}>{'DEBUG MODE'}</Text>
+            <H6 style={{ textAlign: 'center', lineHeight: 48, backgroundColor: 'yellow' }}>{'DEBUG MODE'}</H6>
         );
     }
 

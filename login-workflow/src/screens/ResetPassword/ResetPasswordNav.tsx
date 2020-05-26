@@ -79,7 +79,7 @@ export const ResetPasswordNav: React.FC<ResetPasswordNavProps> = (props) => {
                     initialParams={{ onResetPasswordPress: resetPassword, contactPhone: contactPhone }}
                     component={ResetPassword}
                     options={({ navigation }): object => ({
-                        header: (): JSX.Element =>
+                        header: (): JSX.Element | null =>
                             CloseHeader({
                                 title: t('FORMS.RESET_PASSWORD'),
                                 backAction: () => {
@@ -95,7 +95,7 @@ export const ResetPasswordNav: React.FC<ResetPasswordNavProps> = (props) => {
                     initialParams={{ email: accountUIState.forgotPassword.email }}
                     options={({ navigation }): object => ({
                         gestureEnabled: false,
-                        header: (): JSX.Element =>
+                        header: (): JSX.Element | null =>
                             CloseHeader({
                                 title: t('FORMS.RESET_PASSWORD'),
                                 backAction: () => {

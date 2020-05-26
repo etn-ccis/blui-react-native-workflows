@@ -4,7 +4,7 @@
  */
 
 import * as React from 'react';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import * as Colors from '@pxblue/colors';
 
 // Nav
@@ -38,7 +38,7 @@ const Stack = createStackNavigator();
 export const PreAuthContainer: React.FC = () => {
     const authProps = useInjectedUIContext();
 
-    Icon.loadFont();
+    MatIcon.loadFont();
     return (
         <SafeAreaProvider>
             <StatusBar backgroundColor={Colors.blue['700']} barStyle="light-content" />

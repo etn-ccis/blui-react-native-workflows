@@ -4,7 +4,7 @@
 
 import React from 'react';
 import 'react-native';
-import ContactSupport from '../../screens/ContactSupport';
+import { ContactSupport } from '../../screens/ContactSupport';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 

@@ -7,8 +7,9 @@ import React from 'react';
 
 // Components
 import { View, Text, StyleSheet, KeyboardTypeOptions, StyleProp, ViewStyle } from 'react-native';
-import { TextInput as PaperTextInput } from 'react-native-paper';
-
+import { TextInput as PaperTextInput, Theme, useTheme } from 'react-native-paper';
+import { Caption, Body, Subtitle } from '@pxblue/react-native-components';
+ 
 // Styles
 import * as Colors from '@pxblue/colors';
 
@@ -16,7 +17,7 @@ import * as Colors from '@pxblue/colors';
  * @ignore
  */
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeStyles = () =>
+const makeStyles = (theme: Theme) =>
     StyleSheet.create({
         textInput: {
             height: 70,
@@ -27,7 +28,7 @@ const makeStyles = () =>
             position: 'absolute',
             bottom: -20,
             paddingLeft: 13,
-            color: Colors.red['500'],
+            color: theme.colors.error,// Colors.red['500'],
         },
     });
 
@@ -58,6 +59,7 @@ type TextInputRenderProps = {
     secureTextEntry?: boolean;
     error?: boolean;
     errorText?: string;
+    theme?: Theme;
 };
 
 /**
@@ -77,7 +79,8 @@ const TextInputRender: React.ForwardRefRenderFunction<{}, TextInputRenderProps> 
         },
     }));
 
-    const styles = makeStyles();
+    const theme = useTheme(props.theme);
+    const styles = makeStyles(theme);
 
     const enteredTextHandler = (input: string): void => {
         props.onChangeText(input);
@@ -118,9 +121,11 @@ TextInput.displayName = 'TextInput'; // Set a display name for testing with shal
 type ErrorTextProps = {
     errorText: string | undefined;
     style?: StyleProp<ViewStyle>;
+    theme?: Theme;
 };
 
 const ErrorText: React.FC<ErrorTextProps> = (props) => {
-    const styles = makeStyles();
-    return <Text style={styles.errorText}>{props.errorText || null}</Text>;
+    const theme = useTheme(props.theme);
+    const styles = makeStyles(theme);
+    return <Subtitle style={styles.errorText} font={'regular'}>{props.errorText || null}</Subtitle>;
 };

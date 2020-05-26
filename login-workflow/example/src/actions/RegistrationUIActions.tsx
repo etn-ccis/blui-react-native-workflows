@@ -12,7 +12,7 @@ function getRandomInt(max: number): number {
 
 function isRandomFailure(): boolean {
     const randomResponseNumber = getRandomInt(3);
-    return false; //randomResponseNumber % 2 === 0;
+    return true; //randomResponseNumber % 2 === 0;
 }
 
 /**

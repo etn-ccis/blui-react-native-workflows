@@ -92,7 +92,7 @@ type CompleteSplashScreenProps = {
  *
  * @category Component
  */
-export default function CompleteSplashScreen(props: CompleteSplashScreenProps): JSX.Element {
+export const CompleteSplashScreen: React.FC<CompleteSplashScreenProps> = (props) => {
     const containerStyles = makeContainerStyles();
     const styles = makeStyles();
 

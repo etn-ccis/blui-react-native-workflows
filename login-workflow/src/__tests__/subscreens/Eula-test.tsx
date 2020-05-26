@@ -5,7 +5,7 @@
 import React from 'react';
 import 'react-native';
 import { mount } from 'enzyme';
-import Eula from '../../subScreens/Eula';
+import { Eula } from '../../subScreens/Eula';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
