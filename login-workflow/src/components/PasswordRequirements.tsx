@@ -35,16 +35,17 @@ type PasswordRequirementsProps = {
  * @category Component
  */
 export const PasswordRequirements: React.FC<PasswordRequirementsProps> = (props) => {
+    const { passwordText, style } = props;
     const { t } = useLanguageLocale();
 
-    const hasValidLength = new RegExp(LENGTH_REGEX).test(props.passwordText);
-    const hasValidNumbers = new RegExp(NUMBERS_REGEX).test(props.passwordText);
-    const hasValidUpperCase = new RegExp(UPPER_CASE_REGEX).test(props.passwordText);
-    const hasValidLowerCase = new RegExp(LOWER_CASE_REGEX).test(props.passwordText);
-    const hasValidSpecialCharacters = new RegExp(SPECIAL_CHAR_REGEX).test(props.passwordText);
+    const hasValidLength = new RegExp(LENGTH_REGEX).test(passwordText);
+    const hasValidNumbers = new RegExp(NUMBERS_REGEX).test(passwordText);
+    const hasValidUpperCase = new RegExp(UPPER_CASE_REGEX).test(passwordText);
+    const hasValidLowerCase = new RegExp(LOWER_CASE_REGEX).test(passwordText);
+    const hasValidSpecialCharacters = new RegExp(SPECIAL_CHAR_REGEX).test(passwordText);
 
     return (
-        <View style={props.style}>
+        <View style={style}>
             <RequirementCheck text={t('PASSWORD_REQUIREMENTS.LENGTH')} isChecked={hasValidLength} />
             <RequirementCheck text={t('PASSWORD_REQUIREMENTS.NUMBERS')} isChecked={hasValidNumbers} />
             <RequirementCheck text={t('PASSWORD_REQUIREMENTS.UPPER')} isChecked={hasValidUpperCase} />

@@ -55,7 +55,7 @@ const makeStyles = () =>
 type ErrorStateProps = {
     title: string;
     bodyText: string | null;
-    icon?: string;
+    icon?: React.Component<{ size: number; color: string }>;
     onPress: Function;
     theme?: Theme;
 };
@@ -67,19 +67,21 @@ type ErrorStateProps = {
  */
 export const ErrorState: React.FC<ErrorStateProps> = (props) => {
     const theme = useTheme(props.theme);
+    const { title, bodyText, icon, onPress } = props;
     const { t } = useLanguageLocale();
 
     const containerStyles = makeContainerStyles();
     const styles = makeStyles();
 
     return (
-        <SafeAreaView style={[containerStyles.spaceBetween, { backgroundColor: 'white' }]}>
+        <SafeAreaView style={[containerStyles.spaceBetween, { backgroundColor: theme.colors.surface }]}>
             <View style={{ flex: 1 }}>
                 <EmptyState
-                    IconClass={ReportIcon}
+                    // @ts-ignore
+                    IconClass={icon ?? ReportIcon}
                     iconColor={theme.colors.error}
-                    title={'Failure'} // TODO: translate me
-                    description={props.bodyText ?? t('MESSAGES.REQUEST_ERROR')}
+                    title={title ?? t('MESSAGES.FAILURE')}
+                    description={bodyText ?? t('MESSAGES.REQUEST_ERROR')}
                 />
             </View>
 
@@ -89,7 +91,7 @@ export const ErrorState: React.FC<ErrorStateProps> = (props) => {
                     style={{ width: '100%', alignSelf: 'flex-end' }}
                     mode={'contained'}
                     onPress={(): void => {
-                        props.onPress();
+                        onPress();
                     }}
                 >
                     {t('ACTIONS.FINISH')}

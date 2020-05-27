@@ -10,7 +10,7 @@ import { EMAIL_REGEX } from '../constants/index';
 
 // Components
 import { Platform, View, StyleSheet, SafeAreaView, StatusBar } from 'react-native';
-import { Text, Button, Theme, useTheme } from 'react-native-paper';
+import { Button, Theme, useTheme } from 'react-native-paper';
 import { TextInput } from '../components/TextInput';
 import { TextInputSecure } from '../components/TextInputSecure';
 import { Checkbox } from '../components/Checkbox';
@@ -24,7 +24,7 @@ import { ToggleButton } from '../components/ToggleButton';
 
 // Styles
 import * as Colors from '@pxblue/colors';
-import { Label, H6, Body } from '@pxblue/react-native-components';
+import { Label, H6 } from '@pxblue/react-native-components';
 
 // Hooks
 import { useLanguageLocale } from '../hooks/language-locale-hooks';
@@ -88,14 +88,14 @@ const makeContainerStyles = () =>
  * @ignore
  */
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeStyles = (theme: Theme) =>
+const makeStyles = () =>
     StyleSheet.create({
         signUpText: {
             alignSelf: 'center',
             color: Colors.gray['300'],
         },
         clearButton: {
-            fontSize: 16, //theme.sizes.medium,
+            fontSize: 16,
         },
         securityBadge: {
             height: 60,
@@ -103,24 +103,15 @@ const makeStyles = (theme: Theme) =>
     });
 
 /**
- * @param theme (Optional) react-native-paper theme partial to style the component.
- */
-type LoginProps = {
-    theme?: Theme;
-};
-
-/**
  * Login screen with loading and error states, as well as "remember me" functionality to store a user's email between logins.
  * Requires being wrapped in an [[AuthNavigationContainer]] for access to global state and actions for authentication and registration.
  * Has a debug mode which shows buttons that allow direct access to the deep link flows (invite registration, set password from forgot password, etc.).
  *
- * @param props Must contain theme object.
  *
  * @category Component
  */
 
-export const Login: React.FC<LoginProps> = (props) => {
-    const theme = useTheme(props.theme);
+export const Login: React.FC = () => {
     const securityState = useSecurityState();
     const [rememberPassword, setRememberPassword] = React.useState(securityState.rememberMeDetails.rememberMe ?? false);
     const [emailInput, setEmailInput] = React.useState(securityState.rememberMeDetails.email ?? '');
@@ -135,7 +126,7 @@ export const Login: React.FC<LoginProps> = (props) => {
     const authProps = useInjectedUIContext();
 
     const containerStyles = makeContainerStyles();
-    const styles = makeStyles(theme);
+    const styles = makeStyles();
 
     const loginTapped = (): void => {
         setHasAcknowledgedError(false);

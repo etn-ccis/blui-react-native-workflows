@@ -6,10 +6,10 @@
 import React, { useState } from 'react';
 
 // Components
-import { View, StyleSheet, TouchableOpacity, KeyboardTypeOptions, StyleProp, ViewStyle } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, TextInput as ReactTextInput } from 'react-native';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
-import { Theme, useTheme } from 'react-native-paper';
-import { TextInput } from './TextInput';
+import { useTheme } from 'react-native-paper';
+import { TextInput, TextInputRenderProps } from './TextInput';
 
 /**
  * @ignore
@@ -32,34 +32,7 @@ const makeStyles = () =>
         },
     });
 
-/**
- * @param label  The placeholder text to show inside of the text input.
- * @param value  The entered text in the text input
- * @param style  (Optional) Custom style to be applied to the text input.
- * @param keyboardType  (Optional) The keyboard type to use for keyboard when the text input is selected. Default 'default'.
- * @param autoCapitalize  (Optional) The style of auto capitalization to use for the text input. 'none', 'sentences', 'words', or 'characters'. Default 'none'.
- * @param returnKeyType  (Optional) The type of the return key on the keyboard. 'done', 'go', 'send', 'search', or 'next'. Default 'done'.
- * @param onChangeText  The function to handle the on change text action.
- * @param onSubmitEditing  (Optional) The function to handle the on submit editing action.
- * @param blurOnSubmit  (Optional) Blurs the text field when submitted. Default true.
- * @param error  (Optional) If the text input is currently in error state. Default false.
- * @param errorText  (Optional) The text to show if the text input is in error state.
- * @param theme (Optional) react-native-paper theme partial to style the component.
- */
-type TextInputSecureRenderProps = {
-    label: string;
-    value: string;
-    style?: StyleProp<ViewStyle>;
-    keyboardType?: KeyboardTypeOptions;
-    autoCapitalize?: 'none' | 'sentences' | 'words' | 'characters';
-    returnKeyType?: 'done' | 'go' | 'send' | 'search' | 'next';
-    onChangeText: Function;
-    onSubmitEditing?: Function;
-    blurOnSubmit?: boolean;
-    error?: boolean;
-    errorText?: string;
-    theme?: Theme;
-};
+type TextInputSecureRenderProps = TextInputRenderProps;
 
 /**
  * Renders a secure text input with various configuration options such as errorText and custom style.
@@ -71,41 +44,29 @@ export const TextInputSecureRender: React.ForwardRefRenderFunction<{}, TextInput
     props: TextInputSecureRenderProps,
     ref: any
 ) => {
-    const theme = useTheme(props.theme);
+    const { style, theme: customTheme, ...inputProps } = props;
+    const theme = useTheme(customTheme);
+    const styles = makeStyles();
+
     const [shouldShowText, setShouldShowText] = useState(true);
 
     // Necessary to allow use of ref (to pass focus to next TextInput on submit)
-    const inputRef: any = React.useRef();
+    const inputRef = React.useRef<ReactTextInput>(null);
+
     React.useImperativeHandle(ref, () => ({
         focus: (): void => {
-            inputRef.current.focus();
+            if (inputRef && inputRef.current) inputRef.current.focus();
         },
     }));
 
-    const styles = makeStyles();
-
-    const enteredTextHandler = (input: string): void => {
-        props.onChangeText(input);
-    };
-
     return (
-        <View style={props.style}>
+        <View style={style}>
             <TextInput
                 ref={inputRef}
-                label={props.label}
-                value={props.value}
                 style={styles.togglePadding}
+                theme={theme}
+                {...inputProps}
                 secureTextEntry={shouldShowText}
-                keyboardType={props.keyboardType}
-                autoCapitalize={props.autoCapitalize}
-                returnKeyType={props.returnKeyType}
-                onChangeText={enteredTextHandler}
-                error={props.error}
-                errorText={props.errorText}
-                onSubmitEditing={(): void => {
-                    if (props.onSubmitEditing) props.onSubmitEditing();
-                }}
-                blurOnSubmit={props.blurOnSubmit}
             />
             <TouchableOpacity
                 activeOpacity={0.8}

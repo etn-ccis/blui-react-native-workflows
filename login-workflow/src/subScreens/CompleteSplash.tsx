@@ -115,4 +115,4 @@ export const CompleteSplashScreen: React.FC<CompleteSplashScreenProps> = (props)
             </ScrollView>
         </View>
     );
-}
+};

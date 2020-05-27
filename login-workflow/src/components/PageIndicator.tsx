@@ -5,6 +5,7 @@
 
 import * as React from 'react';
 import { View, StyleSheet } from 'react-native';
+import { Theme, useTheme } from 'react-native-paper';
 
 // Styles
 import * as Colors from '@pxblue/colors';
@@ -13,7 +14,7 @@ import * as Colors from '@pxblue/colors';
  * @ignore
  */
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeStyles = () =>
+const makeStyles = (theme: Theme) =>
     StyleSheet.create({
         container: {
             flex: 1,
@@ -36,17 +37,19 @@ const makeStyles = () =>
             height: 8,
             width: 8,
             borderRadius: 20,
-            backgroundColor: Colors.blue['500'],
+            backgroundColor: theme.colors.primary,
         },
     });
 
 /**
  * @param currentPage  The currently selected page.
  * @param totalPages  The total number of pages.
+ * @param theme (Optional) react-native-paper theme partial to style the component.
  */
 export type PageIndicatorProps = {
     currentPage: number;
     totalPages: number;
+    theme?: Theme;
 };
 
 /**
@@ -57,23 +60,23 @@ export type PageIndicatorProps = {
  * @category Component
  */
 export const PageIndicator: React.FC<PageIndicatorProps> = (props) => {
-    const pageIndicies = [...Array(props.totalPages).keys()];
-    const styles = makeStyles();
+    const { currentPage, totalPages } = props;
+    const theme = useTheme(props.theme);
+    const styles = makeStyles(theme);
+    const pageIndices = [...Array(totalPages).keys()];
 
     return (
         <View style={styles.container}>
             <View style={styles.background}>
-                {pageIndicies.map((i) => {
-                    if (i === props.currentPage) {
+                {pageIndices.map((i) => {
+                    if (i === currentPage) {
                         return (
                             <View style={styles.circle} key={i}>
                                 <View style={[styles.filled]} />
                             </View>
                         );
-                        // eslint-disable-next-line no-else-return
-                    } else {
-                        return <View style={styles.circle} key={i}></View>;
                     }
+                    return <View style={styles.circle} key={i}></View>;
                 })}
             </View>
         </View>

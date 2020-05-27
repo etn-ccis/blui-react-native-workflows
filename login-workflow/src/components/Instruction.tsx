@@ -50,13 +50,13 @@ type InstructionProps = {
  * @category Component
  */
 export const Instruction: React.FC<InstructionProps> = (props) => {
+    const { text, style, hasBottomBorder = true } = props;
     const styles = makeStyles();
-    const hasButtonBorder = props.hasBottomBorder ?? true;
 
     return (
-        <View style={[styles.padding, hasButtonBorder ? styles.bottomBorder : null]}>
-            <Label style={[styles.mainText, props.style]}>
-                <FormattedText parseableText={props.text} />
+        <View style={[styles.padding, hasBottomBorder ? styles.bottomBorder : null]}>
+            <Label style={[styles.mainText, style]}>
+                <FormattedText parseableText={text} />
             </Label>
         </View>
     );

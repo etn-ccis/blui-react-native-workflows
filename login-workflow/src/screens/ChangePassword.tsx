@@ -215,7 +215,7 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
                 <ScrollView>
                     <View style={[containerStyles.containerMargins, containerStyles.mainContainer]}>
                         <TextInputSecure
-                            label={t('Current Password')} // TODO Add a translation
+                            label={t('CuHANGE_PASSWORD.CURRENT_PASSWORD')}
                             value={currentPasswordInput}
                             style={styles.inputMargin}
                             autoCapitalize={'none'}

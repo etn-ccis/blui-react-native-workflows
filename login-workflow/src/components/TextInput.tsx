@@ -6,10 +6,11 @@
 import React from 'react';
 
 // Components
-import { View, Text, StyleSheet, KeyboardTypeOptions, StyleProp, ViewStyle } from 'react-native';
+import { View, StyleSheet, StyleProp, ViewStyle, TextInput as ReactTextInput } from 'react-native';
 import { TextInput as PaperTextInput, Theme, useTheme } from 'react-native-paper';
-import { Caption, Body, Subtitle } from '@pxblue/react-native-components';
- 
+import { TextInputProps } from 'react-native-paper/src/components/TextInput/TextInput';
+import { Subtitle } from '@pxblue/react-native-components';
+
 // Styles
 import * as Colors from '@pxblue/colors';
 
@@ -28,36 +29,15 @@ const makeStyles = (theme: Theme) =>
             position: 'absolute',
             bottom: -20,
             paddingLeft: 13,
-            color: theme.colors.error,// Colors.red['500'],
+            color: theme.colors.error,
         },
     });
 
 /**
- * @param label  The placeholder text to show inside of the text input.
- * @param value  The entered text in the text input
- * @param style  (Optional) Custom style to be applied to the text input.
- * @param keyboardType  (Optional) The keyboard type to use for keyboard when the text input is selected. Default 'default'.
- * @param autoCapitalize  (Optional) The style of auto capitalization to use for the text input. 'none', 'sentences', 'words', or 'characters'. Default 'none'.
- * @param returnKeyType  (Optional) The type of the return key on the keyboard. 'done', 'go', 'send', 'search', or 'next'. Default 'done'.
- * @param onChangeText  The function to handle the on change text action.
- * @param onSubmitEditing  (Optional) The function to handle the on submit editing action.
- * @param blurOnSubmit  (Optional) Blurs the text field when submitted. Default true.
- * @param secureTextEntry  (Optional) Obscures text input. Default false.
- * @param error  (Optional) If the text input is currently in error state. Default false.
  * @param errorText  (Optional) The text to show if the text input is in error state.
+ * @param theme (Optional) react-native-paper theme partial to style the component.
  */
-type TextInputRenderProps = {
-    label: string;
-    value: string;
-    style?: StyleProp<ViewStyle>;
-    keyboardType?: KeyboardTypeOptions;
-    autoCapitalize?: 'none' | 'sentences' | 'words' | 'characters';
-    returnKeyType?: 'done' | 'go' | 'send' | 'search' | 'next';
-    onChangeText: Function;
-    onSubmitEditing?: Function;
-    blurOnSubmit?: boolean;
-    secureTextEntry?: boolean;
-    error?: boolean;
+export type TextInputRenderProps = TextInputProps & {
     errorText?: string;
     theme?: Theme;
 };
@@ -71,42 +51,39 @@ const TextInputRender: React.ForwardRefRenderFunction<{}, TextInputRenderProps> 
     props: TextInputRenderProps,
     ref: any
 ) => {
-    // Necessary to allow use of ref (to pass focus to next TextInput on submit)
-    const inputRef: any = React.useRef();
-    React.useImperativeHandle(ref, () => ({
-        focus: (): void => {
-            inputRef.current.focus();
-        },
-    }));
-
-    const theme = useTheme(props.theme);
+    const {
+        style,
+        keyboardType = 'default',
+        autoCapitalize = 'none',
+        returnKeyType = 'done',
+        errorText,
+        theme: customTheme,
+        ...inputProps
+    } = props;
+    const theme = useTheme(customTheme);
     const styles = makeStyles(theme);
 
-    const enteredTextHandler = (input: string): void => {
-        props.onChangeText(input);
-    };
+    // Necessary to allow use of ref (to pass focus to next TextInput on submit)
+    const inputRef = React.useRef<ReactTextInput>(null);
+    React.useImperativeHandle(ref, () => ({
+        focus: (): void => {
+            if (inputRef && inputRef.current) inputRef.current.focus();
+        },
+    }));
 
     return (
         <View>
             <PaperTextInput
                 ref={inputRef}
-                label={props.label}
-                value={props.value}
-                style={[styles.textInput, props.style]}
-                keyboardType={props.keyboardType ?? 'default'}
-                autoCapitalize={props.autoCapitalize ?? 'none'} // TODO: (Open issue) Android not respecting autoCapitalize=words https://github.com/facebook/react-native/issues/8932
-                returnKeyType={props.returnKeyType ?? 'done'}
-                secureTextEntry={props.secureTextEntry ?? false}
+                style={[styles.textInput, style]}
+                keyboardType={keyboardType}
+                autoCapitalize={autoCapitalize} // TODO: (Open issue) Android not respecting autoCapitalize=words https://github.com/facebook/react-native/issues/8932
+                returnKeyType={returnKeyType}
                 textContentType={props.secureTextEntry ? 'oneTimeCode' : 'none'} // "oneTimeCode" is workaround to avoid iOS 12 "strong password" autofill overlay on secure input password fields (ISSUE TRACKING: https://github.com/facebook/react-native/issues/21911)
-                onChangeText={enteredTextHandler}
-                error={props.error || false}
                 underlineColor={Colors.gray['100']}
-                onSubmitEditing={(): void => {
-                    if (props.onSubmitEditing) props.onSubmitEditing();
-                }}
-                blurOnSubmit={props.blurOnSubmit}
+                {...inputProps}
             />
-            {props.error ? <ErrorText errorText={props.errorText} /> : null}
+            {props.error ? <ErrorText errorText={errorText} /> : null}
         </View>
     );
 };
@@ -117,6 +94,7 @@ TextInput.displayName = 'TextInput'; // Set a display name for testing with shal
 /**
  * @param errorText  The text of the error.
  * @param style  (Optional) Custom style applied to the error text.
+ * @param theme (Optional) react-native-paper theme partial to style the component.
  **/
 type ErrorTextProps = {
     errorText: string | undefined;
@@ -125,7 +103,13 @@ type ErrorTextProps = {
 };
 
 const ErrorText: React.FC<ErrorTextProps> = (props) => {
+    const { errorText, style } = props;
     const theme = useTheme(props.theme);
     const styles = makeStyles(theme);
-    return <Subtitle style={styles.errorText} font={'regular'}>{props.errorText || null}</Subtitle>;
+
+    return (
+        <Subtitle style={[styles.errorText, style]} font={'regular'}>
+            {errorText || null}
+        </Subtitle>
+    );
 };

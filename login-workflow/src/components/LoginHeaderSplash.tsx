@@ -62,15 +62,16 @@ type LoginHeaderSplashProps = {
  * @category Component
  */
 export const LoginHeaderSplash: React.FC<LoginHeaderSplashProps> = (props) => {
+    const { style, mainImage } = props;
     const styles = makeStyles();
 
     return (
         <>
-            <View style={props.style}>
+            <View style={style}>
                 <View style={styles.headerImageContainer}>
                     <Image
                         resizeMethod="resize"
-                        source={props.mainImage ?? require('../assets/images/eaton_stacked_logo.png')}
+                        source={mainImage ?? require('../assets/images/eaton_stacked_logo.png')}
                         style={styles.headerImage}
                     />
                 </View>

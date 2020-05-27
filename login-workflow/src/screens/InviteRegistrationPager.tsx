@@ -402,7 +402,6 @@ export const InviteRegistrationPager: React.FC = () => {
             <ErrorState
                 title={t('MESSAGES.FAILURE')}
                 bodyText={validationTransitErrorMessage}
-                icon={'report'}
                 onPress={(): void => {
                     navigation.navigate('Login');
                 }}

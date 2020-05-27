@@ -17,6 +17,8 @@ import { authLinkMapping, resolveInitialState } from './src/navigation/DeepLinki
 
 import { Provider as ThemeProvider } from 'react-native-paper';
 
+import * as PXBThemes from '@pxblue/react-native-themes';
+
 const Stack = createStackNavigator();
 
 export function AuthUIConfiguration(props: { children: JSX.Element }): JSX.Element {
@@ -46,7 +48,7 @@ export const App: React.FC = () => {
     }, [getInitialState]);
 
     return (
-        <ThemeProvider /*theme={PXBThemes.blue}*/>
+        <ThemeProvider theme={PXBThemes.blue}>
             <SecurityContextProvider>
                 <AuthUIConfiguration>
                     <AuthNavigationContainer initialState={initialState} ref={ref}>

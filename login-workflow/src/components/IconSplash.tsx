@@ -10,9 +10,6 @@ import { View, StyleSheet, StyleProp, ViewStyle } from 'react-native';
 import { Theme, useTheme } from 'react-native-paper';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
 
-// Styles
-import * as Colors from '@pxblue/colors';
-
 /**
  * @ignore
  */
@@ -62,15 +59,15 @@ type IconSplashProps = {
  * @category Component
  */
 export const IconSplash: React.FC<IconSplashProps> = (props) => {
-    const { iconSize = 90 } = props;
+    const { icon, iconSize = 90, style } = props;
     const theme = useTheme(props.theme);
     const styles = makeStyles(theme, iconSize);
     const containerStyles = makeContainerStyles();
 
     return (
-        <View style={[containerStyles.iconContainer, props.style]}>
+        <View style={[containerStyles.iconContainer, style]}>
             <View style={styles.circleIconBackground}>
-                <MatIcon name={props.icon || 'vpn-key'} size={iconSize * 0.55} color={Colors.white[50]} />
+                <MatIcon name={icon ?? 'vpn-key'} size={iconSize * 0.55} color={theme.colors.surface} />
             </View>
         </View>
     );

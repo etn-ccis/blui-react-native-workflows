@@ -151,4 +151,4 @@ export const ResetPassword: React.FC = () => {
             </KeyboardAwareScrollView>
         </SafeAreaView>
     );
-}
+};

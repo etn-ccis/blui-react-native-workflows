@@ -6,7 +6,7 @@
 import React from 'react';
 
 // Components
-import { Button, Paragraph, Dialog, Portal, Theme } from 'react-native-paper';
+import { Button, Paragraph, Dialog, Portal } from 'react-native-paper';
 
 // Hooks
 import { useLanguageLocale } from '../hooks/language-locale-hooks';
@@ -16,14 +16,12 @@ import { useLanguageLocale } from '../hooks/language-locale-hooks';
  * @param onDismiss  The function to handle the on dismiss action.
  * @param title  The title text of the dialog box.
  * @param bodyText  The body text of the dialog box.
- * @param theme (Optional) react-native-paper theme partial to style the component.
  */
 type SimpleDialogProps = {
     isVisible: boolean;
     onDismiss: Function;
     title: string;
     bodyText: string | null;
-    theme?: Theme;
 };
 
 /**
@@ -32,19 +30,20 @@ type SimpleDialogProps = {
  * @category Component
  */
 export const SimpleDialog: React.FC<SimpleDialogProps> = (props) => {
+    const { isVisible, onDismiss, title, bodyText } = props;
     const { t } = useLanguageLocale();
     return (
         <Portal>
-            <Dialog visible={props.isVisible} dismissable={false}>
-                <Dialog.Title>{props.title}</Dialog.Title>
+            <Dialog visible={isVisible} dismissable={false}>
+                <Dialog.Title>{title}</Dialog.Title>
                 <Dialog.Content>
-                    <Paragraph>{props.bodyText ?? t('MESSAGES.REQUEST_ERROR')}</Paragraph>
+                    <Paragraph>{bodyText ?? t('MESSAGES.REQUEST_ERROR')}</Paragraph>
                 </Dialog.Content>
                 <Dialog.Actions>
                     <Button
                         uppercase={false}
                         onPress={(): void => {
-                            props.onDismiss();
+                            onDismiss();
                         }}
                     >
                         {t('ACTIONS.OKAY')}

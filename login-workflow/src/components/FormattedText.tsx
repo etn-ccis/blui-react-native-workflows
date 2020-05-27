@@ -36,19 +36,20 @@ type FormattedTextProps = {
  * @category Component
  */
 export const FormattedText: React.FC<FormattedTextProps> = (props) => {
+    const { parseableText, textStyle } = props;
     const [parsedTextArray, setTextArray] = useState<ParsedJSXText[]>([]);
     const styles = makeStyles();
 
     useEffect(() => {
-        const parseableTextOrEmpty = props.parseableText ?? '';
+        const parseableTextOrEmpty = parseableText ?? '';
         const result = parseTextForJSX(parseableTextOrEmpty);
         setTextArray(result);
-    }, [props.parseableText]);
+    }, [parseableText, setTextArray]);
 
     return (
         <>
             {parsedTextArray.map((chunk, index) => (
-                <Text key={index} style={[props.textStyle, styles[chunk.tag as 'b' | 'none']]}>
+                <Text key={index} style={[textStyle, styles[chunk.tag as 'b' | 'none']]}>
                     {chunk.text}
                 </Text>
             ))}

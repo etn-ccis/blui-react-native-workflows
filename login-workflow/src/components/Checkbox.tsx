@@ -6,14 +6,14 @@
 import React from 'react';
 
 // Components
-import { View, StyleProp, ViewStyle, TextStyle } from 'react-native';
+import { View, StyleProp, ViewStyle } from 'react-native';
 import { Checkbox as PaperCheckbox, Theme, useTheme } from 'react-native-paper';
 import { Body } from '@pxblue/react-native-components';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 /**
  * @param label  The label to show beside the checkbox.
  * @param style  (Optional) Custom style to style the checkbox.
- * @param textStyle  (Optional) Custom style to style the checkbox label.
  * @param isChecked  If the checkbox is checked or not.
  * @param onPress  The function to handle the on press action.
  * @param disabled  (Optional) If the checkbox should be disabled or not. False if not specified.
@@ -22,7 +22,6 @@ import { Body } from '@pxblue/react-native-components';
 type CheckboxProps = {
     label: string;
     style?: StyleProp<ViewStyle>;
-    textStyle?: StyleProp<TextStyle>;
     isChecked: boolean;
     onPress: Function;
     disabled?: boolean;
@@ -36,24 +35,30 @@ type CheckboxProps = {
  */
 export const Checkbox: React.FC<CheckboxProps> = (props) => {
     const theme = useTheme(props.theme);
+    const { disabled, onPress, isChecked, label, style } = props;
 
     const checkedBox = (): void => {
-        if (props.disabled === true) {
+        if (disabled === true) {
             return;
         }
-        props.onPress();
+        onPress();
     };
 
     // NOTE: Wrapped in View to address React Native bug. Opacity doesn't update on re-render until the CheckBox is tapped.
     return (
-        <View style={[{ flexDirection: 'row', alignItems: 'center' }, props.disabled ? { opacity: 0.3 } : undefined]}>
-            <PaperCheckbox.Android
-                status={props.isChecked ? 'checked' : 'unchecked'}
-                color={theme.colors.primary}
-                uncheckedColor={theme.colors.primary}
+        <View style={[style, props.disabled ? { opacity: 0.3 } : undefined]}>
+            <TouchableOpacity
+                style={[{ flexDirection: 'row', alignItems: 'center' }]}
                 onPress={checkedBox}
-            />
-            <Body>{props.label}</Body>
+                activeOpacity={1}
+            >
+                <PaperCheckbox.Android
+                    status={isChecked ? 'checked' : 'unchecked'}
+                    color={theme.colors.primary}
+                    uncheckedColor={theme.colors.primary}
+                />
+                <Body>{label}</Body>
+            </TouchableOpacity>
         </View>
     );
 };

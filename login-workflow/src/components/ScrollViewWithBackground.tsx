@@ -6,8 +6,9 @@
 import React from 'react';
 
 // Components
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, ScrollViewProperties } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+import { Theme, useTheme } from 'react-native-paper';
 
 /**
  * @ignore
@@ -36,10 +37,12 @@ const makeStyles = (spaceSize: number, topColor: string, bottomColor: string) =>
 /**
  * @param topColor  (Optional) The color of the top area's background.
  * @param bottomColor  (Optional) The color of the bottom area's background.
+ * @param theme (Optional) react-native-paper theme partial to style the component.
  */
-export type ScrollViewWithBackgroundProps = {
+export type ScrollViewWithBackgroundProps = ScrollViewProperties & {
     topColor?: string;
     bottomColor?: string;
+    theme?: Theme;
 };
 
 /**
@@ -49,8 +52,9 @@ export type ScrollViewWithBackgroundProps = {
  * @category Component
  */
 export const ScrollViewWithBackground: React.FC<ScrollViewWithBackgroundProps> = (props) => {
-    const { children, ...other } = props;
-    const styles = makeStyles(500, props.topColor ?? 'white', props.bottomColor ?? 'white');
+    const { topColor, bottomColor, children, theme: customTheme, ...other } = props;
+    const theme = useTheme(customTheme);
+    const styles = makeStyles(500, topColor ?? theme.colors.surface, bottomColor ?? theme.colors.surface);
 
     return (
         <ScrollView {...other}>

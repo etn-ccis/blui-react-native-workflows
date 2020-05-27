@@ -125,7 +125,6 @@ export const ResetPasswordHandleDeepLink: React.FC = () => {
             <ErrorState
                 title={t('MESSAGES.FAILURE')}
                 bodyText={validationTransitErrorMessage}
-                icon={'report'}
                 onPress={(): void => {
                     navigation.navigate('Login');
                 }}
