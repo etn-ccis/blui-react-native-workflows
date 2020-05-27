@@ -13,6 +13,7 @@ import { View, StyleSheet, SafeAreaView } from 'react-native';
 import { TextInput } from '../components/TextInput';
 import { Instruction } from '../components/Instruction';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { Theme, useTheme } from 'react-native-paper';
 
 // Styles
 import * as Colors from '@pxblue/colors';
@@ -24,11 +25,11 @@ import { useLanguageLocale } from '../hooks/language-locale-hooks';
  * @ignore
  */
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeContainerStyles = () =>
+const makeContainerStyles = (theme: Theme) =>
     StyleSheet.create({
         safeContainer: {
             height: '100%',
-            backgroundColor: Colors.white['50'],
+            backgroundColor: theme.colors.surface,
         },
         mainContainer: {
             flex: 1,
@@ -58,9 +59,11 @@ const makeStyles = () =>
  * Handle the change of any of the email inputs.
  *
  * @param onEmailChanged  Handle the change of any of the email inputs.
+ * @param theme (Optional) react-native-paper theme partial for custom styling.
  */
 type CreateAccountProps = {
     onEmailChanged(email: string): void;
+    theme?: Theme;
 };
 
 /**
@@ -81,10 +84,11 @@ function isValidEmail(text: string): boolean {
  * @category Component
  */
 export const CreateAccount: React.FC<CreateAccountProps> = (props) => {
+    const theme = useTheme(props.theme);
     const [emailInput, setEmailInput] = React.useState('');
     const { t } = useLanguageLocale();
 
-    const containerStyles = makeContainerStyles();
+    const containerStyles = makeContainerStyles(theme);
     const styles = makeStyles();
     const onChangeText = (text: string): void => {
         setEmailInput(text);
@@ -114,6 +118,7 @@ export const CreateAccount: React.FC<CreateAccountProps> = (props) => {
                         error={showEmailError}
                         errorText={t('MESSAGES.EMAIL_ENTRY_ERROR')}
                         onChangeText={onChangeText}
+                        theme={theme}
                     />
                 </View>
             </KeyboardAwareScrollView>

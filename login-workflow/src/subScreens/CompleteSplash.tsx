@@ -9,6 +9,7 @@ import React from 'react';
 import { View, StyleSheet, SafeAreaView, Image, ScrollView } from 'react-native';
 import { IconSplash } from '../components/IconSplash';
 import { FormattedText } from '../components/FormattedText';
+import { Theme, useTheme } from 'react-native-paper';
 
 // Styles
 import * as Colors from '@pxblue/colors';
@@ -50,13 +51,13 @@ const makeContainerStyles = () =>
  * @ignore
  */
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeStyles = () =>
+const makeStyles = (theme: theme) =>
     StyleSheet.create({
         headerText: {
             color: Colors.black['800'],
         },
         bodyText: {
-            color: Colors.black['500'],
+            color: theme.colors.text,
         },
         textSpacing: {
             marginVertical: 10,
@@ -68,7 +69,7 @@ const makeStyles = () =>
             width: 100,
             height: 100,
             borderRadius: 50,
-            backgroundColor: Colors.blue['500'],
+            backgroundColor: theme.colors.primary,
             justifyContent: 'center',
             alignSelf: 'center',
         },
@@ -80,11 +81,13 @@ const makeStyles = () =>
  * @param boldTitle  The bold title text.
  * @param bodyText  The body text.
  * @param icon  (Optional) The optional icon to show on the slash. Default 'blue_waves.png'.
+ * @param theme (Optional) react-native-paper theme partial for custom styling.
  */
 type CompleteSplashScreenProps = {
     boldTitle: string;
     bodyText: string;
     icon?: string;
+    theme?: Theme;
 };
 
 /**
@@ -93,8 +96,9 @@ type CompleteSplashScreenProps = {
  * @category Component
  */
 export const CompleteSplashScreen: React.FC<CompleteSplashScreenProps> = (props) => {
+    const theme = useTheme(props.theme);
     const containerStyles = makeContainerStyles();
-    const styles = makeStyles();
+    const styles = makeStyles(theme);
 
     return (
         <View style={containerStyles.backgroundAndContentWrapper}>

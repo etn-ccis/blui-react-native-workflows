@@ -14,7 +14,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 /**
  * @param label  The label to show beside the checkbox.
  * @param style  (Optional) Custom style to style the checkbox.
- * @param isChecked  If the checkbox is checked or not.
+ * @param checked  If the checkbox is checked or not.
  * @param onPress  The function to handle the on press action.
  * @param disabled  (Optional) If the checkbox should be disabled or not. False if not specified.
  * @param theme  (Optional) react-native-paper theme partial to style the component.
@@ -22,7 +22,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 type CheckboxProps = {
     label: string;
     style?: StyleProp<ViewStyle>;
-    isChecked: boolean;
+    checked: boolean;
     onPress: Function;
     disabled?: boolean;
     theme?: Theme;
@@ -35,7 +35,7 @@ type CheckboxProps = {
  */
 export const Checkbox: React.FC<CheckboxProps> = (props) => {
     const theme = useTheme(props.theme);
-    const { disabled, onPress, isChecked, label, style } = props;
+    const { disabled, onPress, checked, label, style } = props;
 
     const checkedBox = (): void => {
         if (disabled === true) {
@@ -53,7 +53,7 @@ export const Checkbox: React.FC<CheckboxProps> = (props) => {
                 activeOpacity={1}
             >
                 <PaperCheckbox.Android
-                    status={isChecked ? 'checked' : 'unchecked'}
+                    status={checked ? 'checked' : 'unchecked'}
                     color={theme.colors.primary}
                     uncheckedColor={theme.colors.primary}
                 />

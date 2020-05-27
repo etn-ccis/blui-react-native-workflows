@@ -42,7 +42,7 @@ const makeStyles = (theme: Theme) =>
     });
 
 /**
- * @param currentPage  The currently selected page.
+ * @param currentPage  The currently selected page index.
  * @param totalPages  The total number of pages.
  * @param theme (Optional) react-native-paper theme partial to style the component.
  */

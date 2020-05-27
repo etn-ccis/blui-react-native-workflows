@@ -14,6 +14,7 @@ import 'react-native-gesture-handler';
 
 // Components
 import { StatusBar } from 'react-native';
+import { Theme, useTheme } from 'react-native-paper';
 
 // Screens / Stacks
 import { Login } from './Login';
@@ -30,18 +31,26 @@ import { useInjectedUIContext } from '../contexts/AuthUIContextProvider';
 const Stack = createStackNavigator();
 
 /**
+ * @param theme (Optional) react-native-paper theme partial to style the component.
+ */
+type PreAuthContainerProps = {
+    theme?: Theme;
+};
+
+/**
  * Container wrapping status bar and theming customizations to a top-level Stack Navigator which governs access
  * to the login screen, contact screen, reset password flows, and registration flows.
  *
  * @category Component
  */
-export const PreAuthContainer: React.FC = () => {
+export const PreAuthContainer: React.FC<PreAuthContainerProps> = (props) => {
     const authProps = useInjectedUIContext();
+    const theme = useTheme(props.theme);
 
     MatIcon.loadFont();
     return (
         <SafeAreaProvider>
-            <StatusBar backgroundColor={Colors.blue['700']} barStyle="light-content" />
+            <StatusBar backgroundColor={theme.colors.primary} barStyle="light-content" />
             <Stack.Navigator initialRouteName="Login" mode="modal">
                 <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
                 <Stack.Screen

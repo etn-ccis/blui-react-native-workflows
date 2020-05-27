@@ -12,13 +12,13 @@ import { Button, Paragraph, Dialog, Portal } from 'react-native-paper';
 import { useLanguageLocale } from '../hooks/language-locale-hooks';
 
 /**
- * @param isVisible  If the dialog box should be shown.
+ * @param visible  If the dialog box should be shown.
  * @param onDismiss  The function to handle the on dismiss action.
  * @param title  The title text of the dialog box.
  * @param bodyText  The body text of the dialog box.
  */
 type SimpleDialogProps = {
-    isVisible: boolean;
+    visible: boolean;
     onDismiss: Function;
     title: string;
     bodyText: string | null;
@@ -30,11 +30,11 @@ type SimpleDialogProps = {
  * @category Component
  */
 export const SimpleDialog: React.FC<SimpleDialogProps> = (props) => {
-    const { isVisible, onDismiss, title, bodyText } = props;
+    const { visible, onDismiss, title, bodyText } = props;
     const { t } = useLanguageLocale();
     return (
         <Portal>
-            <Dialog visible={isVisible} dismissable={false}>
+            <Dialog visible={visible} dismissable={false}>
                 <Dialog.Title>{title}</Dialog.Title>
                 <Dialog.Content>
                     <Paragraph>{bodyText ?? t('MESSAGES.REQUEST_ERROR')}</Paragraph>

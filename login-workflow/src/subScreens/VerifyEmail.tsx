@@ -14,6 +14,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 
 // Hooks
 import { useLanguageLocale } from '../hooks/language-locale-hooks';
+import { Theme, useTheme } from 'react-native-paper';
 
 // Styles
 import * as Colors from '@pxblue/colors';
@@ -22,11 +23,11 @@ import * as Colors from '@pxblue/colors';
  * @ignore
  */
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeContainerStyles = () =>
+const makeContainerStyles = (theme: Theme) =>
     StyleSheet.create({
         safeContainer: {
             height: '100%',
-            backgroundColor: Colors.white['50'],
+            backgroundColor: theme.colors.surface,
         },
         mainContainer: {
             flex: 1,
@@ -57,10 +58,12 @@ const makeStyles = () =>
  *
  * @param verifyCodeChanged  Handle the verify code change action.
  * @param onResendVerificationEmail  Handle the press of the resend verification email.
+ * @param theme (Optional) react-native-paper theme partial for custom styling.
  */
 type VerifyEmailProps = {
     verifyCodeChanged(email: string): void;
     onResendVerificationEmail(): void;
+    theme?: Theme;
 };
 
 /**
@@ -70,6 +73,7 @@ type VerifyEmailProps = {
  * @category Component
  */
 export const VerifyEmail: React.FC<VerifyEmailProps> = (props) => {
+    const theme = useTheme(props.theme);
     const { t } = useLanguageLocale();
     const [verifyCode, setVerifyCode] = React.useState('');
 
@@ -79,7 +83,7 @@ export const VerifyEmail: React.FC<VerifyEmailProps> = (props) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [verifyCode]);
 
-    const containerStyles = makeContainerStyles();
+    const containerStyles = makeContainerStyles(theme);
     const styles = makeStyles();
 
     return (
@@ -98,6 +102,7 @@ export const VerifyEmail: React.FC<VerifyEmailProps> = (props) => {
                         keyboardType={'number-pad'}
                         autoCapitalize={'none'}
                         onChangeText={setVerifyCode}
+                        theme={theme}
                     />
                     <View style={{ flex: 1 }}>
                         <Button

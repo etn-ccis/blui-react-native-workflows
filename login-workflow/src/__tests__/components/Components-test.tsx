@@ -32,7 +32,7 @@ describe('All components tested with enzyme', () => {
             .create(
                 <Checkbox
                     label={'Checkbox'}
-                    isChecked={false}
+                    checked={false}
                     onPress={(): void => {
                         /* do nothing */
                     }}
@@ -122,7 +122,7 @@ describe('All components tested with enzyme', () => {
                     <SimpleDialog
                         title={'title'}
                         bodyText={'bodyText'}
-                        isVisible={true}
+                        visible={true}
                         onDismiss={(): void => {
                             /* do nothing */
                         }}

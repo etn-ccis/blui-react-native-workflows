@@ -7,6 +7,7 @@ import React, { useCallback } from 'react';
 
 // Components
 import { View, StyleSheet, SafeAreaView, ScrollView } from 'react-native';
+import { Body } from '@pxblue/react-native-components';
 import { Text } from 'react-native-paper';
 import { Checkbox } from '../components/Checkbox';
 
@@ -15,16 +16,17 @@ import * as Colors from '@pxblue/colors';
 
 // Hooks
 import { useLanguageLocale } from '../hooks/language-locale-hooks';
+import { Theme, useTheme } from 'react-native-paper';
 
 /**
  * @ignore
  */
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeContainerStyles = () =>
+const makeContainerStyles = (theme: Theme) =>
     StyleSheet.create({
         safeContainer: {
             height: '100%',
-            backgroundColor: Colors.white['50'],
+            backgroundColor: theme.colors.surface,
         },
         mainContainer: {
             flex: 1,
@@ -39,10 +41,6 @@ const makeContainerStyles = () =>
             alignSelf: 'flex-start',
             marginLeft: 10,
         },
-        checkboxText: {
-            flexShrink: 1,
-            paddingLeft: 8,
-        },
     });
 
 /**
@@ -53,6 +51,7 @@ const makeContainerStyles = () =>
  * @param onEulaChanged  The function to handle when the EULA state has changed.
  * @param eulaError  The error message.
  * @param loadEula  The function to be used for loading the EULA.
+ * @param theme (Optional) react-native-paper theme partial for custom styling.
  */
 type EulaProps = {
     eulaAccepted?: boolean;
@@ -60,6 +59,7 @@ type EulaProps = {
     onEulaChanged(accepted: boolean): void;
     eulaError: string | null;
     loadEula: Function;
+    theme?: Theme;
 };
 
 /**
@@ -68,8 +68,9 @@ type EulaProps = {
  * @category Component
  */
 export const Eula: React.FC<EulaProps> = (props) => {
+    const theme = useTheme(props.theme);
     const { t } = useLanguageLocale();
-    const containerStyles = makeContainerStyles();
+    const containerStyles = makeContainerStyles(theme);
     const eulaIsChecked = props.eulaAccepted ?? false;
 
     React.useEffect(() => {
@@ -87,15 +88,14 @@ export const Eula: React.FC<EulaProps> = (props) => {
         <SafeAreaView style={containerStyles.safeContainer}>
             <View style={[containerStyles.mainContainer, containerStyles.containerMargins]}>
                 <ScrollView>
-                    <Text>{props.eulaContent ?? props.eulaError ?? t('REGISTRATION.EULA.LOADING')}</Text>
+                    <Body>{props.eulaContent ?? props.eulaError ?? t('REGISTRATION.EULA.LOADING')}</Body>
                 </ScrollView>
             </View>
             <View style={[containerStyles.containerMargins, containerStyles.checkboxContainer]}>
                 <Checkbox
                     label={t('REGISTRATION.EULA.AGREE_TERMS')}
                     disabled={disableCheckBox}
-                    isChecked={eulaIsChecked}
-                    textStyle={containerStyles.checkboxText}
+                    checked={eulaIsChecked}
                     onPress={checkedBox}
                 />
             </View>

@@ -103,6 +103,13 @@ const makeStyles = () =>
     });
 
 /**
+* @param theme (Optional) react-native-paper theme partial to style the component.
+*/
+type LoginProps = {
+    theme?: Theme;
+};
+
+/**
  * Login screen with loading and error states, as well as "remember me" functionality to store a user's email between logins.
  * Requires being wrapped in an [[AuthNavigationContainer]] for access to global state and actions for authentication and registration.
  * Has a debug mode which shows buttons that allow direct access to the deep link flows (invite registration, set password from forgot password, etc.).
@@ -111,7 +118,7 @@ const makeStyles = () =>
  * @category Component
  */
 
-export const Login: React.FC = () => {
+export const Login: React.FC<LoginProps> = (props) => {
     const securityState = useSecurityState();
     const [rememberPassword, setRememberPassword] = React.useState(securityState.rememberMeDetails.rememberMe ?? false);
     const [emailInput, setEmailInput] = React.useState(securityState.rememberMeDetails.email ?? '');
@@ -125,6 +132,7 @@ export const Login: React.FC = () => {
     const authUIState = useAccountUIState();
     const authProps = useInjectedUIContext();
 
+    const theme = useTheme(props.theme);
     const containerStyles = makeContainerStyles();
     const styles = makeStyles();
 
@@ -141,7 +149,7 @@ export const Login: React.FC = () => {
         <SimpleDialog
             title={'Error'}
             bodyText={t(transitErrorMessage)}
-            isVisible={hasTransitError && !hasAcknowledgedError}
+            visible={hasTransitError && !hasAcknowledgedError}
             onDismiss={(): void => {
                 setHasAcknowledgedError(true);
             }}
@@ -207,7 +215,7 @@ export const Login: React.FC = () => {
     let debugMessage: JSX.Element = <></>;
     if (debugMode) {
         debugMessage = (
-            <H6 style={{ textAlign: 'center', lineHeight: 48, backgroundColor: 'yellow' }}>{'DEBUG MODE'}</H6>
+            <H6 style={{ textAlign: 'center', lineHeight: 48, backgroundColor: Colors.yellow[500] }}>{'DEBUG MODE'}</H6>
         );
     }
 
@@ -254,10 +262,10 @@ export const Login: React.FC = () => {
     let statusBar: JSX.Element = <></>;
     statusBar =
         Platform.OS === 'ios' ? (
-            <StatusBar backgroundColor={Colors.blue['700']} barStyle="dark-content" />
+            <StatusBar backgroundColor={theme.colors.primary} barStyle="dark-content" />
         ) : (
-            <StatusBar backgroundColor={Colors.blue['700']} barStyle="light-content" />
-        );
+                <StatusBar backgroundColor={theme.colors.primary} barStyle="light-content" />
+            );
 
     return (
         <>
@@ -266,7 +274,7 @@ export const Login: React.FC = () => {
             {errorDialog}
             <ScrollViewWithBackground
                 bounces={false}
-                contentContainerStyle={[containerStyles.spaceBetween, { backgroundColor: 'white' }]}
+                contentContainerStyle={[containerStyles.spaceBetween, { backgroundColor: theme.colors.surface }]}
             >
                 <LoginHeaderSplash style={containerStyles.topArea} mainImage={authProps.projectImage} />
                 {debugButton}
@@ -285,6 +293,7 @@ export const Login: React.FC = () => {
                             returnKeyType={'next'}
                             error={hasTransitError}
                             errorText={'Incorrect Email or Password'}
+                            theme={theme}
                         />
                         <TextInputSecure
                             ref={confirmPasswordRef}
@@ -296,13 +305,14 @@ export const Login: React.FC = () => {
                             style={{ marginTop: 15 }}
                             error={hasTransitError}
                             errorText={'Incorrect Email or Password'}
+                            theme={theme}
                         />
 
                         <View style={containerStyles.loginControls}>
                             <View style={[containerStyles.checkboxAndButton]}>
                                 <Checkbox
                                     label={t('ACTIONS.REMEMBER')}
-                                    isChecked={rememberPassword}
+                                    checked={rememberPassword}
                                     style={containerStyles.checkbox}
                                     onPress={(): void => setRememberPassword(!rememberPassword)}
                                 />

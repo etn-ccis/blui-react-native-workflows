@@ -48,7 +48,7 @@ export const App: React.FC = () => {
     }, [getInitialState]);
 
     return (
-        <ThemeProvider theme={PXBThemes.blue}>
+        <ThemeProvider /*theme={PXBThemes.blue}*/>
             <SecurityContextProvider>
                 <AuthUIConfiguration>
                     <AuthNavigationContainer initialState={initialState} ref={ref}>

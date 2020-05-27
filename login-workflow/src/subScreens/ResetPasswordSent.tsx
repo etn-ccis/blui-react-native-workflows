@@ -26,11 +26,11 @@ import { ResetPasswordParams } from '../types/ResetPasswordParams';
  * @ignore
  */
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeContainerStyles = () =>
+const makeContainerStyles = (theme: Theme) =>
     StyleSheet.create({
         safeContainer: {
             height: '100%',
-            backgroundColor: Colors.white['50'],
+            backgroundColor: theme.colors.surface,
             flex: 1,
             justifyContent: 'space-between',
         },
@@ -77,7 +77,7 @@ export const ResetPasswordSent: React.FC<ResetPasswordSentProps> = (props) => {
     const navigation = useNavigation();
     const route = useRoute();
 
-    const containerStyles = makeContainerStyles();
+    const containerStyles = makeContainerStyles(theme);
     const styles = makeStyles();
 
     const routeParams = route.params as ResetPasswordParams;

@@ -70,7 +70,7 @@ export const ResizingClearButton: React.FC<ResizingClearButtonProps> = (props) =
     return (
         <TouchableHighlight
             style={[styles.container]}
-            underlayColor={color(theme.colors.primary).alpha(0.32).rgb().string()} // same transform used by RNP buttons
+            underlayColor={color(theme.colors.primary).alpha(0.16).rgb().string()} // same transform used by RNP buttons
             onPress={(): void => {
                 onPress();
             }}

@@ -88,7 +88,7 @@ export const ResetPasswordHandleDeepLink: React.FC = () => {
                     component={ResetPasswordConfirm}
                     // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
                     options={() => ({
-                        header: (): JSX.Element =>
+                        header: (): JSX.Element | null =>
                             CloseHeader({
                                 title: t('FORMS.RESET_PASSWORD'),
                                 backAction: () => {
@@ -103,7 +103,7 @@ export const ResetPasswordHandleDeepLink: React.FC = () => {
                     component={ResetPasswordSuccess}
                     // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
                     options={() => ({
-                        header: (): JSX.Element =>
+                        header: (): JSX.Element | null =>
                             CloseHeader({
                                 title: t('FORMS.RESET_PASSWORD'),
                                 backAction: () => {

@@ -10,6 +10,7 @@ import { View, StyleSheet, SafeAreaView } from 'react-native';
 import { TextInput } from '../components/TextInput';
 import { Instruction } from '../components/Instruction';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { Theme, useTheme } from 'react-native-paper';
 
 // Styles
 import * as Colors from '@pxblue/colors';
@@ -21,11 +22,11 @@ import { useLanguageLocale } from '../hooks/language-locale-hooks';
  * @ignore
  */
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeContainerStyles = () =>
+const makeContainerStyles = (theme: Theme) =>
     StyleSheet.create({
         safeContainer: {
             height: '100%',
-            backgroundColor: Colors.white['50'],
+            backgroundColor: theme.colors.surface,
         },
         mainContainer: {
             flex: 1,
@@ -72,9 +73,11 @@ export const emptyAccountDetailInformation = {
  * Handle the change of any of the account details inputs.
  *
  * @param onDetailsChanged   Handle the change of any of the account details inputs.
+ * @param theme (Optional) react-native-paper theme partial for custom styling.
  */
 export type AccountDetailsProps = {
     onDetailsChanged(details: AccountDetailInformation | null): void;
+    theme?: Theme;
 };
 
 /**
@@ -84,6 +87,7 @@ export type AccountDetailsProps = {
  * @category Component
  */
 export const AccountDetails: React.FC<AccountDetailsProps> = (props) => {
+    const theme = useTheme(props.theme);
     const [firstNameInput, setFirstNameInput] = React.useState('');
     const [lastNameInput, setLastNameInput] = React.useState('');
     const [phoneInput, setPhoneInput] = React.useState('');
@@ -99,7 +103,7 @@ export const AccountDetails: React.FC<AccountDetailsProps> = (props) => {
     }, [firstNameInput, lastNameInput, phoneInput]); // ignore props
 
     const styles = makeStyles();
-    const containerStyles = makeContainerStyles();
+    const containerStyles = makeContainerStyles(theme);
 
     const lastNameRef = React.useRef<any>();
     const goToLastName = (): void => lastNameRef?.current?.focus();

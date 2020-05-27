@@ -11,6 +11,7 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 // Hooks
 import { useLanguageLocale } from '../hooks/language-locale-hooks';
 import { useRegistrationUIActions, useRegistrationUIState } from '../contexts/RegistrationUIContext';
+import { Theme, useTheme } from 'react-native-paper';
 
 // Screens
 import { Eula } from '../subScreens/Eula';
@@ -36,11 +37,11 @@ import * as Colors from '@pxblue/colors';
  * @ignore
  */
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeContainerStyles = () =>
+const makeContainerStyles = (theme: Theme) =>
     StyleSheet.create({
         safeContainer: {
             height: '100%',
-            backgroundColor: Colors.white['50'],
+            backgroundColor: theme.colors.surface,
         },
         mainContainer: {
             flex: 1,
@@ -90,11 +91,20 @@ type SelfRegistrationPagerParams = {
 };
 
 /**
+ * @param theme (Optional) react-native-paper theme partial to style the component.
+ */
+type SelfRegistrationPagerProps = {
+    theme?: Theme;
+};
+
+/**
  * Pager controlling the user self registration screen flow.
  *
  * @category Component
  */
-export const SelfRegistrationPager: React.FC = () => {
+export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (props) => {
+    const theme = useTheme(props.theme);
+
     const [email, setEmail] = React.useState('');
     const [eulaAccepted, setEulaAccepted] = React.useState(false);
     const [password, setPassword] = React.useState('');
@@ -132,7 +142,7 @@ export const SelfRegistrationPager: React.FC = () => {
         }
     }, [Pages.VerifyEmail, verificationCode]);
 
-    const containerStyles = makeContainerStyles();
+    const containerStyles = makeContainerStyles(theme);
     const styles = makeStyles();
 
     // Network state (loading eula)
@@ -253,8 +263,8 @@ export const SelfRegistrationPager: React.FC = () => {
                     <View style={{ flex: 1 }}>
                         <ToggleButton
                             text={t('ACTIONS.BACK')}
-                            style={{ width: 100 }}
-                            isOutlineOnly={true}
+                            style={{ width: 100, alignSelf: 'flex-start' }}
+                            outlined={true}
                             disabled={!canGoBackProgress()}
                             onPress={(): void => advancePage(-1)}
                         />
@@ -276,7 +286,7 @@ export const SelfRegistrationPager: React.FC = () => {
     return (
         <View style={{ flex: 1 }}>
             <CloseHeader title={pageTitle()} backAction={(): void => navigation.goBack()} />
-            <SafeAreaView style={[containerStyles.spaceBetween, { backgroundColor: 'white' }]}>
+            <SafeAreaView style={[containerStyles.spaceBetween, { backgroundColor: theme.colors.surface }]}>
                 <ViewPager
                     ref={viewPager}
                     initialPage={0}

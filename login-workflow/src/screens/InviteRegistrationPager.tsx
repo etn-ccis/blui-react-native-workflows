@@ -29,6 +29,7 @@ import { RegistrationComplete } from '../subScreens/RegistrationComplete';
 
 // Components
 import { View, StyleSheet, SafeAreaView, BackHandler } from 'react-native';
+import { Theme, useTheme } from 'react-native-paper';
 import ViewPager from '@react-native-community/viewpager';
 import { CloseHeader } from '../components/CloseHeader';
 import { PageIndicator } from '../components/PageIndicator';
@@ -45,11 +46,11 @@ import * as Colors from '@pxblue/colors';
  * @ignore
  */
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeContainerStyles = () =>
+const makeContainerStyles = (theme: Theme) =>
     StyleSheet.create({
         safeContainer: {
             height: '100%',
-            backgroundColor: Colors.white['50'],
+            backgroundColor: theme.colors.surface,
         },
         mainContainer: {
             flex: 1,
@@ -99,11 +100,18 @@ type InviteRegistrationPagerParams = {
 };
 
 /**
+ * @param theme (Optional) react-native-paper theme partial to style the component.
+ */
+type InviteRegistrationPagerProps = {
+    theme?: Theme;
+};
+
+/**
  * Pager controlling the user registration via invitation screen flow.
  *
  * @category Component
  */
-export const InviteRegistrationPager: React.FC = () => {
+export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (props) => {
     enum Pages /* eslint-disable no-shadow */ {
         Eula = 0,
         CreatePassword,
@@ -116,6 +124,7 @@ export const InviteRegistrationPager: React.FC = () => {
     const navigation = useNavigation();
     const registrationState = useRegistrationUIState();
     const registrationActions = useRegistrationUIActions();
+    const theme = useTheme(props.theme);
 
     const [hasAcknowledgedError, setHasAcknowledgedError] = React.useState(false);
 
@@ -187,14 +196,14 @@ export const InviteRegistrationPager: React.FC = () => {
     }, [currentPage, viewPager, registrationSuccess]);
 
     // Styling
-    const containerStyles = makeContainerStyles();
+    const containerStyles = makeContainerStyles(theme);
     const styles = makeStyles();
 
     const errorDialog = (
         <SimpleDialog
             title={'Error'}
             bodyText={t(registrationTransitErrorMessage)}
-            isVisible={hasRegistrationTransitError && !hasAcknowledgedError}
+            visible={hasRegistrationTransitError && !hasAcknowledgedError}
             onDismiss={(): void => {
                 setHasAcknowledgedError(true);
             }}
@@ -331,22 +340,20 @@ export const InviteRegistrationPager: React.FC = () => {
                     <View style={{ flex: 1 }}>
                         <ToggleButton
                             text={t('ACTIONS.BACK')}
-                            style={{ width: 100 }}
-                            isOutlineOnly={true}
+                            style={{ width: 100, alignSelf: 'flex-start' }}
+                            outlined={true}
                             disabled={!canGoBackProgress()}
                             onPress={(): void => advancePage(-1)}
                         />
                     </View>
                     <PageIndicator currentPage={currentPage} totalPages={Pages.__LENGTH} />
                     <View style={{ flex: 1 }}>
-                        <View style={{ flex: 1 }}>
-                            <ToggleButton
-                                text={t('ACTIONS.NEXT')}
-                                style={{ width: 100, alignSelf: 'flex-end' }}
-                                disabled={!canProgress()}
-                                onPress={(): void => advancePage(1)}
-                            />
-                        </View>
+                        <ToggleButton
+                            text={t('ACTIONS.NEXT')}
+                            style={{ width: 100, alignSelf: 'flex-end' }}
+                            disabled={!canProgress()}
+                            onPress={(): void => advancePage(1)}
+                        />
                     </View>
                 </View>
             </View>
@@ -397,15 +404,15 @@ export const InviteRegistrationPager: React.FC = () => {
             <Spinner />
         </View>
     ) : (
-        <View style={{ flex: 1 }}>
-            <CloseHeader title={pageTitle()} backAction={(): void => navigation.goBack()} />
-            <ErrorState
-                title={t('MESSAGES.FAILURE')}
-                bodyText={validationTransitErrorMessage}
-                onPress={(): void => {
-                    navigation.navigate('Login');
-                }}
-            />
-        </View>
-    );
+                <View style={{ flex: 1 }}>
+                    <CloseHeader title={pageTitle()} backAction={(): void => navigation.goBack()} />
+                    <ErrorState
+                        title={t('MESSAGES.FAILURE')}
+                        bodyText={validationTransitErrorMessage}
+                        onPress={(): void => {
+                            navigation.navigate('Login');
+                        }}
+                    />
+                </View>
+            );
 };

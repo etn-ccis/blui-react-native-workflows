@@ -16,16 +16,17 @@ import * as Colors from '@pxblue/colors';
 // Hooks
 import { useNavigation } from '@react-navigation/native';
 import { useLanguageLocale } from '../hooks/language-locale-hooks';
+import { Theme, useTheme } from 'react-native-paper';
 
 /**
  * @ignore
  */
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeContainerStyles = () =>
+const makeContainerStyles = (theme: Theme) =>
     StyleSheet.create({
         safeContainer: {
             height: '100%',
-            backgroundColor: Colors.white['50'],
+            backgroundColor: theme.colors.surface,
         },
         mainContainer: {
             flex: 1,
@@ -43,15 +44,25 @@ const makeContainerStyles = () =>
     });
 
 /**
+ * Handle the props for the Reset Password Success page.
+ *
+ * @param theme (Optional) react-native-paper theme partial for custom styling.
+ */
+type ResetPasswordSuccessProps = {
+    theme?: Theme;
+};
+
+/**
  * Renders the content of the notice of completed password reset screen.
  *
  * @category Component
  */
-export const ResetPasswordSuccess: React.FC = () => {
+export const ResetPasswordSuccess: React.FC<ResetPasswordSuccessProps> = (props) => {
+    const theme = useTheme(props.theme);
     const { t } = useLanguageLocale();
     const navigation = useNavigation();
 
-    const containerStyles = makeContainerStyles();
+    const containerStyles = makeContainerStyles(theme);
 
     const titleText = t('PASSWORD_RESET.SUCCESS_MESSAGE');
     const bodyText = t('CHANGE_PASSWORD.SUCCESS_MESSAGE');

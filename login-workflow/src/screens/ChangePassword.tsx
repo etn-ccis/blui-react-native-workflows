@@ -15,7 +15,7 @@ import {
 } from '../constants/index';
 
 // Components
-import { Platform, View, StyleSheet, SafeAreaView, StatusBar } from 'react-native';
+import { Platform, View, StyleSheet, SafeAreaView, StatusBar, TextInput } from 'react-native';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import { PasswordRequirements } from '../components/PasswordRequirements';
 import { TextInputSecure } from '../components/TextInputSecure';
@@ -40,11 +40,11 @@ import { Theme, useTheme } from 'react-native-paper';
  * @ignore
  */
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeContainerStyles = () =>
+const makeContainerStyles = (theme: Theme) =>
     StyleSheet.create({
         safeContainer: {
             height: '100%',
-            backgroundColor: Colors.white['50'],
+            backgroundColor: theme.colors.surface,
             marginBottom: 20,
             flex: 1,
             justifyContent: 'space-between',
@@ -69,7 +69,7 @@ const makeContainerStyles = () =>
  * @ignore
  */
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeStyles = () =>
+const makeStyles = (theme: Theme) =>
     StyleSheet.create({
         inputMargin: {
             marginTop: 40,
@@ -84,7 +84,7 @@ const makeStyles = () =>
             color: Colors.black['800'],
         },
         bodyText: {
-            color: Colors.black['500'],
+            color: theme.colors.text,
         },
         textSpacing: {
             marginVertical: 10,
@@ -102,9 +102,9 @@ const makeStyles = () =>
  * @param theme (Optional) react-native-paper theme partial to style the component.
  */
 type ChangePasswordProps = {
-    onChangePassword(oldPassword: string, newPassword: string): Promise<void>;
-    onCancel(): void;
-    onChangeComplete(): void;
+    onChangePassword: (oldPassword: string, newPassword: string) => Promise<void>;
+    onCancel: () => void;
+    onChangeComplete: () => void;
     theme?: Theme;
 };
 
@@ -125,14 +125,14 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
     const { t } = useLanguageLocale();
 
     // styles
-    const containerStyles = makeContainerStyles();
-    const styles = makeStyles();
+    const containerStyles = makeContainerStyles(theme);
+    const styles = makeStyles(theme);
 
     // for continuing to the next input
-    const newPasswordRef = React.useRef<any>();
+    const newPasswordRef = React.useRef<TextInput>(null);
     const goToNewPasswordInput = (): void => newPasswordRef?.current?.focus();
 
-    const confirmInputRef = React.useRef<any>();
+    const confirmInputRef = React.useRef<TextInput>(null);
     const goToConfirmInput = (): void => confirmInputRef?.current?.focus();
 
     const areValidMatchingPasswords =
@@ -158,9 +158,9 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
 
     const errorDialog = (
         <SimpleDialog
-            title={'Error'}
+            title={'Error'} // TODO: Translate
             bodyText={transitState.transitErrorMessage}
-            isVisible={transitState.transitErrorMessage !== null && !hasAcknowledgedError}
+            visible={transitState.transitErrorMessage !== null && !hasAcknowledgedError}
             onDismiss={(): void => {
                 setHasAcknowledgedError(true);
             }}
@@ -170,9 +170,9 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
     let statusBar: JSX.Element = <></>;
     statusBar =
         Platform.OS === 'ios' ? (
-            <StatusBar backgroundColor={Colors.blue['700']} barStyle="dark-content" />
+            <StatusBar backgroundColor={theme.colors.primary} barStyle="dark-content" />
         ) : (
-            <StatusBar backgroundColor={Colors.blue['700']} barStyle="light-content" />
+            <StatusBar backgroundColor={theme.colors.primary} barStyle="light-content" />
         );
 
     return transitState.transitSuccess ? ( // if the password was changed
@@ -215,7 +215,7 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
                 <ScrollView>
                     <View style={[containerStyles.containerMargins, containerStyles.mainContainer]}>
                         <TextInputSecure
-                            label={t('CuHANGE_PASSWORD.CURRENT_PASSWORD')}
+                            label={t('LABELS.CURRENT_PASSWORD')}
                             value={currentPasswordInput}
                             style={styles.inputMargin}
                             autoCapitalize={'none'}
@@ -225,6 +225,7 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
                                 goToNewPasswordInput();
                             }}
                             blurOnSubmit={false}
+                            theme={theme}
                         />
 
                         <TextInputSecure
@@ -239,6 +240,7 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
                                 goToConfirmInput();
                             }}
                             blurOnSubmit={false}
+                            theme={theme}
                         />
 
                         <PasswordRequirements style={{ paddingTop: 10 }} passwordText={newPasswordInput} />
@@ -252,6 +254,7 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
                             returnKeyType={'done'}
                             error={confirmInput !== '' && newPasswordInput !== confirmInput}
                             onChangeText={(text: string): void => setConfirmInput(text)}
+                            theme={theme}
                         />
                     </View>
                 </ScrollView>
@@ -259,7 +262,7 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
                     <View style={{ flex: 1, paddingRight: 5 }}>
                         <ToggleButton
                             text={t('CHANGE_PASSWORD.CANCEL')}
-                            isOutlineOnly={true}
+                            outlined={true}
                             onPress={(): void => securityHelper.hideChangePassword()}
                         />
                     </View>

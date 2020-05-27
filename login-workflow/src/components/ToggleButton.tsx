@@ -37,9 +37,9 @@ const makeStyles = (props: ToggleButtonProps, theme: Theme) =>
     });
 
 /**
- * @param text  The text shown inside of the instruction
- * @param style  (Optional) Custom style to style the instruction.
- * @param outlined  (Optional) If true, the buttom will not have a background colour, but an outline.
+ * @param text  The text shown inside of the button
+ * @param style  (Optional) Custom style to style the button.
+ * @param outlined  (Optional) If true, the button will not have a background color, but an outline.
  * @param disabled  (Optional) If true, the button will be disabled.
  * @param onPress  Action to take when button is tapped.
  * @param theme (Optional) react-native-paper theme partial to style the component.
