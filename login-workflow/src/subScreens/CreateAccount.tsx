@@ -15,7 +15,6 @@ import { Instruction } from '../components/Instruction';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Theme, useTheme } from 'react-native-paper';
 
-
 // Hooks
 import { useLanguageLocale } from '../hooks/language-locale-hooks';
 
@@ -97,12 +96,7 @@ export const CreateAccount: React.FC<CreateAccountProps> = (props) => {
     return (
         <SafeAreaView style={containerStyles.safeContainer}>
             <KeyboardAwareScrollView>
-                <Instruction
-                    style={containerStyles.containerMargins}
-                    text={
-                        'To register for an Eaton account, enter the required information below. You will need to verify your email address to continue.'
-                    }
-                />
+                <Instruction style={containerStyles.containerMargins} text={t('SELF_REGISTRATION.INSTRUCTIONS')} />
 
                 <View style={[containerStyles.containerMargins, containerStyles.mainContainer]}>
                     <TextInput

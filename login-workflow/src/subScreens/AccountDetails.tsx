@@ -145,7 +145,7 @@ export const AccountDetails: React.FC<AccountDetailsProps> = (props) => {
                     <View>
                         <TextInput
                             ref={phoneNumberRef}
-                            label={`${t('FORMS.PHONE_NUMBER')} (Optional)`}
+                            label={`${t('FORMS.PHONE_NUMBER')} (${t('LABELS.OPTIONAL')})`}
                             value={phoneInput}
                             style={styles.inputMargin}
                             autoCapitalize={'none'}

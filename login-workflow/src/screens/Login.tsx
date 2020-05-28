@@ -145,7 +145,7 @@ export const Login: React.FC<LoginProps> = (props) => {
     const transitErrorMessage = authUIState.login.transitErrorMessage ?? t('MESSAGES.REQUEST_ERROR');
     const errorDialog = (
         <SimpleDialog
-            title={'Error'}
+            title={t('MESSAGES.ERROR')}
             bodyText={t(transitErrorMessage)}
             visible={hasTransitError && !hasAcknowledgedError}
             onDismiss={(): void => {
@@ -178,7 +178,7 @@ export const Login: React.FC<LoginProps> = (props) => {
                     uppercase={false}
                     onPress={(): void => navigation.navigate('Registration')}
                 >
-                    <Label color="primary">{'Create Account'}</Label>
+                    <Label color="primary">{t('ACTIONS.CREATE_ACCOUNT')}</Label>
                 </Button>
             </View>
         );
@@ -290,7 +290,7 @@ export const Login: React.FC<LoginProps> = (props) => {
                             blurOnSubmit={false}
                             returnKeyType={'next'}
                             error={hasTransitError}
-                            errorText={'Incorrect Email or Password'}
+                            errorText={t('LOGIN.INCORRECT_CREDENTIALS')}
                         />
                         <TextInputSecure
                             ref={confirmPasswordRef}
@@ -301,7 +301,7 @@ export const Login: React.FC<LoginProps> = (props) => {
                             returnKeyType={'done'}
                             style={{ marginTop: 15 }}
                             error={hasTransitError}
-                            errorText={'Incorrect Email or Password'}
+                            errorText={t('LOGIN.INCORRECT_CREDENTIALS')}
                         />
 
                         <View style={containerStyles.loginControls}>

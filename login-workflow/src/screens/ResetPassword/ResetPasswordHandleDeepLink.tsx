@@ -59,10 +59,13 @@ export const ResetPasswordHandleDeepLink: React.FC = () => {
     const verifyComplete = verifyResetCodeTransit.transitComplete;
 
     // Reset state on dismissal
-    React.useEffect(() => (): void => {
+    React.useEffect(
+        () => (): void => {
             accountUIActions.dispatch(AccountActions.setPasswordReset());
             accountUIActions.dispatch(AccountActions.verifyResetCodeReset());
-        }, []);// eslint-disable-line react-hooks/exhaustive-deps
+        }, // eslint-disable-next-line react-hooks/exhaustive-deps
+        []
+    );
 
     React.useEffect(() => {
         if (!verifyIsInTransit && !verifyComplete && verifyCode.length > 0) {
@@ -82,7 +85,7 @@ export const ResetPasswordHandleDeepLink: React.FC = () => {
                     name="ResetPasswordConfirm"
                     initialParams={{ onResetPasswordPress: resetPassword }}
                     component={ResetPasswordConfirm}
-                    options={(): {header: () => JSX.Element | null} => ({
+                    options={(): { header: () => JSX.Element | null } => ({
                         header: (): JSX.Element | null =>
                             CloseHeader({
                                 title: t('FORMS.RESET_PASSWORD'),
@@ -96,7 +99,7 @@ export const ResetPasswordHandleDeepLink: React.FC = () => {
                 <Stack.Screen
                     name="ResetPasswordSuccess"
                     component={ResetPasswordSuccess}
-                    options={(): {header: () => JSX.Element | null} => ({
+                    options={(): { header: () => JSX.Element | null } => ({
                         header: (): JSX.Element | null =>
                             CloseHeader({
                                 title: t('FORMS.RESET_PASSWORD'),

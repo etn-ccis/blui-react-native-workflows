@@ -18,7 +18,10 @@ import { Eula as EulaScreen } from '../subScreens/Eula';
 import { CreateAccount as CreateAccountScreen } from '../subScreens/CreateAccount';
 import { VerifyEmail as VerifyEmailScreen } from '../subScreens/VerifyEmail';
 import { CreatePassword as CreatePasswordScreen } from '../subScreens/CreatePassword';
-import { AccountDetails as AccountDetailsScreen, AccountDetailInformation as AccountDetailInformationScreen } from '../subScreens/AccountDetails';
+import {
+    AccountDetails as AccountDetailsScreen,
+    AccountDetailInformation as AccountDetailInformationScreen,
+} from '../subScreens/AccountDetails';
 import { RegistrationComplete as RegistrationCompleteScreen } from '../subScreens/RegistrationComplete';
 
 // Components
@@ -112,17 +115,17 @@ enum Pages {
  */
 export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (props) => {
     const theme = useTheme(props.theme);
+    const { t } = useLanguageLocale();
 
     const [email, setEmail] = useState('');
     const [eulaAccepted, setEulaAccepted] = useState(false);
     const [password, setPassword] = useState('');
     const [accountDetails, setAccountDetails] = useState<AccountDetailInformationScreen | null>(null);
-    const [organization] = useState<string>('Org Not Set');
+    const [organization] = useState<string>(t('REGISTRATION.UNKNOWN_ORGANIZATION'));
     const [eulaContent, setEulaContent] = useState<string>();
 
     const [currentPage, setCurrentPage] = useState(0);
 
-    const { t } = useLanguageLocale();
     const navigation = useNavigation();
     const viewPager = React.createRef<ViewPager>();
     const registrationActions = useRegistrationUIActions();
@@ -183,17 +186,20 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
         }
     }, [currentPage]);
 
-    const advancePage = useCallback((delta = 0): void => {
-        if (delta === 0) {
-            return;
-        } else if (isFirstStep && delta < 0) {
-            navigation.navigate('Login');
-        } else if (isLastStep && delta > 0) {
-            navigation.navigate('Login');
-        } else {
-            setCurrentPage(currentPage + (delta as number));
-        }
-    }, [isFirstStep, isLastStep, navigation, currentPage]);
+    const advancePage = useCallback(
+        (delta = 0): void => {
+            if (delta === 0) {
+                return;
+            } else if (isFirstStep && delta < 0) {
+                navigation.navigate('Login');
+            } else if (isLastStep && delta > 0) {
+                navigation.navigate('Login');
+            } else {
+                setCurrentPage(currentPage + (delta as number));
+            }
+        },
+        [isFirstStep, isLastStep, navigation, currentPage]
+    );
 
     const pageTitle = (): string => {
         switch (currentPage) {

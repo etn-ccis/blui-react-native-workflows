@@ -10,7 +10,7 @@ function getRandomInt(max: number): number {
 
 function isRandomFailure(): boolean {
     const randomResponseNumber = getRandomInt(100);
-    return false; //randomResponseNumber < 10;
+    return randomResponseNumber < 90;
 }
 
 type AuthUIActionsFunction = () => AuthUIActions;

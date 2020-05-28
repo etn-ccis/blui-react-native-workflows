@@ -113,11 +113,7 @@ export const Splash: React.FC<SplashProps> = (props) => {
 
             <View style={containerStyles.mainContainer}>
                 <View style={styles.logoCyber}>
-                    <Image
-                        resizeMethod="resize"
-                        source={CyberLogo}
-                        style={styles.svg}
-                    />
+                    <Image resizeMethod="resize" source={CyberLogo} style={styles.svg} />
                 </View>
             </View>
         </SafeAreaView>

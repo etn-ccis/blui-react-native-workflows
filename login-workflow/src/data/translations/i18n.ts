@@ -111,7 +111,7 @@ type FormatStrings = {
     month: string;
     year: string;
     week: string;
-}
+};
 export const getChartsTooltipDateTimeLabelFormats = (): FormatStrings | undefined => {
     switch (i18n.language) {
         case 'fr': // default to built-in locale until a native French speaker can specify

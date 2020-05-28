@@ -104,7 +104,6 @@ type InviteRegistrationPagerProps = {
     theme?: Theme;
 };
 
-
 enum Pages {
     Eula = 0,
     CreatePassword,
@@ -140,13 +139,13 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
     const validationCode = routeParams?.validationCode ?? 'NoCodeEntered';
 
     // Reset registration and validation state on dismissal
-    useEffect(() => (): void => {
-        registrationActions.dispatch(RegistrationActions.registerUserReset());
-        registrationActions.dispatch(RegistrationActions.validateUserRegistrationReset());
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
-
+    useEffect(
+        () => (): void => {
+            registrationActions.dispatch(RegistrationActions.registerUserReset());
+            registrationActions.dispatch(RegistrationActions.validateUserRegistrationReset());
+        },
+        [] // eslint-disable-line react-hooks/exhaustive-deps
+    );
 
     // Network state (registration)
     const registrationTransit = registrationState.inviteRegistration.registrationTransit;
@@ -198,7 +197,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
 
     const errorDialog = (
         <SimpleDialog
-            title={'Error'}
+            title={t('MESSAGES.ERROR')}
             bodyText={t(registrationTransitErrorMessage)}
             visible={hasRegistrationTransitError && !hasAcknowledgedError}
             onDismiss={(): void => {
@@ -263,23 +262,35 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
         }
     }, [currentPage]);
 
-    const advancePage = useCallback((delta = 0): void => {
-        if (delta === 0) {
-            return;
-        } else if (isFirstStep && delta < 0) {
-            navigation.navigate('Login');
-        } else if (isLastStep && delta > 0) {
-            navigation.navigate('Login');
-        } else {
-            // If this is the last user-entry step of the invite flow, it is time to make a network call
-            // Check > 0 so advancing backwards does not risk going into the completion block
-            if (currentPage === Pages.AccountDetails && !registrationSuccess && canProgress() && delta > 0) {
-                attemptRegistration();
+    const advancePage = useCallback(
+        (delta = 0): void => {
+            if (delta === 0) {
+                return;
+            } else if (isFirstStep && delta < 0) {
+                navigation.navigate('Login');
+            } else if (isLastStep && delta > 0) {
+                navigation.navigate('Login');
             } else {
-                setCurrentPage(currentPage + (delta as number));
+                // If this is the last user-entry step of the invite flow, it is time to make a network call
+                // Check > 0 so advancing backwards does not risk going into the completion block
+                if (currentPage === Pages.AccountDetails && !registrationSuccess && canProgress() && delta > 0) {
+                    attemptRegistration();
+                } else {
+                    setCurrentPage(currentPage + (delta as number));
+                }
             }
-        }
-    }, [isFirstStep, navigation, isLastStep, currentPage, registrationSuccess, canProgress, attemptRegistration, setCurrentPage]);
+        },
+        [
+            isFirstStep,
+            navigation,
+            isLastStep,
+            currentPage,
+            registrationSuccess,
+            canProgress,
+            attemptRegistration,
+            setCurrentPage,
+        ]
+    );
 
     const pageTitle = (): string => {
         if (isValidationInTransit) {
@@ -362,7 +373,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
             {errorDialog}
 
             <CloseHeader title={pageTitle()} backAction={(): void => navigation.goBack()} />
-            <SafeAreaView style={[containerStyles.spaceBetween, { backgroundColor: 'white' }]}>
+            <SafeAreaView style={[containerStyles.spaceBetween, { backgroundColor: theme.colors.surface }]}>
                 <ViewPager
                     ref={viewPager}
                     initialPage={0}
@@ -400,15 +411,15 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
             <Spinner />
         </View>
     ) : (
-                <View style={{ flex: 1 }}>
-                    <CloseHeader title={pageTitle()} backAction={(): void => navigation.goBack()} />
-                    <ErrorState
-                        title={t('MESSAGES.FAILURE')}
-                        bodyText={validationTransitErrorMessage}
-                        onPress={(): void => {
-                            navigation.navigate('Login');
-                        }}
-                    />
-                </View>
-            );
+        <View style={{ flex: 1 }}>
+            <CloseHeader title={pageTitle()} backAction={(): void => navigation.goBack()} />
+            <ErrorState
+                title={t('MESSAGES.FAILURE')}
+                bodyText={validationTransitErrorMessage}
+                onPress={(): void => {
+                    navigation.navigate('Login');
+                }}
+            />
+        </View>
+    );
 };

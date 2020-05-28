@@ -4,6 +4,7 @@ const resources = {
             FINISH: 'Finish',
             NEXT: 'Next',
             BACK: 'Back',
+            CREATE_ACCOUNT: 'Create Account',
             OKAY: 'Okay',
             DONE: 'Done',
             CONTINUE: 'Continue',
@@ -23,6 +24,7 @@ const resources = {
             PASSWORD: 'Password',
             CURRENT_PASSWORD: 'Current Password',
             NEW_PASSWORD: 'New Password',
+            OPTIONAL: 'Optional',
             FORGOT_PASSWORD: 'Forgot your password?',
             NEED_ACCOUNT: 'Need an account?',
             VIEW_ALL_EVENTS: 'View All {{count}} Events',
@@ -64,6 +66,7 @@ const resources = {
             UNKNOWN_ORGANIZATION: 'Unknown Organization',
         },
         SELF_REGISTRATION: {
+            INSTRUCTIONS: `To register for an Eaton account, enter the required information below. You will need to verify your email address to continue.`,
             VERIFY_EMAIL: {
                 MESSAGE:
                     'A verification code has been sent to the email address you provided. Click the link or enter the code below to continue. This code is valid for 30 minutes.',
@@ -81,6 +84,7 @@ const resources = {
             LINK_SENT: 'A link to reset your password has been sent to <b>{{email}}</b>.',
         },
         LOGIN: {
+            INCORRECT_CREDENTIALS: 'Incorrect Email or Password',
             INVALID_CREDENTIALS: 'Your username/password combination is not recognized.',
             GENERIC_ERROR: 'Your request could not be processed at this time.',
         },

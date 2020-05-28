@@ -4,6 +4,7 @@ const resources = {
             FINISH: 'Terminer',
             NEXT: 'Prochain',
             BACK: 'Retour',
+            CREATE_ACCOUNT: 'Créer un compte',
             OKAY: "d'accord",
             CONTINUE: 'Continuer',
             DONE: 'Terminé',
@@ -23,6 +24,7 @@ const resources = {
             PASSWORD: 'Mot de passe',
             CURRENT_PASSWORD: 'Mot de passe actuel',
             NEW_PASSWORD: 'Nouveau mot de passe',
+            OPTIONAL: 'Optionnel',
             FORGOT_PASSWORD: 'Mot de passe oublié',
             NEED_ACCOUNT: 'Besoin dun compte?',
             VIEW_ALL_EVENTS: 'Afficher les {{count}} événements',
@@ -39,7 +41,7 @@ const resources = {
             SUCCESS: 'Succès',
             FAILURE: 'Échec',
             LOADING: 'le chargement...',
-            REQUEST_ERROR: 'Sorry, there was a problem sending your request.', // TODO: French
+            REQUEST_ERROR: `Désolé, un problème est survenu lors de l'envoi de votre demande.`,
         },
         REGISTRATION: {
             EULA: {
@@ -47,29 +49,29 @@ const resources = {
                 AGREE_TERMS: "J'ai lu et j'accepte les conditions générales",
             },
             STEPS: {
-                CREATE_ACCOUNT: 'Create an Account', // TODO: French
-                VERIFY_EMAIL: 'Verify Email', // TODO: French
+                CREATE_ACCOUNT: 'Créer un compte',
+                VERIFY_EMAIL: 'Vérifier les courriels',
                 LICENSE: 'Accord de Licence',
                 PASSWORD: ' Créer un Mot de Passe',
                 ACCOUNT_DETAILS: 'Détails du Compte',
                 COMPLETE: 'Compte Créé!',
             },
             INSTRUCTIONS: {
-                ACCOUNT_DETAILS: 'Enter your details below to complete account creation.', // TODO: French
+                ACCOUNT_DETAILS: 'Entrez vos coordonnées ci-dessous pour terminer la création du compte.',
             },
             SUCCESS_MESSAGE:
                 "Votre compte a été créé avec le courrier électronique <b>{{email}}</b>.\n\nVotre compte a déjà été ajouté à l'organisation <b>{{organization}}</b>.\n\nAppuyez sur Continuer ci-dessous pour continuer.",
             FAILURE_MESSAGE:
                 "Nous n'avons pas pu terminer votre inscription. Appuyez sur Continuer ci-dessous pour continuer.",
-            UNKNOWN_EMAIL: 'Unknown Email', // TODO: French
-            UNKNOWN_ORGANIZATION: 'Unknown Organization', // TODO: French
+            UNKNOWN_EMAIL: 'Email inconnu',
+            UNKNOWN_ORGANIZATION: 'Organisation inconnue',
         },
         SELF_REGISTRATION: {
+            INSTRUCTIONS: `Pour vous inscrire à un compte Eaton, entrez les informations requises ci-dessous. Vous devrez vérifier votre adresse e-mail pour continuer.`,
             VERIFY_EMAIL: {
-                MESSAGE:
-                    'A verification code has been sent to the email address you provided. Click the link or enter the code below to continue. This code is valid for 30 minutes.', // TODO: French
-                RESEND: 'Resend Verification Email', // TODO: French
-                VERIFICATION: 'Verification Code', // TODO: French
+                MESSAGE: `Un code de vérification a été envoyé à l'adresse e-mail que vous avez fournie. Cliquez sur le lien ou entrez le code ci-dessous pour continuer. Ce code est valable 30 minutes.`,
+                RESEND: `Renvoyer l'e-mail de vérification`,
+                VERIFICATION: 'Code de vérification',
             },
         },
         FORGOT_PASSWORD: {
@@ -79,9 +81,10 @@ const resources = {
                 'Si ce courrier électronique a un compte chez Eaton, vous recevrez une réponse sous <b>un jour ouvrable</b>.\n\n' +
                 'Pour les problèmes de compte urgents, veuillez appeler le {{phone}}.',
             RESET_CODE_ERROR: `Une erreur s'est produite avec votre code de réinitialisation. `,
-            LINK_SENT: 'A link to reset your password has been sent to <b>{{email}}</b>.', // TODO: French
+            LINK_SENT: 'Un lien pour réinitialiser votre mot de passe a été envoyé à <b>{{email}}</b>.',
         },
         LOGIN: {
+            INCORRECT_CREDENTIALS: 'Email ou mot de passe incorrect',
             INVALID_CREDENTIALS: "Votre combinaison nom d'utilisateur / mot de passe n'est pas reconnue.",
             GENERIC_ERROR: "Votre demande n'a pas pu être traitée pour le moment.\n",
         },
@@ -139,7 +142,7 @@ const resources = {
             ERROR_MESSAGE:
                 'Vos informations ne correspondent pas à nos enregistrements. Veuillez saisir à nouveau vos informations pour réessayer.',
             PROBLEM_OCCURRED: 'Un problème est survenu:',
-            CONFIRM_NEW_PASSWORD: 'Confirm New Password', // TODO: French
+            CONFIRM_NEW_PASSWORD: 'Confirmer le nouveau mot de passe',
             CANCEL: 'Annuler',
             UPDATE: 'Mise à jour',
         },
@@ -158,10 +161,11 @@ const resources = {
             ACCOUNT_SETTING: 'Paramètres du compte',
         },
         CONTACT_SUPPORT: {
-            GENERAL_QUESTIONS: 'General Questions', // TODO: French
-            SUPPORT_MESSAGE: 'For email questions, feedback, or support please email us at ', // TODO: French
-            EMERGENCY_SUPPORT: 'Emergency Support', // TODO: French
-            TECHNICAL_ASSISTANCE: 'For 24/7 technical support, please call ', // TODO: French
+            GENERAL_QUESTIONS: 'Questions générales',
+            SUPPORT_MESSAGE:
+                'Pour les questions, commentaires ou assistance par e-mail, veuillez nous envoyer un e-mail à ',
+            EMERGENCY_SUPPORT: `Assistance d'urgence`,
+            TECHNICAL_ASSISTANCE: 'Pour une assistance technique 24/7, veuillez appeler ',
         },
     },
 };

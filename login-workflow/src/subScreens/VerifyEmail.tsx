@@ -15,7 +15,6 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 // Hooks
 import { useLanguageLocale } from '../hooks/language-locale-hooks';
 
-
 /**
  * @ignore
  */
@@ -75,7 +74,6 @@ export const VerifyEmail: React.FC<VerifyEmailProps> = (props) => {
 
     React.useEffect(() => {
         verifyCodeChanged(verifyCode.length === 6 ? verifyCode : '');
-
     }, [verifyCode, verifyCodeChanged]);
 
     const containerStyles = makeContainerStyles(theme);

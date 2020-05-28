@@ -11,8 +11,8 @@ function getRandomInt(max: number): number {
 }
 
 function isRandomFailure(): boolean {
-    const randomResponseNumber = getRandomInt(3);
-    return false; //randomResponseNumber % 2 === 0;
+    const randomResponseNumber = getRandomInt(100);
+    return randomResponseNumber < 90;
 }
 
 /**
