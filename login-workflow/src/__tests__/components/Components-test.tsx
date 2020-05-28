@@ -25,6 +25,11 @@ import { ToggleButton } from '../../components/ToggleButton';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
+jest.mock('src/contexts/AuthUIContextProvider', () => ({
+    useAuthUIActions: (): any => ({ dispatch: jest.fn(() => true) }),
+    useInjectedUIContext: jest.fn().mockReturnValue({ showSelfRegistration: true }),
+}));
+
 // test that all components render
 describe('All components tested with enzyme', () => {
     it('Checkbox renders correctly', () => {

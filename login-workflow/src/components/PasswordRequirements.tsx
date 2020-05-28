@@ -59,15 +59,18 @@ export const PasswordRequirements = (props: PasswordRequirementsProps): JSX.Elem
             regex: SPECIAL_CHAR_REGEX,
             description: t('PASSWORD_REQUIREMENTS.SPECIAL'),
         },
-    ]
-    
-    const {passwordRequirements = defaultRequirements} = useInjectedUIContext();
+    ];
 
+    const { passwordRequirements = defaultRequirements } = useInjectedUIContext();
 
     return (
         <View style={props.style}>
             {passwordRequirements.map((req, ind) => (
-                <RequirementCheck key={`password_requirement_${ind}`} text={req.description} isChecked={new RegExp(req.regex).test(props.passwordText)} />
+                <RequirementCheck
+                    key={`password_requirement_${ind}`}
+                    text={req.description}
+                    isChecked={new RegExp(req.regex).test(props.passwordText)}
+                />
             ))}
         </View>
     );

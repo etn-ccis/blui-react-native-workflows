@@ -30,6 +30,10 @@ jest.mock('src/contexts/AccountUIContext', () => ({
     }),
     AccountActions: { resetPasswordReset: jest.fn(() => true) },
 }));
+jest.mock('src/contexts/AuthUIContextProvider', () => ({
+    useAuthUIActions: (): any => ({ dispatch: jest.fn(() => true) }),
+    useInjectedUIContext: jest.fn().mockReturnValue({ showSelfRegistration: true }),
+}));
 
 describe('ResetPasswordConfirm subScreen tested with enzyme', () => {
     function baseXML(): JSX.Element {
