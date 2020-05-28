@@ -40,7 +40,6 @@ describe('ResetPasswordConfirm subScreen tested with enzyme', () => {
                         name="ResetPasswordConfirm"
                         component={ResetPasswordConfirm}
                         options={(): object => ({
-                            // eslint-disable-next-line react/display-name
                             header: (): JSX.Element => <></>,
                         })}
                     />

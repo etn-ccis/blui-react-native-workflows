@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/require-await */
-/* eslint-disable require-await */
 import { subMilliseconds, differenceInMilliseconds } from 'date-fns';
 
 let timeTravelOffset = 0;

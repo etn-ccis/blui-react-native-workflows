@@ -12,12 +12,13 @@ import { Theme, useTheme } from 'react-native-paper';
 
 // Styles
 import * as Colors from '@pxblue/colors';
+// @ts-ignore
+import CyberLogo from '../assets/images/cybersecurity_certified.png';
 
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeContainerStyles = (theme: Theme) =>
+const makeContainerStyles = (theme: Theme): Record<string, any> =>
     StyleSheet.create({
         safeContainer: {
             height: '100%',
@@ -61,8 +62,7 @@ const makeContainerStyles = (theme: Theme) =>
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeStyles = () =>
+const makeStyles = (): Record<string, any> =>
     StyleSheet.create({
         logoCyber: {
             height: 85,
@@ -115,8 +115,7 @@ export const Splash: React.FC<SplashProps> = (props) => {
                 <View style={styles.logoCyber}>
                     <Image
                         resizeMethod="resize"
-                        // eslint-disable-next-line @typescript-eslint/no-require-imports
-                        source={require('../assets/images/cybersecurity_certified.png')}
+                        source={CyberLogo}
                         style={styles.svg}
                     />
                 </View>

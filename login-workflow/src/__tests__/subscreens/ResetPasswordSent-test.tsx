@@ -23,7 +23,6 @@ describe('ResetPasswordSent subScreen tested with enzyme', () => {
                         name="ResetPasswordSent"
                         component={ResetPasswordSent}
                         options={(): object => ({
-                            // eslint-disable-next-line react/display-name
                             header: (): JSX.Element => <></>,
                         })}
                         initialParams={{ email: 'some@email.com' }}

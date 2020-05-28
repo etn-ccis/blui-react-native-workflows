@@ -32,7 +32,6 @@ describe('ContactSupport screen tested with enzyme', () => {
                             } as ContactParams
                         }
                         options={(): object => ({
-                            // eslint-disable-next-line react/display-name
                             header: (): JSX.Element => <></>,
                         })}
                     />

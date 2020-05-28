@@ -15,14 +15,11 @@ import {
 } from '../constants/index';
 
 // Components
-import { View, StyleSheet, SafeAreaView } from 'react-native';
+import { View, StyleSheet, SafeAreaView, TextInput } from 'react-native';
 import { PasswordRequirements } from '../components/PasswordRequirements';
 import { TextInputSecure } from '../components/TextInputSecure';
 import { Instruction } from '../components/Instruction';
 import { Theme, useTheme } from 'react-native-paper';
-
-// Styles
-import * as Colors from '@pxblue/colors';
 
 // Hooks
 import { useLanguageLocale } from '../hooks/language-locale-hooks';
@@ -31,8 +28,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeContainerStyles = (theme: Theme) =>
+const makeContainerStyles = (theme: Theme): Record<string, any> =>
     StyleSheet.create({
         safeContainer: {
             backgroundColor: theme.colors.surface,
@@ -50,8 +46,7 @@ const makeContainerStyles = (theme: Theme) =>
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeStyles = () =>
+const makeStyles = (): Record<string, any> =>
     StyleSheet.create({
         inputMargin: {
             marginTop: 40,
@@ -83,7 +78,7 @@ export const CreatePassword: React.FC<CreatePasswordProps> = (props) => {
     const containerStyles = makeContainerStyles(theme);
     const styles = makeStyles();
 
-    const confirmPasswordRef = React.useRef<any>();
+    const confirmPasswordRef = React.useRef<TextInput>(null);
     const goToNextInput = (): void => confirmPasswordRef?.current?.focus();
 
     const areValidMatchingPasswords =
@@ -116,7 +111,6 @@ export const CreatePassword: React.FC<CreatePasswordProps> = (props) => {
                             goToNextInput();
                         }}
                         blurOnSubmit={false}
-                        theme={theme}
                     />
 
                     <PasswordRequirements style={{ paddingTop: 10 }} passwordText={passwordInput} />
@@ -130,7 +124,6 @@ export const CreatePassword: React.FC<CreatePasswordProps> = (props) => {
                         returnKeyType={'done'}
                         error={confirmInput !== '' && passwordInput !== confirmInput}
                         onChangeText={(text: string): void => setConfirmInput(text)}
-                        theme={theme}
                     />
                 </View>
             </ScrollView>

@@ -39,8 +39,7 @@ import { Theme, useTheme } from 'react-native-paper';
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeContainerStyles = (theme: Theme) =>
+const makeContainerStyles = (theme: Theme): Record<string, any> =>
     StyleSheet.create({
         safeContainer: {
             height: '100%',
@@ -68,8 +67,7 @@ const makeContainerStyles = (theme: Theme) =>
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeStyles = (theme: Theme) =>
+const makeStyles = (theme: Theme): Record<string, any> =>
     StyleSheet.create({
         inputMargin: {
             marginTop: 40,
@@ -225,7 +223,6 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
                                 goToNewPasswordInput();
                             }}
                             blurOnSubmit={false}
-                            theme={theme}
                         />
 
                         <TextInputSecure
@@ -240,7 +237,6 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
                                 goToConfirmInput();
                             }}
                             blurOnSubmit={false}
-                            theme={theme}
                         />
 
                         <PasswordRequirements style={{ paddingTop: 10 }} passwordText={newPasswordInput} />
@@ -254,7 +250,6 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
                             returnKeyType={'done'}
                             error={confirmInput !== '' && newPasswordInput !== confirmInput}
                             onChangeText={(text: string): void => setConfirmInput(text)}
-                            theme={theme}
                         />
                     </View>
                 </ScrollView>

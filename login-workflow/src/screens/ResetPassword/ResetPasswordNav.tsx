@@ -51,13 +51,9 @@ export const ResetPasswordNav: React.FC<ResetPasswordNavProps> = (props) => {
     const route = useRoute();
 
     // Reset state on dismissal
-    // eslint-disable-next-line arrow-body-style
-    React.useEffect(() => {
-        return (): void => {
-            accountUIActions.dispatch(AccountActions.resetPasswordReset());
-        };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    React.useEffect(() => (): void => {
+        accountUIActions.dispatch(AccountActions.resetPasswordReset());
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     const resetPassword = (emailInput: string): void => {
         accountUIActions.actions.forgotPassword(emailInput);
@@ -89,22 +85,22 @@ export const ResetPasswordNav: React.FC<ResetPasswordNavProps> = (props) => {
                     })}
                 />
             ) : (
-                <Stack.Screen
-                    name="ResetPasswordSent"
-                    component={ResetPasswordSent}
-                    initialParams={{ email: accountUIState.forgotPassword.email }}
-                    options={({ navigation }): object => ({
-                        gestureEnabled: false,
-                        header: (): JSX.Element | null =>
-                            CloseHeader({
-                                title: t('FORMS.RESET_PASSWORD'),
-                                backAction: () => {
-                                    navigation.navigate('Login');
-                                },
-                            }),
-                    })}
-                />
-            )}
+                    <Stack.Screen
+                        name="ResetPasswordSent"
+                        component={ResetPasswordSent}
+                        initialParams={{ email: accountUIState.forgotPassword.email }}
+                        options={({ navigation }): object => ({
+                            gestureEnabled: false,
+                            header: (): JSX.Element | null =>
+                                CloseHeader({
+                                    title: t('FORMS.RESET_PASSWORD'),
+                                    backAction: () => {
+                                        navigation.navigate('Login');
+                                    },
+                                }),
+                        })}
+                    />
+                )}
         </Stack.Navigator>
     );
 };

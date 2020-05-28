@@ -16,8 +16,7 @@ import { Subtitle } from '@pxblue/react-native-components';
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeStyles = () =>
+const makeStyles = (): Record<string, any> =>
     StyleSheet.create({
         itemContainer: {
             // paddingHorizontal: 10,

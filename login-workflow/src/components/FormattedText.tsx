@@ -12,8 +12,7 @@ import { parseTextForJSX, ParsedJSXText } from '../helpers/parseTextForJSX';
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeStyles = () =>
+const makeStyles = (): Record<string, any> =>
     StyleSheet.create({
         b: {
             fontWeight: 'bold',

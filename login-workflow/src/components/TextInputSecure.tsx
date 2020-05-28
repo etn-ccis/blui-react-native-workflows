@@ -3,7 +3,7 @@
  * @module Components
  */
 
-import React, { useState } from 'react';
+import React, { useState, MutableRefObject } from 'react';
 
 // Components
 import { View, StyleSheet, TouchableOpacity, TextInput as ReactTextInput } from 'react-native';
@@ -14,8 +14,7 @@ import { TextInput, TextInputRenderProps } from './TextInput';
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeStyles = () =>
+const makeStyles = (): Record<string, any> =>
     StyleSheet.create({
         togglePadding: {
             paddingRight: 50,
@@ -42,7 +41,7 @@ type TextInputSecureRenderProps = TextInputRenderProps;
  */
 export const TextInputSecureRender: React.ForwardRefRenderFunction<{}, TextInputSecureRenderProps> = (
     props: TextInputSecureRenderProps,
-    ref: any
+    ref: MutableRefObject<{} | null> | ((instance: {} | null) => void) | null
 ) => {
     const { style, theme: customTheme, ...inputProps } = props;
     const theme = useTheme(customTheme);
@@ -61,13 +60,7 @@ export const TextInputSecureRender: React.ForwardRefRenderFunction<{}, TextInput
 
     return (
         <View style={style}>
-            <TextInput
-                ref={inputRef}
-                style={styles.togglePadding}
-                theme={theme}
-                {...inputProps}
-                secureTextEntry={shouldShowText}
-            />
+            <TextInput ref={inputRef} style={styles.togglePadding} {...inputProps} secureTextEntry={shouldShowText} />
             <TouchableOpacity
                 activeOpacity={0.8}
                 style={styles.visibilityToggleTouchable}

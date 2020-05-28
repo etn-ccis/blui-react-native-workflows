@@ -3,12 +3,12 @@
  * @module Components
  */
 
-import React from 'react';
+import React, { MutableRefObject } from 'react';
 
 // Components
 import { View, StyleSheet, StyleProp, ViewStyle, TextInput as ReactTextInput } from 'react-native';
 import { TextInput as PaperTextInput, Theme, useTheme } from 'react-native-paper';
-import { TextInputProps } from 'react-native-paper/src/components/TextInput/TextInput';
+import { TextInputProps } from 'react-native-paper/lib/typescript/src/components/TextInput/TextInput';
 import { Subtitle } from '@pxblue/react-native-components';
 
 // Styles
@@ -17,8 +17,7 @@ import * as Colors from '@pxblue/colors';
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeStyles = (theme: Theme) =>
+const makeStyles = (theme: Theme): Record<string, any> =>
     StyleSheet.create({
         textInput: {
             height: 70,
@@ -35,9 +34,8 @@ const makeStyles = (theme: Theme) =>
 
 /**
  * @param errorText  (Optional) The text to show if the text input is in error state.
- * @param theme (Optional) react-native-paper theme partial to style the component.
  */
-export type TextInputRenderProps = TextInputProps & {
+export type TextInputRenderProps = Omit<TextInputProps, 'theme'> & {
     errorText?: string;
     theme?: Theme;
 };
@@ -49,7 +47,7 @@ export type TextInputRenderProps = TextInputProps & {
  */
 const TextInputRender: React.ForwardRefRenderFunction<{}, TextInputRenderProps> = (
     props: TextInputRenderProps,
-    ref: any
+    ref: MutableRefObject<{} | null> | ((instance: {} | null) => void) | null
 ) => {
     const {
         style,

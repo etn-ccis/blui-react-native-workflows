@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 export type Fn<T, U> = (t: T) => U;
 export type UnionKeys<T> = T[keyof T];
 export type PromiseType<T> = T extends PromiseLike<infer U> ? U : T;

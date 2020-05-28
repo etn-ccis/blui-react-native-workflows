@@ -102,8 +102,17 @@ export const getChartsAxisDateTimeLabelFormats = (): Highcharts.AxisDateTimeLabe
     }
 };
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-export const getChartsTooltipDateTimeLabelFormats = () => {
+type FormatStrings = {
+    day: string;
+    hour: string;
+    millisecond: string;
+    second: string;
+    minute: string;
+    month: string;
+    year: string;
+    week: string;
+}
+export const getChartsTooltipDateTimeLabelFormats = (): FormatStrings | undefined => {
     switch (i18n.language) {
         case 'fr': // default to built-in locale until a native French speaker can specify
             return undefined;

@@ -62,7 +62,17 @@ describe('All components tested with enzyme', () => {
     });
 
     it('ErrorState renders correctly', () => {
-        const rendered = renderer.create(<ErrorState />).toJSON();
+        const rendered = renderer
+            .create(
+                <ErrorState
+                    title={''}
+                    bodyText={''}
+                    onPress={(): void => {
+                        /* do nothing */
+                    }}
+                />
+            )
+            .toJSON();
         expect(rendered).toBeTruthy();
     });
 

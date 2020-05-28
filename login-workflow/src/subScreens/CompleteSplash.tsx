@@ -18,8 +18,7 @@ import { Body, H6 } from '@pxblue/react-native-components';
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeContainerStyles = () =>
+const makeContainerStyles = (): Record<string, any> =>
     StyleSheet.create({
         safeContainer: {
             height: '100%',
@@ -50,8 +49,7 @@ const makeContainerStyles = () =>
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeStyles = (theme: theme) =>
+const makeStyles = (theme: Theme): Record<string, any> =>
     StyleSheet.create({
         headerText: {
             color: Colors.black['800'],

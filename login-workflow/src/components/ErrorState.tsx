@@ -19,8 +19,7 @@ const ReportIcon = wrapIcon({ IconClass: MatIcon, name: 'report' });
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeContainerStyles = () =>
+const makeContainerStyles = (): Record<string, any> =>
     StyleSheet.create({
         containerMargins: {
             marginHorizontal: 20,
@@ -34,8 +33,7 @@ const makeContainerStyles = () =>
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeStyles = () =>
+const makeStyles = (): Record<string, any> =>
     StyleSheet.create({
         sideBySideButtons: {
             flexDirection: 'row',
@@ -77,7 +75,7 @@ export const ErrorState: React.FC<ErrorStateProps> = (props) => {
         <SafeAreaView style={[containerStyles.spaceBetween, { backgroundColor: theme.colors.surface }]}>
             <View style={{ flex: 1 }}>
                 <EmptyState
-                    // @ts-ignore
+                    // @ts-ignore we need a new version of the component library that exposes the type for WrapIconProps
                     IconClass={icon ?? ReportIcon}
                     iconColor={theme.colors.error}
                     title={title ?? t('MESSAGES.FAILURE')}

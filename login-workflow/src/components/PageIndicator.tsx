@@ -13,8 +13,7 @@ import * as Colors from '@pxblue/colors';
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeStyles = (theme: Theme) =>
+const makeStyles = (theme: Theme): Record<string, any> =>
     StyleSheet.create({
         container: {
             flex: 1,

@@ -10,9 +10,6 @@ import { StyleSheet, SafeAreaView } from 'react-native';
 import { CompleteSplashScreen } from './CompleteSplash';
 import { ToggleButton } from '../components/ToggleButton';
 
-// Styles
-import * as Colors from '@pxblue/colors';
-
 // Hooks
 import { useNavigation } from '@react-navigation/native';
 import { useLanguageLocale } from '../hooks/language-locale-hooks';
@@ -21,8 +18,7 @@ import { Theme, useTheme } from 'react-native-paper';
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeContainerStyles = (theme: Theme) =>
+const makeContainerStyles = (theme: Theme): Record<string, any> =>
     StyleSheet.create({
         safeContainer: {
             height: '100%',

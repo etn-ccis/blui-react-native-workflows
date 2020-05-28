@@ -3,7 +3,7 @@
  * @module Screens
  */
 
-import * as React from 'react';
+import React, { useEffect, useCallback, useState } from 'react';
 
 // Nav
 import { useNavigation, useRoute } from '@react-navigation/native';
@@ -14,12 +14,12 @@ import { useRegistrationUIActions, useRegistrationUIState } from '../contexts/Re
 import { Theme, useTheme } from 'react-native-paper';
 
 // Screens
-import { Eula } from '../subScreens/Eula';
-import { CreateAccount } from '../subScreens/CreateAccount';
-import { VerifyEmail } from '../subScreens/VerifyEmail';
-import { CreatePassword } from '../subScreens/CreatePassword';
-import { AccountDetails, AccountDetailInformation } from '../subScreens/AccountDetails';
-import { RegistrationComplete } from '../subScreens/RegistrationComplete';
+import { Eula as EulaScreen } from '../subScreens/Eula';
+import { CreateAccount as CreateAccountScreen } from '../subScreens/CreateAccount';
+import { VerifyEmail as VerifyEmailScreen } from '../subScreens/VerifyEmail';
+import { CreatePassword as CreatePasswordScreen } from '../subScreens/CreatePassword';
+import { AccountDetails as AccountDetailsScreen, AccountDetailInformation as AccountDetailInformationScreen } from '../subScreens/AccountDetails';
+import { RegistrationComplete as RegistrationCompleteScreen } from '../subScreens/RegistrationComplete';
 
 // Components
 import { View, StyleSheet, SafeAreaView, BackHandler } from 'react-native';
@@ -36,8 +36,7 @@ import * as Colors from '@pxblue/colors';
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeContainerStyles = (theme: Theme) =>
+const makeContainerStyles = (theme: Theme): Record<string, any> =>
     StyleSheet.create({
         safeContainer: {
             height: '100%',
@@ -66,8 +65,7 @@ const makeContainerStyles = (theme: Theme) =>
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeStyles = () =>
+const makeStyles = (): Record<string, any> =>
     StyleSheet.create({
         sideBySideButtons: {
             flexDirection: 'row',
@@ -97,6 +95,16 @@ type SelfRegistrationPagerProps = {
     theme?: Theme;
 };
 
+enum Pages {
+    CreateAccount = 0,
+    Eula,
+    VerifyEmail,
+    CreatePassword,
+    AccountDetails,
+    Complete,
+    __LENGTH,
+}
+
 /**
  * Pager controlling the user self registration screen flow.
  *
@@ -105,24 +113,14 @@ type SelfRegistrationPagerProps = {
 export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (props) => {
     const theme = useTheme(props.theme);
 
-    const [email, setEmail] = React.useState('');
-    const [eulaAccepted, setEulaAccepted] = React.useState(false);
-    const [password, setPassword] = React.useState('');
-    const [accountDetails, setAccountDetails] = React.useState<AccountDetailInformation | null>(null);
-    const [organization] = React.useState<string>('Org Not Set');
-    const [eulaContent, setEulaContent] = React.useState<string>();
+    const [email, setEmail] = useState('');
+    const [eulaAccepted, setEulaAccepted] = useState(false);
+    const [password, setPassword] = useState('');
+    const [accountDetails, setAccountDetails] = useState<AccountDetailInformationScreen | null>(null);
+    const [organization] = useState<string>('Org Not Set');
+    const [eulaContent, setEulaContent] = useState<string>();
 
-    enum Pages /* eslint-disable no-shadow */ {
-        CreateAccount = 0,
-        Eula,
-        VerifyEmail,
-        CreatePassword,
-        AccountDetails,
-        Complete,
-        __LENGTH,
-    }
-
-    const [currentPage, setCurrentPage] = React.useState(0);
+    const [currentPage, setCurrentPage] = useState(0);
 
     const { t } = useLanguageLocale();
     const navigation = useNavigation();
@@ -132,15 +130,15 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
 
     const route = useRoute();
     const routeParams = route.params as SelfRegistrationPagerParams;
-    const [verificationCode, setVerificationCode] = React.useState<string>(routeParams?.verificationCode ?? '');
+    const [verificationCode, setVerificationCode] = useState<string>(routeParams?.verificationCode ?? '');
 
-    React.useEffect(() => viewPager?.current?.setPage(currentPage), [currentPage, viewPager]);
+    useEffect(() => viewPager?.current?.setPage(currentPage), [currentPage, viewPager]);
 
-    React.useEffect((): void => {
+    useEffect((): void => {
         if (verificationCode) {
             setCurrentPage(Pages.VerifyEmail);
         }
-    }, [Pages.VerifyEmail, verificationCode]);
+    }, [verificationCode]);
 
     const containerStyles = makeContainerStyles(theme);
     const styles = makeStyles();
@@ -170,7 +168,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
         }
     };
 
-    const canGoBackProgress = (): boolean => {
+    const canGoBackProgress = useCallback((): boolean => {
         switch (currentPage) {
             case Pages.VerifyEmail:
                 return false;
@@ -183,9 +181,9 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
             default:
                 return true;
         }
-    };
+    }, [currentPage]);
 
-    function advancePage(delta = 0): void {
+    const advancePage = useCallback((delta = 0): void => {
         if (delta === 0) {
             return;
         } else if (isFirstStep && delta < 0) {
@@ -193,9 +191,9 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
         } else if (isLastStep && delta > 0) {
             navigation.navigate('Login');
         } else {
-            setCurrentPage(currentPage + delta);
+            setCurrentPage(currentPage + (delta as number));
         }
-    }
+    }, [isFirstStep, isLastStep, navigation, currentPage]);
 
     const pageTitle = (): string => {
         switch (currentPage) {
@@ -217,7 +215,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
     };
 
     // Navigate appropriately with the hardware back button on android
-    React.useEffect(() => {
+    useEffect(() => {
         const onBackPress = (): boolean => {
             if (isFirstStep) {
                 navigation.navigate('Login');
@@ -231,8 +229,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
 
         BackHandler.addEventListener('hardwareBackPress', onBackPress);
         return (): void => BackHandler.removeEventListener('hardwareBackPress', onBackPress);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [currentPage]);
+    }, [currentPage, advancePage, canGoBackProgress, isFirstStep, isLastStep, navigation]);
 
     const loadAndCacheEula = async (): Promise<void> => {
         if (!eulaContent) {
@@ -294,25 +291,25 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                     transitionStyle="scroll"
                     style={{ flex: 1 }}
                 >
-                    <CreateAccount onEmailChanged={setEmail} />
-                    <Eula
+                    <CreateAccountScreen onEmailChanged={setEmail} />
+                    <EulaScreen
                         eulaAccepted={eulaAccepted}
                         onEulaChanged={setEulaAccepted}
                         loadEula={loadAndCacheEula}
                         eulaError={loadEulaTransitErrorMessage}
                         eulaContent={eulaContent}
                     />
-                    <VerifyEmail
+                    <VerifyEmailScreen
                         verifyCodeChanged={setVerificationCode}
                         onResendVerificationEmail={(): void => {
                             /* resend verification email */
                         }}
                     />
                     <KeyboardAwareScrollView contentContainerStyle={[containerStyles.fullFlex]}>
-                        <CreatePassword onPasswordChanged={setPassword} />
+                        <CreatePasswordScreen onPasswordChanged={setPassword} />
                     </KeyboardAwareScrollView>
-                    <AccountDetails onDetailsChanged={setAccountDetails} />
-                    <RegistrationComplete
+                    <AccountDetailsScreen onDetailsChanged={setAccountDetails} />
+                    <RegistrationCompleteScreen
                         firstName={accountDetails?.firstName ?? ''}
                         lastName={accountDetails?.lastName ?? ''}
                         email={email}

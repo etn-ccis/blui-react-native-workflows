@@ -13,8 +13,7 @@ import { getStatusBarHeight } from 'react-native-status-bar-height';
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeStyles = (hasHeader: boolean) =>
+const makeStyles = (hasHeader: boolean): Record<string, any> =>
     StyleSheet.create({
         overlay: {
             backgroundColor: 'rgba(255, 255, 255, 0.6)',

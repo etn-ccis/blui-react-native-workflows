@@ -10,8 +10,7 @@ import { View, Image, StyleSheet, ImageProps, StyleProp, ViewStyle } from 'react
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeStyles = () =>
+const makeStyles = (): Record<string, any> =>
     StyleSheet.create({
         logoCyber: {
             maxHeight: 85,

@@ -41,7 +41,6 @@ describe('Login screen tested with enzyme', () => {
                         name="Login"
                         component={Login}
                         options={(): any => ({
-                            // eslint-disable-next-line react/display-name
                             header: (): JSX.Element => <></>,
                         })}
                     />

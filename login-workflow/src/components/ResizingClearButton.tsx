@@ -16,8 +16,7 @@ import color from 'color';
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeStyles = (theme: Theme, fontSize: number) =>
+const makeStyles = (theme: Theme, fontSize: number): Record<string, any> =>
     StyleSheet.create({
         container: {
             paddingVertical: 10,

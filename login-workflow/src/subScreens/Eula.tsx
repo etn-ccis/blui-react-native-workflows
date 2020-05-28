@@ -8,11 +8,7 @@ import React, { useCallback } from 'react';
 // Components
 import { View, StyleSheet, SafeAreaView, ScrollView } from 'react-native';
 import { Body } from '@pxblue/react-native-components';
-import { Text } from 'react-native-paper';
 import { Checkbox } from '../components/Checkbox';
-
-// Styles
-import * as Colors from '@pxblue/colors';
 
 // Hooks
 import { useLanguageLocale } from '../hooks/language-locale-hooks';
@@ -21,8 +17,7 @@ import { Theme, useTheme } from 'react-native-paper';
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeContainerStyles = (theme: Theme) =>
+const makeContainerStyles = (theme: Theme): Record<string, any> =>
     StyleSheet.create({
         safeContainer: {
             height: '100%',

@@ -16,8 +16,7 @@ import * as Colors from '@pxblue/colors';
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeStyles = (props: ToggleButtonProps, theme: Theme) =>
+const makeStyles = (props: ToggleButtonProps, theme: Theme): Record<string, any> =>
     StyleSheet.create({
         loginButton: {
             width: '100%',
@@ -44,7 +43,7 @@ const makeStyles = (props: ToggleButtonProps, theme: Theme) =>
  * @param onPress  Action to take when button is tapped.
  * @param theme (Optional) react-native-paper theme partial to style the component.
  */
-type ToggleButtonProps = {
+export type ToggleButtonProps = {
     text: string;
     style?: StyleProp<ViewStyle>;
     outlined?: boolean;

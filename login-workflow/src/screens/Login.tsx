@@ -9,7 +9,7 @@ import React from 'react';
 import { EMAIL_REGEX } from '../constants/index';
 
 // Components
-import { Platform, View, StyleSheet, SafeAreaView, StatusBar } from 'react-native';
+import { Platform, View, StyleSheet, SafeAreaView, StatusBar, TextInput as ReactTextInput } from 'react-native';
 import { Button, Theme, useTheme } from 'react-native-paper';
 import { TextInput } from '../components/TextInput';
 import { TextInputSecure } from '../components/TextInputSecure';
@@ -36,8 +36,7 @@ import { useSecurityState } from '../contexts/SecurityContextProvider';
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeContainerStyles = () =>
+const makeContainerStyles = (): Record<string, any> =>
     StyleSheet.create({
         mainContainer: {
             marginHorizontal: 20,
@@ -87,8 +86,7 @@ const makeContainerStyles = () =>
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeStyles = () =>
+const makeStyles = (): Record<string, any> =>
     StyleSheet.create({
         signUpText: {
             alignSelf: 'center',
@@ -103,8 +101,8 @@ const makeStyles = () =>
     });
 
 /**
-* @param theme (Optional) react-native-paper theme partial to style the component.
-*/
+ * @param theme (Optional) react-native-paper theme partial to style the component.
+ */
 type LoginProps = {
     theme?: Theme;
 };
@@ -165,7 +163,7 @@ export const Login: React.FC<LoginProps> = (props) => {
         />
     );
 
-    const confirmPasswordRef = React.useRef<any>();
+    const confirmPasswordRef = React.useRef<ReactTextInput>(null);
     const goToNextInput = (): void => confirmPasswordRef?.current?.focus();
 
     const showSelfRegistration = authProps.showSelfRegistration ?? true; // enabled by default
@@ -264,8 +262,8 @@ export const Login: React.FC<LoginProps> = (props) => {
         Platform.OS === 'ios' ? (
             <StatusBar backgroundColor={theme.colors.primary} barStyle="dark-content" />
         ) : (
-                <StatusBar backgroundColor={theme.colors.primary} barStyle="light-content" />
-            );
+            <StatusBar backgroundColor={theme.colors.primary} barStyle="light-content" />
+        );
 
     return (
         <>
@@ -293,7 +291,6 @@ export const Login: React.FC<LoginProps> = (props) => {
                             returnKeyType={'next'}
                             error={hasTransitError}
                             errorText={'Incorrect Email or Password'}
-                            theme={theme}
                         />
                         <TextInputSecure
                             ref={confirmPasswordRef}
@@ -305,7 +302,6 @@ export const Login: React.FC<LoginProps> = (props) => {
                             style={{ marginTop: 15 }}
                             error={hasTransitError}
                             errorText={'Incorrect Email or Password'}
-                            theme={theme}
                         />
 
                         <View style={containerStyles.loginControls}>
@@ -319,8 +315,7 @@ export const Login: React.FC<LoginProps> = (props) => {
                                 <View style={[containerStyles.loginButtonContainer]}>
                                     <ToggleButton
                                         text={t('ACTIONS.LOG_IN')}
-                                        // eslint-disable-next-line @typescript-eslint/prefer-regexp-exec
-                                        disabled={!emailInput.match(EMAIL_REGEX) || !passwordInput}
+                                        disabled={!EMAIL_REGEX.test(emailInput) || !passwordInput}
                                         onPress={loginTapped}
                                     />
                                 </View>

@@ -13,8 +13,7 @@ import { Theme, useTheme } from 'react-native-paper';
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeStyles = (spaceSize: number, topColor: string, bottomColor: string) =>
+const makeStyles = (spaceSize: number, topColor: string, bottomColor: string): Record<string, any> =>
     StyleSheet.create({
         scrollViewTopCover: {
             backgroundColor: topColor,

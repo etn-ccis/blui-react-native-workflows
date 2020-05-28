@@ -15,8 +15,6 @@ import { Instruction } from '../components/Instruction';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Theme, useTheme } from 'react-native-paper';
 
-// Styles
-import * as Colors from '@pxblue/colors';
 
 // Hooks
 import { useLanguageLocale } from '../hooks/language-locale-hooks';
@@ -24,8 +22,7 @@ import { useLanguageLocale } from '../hooks/language-locale-hooks';
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeContainerStyles = (theme: Theme) =>
+const makeContainerStyles = (theme: Theme): Record<string, any> =>
     StyleSheet.create({
         safeContainer: {
             height: '100%',
@@ -47,8 +44,7 @@ const makeContainerStyles = (theme: Theme) =>
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeStyles = () =>
+const makeStyles = (): Record<string, any> =>
     StyleSheet.create({
         inputMargin: {
             marginTop: 40,
@@ -118,7 +114,6 @@ export const CreateAccount: React.FC<CreateAccountProps> = (props) => {
                         error={showEmailError}
                         errorText={t('MESSAGES.EMAIL_ENTRY_ERROR')}
                         onChangeText={onChangeText}
-                        theme={theme}
                     />
                 </View>
             </KeyboardAwareScrollView>

@@ -12,9 +12,6 @@ import { Theme, useTheme } from 'react-native-paper';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import { ToggleButton } from '../components/ToggleButton';
 
-// Styles
-import * as Colors from '@pxblue/colors';
-
 // Hooks
 import { useLanguageLocale } from '../hooks/language-locale-hooks';
 import { useNavigation, useRoute } from '@react-navigation/native';
@@ -25,8 +22,7 @@ import { ResetPasswordParams } from '../types/ResetPasswordParams';
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeContainerStyles = (theme: Theme) =>
+const makeContainerStyles = (theme: Theme): Record<string, any> =>
     StyleSheet.create({
         safeContainer: {
             height: '100%',
@@ -50,8 +46,7 @@ const makeContainerStyles = (theme: Theme) =>
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeStyles = () =>
+const makeStyles = (): Record<string, any> =>
     StyleSheet.create({
         wideButton: {
             height: 60,

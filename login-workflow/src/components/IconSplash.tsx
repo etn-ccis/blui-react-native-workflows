@@ -13,8 +13,7 @@ import MatIcon from 'react-native-vector-icons/MaterialIcons';
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeContainerStyles = () =>
+const makeContainerStyles = (): Record<string, any> =>
     StyleSheet.create({
         iconContainer: {
             flex: 1,
@@ -25,8 +24,7 @@ const makeContainerStyles = () =>
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeStyles = (theme: Theme, iconSize: number) =>
+const makeStyles = (theme: Theme, iconSize: number): Record<string, any> =>
     StyleSheet.create({
         circleIconBackground: {
             marginTop: 20,

@@ -5,7 +5,6 @@
 
 import * as React from 'react';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
-import * as Colors from '@pxblue/colors';
 
 // Nav
 import { createStackNavigator } from '@react-navigation/stack';
