@@ -23,12 +23,12 @@ describe('Eula subScreen tested with enzyme', () => {
         expect(rendered).toBeTruthy();
     });
 
-    it('test setProps eulaAccepted update of onEulaChanged returns true for isChecked', () => {
+    it('test setProps eulaAccepted update of onEulaChanged returns true for checked', () => {
         const mockCallback = jest.fn();
         const component = mount(baseXML(mockCallback));
 
         component.setProps({ eulaAccepted: true });
 
-        expect(component.find('Checkbox').at(0).prop('isChecked')).toEqual(true);
+        expect(component.find('Checkbox').at(0).prop('checked')).toEqual(true);
     });
 });

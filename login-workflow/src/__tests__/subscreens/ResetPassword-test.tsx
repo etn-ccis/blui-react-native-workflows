@@ -7,6 +7,7 @@ import React from 'react';
 import 'react-native';
 import { mount } from 'enzyme';
 import { ResetPassword } from '../../subScreens/ResetPassword';
+import { Provider } from 'react-native-paper';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
@@ -27,11 +28,13 @@ jest.mock('src/contexts/AccountUIContext', () => ({
 describe('ResetPassword subScreen tested with enzyme', () => {
     function baseXML(): JSX.Element {
         return (
-            <NavigationContainer>
-                <Stack.Navigator>
-                    <Stack.Screen name="ResetPassword" component={ResetPassword} />
-                </Stack.Navigator>
-            </NavigationContainer>
+            <Provider>
+                <NavigationContainer>
+                    <Stack.Navigator>
+                        <Stack.Screen name="ResetPassword" component={ResetPassword} />
+                    </Stack.Navigator>
+                </NavigationContainer>
+            </Provider>
         );
     }
 
