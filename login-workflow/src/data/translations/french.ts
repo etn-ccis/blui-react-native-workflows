@@ -77,7 +77,7 @@ const resources = {
         FORGOT_PASSWORD: {
             ERROR: "Impossible de réinitialiser votre mot de passe pour l'instant",
             INSTRUCTIONS:
-                "Entrez l'adresse e-mail du compte associée au compte.\n\n>" +
+                "Entrez l'adresse e-mail du compte associée au compte.\n\n" +
                 'Si ce courrier électronique a un compte chez Eaton, vous recevrez une réponse sous <b>un jour ouvrable</b>.\n\n' +
                 'Pour les problèmes de compte urgents, veuillez appeler le {{phone}}.',
             RESET_CODE_ERROR: `Une erreur s'est produite avec votre code de réinitialisation. `,

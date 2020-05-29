@@ -32,12 +32,12 @@ export function AuthUIConfiguration(props: { children: JSX.Element }): JSX.Eleme
             allowDebugMode={true}
             contactEmail={'something@email.com'}
             contactPhone={'1-800-123-4567'}
-            // passwordRequirements={[
-            //     {
-            //         description: 'Has words',
-            //         regex: /^.+$/,
-            //     }
-            // ]}
+            passwordRequirements={[
+                {
+                    description: 'Has the letter X',
+                    regex: /[x]+/,
+                }
+            ]}
             // projectImage={require('./src/assets/images/some_image.png')}
         >
             {props.children}
