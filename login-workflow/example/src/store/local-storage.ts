@@ -1,14 +1,12 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { LOCAL_USER_DATA, REMEMBER_ME_DATA } from '../constants';
 import AsyncStorage from '@react-native-community/async-storage';
 
 // For cross compatibility pretend AsyncStorage is just window local storage
 const window = {
     localStorage: {
-        getItem: (key: string) => AsyncStorage.getItem(key),
-        setItem: (key: string, value: string) => AsyncStorage.setItem(key, value),
-        removeItem: (key: string) => AsyncStorage.removeItem(key),
+        getItem: (key: string): Promise<string | null> => AsyncStorage.getItem(key),
+        setItem: (key: string, value: string): Promise<void> => AsyncStorage.setItem(key, value),
+        removeItem: (key: string): Promise<void> => AsyncStorage.removeItem(key),
     },
 };
 

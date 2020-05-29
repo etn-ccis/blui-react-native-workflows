@@ -8,19 +8,21 @@ import React from 'react';
 // Components
 import { View, Image, StyleSheet, SafeAreaView, ImageSourcePropType } from 'react-native';
 import { LoginHeaderSplash } from '../components/LoginHeaderSplash';
+import { Theme, useTheme } from 'react-native-paper';
 
 // Styles
 import * as Colors from '@pxblue/colors';
+// @ts-ignore
+import CyberLogo from '../assets/images/cybersecurity_certified.png';
 
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeContainerStyles = () =>
+const makeContainerStyles = (theme: Theme): Record<string, any> =>
     StyleSheet.create({
         safeContainer: {
             height: '100%',
-            backgroundColor: Colors.white['50'],
+            backgroundColor: theme.colors.surface,
         },
         mainContainer: {
             flex: 1,
@@ -60,8 +62,7 @@ const makeContainerStyles = () =>
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeStyles = () =>
+const makeStyles = (): Record<string, any> =>
     StyleSheet.create({
         logoCyber: {
             height: 85,
@@ -88,10 +89,12 @@ const makeStyles = () =>
  * Type for the properties of [[Splash]].
  *
  * @param mainImage (Optional) The top splash image.
+ * @param theme (Optional) react-native-paper theme partial for custom styling.
  */
 
 type SplashProps = {
     mainImage?: ImageSourcePropType;
+    theme?: Theme;
 };
 
 /**
@@ -99,8 +102,9 @@ type SplashProps = {
  *
  * @category Component
  */
-function Splash(props: SplashProps): JSX.Element {
-    const containerStyles = makeContainerStyles();
+export const Splash: React.FC<SplashProps> = (props) => {
+    const theme = useTheme(props.theme);
+    const containerStyles = makeContainerStyles(theme);
     const styles = makeStyles();
 
     return (
@@ -109,15 +113,9 @@ function Splash(props: SplashProps): JSX.Element {
 
             <View style={containerStyles.mainContainer}>
                 <View style={styles.logoCyber}>
-                    <Image
-                        resizeMethod="resize"
-                        // eslint-disable-next-line @typescript-eslint/no-require-imports
-                        source={require('../assets/images/cybersecurity_certified.png')}
-                        style={styles.svg}
-                    />
+                    <Image resizeMethod="resize" source={CyberLogo} style={styles.svg} />
                 </View>
             </View>
         </SafeAreaView>
     );
-}
-export default Splash;
+};

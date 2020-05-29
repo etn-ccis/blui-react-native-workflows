@@ -15,8 +15,8 @@ import {
 } from '../constants/index';
 
 // Components
-import { Platform, View, StyleSheet, SafeAreaView, StatusBar } from 'react-native';
-import { Icon } from 'react-native-elements';
+import { Platform, View, StyleSheet, SafeAreaView, StatusBar, TextInput } from 'react-native';
+import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import { PasswordRequirements } from '../components/PasswordRequirements';
 import { TextInputSecure } from '../components/TextInputSecure';
 import { Instruction } from '../components/Instruction';
@@ -26,7 +26,7 @@ import { ToggleButton } from '../components/ToggleButton';
 
 // Styles
 import * as Colors from '@pxblue/colors';
-import { Theme, withTheme, Label, H6 } from '@pxblue/react-native-components';
+import { Label, H6 } from '@pxblue/react-native-components';
 
 // Hooks
 import { useSecurityActions } from '../contexts/SecurityContextProvider';
@@ -34,16 +34,16 @@ import { useLanguageLocale } from '../hooks/language-locale-hooks';
 import { ScrollView } from 'react-native-gesture-handler';
 import { initialTransitState, transitSuccess, transitStart, transitFailed } from '../contexts/TransitState';
 import { SimpleDialog } from '../components/SimpleDialog';
+import { Theme, useTheme } from 'react-native-paper';
 
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeContainerStyles = () =>
+const makeContainerStyles = (theme: Theme): Record<string, any> =>
     StyleSheet.create({
         safeContainer: {
             height: '100%',
-            backgroundColor: Colors.white['50'],
+            backgroundColor: theme.colors.surface,
             marginBottom: 20,
             flex: 1,
             justifyContent: 'space-between',
@@ -60,14 +60,14 @@ const makeContainerStyles = () =>
         iconContainer: {
             marginTop: 80,
             marginBottom: 30,
+            alignSelf: 'center',
         },
     });
 
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeStyles = () =>
+const makeStyles = (theme: Theme): Record<string, any> =>
     StyleSheet.create({
         inputMargin: {
             marginTop: 40,
@@ -82,7 +82,7 @@ const makeStyles = () =>
             color: Colors.black['800'],
         },
         bodyText: {
-            color: Colors.black['500'],
+            color: theme.colors.text,
         },
         textSpacing: {
             marginVertical: 10,
@@ -97,13 +97,13 @@ const makeStyles = () =>
  * @param onChangePassword  Function to handle change password action.
  * @param onCancel  Function to handle cancel action.
  * @param onChangeComplete  Function to handle the on change complete action.
- * @param theme  Theme for the change password screen.
+ * @param theme (Optional) react-native-paper theme partial to style the component.
  */
 type ChangePasswordProps = {
-    onChangePassword(oldPassword: string, newPassword: string): Promise<void>;
-    onCancel(): void;
-    onChangeComplete(): void;
-    theme: Theme;
+    onChangePassword: (oldPassword: string, newPassword: string) => Promise<void>;
+    onCancel: () => void;
+    onChangeComplete: () => void;
+    theme?: Theme;
 };
 
 /**
@@ -112,7 +112,8 @@ type ChangePasswordProps = {
  *
  * @category Component
  */
-function ChangePassword(props: ChangePasswordProps): JSX.Element {
+export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
+    const theme = useTheme(props.theme);
     const [currentPasswordInput, setCurrentPasswordInput] = React.useState('');
     const [newPasswordInput, setNewPasswordInput] = React.useState('');
     const [confirmInput, setConfirmInput] = React.useState('');
@@ -122,14 +123,14 @@ function ChangePassword(props: ChangePasswordProps): JSX.Element {
     const { t } = useLanguageLocale();
 
     // styles
-    const containerStyles = makeContainerStyles();
-    const styles = makeStyles();
+    const containerStyles = makeContainerStyles(theme);
+    const styles = makeStyles(theme);
 
     // for continuing to the next input
-    const newPasswordRef = React.useRef<any>();
+    const newPasswordRef = React.useRef<TextInput>(null);
     const goToNewPasswordInput = (): void => newPasswordRef?.current?.focus();
 
-    const confirmInputRef = React.useRef<any>();
+    const confirmInputRef = React.useRef<TextInput>(null);
     const goToConfirmInput = (): void => confirmInputRef?.current?.focus();
 
     const areValidMatchingPasswords =
@@ -155,9 +156,9 @@ function ChangePassword(props: ChangePasswordProps): JSX.Element {
 
     const errorDialog = (
         <SimpleDialog
-            title={'Error'}
+            title={t('MESSAGES.ERROR')}
             bodyText={transitState.transitErrorMessage}
-            isVisible={transitState.transitErrorMessage !== null && !hasAcknowledgedError}
+            visible={transitState.transitErrorMessage !== null && !hasAcknowledgedError}
             onDismiss={(): void => {
                 setHasAcknowledgedError(true);
             }}
@@ -167,9 +168,9 @@ function ChangePassword(props: ChangePasswordProps): JSX.Element {
     let statusBar: JSX.Element = <></>;
     statusBar =
         Platform.OS === 'ios' ? (
-            <StatusBar backgroundColor={Colors.blue['700']} barStyle="dark-content" />
+            <StatusBar backgroundColor={theme.colors.primary} barStyle="dark-content" />
         ) : (
-            <StatusBar backgroundColor={Colors.blue['700']} barStyle="light-content" />
+            <StatusBar backgroundColor={theme.colors.primary} barStyle="light-content" />
         );
 
     return transitState.transitSuccess ? ( // if the password was changed
@@ -177,13 +178,12 @@ function ChangePassword(props: ChangePasswordProps): JSX.Element {
             {statusBar}
             <View style={[containerStyles.mainContainer]}>
                 <ScrollView>
-                    <Icon
+                    <MatIcon
                         name={'check'}
-                        color={Colors.gray['500']}
-                        containerStyle={containerStyles.iconContainer}
+                        color={theme.colors.placeholder}
+                        style={containerStyles.iconContainer}
                         size={100}
                     />
-
                     <View style={[containerStyles.containerMargins, containerStyles.containerSpacing]}>
                         <H6 style={[styles.headerText, styles.textSpacing]}>{t('CHANGE_PASSWORD.PASSWORD_CHANGED')}</H6>
                         <Label style={[styles.bodyText, styles.textSpacing]}>
@@ -213,7 +213,7 @@ function ChangePassword(props: ChangePasswordProps): JSX.Element {
                 <ScrollView>
                     <View style={[containerStyles.containerMargins, containerStyles.mainContainer]}>
                         <TextInputSecure
-                            label={t('USER_SETTINGS.CHANGE_PASSWORD')}
+                            label={t('LABELS.CURRENT_PASSWORD')}
                             value={currentPasswordInput}
                             style={styles.inputMargin}
                             autoCapitalize={'none'}
@@ -257,7 +257,7 @@ function ChangePassword(props: ChangePasswordProps): JSX.Element {
                     <View style={{ flex: 1, paddingRight: 5 }}>
                         <ToggleButton
                             text={t('CHANGE_PASSWORD.CANCEL')}
-                            isOutlineOnly={true}
+                            outlined={true}
                             onPress={(): void => securityHelper.hideChangePassword()}
                         />
                     </View>
@@ -272,6 +272,4 @@ function ChangePassword(props: ChangePasswordProps): JSX.Element {
             </SafeAreaView>
         </KeyboardAwareScrollView>
     );
-}
-
-export default withTheme(ChangePassword);
+};

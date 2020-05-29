@@ -7,13 +7,12 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, StyleProp, TextStyle } from 'react-native';
 
 // Helpers
-import parseTextForJSX, { ParsedJSXText } from '../helpers/parseTextForJSX';
+import { parseTextForJSX, ParsedJSXText } from '../helpers/parseTextForJSX';
 
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeStyles = () =>
+const makeStyles = (): Record<string, any> =>
     StyleSheet.create({
         b: {
             fontWeight: 'bold',
@@ -35,25 +34,24 @@ type FormattedTextProps = {
  *
  * @category Component
  */
-function FormattedText(props: FormattedTextProps): JSX.Element {
+export const FormattedText: React.FC<FormattedTextProps> = (props) => {
+    const { parseableText, textStyle } = props;
     const [parsedTextArray, setTextArray] = useState<ParsedJSXText[]>([]);
     const styles = makeStyles();
 
     useEffect(() => {
-        const parseableTextOrEmpty = props.parseableText ?? '';
+        const parseableTextOrEmpty = parseableText ?? '';
         const result = parseTextForJSX(parseableTextOrEmpty);
         setTextArray(result);
-    }, [props.parseableText]);
+    }, [parseableText, setTextArray]);
 
     return (
         <>
             {parsedTextArray.map((chunk, index) => (
-                <Text key={index} style={[props.textStyle, styles[chunk.tag as 'b' | 'none']]}>
+                <Text key={index} style={[textStyle, styles[chunk.tag as 'b' | 'none']]}>
                     {chunk.text}
                 </Text>
             ))}
         </>
     );
-}
-
-export default FormattedText;
+};

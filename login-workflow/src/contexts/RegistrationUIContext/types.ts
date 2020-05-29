@@ -9,7 +9,7 @@ import { RegistrationActions } from '../RegistrationUIContext/dispatchActions';
 
 export type RegistrationUIContextActions = {
     actions: RegistrationUIActions;
-    dispatch: React.Dispatch<any>;
+    dispatch: React.Dispatch<RegistrationActions>;
 };
 
 export type RegistrationUIReducer = (

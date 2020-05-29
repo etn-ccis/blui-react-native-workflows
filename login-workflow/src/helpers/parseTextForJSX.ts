@@ -23,7 +23,7 @@ const beforeTagRegex = /^(?<text>.+?)(?=<\w+?>)/s;
 /**
  * Creates an array of [[ParsedJSXText]] from a string, separating the string into substrings accompanied by a tag.
  */
-function parseNextChunk(textToParse: string): ParsedJSXText[] {
+const parseNextChunk = (textToParse: string): ParsedJSXText[] => {
     const tagMatch = tagRegex.exec(textToParse);
     const beforeTagMatch = beforeTagRegex.exec(textToParse);
 
@@ -47,8 +47,6 @@ function parseNextChunk(textToParse: string): ParsedJSXText[] {
         return [...result, ...parseNextChunk(textToParse.substring(nextIndex))];
     }
     return result;
-}
+};
 
-const parseTextForJSX = (parseableText: string): ParsedJSXText[] => parseNextChunk(parseableText);
-
-export default parseTextForJSX;
+export const parseTextForJSX = (parseableText: string): ParsedJSXText[] => parseNextChunk(parseableText);

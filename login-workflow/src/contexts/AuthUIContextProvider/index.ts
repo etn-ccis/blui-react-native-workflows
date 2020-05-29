@@ -11,7 +11,7 @@
  */
 
 import { useContext } from 'react';
-import AuthUIContext from './context';
+import { AuthUIContext } from './context';
 import { AuthUIContextProvider } from './provider';
 import { AuthUIContextProviderProps, RegistrationUIActions, AuthUIActions } from './types';
 
@@ -22,13 +22,13 @@ import { AuthUIContextProviderProps, RegistrationUIActions, AuthUIActions } from
  * @private
  * @internal
  */
-export function useInjectedUIContext(): AuthUIContextProviderProps {
+export const useInjectedUIContext = (): AuthUIContextProviderProps => {
     const context = useContext(AuthUIContext);
     if (context === null) {
         throw new Error('useInjectedUIContext must be used within an AuthUIContextProvider');
     }
     return context;
-}
+};
 
 /** @ignore */
 export type { AuthUIContextProviderProps, RegistrationUIActions, AuthUIActions };

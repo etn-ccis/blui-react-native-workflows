@@ -21,25 +21,25 @@ import { AccountUIState } from './state';
  *
  * @category Hooks
  */
-export function useAccountUIState(): AccountUIState {
+export const useAccountUIState = (): AccountUIState => {
     const context = useContext(StateContext);
     if (context === null) {
         throw new Error('useAccountUIState must be used within an AccountUIStateContext');
     }
     return context;
-}
+};
 
 /**
  * Hook for using the global [[AccountUIActions]] actions (i.e. logIn, forgotPassword, etc.) which change the global [[AccountUIState]].
  *
  * @category Hooks
  */
-export function useAccountUIActions(): AccountUIContextActions {
+export const useAccountUIActions = (): AccountUIContextActions => {
     const context = useContext(ActionContext);
     if (context === null) {
         throw new Error('useAccountUIActions must be used within an AccountUIActionContext');
     }
     return context;
-}
+};
 
 export { StateContext as AccountUIStateContext, ActionContext as AccountUIActionContext, AccountActions };

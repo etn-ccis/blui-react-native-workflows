@@ -7,13 +7,13 @@ import * as React from 'react';
 
 // Components
 import { Header, wrapIcon } from '@pxblue/react-native-components';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import MatIcon from 'react-native-vector-icons/MaterialIcons';
 
 // PxBlue: It is advised to always call wrapIcon() once per Icon type, and to do so outside of any methods
 /**
  * @ignore
  */
-const CloseIcon = wrapIcon({ IconClass: Icon, name: 'close' });
+const CloseIcon = wrapIcon({ IconClass: MatIcon, name: 'close' });
 
 /**
  * @param title  The title to show in the header.
@@ -21,7 +21,7 @@ const CloseIcon = wrapIcon({ IconClass: Icon, name: 'close' });
  */
 type CloseHeaderProps = {
     title: string;
-    backAction: Function;
+    backAction: () => void;
 };
 
 /**
@@ -29,8 +29,6 @@ type CloseHeaderProps = {
  *
  * @category Component
  */
-export function CloseHeader(props: CloseHeaderProps): JSX.Element {
-    return <Header title={props.title} navigation={{ icon: CloseIcon, onPress: props.backAction }} />;
-}
-
-export default CloseHeader;
+export const CloseHeader: React.FC<CloseHeaderProps> = (props) => (
+    <Header title={props.title} navigation={{ icon: CloseIcon, onPress: props.backAction }} />
+);

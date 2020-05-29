@@ -15,13 +15,11 @@ import {
 } from '../constants/index';
 
 // Components
-import { View, StyleSheet, SafeAreaView } from 'react-native';
+import { View, StyleSheet, SafeAreaView, TextInput } from 'react-native';
 import { PasswordRequirements } from '../components/PasswordRequirements';
 import { TextInputSecure } from '../components/TextInputSecure';
 import { Instruction } from '../components/Instruction';
-
-// Styles
-import * as Colors from '@pxblue/colors';
+import { Theme, useTheme } from 'react-native-paper';
 
 // Hooks
 import { useLanguageLocale } from '../hooks/language-locale-hooks';
@@ -30,11 +28,10 @@ import { ScrollView } from 'react-native-gesture-handler';
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeContainerStyles = () =>
+const makeContainerStyles = (theme: Theme): Record<string, any> =>
     StyleSheet.create({
         safeContainer: {
-            backgroundColor: Colors.white['50'],
+            backgroundColor: theme.colors.surface,
             marginBottom: 20,
             flex: 1,
         },
@@ -49,8 +46,7 @@ const makeContainerStyles = () =>
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeStyles = () =>
+const makeStyles = (): Record<string, any> =>
     StyleSheet.create({
         inputMargin: {
             marginTop: 40,
@@ -61,9 +57,11 @@ const makeStyles = () =>
  * Handle the change of the password input.
  *
  * @param onPasswordChanged  Handle the change of the password input.
+ * @param theme (Optional) react-native-paper theme partial for custom styling.
  */
 type CreatePasswordProps = {
     onPasswordChanged(password: string): void;
+    theme?: Theme;
 };
 
 /**
@@ -71,15 +69,16 @@ type CreatePasswordProps = {
  *
  * @category Component
  */
-export function CreatePassword(props: CreatePasswordProps): JSX.Element {
+export const CreatePassword: React.FC<CreatePasswordProps> = (props) => {
+    const theme = useTheme(props.theme);
     const [passwordInput, setPasswordInput] = React.useState('');
     const [confirmInput, setConfirmInput] = React.useState('');
     const { t } = useLanguageLocale();
 
-    const containerStyles = makeContainerStyles();
+    const containerStyles = makeContainerStyles(theme);
     const styles = makeStyles();
 
-    const confirmPasswordRef = React.useRef<any>();
+    const confirmPasswordRef = React.useRef<TextInput>(null);
     const goToNextInput = (): void => confirmPasswordRef?.current?.focus();
 
     const areValidMatchingPasswords =
@@ -130,4 +129,4 @@ export function CreatePassword(props: CreatePasswordProps): JSX.Element {
             </ScrollView>
         </SafeAreaView>
     );
-}
+};

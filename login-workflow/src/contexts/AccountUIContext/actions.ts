@@ -20,7 +20,7 @@ type AccountUIActionsCreator = (
  * @param injectedActions Implementation of network activities.
  * @param dispatch For updating reducer upon completion of network activities.
  */
-const AccountActionsCreator: AccountUIActionsCreator = (injectedActions, dispatch) => (): AccountUIActions => ({
+export const AccountActionsCreator: AccountUIActionsCreator = (injectedActions, dispatch) => (): AccountUIActions => ({
     initiateSecurity: async (): Promise<void> => {
         await injectedActions.initiateSecurity();
     },
@@ -82,5 +82,3 @@ const AccountActionsCreator: AccountUIActionsCreator = (injectedActions, dispatc
     },
     changePassword: injectedActions.changePassword,
 });
-
-export default AccountActionsCreator;

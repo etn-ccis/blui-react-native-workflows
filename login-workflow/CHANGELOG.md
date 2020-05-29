@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## v1.0.0
 ### Changed
 - Package published under the @pxblue scope and made publicly available
+- Removed internal theming to defer to the end-user application theme
+- Removed dependency on react-native-elements
 
 ## v0.2.3
 ### Added

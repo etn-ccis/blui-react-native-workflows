@@ -5,17 +5,12 @@
 
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import SplashScreen from './Splash';
+import { Splash as SplashScreen } from './Splash';
 import { useSecurityState, useSecurityActions } from '../contexts/SecurityContextProvider';
-import PreAuthContainer from './PreAuthContainer';
-import ChangePassword from '../screens/ChangePassword';
+import { PreAuthContainer } from './PreAuthContainer';
+import { ChangePassword } from '../screens/ChangePassword';
 
-// Theme
-import { ThemeProvider } from '@pxblue/react-native-components';
-import { blue as BlueTheme } from '@pxblue/react-native-themes';
-import { Provider as PaperProvider } from 'react-native-paper';
-import { paperBlueTheme } from '../helpers/paperBlueTheme';
-import { default as AuthUIInternalStore } from '../stores/AuthUIInternalStore';
+import { AuthUIInternalStore } from '../stores/AuthUIInternalStore';
 import { useInjectedUIContext } from '../contexts/AuthUIContextProvider';
 
 /**
@@ -53,7 +48,10 @@ type NavigationContainerComponentProps = React.ComponentProps<typeof NavigationC
  *
  * @category Component
  */
-function AuthNavigationContainer(props: NavigationContainerComponentProps, ref: any): JSX.Element {
+const AuthNavigationContainerRender: React.ForwardRefRenderFunction<{}, NavigationContainerComponentProps> = (
+    props: NavigationContainerComponentProps,
+    ref: any
+) => {
     const securityState = useSecurityState();
     const securityActions = useSecurityActions();
     const injectedContext = useInjectedUIContext();
@@ -73,15 +71,11 @@ function AuthNavigationContainer(props: NavigationContainerComponentProps, ref: 
     }
 
     const ChangePasswordScreen = (
-        <PaperProvider theme={paperBlueTheme}>
-            <ThemeProvider theme={BlueTheme}>
-                <ChangePassword
-                    onChangePassword={injectedContext.authActions().changePassword}
-                    onCancel={securityActions.hideChangePassword}
-                    onChangeComplete={securityActions.hideChangePassword}
-                />
-            </ThemeProvider>
-        </PaperProvider>
+        <ChangePassword
+            onChangePassword={injectedContext.authActions().changePassword}
+            onCancel={securityActions.hideChangePassword}
+            onChangeComplete={securityActions.hideChangePassword}
+        />
     );
 
     const appShouldBeVisible = securityState.isAuthenticatedUser && !securityState.isShowingChangePassword;
@@ -100,6 +94,6 @@ function AuthNavigationContainer(props: NavigationContainerComponentProps, ref: 
             )}
         </NavigationContainer>
     );
-}
+};
 
-export default React.forwardRef(AuthNavigationContainer);
+export const AuthNavigationContainer = React.forwardRef(AuthNavigationContainerRender);

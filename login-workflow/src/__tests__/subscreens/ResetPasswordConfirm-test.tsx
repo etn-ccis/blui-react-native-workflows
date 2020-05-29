@@ -4,7 +4,7 @@
 
 import React from 'react';
 import 'react-native';
-import ResetPasswordConfirm from '../../subScreens/ResetPasswordConfirm';
+import { ResetPasswordConfirm } from '../../subScreens/ResetPasswordConfirm';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
@@ -40,7 +40,6 @@ describe('ResetPasswordConfirm subScreen tested with enzyme', () => {
                         name="ResetPasswordConfirm"
                         component={ResetPasswordConfirm}
                         options={(): object => ({
-                            // eslint-disable-next-line react/display-name
                             header: (): JSX.Element => <></>,
                         })}
                     />

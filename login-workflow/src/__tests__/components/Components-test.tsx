@@ -7,7 +7,7 @@ import { View } from 'react-native';
 import { Checkbox } from '../../components/Checkbox';
 import { CloseHeader } from '../../components/CloseHeader';
 import { CybersecurityBadge } from '../../components/CybersecurityBadge';
-import ErrorState from '../../components/ErrorState';
+import { ErrorState } from '../../components/ErrorState';
 import { IconSplash } from '../../components/IconSplash';
 import { Instruction } from '../../components/Instruction';
 import { LoginHeaderSplash } from '../../components/LoginHeaderSplash';
@@ -32,7 +32,7 @@ describe('All components tested with enzyme', () => {
             .create(
                 <Checkbox
                     label={'Checkbox'}
-                    isChecked={false}
+                    checked={false}
                     onPress={(): void => {
                         /* do nothing */
                     }}
@@ -62,7 +62,17 @@ describe('All components tested with enzyme', () => {
     });
 
     it('ErrorState renders correctly', () => {
-        const rendered = renderer.create(<ErrorState />).toJSON();
+        const rendered = renderer
+            .create(
+                <ErrorState
+                    title={''}
+                    bodyText={''}
+                    onPress={(): void => {
+                        /* do nothing */
+                    }}
+                />
+            )
+            .toJSON();
         expect(rendered).toBeTruthy();
     });
 
@@ -122,7 +132,7 @@ describe('All components tested with enzyme', () => {
                     <SimpleDialog
                         title={'title'}
                         bodyText={'bodyText'}
-                        isVisible={true}
+                        visible={true}
                         onDismiss={(): void => {
                             /* do nothing */
                         }}

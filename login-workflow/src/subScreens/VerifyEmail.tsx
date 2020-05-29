@@ -9,24 +9,20 @@ import React from 'react';
 import { View, StyleSheet, SafeAreaView } from 'react-native';
 import { TextInput } from '../components/TextInput';
 import { Instruction } from '../components/Instruction';
-import { Button } from 'react-native-paper';
+import { Button, Theme, useTheme } from 'react-native-paper';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 // Hooks
 import { useLanguageLocale } from '../hooks/language-locale-hooks';
 
-// Styles
-import * as Colors from '@pxblue/colors';
-
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeContainerStyles = () =>
+const makeContainerStyles = (theme: Theme): Record<string, any> =>
     StyleSheet.create({
         safeContainer: {
             height: '100%',
-            backgroundColor: Colors.white['50'],
+            backgroundColor: theme.colors.surface,
         },
         mainContainer: {
             flex: 1,
@@ -44,8 +40,7 @@ const makeContainerStyles = () =>
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeStyles = () =>
+const makeStyles = (): Record<string, any> =>
     StyleSheet.create({
         inputMargin: {
             marginTop: 40,
@@ -57,10 +52,12 @@ const makeStyles = () =>
  *
  * @param verifyCodeChanged  Handle the verify code change action.
  * @param onResendVerificationEmail  Handle the press of the resend verification email.
+ * @param theme (Optional) react-native-paper theme partial for custom styling.
  */
 type VerifyEmailProps = {
     verifyCodeChanged(email: string): void;
     onResendVerificationEmail(): void;
+    theme?: Theme;
 };
 
 /**
@@ -69,17 +66,17 @@ type VerifyEmailProps = {
  *
  * @category Component
  */
-export default function VerifyEmail(props: VerifyEmailProps): JSX.Element {
+export const VerifyEmail: React.FC<VerifyEmailProps> = (props) => {
+    const { verifyCodeChanged, onResendVerificationEmail, theme: customTheme } = props;
+    const theme = useTheme(customTheme);
     const { t } = useLanguageLocale();
     const [verifyCode, setVerifyCode] = React.useState('');
 
     React.useEffect(() => {
-        props.verifyCodeChanged(verifyCode.length === 6 ? verifyCode : '');
+        verifyCodeChanged(verifyCode.length === 6 ? verifyCode : '');
+    }, [verifyCode, verifyCodeChanged]);
 
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [verifyCode]);
-
-    const containerStyles = makeContainerStyles();
+    const containerStyles = makeContainerStyles(theme);
     const styles = makeStyles();
 
     return (
@@ -103,7 +100,7 @@ export default function VerifyEmail(props: VerifyEmailProps): JSX.Element {
                         <Button
                             uppercase={false}
                             mode={'contained'}
-                            onPress={(): void => props.onResendVerificationEmail()}
+                            onPress={(): void => onResendVerificationEmail()}
                             style={styles.inputMargin}
                         >
                             {t('SELF_REGISTRATION.VERIFY_EMAIL.RESEND')}
@@ -113,4 +110,4 @@ export default function VerifyEmail(props: VerifyEmailProps): JSX.Element {
             </KeyboardAwareScrollView>
         </SafeAreaView>
     );
-}
+};

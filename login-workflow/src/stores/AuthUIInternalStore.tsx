@@ -12,9 +12,9 @@ import { RegistrationStateContext, RegistrationActionContext } from '../contexts
 import { registrationReducer, RegistrationActionsCreator } from '../contexts/RegistrationUIContext';
 import { initialRegistrationState } from '../contexts/RegistrationUIContext/state';
 import { useInjectedUIContext } from '../contexts/AuthUIContextProvider';
-import AccountActionsCreator from '../contexts/AccountUIContext/actions';
+import { AccountActionsCreator } from '../contexts/AccountUIContext/actions';
 
-const AuthUIInternalStore: React.FC = (props) => {
+export const AuthUIInternalStore: React.FC = (props) => {
     const injectedContext = useInjectedUIContext();
 
     // Setup the Authentication Items
@@ -48,5 +48,3 @@ const AuthUIInternalStore: React.FC = (props) => {
         </AccountUIActionContext.Provider>
     );
 };
-
-export default AuthUIInternalStore;
