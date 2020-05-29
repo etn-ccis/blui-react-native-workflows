@@ -6,6 +6,7 @@
 import { AuthUIActions } from './authTypes';
 import { RegistrationUIActions } from './registrationTypes';
 import { ImageSourcePropType } from 'react-native';
+import { PasswordRequirement } from '../../types/ResetPasswordParams';
 
 /**
  * The application provides various action functions and properties
@@ -37,6 +38,10 @@ type AuthUIContextProviderProps = {
      * Title of the application.
      */
     title?: string;
+    /**
+     * Title of the application.
+     */
+    passwordRequirements?: PasswordRequirement[];
     /**
      * Project image shown on splash screen and login screen.
      *

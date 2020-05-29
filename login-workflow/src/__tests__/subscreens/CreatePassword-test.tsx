@@ -11,6 +11,11 @@ import { CreatePassword } from '../../subScreens/CreatePassword';
 import renderer from 'react-test-renderer';
 import { TextInputHTMLAttributes } from '../../types/TextInputHTMLAttributes';
 
+jest.mock('src/contexts/AuthUIContextProvider', () => ({
+    useAuthUIActions: (): any => ({ dispatch: jest.fn(() => true) }),
+    useInjectedUIContext: jest.fn().mockReturnValue({ showSelfRegistration: true }),
+}));
+
 describe('CreatePassword subScreen tested with enzyme', () => {
     const act = renderer.act;
 

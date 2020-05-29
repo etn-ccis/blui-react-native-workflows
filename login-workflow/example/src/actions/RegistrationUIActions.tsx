@@ -12,7 +12,7 @@ function getRandomInt(max: number): number {
 
 function isRandomFailure(): boolean {
     const randomResponseNumber = getRandomInt(100);
-    return randomResponseNumber < 90;
+    return false; // randomResponseNumber < 90;
 }
 
 /**

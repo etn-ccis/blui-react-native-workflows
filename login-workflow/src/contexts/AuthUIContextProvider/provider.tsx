@@ -22,6 +22,7 @@ export const AuthUIContextProvider: React.FC<AuthUIContextProviderProps> = (prop
             projectImage: props.projectImage,
             contactEmail: props.contactEmail,
             contactPhone: props.contactPhone,
+            passwordRequirements: props.passwordRequirements,
         };
 
         return propsForContext;
@@ -30,6 +31,7 @@ export const AuthUIContextProvider: React.FC<AuthUIContextProviderProps> = (prop
         props.authActions,
         props.contactEmail,
         props.contactPhone,
+        props.passwordRequirements,
         props.projectImage,
         props.registrationActions,
         props.showSelfRegistration,
