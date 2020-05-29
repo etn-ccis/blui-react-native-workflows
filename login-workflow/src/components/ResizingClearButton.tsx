@@ -7,16 +7,16 @@ import React from 'react';
 
 // Components
 import { View, StyleSheet, TouchableHighlight, StyleProp, ViewStyle } from 'react-native';
+import { Theme, useTheme } from 'react-native-paper';
 import { Label } from '@pxblue/react-native-components';
 
 // Styles
-import * as Colors from '@pxblue/colors';
+import color from 'color';
 
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeStyles = (fontSize: number) =>
+const makeStyles = (theme: Theme, fontSize: number): Record<string, any> =>
     StyleSheet.create({
         container: {
             paddingVertical: 10,
@@ -29,7 +29,7 @@ const makeStyles = (fontSize: number) =>
             textAlign: 'center',
             alignSelf: 'center',
             fontSize: fontSize,
-            color: Colors.blue['500'],
+            color: theme.colors.primary,
             fontWeight: '500',
         },
     });
@@ -40,6 +40,8 @@ const makeStyles = (fontSize: number) =>
  * @param style  (Optional) Custom style to style the button.
  * @param fontSize  (Optional) The font size of the text in the button. Default 16.
  * @param numberOfLines  (Optional) The number of lines of text in the button. Default 1.
+ * @param theme (Optional) react-native-paper theme partial to style the component.
+ *
  */
 export type ResizingClearButtonProps = {
     title: string;
@@ -47,6 +49,7 @@ export type ResizingClearButtonProps = {
     style?: StyleProp<ViewStyle>;
     fontSize?: number;
     numberOfLines?: number;
+    theme?: Theme;
 };
 
 /**
@@ -56,23 +59,23 @@ export type ResizingClearButtonProps = {
  *
  * @category Component
  */
-export function ResizingClearButton(props: ResizingClearButtonProps): JSX.Element {
-    const fontSize = props.fontSize ?? 16;
-    const numberOfLines = props.numberOfLines ?? 1;
+export const ResizingClearButton: React.FC<ResizingClearButtonProps> = (props) => {
+    const { title, onPress, style, fontSize = 16, numberOfLines = 1 } = props;
+    const theme = useTheme(props.theme);
     const [currentFont, setCurrentFont] = React.useState(fontSize); // This is for Android
 
-    const styles = makeStyles(fontSize);
+    const styles = makeStyles(theme, fontSize);
 
     return (
         <TouchableHighlight
             style={[styles.container]}
-            underlayColor={Colors.blue['50']}
+            underlayColor={color(theme.colors.primary).alpha(0.16).rgb().string()} // same transform used by RNP buttons
             onPress={(): void => {
-                props.onPress();
+                onPress();
             }}
             accessibilityRole={'button'}
         >
-            <View style={props.style}>
+            <View style={style}>
                 <Label
                     allowFontScaling={true} // iOS only
                     adjustsFontSizeToFit // iOS only
@@ -88,9 +91,9 @@ export function ResizingClearButton(props: ResizingClearButtonProps): JSX.Elemen
                         }
                     }}
                 >
-                    {props.title}
+                    {title}
                 </Label>
             </View>
         </TouchableHighlight>
     );
-}
+};

@@ -14,14 +14,14 @@ import { useLanguageLocale } from '../../hooks/language-locale-hooks';
 import { useAccountUIActions, useAccountUIState, AccountActions } from '../../contexts/AccountUIContext';
 
 // Screens
-import ResetPasswordConfirm from '../../subScreens/ResetPasswordConfirm';
-import ResetPasswordSuccess from '../../subScreens/ResetPasswordSuccess';
+import { ResetPasswordConfirm } from '../../subScreens/ResetPasswordConfirm';
+import { ResetPasswordSuccess } from '../../subScreens/ResetPasswordSuccess';
 
 // Components
 import { View } from 'react-native';
-import CloseHeader from '../../components/CloseHeader';
+import { CloseHeader } from '../../components/CloseHeader';
 import { Spinner } from '../../components/Spinner';
-import ErrorState from '../../components/ErrorState';
+import { ErrorState } from '../../components/ErrorState';
 
 /**
  * Stack navigator for reset password handle deep link navigation.
@@ -37,7 +37,7 @@ type ResetPasswordHandleDeepLinkParams = {
  *
  * @category Component
  */
-function ResetPasswordHandleDeepLink(): JSX.Element {
+export const ResetPasswordHandleDeepLink: React.FC = () => {
     const { t } = useLanguageLocale();
     const accountUIState = useAccountUIState();
     const accountUIActions = useAccountUIActions();
@@ -59,14 +59,13 @@ function ResetPasswordHandleDeepLink(): JSX.Element {
     const verifyComplete = verifyResetCodeTransit.transitComplete;
 
     // Reset state on dismissal
-    // eslint-disable-next-line arrow-body-style
-    React.useEffect(() => {
-        return (): void => {
+    React.useEffect(
+        () => (): void => {
             accountUIActions.dispatch(AccountActions.setPasswordReset());
             accountUIActions.dispatch(AccountActions.verifyResetCodeReset());
-        };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+        }, // eslint-disable-next-line react-hooks/exhaustive-deps
+        []
+    );
 
     React.useEffect(() => {
         if (!verifyIsInTransit && !verifyComplete && verifyCode.length > 0) {
@@ -86,9 +85,8 @@ function ResetPasswordHandleDeepLink(): JSX.Element {
                     name="ResetPasswordConfirm"
                     initialParams={{ onResetPasswordPress: resetPassword }}
                     component={ResetPasswordConfirm}
-                    // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-                    options={() => ({
-                        header: (): JSX.Element =>
+                    options={(): { header: () => JSX.Element | null } => ({
+                        header: (): JSX.Element | null =>
                             CloseHeader({
                                 title: t('FORMS.RESET_PASSWORD'),
                                 backAction: () => {
@@ -101,9 +99,8 @@ function ResetPasswordHandleDeepLink(): JSX.Element {
                 <Stack.Screen
                     name="ResetPasswordSuccess"
                     component={ResetPasswordSuccess}
-                    // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-                    options={() => ({
-                        header: (): JSX.Element =>
+                    options={(): { header: () => JSX.Element | null } => ({
+                        header: (): JSX.Element | null =>
                             CloseHeader({
                                 title: t('FORMS.RESET_PASSWORD'),
                                 backAction: () => {
@@ -125,13 +122,10 @@ function ResetPasswordHandleDeepLink(): JSX.Element {
             <ErrorState
                 title={t('MESSAGES.FAILURE')}
                 bodyText={validationTransitErrorMessage}
-                icon={'report'}
                 onPress={(): void => {
                     navigation.navigate('Login');
                 }}
             />
         </View>
     );
-}
-
-export default ResetPasswordHandleDeepLink;
+};

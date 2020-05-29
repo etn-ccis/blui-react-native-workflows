@@ -5,9 +5,9 @@
 
 import React from 'react';
 import { AuthUIContextProviderProps } from './types';
-import AuthUIContext from './context';
+import { AuthUIContext } from './context';
 
-function AuthUIContextProvider(props: AuthUIContextProviderProps & { children: React.ReactNode }): JSX.Element {
+export const AuthUIContextProvider: React.FC<AuthUIContextProviderProps> = (props) => {
     // Extract the needed properties out
     // Context value will not change unless a sub function is changed
     // NOTE: When adding new props to AuthUIContextProviderProps be sure
@@ -39,6 +39,4 @@ function AuthUIContextProvider(props: AuthUIContextProviderProps & { children: R
     ]);
 
     return <AuthUIContext.Provider value={memoizedProps}>{props.children}</AuthUIContext.Provider>;
-}
-
-export { AuthUIContextProvider };
+};

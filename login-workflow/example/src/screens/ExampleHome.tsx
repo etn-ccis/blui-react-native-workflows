@@ -1,8 +1,7 @@
 import React from 'react';
 import { View, SafeAreaView } from 'react-native';
 import { useSecurityActions, useSecurityState } from '@pxblue/react-native-auth-workflow';
-//@ts-ignore TODO: Find a way to get the types for this
-import { ToggleButton } from '@pxblue/react-native-auth-workflow/lib/module/components/ToggleButton';
+import { Button } from 'react-native-paper';
 import * as Colors from '@pxblue/colors';
 import { LocalStorage } from '../store/local-storage';
 import { EmptyState, wrapIcon, Header } from '@pxblue/react-native-components';
@@ -31,14 +30,13 @@ export const ExampleHome: React.FC = () => {
                             IconClass={Welcome}
                         />
                     </View>
-                    <ToggleButton
-                        text={'Change Password'}
-                        isOutlineOnly
-                        style={{ marginBottom: 20 }}
-                        onPress={securityHelper.showChangePassword}
-                    />
+                    <Button mode={'outlined'} style={{ marginBottom: 20 }} onPress={securityHelper.showChangePassword}>
+                        Change Password
+                    </Button>
                     {/* TODO These components need to be properly themed */}
-                    <ToggleButton text={'Log Out'} onPress={logOut} />
+                    <Button mode={'contained'} onPress={logOut}>
+                        Log Out
+                    </Button>
                 </View>
             </SafeAreaView>
         </>

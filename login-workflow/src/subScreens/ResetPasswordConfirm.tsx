@@ -9,6 +9,7 @@ import React from 'react';
 import { useLanguageLocale } from '../hooks/language-locale-hooks';
 import { useRoute } from '@react-navigation/native';
 import { useAccountUIState } from '../contexts/AccountUIContext';
+import { Theme, useTheme } from 'react-native-paper';
 
 // Components
 import { View, StyleSheet, SafeAreaView } from 'react-native';
@@ -18,18 +19,14 @@ import { Spinner } from '../components/Spinner';
 import { SimpleDialog } from '../components/SimpleDialog';
 import { ToggleButton } from '../components/ToggleButton';
 
-// Styles
-import * as Colors from '@pxblue/colors';
-
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeContainerStyles = () =>
+const makeContainerStyles = (theme: Theme): Record<string, any> =>
     StyleSheet.create({
         safeContainer: {
             height: '100%',
-            backgroundColor: Colors.white['50'],
+            backgroundColor: theme.colors.surface,
         },
         mainContainer: {
             flex: 1,
@@ -42,7 +39,7 @@ const makeContainerStyles = () =>
             justifyContent: 'space-between',
         },
         bottomButton: {
-            backgroundColor: 'white',
+            backgroundColor: theme.colors.surface,
             paddingTop: 10,
         },
     });
@@ -50,8 +47,7 @@ const makeContainerStyles = () =>
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeStyles = () =>
+const makeStyles = (): Record<string, any> =>
     StyleSheet.create({
         bottomButton: {
             marginBottom: 10,
@@ -68,12 +64,22 @@ type ResetPasswordConfirmParams = {
 };
 
 /**
+ * Handle the props for the Reset Password Confirm page.
+ *
+ * @param theme (Optional) react-native-paper theme partial for custom styling.
+ */
+type ResetPasswordConfirmProps = {
+    theme?: Theme;
+};
+
+/**
  * Renders the screen with the reset password confirmation message
  * (contains 2 password inputs).
  *
  * @category Component
  */
-export function ResetPasswordConfirm(): JSX.Element {
+export const ResetPasswordConfirm: React.FC<ResetPasswordConfirmProps> = (props) => {
+    const theme = useTheme(props.theme);
     const [password, setPassword] = React.useState('');
     const [hasAcknowledgedError, setHasAcknowledgedError] = React.useState(false);
     const { t } = useLanguageLocale();
@@ -81,7 +87,7 @@ export function ResetPasswordConfirm(): JSX.Element {
     const route = useRoute();
     const routeParams = route.params as ResetPasswordConfirmParams;
 
-    const containerStyles = makeContainerStyles();
+    const containerStyles = makeContainerStyles(theme);
     const styles = makeStyles();
 
     // Network state (setPassword)
@@ -99,9 +105,9 @@ export function ResetPasswordConfirm(): JSX.Element {
     const canProgress = (): boolean => password.length > 0;
     const errorDialog = (
         <SimpleDialog
-            title={'Error'}
+            title={t('MESSAGES.ERROR')}
             bodyText={setPasswordTransitErrorMessage}
-            isVisible={setPasswordHasTransitError && !hasAcknowledgedError}
+            visible={setPasswordHasTransitError && !hasAcknowledgedError}
             onDismiss={(): void => {
                 setHasAcknowledgedError(true);
             }}
@@ -127,5 +133,4 @@ export function ResetPasswordConfirm(): JSX.Element {
             </View>
         </SafeAreaView>
     );
-}
-export default ResetPasswordConfirm;
+};

@@ -24,7 +24,7 @@ export type Action =
  * @param prevState Previous [[SecurityContextState]] to update.
  * @param action State change action, which should be of type [[Action]].
  */
-export function reducer(prevState: SecurityContextState, action: Action): SecurityContextState {
+export const reducer = (prevState: SecurityContextState, action: Action): SecurityContextState => {
     switch (action.type) {
         case 'userAuthenticated':
             return {
@@ -77,4 +77,4 @@ export function reducer(prevState: SecurityContextState, action: Action): Securi
         default:
             return prevState;
     }
-}
+};

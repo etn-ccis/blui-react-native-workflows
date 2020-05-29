@@ -4,7 +4,7 @@
 
 import React from 'react';
 import 'react-native';
-import ResetPasswordSent from '../../subScreens/ResetPasswordSent';
+import { ResetPasswordSent } from '../../subScreens/ResetPasswordSent';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
@@ -23,7 +23,6 @@ describe('ResetPasswordSent subScreen tested with enzyme', () => {
                         name="ResetPasswordSent"
                         component={ResetPasswordSent}
                         options={(): object => ({
-                            // eslint-disable-next-line react/display-name
                             header: (): JSX.Element => <></>,
                         })}
                         initialParams={{ email: 'some@email.com' }}

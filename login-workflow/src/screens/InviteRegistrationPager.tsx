@@ -3,7 +3,7 @@
  * @module Screens
  */
 
-import * as React from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 // Nav
 import { useNavigation, useRoute } from '@react-navigation/native';
@@ -18,24 +18,25 @@ import {
 import i18n from '../data/translations/i18n';
 
 // Screens
-import Eula from '../subScreens/Eula';
+import { Eula as EulaScreen } from '../subScreens/Eula';
 import { CreatePassword as CreatePasswordScreen } from '../subScreens/CreatePassword';
 import {
     AccountDetails as AccountDetailsScreen,
     AccountDetailInformation,
     emptyAccountDetailInformation,
 } from '../subScreens/AccountDetails';
-import RegistrationComplete from '../subScreens/RegistrationComplete';
+import { RegistrationComplete } from '../subScreens/RegistrationComplete';
 
 // Components
 import { View, StyleSheet, SafeAreaView, BackHandler } from 'react-native';
+import { Theme, useTheme } from 'react-native-paper';
 import ViewPager from '@react-native-community/viewpager';
 import { CloseHeader } from '../components/CloseHeader';
 import { PageIndicator } from '../components/PageIndicator';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Spinner } from '../components/Spinner';
 import { SimpleDialog } from '../components/SimpleDialog';
-import ErrorState from '../components/ErrorState';
+import { ErrorState } from '../components/ErrorState';
 import { ToggleButton } from '../components/ToggleButton';
 
 // Styles
@@ -44,12 +45,11 @@ import * as Colors from '@pxblue/colors';
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeContainerStyles = () =>
+const makeContainerStyles = (theme: Theme): Record<string, any> =>
     StyleSheet.create({
         safeContainer: {
             height: '100%',
-            backgroundColor: Colors.white['50'],
+            backgroundColor: theme.colors.surface,
         },
         mainContainer: {
             flex: 1,
@@ -74,8 +74,7 @@ const makeContainerStyles = () =>
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeStyles = () =>
+const makeStyles = (): Record<string, any> =>
     StyleSheet.create({
         sideBySideButtons: {
             flexDirection: 'row',
@@ -99,31 +98,39 @@ type InviteRegistrationPagerParams = {
 };
 
 /**
+ * @param theme (Optional) react-native-paper theme partial to style the component.
+ */
+type InviteRegistrationPagerProps = {
+    theme?: Theme;
+};
+
+enum Pages {
+    Eula = 0,
+    CreatePassword,
+    AccountDetails,
+    Complete,
+    __LENGTH,
+}
+
+/**
  * Pager controlling the user registration via invitation screen flow.
  *
  * @category Component
  */
-function InviteRegistrationPager(): JSX.Element {
-    enum Pages /* eslint-disable no-shadow */ {
-        Eula = 0,
-        CreatePassword,
-        AccountDetails,
-        Complete,
-        __LENGTH,
-    }
-
+export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (props) => {
     const { t } = useLanguageLocale();
     const navigation = useNavigation();
     const registrationState = useRegistrationUIState();
     const registrationActions = useRegistrationUIActions();
+    const theme = useTheme(props.theme);
 
-    const [hasAcknowledgedError, setHasAcknowledgedError] = React.useState(false);
+    const [hasAcknowledgedError, setHasAcknowledgedError] = useState(false);
 
-    const [eulaAccepted, setEulaAccepted] = React.useState(false);
-    const [password, setPassword] = React.useState('');
-    const [accountDetails, setAccountDetails] = React.useState<AccountDetailInformation | null>(null);
-    const [eulaContent, setEulaContent] = React.useState<string>();
-    const [currentPage, setCurrentPage] = React.useState(Pages.Eula);
+    const [eulaAccepted, setEulaAccepted] = useState(false);
+    const [password, setPassword] = useState('');
+    const [accountDetails, setAccountDetails] = useState<AccountDetailInformation | null>(null);
+    const [eulaContent, setEulaContent] = useState<string>();
+    const [currentPage, setCurrentPage] = useState(Pages.Eula);
 
     const viewPager = React.createRef<ViewPager>();
 
@@ -132,14 +139,13 @@ function InviteRegistrationPager(): JSX.Element {
     const validationCode = routeParams?.validationCode ?? 'NoCodeEntered';
 
     // Reset registration and validation state on dismissal
-    // eslint-disable-next-line arrow-body-style
-    React.useEffect(() => {
-        return (): void => {
+    useEffect(
+        () => (): void => {
             registrationActions.dispatch(RegistrationActions.registerUserReset());
             registrationActions.dispatch(RegistrationActions.validateUserRegistrationReset());
-        };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+        },
+        [] // eslint-disable-line react-hooks/exhaustive-deps
+    );
 
     // Network state (registration)
     const registrationTransit = registrationState.inviteRegistration.registrationTransit;
@@ -148,7 +154,7 @@ function InviteRegistrationPager(): JSX.Element {
     const registrationTransitErrorMessage = registrationTransit.transitErrorMessage ?? t('MESSAGES.REQUEST_ERROR');
     const registrationSuccess = registrationState.inviteRegistration.registrationTransit.transitSuccess;
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (currentPage === Pages.AccountDetails && registrationSuccess) {
             setCurrentPage(Pages.Complete);
         }
@@ -164,7 +170,7 @@ function InviteRegistrationPager(): JSX.Element {
     // Network state (loading eula)
     const loadEulaTransitErrorMessage = registrationState.eulaTransit.transitErrorMessage;
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (!isValidationInTransit && !validationComplete && validationCode.length > 0) {
             setHasAcknowledgedError(false);
             registrationActions.actions.validateUserRegistrationRequest(validationCode);
@@ -175,26 +181,25 @@ function InviteRegistrationPager(): JSX.Element {
     const spinner = registrationIsInTransit || isValidationInTransit ? <Spinner /> : <></>;
 
     // View pager
-    React.useEffect(() => {
-        if (currentPage === Pages.Complete) {
-            // eslint-disable-next-line no-unused-expressions
-            viewPager?.current?.setPageWithoutAnimation(currentPage);
-        } else {
-            // eslint-disable-next-line no-unused-expressions
-            viewPager?.current?.setPage(currentPage);
+    useEffect(() => {
+        if (viewPager && viewPager.current) {
+            if (currentPage === Pages.Complete) {
+                viewPager.current.setPageWithoutAnimation(currentPage);
+            } else {
+                viewPager.current.setPage(currentPage);
+            }
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentPage, viewPager, registrationSuccess]);
 
     // Styling
-    const containerStyles = makeContainerStyles();
+    const containerStyles = makeContainerStyles(theme);
     const styles = makeStyles();
 
     const errorDialog = (
         <SimpleDialog
-            title={'Error'}
+            title={t('MESSAGES.ERROR')}
             bodyText={t(registrationTransitErrorMessage)}
-            isVisible={hasRegistrationTransitError && !hasAcknowledgedError}
+            visible={hasRegistrationTransitError && !hasAcknowledgedError}
             onDismiss={(): void => {
                 setHasAcknowledgedError(true);
             }}
@@ -216,7 +221,7 @@ function InviteRegistrationPager(): JSX.Element {
     const isLastStep = currentPage === Pages.__LENGTH - 1;
     const isFirstStep = currentPage === 0;
 
-    const attemptRegistration = async (): Promise<void> => {
+    const attemptRegistration = useCallback(async (): Promise<void> => {
         setHasAcknowledgedError(false);
         try {
             await registrationActions.actions.completeRegistration(
@@ -229,9 +234,9 @@ function InviteRegistrationPager(): JSX.Element {
         } catch {
             // do nothing
         }
-    };
+    }, [registrationActions, setHasAcknowledgedError, accountDetails, password, validationCode]);
 
-    const canProgress = (): boolean => {
+    const canProgress = useCallback((): boolean => {
         switch (currentPage) {
             case Pages.Eula:
                 return eulaAccepted;
@@ -244,9 +249,9 @@ function InviteRegistrationPager(): JSX.Element {
             default:
                 return false;
         }
-    };
+    }, [currentPage, accountDetails, eulaAccepted, password]);
 
-    const canGoBackProgress = (): boolean => {
+    const canGoBackProgress = useCallback((): boolean => {
         switch (currentPage) {
             case Pages.Eula:
                 return false;
@@ -255,25 +260,37 @@ function InviteRegistrationPager(): JSX.Element {
             default:
                 return true;
         }
-    };
+    }, [currentPage]);
 
-    function advancePage(delta = 0): void {
-        if (delta === 0) {
-            return;
-        } else if (isFirstStep && delta < 0) {
-            navigation.navigate('Login');
-        } else if (isLastStep && delta > 0) {
-            navigation.navigate('Login');
-        } else {
-            // If this is the last user-entry step of the invite flow, it is time to make a network call
-            // Check > 0 so advancing backwards does not risk going into the completion block
-            if (currentPage === Pages.AccountDetails && !registrationSuccess && canProgress() && delta > 0) {
-                attemptRegistration();
+    const advancePage = useCallback(
+        (delta = 0): void => {
+            if (delta === 0) {
+                return;
+            } else if (isFirstStep && delta < 0) {
+                navigation.navigate('Login');
+            } else if (isLastStep && delta > 0) {
+                navigation.navigate('Login');
             } else {
-                setCurrentPage(currentPage + delta);
+                // If this is the last user-entry step of the invite flow, it is time to make a network call
+                // Check > 0 so advancing backwards does not risk going into the completion block
+                if (currentPage === Pages.AccountDetails && !registrationSuccess && canProgress() && delta > 0) {
+                    attemptRegistration();
+                } else {
+                    setCurrentPage(currentPage + (delta as number));
+                }
             }
-        }
-    }
+        },
+        [
+            isFirstStep,
+            navigation,
+            isLastStep,
+            currentPage,
+            registrationSuccess,
+            canProgress,
+            attemptRegistration,
+            setCurrentPage,
+        ]
+    );
 
     const pageTitle = (): string => {
         if (isValidationInTransit) {
@@ -296,7 +313,7 @@ function InviteRegistrationPager(): JSX.Element {
     };
 
     // Navigate appropriately with the hardware back button on android
-    React.useEffect(() => {
+    useEffect(() => {
         const onBackPress = (): boolean => {
             if (isFirstStep) {
                 navigation.navigate('Login');
@@ -310,8 +327,7 @@ function InviteRegistrationPager(): JSX.Element {
 
         BackHandler.addEventListener('hardwareBackPress', onBackPress);
         return (): void => BackHandler.removeEventListener('hardwareBackPress', onBackPress);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [currentPage]);
+    }, [currentPage, canGoBackProgress, advancePage, isFirstStep, isLastStep, navigation]);
 
     let buttonArea: JSX.Element;
     if (isLastStep) {
@@ -331,22 +347,20 @@ function InviteRegistrationPager(): JSX.Element {
                     <View style={{ flex: 1 }}>
                         <ToggleButton
                             text={t('ACTIONS.BACK')}
-                            style={{ width: 100 }}
-                            isOutlineOnly={true}
+                            style={{ width: 100, alignSelf: 'flex-start' }}
+                            outlined={true}
                             disabled={!canGoBackProgress()}
                             onPress={(): void => advancePage(-1)}
                         />
                     </View>
                     <PageIndicator currentPage={currentPage} totalPages={Pages.__LENGTH} />
                     <View style={{ flex: 1 }}>
-                        <View style={{ flex: 1 }}>
-                            <ToggleButton
-                                text={t('ACTIONS.NEXT')}
-                                style={{ width: 100, alignSelf: 'flex-end' }}
-                                disabled={!canProgress()}
-                                onPress={(): void => advancePage(1)}
-                            />
-                        </View>
+                        <ToggleButton
+                            text={t('ACTIONS.NEXT')}
+                            style={{ width: 100, alignSelf: 'flex-end' }}
+                            disabled={!canProgress()}
+                            onPress={(): void => advancePage(1)}
+                        />
                     </View>
                 </View>
             </View>
@@ -359,7 +373,7 @@ function InviteRegistrationPager(): JSX.Element {
             {errorDialog}
 
             <CloseHeader title={pageTitle()} backAction={(): void => navigation.goBack()} />
-            <SafeAreaView style={[containerStyles.spaceBetween, { backgroundColor: 'white' }]}>
+            <SafeAreaView style={[containerStyles.spaceBetween, { backgroundColor: theme.colors.surface }]}>
                 <ViewPager
                     ref={viewPager}
                     initialPage={0}
@@ -367,7 +381,7 @@ function InviteRegistrationPager(): JSX.Element {
                     transitionStyle="scroll"
                     style={{ flex: 1 }}
                 >
-                    <Eula
+                    <EulaScreen
                         eulaAccepted={eulaAccepted}
                         onEulaChanged={setEulaAccepted}
                         loadEula={loadAndCacheEula}
@@ -402,13 +416,10 @@ function InviteRegistrationPager(): JSX.Element {
             <ErrorState
                 title={t('MESSAGES.FAILURE')}
                 bodyText={validationTransitErrorMessage}
-                icon={'report'}
                 onPress={(): void => {
                     navigation.navigate('Login');
                 }}
             />
         </View>
     );
-}
-
-export default InviteRegistrationPager;
+};

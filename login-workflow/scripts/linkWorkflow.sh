@@ -9,7 +9,8 @@ BGREEN='\033[1;32m' #BOLD
 GRAY='\033[1;30m'
 NC='\033[0m' # No Color
 
-echo -e "${BLUE}Linking workflow package...${NC}"
+echo -e "${BLUE}Building workflow package...${NC}"
+yarn build
 
 echo -en "${BLUE}Creating new folder in node_modules...${NC}"
 rm -rf "./example/node_modules/@pxblue/react-native-auth-workflow"

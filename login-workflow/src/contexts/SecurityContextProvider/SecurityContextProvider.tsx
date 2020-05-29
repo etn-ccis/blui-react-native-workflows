@@ -18,13 +18,13 @@ const DispatchContext = React.createContext<SecurityContextActions | null>(null)
  * NOTE: Must be used inside of a [[SecurityContextProvider]].
  * @category Hooks
  */
-function useSecurityState(): SecurityContextState {
+const useSecurityState = (): SecurityContextState => {
     const context = React.useContext(StateContext);
     if (context === null) {
         throw new Error('useSecurityState must be used within an SecurityContextProvider');
     }
     return context;
-}
+};
 
 /**
  * A hook to get the security actions (on authenticated / on not authenticated).
@@ -32,13 +32,13 @@ function useSecurityState(): SecurityContextState {
  * NOTE: Must be used inside of a [[SecurityContextProvider]].
  * @category Hooks
  */
-function useSecurityActions(): SecurityContextActions {
+const useSecurityActions = (): SecurityContextActions => {
     const context = React.useContext(DispatchContext);
     if (context === null) {
         throw new Error('useSecurityActions must be used within an SecurityContextProvider');
     }
     return context;
-}
+};
 
 /**
  *  Provides a wrapper for the security state and security actions.
@@ -46,7 +46,7 @@ function useSecurityActions(): SecurityContextActions {
  *  @public
  *  @category Component
  */
-function SecurityContextProvider(props: { children: React.ReactNode }): JSX.Element {
+const SecurityContextProvider: React.FC = (props) => {
     const initialContextState: SecurityContextState = {
         userId: undefined,
         email: undefined,
@@ -109,6 +109,6 @@ function SecurityContextProvider(props: { children: React.ReactNode }): JSX.Elem
             <DispatchContext.Provider value={memoizedAuthHelper}>{props.children}</DispatchContext.Provider>
         </StateContext.Provider>
     );
-}
+};
 
 export { SecurityContextProvider, DispatchContext as SecurityActionContext, useSecurityState, useSecurityActions };

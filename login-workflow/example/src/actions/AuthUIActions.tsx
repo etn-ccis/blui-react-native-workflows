@@ -10,7 +10,7 @@ function getRandomInt(max: number): number {
 
 function isRandomFailure(): boolean {
     const randomResponseNumber = getRandomInt(100);
-    return false; //false;//randomResponseNumber < 10;
+    return false; // randomResponseNumber < 10;
 }
 
 type AuthUIActionsFunction = () => AuthUIActions;
@@ -23,7 +23,7 @@ type AuthUIActionsWithSecurity = (securityHelper: SecurityContextActions) => Aut
  * appropriate actions (often api calls, local network storage, credential updates, etc) and update
  * the global security state based on the actionable needs of the user.
  */
-const ProjectAuthUIActions: AuthUIActionsWithSecurity = (securityHelper) => (): AuthUIActions => ({
+export const ProjectAuthUIActions: AuthUIActionsWithSecurity = (securityHelper) => (): AuthUIActions => ({
     /**
      * Initialize the application security state. This will involve reading any local storage,
      * validating existing credentials (token expiration, for example). At the end of validation,
@@ -174,5 +174,3 @@ const ProjectAuthUIActions: AuthUIActionsWithSecurity = (securityHelper) => (): 
         return;
     },
 });
-
-export default ProjectAuthUIActions;

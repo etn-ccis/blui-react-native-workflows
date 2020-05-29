@@ -6,12 +6,13 @@
 import React from 'react';
 
 import { View, Image, StyleSheet, ImageProps, StyleProp, ViewStyle } from 'react-native';
+// @ts-ignore
+import CyberLogo from '../assets/images/cybersecurity_certified.png';
 
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeStyles = () =>
+const makeStyles = (): Record<string, any> =>
     StyleSheet.create({
         logoCyber: {
             maxHeight: 85,
@@ -41,16 +42,12 @@ type CybersecurityBadgeProps = {
  *
  * @category Component
  */
-export function CybersecurityBadge(props: CybersecurityBadgeProps): JSX.Element {
+export const CybersecurityBadge: React.FC<CybersecurityBadgeProps> = (props) => {
     const styles = makeStyles();
 
     return (
         <View style={[styles.logoCyber, props.containerStyle]}>
-            <Image
-                resizeMethod="resize"
-                source={require('../assets/images/cybersecurity_certified.png')}
-                style={[styles.svg, props.imageStyle]}
-            />
+            <Image resizeMethod="resize" source={CyberLogo} style={[styles.svg, props.imageStyle]} />
         </View>
     );
-}
+};

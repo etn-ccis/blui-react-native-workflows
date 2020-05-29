@@ -21,7 +21,7 @@ type RegistrationUIActionsCreator = (
  * @param injectedActions Implementation of network activities.
  * @param dispatch For updating reducer upon completion of network activities.
  */
-const RegistrationActionsCreator: RegistrationUIActionsCreator = (
+export const RegistrationActionsCreator: RegistrationUIActionsCreator = (
     injectedActions,
     dispatch
 ) => (): RegistrationUIActions => ({
@@ -76,5 +76,3 @@ const RegistrationActionsCreator: RegistrationUIActionsCreator = (
         }
     },
 });
-
-export default RegistrationActionsCreator;

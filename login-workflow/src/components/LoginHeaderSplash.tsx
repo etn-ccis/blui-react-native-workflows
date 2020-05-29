@@ -14,8 +14,7 @@ import * as Colors from '@pxblue/colors';
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeStyles = () =>
+const makeStyles = (): Record<string, any> =>
     StyleSheet.create({
         headerImageContainer: {
             width: '70%',
@@ -61,16 +60,17 @@ type LoginHeaderSplashProps = {
  *
  * @category Component
  */
-export function LoginHeaderSplash(props: LoginHeaderSplashProps): JSX.Element {
+export const LoginHeaderSplash: React.FC<LoginHeaderSplashProps> = (props) => {
+    const { style, mainImage } = props;
     const styles = makeStyles();
 
     return (
         <>
-            <View style={props.style}>
+            <View style={style}>
                 <View style={styles.headerImageContainer}>
                     <Image
                         resizeMethod="resize"
-                        source={props.mainImage ?? require('../assets/images/eaton_stacked_logo.png')}
+                        source={mainImage ?? require('../assets/images/eaton_stacked_logo.png')}
                         style={styles.headerImage}
                     />
                 </View>
@@ -82,4 +82,4 @@ export function LoginHeaderSplash(props: LoginHeaderSplashProps): JSX.Element {
             />
         </>
     );
-}
+};

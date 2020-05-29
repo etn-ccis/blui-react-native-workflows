@@ -36,7 +36,8 @@ type PasswordRequirementsProps = {
  *
  * @category Component
  */
-export const PasswordRequirements = (props: PasswordRequirementsProps): JSX.Element => {
+export const PasswordRequirements: React.FC<PasswordRequirementsProps> = (props) => {
+    const { passwordText, style } = props;
     const { t } = useLanguageLocale();
     const defaultRequirements: PasswordRequirement[] = [
         {
@@ -64,12 +65,12 @@ export const PasswordRequirements = (props: PasswordRequirementsProps): JSX.Elem
     const { passwordRequirements = defaultRequirements } = useInjectedUIContext();
 
     return (
-        <View style={props.style}>
+        <View style={style}>
             {passwordRequirements.map((req, ind) => (
                 <RequirementCheck
                     key={`password_requirement_${ind}`}
                     text={req.description}
-                    isChecked={new RegExp(req.regex).test(props.passwordText)}
+                    isChecked={new RegExp(req.regex).test(passwordText)}
                 />
             ))}
         </View>

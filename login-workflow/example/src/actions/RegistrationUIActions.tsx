@@ -11,8 +11,8 @@ function getRandomInt(max: number): number {
 }
 
 function isRandomFailure(): boolean {
-    const randomResponseNumber = getRandomInt(3);
-    return false; //randomResponseNumber % 2 === 0;
+    const randomResponseNumber = getRandomInt(100);
+    return false; // randomResponseNumber < 90;
 }
 
 /**
@@ -21,7 +21,7 @@ function isRandomFailure(): boolean {
  * Registration Actions to be performed based on the user's actions. The application will create appropriate actions
  * (often API calls, local network storage, credential updates, etc.) based on the actionable needs of the user.
  */
-const ProjectRegistrationUIActions: () => RegistrationUIActions = () => ({
+export const ProjectRegistrationUIActions: () => RegistrationUIActions = () => ({
     /**
      * The user wants to complete an action but must first accept the EULA.
      * The application should retrieve an application-specific EULA for the user.
@@ -88,5 +88,3 @@ const ProjectRegistrationUIActions: () => RegistrationUIActions = () => ({
         return userInfo;
     },
 });
-
-export default ProjectRegistrationUIActions;

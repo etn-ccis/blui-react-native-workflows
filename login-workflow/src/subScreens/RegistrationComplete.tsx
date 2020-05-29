@@ -6,7 +6,7 @@
 import React from 'react';
 
 // Components
-import CompleteSplash from './CompleteSplash';
+import { CompleteSplashScreen } from './CompleteSplash';
 
 // Hooks
 import { useLanguageLocale } from '../hooks/language-locale-hooks';
@@ -32,7 +32,7 @@ type RegistrationCompleteProps = {
  *
  * @category Component
  */
-export default function RegistrationComplete(props: RegistrationCompleteProps): JSX.Element {
+export const RegistrationComplete: React.FC<RegistrationCompleteProps> = (props) => {
     const { t } = useLanguageLocale();
 
     const welcomeTitle = `${t('MESSAGES.WELCOME')}, ${props.firstName} ${props.lastName}!`;
@@ -40,5 +40,5 @@ export default function RegistrationComplete(props: RegistrationCompleteProps): 
         replace: { email: props.email, organization: props.organization },
     });
 
-    return <CompleteSplash boldTitle={welcomeTitle} bodyText={bodyText} icon={'person'} />;
-}
+    return <CompleteSplashScreen boldTitle={welcomeTitle} bodyText={bodyText} icon={'person'} />;
+};

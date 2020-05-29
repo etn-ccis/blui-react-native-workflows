@@ -9,13 +9,14 @@ import {
     AuthUIContextProvider,
     useSecurityActions,
 } from '@pxblue/react-native-auth-workflow';
-import AuthUIActions from './src/actions/AuthUIActions';
-import RegistrationUIActions from './src/actions/RegistrationUIActions';
+import { ProjectAuthUIActions } from './src/actions/AuthUIActions';
+import { ProjectRegistrationUIActions } from './src/actions/RegistrationUIActions';
 
 import { useLinking } from '@react-navigation/native';
 import { authLinkMapping, resolveInitialState } from './src/navigation/DeepLinking';
 
-import { ThemeProvider } from '@pxblue/react-native-components';
+import { Provider as ThemeProvider } from 'react-native-paper';
+
 import * as PXBThemes from '@pxblue/react-native-themes';
 
 const Stack = createStackNavigator();
@@ -25,8 +26,8 @@ export function AuthUIConfiguration(props: { children: JSX.Element }): JSX.Eleme
 
     return (
         <AuthUIContextProvider
-            authActions={AuthUIActions(securityContextActions)}
-            registrationActions={RegistrationUIActions}
+            authActions={ProjectAuthUIActions(securityContextActions)}
+            registrationActions={ProjectRegistrationUIActions}
             showSelfRegistration={true}
             allowDebugMode={true}
             contactEmail={'something@email.com'}
@@ -53,16 +54,16 @@ export const App: React.FC = () => {
     }, [getInitialState]);
 
     return (
-        <SecurityContextProvider>
-            <AuthUIConfiguration>
-                <AuthNavigationContainer initialState={initialState} ref={ref}>
-                    <ThemeProvider theme={PXBThemes.blue}>
+        <ThemeProvider theme={PXBThemes.blue}>
+            <SecurityContextProvider>
+                <AuthUIConfiguration>
+                    <AuthNavigationContainer initialState={initialState} ref={ref}>
                         <Stack.Navigator initialRouteName="Home" headerMode={'none'}>
                             <Stack.Screen name="Home" component={ExampleHome} />
                         </Stack.Navigator>
-                    </ThemeProvider>
-                </AuthNavigationContainer>
-            </AuthUIConfiguration>
-        </SecurityContextProvider>
+                    </AuthNavigationContainer>
+                </AuthUIConfiguration>
+            </SecurityContextProvider>
+        </ThemeProvider>
     );
 };

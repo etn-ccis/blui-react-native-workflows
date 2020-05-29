@@ -6,20 +6,20 @@
 import React from 'react';
 
 import { View, StyleSheet } from 'react-native';
-import { Text } from 'react-native-paper';
-import { Icon } from 'react-native-elements';
+import { useTheme, Theme } from 'react-native-paper';
+import MatIcon from 'react-native-vector-icons/MaterialIcons';
 
 // Styles
 import * as Colors from '@pxblue/colors';
+import { Subtitle } from '@pxblue/react-native-components';
 
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeStyles = () =>
+const makeStyles = (): Record<string, any> =>
     StyleSheet.create({
         itemContainer: {
-            paddingHorizontal: 10,
+            // paddingHorizontal: 10,
             flexDirection: 'row',
             justifyContent: 'flex-start',
             alignItems: 'center',
@@ -30,31 +30,37 @@ const makeStyles = () =>
     });
 
 /**
- * @param isChecked  If the requirement is met / a checkmark is shown.
- * @param text  The text to show next to the checkmark.
+ * @param isChecked  If the requirement is met / a check mark is shown.
+ * @param text  The text to show next to the check mark.
+ * @param theme (Optional) react-native-paper theme partial to style the component.
  */
 type RequirementCheckProps = {
     isChecked: boolean;
     text: string;
+    theme?: Theme;
 };
 
 /**
- * Creates a component consisting of a checkmark and a string next to it.
- * Will be styled with `Colors.blue['500']` if checked and `Colors.gray['100']` if not.
+ * Creates a component consisting of a check mark and a string next to it.
+ * Will be colored if checked and grayed out if not.
  *
  * @category Component
  */
-export const RequirementCheck = (props: RequirementCheckProps): JSX.Element => {
+export const RequirementCheck: React.FC<RequirementCheckProps> = (props) => {
+    const { isChecked, text } = props;
+    const theme = useTheme(props.theme);
     const styles = makeStyles();
 
     function colorIfValid(valid: boolean): string {
-        return valid ? Colors.blue['500'] : Colors.gray['100'];
+        return valid ? theme.colors.primary : Colors.gray['100'];
     }
 
     return (
         <View style={styles.itemContainer}>
-            <Icon name={'check'} color={colorIfValid(props.isChecked)}></Icon>
-            <Text style={styles.text}>{props.text}</Text>
+            <MatIcon name={'check'} size={24} color={colorIfValid(isChecked)} />
+            <Subtitle font={'regular'} style={styles.text}>
+                {text}
+            </Subtitle>
         </View>
     );
 };
