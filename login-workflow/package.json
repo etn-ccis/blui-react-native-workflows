@@ -7,10 +7,10 @@
         "name": "PX Blue",
         "email": "pxblue@eaton.com"
     },
-    "homepage": "https://github.com/pxblue/react-native-workflows/tree/dev/login-workflow",
+    "homepage": "https://github.com/pxblue/react-native-workflows/tree/master/login-workflow",
     "repository": {
         "type": "git",
-        "url": "https://github.com/pxblue/react-native-workflows/tree/dev/login-workflow"
+        "url": "https://github.com/pxblue/react-native-workflows/tree/master/login-workflow"
     },
     "prettier": "@pxblue/prettier-config",
     "main": "lib/commonjs/index.js",
@@ -19,6 +19,7 @@
     "files": [
         "lib",
         "CHANGELOG.md",
+        "LICENSES.json",
         "LICENSE.md",
         "package.json"
     ],
@@ -32,13 +33,9 @@
         "lint": "eslint \"**/**/*.{tsx,ts}\"",
         "prettier": "prettier \"**/**.{tsx,ts,js,json}\" --write",
         "build": "bob build",
-        "generate-licenses": "npm-license-crawler -onlyDirectDependencies -json licenses.json",
-        "generate-documentation": "rm -rf docs && yarn typedoc --options typedoc.json --out docs src",
-        "docs:open": "open ./docs/index.html",
-        "docs": "yarn generate-documentation",
-        "docs:clean": "rm -rf docs && yarn docs",
+        "generate-licenses": "npm-license-crawler -onlyDirectDependencies -json LICENSES.json",
         "validate": "yarn prettier && yarn lint && yarn typescript && yarn test",
-        "precommit": "yarn validate && yarn docs:clean && yarn generate-licenses",
+        "precommit": "yarn validate && yarn generate-licenses",
         "typescript": "tsc --noEmit"
     },
     "dependencies": {
@@ -113,9 +110,6 @@
         "react-native-screens": "^2.4.0",
         "react-native-vector-icons": "^6.6.0",
         "react-test-renderer": "16.9.0",
-        "typedoc": "^0.17.4",
-        "typedoc-neo-theme": "^1.0.7",
-        "typedoc-plugin-external-module-name": "^3.0.0",
         "typescript": "^3.8.3"
     },
     "jest": {
