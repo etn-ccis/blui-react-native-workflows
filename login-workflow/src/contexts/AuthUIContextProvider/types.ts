@@ -39,7 +39,7 @@ type AuthUIContextProviderProps = {
      */
     title?: string;
     /**
-     * Title of the application.
+     * Array of password strength requirements.
      */
     passwordRequirements?: PasswordRequirement[];
     /**

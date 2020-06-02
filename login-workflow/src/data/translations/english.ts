@@ -137,7 +137,7 @@ const resources = {
                 "Your password was successfully updated! To ensure your account's security, you will need to log in to the application with your updated credentials.",
             EMAIL_CONFIRM_MESSAGE: 'We have sent a confirmation email to <b>{{email}}</b>',
             PASSWORD_INFO:
-                'Password must be between 8 and 16 characters long and contain at least three of the following character types: Lowercase Letters, Upper Case Letters, Digits or Special Characters.',
+                'Please select a password. Make sure that your password meets the necessary complexity requirements outlined below.',
             OLD_PASSWORD: 'Old Password',
             ERROR_MESSAGE:
                 'Your information did not match our records. Please re- enter your information to try again.',

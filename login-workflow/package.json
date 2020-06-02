@@ -33,9 +33,9 @@
         "lint": "eslint \"**/**/*.{tsx,ts}\"",
         "prettier": "prettier \"**/**.{tsx,ts,js,json}\" --write",
         "build": "bob build",
-        "generate-licenses": "npm-license-crawler -onlyDirectDependencies -json LICENSES.json",
+        "generate:licenses": "npm-license-crawler -onlyDirectDependencies -json LICENSES.json",
         "validate": "yarn prettier && yarn lint && yarn typescript && yarn test",
-        "precommit": "yarn validate && yarn generate-licenses",
+        "precommit": "yarn validate && yarn generate:licenses",
         "typescript": "tsc --noEmit"
     },
     "dependencies": {
