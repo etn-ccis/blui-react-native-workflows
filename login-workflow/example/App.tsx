@@ -36,7 +36,7 @@ export function AuthUIConfiguration(props: { children: JSX.Element }): JSX.Eleme
                 {
                     description: 'Has the letter X',
                     regex: /[x]+/,
-                }
+                },
             ]}
             // projectImage={require('./src/assets/images/some_image.png')}
         >

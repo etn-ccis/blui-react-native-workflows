@@ -35,11 +35,15 @@ export const SimpleDialog: React.FC<SimpleDialogProps> = (props) => {
     return (
         <Portal>
             <Dialog visible={visible} dismissable={false}>
+                {/* 
+                // @ts-ignore waiting for 4.0.0 of react-native-paper to fix these typings https://github.com/callstack/react-native-paper/issues/1920 */}
                 <Dialog.Title>{title}</Dialog.Title>
                 <Dialog.Content>
                     <Paragraph>{bodyText ?? t('MESSAGES.REQUEST_ERROR')}</Paragraph>
                 </Dialog.Content>
                 <Dialog.Actions>
+                    {/* 
+                    // @ts-ignore waiting for 4.0.0 of react-native-paper to fix these typings https://github.com/callstack/react-native-paper/issues/1920 */}
                     <Button
                         uppercase={false}
                         onPress={(): void => {
