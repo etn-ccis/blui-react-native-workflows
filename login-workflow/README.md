@@ -28,7 +28,7 @@ yarn add @pxblue/react-native-auth-workflow
 # Integration
 You have two options for using this package in your application. You can manually integrate the package into an existing project, or you can start a project using the `/example` project provided in the package. 
 
-To integrate the package into an existing project, read our [New Project Integration ](./docs/new-project-integration.md) instructions. Even if you are starting from scratch, it may be useful for you to refer to the example project while getting started.
+To integrate the package into an existing project, read our [Existing Project Integration ](./docs/existing-project-integration.md) instructions. Even if you are starting from scratch, it may be useful for you to refer to the example project while getting started.
 
 To use the example project as a starting point, read our [Sample Project Integration ](./docs/sample-project-integration.md) instructions.
 
@@ -70,6 +70,8 @@ The following is a list of the screens and their parameters which a deep link ma
 
 Note that the `authui://` prefix is set by your application, as in the file at `example/src/navigation/DeepLinking.ts`.
 
+# APIs
+More information about React Native Auth Workflow's exported objects and functions can found in the [API](./docs/API.md) documentation.
 
 # Contributors
 

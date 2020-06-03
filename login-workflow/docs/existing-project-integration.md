@@ -98,7 +98,7 @@ The various configuration options are explained in more detail in the [API](./AP
 
 There are certain screens in the React Native Auth Workflow that are only accessible from an email link. For these screens to work, you must configure your application to support deep linking. Follow the React Navigation v5 [Deep Link guide](https://reactnavigation.org/docs/deep-linking/) to configure your project for deep-link integration.
 
-Once you have configured your application to support deep linking, you will need to configure the specific deep links for the React Native Auth Workflow package. A good way to start is to copy the `src/navigation` folder into your project from the example to get a sample implementation of the deep linking options and `resolveInitialState` method. You can read more about deep linking in the [Readme](../Readme.md).
+Once you have configured your application to support deep linking, you will need to configure the specific deep links for the React Native Auth Workflow package. A good way to start is to copy the `src/navigation` folder into your project from the example to get a sample implementation of the deep linking options and `resolveInitialState` method. You can read more about deep linking in the [Readme](../README.md).
 
 Once you have set up the deep links, you can complete the implementation of the `AuthNavigationContainer` in App.tsx:
 
