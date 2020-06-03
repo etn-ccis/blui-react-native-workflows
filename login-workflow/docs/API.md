@@ -43,31 +43,99 @@ import { AuthUIContextProvider } from '@pxblue/react-native-auth-workflow';
     - Title of the application
 
 
-
-
-
-
-
-
-
-
-
-
-##### RegistrationUIActions
-
-##### PasswordRequirement
-
 ### SecurityContextProvider
+SecurityContextProvider provides a single source of state for the state of user authentication. It is not meant to authenticate the user or hold credential information. Its purpose is to control access to authenticated or non-authenticated sections of the application (as well as change password for a currently authenticated user).
+> Note: the `SecurityContextProvider` should come before the `AuthUIContextProvider` in your application hierarchy.
+
+#### Usage
+```tsx
+import { SecurityContextProvider } from '@pxblue/react-native-auth-workflow';
+
+<SecurityContextProvider>
+    <AuthUIContextProvider {...props}>
+        { /* ...contents */ }
+    </AuthUIContextProvider>
+</SecurityContextProvider>
+```
 
 
-## AuthNavigationContainer
+## Other Components
 
-## useSecurityActions
-## useSecurityState
-## useAccountUIActions
-## useAccountUIState
-## useRegistrationUIActions
-## useRegistrationUIState
+### AuthNavigationContainer
+Container component which holds the authentication and navigation state designed for mobile apps. This should be rendered at the root wrapping the whole app (except for the Context Provider components). Any valid `NavigationContainer` props can be added.
+
+#### Usage
+```tsx
+import { AuthNavigationContainer } from '@pxblue/react-native-auth-workflow';
+
+<AuthNavigationContainer initialState={initialState} ref={ref}>
+    { /* ...contents */ }
+</AuthNavigationContainer>
+```
+
+## Hooks
+
+### useAccountUIActions
+Hook for using the global AccountUIActions actions (i.e. logIn, forgotPassword, etc.) which change the global AccountUIState.
+
+#### Usage
+```tsx
+import { useAccountUIActions } from '@pxblue/react-native-auth-workflow';
+
+const accountUIActions: AuthUIActions = useAccountUIActions();
+```
+
+### useAccountUIState
+Hook for using the global account state for account-related global `AccountUIState` state changes (i.e. login, forgot password, set password, verify reset code).
+
+#### Usage
+```tsx
+import { useAccountUIState } from '@pxblue/react-native-auth-workflow';
+
+const accountUIState: AccountUIState = useAccountUIState();
+```
+
+### useRegistrationUIActions
+Hook for using the global RegistrationUIActions actions (i.e. loadEULA, completeRegistration, etc.) which change the global RegistrationUIState.
+
+#### Usage
+```tsx
+import { useRegistrationUIActions } from '@pxblue/react-native-auth-workflow';
+
+const registrationActions: RegistrationUIActions = useRegistrationUIActions();
+```
+
+### useRegistrationUIState
+Hook for using the global account state for account-related global RegistrationUIState state changes (i.e. loading EULA, registration via invite).
+
+#### Usage
+```tsx
+import { useRegistrationUIState } from '@pxblue/react-native-auth-workflow';
+
+const registrationState: RegistrationUIState = useRegistrationUIState();
+```
+
+### useSecurityActions
+A hook to get the security actions (on authenticated / on not authenticated).
+> Note: Must be used inside of a `SecurityContextProvider`.
+
+#### Usage
+```tsx
+import { useSecurityActions } from '@pxblue/react-native-auth-workflow';
+
+const securityActions: SecurityContextActions = useSecurityAction();
+```
+
+### useSecurityState
+A hook to get the security state (authenticated / not authenticated).
+> Note: Must be used inside of a `SecurityContextProvider`.
+
+#### Usage
+```tsx
+import { useSecurityState } from '@pxblue/react-native-auth-workflow';
+
+const securityState: SecurityContextState = useSecurityState();
+```
 
 
 # Type Definitions
@@ -83,6 +151,23 @@ Type to represent the input of the account details component.
     -   The user's last name / surname.
 -   **phone**: *`string`*
     -   The user's phone number
+
+## AccountUIState
+
+Global state for authentication-related activities and forgotten password retrieval.
+
+### Type Declaration
+-   **email**: *`string | null`*
+    -   The email of the current user.
+-   **forgotPassword**: *`ForgotPasswordState`*
+    -   State of a forgot password request (which then sends an email to the user's account).
+-   **login**: *`LoginState`*
+    -   State of authentication for the current user, including transit state of the call.
+-   **setPassword**: *`SetPasswordState`*
+    -   State of the setPassword request, after a user begins resetting a forgotten password using the deep link token from their email.
+-   **userToken**: *`string | null`*
+    -   The current user's authentication token.
+
 
 ## AuthUIActions
 
@@ -155,6 +240,33 @@ Authentication Actions to be performed based on the user's UI actions. The appli
     -   **Returns**: *`Promise<void>`*
         -   Resolve if code is valid, otherwise reject.
 
+## ForgotPasswordState
+Network state and email for a user requesting forgot password. Extends `TransitState`.
+
+### Type Declaration
+-   **email**: *`string | null`*
+    -   The email belonging to the account for which a user is doing a forgot password request.
+
+## InviteRegistrationState
+Network state and returned email and organization for a user who was invited to register within the app (deep link token from their email).
+
+### Type Declaration
+-   **email**: *`string | null`*
+    -   The email belonging to the user who was invited to register through the app.
+-   **organizationName**: *`string | null`*
+    -   The organization of the user who was invited to register through the app.
+-   **registrationTransit**: *`TransitState`*
+    -   Network state for completing registration of the invited user.
+-   **validationTransit**: *`TransitState`*
+    -   Network state for validating the invited user's invite token (the deep link token from their email).
+
+## LoginState
+Network state and email for a user attempting to authenticate into the app. Extends `TransitState`.
+
+### Type Declaration
+-   **email**: *`string | null`*
+    -   The email with which a user is attempting to authenticate into the app.
+
 
 ## PasswordRequirement
 
@@ -204,3 +316,106 @@ Registration Actions to be performed based on the user's actions. The applicatio
 
     -   **Returns**: *`Promise<void>`*
         -   Resolve when the code is valid, otherwise reject with an error message.
+
+## RegistrationUIState
+Global state for registration-related activities and loading the EULA for newly registering users
+
+### Type Declaration
+-   **eulaTransit**: *`TransitState`*
+    -   Network state for fetching a remote EULA.
+-   **inviteRegistration**: *`InviteRegistrationState`*
+    -   Network and returned values state for registration of anew user via invitation.
+
+## SecurityContextActions
+Actions that change the security state of the application.
+
+### Type Declaration
+-   **hideChangePassword**: *`() => void`*
+    -   Close the Change Password screen. This is most often called from within the Change Password screen. If the user has successfully changed their password, then hiding Change Password will take to the Authentication User Interface. If the user cancels changing their password, hiding Change Password will take the user back to the application's main screen.
+
+    -   **Returns**: *`void`*
+
+-   **onUserAuthenticated**: *`(args: { email: string, rememberMe: boolean, userId: string }) => void`*
+    -   If the user has been authenticated, this function should be called. Most likely, this should be called within the initiateSecurity or logIn actions of the `AuthUIActions` provided to the `AuthUIContextProvider`. Once called, the application will be shown.
+
+    -   **Parameters**:
+        -   **args**: *`{ email: string, rememberMe: boolean, userId: string }`*
+            -   **email**: *`string`*
+                -   Email with which the user authenticate
+            -   **rememberMe**: *`boolean`*
+                -   Whether the user's email should be visible upon logout.
+            -   **userId**: *`string`*
+                -   UserId of the authenticated user (may be email).
+
+    -   **Returns**: *`void`*
+
+-   **onUserNotAuthenticated**: *`( clearRememberMe?: boolean, overrideRememberMeEmail?: string) => void`*
+    -   If the user has been de-authenticated (either because they logged out or app started with no credentials), this function should be called. Most likely, this should be called within the `initiateSecurity` action of the `AuthUIActions` provided to the `AuthUIContextProvider`, or from a logout event within the application. Once called, the Authentication User Interface will be shown.
+
+    -   **Parameters**:
+        -   **clearRememberMe**: (optional) *`boolean`*
+            -   If true, clear any "remember me" data upon logout.
+        -   **overrideRememberMeEmail**: (optional) *`string`*
+                -   If a value is provided, the `SecurityContextState`'s rememberMe will be set to true and this email will be shown in the email field of Login upon logout.
+
+    -   **Returns**: *`void`*
+
+-   **showChangePassword**: *`() => void`*
+    -   Present the Change Password screen to the user (if the user is authenticated). The application will be unmounted.
+
+    -   **Returns**: *`void`*
+
+
+## SecurityContextState
+Basic state upon which to make application security decisions.
+
+### Type Declaration
+-   **setPasswordTransit**: *`TransitState`*
+    -   Network state for setting a new password for a user who has made a forgot password request.
+-   **verifyResetCodeTransit**: *`TransitState`*
+    -   Network state for verifying the reset password code for a user who has made a forgot password request.
+
+
+## SetPasswordState
+Network state for a user attempting to set a new password using a verify reset code after requesting forgot password.
+
+### Type Declaration
+-   **email**: (optional) *`string`*
+    -   Email of the authenticated user.
+-   **isAuthenticatedUser**: *`boolean`*
+    -   True: The user is authenticated and the application is shown (or the Change Password interface). 
+    -   False: The user is not authenticated and the Authentication User Interface is shown.
+-   **isLoading**: *`boolean`*
+    -   True: The security state is being loaded (all other fields are invalid). 
+    -   False: The security state has been loaded.
+-   **isShowingChangePassword**: *`boolean`*
+    -   True: The Change Password screen is currently visible. 
+    -   False: The Change Password screen is not currently visible.
+-   **isSignOut**: *`boolean`*
+    -   Used for animation purposes only.
+    -   True: The user is logged in currently and a change will be the result of logging out.
+    -   False: The user is likely logging in if authentication state changes.
+-   **rememberMeDetails**: *`{ email?: string, rememberMe?: boolean }`*
+    -   Information for a user who wants to be remembered upon logout.
+    -   **email**: (optional) *`string`*
+        -   Email address to show in the email field of Login after logout.
+    -   **rememberMe**: (optional) *`boolean`*
+        -   When true, the user's email will be in the email field of Login.
+-   **userId**: (optional) *`string`*
+    -   UserId of the authenticated user (may be an email).
+
+
+## TransitState
+Keeps track of the state of a network call.
+
+### Type Declaration
+-   **transitComplete**: *`boolean`*
+    -   Returns true if a network call has completed, either successfully or unsuccessfully.
+-   **transitErrorMessage**: *`string | null`*
+    -   An error message describing the failure of the last network call, or null if the last call was a success.
+-   **transitId**: *`number | null`*
+    -   The identifier for a specific network call. Can be used to ignore an old return if a modal dismisses or another action fires.
+-   **transitInProgress**: *`boolean`*
+    -   Returns true if the network call is currently active and awaiting a response.
+-   **transitSuccess**: *`boolean`*
+    -   Returns true if the previously completed network call returned without error.
