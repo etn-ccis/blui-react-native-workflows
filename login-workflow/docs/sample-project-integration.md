@@ -1,4 +1,4 @@
-# Staring from the Example Project
+# Starting from the Example Project
 
 If you don't have an existing React Native project and would like an example as a starting point, consider using the provided example project in the `/example` folder.
 
