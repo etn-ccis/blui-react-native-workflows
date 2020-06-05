@@ -110,6 +110,8 @@ export const ContactSupport: React.FC<ContactSupportProps> = (props) => {
                         </H6>
                         <Label style={[styles.bodyText, styles.textSpacing]}>
                             {t('CONTACT_SUPPORT.SUPPORT_MESSAGE')}
+                            {/* 
+                            // @ts-ignore waiting for 4.0.0 of react-native-paper to fix these typings https://github.com/callstack/react-native-paper/issues/1920 */}
                             <Text
                                 style={{ color: theme.colors.accent }}
                                 onPress={(): Promise<void> => Linking.openURL(`mailto:${contactEmail}`)}
@@ -125,6 +127,8 @@ export const ContactSupport: React.FC<ContactSupportProps> = (props) => {
                         </H6>
                         <Label style={[styles.bodyText, styles.textSpacing]}>
                             {t('CONTACT_SUPPORT.TECHNICAL_ASSISTANCE')}
+                            {/* 
+                            // @ts-ignore waiting for 4.0.0 of react-native-paper to fix these typings https://github.com/callstack/react-native-paper/issues/1920 */}
                             <Text
                                 style={{ color: theme.colors.accent }}
                                 onPress={(): Promise<void> => Linking.openURL(`tel:${contactPhone}`)}
