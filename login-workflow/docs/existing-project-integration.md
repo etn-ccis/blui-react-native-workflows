@@ -33,7 +33,7 @@ You need to implement the backend networking for all networking within react-nat
 3. Create two files in the new `actions` directory: `AuthUIActions.tsx` and `RegistrationUIActions.tsx`
     - The first file you created, `AuthUIActions.tsx`, will handle the implementation of the authentication related actions (such as login and forgot password).
     - The second file you created, `RegistrationActions.tsx`, will handle the implementation of the registration related actions (such as loading the EULA and registration by invitation).
-    - You can copy these files directly from the example project as a starting point and then update the implementation details if you choose.
+    - You can copy these files directly from the [example](../example) project as a starting point and then update the implementation details if you choose.
 4. You might also want to copy over the `example/src/store` and `example/src/constants` folders from react-native-auth-workflow for the purposes of compiling with the mock `AuthUIActions` and `RegistrationUIActions` before you write your own implementation. (Note you will need to install `@react-native-community/async-storage` if you use this `local-storage.ts`.)
 5. Import the actions in your root app file (usually App.tsx):
 ```
