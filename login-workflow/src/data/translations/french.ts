@@ -136,8 +136,7 @@ const resources = {
             SUCCESS_MESSAGE:
                 "Votre mot de passe a été mis à jour avec succès! Pour garantir la sécurité de votre compte, vous devrez vous connecter à l'application avec vos informations d'identification mises à jour.",
             EMAIL_CONFIRM_MESSAGE: 'Nous avons envoyé un e-mail de confirmation à <b>{{email}}</b>',
-            PASSWORD_INFO:
-                `Veuillez sélectionner un mot de passe. Assurez-vous que votre mot de passe répond aux exigences de complexité nécessaires décrites ci-dessous.`,
+            PASSWORD_INFO: `Veuillez sélectionner un mot de passe. Assurez-vous que votre mot de passe répond aux exigences de complexité nécessaires décrites ci-dessous.`,
             OLD_PASSWORD: 'ancien mot de passe',
             ERROR_MESSAGE:
                 'Vos informations ne correspondent pas à nos enregistrements. Veuillez saisir à nouveau vos informations pour réessayer.',
