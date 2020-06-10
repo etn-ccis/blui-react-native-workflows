@@ -20,6 +20,9 @@ jobs:
             - node_modules
           key: v2-dependencies-{{ checksum "login-workflow/yarn.lock" }}
       - run:
+          name: Set Max Memory
+          command: NODE_OPTIONS=--max_old_space_size=4096
+      - run:
           name: Lint
           command: |
             cd login-workflow
