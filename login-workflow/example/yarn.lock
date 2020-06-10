@@ -1399,10 +1399,10 @@
   resolved "https://registry.yarnpkg.com/@pxblue/prettier-config/-/prettier-config-1.0.2.tgz#fb00503df6557b66c3d91d43c9101e614c35d2ec"
   integrity sha512-/3cLBoTjZs3kV1ATPA/Sp0tsL7XmlV/b8HW/qt0jqR/uP5+cdXL2YIhMXQngLRa7PhpSkEiRIYK5sl0rKsXTUg==
 
-"@pxblue/react-native-auth-workflow@latest":
-  version "1.0.0-alpha.0"
-  resolved "https://registry.yarnpkg.com/@pxblue/react-native-auth-workflow/-/react-native-auth-workflow-1.0.0-alpha.0.tgz#c241b57641140ed7b1bdd47fff1d80e45ec4d582"
-  integrity sha512-KthvafQbFOtDZIC3I8icfP2/xQEVSGt8W/m3w0OW1Dhc7wvG3ag2MiwNtB9i1hNnT8f1H9cFagWyNZc2caDYjg==
+"@pxblue/react-native-auth-workflow@1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@pxblue/react-native-auth-workflow/-/react-native-auth-workflow-1.0.0.tgz#1147446fb92a3741541780a4539650145ad74e5e"
+  integrity sha512-gdHDI02EB5/9TGnIan7UMK5lDEWpxeXDnOOJcW2HZMuZ2VdrPOpeA8usdbQDukz5Ls8RvCbuthsNSfemFsRzyA==
   dependencies:
     react-native-status-bar-height "^2.5.0"
 
