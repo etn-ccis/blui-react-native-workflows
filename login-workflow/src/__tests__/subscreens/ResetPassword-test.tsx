@@ -6,15 +6,10 @@
 import React from 'react';
 import 'react-native';
 import { mount } from 'enzyme';
-import ResetPassword from '../../subScreens/ResetPassword';
+import { ResetPassword } from '../../subScreens/ResetPassword';
+import { Provider } from 'react-native-paper';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
-
-// Theme
-import { ThemeProvider } from '@pxblue/react-native-components';
-import { blue as BlueTheme } from '@pxblue/react-native-themes';
-import { Provider as PaperProvider } from 'react-native-paper';
-import { paperBlueTheme } from '../../helpers/paperBlueTheme';
 
 import { TextInputHTMLAttributes } from '../../types/TextInputHTMLAttributes';
 
@@ -33,15 +28,13 @@ jest.mock('src/contexts/AccountUIContext', () => ({
 describe('ResetPassword subScreen tested with enzyme', () => {
     function baseXML(): JSX.Element {
         return (
-            <PaperProvider theme={paperBlueTheme}>
-                <ThemeProvider theme={BlueTheme}>
-                    <NavigationContainer>
-                        <Stack.Navigator>
-                            <Stack.Screen name="ResetPassword" component={ResetPassword} />
-                        </Stack.Navigator>
-                    </NavigationContainer>
-                </ThemeProvider>
-            </PaperProvider>
+            <Provider>
+                <NavigationContainer>
+                    <Stack.Navigator>
+                        <Stack.Screen name="ResetPassword" component={ResetPassword} />
+                    </Stack.Navigator>
+                </NavigationContainer>
+            </Provider>
         );
     }
 

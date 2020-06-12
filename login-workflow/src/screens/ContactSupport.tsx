@@ -7,9 +7,9 @@ import React from 'react';
 
 // Components
 import { Linking, View, StyleSheet, SafeAreaView } from 'react-native';
-import { Text } from 'react-native-paper';
+import { Text, Theme, useTheme } from 'react-native-paper';
 import { CloseHeader } from '../components/CloseHeader';
-import { Icon } from 'react-native-elements';
+import MatIcon from 'react-native-vector-icons/MaterialIcons';
 
 // Styles
 import * as Colors from '@pxblue/colors';
@@ -25,12 +25,11 @@ import { ContactParams } from '../types/ContactParams';
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeContainerStyles = () =>
+const makeContainerStyles = (theme: Theme): Record<string, any> =>
     StyleSheet.create({
         safeContainer: {
             height: '100%',
-            backgroundColor: Colors.white['50'],
+            backgroundColor: theme.colors.surface,
             flex: 1,
             justifyContent: 'space-between',
         },
@@ -47,14 +46,14 @@ const makeContainerStyles = () =>
         iconContainer: {
             marginTop: 80,
             marginBottom: 30,
+            alignSelf: 'center',
         },
     });
 
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeStyles = () =>
+const makeStyles = (theme: Theme): Record<string, any> =>
     StyleSheet.create({
         textSpacing: {
             marginVertical: 10,
@@ -63,22 +62,30 @@ const makeStyles = () =>
             color: Colors.black['800'],
         },
         bodyText: {
-            color: Colors.black['500'],
+            color: theme.colors.text,
         },
     });
 
 /**
- * Renders the contact support screen with a tappable contact email and contact phone.
+ * @param theme (Optional) react-native-paper theme partial to style the component.
+ */
+type ContactSupportProps = {
+    theme?: Theme;
+};
+
+/**
+ * Renders the contact support screen with a tap-able contact email and contact phone.
  *
  * @category Component
  */
-export default function ContactSupport(): JSX.Element {
+export const ContactSupport: React.FC<ContactSupportProps> = (props) => {
     const { t } = useLanguageLocale();
+    const theme = useTheme(props.theme);
     const navigation = useNavigation();
     const route = useRoute();
 
-    const styles = makeStyles();
-    const containerStyles = makeContainerStyles();
+    const styles = makeStyles(theme);
+    const containerStyles = makeContainerStyles(theme);
 
     // get the contactEmail and contactPhone from the route params
     const routeParams = route.params as ContactParams;
@@ -90,11 +97,11 @@ export default function ContactSupport(): JSX.Element {
             <CloseHeader title={t('USER_MENU.CONTACT_US')} backAction={(): void => navigation.goBack()} />
             <SafeAreaView style={containerStyles.safeContainer}>
                 <View>
-                    <Icon
+                    <MatIcon
                         name={'chat-bubble-outline'}
-                        containerStyle={containerStyles.iconContainer}
+                        style={containerStyles.iconContainer}
                         size={70}
-                        color={Colors.blue['500']}
+                        color={theme.colors.primary}
                     />
 
                     <View style={[containerStyles.containerMargins, containerStyles.containerSpacing]}>
@@ -103,8 +110,10 @@ export default function ContactSupport(): JSX.Element {
                         </H6>
                         <Label style={[styles.bodyText, styles.textSpacing]}>
                             {t('CONTACT_SUPPORT.SUPPORT_MESSAGE')}
+                            {/* 
+                            // @ts-ignore waiting for 4.0.0 of react-native-paper to fix these typings https://github.com/callstack/react-native-paper/issues/1920 */}
                             <Text
-                                style={{ color: Colors.lightBlue['300'] }}
+                                style={{ color: theme.colors.accent }}
                                 onPress={(): Promise<void> => Linking.openURL(`mailto:${contactEmail}`)}
                             >
                                 {contactEmail}
@@ -118,8 +127,10 @@ export default function ContactSupport(): JSX.Element {
                         </H6>
                         <Label style={[styles.bodyText, styles.textSpacing]}>
                             {t('CONTACT_SUPPORT.TECHNICAL_ASSISTANCE')}
+                            {/* 
+                            // @ts-ignore waiting for 4.0.0 of react-native-paper to fix these typings https://github.com/callstack/react-native-paper/issues/1920 */}
                             <Text
-                                style={{ color: Colors.lightBlue['300'] }}
+                                style={{ color: theme.colors.accent }}
                                 onPress={(): Promise<void> => Linking.openURL(`tel:${contactPhone}`)}
                             >
                                 {contactPhone}
@@ -131,4 +142,4 @@ export default function ContactSupport(): JSX.Element {
             </SafeAreaView>
         </>
     );
-}
+};

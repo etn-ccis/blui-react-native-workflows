@@ -9,8 +9,8 @@ import React from 'react';
 import { EMAIL_REGEX } from '../constants/index';
 
 // Components
-import { Platform, View, StyleSheet, SafeAreaView, StatusBar } from 'react-native';
-import { Text, Button } from 'react-native-paper';
+import { Platform, View, StyleSheet, SafeAreaView, StatusBar, TextInput as ReactTextInput } from 'react-native';
+import { Button, Theme, useTheme } from 'react-native-paper';
 import { TextInput } from '../components/TextInput';
 import { TextInputSecure } from '../components/TextInputSecure';
 import { Checkbox } from '../components/Checkbox';
@@ -24,7 +24,7 @@ import { ToggleButton } from '../components/ToggleButton';
 
 // Styles
 import * as Colors from '@pxblue/colors';
-import { Theme, withTheme, Label } from '@pxblue/react-native-components';
+import { Label, H6 } from '@pxblue/react-native-components';
 
 // Hooks
 import { useLanguageLocale } from '../hooks/language-locale-hooks';
@@ -36,8 +36,7 @@ import { useSecurityState } from '../contexts/SecurityContextProvider';
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeContainerStyles = () =>
+const makeContainerStyles = (): Record<string, any> =>
     StyleSheet.create({
         mainContainer: {
             marginHorizontal: 20,
@@ -87,16 +86,14 @@ const makeContainerStyles = () =>
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeStyles = (theme: Theme) =>
+const makeStyles = (): Record<string, any> =>
     StyleSheet.create({
         signUpText: {
-            fontSize: theme.sizes.medium,
             alignSelf: 'center',
             color: Colors.gray['300'],
         },
         clearButton: {
-            fontSize: theme.sizes.medium,
+            fontSize: 16,
         },
         securityBadge: {
             height: 60,
@@ -104,16 +101,22 @@ const makeStyles = (theme: Theme) =>
     });
 
 /**
+ * @param theme (Optional) react-native-paper theme partial to style the component.
+ */
+type LoginProps = {
+    theme?: Theme;
+};
+
+/**
  * Login screen with loading and error states, as well as "remember me" functionality to store a user's email between logins.
  * Requires being wrapped in an [[AuthNavigationContainer]] for access to global state and actions for authentication and registration.
  * Has a debug mode which shows buttons that allow direct access to the deep link flows (invite registration, set password from forgot password, etc.).
  *
- * @param props Must contain theme object.
  *
  * @category Component
  */
 
-function Login(props: any): JSX.Element {
+export const Login: React.FC<LoginProps> = (props) => {
     const securityState = useSecurityState();
     const [rememberPassword, setRememberPassword] = React.useState(securityState.rememberMeDetails.rememberMe ?? false);
     const [emailInput, setEmailInput] = React.useState(securityState.rememberMeDetails.email ?? '');
@@ -123,13 +126,13 @@ function Login(props: any): JSX.Element {
 
     const navigation = useNavigation();
     const { t } = useLanguageLocale();
-    const { theme } = props;
     const authUIActions = useAccountUIActions();
     const authUIState = useAccountUIState();
     const authProps = useInjectedUIContext();
 
+    const theme = useTheme(props.theme);
     const containerStyles = makeContainerStyles();
-    const styles = makeStyles(theme);
+    const styles = makeStyles();
 
     const loginTapped = (): void => {
         setHasAcknowledgedError(false);
@@ -142,9 +145,9 @@ function Login(props: any): JSX.Element {
     const transitErrorMessage = authUIState.login.transitErrorMessage ?? t('MESSAGES.REQUEST_ERROR');
     const errorDialog = (
         <SimpleDialog
-            title={'Error'}
+            title={t('MESSAGES.ERROR')}
             bodyText={t(transitErrorMessage)}
-            isVisible={hasTransitError && !hasAcknowledgedError}
+            visible={hasTransitError && !hasAcknowledgedError}
             onDismiss={(): void => {
                 setHasAcknowledgedError(true);
             }}
@@ -160,7 +163,7 @@ function Login(props: any): JSX.Element {
         />
     );
 
-    const confirmPasswordRef = React.useRef<any>();
+    const confirmPasswordRef = React.useRef<ReactTextInput>(null);
     const goToNextInput = (): void => confirmPasswordRef?.current?.focus();
 
     const showSelfRegistration = authProps.showSelfRegistration ?? true; // enabled by default
@@ -168,21 +171,23 @@ function Login(props: any): JSX.Element {
     if (showSelfRegistration || debugMode) {
         createAccountOption = (
             <View>
-                <Text style={styles.signUpText}>{t('LABELS.NEED_ACCOUNT')}</Text>
+                <Label style={styles.signUpText}>{t('LABELS.NEED_ACCOUNT')}</Label>
+                {/* 
+                // @ts-ignore waiting for 4.0.0 of react-native-paper to fix these typings https://github.com/callstack/react-native-paper/issues/1920 */}
                 <Button
                     mode={'text'}
                     labelStyle={styles.clearButton}
                     uppercase={false}
                     onPress={(): void => navigation.navigate('Registration')}
                 >
-                    <Label color="primary">{'Create Account'}</Label>
+                    <Label color="primary">{t('ACTIONS.CREATE_ACCOUNT')}</Label>
                 </Button>
             </View>
         );
     } else {
         contactEatonRepresentative = (
             <View style={{ alignSelf: 'center', flexShrink: 1 }}>
-                <Text style={styles.signUpText}>{t('LABELS.NEED_ACCOUNT')}</Text>
+                <Label style={styles.signUpText}>{t('LABELS.NEED_ACCOUNT')}</Label>
                 <ResizingClearButton
                     title={t('MESSAGES.CONTACT')}
                     style={{ width: '100%' }}
@@ -197,6 +202,7 @@ function Login(props: any): JSX.Element {
     let debugButton: JSX.Element = <></>;
     if (allowDebugMode) {
         debugButton = (
+            // @ts-ignore waiting for 4.0.0 of react-native-paper to fix these typings https://github.com/callstack/react-native-paper/issues/1920
             <Button
                 mode={'contained'}
                 style={{ position: 'absolute', top: 50, right: 20 }}
@@ -210,7 +216,7 @@ function Login(props: any): JSX.Element {
     let debugMessage: JSX.Element = <></>;
     if (debugMode) {
         debugMessage = (
-            <Text style={{ fontSize: 16, textAlign: 'center', backgroundColor: 'yellow' }}>{'DEBUG MODE'}</Text>
+            <H6 style={{ textAlign: 'center', lineHeight: 48, backgroundColor: Colors.yellow[500] }}>{'DEBUG MODE'}</H6>
         );
     }
 
@@ -218,6 +224,8 @@ function Login(props: any): JSX.Element {
     if (debugMode) {
         testForgotPasswordDeepLinkButton = (
             <View style={{ alignSelf: 'center' }}>
+                {/* 
+                // @ts-ignore waiting for 4.0.0 of react-native-paper to fix these typings https://github.com/callstack/react-native-paper/issues/1920 */}
                 <Button
                     mode={'text'}
                     labelStyle={styles.clearButton}
@@ -238,6 +246,8 @@ function Login(props: any): JSX.Element {
     if (debugMode) {
         testInviteRegisterButton = (
             <View style={{ alignSelf: 'center' }}>
+                {/* 
+                // @ts-ignore waiting for 4.0.0 of react-native-paper to fix these typings https://github.com/callstack/react-native-paper/issues/1920 */}
                 <Button
                     mode={'text'}
                     labelStyle={styles.clearButton}
@@ -257,9 +267,9 @@ function Login(props: any): JSX.Element {
     let statusBar: JSX.Element = <></>;
     statusBar =
         Platform.OS === 'ios' ? (
-            <StatusBar backgroundColor={Colors.blue['700']} barStyle="dark-content" />
+            <StatusBar backgroundColor={theme.colors.primary} barStyle="dark-content" />
         ) : (
-            <StatusBar backgroundColor={Colors.blue['700']} barStyle="light-content" />
+            <StatusBar backgroundColor={theme.colors.primary} barStyle="light-content" />
         );
 
     return (
@@ -269,7 +279,7 @@ function Login(props: any): JSX.Element {
             {errorDialog}
             <ScrollViewWithBackground
                 bounces={false}
-                contentContainerStyle={[containerStyles.spaceBetween, { backgroundColor: 'white' }]}
+                contentContainerStyle={[containerStyles.spaceBetween, { backgroundColor: theme.colors.surface }]}
             >
                 <LoginHeaderSplash style={containerStyles.topArea} mainImage={authProps.projectImage} />
                 {debugButton}
@@ -287,7 +297,7 @@ function Login(props: any): JSX.Element {
                             blurOnSubmit={false}
                             returnKeyType={'next'}
                             error={hasTransitError}
-                            errorText={'Incorrect Email or Password'}
+                            errorText={t('LOGIN.INCORRECT_CREDENTIALS')}
                         />
                         <TextInputSecure
                             ref={confirmPasswordRef}
@@ -298,22 +308,21 @@ function Login(props: any): JSX.Element {
                             returnKeyType={'done'}
                             style={{ marginTop: 15 }}
                             error={hasTransitError}
-                            errorText={'Incorrect Email or Password'}
+                            errorText={t('LOGIN.INCORRECT_CREDENTIALS')}
                         />
 
                         <View style={containerStyles.loginControls}>
                             <View style={[containerStyles.checkboxAndButton]}>
                                 <Checkbox
                                     label={t('ACTIONS.REMEMBER')}
-                                    isChecked={rememberPassword}
+                                    checked={rememberPassword}
                                     style={containerStyles.checkbox}
                                     onPress={(): void => setRememberPassword(!rememberPassword)}
                                 />
                                 <View style={[containerStyles.loginButtonContainer]}>
                                     <ToggleButton
                                         text={t('ACTIONS.LOG_IN')}
-                                        // eslint-disable-next-line @typescript-eslint/prefer-regexp-exec
-                                        disabled={!emailInput.match(EMAIL_REGEX) || !passwordInput}
+                                        disabled={!EMAIL_REGEX.test(emailInput) || !passwordInput}
                                         onPress={loginTapped}
                                     />
                                 </View>
@@ -326,6 +335,8 @@ function Login(props: any): JSX.Element {
                         {testInviteRegisterButton}
 
                         <View>
+                            {/* 
+                            // @ts-ignore waiting for 4.0.0 of react-native-paper to fix these typings https://github.com/callstack/react-native-paper/issues/1920 */}
                             <Button
                                 mode={'text'}
                                 labelStyle={styles.clearButton}
@@ -346,5 +357,4 @@ function Login(props: any): JSX.Element {
             </ScrollViewWithBackground>
         </>
     );
-}
-export default withTheme(Login);
+};

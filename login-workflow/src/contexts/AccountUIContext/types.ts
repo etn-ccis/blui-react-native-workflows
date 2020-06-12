@@ -11,8 +11,8 @@ export type AccountUIActions = AuthUIActions;
 
 export type AccountUIContextActions = {
     actions: AccountUIActions;
-    dispatch: React.Dispatch<any>;
+    dispatch: React.Dispatch<AccountActions>;
 };
 
-export type AccountUIActionsCreator = (dispatch: React.Dispatch<any>) => AccountUIActions;
+export type AccountUIActionsCreator = (dispatch: React.Dispatch<AccountActions>) => AccountUIActions;
 export type AccountUIReducer = (prevState: AccountUIState, action: AccountActions) => AccountUIState;

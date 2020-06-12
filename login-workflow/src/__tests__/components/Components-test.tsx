@@ -7,7 +7,7 @@ import { View } from 'react-native';
 import { Checkbox } from '../../components/Checkbox';
 import { CloseHeader } from '../../components/CloseHeader';
 import { CybersecurityBadge } from '../../components/CybersecurityBadge';
-import ErrorState from '../../components/ErrorState';
+import { ErrorState } from '../../components/ErrorState';
 import { IconSplash } from '../../components/IconSplash';
 import { Instruction } from '../../components/Instruction';
 import { LoginHeaderSplash } from '../../components/LoginHeaderSplash';
@@ -25,6 +25,11 @@ import { ToggleButton } from '../../components/ToggleButton';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
+jest.mock('src/contexts/AuthUIContextProvider', () => ({
+    useAuthUIActions: (): any => ({ dispatch: jest.fn(() => true) }),
+    useInjectedUIContext: jest.fn().mockReturnValue({ showSelfRegistration: true }),
+}));
+
 // test that all components render
 describe('All components tested with enzyme', () => {
     it('Checkbox renders correctly', () => {
@@ -32,7 +37,7 @@ describe('All components tested with enzyme', () => {
             .create(
                 <Checkbox
                     label={'Checkbox'}
-                    isChecked={false}
+                    checked={false}
                     onPress={(): void => {
                         /* do nothing */
                     }}
@@ -62,7 +67,17 @@ describe('All components tested with enzyme', () => {
     });
 
     it('ErrorState renders correctly', () => {
-        const rendered = renderer.create(<ErrorState />).toJSON();
+        const rendered = renderer
+            .create(
+                <ErrorState
+                    title={''}
+                    bodyText={''}
+                    onPress={(): void => {
+                        /* do nothing */
+                    }}
+                />
+            )
+            .toJSON();
         expect(rendered).toBeTruthy();
     });
 
@@ -122,7 +137,7 @@ describe('All components tested with enzyme', () => {
                     <SimpleDialog
                         title={'title'}
                         bodyText={'bodyText'}
-                        isVisible={true}
+                        visible={true}
                         onDismiss={(): void => {
                             /* do nothing */
                         }}

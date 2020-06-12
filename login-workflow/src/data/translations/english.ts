@@ -1,10 +1,10 @@
-/* eslint-disable @typescript-eslint/camelcase */
 const resources = {
     translation: {
         ACTIONS: {
             FINISH: 'Finish',
             NEXT: 'Next',
             BACK: 'Back',
+            CREATE_ACCOUNT: 'Create Account',
             OKAY: 'Okay',
             DONE: 'Done',
             CONTINUE: 'Continue',
@@ -22,7 +22,9 @@ const resources = {
         LABELS: {
             EMAIL: 'Email Address',
             PASSWORD: 'Password',
+            CURRENT_PASSWORD: 'Current Password',
             NEW_PASSWORD: 'New Password',
+            OPTIONAL: 'Optional',
             FORGOT_PASSWORD: 'Forgot your password?',
             NEED_ACCOUNT: 'Need an account?',
             VIEW_ALL_EVENTS: 'View All {{count}} Events',
@@ -64,6 +66,7 @@ const resources = {
             UNKNOWN_ORGANIZATION: 'Unknown Organization',
         },
         SELF_REGISTRATION: {
+            INSTRUCTIONS: `To register for an Eaton account, enter the required information below. You will need to verify your email address to continue.`,
             VERIFY_EMAIL: {
                 MESSAGE:
                     'A verification code has been sent to the email address you provided. Click the link or enter the code below to continue. This code is valid for 30 minutes.',
@@ -81,6 +84,7 @@ const resources = {
             LINK_SENT: 'A link to reset your password has been sent to <b>{{email}}</b>.',
         },
         LOGIN: {
+            INCORRECT_CREDENTIALS: 'Incorrect Email or Password',
             INVALID_CREDENTIALS: 'Your username/password combination is not recognized.',
             GENERIC_ERROR: 'Your request could not be processed at this time.',
         },
@@ -133,7 +137,7 @@ const resources = {
                 "Your password was successfully updated! To ensure your account's security, you will need to log in to the application with your updated credentials.",
             EMAIL_CONFIRM_MESSAGE: 'We have sent a confirmation email to <b>{{email}}</b>',
             PASSWORD_INFO:
-                'Password must be between 8 and 16 characters long and contain at least three of the following character types: Lowercase Letters, Upper Case Letters, Digits or Special Characters.',
+                'Please select a password. Make sure that your password meets the necessary complexity requirements outlined below.',
             OLD_PASSWORD: 'Old Password',
             ERROR_MESSAGE:
                 'Your information did not match our records. Please re- enter your information to try again.',

@@ -12,13 +12,13 @@ import { Button, Paragraph, Dialog, Portal } from 'react-native-paper';
 import { useLanguageLocale } from '../hooks/language-locale-hooks';
 
 /**
- * @param isVisible  If the dialog box should be shown.
+ * @param visible  If the dialog box should be shown.
  * @param onDismiss  The function to handle the on dismiss action.
  * @param title  The title text of the dialog box.
  * @param bodyText  The body text of the dialog box.
  */
 type SimpleDialogProps = {
-    isVisible: boolean;
+    visible: boolean;
     onDismiss: Function;
     title: string;
     bodyText: string | null;
@@ -29,21 +29,25 @@ type SimpleDialogProps = {
  *
  * @category Component
  */
-export function SimpleDialog(props: SimpleDialogProps): JSX.Element {
+export const SimpleDialog: React.FC<SimpleDialogProps> = (props) => {
+    const { visible, onDismiss, title, bodyText } = props;
     const { t } = useLanguageLocale();
-
     return (
         <Portal>
-            <Dialog visible={props.isVisible} dismissable={false}>
-                <Dialog.Title>{props.title}</Dialog.Title>
+            <Dialog visible={visible} dismissable={false}>
+                {/* 
+                // @ts-ignore waiting for 4.0.0 of react-native-paper to fix these typings https://github.com/callstack/react-native-paper/issues/1920 */}
+                <Dialog.Title>{title}</Dialog.Title>
                 <Dialog.Content>
-                    <Paragraph>{props.bodyText ?? t('MESSAGES.REQUEST_ERROR')}</Paragraph>
+                    <Paragraph>{bodyText ?? t('MESSAGES.REQUEST_ERROR')}</Paragraph>
                 </Dialog.Content>
                 <Dialog.Actions>
+                    {/* 
+                    // @ts-ignore waiting for 4.0.0 of react-native-paper to fix these typings https://github.com/callstack/react-native-paper/issues/1920 */}
                     <Button
                         uppercase={false}
                         onPress={(): void => {
-                            props.onDismiss();
+                            onDismiss();
                         }}
                     >
                         {t('ACTIONS.OKAY')}
@@ -52,4 +56,4 @@ export function SimpleDialog(props: SimpleDialogProps): JSX.Element {
             </Dialog>
         </Portal>
     );
-}
+};

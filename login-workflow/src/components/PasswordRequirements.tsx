@@ -17,6 +17,8 @@ import {
 
 // Components
 import { RequirementCheck } from '../components/RequirementCheck';
+import { useInjectedUIContext } from '../contexts/AuthUIContextProvider';
+import { PasswordRequirement } from '../types/ResetPasswordParams';
 
 /**
  * @param passwordText  The password to be used for checking.
@@ -34,22 +36,43 @@ type PasswordRequirementsProps = {
  *
  * @category Component
  */
-export const PasswordRequirements = (props: PasswordRequirementsProps): JSX.Element => {
+export const PasswordRequirements: React.FC<PasswordRequirementsProps> = (props) => {
+    const { passwordText, style } = props;
     const { t } = useLanguageLocale();
+    const defaultRequirements: PasswordRequirement[] = [
+        {
+            regex: LENGTH_REGEX,
+            description: t('PASSWORD_REQUIREMENTS.LENGTH'),
+        },
+        {
+            regex: NUMBERS_REGEX,
+            description: t('PASSWORD_REQUIREMENTS.NUMBERS'),
+        },
+        {
+            regex: UPPER_CASE_REGEX,
+            description: t('PASSWORD_REQUIREMENTS.UPPER'),
+        },
+        {
+            regex: LOWER_CASE_REGEX,
+            description: t('PASSWORD_REQUIREMENTS.LOWER'),
+        },
+        {
+            regex: SPECIAL_CHAR_REGEX,
+            description: t('PASSWORD_REQUIREMENTS.SPECIAL'),
+        },
+    ];
 
-    const hasValidLength = new RegExp(LENGTH_REGEX).test(props.passwordText);
-    const hasValidNumbers = new RegExp(NUMBERS_REGEX).test(props.passwordText);
-    const hasValidUpperCase = new RegExp(UPPER_CASE_REGEX).test(props.passwordText);
-    const hasValidLowerCase = new RegExp(LOWER_CASE_REGEX).test(props.passwordText);
-    const hasValidSpecialCharacters = new RegExp(SPECIAL_CHAR_REGEX).test(props.passwordText);
+    const { passwordRequirements = defaultRequirements } = useInjectedUIContext();
 
     return (
-        <View style={props.style}>
-            <RequirementCheck text={t('PASSWORD_REQUIREMENTS.LENGTH')} isChecked={hasValidLength} />
-            <RequirementCheck text={t('PASSWORD_REQUIREMENTS.NUMBERS')} isChecked={hasValidNumbers} />
-            <RequirementCheck text={t('PASSWORD_REQUIREMENTS.UPPER')} isChecked={hasValidUpperCase} />
-            <RequirementCheck text={t('PASSWORD_REQUIREMENTS.LOWER')} isChecked={hasValidLowerCase} />
-            <RequirementCheck text={t('PASSWORD_REQUIREMENTS.SPECIAL')} isChecked={hasValidSpecialCharacters} />
+        <View style={style}>
+            {passwordRequirements.map((req, ind) => (
+                <RequirementCheck
+                    key={`password_requirement_${ind}`}
+                    text={req.description}
+                    isChecked={new RegExp(req.regex).test(passwordText)}
+                />
+            ))}
         </View>
     );
 };

@@ -7,25 +7,22 @@ import React from 'react';
 
 // Components
 import { StyleSheet, SafeAreaView } from 'react-native';
-import CompleteSplash from './CompleteSplash';
+import { CompleteSplashScreen } from './CompleteSplash';
 import { ToggleButton } from '../components/ToggleButton';
-
-// Styles
-import * as Colors from '@pxblue/colors';
 
 // Hooks
 import { useNavigation } from '@react-navigation/native';
 import { useLanguageLocale } from '../hooks/language-locale-hooks';
+import { Theme, useTheme } from 'react-native-paper';
 
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeContainerStyles = () =>
+const makeContainerStyles = (theme: Theme): Record<string, any> =>
     StyleSheet.create({
         safeContainer: {
             height: '100%',
-            backgroundColor: Colors.white['50'],
+            backgroundColor: theme.colors.surface,
         },
         mainContainer: {
             flex: 1,
@@ -43,22 +40,32 @@ const makeContainerStyles = () =>
     });
 
 /**
+ * Handle the props for the Reset Password Success page.
+ *
+ * @param theme (Optional) react-native-paper theme partial for custom styling.
+ */
+type ResetPasswordSuccessProps = {
+    theme?: Theme;
+};
+
+/**
  * Renders the content of the notice of completed password reset screen.
  *
  * @category Component
  */
-function ResetPasswordSuccess(): JSX.Element {
+export const ResetPasswordSuccess: React.FC<ResetPasswordSuccessProps> = (props) => {
+    const theme = useTheme(props.theme);
     const { t } = useLanguageLocale();
     const navigation = useNavigation();
 
-    const containerStyles = makeContainerStyles();
+    const containerStyles = makeContainerStyles(theme);
 
     const titleText = t('PASSWORD_RESET.SUCCESS_MESSAGE');
     const bodyText = t('CHANGE_PASSWORD.SUCCESS_MESSAGE');
 
     return (
         <SafeAreaView style={containerStyles.safeContainer}>
-            <CompleteSplash boldTitle={titleText} bodyText={bodyText} icon={'vpn-key'} />
+            <CompleteSplashScreen boldTitle={titleText} bodyText={bodyText} icon={'vpn-key'} />
 
             <ToggleButton
                 text={t('ACTIONS.DONE')}
@@ -67,6 +74,4 @@ function ResetPasswordSuccess(): JSX.Element {
             />
         </SafeAreaView>
     );
-}
-
-export default ResetPasswordSuccess;
+};

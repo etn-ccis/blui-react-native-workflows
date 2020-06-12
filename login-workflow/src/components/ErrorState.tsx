@@ -9,20 +9,17 @@ import React from 'react';
 import { useLanguageLocale } from '../hooks/language-locale-hooks';
 
 // Components
-import { View, StyleSheet, SafeAreaView, StyleProp, ViewStyle } from 'react-native';
-import { Text, Button } from 'react-native-paper';
-import { Icon } from 'react-native-elements';
-import { Instruction } from './Instruction';
+import { EmptyState, wrapIcon } from '@pxblue/react-native-components';
+import MatIcon from 'react-native-vector-icons/MaterialIcons';
+import { View, StyleSheet, SafeAreaView } from 'react-native';
+import { Button, Theme, useTheme } from 'react-native-paper';
 
-// Styles
-import * as Colors from '@pxblue/colors';
-import { Theme, withTheme } from '@pxblue/react-native-components';
+const ReportIcon = wrapIcon({ IconClass: MatIcon, name: 'report' });
 
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeContainerStyles = () =>
+const makeContainerStyles = (): Record<string, any> =>
     StyleSheet.create({
         containerMargins: {
             marginHorizontal: 20,
@@ -31,34 +28,18 @@ const makeContainerStyles = () =>
             flexGrow: 1,
             justifyContent: 'space-between',
         },
-        iconContainer: {
-            marginTop: 80,
-            marginBottom: 30,
-        },
     });
 
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeStyles = (theme: Theme) =>
+const makeStyles = (): Record<string, any> =>
     StyleSheet.create({
         sideBySideButtons: {
             flexDirection: 'row',
             justifyContent: 'space-between',
             alignItems: 'center',
             paddingVertical: 10,
-        },
-        headerText: {
-            fontWeight: 'bold',
-            fontSize: theme.sizes.large,
-            color: Colors.black['800'],
-            textAlign: 'center',
-        },
-        bodyText: {
-            fontSize: theme.sizes.medium,
-            color: Colors.gray['500'],
-            textAlign: 'center',
         },
     });
 
@@ -67,12 +48,14 @@ const makeStyles = (theme: Theme) =>
  * @param bodyText  The body text to show on the error state.
  * @param icon  (Optional) The icon to show at the top of the error state. Icon 'report' is used if none is specified.
  * @param onPress  The function to handle the on press action.
+ * @param theme (Optional) react-native-paper theme partial to style the component.
  */
 type ErrorStateProps = {
     title: string;
     bodyText: string | null;
-    icon?: string;
+    icon?: React.Component<{ size: number; color: string }>;
     onPress: Function;
+    theme?: Theme;
 };
 
 /**
@@ -80,37 +63,35 @@ type ErrorStateProps = {
  *
  * @category Component
  */
-function ErrorState(props: ErrorStateProps & { theme: any }): JSX.Element {
-    const { theme } = props;
+export const ErrorState: React.FC<ErrorStateProps> = (props) => {
+    const theme = useTheme(props.theme);
+    const { title, bodyText, icon, onPress } = props;
     const { t } = useLanguageLocale();
 
     const containerStyles = makeContainerStyles();
-    const styles = makeStyles(theme);
+    const styles = makeStyles();
 
     return (
-        <SafeAreaView style={[containerStyles.spaceBetween, { backgroundColor: 'white' }]}>
-            <View>
-                <Icon
-                    name={props.icon ?? 'report'}
-                    containerStyle={containerStyles.iconContainer}
-                    size={70}
-                    color={Colors.red['500']}
-                />
-                <Text style={[containerStyles.containerMargins, styles.headerText]}>Failure</Text>
-                <Instruction
-                    text={props.bodyText ?? t('MESSAGES.REQUEST_ERROR')}
-                    style={[containerStyles.containerMargins, styles.bodyText as StyleProp<ViewStyle>]}
-                    hasBottomBorder={false}
+        <SafeAreaView style={[containerStyles.spaceBetween, { backgroundColor: theme.colors.surface }]}>
+            <View style={{ flex: 1 }}>
+                <EmptyState
+                    // @ts-ignore we need a new version of the component library that exposes the type for WrapIconProps
+                    IconClass={icon ?? ReportIcon}
+                    iconColor={theme.colors.error}
+                    title={title ?? t('MESSAGES.FAILURE')}
+                    description={bodyText ?? t('MESSAGES.REQUEST_ERROR')}
                 />
             </View>
 
             <View style={[styles.sideBySideButtons, containerStyles.containerMargins]}>
+                {/* 
+                // @ts-ignore waiting for 4.0.0 of react-native-paper to fix these typings https://github.com/callstack/react-native-paper/issues/1920 */}
                 <Button
                     uppercase={false}
                     style={{ width: '100%', alignSelf: 'flex-end' }}
                     mode={'contained'}
                     onPress={(): void => {
-                        props.onPress();
+                        onPress();
                     }}
                 >
                     {t('ACTIONS.FINISH')}
@@ -118,6 +99,4 @@ function ErrorState(props: ErrorStateProps & { theme: any }): JSX.Element {
             </View>
         </SafeAreaView>
     );
-}
-
-export default withTheme(ErrorState);
+};

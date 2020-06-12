@@ -12,6 +12,7 @@ import { EMAIL_REGEX } from '../constants/index';
 import { useLanguageLocale } from '../hooks/language-locale-hooks';
 import { useAccountUIState } from '../contexts/AccountUIContext';
 import { useRoute } from '@react-navigation/native';
+import { Theme, useTheme } from 'react-native-paper';
 
 // Components
 import { View, StyleSheet, SafeAreaView } from 'react-native';
@@ -22,18 +23,14 @@ import { Spinner } from '../components/Spinner';
 import { SimpleDialog } from '../components/SimpleDialog';
 import { ToggleButton } from '../components/ToggleButton';
 
-// Styles
-import * as Colors from '@pxblue/colors';
-
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeContainerStyles = () =>
+const makeContainerStyles = (theme: Theme): Record<string, any> =>
     StyleSheet.create({
         safeContainer: {
             height: '100%',
-            backgroundColor: Colors.white['50'],
+            backgroundColor: theme.colors.surface,
         },
         mainContainer: {
             flex: 1,
@@ -50,8 +47,7 @@ const makeContainerStyles = () =>
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeStyles = () =>
+const makeStyles = (): Record<string, any> =>
     StyleSheet.create({
         inputMargin: {
             marginTop: 40,
@@ -75,18 +71,28 @@ type ResetPasswordParams = {
 };
 
 /**
+ * Handle the props for the Reset Password page.
+ *
+ * @param theme (Optional) react-native-paper theme partial for custom styling.
+ */
+type ResetPasswordProps = {
+    theme?: Theme;
+};
+
+/**
  * Renders the first reset password screen (input for email).
  *
  * @category Component
  */
-export default function ResetPassword(): JSX.Element {
+export const ResetPassword: React.FC<ResetPasswordProps> = (props) => {
+    const theme = useTheme(props.theme);
     const [emailInput, setEmailInput] = React.useState('');
     const [hasAcknowledgedError, setHasAcknowledgedError] = React.useState(false);
     const { t } = useLanguageLocale();
     const accountUIState = useAccountUIState();
     const route = useRoute();
     const routeParams = route.params as ResetPasswordParams;
-    const containerStyles = makeContainerStyles();
+    const containerStyles = makeContainerStyles(theme);
     const styles = makeStyles();
 
     const isValidPassword = new RegExp(EMAIL_REGEX).test(emailInput);
@@ -110,7 +116,7 @@ export default function ResetPassword(): JSX.Element {
         <SimpleDialog
             title={'Error'}
             bodyText={transitErrorMessage}
-            isVisible={hasTransitError && !hasAcknowledgedError}
+            visible={hasTransitError && !hasAcknowledgedError}
             onDismiss={(): void => {
                 setHasAcknowledgedError(true);
             }}
@@ -151,4 +157,4 @@ export default function ResetPassword(): JSX.Element {
             </KeyboardAwareScrollView>
         </SafeAreaView>
     );
-}
+};

@@ -4,7 +4,7 @@
 
 import React from 'react';
 import 'react-native';
-import ResetPasswordConfirm from '../../subScreens/ResetPasswordConfirm';
+import { ResetPasswordConfirm } from '../../subScreens/ResetPasswordConfirm';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
@@ -30,6 +30,10 @@ jest.mock('src/contexts/AccountUIContext', () => ({
     }),
     AccountActions: { resetPasswordReset: jest.fn(() => true) },
 }));
+jest.mock('src/contexts/AuthUIContextProvider', () => ({
+    useAuthUIActions: (): any => ({ dispatch: jest.fn(() => true) }),
+    useInjectedUIContext: jest.fn().mockReturnValue({ showSelfRegistration: true }),
+}));
 
 describe('ResetPasswordConfirm subScreen tested with enzyme', () => {
     function baseXML(): JSX.Element {
@@ -40,7 +44,6 @@ describe('ResetPasswordConfirm subScreen tested with enzyme', () => {
                         name="ResetPasswordConfirm"
                         component={ResetPasswordConfirm}
                         options={(): object => ({
-                            // eslint-disable-next-line react/display-name
                             header: (): JSX.Element => <></>,
                         })}
                     />

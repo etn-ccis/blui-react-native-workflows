@@ -7,7 +7,7 @@ import React from 'react';
 
 // Components
 import { View, StyleSheet, StyleProp, ViewStyle } from 'react-native';
-import FormattedText from './FormattedText';
+import { FormattedText } from './FormattedText';
 import { Label } from '@pxblue/react-native-components';
 
 // Styles
@@ -16,8 +16,7 @@ import * as Colors from '@pxblue/colors';
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeStyles = () =>
+const makeStyles = (): Record<string, any> =>
     StyleSheet.create({
         padding: {
             paddingVertical: 30,
@@ -49,14 +48,14 @@ type InstructionProps = {
  *
  * @category Component
  */
-export const Instruction = (props: InstructionProps): JSX.Element => {
+export const Instruction: React.FC<InstructionProps> = (props) => {
+    const { text, style, hasBottomBorder = true } = props;
     const styles = makeStyles();
-    const hasButtonBorder = props.hasBottomBorder ?? true;
 
     return (
-        <View style={[styles.padding, hasButtonBorder ? styles.bottomBorder : null]}>
-            <Label style={[styles.mainText, props.style]}>
-                <FormattedText parseableText={props.text} />
+        <View style={[styles.padding, hasBottomBorder ? styles.bottomBorder : null]}>
+            <Label style={[styles.mainText, style]}>
+                <FormattedText parseableText={text} />
             </Label>
         </View>
     );

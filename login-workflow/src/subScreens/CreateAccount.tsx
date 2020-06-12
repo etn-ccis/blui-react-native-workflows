@@ -13,9 +13,7 @@ import { View, StyleSheet, SafeAreaView } from 'react-native';
 import { TextInput } from '../components/TextInput';
 import { Instruction } from '../components/Instruction';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-
-// Styles
-import * as Colors from '@pxblue/colors';
+import { Theme, useTheme } from 'react-native-paper';
 
 // Hooks
 import { useLanguageLocale } from '../hooks/language-locale-hooks';
@@ -23,12 +21,11 @@ import { useLanguageLocale } from '../hooks/language-locale-hooks';
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeContainerStyles = () =>
+const makeContainerStyles = (theme: Theme): Record<string, any> =>
     StyleSheet.create({
         safeContainer: {
             height: '100%',
-            backgroundColor: Colors.white['50'],
+            backgroundColor: theme.colors.surface,
         },
         mainContainer: {
             flex: 1,
@@ -46,8 +43,7 @@ const makeContainerStyles = () =>
 /**
  * @ignore
  */
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const makeStyles = () =>
+const makeStyles = (): Record<string, any> =>
     StyleSheet.create({
         inputMargin: {
             marginTop: 40,
@@ -58,9 +54,11 @@ const makeStyles = () =>
  * Handle the change of any of the email inputs.
  *
  * @param onEmailChanged  Handle the change of any of the email inputs.
+ * @param theme (Optional) react-native-paper theme partial for custom styling.
  */
 type CreateAccountProps = {
     onEmailChanged(email: string): void;
+    theme?: Theme;
 };
 
 /**
@@ -80,11 +78,12 @@ function isValidEmail(text: string): boolean {
  *
  * @category Component
  */
-export default function CreateAccount(props: CreateAccountProps): JSX.Element {
+export const CreateAccount: React.FC<CreateAccountProps> = (props) => {
+    const theme = useTheme(props.theme);
     const [emailInput, setEmailInput] = React.useState('');
     const { t } = useLanguageLocale();
 
-    const containerStyles = makeContainerStyles();
+    const containerStyles = makeContainerStyles(theme);
     const styles = makeStyles();
     const onChangeText = (text: string): void => {
         setEmailInput(text);
@@ -97,12 +96,7 @@ export default function CreateAccount(props: CreateAccountProps): JSX.Element {
     return (
         <SafeAreaView style={containerStyles.safeContainer}>
             <KeyboardAwareScrollView>
-                <Instruction
-                    style={containerStyles.containerMargins}
-                    text={
-                        'To register for an Eaton account, enter the required information below. You will need to verify your email address to continue.'
-                    }
-                />
+                <Instruction style={containerStyles.containerMargins} text={t('SELF_REGISTRATION.INSTRUCTIONS')} />
 
                 <View style={[containerStyles.containerMargins, containerStyles.mainContainer]}>
                     <TextInput
@@ -119,4 +113,4 @@ export default function CreateAccount(props: CreateAccountProps): JSX.Element {
             </KeyboardAwareScrollView>
         </SafeAreaView>
     );
-}
+};
