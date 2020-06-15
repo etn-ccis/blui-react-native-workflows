@@ -20,6 +20,11 @@ jobs:
             - node_modules
           key: v2-dependencies-{{ checksum "login-workflow/yarn.lock" }}
       - run:
+          name: Prettier Check
+          command: |
+            cd login-workflow
+            yarn prettier --check
+      - run:
           name: Set Max Memory
           command: NODE_OPTIONS=--max_old_space_size=4096
       - run:
@@ -27,11 +32,6 @@ jobs:
           command: |
             cd login-workflow
             yarn lint
-      - run:
-          name: Prettier Check
-          command: |
-            cd login-workflow
-            yarn prettier --check
       - run:
           name: Tests
           command: |
