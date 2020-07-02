@@ -26,7 +26,7 @@ import { ToggleButton } from '../components/ToggleButton';
 
 // Styles
 import * as Colors from '@pxblue/colors';
-import { Label, H6 } from '@pxblue/react-native-components';
+import { Body1, H6 } from '@pxblue/react-native-components';
 
 // Hooks
 import { useSecurityActions } from '../contexts/SecurityContextProvider';
@@ -186,9 +186,9 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
                     />
                     <View style={[containerStyles.containerMargins, containerStyles.containerSpacing]}>
                         <H6 style={[styles.headerText, styles.textSpacing]}>{t('CHANGE_PASSWORD.PASSWORD_CHANGED')}</H6>
-                        <Label style={[styles.bodyText, styles.textSpacing]}>
+                        <Body1 style={[styles.bodyText, styles.textSpacing]}>
                             {t('CHANGE_PASSWORD.SUCCESS_MESSAGE')}
-                        </Label>
+                        </Body1>
                     </View>
                 </ScrollView>
                 <View style={[styles.wideButton, containerStyles.containerMargins]}>

@@ -13,7 +13,7 @@ import { Theme, useTheme } from 'react-native-paper';
 
 // Styles
 import * as Colors from '@pxblue/colors';
-import { Body, H6 } from '@pxblue/react-native-components';
+import { Body1, H6 } from '@pxblue/react-native-components';
 
 /**
  * @ignore
@@ -108,9 +108,9 @@ export const CompleteSplashScreen: React.FC<CompleteSplashScreenProps> = (props)
 
                         <View style={containerStyles.textContainer}>
                             <H6 style={[styles.headerText, styles.textSpacing]}>{props.boldTitle}</H6>
-                            <Body style={[styles.bodyText, styles.textSpacing]}>
+                            <Body1 style={[styles.bodyText, styles.textSpacing]}>
                                 <FormattedText parseableText={props.bodyText} />
-                            </Body>
+                            </Body1>
                         </View>
                     </View>
                 </SafeAreaView>

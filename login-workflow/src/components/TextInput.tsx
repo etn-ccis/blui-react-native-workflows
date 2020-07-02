@@ -9,7 +9,7 @@ import React, { MutableRefObject } from 'react';
 import { View, StyleSheet, StyleProp, ViewStyle, TextInput as ReactTextInput } from 'react-native';
 import { TextInput as PaperTextInput, Theme, useTheme } from 'react-native-paper';
 import { TextInputProps } from 'react-native-paper/lib/typescript/src/components/TextInput/TextInput';
-import { Subtitle } from '@pxblue/react-native-components';
+import { Subtitle2 } from '@pxblue/react-native-components';
 
 // Styles
 import * as Colors from '@pxblue/colors';
@@ -108,8 +108,8 @@ const ErrorText: React.FC<ErrorTextProps> = (props) => {
     const styles = makeStyles(theme);
 
     return (
-        <Subtitle style={[styles.errorText, style]} font={'regular'}>
+        <Subtitle2 style={[styles.errorText, style]} font={'regular'}>
             {errorText || null}
-        </Subtitle>
+        </Subtitle2>
     );
 };
