@@ -7,7 +7,7 @@ import React, { useCallback } from 'react';
 
 // Components
 import { View, StyleSheet, SafeAreaView, ScrollView } from 'react-native';
-import { Body } from '@pxblue/react-native-components';
+import { Body1 } from '@pxblue/react-native-components';
 import { Checkbox } from '../components/Checkbox';
 
 // Hooks
@@ -83,7 +83,7 @@ export const Eula: React.FC<EulaProps> = (props) => {
         <SafeAreaView style={containerStyles.safeContainer}>
             <View style={[containerStyles.mainContainer, containerStyles.containerMargins]}>
                 <ScrollView>
-                    <Body>{props.eulaContent ?? props.eulaError ?? t('REGISTRATION.EULA.LOADING')}</Body>
+                    <Body1>{props.eulaContent ?? props.eulaError ?? t('REGISTRATION.EULA.LOADING')}</Body1>
                 </ScrollView>
             </View>
             <View style={[containerStyles.containerMargins, containerStyles.checkboxContainer]}>

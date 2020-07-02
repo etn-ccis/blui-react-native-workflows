@@ -8,7 +8,7 @@ import React from 'react';
 // Components
 import { View, StyleSheet, TouchableHighlight, StyleProp, ViewStyle } from 'react-native';
 import { Theme, useTheme } from 'react-native-paper';
-import { Label } from '@pxblue/react-native-components';
+import { Body1 } from '@pxblue/react-native-components';
 
 // Styles
 import color from 'color';
@@ -76,7 +76,7 @@ export const ResizingClearButton: React.FC<ResizingClearButtonProps> = (props) =
             accessibilityRole={'button'}
         >
             <View style={style}>
-                <Label
+                <Body1
                     allowFontScaling={true} // iOS only
                     adjustsFontSizeToFit // iOS only
                     numberOfLines={1}
@@ -92,7 +92,7 @@ export const ResizingClearButton: React.FC<ResizingClearButtonProps> = (props) =
                     }}
                 >
                     {title}
-                </Label>
+                </Body1>
             </View>
         </TouchableHighlight>
     );

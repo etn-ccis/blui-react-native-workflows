@@ -8,7 +8,7 @@ import React from 'react';
 // Components
 import { View, StyleSheet, StyleProp, ViewStyle } from 'react-native';
 import { FormattedText } from './FormattedText';
-import { Label } from '@pxblue/react-native-components';
+import { Body1 } from '@pxblue/react-native-components';
 
 // Styles
 import * as Colors from '@pxblue/colors';
@@ -54,9 +54,9 @@ export const Instruction: React.FC<InstructionProps> = (props) => {
 
     return (
         <View style={[styles.padding, hasBottomBorder ? styles.bottomBorder : null]}>
-            <Label style={[styles.mainText, style]}>
+            <Body1 style={[styles.mainText, style]}>
                 <FormattedText parseableText={text} />
-            </Label>
+            </Body1>
         </View>
     );
 };
