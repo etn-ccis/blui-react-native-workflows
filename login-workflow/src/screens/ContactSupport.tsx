@@ -13,7 +13,7 @@ import MatIcon from 'react-native-vector-icons/MaterialIcons';
 
 // Styles
 import * as Colors from '@pxblue/colors';
-import { Label, H6 } from '@pxblue/react-native-components';
+import { Body1, H6 } from '@pxblue/react-native-components';
 
 // Hooks
 import { useLanguageLocale } from '../hooks/language-locale-hooks';
@@ -108,7 +108,7 @@ export const ContactSupport: React.FC<ContactSupportProps> = (props) => {
                         <H6 style={[styles.headerText, styles.textSpacing]}>
                             {t('CONTACT_SUPPORT.GENERAL_QUESTIONS')}
                         </H6>
-                        <Label style={[styles.bodyText, styles.textSpacing]}>
+                        <Body1 style={[styles.bodyText, styles.textSpacing]}>
                             {t('CONTACT_SUPPORT.SUPPORT_MESSAGE')}
                             {/* 
                             // @ts-ignore waiting for 4.0.0 of react-native-paper to fix these typings https://github.com/callstack/react-native-paper/issues/1920 */}
@@ -119,13 +119,13 @@ export const ContactSupport: React.FC<ContactSupportProps> = (props) => {
                                 {contactEmail}
                             </Text>
                             .
-                        </Label>
+                        </Body1>
                     </View>
                     <View style={[containerStyles.containerMargins, containerStyles.containerSpacing]}>
                         <H6 style={[styles.headerText, styles.textSpacing]}>
                             {t('CONTACT_SUPPORT.EMERGENCY_SUPPORT')}
                         </H6>
-                        <Label style={[styles.bodyText, styles.textSpacing]}>
+                        <Body1 style={[styles.bodyText, styles.textSpacing]}>
                             {t('CONTACT_SUPPORT.TECHNICAL_ASSISTANCE')}
                             {/* 
                             // @ts-ignore waiting for 4.0.0 of react-native-paper to fix these typings https://github.com/callstack/react-native-paper/issues/1920 */}
@@ -136,7 +136,7 @@ export const ContactSupport: React.FC<ContactSupportProps> = (props) => {
                                 {contactPhone}
                             </Text>
                             .
-                        </Label>
+                        </Body1>
                     </View>
                 </View>
             </SafeAreaView>

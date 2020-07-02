@@ -8,7 +8,7 @@ import React from 'react';
 // Components
 import { View, StyleProp, ViewStyle } from 'react-native';
 import { Checkbox as PaperCheckbox, Theme, useTheme } from 'react-native-paper';
-import { Body } from '@pxblue/react-native-components';
+import { Body1 } from '@pxblue/react-native-components';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 /**
@@ -59,7 +59,7 @@ export const Checkbox: React.FC<CheckboxProps> = (props) => {
                     color={theme.colors.primary}
                     uncheckedColor={theme.colors.primary}
                 />
-                <Body>{label}</Body>
+                <Body1>{label}</Body1>
             </TouchableOpacity>
         </View>
     );

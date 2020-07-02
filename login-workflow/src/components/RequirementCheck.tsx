@@ -11,7 +11,7 @@ import MatIcon from 'react-native-vector-icons/MaterialIcons';
 
 // Styles
 import * as Colors from '@pxblue/colors';
-import { Subtitle } from '@pxblue/react-native-components';
+import { Subtitle2 } from '@pxblue/react-native-components';
 
 /**
  * @ignore
@@ -58,9 +58,9 @@ export const RequirementCheck: React.FC<RequirementCheckProps> = (props) => {
     return (
         <View style={styles.itemContainer}>
             <MatIcon name={'check'} size={24} color={colorIfValid(isChecked)} />
-            <Subtitle font={'regular'} style={styles.text}>
+            <Subtitle2 font={'regular'} style={styles.text}>
                 {text}
-            </Subtitle>
+            </Subtitle2>
         </View>
     );
 };

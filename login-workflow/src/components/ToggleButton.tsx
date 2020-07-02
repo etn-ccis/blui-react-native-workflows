@@ -7,7 +7,7 @@ import React from 'react';
 
 // Components
 import { StyleSheet, StyleProp, ViewStyle } from 'react-native';
-import { Label } from '@pxblue/react-native-components';
+import { Body1 } from '@pxblue/react-native-components';
 import { Button, Theme, useTheme } from 'react-native-paper';
 
 // Styles
@@ -71,9 +71,9 @@ export const ToggleButton: React.FC<ToggleButtonProps> = (props) => {
             disabled={disabled}
             onPress={onPress}
         >
-            <Label color="text" style={styles.label}>
+            <Body1 color="text" style={styles.label}>
                 {text}
-            </Label>
+            </Body1>
         </Button>
     );
 };

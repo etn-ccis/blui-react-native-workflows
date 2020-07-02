@@ -1,23 +1,11 @@
 {
-    "@pxblue/colors@3.0.0": {
-        "licenses": "BSD-3-Clause",
-        "repository": "https://github.com/pxblue/colors",
-        "licenseUrl": "https://github.com/pxblue/colors/raw/master/LICENSE",
-        "parents": "example"
-    },
     "@pxblue/icons-svg@1.0.18": {
         "licenses": "BSD-3-Clause",
         "repository": "https://github.com/pxblue/icons",
         "licenseUrl": "https://github.com/pxblue/icons",
         "parents": "example"
     },
-    "@pxblue/react-native-auth-workflow@1.0.0": {
-        "licenses": "BSD-3-Clause",
-        "repository": "https://github.com/pxblue/react-native-workflows/tree/master/login-workflow",
-        "licenseUrl": "https://github.com/pxblue/react-native-workflows/tree/master/login-workflow/raw/master/LICENSE.md",
-        "parents": "example"
-    },
-    "@pxblue/react-native-themes@5.0.0-beta.0": {
+    "@pxblue/react-native-themes@5.0.0": {
         "licenses": "BSD-3-Clause",
         "repository": "https://github.com/pxblue/themes",
         "licenseUrl": "https://github.com/pxblue/themes/raw/master/LICENSE",

@@ -24,7 +24,7 @@ import { ToggleButton } from '../components/ToggleButton';
 
 // Styles
 import * as Colors from '@pxblue/colors';
-import { Label, H6 } from '@pxblue/react-native-components';
+import { Body1, H6 } from '@pxblue/react-native-components';
 
 // Hooks
 import { useLanguageLocale } from '../hooks/language-locale-hooks';
@@ -171,7 +171,7 @@ export const Login: React.FC<LoginProps> = (props) => {
     if (showSelfRegistration || debugMode) {
         createAccountOption = (
             <View>
-                <Label style={styles.signUpText}>{t('LABELS.NEED_ACCOUNT')}</Label>
+                <Body1 style={styles.signUpText}>{t('LABELS.NEED_ACCOUNT')}</Body1>
                 {/* 
                 // @ts-ignore waiting for 4.0.0 of react-native-paper to fix these typings https://github.com/callstack/react-native-paper/issues/1920 */}
                 <Button
@@ -180,14 +180,14 @@ export const Login: React.FC<LoginProps> = (props) => {
                     uppercase={false}
                     onPress={(): void => navigation.navigate('Registration')}
                 >
-                    <Label color="primary">{t('ACTIONS.CREATE_ACCOUNT')}</Label>
+                    <Body1 color="primary">{t('ACTIONS.CREATE_ACCOUNT')}</Body1>
                 </Button>
             </View>
         );
     } else {
         contactEatonRepresentative = (
             <View style={{ alignSelf: 'center', flexShrink: 1 }}>
-                <Label style={styles.signUpText}>{t('LABELS.NEED_ACCOUNT')}</Label>
+                <Body1 style={styles.signUpText}>{t('LABELS.NEED_ACCOUNT')}</Body1>
                 <ResizingClearButton
                     title={t('MESSAGES.CONTACT')}
                     style={{ width: '100%' }}
@@ -343,7 +343,7 @@ export const Login: React.FC<LoginProps> = (props) => {
                                 uppercase={false}
                                 onPress={(): void => navigation.navigate('PasswordResetInitiation')}
                             >
-                                <Label color="primary">{t('LABELS.FORGOT_PASSWORD')}</Label>
+                                <Body1 color="primary">{t('LABELS.FORGOT_PASSWORD')}</Body1>
                             </Button>
                         </View>
 
