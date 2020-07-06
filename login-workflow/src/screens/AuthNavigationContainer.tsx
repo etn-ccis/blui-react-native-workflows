@@ -32,9 +32,12 @@ type NavigationContainerComponentProps = React.ComponentProps<typeof NavigationC
  *     config: {
  *         Login: 'login',
  *         PasswordResetInitiation: 'password/reset/initiate',
- *         PasswordResetCompletion: 'password/reset/:verifyCode',
- *         RegistrationInvite: 'invite/:validationCode',
- *         Registration: 'register/:verificationCode',
+ *         // email can be passed in as parameter if needed for the api
+ *         PasswordResetCompletion: 'password/reset/:code',
+ *         // email can be passed in as parameter if needed for the api
+ *         RegistrationInvite: 'invite/:code',
+ *         // email can be passed in as parameter if needed for the api
+ *         Registration: 'register/:code',
  *         SupportContact: 'support',
  *     },
  * };

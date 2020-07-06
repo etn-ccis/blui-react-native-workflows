@@ -27,6 +27,9 @@ import { AuthUIContextProvider } from '@pxblue/react-native-auth-workflow';
 -   **contactPhone** (optional): *`string`*
     - Contact phone number to be shown on the support screen
     - Default: provides a fake phone number
+-   **htmlEula** (optional): *`boolean`*
+    - Set to true if your EULA needs to be rendered as HTML
+    - Default: false
 -   **passwordRequirements** (optional): *`PasswordRequirement[]`*
     - An array of `PasswordRequirement`s that must be satisfied when creating or changing a password.
     - Default: Passwords must contain a number, uppercase letter, lowercase letter, special character, and be between 8 and 16 characters in length
@@ -217,7 +220,7 @@ Authentication Actions to be performed based on the user's UI actions. The appli
     -   **Returns**: *`Promise<void>`*
         -   Resolve if code is credentials are valid, otherwise reject.
 
--   **setPassword**: *`(code: string, password: string) => Promise<void>)`*
+-   **setPassword**: *`(code: string, password: string, email?: string) => Promise<void>)`*
     -   A user who has previously used "forgotPassword" now has a valid password reset code and has entered a new password. The application should take the user's password reset code and the newly entered password and then reset the user's password.
         > Note: Upon success, the user will be taken to the Login screen
 
@@ -226,16 +229,20 @@ Authentication Actions to be performed based on the user's UI actions. The appli
             -   Password reset code from a link
         -   **password**: *`string`*
             -   New Password the user entered into the UI
+        -   **email**: (optional) *`string`*
+            -   Email address if it was passed from the reset link
 
     -   **Returns**: *`Promise<void>`*
         -   Resolve if successful, otherwise reject with an error message.
 
--   **verifyResetCode**: *`(code: string) => Promise<void>)`*
+-   **verifyResetCode**: *`(code: string, email?: string) => Promise<void>)`*
     -   The user has tapped on an email with a password reset link, which they received after requesting help for forgetting their password. The application should take the password reset code and then verify that it is still valid.
 
     -   **Parameters**:
         -   **code**: *`string`*
             -   Password reset code from a reset password link
+        -   **email**: (optional) *`string`*
+            -   Email address if it was passed from the reset link
 
     -   **Returns**: *`Promise<void>`*
         -   Resolve if code is valid, otherwise reject.
@@ -251,6 +258,8 @@ Network state and email for a user requesting forgot password. Extends `TransitS
 Network state and returned email and organization for a user who was invited to register within the app (deep link token from their email).
 
 ### Type Declaration
+-   **codeRequestTransit**: *`TransitState`*
+    -   Network state for initiating user registration (sending verification email).
 -   **email**: *`string | null`*
     -   The email belonging to the user who was invited to register through the app.
 -   **organizationName**: *`string | null`*
@@ -284,7 +293,7 @@ Definition for a security/complexity requirement for application passwords.
 Registration Actions to be performed based on the user's actions. The application will create appropriate actions (often API calls, local network storage, credential updates, etc.) based on the actionable needs of the user. A MockRegistrationUIActions implementation is provided in the examples to start with during development.
 
 ### Type Declaration
--   **completeRegistration**: *`(userData: { accountDetails: AccountDetailInformation, password: string }, validationCode: string) => Promise<{ email: string, organizationName: string }>)`*
+-   **completeRegistration**: *`(userData: { accountDetails: AccountDetailInformation, password: string }, validationCode: string, validationEmail?: string) => Promise<{ email: string, organizationName: string }>)`*
     -   The user has been invited to register and has entered the necessary account and password information. The application should now complete the registration process given the user's data.
         > Note: Upon resolution, the user will be brought back to the Login screen.
 
@@ -293,6 +302,8 @@ Registration Actions to be performed based on the user's actions. The applicatio
             -   Account details and password entered by the user.
         -   **validationCode**: *`string`*
             -   Registration code provided from the invitation email link.
+        -   **validationEmail**: (optional) *`string`*
+            -   Email provided from the invitation email link (optional) `?email=addr%40domain.com`.
 
     -   **Returns**: *`Promise<{ email: string, organizationName: string }>`*
         -   Resolve when account creation succeeds, otherwise reject with an error message.
@@ -307,15 +318,27 @@ Registration Actions to be performed based on the user's actions. The applicatio
     -   **Returns**: *`Promise<string>`*
         -   Resolve with EULA, otherwise reject with an error message.
 
--   **validateUserRegistrationRequest**: *`(validationCode: string) => Promise<void>)`*
+-   **requestRegistrationCode**: *`(email: string) => Promise<void>)`*
+    -   The user entered their email address and accepted the EULA. The API should now send them an email with the validation code.
+
+    -   **Parameters**:
+        -   **email**: *`string`*
+            -   The email address for the registering user.
+
+    -   **Returns**: *`Promise<void>`*
+        -   Resolve when the server has accepted the request.
+
+-   **validateUserRegistrationRequest**: *`(validationCode: string, validationEmail?: string) => Promise<boolean>)`*
     -   The user has tapped on an email link inviting them to register with the application. The application should validate the code provided by the link.
 
     -   **Parameters**:
         -   **validationCode**: *`string`*
             -   Registration code provided from the link.
+        -   **validationEmail**: (optional) *`string`*
+            -   Email provided from the invitation email link (optional) `?email=addr%40domain.com`.
 
-    -   **Returns**: *`Promise<void>`*
-        -   Resolve when the code is valid, otherwise reject with an error message.
+    -   **Returns**: *`Promise<boolean>`*
+        -   Resolves when the code is valid. True if registration is complete, False if account information is needed. If the code is not valid a rejection will occur with an error message.
 
 ## RegistrationUIState
 Global state for registration-related activities and loading the EULA for newly registering users

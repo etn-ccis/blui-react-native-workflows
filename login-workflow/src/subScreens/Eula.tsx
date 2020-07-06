@@ -9,6 +9,7 @@ import React, { useCallback } from 'react';
 import { View, StyleSheet, SafeAreaView, ScrollView } from 'react-native';
 import { Body1 } from '@pxblue/react-native-components';
 import { Checkbox } from '../components/Checkbox';
+import { WebView } from 'react-native-webview';
 
 // Hooks
 import { useLanguageLocale } from '../hooks/language-locale-hooks';
@@ -46,6 +47,7 @@ const makeContainerStyles = (theme: Theme): Record<string, any> =>
  * @param onEulaChanged  The function to handle when the EULA state has changed.
  * @param eulaError  The error message.
  * @param loadEula  The function to be used for loading the EULA.
+ * @param htmlEula (Optional) whether the EULA should be plaintext or support HTML
  * @param theme (Optional) react-native-paper theme partial for custom styling.
  */
 type EulaProps = {
@@ -54,6 +56,7 @@ type EulaProps = {
     onEulaChanged(accepted: boolean): void;
     eulaError: string | null;
     loadEula: Function;
+    htmlEula?: boolean;
     theme?: Theme;
 };
 
@@ -67,6 +70,7 @@ export const Eula: React.FC<EulaProps> = (props) => {
     const { t } = useLanguageLocale();
     const containerStyles = makeContainerStyles(theme);
     const eulaIsChecked = props.eulaAccepted ?? false;
+    const htmlEula = props.htmlEula ?? false;
 
     React.useEffect(() => {
         props.loadEula();
@@ -79,12 +83,28 @@ export const Eula: React.FC<EulaProps> = (props) => {
 
     const disableCheckBox = props.eulaError || !props.eulaContent ? true : false;
 
+    const eulaContentInternals = !htmlEula
+        ? props.eulaContent ?? props.eulaError ?? t('REGISTRATION.EULA.LOADING')
+        : props.eulaContent ??
+          '<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>' +
+              '<style>body { font-size: 120%; word-wrap: break-word; overflow-wrap: break-word; }</style>' +
+              `<body>${props.eulaError ?? t('REGISTRATION.EULA.LOADING')}</body>` +
+              '</html>';
+
     return (
         <SafeAreaView style={containerStyles.safeContainer}>
             <View style={[containerStyles.mainContainer, containerStyles.containerMargins]}>
-                <ScrollView>
-                    <Body1>{props.eulaContent ?? props.eulaError ?? t('REGISTRATION.EULA.LOADING')}</Body1>
-                </ScrollView>
+                {htmlEula ? (
+                    <WebView
+                        originWhitelist={['*']}
+                        source={{ html: eulaContentInternals }}
+                        style={{ flex: 1, height: 50 /* WebView needs a fixed height set or it won't render */ }}
+                    />
+                ) : (
+                    <ScrollView>
+                        <Body1>{eulaContentInternals}</Body1>
+                    </ScrollView>
+                )}
             </View>
             <View style={[containerStyles.containerMargins, containerStyles.checkboxContainer]}>
                 <Checkbox

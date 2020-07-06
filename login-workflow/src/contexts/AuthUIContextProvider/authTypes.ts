@@ -64,9 +64,10 @@ export type AuthUIActions = {
      * valid.
      *
      * @param code Password reset code from a reset password link.
+     * @param email (optional) Email address of account
      * @returns Resolve if code is valid, otherwise reject.
      */
-    verifyResetCode(code: string): Promise<void>;
+    verifyResetCode(code: string, email?: string): Promise<void>;
     /**
      * A user who has previously used "forgotPassword" now has a valid password reset code
      * and has entered a new password.
@@ -77,10 +78,11 @@ export type AuthUIActions = {
      *
      * @param code Password reset code from a link
      * @param password New Password the user entered into the UI
+     * @param email (optional) Email address of account
      *
      * @returns Resolve if successful, otherwise reject with an error message.
      */
-    setPassword(code: string, password: string): Promise<void>;
+    setPassword(code: string, password: string, email?: string): Promise<void>;
     /**
      * An authenticated user wants to change their password.
      * The application should try to change the user's password. Upon completion,

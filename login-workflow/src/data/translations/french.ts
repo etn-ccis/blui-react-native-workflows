@@ -61,6 +61,7 @@ const resources = {
             },
             SUCCESS_MESSAGE:
                 "Votre compte a été créé avec le courrier électronique <b>{{email}}</b>.\n\nVotre compte a déjà été ajouté à l'organisation <b>{{organization}}</b>.\n\nAppuyez sur Continuer ci-dessous pour continuer.",
+            SUCCESS_EXISTING: `Votre compte à été créé avec succès. Veuillez vous connecter avec l'adresse e-mail et le mot de passe de votre compte Eaton.`,
             FAILURE_MESSAGE:
                 "Nous n'avons pas pu terminer votre inscription. Appuyez sur Continuer ci-dessous pour continuer.",
             UNKNOWN_EMAIL: 'Email inconnu',

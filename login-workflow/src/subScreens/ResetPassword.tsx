@@ -115,7 +115,7 @@ export const ResetPassword: React.FC<ResetPasswordProps> = (props) => {
     const errorDialog = (
         <SimpleDialog
             title={'Error'}
-            bodyText={transitErrorMessage}
+            bodyText={t(transitErrorMessage ?? '')}
             visible={hasTransitError && !hasAcknowledgedError}
             onDismiss={(): void => {
                 setHasAcknowledgedError(true);
