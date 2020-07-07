@@ -24,11 +24,13 @@
         "package.json"
     ],
     "scripts": {
-        "install:dependencies": "yarn && yarn build && cd example && yarn && cd ios && pod install",
+        "install:dependencies": "yarn install:dependencies-ios",
+        "install:dependencies-ios": "yarn && yarn build && cd example && yarn && cd ios && pod install",
+        "install:dependencies-android": "yarn && yarn build && cd example && yarn",
         "link:components": "bash ./scripts/linkWorkflow.sh",
         "start:example": "yarn start:example-ios",
-        "start:example-ios": "yarn install:dependencies && yarn link:components && cd example && yarn ios",
-        "start:example-android": "yarn install:dependencies && yarn link:components && cd example && yarn android",
+        "start:example-ios": "yarn install:dependencies-ios && yarn link:components && cd example && yarn ios",
+        "start:example-android": "yarn install:dependencies-android && yarn link:components && cd example && yarn android",
         "test": "jest",
         "lint": "eslint \"**/**/*.{tsx,ts}\"",
         "prettier": "prettier \"**/**.{tsx,ts,js,json}\" --write",
