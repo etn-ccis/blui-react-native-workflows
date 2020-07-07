@@ -1400,9 +1400,9 @@
   integrity sha512-/3cLBoTjZs3kV1ATPA/Sp0tsL7XmlV/b8HW/qt0jqR/uP5+cdXL2YIhMXQngLRa7PhpSkEiRIYK5sl0rKsXTUg==
 
 "@pxblue/react-native-auth-workflow@^1.1.0":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@pxblue/react-native-auth-workflow/-/react-native-auth-workflow-1.0.2.tgz#efd647dbff7d88497c925750252612d552870cca"
-  integrity sha512-ikPN+GSaJI/ippTQGNNv+ppqinMP8YP7D3AeZxeIolCMtJ42yqb6XfcSR3NEaffZxxOdpv8SHs4t24BoDV5XSg==
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@pxblue/react-native-auth-workflow/-/react-native-auth-workflow-1.1.0.tgz#84248f561a73291b3d700346fb00e5aa5a64a0d9"
+  integrity sha512-A4b3v6gwcBTTLyuHxIQPBQTTBR8r8jpLT9tu4oMkYGvLZlKGFyUK7mS8xMtwrx5mA7ffxne5kwVogIo/0kNavQ==
   dependencies:
     react-native-status-bar-height "^2.5.0"
 
