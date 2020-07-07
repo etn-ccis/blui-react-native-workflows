@@ -79,7 +79,7 @@ export const ErrorState: React.FC<ErrorStateProps> = (props) => {
                     IconClass={icon ?? ReportIcon}
                     iconColor={theme.colors.error}
                     title={title ?? t('MESSAGES.FAILURE')}
-                    description={bodyText ?? t('MESSAGES.REQUEST_ERROR')}
+                    description={bodyText !== null ? t(bodyText) : t('MESSAGES.REQUEST_ERROR')}
                 />
             </View>
 

@@ -15,7 +15,7 @@ describe('Eula subScreen tested with enzyme', () => {
             /* do nothing */
         }
     ): JSX.Element {
-        return <Eula loadEula={jest.fn()} onEulaChanged={onEulaChanged} eulaError={'eulaError'} />;
+        return <Eula loadEula={jest.fn()} onEulaChanged={onEulaChanged} eulaError={'eulaError'} htmlEula />;
     }
 
     it('renders correctly', () => {

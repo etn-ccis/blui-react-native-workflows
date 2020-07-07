@@ -21,14 +21,25 @@ export type RegistrationUIActions = {
      */
     loadEULA(language: string): Promise<string>;
     /**
+     * The user entered their email address and accepted the EULA.
+     * The API should now send them an email with the validation code.
+     *
+     * @param email  Email for the registering user.
+     *
+     * @returns Resolve when the server accepted the request.
+     */
+    requestRegistrationCode(email: string): Promise<void>;
+    /**
      * The user has tapped on an email link inviting them to register with the application.
      * The application should validate the code provided by the link.
      *
      * @param validationCode  Registration code provided from the link.
+     * @param validationEmail  Email provided from the invitation email link (optional) `?email=addr%40domain.com`.
      *
-     * @returns Resolve when the code is valid, otherwise reject with an error message.
+     * @returns Resolves when the code is valid. True if registration is complete, False if account information is needed.
+     *          If the code is not valid a rejection will occur with an error message.
      */
-    validateUserRegistrationRequest(validationCode: string): Promise<void>;
+    validateUserRegistrationRequest(validationCode: string, validationEmail?: string): Promise<boolean>;
     /**
      * The user has been invited to register and has entered the necessary account and
      * password information.
@@ -38,6 +49,7 @@ export type RegistrationUIActions = {
      *
      * @param userData  Account details and password entered by the user.
      * @param validationCode  Registration code provided from the invitation email link.
+     * @param validationEmail  Email provided from the invitation email link (optional) `?email=addr%40domain.com`.
      *
      * @returns Resolve when account creation succeeds, otherwise reject with an error message.
      */
@@ -46,6 +58,7 @@ export type RegistrationUIActions = {
             password: string;
             accountDetails: AccountDetailInformation;
         },
-        validationCode: string
+        validationCode: string,
+        validationEmail?: string
     ): Promise<{ email: string; organizationName: string }>;
 };

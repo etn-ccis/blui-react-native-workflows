@@ -3,7 +3,7 @@
  * @module Sub-Screens
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 
 // Components
 import { View, StyleSheet, SafeAreaView } from 'react-native';
@@ -50,12 +50,14 @@ const makeStyles = (): Record<string, any> =>
 /**
  * Properties for the verify email component.
  *
- * @param verifyCodeChanged  Handle the verify code change action.
+ * @param initialCode  value used to initialize the code.
+ * @param onVerifyCodeChanged  Handle the verify code change action. Called each time the code changes.
  * @param onResendVerificationEmail  Handle the press of the resend verification email.
  * @param theme (Optional) react-native-paper theme partial for custom styling.
  */
 type VerifyEmailProps = {
-    verifyCodeChanged(email: string): void;
+    initialCode?: string;
+    onVerifyCodeChanged(email: string): void;
     onResendVerificationEmail(): void;
     theme?: Theme;
 };
@@ -67,14 +69,18 @@ type VerifyEmailProps = {
  * @category Component
  */
 export const VerifyEmail: React.FC<VerifyEmailProps> = (props) => {
-    const { verifyCodeChanged, onResendVerificationEmail, theme: customTheme } = props;
+    const { initialCode, onVerifyCodeChanged, onResendVerificationEmail, theme: customTheme } = props;
     const theme = useTheme(customTheme);
     const { t } = useLanguageLocale();
-    const [verifyCode, setVerifyCode] = React.useState('');
+    const [verifyCode, setVerifyCode] = React.useState(initialCode ?? '');
 
-    React.useEffect(() => {
-        verifyCodeChanged(verifyCode.length === 6 ? verifyCode : '');
-    }, [verifyCode, verifyCodeChanged]);
+    useEffect(() => {
+        setVerifyCode(props.initialCode ?? '');
+    }, [props.initialCode]);
+
+    useEffect(() => {
+        onVerifyCodeChanged(verifyCode.length === 6 ? verifyCode : '');
+    }, [verifyCode, onVerifyCodeChanged]);
 
     const containerStyles = makeContainerStyles(theme);
     const styles = makeStyles();

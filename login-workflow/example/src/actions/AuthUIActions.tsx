@@ -121,10 +121,11 @@ export const ProjectAuthUIActions: AuthUIActionsWithSecurity = (securityHelper) 
      * valid.
      *
      * @param code Password reset code from a reset password link.
+     * @param email Email if it was passed from the reset link
      *
      * @returns Resolve if code is valid, otherwise reject.
      */
-    verifyResetCode: async (code: string): Promise<void> => {
+    verifyResetCode: async (code: string, email?: string): Promise<void> => {
         await sleep(500);
         if (isRandomFailure()) {
             throw new Error('Sorry, there was a problem sending your request.');
@@ -142,10 +143,11 @@ export const ProjectAuthUIActions: AuthUIActionsWithSecurity = (securityHelper) 
      *
      * @param code Password reset code from a link
      * @param password New Password the user entered into the UI
+     * @param email Email if it was passed from the reset link
      *
      * @returns Resolve if successful, otherwise reject with an error message.
      */
-    setPassword: async (code: string, password: string): Promise<void> => {
+    setPassword: async (code: string, password: string, email?: string): Promise<void> => {
         await sleep(500);
         if (isRandomFailure()) {
             throw new Error('Sorry, there was a problem sending your request.');

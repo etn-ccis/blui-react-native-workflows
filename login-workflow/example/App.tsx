@@ -30,6 +30,7 @@ export function AuthUIConfiguration(props: { children: JSX.Element }): JSX.Eleme
             registrationActions={ProjectRegistrationUIActions}
             showSelfRegistration={true}
             allowDebugMode={true}
+            htmlEula={false}
             contactEmail={'something@email.com'}
             contactPhone={'1-800-123-4567'}
             // projectImage={require('./src/assets/images/some_image.png')}

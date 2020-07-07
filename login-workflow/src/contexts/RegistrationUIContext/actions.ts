@@ -38,21 +38,36 @@ export const RegistrationActionsCreator: RegistrationUIActionsCreator = (
             throw error;
         }
     },
-    validateUserRegistrationRequest: async (validationCode: string): Promise<void> => {
+    requestRegistrationCode: async (email: string): Promise<void> => {
+        const transitId = Math.random();
+        dispatch(DispatchActions.requestRegistrationCodeStarted(transitId));
+        try {
+            await injectedActions.requestRegistrationCode(email);
+            dispatch(DispatchActions.requestRegistrationCodeSucceeded(transitId));
+        } catch (error) {
+            dispatch(DispatchActions.requestRegistrationCodeFailed(transitId, error.message));
+        }
+    },
+    validateUserRegistrationRequest: async (validationCode: string, validationEmail?: string): Promise<boolean> => {
         const transitId = Math.random();
 
         dispatch(DispatchActions.validateUserRegistrationStarted(transitId));
         try {
-            await injectedActions.validateUserRegistrationRequest(validationCode);
+            const registrationComplete = await injectedActions.validateUserRegistrationRequest(
+                validationCode,
+                validationEmail
+            );
             dispatch(DispatchActions.validateUserRegistrationSucceeded(transitId));
+            return registrationComplete;
         } catch (error) {
             // Need this for debug. No real security risk
             if (validationCode === 'DEBUG_VALIDATION_CODE_DEADBEEF') {
                 dispatch(DispatchActions.validateUserRegistrationSucceeded(transitId));
-                return;
+                return false;
             }
 
             dispatch(DispatchActions.validateUserRegistrationFailed(transitId, error.message));
+            throw error;
         }
     },
     completeRegistration: async (
@@ -60,14 +75,15 @@ export const RegistrationActionsCreator: RegistrationUIActionsCreator = (
             password: string;
             accountDetails: AccountDetailInformation;
         },
-        validationCode: string
+        validationCode: string,
+        validationEmail?: string
     ): Promise<{ email: string; organizationName: string }> => {
         const transitId = Math.random();
 
         dispatch(DispatchActions.registerUserStarted(transitId));
 
         try {
-            const userDetails = await injectedActions.completeRegistration(userData, validationCode);
+            const userDetails = await injectedActions.completeRegistration(userData, validationCode, validationEmail);
             dispatch(DispatchActions.registerUserSucceeded(transitId, userDetails.email, userDetails.organizationName));
             return userDetails;
         } catch (error) {

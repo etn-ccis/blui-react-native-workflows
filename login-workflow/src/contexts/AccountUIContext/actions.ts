@@ -54,11 +54,11 @@ export const AccountActionsCreator: AccountUIActionsCreator = (injectedActions, 
             dispatch(DispatchActions.resetPasswordFailed(email, transitId, error.message));
         }
     },
-    verifyResetCode: async (code: string): Promise<void> => {
+    verifyResetCode: async (code: string, email?: string): Promise<void> => {
         const transitId = Math.random();
         dispatch(DispatchActions.verifyResetCodeStarted(transitId));
         try {
-            await injectedActions.verifyResetCode(code);
+            await injectedActions.verifyResetCode(code, email);
             dispatch(DispatchActions.verifyResetCodeSucceeded(transitId));
         } catch (error) {
             // Need this for debug. No real security risk
@@ -70,11 +70,11 @@ export const AccountActionsCreator: AccountUIActionsCreator = (injectedActions, 
             dispatch(DispatchActions.verifyResetCodeFailed(transitId, error.message));
         }
     },
-    setPassword: async (code: string, password: string): Promise<void> => {
+    setPassword: async (code: string, password: string, email?: string): Promise<void> => {
         const transitId = Math.random();
         dispatch(DispatchActions.setPasswordStarted(transitId));
         try {
-            await injectedActions.setPassword(code, password);
+            await injectedActions.setPassword(code, password, email);
             dispatch(DispatchActions.setPasswordSucceeded(transitId));
         } catch (error) {
             dispatch(DispatchActions.setPasswordFailed(transitId, error.message));

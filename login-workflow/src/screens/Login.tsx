@@ -232,7 +232,7 @@ export const Login: React.FC<LoginProps> = (props) => {
                     uppercase={false}
                     onPress={(): void =>
                         navigation.navigate('PasswordResetCompletion', {
-                            verifyCode: 'DEBUG_VALIDATION_CODE_DEADBEEF',
+                            code: 'DEBUG_VALIDATION_CODE_DEADBEEF',
                         })
                     }
                 >
@@ -254,7 +254,7 @@ export const Login: React.FC<LoginProps> = (props) => {
                     uppercase={false}
                     onPress={(): void =>
                         navigation.navigate('RegistrationInvite', {
-                            validationCode: 'DEBUG_VALIDATION_CODE_DEADBEEF',
+                            code: 'DEBUG_VALIDATION_CODE_DEADBEEF',
                         })
                     }
                 >
@@ -287,6 +287,7 @@ export const Login: React.FC<LoginProps> = (props) => {
                 <SafeAreaView style={[containerStyles.mainContainer, containerStyles.spaceBetween]}>
                     <View style={containerStyles.inputAreas}>
                         <TextInput
+                            testID={'email-text-field'}
                             label={t('LABELS.EMAIL')}
                             value={emailInput}
                             keyboardType={'email-address'}
@@ -300,6 +301,7 @@ export const Login: React.FC<LoginProps> = (props) => {
                             errorText={t('LOGIN.INCORRECT_CREDENTIALS')}
                         />
                         <TextInputSecure
+                            testID={'password-text-field'}
                             ref={confirmPasswordRef}
                             label={t('LABELS.PASSWORD')}
                             value={passwordInput}

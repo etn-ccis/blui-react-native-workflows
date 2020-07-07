@@ -63,6 +63,12 @@ type AuthUIContextProviderProps = {
      * Default: Provides a fake phone number.
      */
     contactPhone?: string;
+    /**
+     * Allow the EULA to be displayed as HTML or Text
+     *
+     * Default: Displays as html
+     */
+    htmlEula?: boolean;
 };
 
 export type { AuthUIContextProviderProps, AuthUIActions, RegistrationUIActions };

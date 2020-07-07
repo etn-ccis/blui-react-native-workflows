@@ -31,6 +31,25 @@ export const RegistrationActions = {
             type: 'Registration/LoadEula/Failed',
             payload: { transitId, errorMessage },
         } as const),
+    requestRegistrationCodeReset: () =>
+        ({
+            type: 'Registration/RequestCode/Reset',
+        } as const),
+    requestRegistrationCodeStarted: (transitId: number | null) =>
+        ({
+            type: 'Registration/RequestCode/Started',
+            payload: { transitId },
+        } as const),
+    requestRegistrationCodeSucceeded: (transitId: number | null) =>
+        ({
+            type: 'Registration/RequestCode/Succeeded',
+            payload: { transitId },
+        } as const),
+    requestRegistrationCodeFailed: (transitId: number | null, errorMessage: string) =>
+        ({
+            type: 'Registration/RequestCode/Failed',
+            payload: { transitId, errorMessage },
+        } as const),
 
     validateUserRegistrationReset: () =>
         ({

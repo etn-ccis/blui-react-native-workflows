@@ -15,7 +15,7 @@ describe('VerifyEmail subScreen tested with enzyme', () => {
     const act = renderer.act;
 
     function baseXML(
-        verifyCodeChanged = (): void => {
+        onVerifyCodeChanged = (): void => {
             /* do nothing */
         },
         onResendVerificationEmail = (): void => {
@@ -23,7 +23,10 @@ describe('VerifyEmail subScreen tested with enzyme', () => {
         }
     ): JSX.Element {
         return (
-            <VerifyEmail verifyCodeChanged={verifyCodeChanged} onResendVerificationEmail={onResendVerificationEmail} />
+            <VerifyEmail
+                onVerifyCodeChanged={onVerifyCodeChanged}
+                onResendVerificationEmail={onResendVerificationEmail}
+            />
         );
     }
 
@@ -42,7 +45,7 @@ describe('VerifyEmail subScreen tested with enzyme', () => {
         expect(wrapper.find('TextInput')).toHaveLength(1);
     });
 
-    it('test async useEffect update of verifyCodeChanged returns valid code for valid verify code', async () => {
+    it('test async useEffect update of onVerifyCodeChanged returns code for entry', async () => {
         const mockCallback = jest.fn();
         const component = mount(baseXML(mockCallback));
 
@@ -60,25 +63,7 @@ describe('VerifyEmail subScreen tested with enzyme', () => {
         expect(mockCallback.mock.calls[1][0]).toBe('123456'); // The final call is the final state from the useEffect hook
     });
 
-    it('test async useEffect update of verifyCodeChanged returns empty string for invalid verify code', async () => {
-        const mockCallback = jest.fn();
-        const component = mount(baseXML(mockCallback));
-
-        await act(async () => {
-            await Promise.resolve(component);
-            await new Promise((resolve) => setImmediate(resolve));
-
-            (component.find('TextInput').at(0).props() as TextInputHTMLAttributes).onChangeText!('123');
-            component.update();
-        });
-
-        expect(component.find('TextInput').at(0).prop('value')).toEqual('123');
-        expect(mockCallback).toHaveBeenCalledTimes(2);
-        expect(mockCallback).toHaveBeenCalledWith('');
-        expect(mockCallback.mock.calls[1][0]).toBe(''); // The final call is the final state from the useEffect hook
-    });
-
-    // it('good entry snapshowt', async () => {
+    // it('good entry snapshot', async () => {
     //     const component = mount(baseXML());
 
     //     await act(async () => {

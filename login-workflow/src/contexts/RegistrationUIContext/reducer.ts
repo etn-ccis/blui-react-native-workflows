@@ -136,6 +136,44 @@ export const registrationReducer = (
                     validationTransit: transitFailed(action.payload.errorMessage, action.payload.transitId),
                 },
             };
+        case 'Registration/RequestCode/Reset':
+            return {
+                ...prevState,
+                inviteRegistration: {
+                    ...prevState.inviteRegistration,
+                    codeRequestTransit: initialTransitState,
+                },
+            };
+        case 'Registration/RequestCode/Started':
+            return {
+                ...prevState,
+                inviteRegistration: {
+                    ...prevState.inviteRegistration,
+                    codeRequestTransit: transitStart(action.payload.transitId),
+                },
+            };
+        case 'Registration/RequestCode/Succeeded':
+            if (prevState.inviteRegistration.codeRequestTransit.transitId !== action.payload.transitId) {
+                return prevState;
+            }
+            return {
+                ...prevState,
+                inviteRegistration: {
+                    ...prevState.inviteRegistration,
+                    codeRequestTransit: transitSuccess(action.payload.transitId),
+                },
+            };
+        case 'Registration/RequestCode/Failed':
+            if (prevState.inviteRegistration.codeRequestTransit.transitId !== action.payload.transitId) {
+                return prevState;
+            }
+            return {
+                ...prevState,
+                inviteRegistration: {
+                    ...prevState.inviteRegistration,
+                    codeRequestTransit: transitFailed(action.payload.errorMessage, action.payload.transitId),
+                },
+            };
         default:
             return prevState;
     }
