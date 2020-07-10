@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:true});exports.initialRegistrationState=void 0;var _TransitState=require("../TransitState");var initialRegistrationState={eulaTransit:_TransitState.initialTransitState,inviteRegistration:{codeRequestTransit:_TransitState.initialTransitState,registrationTransit:_TransitState.initialTransitState,validationTransit:_TransitState.initialTransitState,email:null,organizationName:null}};exports.initialRegistrationState=initialRegistrationState;
+//# sourceMappingURL=state.js.map

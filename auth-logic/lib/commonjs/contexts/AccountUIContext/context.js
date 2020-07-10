@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:true});exports.ActionContext=exports.StateContext=void 0;var _react=require("react");var _state=require("./state");var StateContext=(0,_react.createContext)(_state.initialAccountUIState);exports.StateContext=StateContext;var ActionContext=(0,_react.createContext)(null);exports.ActionContext=ActionContext;
+//# sourceMappingURL=context.js.map

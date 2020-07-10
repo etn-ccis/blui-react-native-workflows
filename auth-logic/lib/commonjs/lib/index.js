@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:true});var _clock=require("./clock");Object.keys(_clock).forEach(function(key){if(key==="default"||key==="__esModule")return;Object.defineProperty(exports,key,{enumerable:true,get:function get(){return _clock[key];}});});
+//# sourceMappingURL=index.js.map
