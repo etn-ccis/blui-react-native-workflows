@@ -6,12 +6,12 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { Splash as SplashScreen } from './Splash';
-import { useSecurityState, useSecurityActions } from '../contexts/SecurityContextProvider';
+import { useSecurityState, useSecurityActions } from '@pxblue/react-auth-logic';
 import { PreAuthContainer } from './PreAuthContainer';
 import { ChangePassword } from '../screens/ChangePassword';
 
-import { AuthUIInternalStore } from '../stores/AuthUIInternalStore';
-import { useInjectedUIContext } from '../contexts/AuthUIContextProvider';
+import { AuthUIInternalStore } from '@pxblue/react-auth-logic';
+import { useInjectedUIContext } from '@pxblue/react-auth-logic';
 
 /**
  * Type for the properties of the navigation container.

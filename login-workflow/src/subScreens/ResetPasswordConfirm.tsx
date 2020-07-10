@@ -6,9 +6,9 @@
 import React from 'react';
 
 // Hooks
-import { useLanguageLocale } from '../hooks/language-locale-hooks';
+import { useLanguageLocale } from '@pxblue/react-auth-logic';
 import { useRoute } from '@react-navigation/native';
-import { useAccountUIState } from '../contexts/AccountUIContext';
+import { useAccountUIState } from '@pxblue/react-auth-logic';
 import { Theme, useTheme } from 'react-native-paper';
 
 // Components

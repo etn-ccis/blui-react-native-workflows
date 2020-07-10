@@ -9,7 +9,7 @@ import React from 'react';
 import { CompleteSplashScreen } from './CompleteSplash';
 
 // Hooks
-import { useLanguageLocale } from '../hooks/language-locale-hooks';
+import { useLanguageLocale } from '@pxblue/react-auth-logic';
 
 /**
  * Type to represent the content of the registration complete component.

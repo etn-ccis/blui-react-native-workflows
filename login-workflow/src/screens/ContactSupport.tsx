@@ -16,11 +16,11 @@ import * as Colors from '@pxblue/colors';
 import { Body1, H6 } from '@pxblue/react-native-components';
 
 // Hooks
-import { useLanguageLocale } from '../hooks/language-locale-hooks';
+import { useLanguageLocale } from '@pxblue/react-auth-logic';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
 // Types
-import { ContactParams } from '../types/ContactParams';
+import { ContactParams } from '@pxblue/react-auth-logic';
 
 /**
  * @ignore

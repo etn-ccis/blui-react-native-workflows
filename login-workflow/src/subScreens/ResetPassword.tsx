@@ -6,11 +6,11 @@
 import React from 'react';
 
 // Constants
-import { EMAIL_REGEX } from '../constants/index';
+import { EMAIL_REGEX } from '@pxblue/react-auth-logic';
 
 // Hooks
-import { useLanguageLocale } from '../hooks/language-locale-hooks';
-import { useAccountUIState } from '../contexts/AccountUIContext';
+import { useLanguageLocale } from '@pxblue/react-auth-logic';
+import { useAccountUIState } from '@pxblue/react-auth-logic';
 import { useRoute } from '@react-navigation/native';
 import { Theme, useTheme } from 'react-native-paper';
 

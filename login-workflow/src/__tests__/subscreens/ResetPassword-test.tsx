@@ -11,7 +11,7 @@ import { Provider } from 'react-native-paper';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
-import { TextInputHTMLAttributes } from '../../types/TextInputHTMLAttributes';
+import { TextInputHTMLAttributes } from '@pxblue/react-auth-logic';
 
 // Nav
 import { NavigationContainer } from '@react-navigation/native';

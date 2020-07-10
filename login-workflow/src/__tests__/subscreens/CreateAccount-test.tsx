@@ -9,7 +9,7 @@ import { shallow, mount } from 'enzyme';
 import { CreateAccount } from '../../subScreens/CreateAccount';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
-import { TextInputHTMLAttributes } from '../../types/TextInputHTMLAttributes';
+import { TextInputHTMLAttributes } from '@pxblue/react-auth-logic';
 
 describe('CreateAccount subScreen tested with enzyme', () => {
     const act = renderer.act;

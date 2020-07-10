@@ -9,14 +9,14 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
 // Hooks
-import { useLanguageLocale } from '../hooks/language-locale-hooks';
+import { useLanguageLocale } from '@pxblue/react-auth-logic';
 import {
     RegistrationActions,
     useRegistrationUIState,
     useRegistrationUIActions,
-} from '../contexts/RegistrationUIContext';
-import i18n from '../data/translations/i18n';
-import { useInjectedUIContext } from '../contexts/AuthUIContextProvider';
+} from '@pxblue/react-auth-logic';
+import {i18n} from '@pxblue/react-auth-logic';
+import { useInjectedUIContext } from '@pxblue/react-auth-logic';
 
 // Screens
 import { Eula as EulaScreen } from '../subScreens/Eula';
