@@ -1,2 +1,0 @@
-Object.defineProperty(exports,"__esModule",{value:true});exports.useIsFirstRender=void 0;var _react=require("react");var useIsFirstRender=function useIsFirstRender(){var isFirstRender=(0,_react.useRef)(true);(0,_react.useEffect)(function(){isFirstRender.current=false;},[]);return isFirstRender.current;};exports.useIsFirstRender=useIsFirstRender;
-//# sourceMappingURL=isFirstRender.js.map

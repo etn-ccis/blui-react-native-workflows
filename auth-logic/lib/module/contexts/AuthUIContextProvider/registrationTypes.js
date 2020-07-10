@@ -1,2 +1,0 @@
-
-//# sourceMappingURL=registrationTypes.js.map

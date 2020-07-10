@@ -1,2 +1,0 @@
-Object.defineProperty(exports,"__esModule",{value:true});exports.RegistrationActionContext=exports.RegistrationStateContext=void 0;var _react=require("react");var _state=require("./state");var RegistrationActionContext=(0,_react.createContext)(null);exports.RegistrationActionContext=RegistrationActionContext;var RegistrationStateContext=(0,_react.createContext)(_state.initialRegistrationState);exports.RegistrationStateContext=RegistrationStateContext;
-//# sourceMappingURL=context.js.map
