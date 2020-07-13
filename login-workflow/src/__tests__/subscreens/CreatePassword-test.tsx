@@ -11,7 +11,8 @@ import { CreatePassword } from '../../subScreens/CreatePassword';
 import renderer from 'react-test-renderer';
 import { TextInputHTMLAttributes } from '@pxblue/react-auth-shared';
 
-jest.mock('src/contexts/AuthUIContextProvider', () => ({
+jest.mock('@pxblue/react-auth-shared', () => ({
+    ...jest.requireActual('@pxblue/react-auth-shared'),
     useAuthUIActions: (): any => ({ dispatch: jest.fn(() => true) }),
     useInjectedUIContext: jest.fn().mockReturnValue({ showSelfRegistration: true }),
 }));

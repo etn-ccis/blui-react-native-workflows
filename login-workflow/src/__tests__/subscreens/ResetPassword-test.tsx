@@ -19,7 +19,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 const Stack = createStackNavigator();
 
 // mock hooks
-jest.mock('src/contexts/AccountUIContext', () => ({
+jest.mock('@pxblue/react-auth-shared', () => ({
+    ...jest.requireActual('@pxblue/react-auth-shared'),
     useAccountUIActions: (): any => ({ dispatch: jest.fn(() => true) }),
     useAccountUIState: jest.fn().mockReturnValue({ forgotPassword: { transitSuccess: true } }),
     AccountActions: { resetPasswordReset: jest.fn(() => true) },

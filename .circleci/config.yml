@@ -1,28 +1,28 @@
 version: 2
 jobs:
-  build:
-    working_directory: ~/login-workflow
+  build_shared:
+    working_directory: ~/shared-auth-logic
     docker:
       - image: circleci/node:12.6
     steps:
       - checkout
       - restore_cache:
           keys:
-            - v2-dependencies-{{ checksum "login-workflow/yarn.lock" }}
+            - v2-dependencies-{{ checksum "shared-auth-logic/yarn.lock" }}
       - run:
           name: Install Dependencies
           command: |
-            cd login-workflow
+            cd shared-auth-logic
             yarn install --frozen-lockfile
       - save_cache:
           name: Save Cache
           paths:
             - node_modules
-          key: v2-dependencies-{{ checksum "login-workflow/yarn.lock" }}
+          key: v2-dependencies-{{ checksum "shared-auth-logic/yarn.lock" }}
       - run:
           name: Prettier Check
           command: |
-            cd login-workflow
+            cd shared-auth-logic
             yarn prettier --check
       - run:
           name: Set Max Memory
@@ -30,15 +30,65 @@ jobs:
       - run:
           name: Lint
           command: |
-            cd login-workflow
+            cd shared-auth-logic
             yarn lint
       - run:
           name: Tests
           command: |
-            cd login-workflow
+            cd shared-auth-logic
             yarn test
       - run:
           name: Build
           command: |
-            cd login-workflow
+            cd shared-auth-logic
             yarn build
+
+  build_login:
+    working_directory: ~/login-workflow
+      docker:
+        - image: circleci/node:12.6
+      steps:
+        - checkout
+        - restore_cache:
+            keys:
+              - v2-dependencies-{{ checksum "login-workflow/yarn.lock" }}
+        - run:
+            name: Install Dependencies
+            command: |
+              cd login-workflow
+              yarn install --frozen-lockfile
+        - save_cache:
+            name: Save Cache
+            paths:
+              - node_modules
+            key: v2-dependencies-{{ checksum "login-workflow/yarn.lock" }}
+        - run:
+            name: Prettier Check
+            command: |
+              cd login-workflow
+              yarn prettier --check
+        - run:
+            name: Set Max Memory
+            command: NODE_OPTIONS=--max_old_space_size=4096
+        - run:
+            name: Lint
+            command: |
+              cd login-workflow
+              yarn lint
+        - run:
+            name: Tests
+            command: |
+              cd login-workflow
+              yarn test
+        - run:
+            name: Build
+            command: |
+              cd login-workflow
+              yarn build
+
+workflows:
+  version: 2
+  react_native_workflows:
+    jobs:
+      - build_shared
+      - build_login_workflow

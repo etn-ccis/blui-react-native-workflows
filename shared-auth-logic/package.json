@@ -25,7 +25,7 @@
     ],
     "scripts": {
         "install:dependencies": "yarn && yarn build",
-        "test": "jest",
+        "test": "jest --passWithNoTests",
         "lint": "eslint \"**/**/*.{tsx,ts}\"",
         "prettier": "prettier \"**/**.{tsx,ts,js,json}\" --write",
         "build": "bob build",
@@ -90,7 +90,6 @@
         "preset": "react-native",
         "verbose": true,
         "setupFiles": [
-            "./node_modules/react-native-gesture-handler/jestSetup.js",
             "./jestSetupFile.js"
         ],
         "setupFilesAfterEnv": [

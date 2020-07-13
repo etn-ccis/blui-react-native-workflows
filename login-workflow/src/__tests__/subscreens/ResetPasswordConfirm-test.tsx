@@ -15,7 +15,8 @@ import 'react-native-gesture-handler';
 const Stack = createStackNavigator();
 
 // mock hooks
-jest.mock('src/contexts/AccountUIContext', () => ({
+jest.mock('@pxblue/react-auth-shared', () => ({
+    ...jest.requireActual('@pxblue/react-auth-shared'),
     useAccountUIActions: (): any => ({ dispatch: jest.fn(() => true) }),
     useAccountUIState: jest.fn().mockReturnValue({
         setPassword: {
@@ -28,11 +29,9 @@ jest.mock('src/contexts/AccountUIContext', () => ({
             },
         },
     }),
-    AccountActions: { resetPasswordReset: jest.fn(() => true) },
-}));
-jest.mock('src/contexts/AuthUIContextProvider', () => ({
     useAuthUIActions: (): any => ({ dispatch: jest.fn(() => true) }),
     useInjectedUIContext: jest.fn().mockReturnValue({ showSelfRegistration: true }),
+    AccountActions: { resetPasswordReset: jest.fn(() => true) },
 }));
 
 describe('ResetPasswordConfirm subScreen tested with enzyme', () => {

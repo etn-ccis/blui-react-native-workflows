@@ -1,4 +1,4 @@
-# React Native Auth Workflow 
+# React Auth Shared
 
 ![npm (scoped)](https://img.shields.io/npm/v/@pxblue/react-auth-shared)
 
