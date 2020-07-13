@@ -6,7 +6,7 @@
 import React from 'react';
 
 // Hooks
-import { useLanguageLocale } from '@pxblue/react-auth-logic';
+import { useLanguageLocale } from '@pxblue/react-auth-shared ';
 
 // Components
 import { EmptyState, wrapIcon } from '@pxblue/react-native-components';

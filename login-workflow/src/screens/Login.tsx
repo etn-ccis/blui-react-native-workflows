@@ -6,7 +6,7 @@
 import React from 'react';
 
 // Constants
-import { EMAIL_REGEX } from '@pxblue/react-auth-logic';
+import { EMAIL_REGEX } from '@pxblue/react-auth-shared ';
 
 // Components
 import { Platform, View, StyleSheet, SafeAreaView, StatusBar, TextInput as ReactTextInput } from 'react-native';
@@ -27,11 +27,11 @@ import * as Colors from '@pxblue/colors';
 import { Body1, H6 } from '@pxblue/react-native-components';
 
 // Hooks
-import { useLanguageLocale } from '@pxblue/react-auth-logic';
+import { useLanguageLocale } from '@pxblue/react-auth-shared ';
 import { useNavigation } from '@react-navigation/native';
-import { useAccountUIActions, useAccountUIState } from '@pxblue/react-auth-logic';
-import { useInjectedUIContext } from '@pxblue/react-auth-logic';
-import { useSecurityState } from '@pxblue/react-auth-logic';
+import { useAccountUIActions, useAccountUIState } from '@pxblue/react-auth-shared ';
+import { useInjectedUIContext } from '@pxblue/react-auth-shared ';
+import { useSecurityState } from '@pxblue/react-auth-shared ';
 
 /**
  * @ignore

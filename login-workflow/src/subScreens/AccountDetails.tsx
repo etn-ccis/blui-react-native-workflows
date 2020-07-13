@@ -13,7 +13,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { Theme, useTheme } from 'react-native-paper';
 
 // Hooks
-import { useLanguageLocale } from '@pxblue/react-auth-logic';
+import { useLanguageLocale } from '@pxblue/react-auth-shared ';
 
 /**
  * @ignore

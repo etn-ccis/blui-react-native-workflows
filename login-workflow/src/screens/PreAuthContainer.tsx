@@ -22,7 +22,7 @@ import { ResetPasswordHandleDeepLink } from './ResetPassword/ResetPasswordHandle
 import { InviteRegistrationPager } from './InviteRegistrationPager';
 import { SelfRegistrationPager } from './SelfRegistrationPager';
 import { ContactSupport } from './ContactSupport';
-import { useInjectedUIContext } from '@pxblue/react-auth-logic';
+import { useInjectedUIContext } from '@pxblue/react-auth-shared ';
 
 /**
  * @ignore

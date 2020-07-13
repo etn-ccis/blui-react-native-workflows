@@ -12,7 +12,7 @@ import {
     NUMBERS_REGEX,
     UPPER_CASE_REGEX,
     LOWER_CASE_REGEX,
-} from '@pxblue/react-auth-logic';
+} from '@pxblue/react-auth-shared ';
 
 // Components
 import { View, StyleSheet, SafeAreaView, TextInput } from 'react-native';
@@ -22,7 +22,7 @@ import { Instruction } from '../components/Instruction';
 import { Theme, useTheme } from 'react-native-paper';
 
 // Hooks
-import { useLanguageLocale } from '@pxblue/react-auth-logic';
+import { useLanguageLocale } from '@pxblue/react-auth-shared ';
 import { ScrollView } from 'react-native-gesture-handler';
 
 /**

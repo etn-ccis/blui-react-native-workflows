@@ -10,8 +10,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
 // Hooks
-import { useLanguageLocale } from '@pxblue/react-auth-logic';
-import { useAccountUIActions, useAccountUIState, AccountActions } from '@pxblue/react-auth-logic';
+import { useLanguageLocale } from '@pxblue/react-auth-shared ';
+import { useAccountUIActions, useAccountUIState, AccountActions } from '@pxblue/react-auth-shared ';
 
 // Screens
 import { ResetPasswordConfirm } from '../../subScreens/ResetPasswordConfirm';

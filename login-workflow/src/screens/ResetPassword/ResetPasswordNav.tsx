@@ -9,7 +9,7 @@ import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
 // Hooks
-import { useLanguageLocale } from '@pxblue/react-auth-logic';
+import { useLanguageLocale } from '@pxblue/react-auth-shared ';
 import { useRoute } from '@react-navigation/native';
 
 // Screens
@@ -21,10 +21,10 @@ import { CloseHeader } from '../../components/CloseHeader';
 
 // Theme
 import { Theme, useTheme } from 'react-native-paper';
-import { useAccountUIState, useAccountUIActions, AccountActions } from '@pxblue/react-auth-logic';
+import { useAccountUIState, useAccountUIActions, AccountActions } from '@pxblue/react-auth-shared ';
 
 // Types
-import { ContactParams } from '@pxblue/react-auth-logic';
+import { ContactParams } from '@pxblue/react-auth-shared ';
 
 /**
  * Stack navigator for reset password navigation.

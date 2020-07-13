@@ -6,19 +6,19 @@
 import React from 'react';
 
 import { View, StyleProp, ViewStyle } from 'react-native';
-import { useLanguageLocale } from '@pxblue/react-auth-logic';
+import { useLanguageLocale } from '@pxblue/react-auth-shared ';
 import {
     SPECIAL_CHAR_REGEX,
     LENGTH_REGEX,
     NUMBERS_REGEX,
     UPPER_CASE_REGEX,
     LOWER_CASE_REGEX,
-} from '@pxblue/react-auth-logic';
+} from '@pxblue/react-auth-shared ';
 
 // Components
 import { RequirementCheck } from '../components/RequirementCheck';
-import { useInjectedUIContext } from '@pxblue/react-auth-logic';
-import { PasswordRequirement } from '@pxblue/react-auth-logic';
+import { useInjectedUIContext } from '@pxblue/react-auth-shared ';
+import { PasswordRequirement } from '@pxblue/react-auth-shared ';
 
 /**
  * @param passwordText  The password to be used for checking.

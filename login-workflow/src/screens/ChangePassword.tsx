@@ -12,7 +12,7 @@ import {
     NUMBERS_REGEX,
     UPPER_CASE_REGEX,
     LOWER_CASE_REGEX,
-} from '@pxblue/react-auth-logic';
+} from '@pxblue/react-auth-shared ';
 
 // Components
 import { Platform, View, StyleSheet, SafeAreaView, StatusBar, TextInput } from 'react-native';
@@ -29,10 +29,10 @@ import * as Colors from '@pxblue/colors';
 import { Body1, H6 } from '@pxblue/react-native-components';
 
 // Hooks
-import { useSecurityActions } from '@pxblue/react-auth-logic';
-import { useLanguageLocale } from '@pxblue/react-auth-logic';
+import { useSecurityActions } from '@pxblue/react-auth-shared ';
+import { useLanguageLocale } from '@pxblue/react-auth-shared ';
 import { ScrollView } from 'react-native-gesture-handler';
-import { initialTransitState, transitSuccess, transitStart, transitFailed } from '@pxblue/react-auth-logic';
+import { initialTransitState, transitSuccess, transitStart, transitFailed } from '@pxblue/react-auth-shared ';
 import { SimpleDialog } from '../components/SimpleDialog';
 import { Theme, useTheme } from 'react-native-paper';
 

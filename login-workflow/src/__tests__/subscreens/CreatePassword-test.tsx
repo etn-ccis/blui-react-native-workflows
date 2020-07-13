@@ -9,7 +9,7 @@ import { shallow, mount } from 'enzyme';
 import { CreatePassword } from '../../subScreens/CreatePassword';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
-import { TextInputHTMLAttributes } from '@pxblue/react-auth-logic';
+import { TextInputHTMLAttributes } from '@pxblue/react-auth-shared ';
 
 jest.mock('src/contexts/AuthUIContextProvider', () => ({
     useAuthUIActions: (): any => ({ dispatch: jest.fn(() => true) }),

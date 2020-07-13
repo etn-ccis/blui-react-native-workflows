@@ -6,7 +6,7 @@
 import React from 'react';
 
 // Constants
-import { EMAIL_REGEX } from '@pxblue/react-auth-logic';
+import { EMAIL_REGEX } from '@pxblue/react-auth-shared ';
 
 // Components
 import { View, StyleSheet, SafeAreaView } from 'react-native';
@@ -16,7 +16,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { Theme, useTheme } from 'react-native-paper';
 
 // Hooks
-import { useLanguageLocale } from '@pxblue/react-auth-logic';
+import { useLanguageLocale } from '@pxblue/react-auth-shared ';
 
 /**
  * @ignore

@@ -1,5 +1,5 @@
 import { formatDistance } from 'date-fns';
-import { Clock } from '../lib';
+import { Clock } from '.';
 import { dateLocale } from '../data/translations/i18n';
 
 const formatDateTime = (dateTime: string | undefined | null, locales?: string | string[] | undefined): string =>

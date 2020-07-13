@@ -6,7 +6,7 @@ import React from 'react';
 // Components
 import { CompleteSplashScreen } from './CompleteSplash';
 // Hooks
-import { useLanguageLocale } from '@pxblue/react-auth-logic';
+import { useLanguageLocale } from '@pxblue/react-auth-shared ';
 /**
  * Renders the content of the notice of completed account creation screen.
  *

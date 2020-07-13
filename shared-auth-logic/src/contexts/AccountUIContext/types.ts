@@ -5,7 +5,7 @@
 
 import { AccountUIState } from './state';
 import { AuthUIActions } from '../AuthUIContextProvider';
-import { AccountActions } from '../AccountUIContext/dispatchActions';
+import { AccountActions } from './dispatchActions';
 
 export type AccountUIActions = AuthUIActions;
 

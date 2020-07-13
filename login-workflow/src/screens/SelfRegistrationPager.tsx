@@ -9,12 +9,12 @@ import React, { useEffect, useCallback, useState } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
 // Hooks
-import { useLanguageLocale } from '@pxblue/react-auth-logic';
+import { useLanguageLocale } from '@pxblue/react-auth-shared ';
 import {
     RegistrationActions,
     useRegistrationUIActions,
     useRegistrationUIState,
-} from '@pxblue/react-auth-logic';
+} from '@pxblue/react-auth-shared ';
 import { Theme, useTheme } from 'react-native-paper';
 
 // Screens
@@ -36,8 +36,8 @@ import ViewPager from '@react-native-community/viewpager';
 import { CloseHeader } from '../components/CloseHeader';
 import { PageIndicator } from '../components/PageIndicator';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { i18n } from '@pxblue/react-auth-logic';
-import { useInjectedUIContext } from '@pxblue/react-auth-logic';
+import { i18n } from '@pxblue/react-auth-shared ';
+import { useInjectedUIContext } from '@pxblue/react-auth-shared ';
 
 import { Spinner } from '../components/Spinner';
 import { SimpleDialog } from '../components/SimpleDialog';
