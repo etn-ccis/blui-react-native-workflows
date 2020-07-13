@@ -43,7 +43,7 @@ jobs:
             cd shared-auth-logic
             yarn build
 
-  build_login:
+  build_login_workflow:
     working_directory: ~/login-workflow
     docker:
       - image: circleci/node:12.6
