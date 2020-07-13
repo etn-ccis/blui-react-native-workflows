@@ -5,12 +5,7 @@
 
 import React from 'react';
 
-// Constants
-import { EMAIL_REGEX } from '@pxblue/react-auth-shared ';
-
 // Hooks
-import { useLanguageLocale } from '@pxblue/react-auth-shared ';
-import { useAccountUIState } from '@pxblue/react-auth-shared ';
 import { useRoute } from '@react-navigation/native';
 import { Theme, useTheme } from 'react-native-paper';
 
@@ -22,6 +17,15 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { Spinner } from '../components/Spinner';
 import { SimpleDialog } from '../components/SimpleDialog';
 import { ToggleButton } from '../components/ToggleButton';
+
+// Shared Auth Logic
+import {
+    // Constants
+    EMAIL_REGEX,
+    // Hooks
+    useLanguageLocale,
+    useAccountUIState,
+} from '@pxblue/react-auth-shared';
 
 /**
  * @ignore

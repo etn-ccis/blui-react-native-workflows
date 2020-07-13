@@ -11,3 +11,5 @@ export type { AccountDetailInformation } from './subScreens/AccountDetails';
 /** @ignore */
 export { ChangePassword } from './screens/ChangePassword';
 export { LoginHeaderSplash } from './components/LoginHeaderSplash';
+
+export * from '@pxblue/react-auth-shared';

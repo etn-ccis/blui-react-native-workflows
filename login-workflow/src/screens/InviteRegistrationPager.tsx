@@ -8,16 +8,6 @@ import React, { useState, useEffect, useCallback } from 'react';
 // Nav
 import { useNavigation, useRoute } from '@react-navigation/native';
 
-// Hooks
-import { useLanguageLocale } from '@pxblue/react-auth-shared ';
-import {
-    RegistrationActions,
-    useRegistrationUIState,
-    useRegistrationUIActions,
-} from '@pxblue/react-auth-shared ';
-import {i18n} from '@pxblue/react-auth-shared ';
-import { useInjectedUIContext } from '@pxblue/react-auth-shared ';
-
 // Screens
 import { Eula as EulaScreen } from '../subScreens/Eula';
 import { CreatePassword as CreatePasswordScreen } from '../subScreens/CreatePassword';
@@ -43,6 +33,19 @@ import { ToggleButton } from '../components/ToggleButton';
 
 // Styles
 import * as Colors from '@pxblue/colors';
+
+// Shared Auth Logic
+import {
+    // Actions
+    RegistrationActions,
+    useRegistrationUIState,
+    useRegistrationUIActions,
+    // Translations
+    i18n,
+    // Hooks
+    useLanguageLocale,
+    useInjectedUIContext,
+} from '@pxblue/react-auth-shared';
 
 /**
  * @ignore

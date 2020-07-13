@@ -11,6 +11,7 @@ NC='\033[0m' # No Color
 
 echo -e "${BLUE}Building workflow package...${NC}"
 yarn build
+cd ../shared-auth-logic && yarn build && cd ../login-workflow
 
 echo -en "${BLUE}Creating new folder in node_modules...${NC}"
 rm -rf "./example/node_modules/@pxblue/react-native-auth-workflow"
@@ -20,6 +21,12 @@ echo -e "${GREEN}Done${NC}"
 echo -en "${BLUE}Copying build output into node_modules...${NC}";
 cp -r ./package.json ./example/node_modules/@pxblue/react-native-auth-workflow/package.json
 cp -r ./lib/. ./example/node_modules/@pxblue/react-native-auth-workflow/lib
+echo -e "${GREEN}Done${NC}"
+
+echo -en "${BLUE}Copying shared auth dependency into node_modules...${NC}";
+mkdir -p ./example/node_modules/@pxblue/react-native-auth-workflow/node_modules/@pxblue/react-auth-shared
+cp -r ../shared-auth-logic/package.json ./example/node_modules/@pxblue/react-native-auth-workflow/node_modules/@pxblue/react-auth-shared/package.json
+cp -r ../shared-auth-logic/lib/. ./example/node_modules/@pxblue/react-native-auth-workflow/node_modules/@pxblue/react-auth-shared/lib
 echo -e "${GREEN}Done${NC}"
 
 echo -en "\r\n${BLUE}Linking Components: ${NC}"

@@ -10,7 +10,7 @@ import { shallow, mount } from 'enzyme';
 import renderer from 'react-test-renderer';
 
 import { AccountDetails, AccountDetailInformation } from '../../subScreens/AccountDetails';
-import { TextInputHTMLAttributes } from '@pxblue/react-auth-shared ';
+import { TextInputHTMLAttributes } from '@pxblue/react-auth-shared';
 
 describe('AccountDetails subScreen tested with enzyme', () => {
     const act = renderer.act;

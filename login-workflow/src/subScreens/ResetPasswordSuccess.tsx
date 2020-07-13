@@ -12,7 +12,7 @@ import { ToggleButton } from '../components/ToggleButton';
 
 // Hooks
 import { useNavigation } from '@react-navigation/native';
-import { useLanguageLocale } from '@pxblue/react-auth-shared ';
+import { useLanguageLocale } from '@pxblue/react-auth-shared';
 import { Theme, useTheme } from 'react-native-paper';
 
 /**
