@@ -1399,11 +1399,17 @@
   resolved "https://registry.yarnpkg.com/@pxblue/prettier-config/-/prettier-config-1.0.2.tgz#fb00503df6557b66c3d91d43c9101e614c35d2ec"
   integrity sha512-/3cLBoTjZs3kV1ATPA/Sp0tsL7XmlV/b8HW/qt0jqR/uP5+cdXL2YIhMXQngLRa7PhpSkEiRIYK5sl0rKsXTUg==
 
-"@pxblue/react-native-auth-workflow@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@pxblue/react-native-auth-workflow/-/react-native-auth-workflow-1.1.0.tgz#84248f561a73291b3d700346fb00e5aa5a64a0d9"
-  integrity sha512-A4b3v6gwcBTTLyuHxIQPBQTTBR8r8jpLT9tu4oMkYGvLZlKGFyUK7mS8xMtwrx5mA7ffxne5kwVogIo/0kNavQ==
+"@pxblue/react-auth-shared@^1.0.0-alpha.0":
+  version "1.0.0-alpha.0"
+  resolved "https://registry.yarnpkg.com/@pxblue/react-auth-shared/-/react-auth-shared-1.0.0-alpha.0.tgz#ac114c1466c8348db69174ff17d3c24067c100a0"
+  integrity sha512-yNDAIA/u3eo0beSp/8ZCQSVrxWW22w0yvzFv3S4FmII8FuzMCmCf/yC1wSL8bwLXcn9sbDxYwPhpkIbes5DA3w==
+
+"@pxblue/react-native-auth-workflow@^1.2.0-alpha.0":
+  version "1.2.0-alpha.0"
+  resolved "https://registry.yarnpkg.com/@pxblue/react-native-auth-workflow/-/react-native-auth-workflow-1.2.0-alpha.0.tgz#117713fc9c94f978eb1e26a07e877b964652612f"
+  integrity sha512-xPkuP3T2wnkpyGsN0zXQL4vpfEIA7lAEyeFwJUjl0/2nzE/bANnr6EoOllF/KQLYlXWETBFpslTg5g0aV5j+hA==
   dependencies:
+    "@pxblue/react-auth-shared" "^1.0.0-alpha.0"
     react-native-status-bar-height "^2.5.0"
 
 "@pxblue/react-native-components@^3.0.1":

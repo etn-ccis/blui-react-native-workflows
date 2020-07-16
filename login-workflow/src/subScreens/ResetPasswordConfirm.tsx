@@ -6,9 +6,7 @@
 import React from 'react';
 
 // Hooks
-import { useLanguageLocale } from '../hooks/language-locale-hooks';
 import { useRoute } from '@react-navigation/native';
-import { useAccountUIState } from '../contexts/AccountUIContext';
 import { Theme, useTheme } from 'react-native-paper';
 
 // Components
@@ -18,6 +16,13 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { Spinner } from '../components/Spinner';
 import { SimpleDialog } from '../components/SimpleDialog';
 import { ToggleButton } from '../components/ToggleButton';
+
+// Shared Auth Logic
+import {
+    // Hooks
+    useLanguageLocale,
+    useAccountUIState,
+} from '@pxblue/react-auth-shared';
 
 /**
  * @ignore

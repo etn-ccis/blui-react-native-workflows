@@ -13,11 +13,15 @@ import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import { ToggleButton } from '../components/ToggleButton';
 
 // Hooks
-import { useLanguageLocale } from '../hooks/language-locale-hooks';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
-// Types
-import { ResetPasswordParams } from '../types/ResetPasswordParams';
+// Shared Auth Logic
+import {
+    // Types
+    ResetPasswordParams,
+    // Hooks
+    useLanguageLocale,
+} from '@pxblue/react-auth-shared';
 
 /**
  * @ignore

@@ -4,7 +4,7 @@
  */
 
 import { RegistrationActions as DispatchActions } from './dispatchActions';
-import { AccountDetailInformation } from '../../subScreens/AccountDetails';
+import { AccountDetailInformation } from '../../types/AccountDetails';
 import { RegistrationUIActions } from '../AuthUIContextProvider';
 
 type RegistrationUIActionsFunction = () => RegistrationUIActions;

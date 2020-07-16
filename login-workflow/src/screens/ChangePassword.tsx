@@ -5,15 +5,6 @@
 
 import React from 'react';
 
-// Constants
-import {
-    SPECIAL_CHAR_REGEX,
-    LENGTH_REGEX,
-    NUMBERS_REGEX,
-    UPPER_CASE_REGEX,
-    LOWER_CASE_REGEX,
-} from '../constants/index';
-
 // Components
 import { Platform, View, StyleSheet, SafeAreaView, StatusBar, TextInput } from 'react-native';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
@@ -29,12 +20,27 @@ import * as Colors from '@pxblue/colors';
 import { Body1, H6 } from '@pxblue/react-native-components';
 
 // Hooks
-import { useSecurityActions } from '../contexts/SecurityContextProvider';
-import { useLanguageLocale } from '../hooks/language-locale-hooks';
 import { ScrollView } from 'react-native-gesture-handler';
-import { initialTransitState, transitSuccess, transitStart, transitFailed } from '../contexts/TransitState';
 import { SimpleDialog } from '../components/SimpleDialog';
 import { Theme, useTheme } from 'react-native-paper';
+
+// Shared Auth Logic
+import {
+    // Actions
+    initialTransitState,
+    transitSuccess,
+    transitStart,
+    transitFailed,
+    // Constants
+    SPECIAL_CHAR_REGEX,
+    LENGTH_REGEX,
+    NUMBERS_REGEX,
+    UPPER_CASE_REGEX,
+    LOWER_CASE_REGEX,
+    // Hooks
+    useSecurityActions,
+    useLanguageLocale,
+} from '@pxblue/react-auth-shared';
 
 /**
  * @ignore

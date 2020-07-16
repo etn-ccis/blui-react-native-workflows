@@ -6,12 +6,18 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { Splash as SplashScreen } from './Splash';
-import { useSecurityState, useSecurityActions } from '../contexts/SecurityContextProvider';
 import { PreAuthContainer } from './PreAuthContainer';
 import { ChangePassword } from '../screens/ChangePassword';
 
-import { AuthUIInternalStore } from '../stores/AuthUIInternalStore';
-import { useInjectedUIContext } from '../contexts/AuthUIContextProvider';
+// Shared Auth Logic
+import {
+    // Store
+    AuthUIInternalStore,
+    // Hooks
+    useSecurityState,
+    useSecurityActions,
+    useInjectedUIContext,
+} from '@pxblue/react-auth-shared';
 
 /**
  * Type for the properties of the navigation container.

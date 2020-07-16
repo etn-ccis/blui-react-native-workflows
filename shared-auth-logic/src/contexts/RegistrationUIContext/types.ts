@@ -3,9 +3,9 @@
  * @module RegistrationUIContext
  */
 
-import { RegistrationUIState } from '../RegistrationUIContext/state';
+import { RegistrationUIState } from './state';
 import { RegistrationUIActions } from '../AuthUIContextProvider';
-import { RegistrationActions } from '../RegistrationUIContext/dispatchActions';
+import { RegistrationActions } from './dispatchActions';
 
 export type RegistrationUIContextActions = {
     actions: RegistrationUIActions;

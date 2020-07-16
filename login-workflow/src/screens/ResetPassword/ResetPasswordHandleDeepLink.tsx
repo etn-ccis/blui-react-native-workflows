@@ -9,10 +9,6 @@ import React, { useEffect } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
-// Hooks
-import { useLanguageLocale } from '../../hooks/language-locale-hooks';
-import { useAccountUIActions, useAccountUIState, AccountActions } from '../../contexts/AccountUIContext';
-
 // Screens
 import { ResetPasswordConfirm } from '../../subScreens/ResetPasswordConfirm';
 import { ResetPasswordSuccess } from '../../subScreens/ResetPasswordSuccess';
@@ -22,6 +18,16 @@ import { View, BackHandler } from 'react-native';
 import { CloseHeader } from '../../components/CloseHeader';
 import { Spinner } from '../../components/Spinner';
 import { ErrorState } from '../../components/ErrorState';
+
+// Shared Auth Logic
+import {
+    // Actions
+    AccountActions,
+    // Hooks
+    useLanguageLocale,
+    useAccountUIActions,
+    useAccountUIState,
+} from '@pxblue/react-auth-shared';
 
 /**
  * Stack navigator for reset password handle deep link navigation.

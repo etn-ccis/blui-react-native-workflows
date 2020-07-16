@@ -5,15 +5,6 @@
 
 import React from 'react';
 
-// Constants
-import {
-    SPECIAL_CHAR_REGEX,
-    LENGTH_REGEX,
-    NUMBERS_REGEX,
-    UPPER_CASE_REGEX,
-    LOWER_CASE_REGEX,
-} from '../constants/index';
-
 // Components
 import { View, StyleSheet, SafeAreaView, TextInput } from 'react-native';
 import { PasswordRequirements } from '../components/PasswordRequirements';
@@ -22,8 +13,19 @@ import { Instruction } from '../components/Instruction';
 import { Theme, useTheme } from 'react-native-paper';
 
 // Hooks
-import { useLanguageLocale } from '../hooks/language-locale-hooks';
 import { ScrollView } from 'react-native-gesture-handler';
+
+// Shared Auth Logic
+import {
+    // Constants
+    SPECIAL_CHAR_REGEX,
+    LENGTH_REGEX,
+    NUMBERS_REGEX,
+    UPPER_CASE_REGEX,
+    LOWER_CASE_REGEX,
+    // Hooks
+    useLanguageLocale,
+} from '@pxblue/react-auth-shared';
 
 /**
  * @ignore

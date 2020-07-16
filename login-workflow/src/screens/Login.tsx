@@ -5,9 +5,6 @@
 
 import React from 'react';
 
-// Constants
-import { EMAIL_REGEX } from '../constants/index';
-
 // Components
 import { Platform, View, StyleSheet, SafeAreaView, StatusBar, TextInput as ReactTextInput } from 'react-native';
 import { Button, Theme, useTheme } from 'react-native-paper';
@@ -27,11 +24,19 @@ import * as Colors from '@pxblue/colors';
 import { Body1, H6 } from '@pxblue/react-native-components';
 
 // Hooks
-import { useLanguageLocale } from '../hooks/language-locale-hooks';
 import { useNavigation } from '@react-navigation/native';
-import { useAccountUIActions, useAccountUIState } from '../contexts/AccountUIContext';
-import { useInjectedUIContext } from '../contexts/AuthUIContextProvider';
-import { useSecurityState } from '../contexts/SecurityContextProvider';
+
+// Shared Auth Logic
+import {
+    // Constants
+    EMAIL_REGEX,
+    // Hooks
+    useLanguageLocale,
+    useAccountUIActions,
+    useAccountUIState,
+    useInjectedUIContext,
+    useSecurityState,
+} from '@pxblue/react-auth-shared';
 
 /**
  * @ignore

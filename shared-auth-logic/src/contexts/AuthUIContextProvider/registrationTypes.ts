@@ -3,7 +3,7 @@
  * @module AuthUIContextProvider
  */
 
-import { AccountDetailInformation } from '../..';
+import { AccountDetailInformation } from '../../types/AccountDetails';
 
 /**
  * Registration Actions to be performed based on the user's actions. The application will create appropriate actions

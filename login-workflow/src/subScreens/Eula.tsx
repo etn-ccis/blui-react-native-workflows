@@ -12,7 +12,7 @@ import { Checkbox } from '../components/Checkbox';
 import { WebView } from 'react-native-webview';
 
 // Hooks
-import { useLanguageLocale } from '../hooks/language-locale-hooks';
+import { useLanguageLocale } from '@pxblue/react-auth-shared';
 import { Theme, useTheme } from 'react-native-paper';
 
 /**

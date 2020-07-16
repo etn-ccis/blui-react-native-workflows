@@ -7,7 +7,7 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, StyleProp, TextStyle } from 'react-native';
 
 // Helpers
-import { parseTextForJSX, ParsedJSXText } from '../helpers/parseTextForJSX';
+import { parseTextForJSX, ParsedJSXText } from '@pxblue/react-auth-shared';
 
 /**
  * @ignore
