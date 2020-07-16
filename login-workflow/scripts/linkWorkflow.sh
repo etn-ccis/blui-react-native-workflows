@@ -23,12 +23,6 @@ cp -r ./package.json ./example/node_modules/@pxblue/react-native-auth-workflow/p
 cp -r ./lib/. ./example/node_modules/@pxblue/react-native-auth-workflow/lib
 echo -e "${GREEN}Done${NC}"
 
-echo -en "${BLUE}Copying shared auth dependency into node_modules...${NC}";
-mkdir -p ./example/node_modules/@pxblue/react-native-auth-workflow/node_modules/@pxblue/react-auth-shared
-cp -r ../shared-auth-logic/package.json ./example/node_modules/@pxblue/react-native-auth-workflow/node_modules/@pxblue/react-auth-shared/package.json
-cp -r ../shared-auth-logic/lib/. ./example/node_modules/@pxblue/react-native-auth-workflow/node_modules/@pxblue/react-auth-shared/lib
-echo -e "${GREEN}Done${NC}"
-
 echo -en "\r\n${BLUE}Linking Components: ${NC}"
 if [ ! -f ./example/node_modules/@pxblue/react-native-auth-workflow/package.json ]; then echo -e "${BRED}Not Linked${NC}" && exit 1; fi
 if [ ! -s ./example/node_modules/@pxblue/react-native-auth-workflow ];
