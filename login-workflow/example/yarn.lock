@@ -1404,10 +1404,10 @@
   resolved "https://registry.yarnpkg.com/@pxblue/react-auth-shared/-/react-auth-shared-1.0.1.tgz#49e5bac0848c0db0cea883a5b1c0708a4cd08a8d"
   integrity sha512-kWrJ3yx7h2wKST0rSB62FOW155j+cJ+wKlTnoOFBUhc9mrAwajX8MrhWXk2X3ftSpn2S522VwFHfRkqkKQzhyg==
 
-"@pxblue/react-native-auth-workflow@^1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@pxblue/react-native-auth-workflow/-/react-native-auth-workflow-1.2.0.tgz#0b268012b1ec846c04a77344c71a97b39c2cc6ef"
-  integrity sha512-My2vaTNjLxFYtM/iqbhzTa9d+0w1wDZR8T3Rut2xMb2EUoUS3gxwJLfiVCY5HoMNucC+pgjN4MvTC53RWlUlvw==
+"@pxblue/react-native-auth-workflow@^1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@pxblue/react-native-auth-workflow/-/react-native-auth-workflow-1.2.1.tgz#f639f0567950806c9265a88d40c6f21686553f42"
+  integrity sha512-NFa0a2RzxaN2IeIxeVY03coFa0T+VRypa4C6j/S0xKkJFz+OHxJnRStQFtGkloHpxxbQ4c3OGiAYBmP6CFIChQ==
   dependencies:
     "@pxblue/react-auth-shared" "^1.0.1"
     react-native-status-bar-height "^2.5.0"
