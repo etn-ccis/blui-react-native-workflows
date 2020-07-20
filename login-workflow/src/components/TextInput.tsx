@@ -38,6 +38,7 @@ const makeStyles = (theme: Theme): Record<string, any> =>
 export type TextInputRenderProps = Omit<TextInputProps, 'theme'> & {
     errorText?: string;
     theme?: Theme;
+    testID?: string;
 };
 
 /**

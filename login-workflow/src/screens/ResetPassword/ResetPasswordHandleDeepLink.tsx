@@ -3,25 +3,31 @@
  * @module Screens
  */
 
-import * as React from 'react';
+import React, { useEffect } from 'react';
 
 // Nav
 import { createStackNavigator } from '@react-navigation/stack';
 import { useNavigation, useRoute } from '@react-navigation/native';
-
-// Hooks
-import { useLanguageLocale } from '../../hooks/language-locale-hooks';
-import { useAccountUIActions, useAccountUIState, AccountActions } from '../../contexts/AccountUIContext';
 
 // Screens
 import { ResetPasswordConfirm } from '../../subScreens/ResetPasswordConfirm';
 import { ResetPasswordSuccess } from '../../subScreens/ResetPasswordSuccess';
 
 // Components
-import { View } from 'react-native';
+import { View, BackHandler } from 'react-native';
 import { CloseHeader } from '../../components/CloseHeader';
 import { Spinner } from '../../components/Spinner';
 import { ErrorState } from '../../components/ErrorState';
+
+// Shared Auth Logic
+import {
+    // Actions
+    AccountActions,
+    // Hooks
+    useLanguageLocale,
+    useAccountUIActions,
+    useAccountUIState,
+} from '@pxblue/react-auth-shared';
 
 /**
  * Stack navigator for reset password handle deep link navigation.
@@ -29,7 +35,9 @@ import { ErrorState } from '../../components/ErrorState';
 const Stack = createStackNavigator();
 
 type ResetPasswordHandleDeepLinkParams = {
-    verifyCode: string;
+    code: string;
+    // `?email=addr%40domain.com`
+    email?: string;
 };
 
 /**
@@ -45,7 +53,8 @@ export const ResetPasswordHandleDeepLink: React.FC = () => {
 
     const route = useRoute();
     const routeParams = route.params as ResetPasswordHandleDeepLinkParams;
-    const verifyCode = routeParams?.verifyCode ?? 'some-long-parsed-email-token-code';
+    const verifyCode = routeParams?.code ?? 'some-long-parsed-email-token-code';
+    const verifyEmail = routeParams?.email;
 
     // Network state (setPassword)
     const setPasswordTransit = accountUIState.setPassword.setPasswordTransit;
@@ -58,8 +67,19 @@ export const ResetPasswordHandleDeepLink: React.FC = () => {
     const verifySuccess = verifyResetCodeTransit.transitSuccess;
     const verifyComplete = verifyResetCodeTransit.transitComplete;
 
+    // Navigate appropriately with the hardware back button on android
+    useEffect(() => {
+        const onBackPress = (): boolean => {
+            navigation.navigate('Login');
+            return true;
+        };
+        BackHandler.addEventListener('hardwareBackPress', onBackPress);
+        return (): void => BackHandler.removeEventListener('hardwareBackPress', onBackPress);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    });
+
     // Reset state on dismissal
-    React.useEffect(
+    useEffect(
         () => (): void => {
             accountUIActions.dispatch(AccountActions.setPasswordReset());
             accountUIActions.dispatch(AccountActions.verifyResetCodeReset());
@@ -67,15 +87,15 @@ export const ResetPasswordHandleDeepLink: React.FC = () => {
         []
     );
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (!verifyIsInTransit && !verifyComplete && verifyCode.length > 0) {
-            accountUIActions.actions.verifyResetCode(verifyCode);
+            accountUIActions.actions.verifyResetCode(verifyCode, verifyEmail);
         }
         // eslint-disable-line react-hooks/exhaustive-deps
-    }, [verifyIsInTransit, verifyCode, verifyComplete, accountUIActions.actions]);
+    }, [verifyIsInTransit, verifyCode, verifyEmail, verifyComplete, accountUIActions.actions]);
 
     const resetPassword = (password: string): void => {
-        accountUIActions.actions.setPassword(verifyCode, password);
+        accountUIActions.actions.setPassword(verifyCode, password, verifyEmail);
     };
 
     return verifySuccess && !verifyIsInTransit ? (
@@ -90,7 +110,7 @@ export const ResetPasswordHandleDeepLink: React.FC = () => {
                             CloseHeader({
                                 title: t('FORMS.RESET_PASSWORD'),
                                 backAction: () => {
-                                    navigation.goBack();
+                                    navigation.navigate('Login');
                                 },
                             }),
                     })}

@@ -5,9 +5,6 @@
 
 import React from 'react';
 
-// Constants
-import { EMAIL_REGEX } from '../constants/index';
-
 // Components
 import { View, StyleSheet, SafeAreaView } from 'react-native';
 import { TextInput } from '../components/TextInput';
@@ -15,8 +12,13 @@ import { Instruction } from '../components/Instruction';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Theme, useTheme } from 'react-native-paper';
 
-// Hooks
-import { useLanguageLocale } from '../hooks/language-locale-hooks';
+// Shared Auth Logic
+import {
+    // Constants
+    EMAIL_REGEX,
+    // Hooks
+    useLanguageLocale,
+} from '@pxblue/react-auth-shared';
 
 /**
  * @ignore

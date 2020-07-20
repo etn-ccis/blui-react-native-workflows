@@ -1,7 +1,7 @@
 {
     "name": "@pxblue/react-native-auth-workflow",
     "description": "Re-usable workflow components for Authentication and Registration within Eaton applications.",
-    "version": "1.0.2",
+    "version": "1.2.1",
     "license": "BSD-3-Clause",
     "author": {
         "name": "PX Blue",
@@ -24,14 +24,17 @@
         "package.json"
     ],
     "scripts": {
-        "install:dependencies": "yarn && yarn build && cd example && yarn && cd ios && pod install",
+        "install:dependencies": "yarn install:dependencies-ios",
+        "install:dependencies-ios": "yarn && yarn build && cd example && yarn && cd ios && pod install",
+        "install:dependencies-android": "yarn && yarn build && cd example && yarn",
         "link:components": "bash ./scripts/linkWorkflow.sh",
         "start:example": "yarn start:example-ios",
-        "start:example-ios": "yarn install:dependencies && yarn link:components && cd example && yarn ios",
-        "start:example-android": "yarn install:dependencies && yarn link:components && cd example && yarn android",
+        "start:example-ios": "yarn install:dependencies-ios && yarn link:components && cd example && yarn ios",
+        "start:example-android": "yarn install:dependencies-android && yarn link:components && cd example && yarn android",
         "test": "jest",
         "lint": "eslint \"**/**/*.{tsx,ts}\"",
         "prettier": "prettier \"**/**.{tsx,ts,js,json}\" --write",
+        "prettier:check": "prettier \"**/**.{tsx,ts,js,json}\" --check",
         "build": "bob build",
         "generate:licenses": "npm-license-crawler -onlyDirectDependencies -json LICENSES.json",
         "validate": "yarn prettier && yarn lint && yarn typescript && yarn test",
@@ -39,6 +42,7 @@
         "typescript": "tsc --noEmit"
     },
     "dependencies": {
+        "@pxblue/react-auth-shared": "^1.0.1",
         "react-native-status-bar-height": "^2.5.0"
     },
     "peerDependencies": {
@@ -48,13 +52,15 @@
         "@react-navigation/native": "^5.1.1",
         "@react-navigation/stack": "^5.2.3",
         "date-fns": "^2.11.1",
+        "highcharts": "^8.1.2",
         "i18next": "^19.3.4",
         "react": "^16.13.1",
         "react-i18next": "^11.3.4",
         "react-native": "^0.62.0",
         "react-native-keyboard-aware-scroll-view": "0.9.1",
         "react-native-paper": "^3.7.0",
-        "react-native-vector-icons": "^6.4.4"
+        "react-native-vector-icons": "^6.4.4",
+        "react-native-webview": "^10.3.2"
     },
     "devDependencies": {
         "@babel/core": "^7.9.0",
@@ -109,6 +115,7 @@
         "react-native-safe-area-context": "^0.7.3",
         "react-native-screens": "^2.4.0",
         "react-native-vector-icons": "^6.6.0",
+        "react-native-webview": "^10.3.2",
         "react-test-renderer": "16.9.0",
         "typescript": "^3.8.3"
     },

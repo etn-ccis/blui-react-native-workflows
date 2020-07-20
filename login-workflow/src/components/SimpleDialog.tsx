@@ -9,7 +9,7 @@ import React from 'react';
 import { Button, Paragraph, Dialog, Portal } from 'react-native-paper';
 
 // Hooks
-import { useLanguageLocale } from '../hooks/language-locale-hooks';
+import { useLanguageLocale } from '@pxblue/react-auth-shared';
 
 /**
  * @param visible  If the dialog box should be shown.

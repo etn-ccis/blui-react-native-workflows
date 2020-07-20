@@ -4,6 +4,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v1.2.1
+### Changed
+-   Shareable logic has been extracted to [@pxblue/react-auth-shared](https://www.npmjs.com/package/@pxblue/react-auth-shared). This package re-exports all exports from the shared package, so there are no breaking changes in usage. The majority of the API documentation in now in the shared repository.
+
+## v1.1.0
+### Added
+- New required `RegistrationUIActions` for self registration, `requestRegistrationCode`, which takes an email string
+- Optional email parameter (`validationEmail?: string`) to the following registration actions: `validateUserRegistrationRequest`, `completeRegistration`
+- Optional email parameter (`email?: string`) to the following authentication actions: `verifyResetCode`, `setPassword`
+- `TextInput` and `TextInputSecure` can optionally accept a testID property
+-   `AuthUIContextProvider` has a `eulaIsHtml` property allowing the EULA to be displayed as text or as HTML
+
+### Changed
+-   The return of the `validateUserRegistrationRequest` action to be `Promise<boolean>`
+-   README deep link documentation: `Note: It is recommended to update navigation > DeepLinking.ts to include the initialRouteParam in the config if you haven’t already` referring to [stack-navigator documentation](https://reactnavigation.org/docs/stack-navigator/#initialroutename)
+-   Deep Link parameters have changed from `verificationCode`, `validationCode`, and `verifyCode` to `code`
+-   EULA now supports HTML content in addition to plaintext
+
 ## v1.0.0
 ### Changed
 - Package published under the @pxblue scope and made publicly available

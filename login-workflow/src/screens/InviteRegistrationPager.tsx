@@ -8,15 +8,6 @@ import React, { useState, useEffect, useCallback } from 'react';
 // Nav
 import { useNavigation, useRoute } from '@react-navigation/native';
 
-// Hooks
-import { useLanguageLocale } from '../hooks/language-locale-hooks';
-import {
-    RegistrationActions,
-    useRegistrationUIState,
-    useRegistrationUIActions,
-} from '../contexts/RegistrationUIContext';
-import i18n from '../data/translations/i18n';
-
 // Screens
 import { Eula as EulaScreen } from '../subScreens/Eula';
 import { CreatePassword as CreatePasswordScreen } from '../subScreens/CreatePassword';
@@ -26,6 +17,7 @@ import {
     emptyAccountDetailInformation,
 } from '../subScreens/AccountDetails';
 import { RegistrationComplete } from '../subScreens/RegistrationComplete';
+import { ExistingAccountComplete } from '../subScreens/ExistingAccountComplete';
 
 // Components
 import { View, StyleSheet, SafeAreaView, BackHandler } from 'react-native';
@@ -41,6 +33,19 @@ import { ToggleButton } from '../components/ToggleButton';
 
 // Styles
 import * as Colors from '@pxblue/colors';
+
+// Shared Auth Logic
+import {
+    // Actions
+    RegistrationActions,
+    useRegistrationUIState,
+    useRegistrationUIActions,
+    // Translations
+    i18n,
+    // Hooks
+    useLanguageLocale,
+    useInjectedUIContext,
+} from '@pxblue/react-auth-shared';
 
 /**
  * @ignore
@@ -91,10 +96,12 @@ const makeStyles = (): Record<string, any> =>
 /**
  * Type for the properties of [[InviteRegistrationPager]].
  *
- * @param verificationCode Token from an email deep link for verifying a request to create an account with a specific email.
+ * @param code Token from an email deep link for verifying a request to create an account with a specific email.
+ * @param email (Optional) Email associated with the code `?email=addr%40domain.com`.
  */
 type InviteRegistrationPagerParams = {
-    validationCode: string;
+    code: string;
+    email?: string;
 };
 
 /**
@@ -122,6 +129,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
     const navigation = useNavigation();
     const registrationState = useRegistrationUIState();
     const registrationActions = useRegistrationUIActions();
+    const injectedUIContext = useInjectedUIContext();
     const theme = useTheme(props.theme);
 
     const [hasAcknowledgedError, setHasAcknowledgedError] = useState(false);
@@ -131,12 +139,14 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
     const [accountDetails, setAccountDetails] = useState<AccountDetailInformation | null>(null);
     const [eulaContent, setEulaContent] = useState<string>();
     const [currentPage, setCurrentPage] = useState(Pages.Eula);
+    const [accountAlreadyExists, setAccountAlreadyExists] = React.useState<boolean>(false);
 
     const viewPager = React.createRef<ViewPager>();
 
     const route = useRoute();
     const routeParams = route.params as InviteRegistrationPagerParams;
-    const validationCode = routeParams?.validationCode ?? 'NoCodeEntered';
+    const validationCode = routeParams?.code ?? 'NoCodeEntered';
+    const validationEmail = routeParams?.email;
 
     // Reset registration and validation state on dismissal
     useEffect(
@@ -170,12 +180,26 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
     // Network state (loading eula)
     const loadEulaTransitErrorMessage = registrationState.eulaTransit.transitErrorMessage;
 
+    const validateCode = useCallback(async (): Promise<void> => {
+        setHasAcknowledgedError(false);
+        try {
+            const registrationComplete = await registrationActions.actions.validateUserRegistrationRequest(
+                validationCode,
+                validationEmail
+            );
+            if (registrationComplete) {
+                setAccountAlreadyExists(true);
+            }
+        } catch {
+            // do nothing
+        }
+    }, [setHasAcknowledgedError, registrationActions, validationCode, validationEmail, setAccountAlreadyExists]);
+
     useEffect(() => {
         if (!isValidationInTransit && !validationComplete && validationCode.length > 0) {
-            setHasAcknowledgedError(false);
-            registrationActions.actions.validateUserRegistrationRequest(validationCode);
+            validateCode();
         }
-    }, [registrationState.inviteRegistration.validationTransit, validationCode]); // eslint-disable-line react-hooks/exhaustive-deps
+    }, [registrationState.inviteRegistration.validationTransit, validationCode, validateCode, validationEmail]); // eslint-disable-line react-hooks/exhaustive-deps
 
     // Spinner - shows if either of registration of code validation are in progress
     const spinner = registrationIsInTransit || isValidationInTransit ? <Spinner /> : <></>;
@@ -229,12 +253,13 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
                     password: password,
                     accountDetails: accountDetails ?? emptyAccountDetailInformation,
                 },
-                validationCode
+                validationCode,
+                validationEmail
             );
         } catch {
             // do nothing
         }
-    }, [registrationActions, setHasAcknowledgedError, accountDetails, password, validationCode]);
+    }, [registrationActions, setHasAcknowledgedError, accountDetails, password, validationCode, validationEmail]);
 
     const canProgress = useCallback((): boolean => {
         switch (currentPage) {
@@ -292,6 +317,16 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
         ]
     );
 
+    const backLogic = useCallback((): void => {
+        if (isFirstStep) {
+            navigation.navigate('Login');
+        } else if (canGoBackProgress()) {
+            advancePage(-1);
+        } else if (isLastStep) {
+            navigation.navigate('Login');
+        }
+    }, [navigation, isFirstStep, isLastStep, canGoBackProgress, advancePage]);
+
     const pageTitle = (): string => {
         if (isValidationInTransit) {
             return t('MESSAGES.LOADING');
@@ -315,19 +350,13 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
     // Navigate appropriately with the hardware back button on android
     useEffect(() => {
         const onBackPress = (): boolean => {
-            if (isFirstStep) {
-                navigation.navigate('Login');
-            } else if (canGoBackProgress()) {
-                advancePage(-1);
-            } else if (isLastStep) {
-                navigation.navigate('Login');
-            }
+            backLogic();
             return true;
         };
 
         BackHandler.addEventListener('hardwareBackPress', onBackPress);
         return (): void => BackHandler.removeEventListener('hardwareBackPress', onBackPress);
-    }, [currentPage, canGoBackProgress, advancePage, isFirstStep, isLastStep, navigation]);
+    }, [currentPage, canGoBackProgress, advancePage, isFirstStep, isLastStep, navigation, backLogic]);
 
     let buttonArea: JSX.Element;
     if (isLastStep) {
@@ -367,7 +396,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
         );
     }
 
-    return validationSuccess && !isValidationInTransit ? (
+    return !accountAlreadyExists && validationSuccess && !isValidationInTransit ? (
         <View style={{ flex: 1 }}>
             {spinner}
             {errorDialog}
@@ -385,6 +414,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
                         eulaAccepted={eulaAccepted}
                         onEulaChanged={setEulaAccepted}
                         loadEula={loadAndCacheEula}
+                        htmlEula={injectedUIContext.htmlEula ?? false}
                         eulaError={loadEulaTransitErrorMessage}
                         eulaContent={eulaContent}
                     />
@@ -403,6 +433,22 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
                     />
                 </ViewPager>
                 {buttonArea}
+            </SafeAreaView>
+        </View>
+    ) : accountAlreadyExists ? (
+        <View style={{ flex: 1, backgroundColor: 'white' }}>
+            <CloseHeader title={t('REGISTRATION.STEPS.COMPLETE')} backAction={(): void => navigation.goBack()} />
+            <SafeAreaView style={[containerStyles.safeContainer, { flex: 1 }]}>
+                <View style={{ flex: 1 }}>
+                    <ExistingAccountComplete />
+                </View>
+                <View style={[styles.sideBySideButtons, containerStyles.containerMargins]}>
+                    <ToggleButton
+                        text={t('ACTIONS.CONTINUE')}
+                        style={{ width: '100%', alignSelf: 'flex-end' }}
+                        onPress={(): void => navigation.navigate('Login')}
+                    />
+                </View>
             </SafeAreaView>
         </View>
     ) : !validationComplete ? (

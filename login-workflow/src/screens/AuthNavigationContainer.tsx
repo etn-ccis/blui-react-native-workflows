@@ -6,12 +6,18 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { Splash as SplashScreen } from './Splash';
-import { useSecurityState, useSecurityActions } from '../contexts/SecurityContextProvider';
 import { PreAuthContainer } from './PreAuthContainer';
 import { ChangePassword } from '../screens/ChangePassword';
 
-import { AuthUIInternalStore } from '../stores/AuthUIInternalStore';
-import { useInjectedUIContext } from '../contexts/AuthUIContextProvider';
+// Shared Auth Logic
+import {
+    // Store
+    AuthUIInternalStore,
+    // Hooks
+    useSecurityState,
+    useSecurityActions,
+    useInjectedUIContext,
+} from '@pxblue/react-auth-shared';
 
 /**
  * Type for the properties of the navigation container.
@@ -32,9 +38,12 @@ type NavigationContainerComponentProps = React.ComponentProps<typeof NavigationC
  *     config: {
  *         Login: 'login',
  *         PasswordResetInitiation: 'password/reset/initiate',
- *         PasswordResetCompletion: 'password/reset/:verifyCode',
- *         RegistrationInvite: 'invite/:validationCode',
- *         Registration: 'register/:verificationCode',
+ *         // email can be passed in as parameter if needed for the api
+ *         PasswordResetCompletion: 'password/reset/:code',
+ *         // email can be passed in as parameter if needed for the api
+ *         RegistrationInvite: 'invite/:code',
+ *         // email can be passed in as parameter if needed for the api
+ *         Registration: 'register/:code',
  *         SupportContact: 'support',
  *     },
  * };

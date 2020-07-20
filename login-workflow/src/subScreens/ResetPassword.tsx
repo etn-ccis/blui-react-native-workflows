@@ -5,12 +5,7 @@
 
 import React from 'react';
 
-// Constants
-import { EMAIL_REGEX } from '../constants/index';
-
 // Hooks
-import { useLanguageLocale } from '../hooks/language-locale-hooks';
-import { useAccountUIState } from '../contexts/AccountUIContext';
 import { useRoute } from '@react-navigation/native';
 import { Theme, useTheme } from 'react-native-paper';
 
@@ -22,6 +17,15 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { Spinner } from '../components/Spinner';
 import { SimpleDialog } from '../components/SimpleDialog';
 import { ToggleButton } from '../components/ToggleButton';
+
+// Shared Auth Logic
+import {
+    // Constants
+    EMAIL_REGEX,
+    // Hooks
+    useLanguageLocale,
+    useAccountUIState,
+} from '@pxblue/react-auth-shared';
 
 /**
  * @ignore
@@ -115,7 +119,7 @@ export const ResetPassword: React.FC<ResetPasswordProps> = (props) => {
     const errorDialog = (
         <SimpleDialog
             title={'Error'}
-            bodyText={transitErrorMessage}
+            bodyText={t(transitErrorMessage ?? '')}
             visible={hasTransitError && !hasAcknowledgedError}
             onDismiss={(): void => {
                 setHasAcknowledgedError(true);
