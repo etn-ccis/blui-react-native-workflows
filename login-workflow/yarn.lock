@@ -1296,10 +1296,10 @@
   resolved "https://registry.yarnpkg.com/@pxblue/prettier-config/-/prettier-config-1.0.2.tgz#fb00503df6557b66c3d91d43c9101e614c35d2ec"
   integrity sha512-/3cLBoTjZs3kV1ATPA/Sp0tsL7XmlV/b8HW/qt0jqR/uP5+cdXL2YIhMXQngLRa7PhpSkEiRIYK5sl0rKsXTUg==
 
-"@pxblue/react-auth-shared@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@pxblue/react-auth-shared/-/react-auth-shared-1.0.1.tgz#49e5bac0848c0db0cea883a5b1c0708a4cd08a8d"
-  integrity sha512-kWrJ3yx7h2wKST0rSB62FOW155j+cJ+wKlTnoOFBUhc9mrAwajX8MrhWXk2X3ftSpn2S522VwFHfRkqkKQzhyg==
+"@pxblue/react-auth-shared@^2.0.0-beta.0":
+  version "2.0.0-beta.0"
+  resolved "https://registry.yarnpkg.com/@pxblue/react-auth-shared/-/react-auth-shared-2.0.0-beta.0.tgz#764ca53dd5949d3fcb8625b7f27f2e4287466898"
+  integrity sha512-l2dgGxXeUypnntJiiv2I35bqer2oytKHKYqVaX+QAwufDNDHk+SrDZLCFRfxL7Zhj/RoU6x3ZIEoLLNJ09eQBw==
 
 "@pxblue/react-native-components@^3.0.0":
   version "3.0.1"
