@@ -6,7 +6,7 @@
 import React from 'react';
 
 // Components
-import { View, Image, StyleSheet, ImageSourcePropType, StyleProp, ViewStyle } from 'react-native';
+import { View, Image, StyleSheet, StyleProp, ViewStyle } from 'react-native';
 
 // Styles
 import * as Colors from '@pxblue/colors';
@@ -52,7 +52,7 @@ const makeStyles = (): Record<string, any> =>
  */
 type LoginHeaderSplashProps = {
     style?: StyleProp<ViewStyle>;
-    mainImage?: ImageSourcePropType;
+    mainImage?: number | string;
 };
 
 /**

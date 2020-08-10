@@ -30,6 +30,7 @@ import { Spinner } from '../components/Spinner';
 import { SimpleDialog } from '../components/SimpleDialog';
 import { ErrorState } from '../components/ErrorState';
 import { ToggleButton } from '../components/ToggleButton';
+import i18n from '../translations/i18n';
 
 // Styles
 import * as Colors from '@pxblue/colors';
@@ -40,8 +41,6 @@ import {
     RegistrationActions,
     useRegistrationUIState,
     useRegistrationUIActions,
-    // Translations
-    i18n,
     // Hooks
     useLanguageLocale,
     useInjectedUIContext,
