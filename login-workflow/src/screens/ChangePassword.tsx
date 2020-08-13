@@ -3,7 +3,7 @@
  * @module Screens
  */
 
-import React from 'react';
+import React, { useCallback } from 'react';
 
 // Components
 import { Platform, View, StyleSheet, SafeAreaView, StatusBar, TextInput } from 'react-native';
@@ -37,9 +37,12 @@ import {
     NUMBERS_REGEX,
     UPPER_CASE_REGEX,
     LOWER_CASE_REGEX,
+    // Types
+    PasswordRequirement,
     // Hooks
     useSecurityActions,
     useLanguageLocale,
+    useInjectedUIContext,
 } from '@pxblue/react-auth-shared';
 
 /**
@@ -139,13 +142,36 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
     const confirmInputRef = React.useRef<TextInput>(null);
     const goToConfirmInput = (): void => confirmInputRef?.current?.focus();
 
-    const areValidMatchingPasswords =
-        new RegExp(SPECIAL_CHAR_REGEX).test(newPasswordInput) &&
-        new RegExp(LENGTH_REGEX).test(newPasswordInput) &&
-        new RegExp(NUMBERS_REGEX).test(newPasswordInput) &&
-        new RegExp(UPPER_CASE_REGEX).test(newPasswordInput) &&
-        new RegExp(LOWER_CASE_REGEX).test(newPasswordInput) &&
-        confirmInput === newPasswordInput;
+    const defaultRequirements: PasswordRequirement[] = [
+        {
+            regex: LENGTH_REGEX,
+            description: t('PASSWORD_REQUIREMENTS.LENGTH'),
+        },
+        {
+            regex: NUMBERS_REGEX,
+            description: t('PASSWORD_REQUIREMENTS.NUMBERS'),
+        },
+        {
+            regex: UPPER_CASE_REGEX,
+            description: t('PASSWORD_REQUIREMENTS.UPPER'),
+        },
+        {
+            regex: LOWER_CASE_REGEX,
+            description: t('PASSWORD_REQUIREMENTS.LOWER'),
+        },
+        {
+            regex: SPECIAL_CHAR_REGEX,
+            description: t('PASSWORD_REQUIREMENTS.SPECIAL'),
+        },
+    ];
+    const { passwordRequirements = defaultRequirements } = useInjectedUIContext();
+
+    const areValidMatchingPasswords = useCallback((): boolean => {
+        for (let i = 0; i < passwordRequirements.length; i++) {
+            if (!new RegExp(passwordRequirements[i].regex).test(newPasswordInput)) return false;
+        }
+        return confirmInput === newPasswordInput;
+    }, [passwordRequirements, newPasswordInput, confirmInput]);
 
     const spinner = transitState.transitInProgress ? <Spinner hasHeader={false} /> : <></>;
 
@@ -270,7 +296,7 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
                     <View style={{ flex: 1, paddingLeft: 5 }}>
                         <ToggleButton
                             text={t('CHANGE_PASSWORD.UPDATE')}
-                            disabled={currentPasswordInput === '' || !areValidMatchingPasswords}
+                            disabled={currentPasswordInput === '' || !areValidMatchingPasswords()}
                             onPress={changePassword}
                         />
                     </View>
