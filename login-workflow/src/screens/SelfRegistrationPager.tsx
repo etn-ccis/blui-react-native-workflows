@@ -280,7 +280,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
         registrationTransitErrorMessage;
     const errorDialog = (
         <SimpleDialog
-            title={'Error'}
+            title={t('MESSAGES.ERROR')}
             bodyText={t(errorBodyText)}
             visible={
                 !hasAcknowledgedError &&
