@@ -22,6 +22,7 @@ i18n.use(initReactI18next) // passes i18n down to react-i18next
             fr: translations.french,
             fr_US: translations.french,
             fr_CA: translations.french,
+            fr_FR: translations.french,
         },
         lng: deviceLocale,
         fallbackLng: 'en',
