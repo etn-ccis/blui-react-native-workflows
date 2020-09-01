@@ -98,7 +98,7 @@ export const VerifyEmail: React.FC<VerifyEmailProps> = (props) => {
                         label={t('SELF_REGISTRATION.VERIFY_EMAIL.VERIFICATION')}
                         value={verifyCode}
                         style={styles.inputMargin}
-                        keyboardType={'number-pad'}
+                        keyboardType={'default'}
                         autoCapitalize={'none'}
                         onChangeText={setVerifyCode}
                     />
