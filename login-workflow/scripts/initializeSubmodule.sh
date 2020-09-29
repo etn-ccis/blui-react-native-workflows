@@ -9,7 +9,7 @@ BGREEN='\033[1;32m' #BOLD
 GRAY='\033[1;30m'
 NC='\033[0m' # No Color
 
-echo -e "${BLUE}Initializing Showcase Submodule...${NC}"
+echo -e "${BLUE}Initializing Shared Auth Submodule...${NC}"
 if [ ! -f ./shared-auth/package.json ]; 
     then git submodule init && git submodule update; 
     else echo -e "${BBLUE}Already initialized${NC}" && exit 0;
