@@ -6,7 +6,7 @@
 import React from 'react';
 
 // Components
-import { View, Image, StyleSheet, SafeAreaView, ImageSourcePropType } from 'react-native';
+import { View, Image, StyleSheet, SafeAreaView } from 'react-native';
 import { LoginHeaderSplash } from '../components/LoginHeaderSplash';
 import { Theme, useTheme } from 'react-native-paper';
 
@@ -93,7 +93,7 @@ const makeStyles = (): Record<string, any> =>
  */
 
 type SplashProps = {
-    mainImage?: ImageSourcePropType;
+    mainImage?: string | number;
     theme?: Theme;
 };
 

@@ -33,6 +33,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { Spinner } from '../components/Spinner';
 import { SimpleDialog } from '../components/SimpleDialog';
 import { ToggleButton } from '../components/ToggleButton';
+import i18n from '../translations/i18n';
 
 // Styles
 import * as Colors from '@pxblue/colors';
@@ -41,8 +42,6 @@ import * as Colors from '@pxblue/colors';
 import {
     // Actions
     RegistrationActions,
-    // Translations
-    i18n,
     // Hooks
     useLanguageLocale,
     useInjectedUIContext,
@@ -281,7 +280,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
         registrationTransitErrorMessage;
     const errorDialog = (
         <SimpleDialog
-            title={'Error'}
+            title={t('MESSAGES.ERROR')}
             bodyText={t(errorBodyText)}
             visible={
                 !hasAcknowledgedError &&

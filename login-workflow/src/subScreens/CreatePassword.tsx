@@ -3,7 +3,7 @@
  * @module Sub-Screens
  */
 
-import React from 'react';
+import React, { useCallback } from 'react';
 
 // Components
 import { View, StyleSheet, SafeAreaView, TextInput } from 'react-native';
@@ -23,8 +23,11 @@ import {
     NUMBERS_REGEX,
     UPPER_CASE_REGEX,
     LOWER_CASE_REGEX,
+    // Types
+    PasswordRequirement,
     // Hooks
     useLanguageLocale,
+    useInjectedUIContext,
 } from '@pxblue/react-auth-shared';
 
 /**
@@ -83,16 +86,39 @@ export const CreatePassword: React.FC<CreatePasswordProps> = (props) => {
     const confirmPasswordRef = React.useRef<TextInput>(null);
     const goToNextInput = (): void => confirmPasswordRef?.current?.focus();
 
-    const areValidMatchingPasswords =
-        new RegExp(SPECIAL_CHAR_REGEX).test(passwordInput) &&
-        new RegExp(LENGTH_REGEX).test(passwordInput) &&
-        new RegExp(NUMBERS_REGEX).test(passwordInput) &&
-        new RegExp(UPPER_CASE_REGEX).test(passwordInput) &&
-        new RegExp(LOWER_CASE_REGEX).test(passwordInput) &&
-        confirmInput === passwordInput;
+    const defaultRequirements: PasswordRequirement[] = [
+        {
+            regex: LENGTH_REGEX,
+            description: t('PASSWORD_REQUIREMENTS.LENGTH'),
+        },
+        {
+            regex: NUMBERS_REGEX,
+            description: t('PASSWORD_REQUIREMENTS.NUMBERS'),
+        },
+        {
+            regex: UPPER_CASE_REGEX,
+            description: t('PASSWORD_REQUIREMENTS.UPPER'),
+        },
+        {
+            regex: LOWER_CASE_REGEX,
+            description: t('PASSWORD_REQUIREMENTS.LOWER'),
+        },
+        {
+            regex: SPECIAL_CHAR_REGEX,
+            description: t('PASSWORD_REQUIREMENTS.SPECIAL'),
+        },
+    ];
+    const { passwordRequirements = defaultRequirements } = useInjectedUIContext();
+
+    const areValidMatchingPasswords = useCallback((): boolean => {
+        for (let i = 0; i < passwordRequirements.length; i++) {
+            if (!new RegExp(passwordRequirements[i].regex).test(passwordInput)) return false;
+        }
+        return confirmInput === passwordInput;
+    }, [passwordRequirements, passwordInput, confirmInput]);
 
     React.useEffect(() => {
-        props.onPasswordChanged(areValidMatchingPasswords ? passwordInput : '');
+        props.onPasswordChanged(areValidMatchingPasswords() ? passwordInput : '');
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [passwordInput, confirmInput, areValidMatchingPasswords]); // ignore props
 
