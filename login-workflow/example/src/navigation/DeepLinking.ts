@@ -10,6 +10,7 @@ import { LinkingOptions } from '@react-navigation/native/lib/typescript/src/type
 export const authLinkMapping: LinkingOptions = {
     prefixes: ['https://authui.com', 'authui://'],
     config: {
+        screens: {
         Login: 'login',
         PasswordResetInitiation: {
             initialRouteName: 'Login',
@@ -34,6 +35,7 @@ export const authLinkMapping: LinkingOptions = {
             initialRouteName: 'Login',
             path: 'support',
         },
+    },
     },
 };
 
