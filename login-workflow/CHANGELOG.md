@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## v1.4.0 (NOT RELEASED YET)
 
+### Added
+-   `phoneContactLink` prop to allow specification of tel URI details while keeping `phoneContact` for human-readable UI display of the same number
+
 ### Fixed
 -   ChangePassword was not using the correct error message
 -   EULA checkbox will only be available to tap after the webview has loaded
