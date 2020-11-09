@@ -3,7 +3,7 @@
  * @module Sub-Screens
  */
 
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 
 // Components
 import { View, StyleSheet, SafeAreaView, ScrollView } from 'react-native';
@@ -69,6 +69,7 @@ export const Eula: React.FC<EulaProps> = (props) => {
     const theme = useTheme(props.theme);
     const { t } = useLanguageLocale();
     const containerStyles = makeContainerStyles(theme);
+    const [contentLoaded, setContentLoaded] = useState(false);
     const eulaIsChecked = props.eulaAccepted ?? false;
     const htmlEula = props.htmlEula ?? false;
 
@@ -81,7 +82,7 @@ export const Eula: React.FC<EulaProps> = (props) => {
         props.onEulaChanged(!eulaIsChecked);
     }, [eulaIsChecked, props]);
 
-    const disableCheckBox = props.eulaError || !props.eulaContent ? true : false;
+    const disableCheckBox = props.eulaError || (!contentLoaded && htmlEula) || !props.eulaContent ? true : false;
 
     const eulaContentInternals = !htmlEula
         ? props.eulaContent ?? props.eulaError ?? t('REGISTRATION.EULA.LOADING')
@@ -91,6 +92,10 @@ export const Eula: React.FC<EulaProps> = (props) => {
               `<body>${props.eulaError ?? t('REGISTRATION.EULA.LOADING')}</body>` +
               '</html>';
 
+    const onLoadEnd = (): void => {
+        setContentLoaded(true);
+    };
+
     return (
         <SafeAreaView style={containerStyles.safeContainer}>
             <View style={[containerStyles.mainContainer, containerStyles.containerMargins]}>
@@ -98,6 +103,7 @@ export const Eula: React.FC<EulaProps> = (props) => {
                     <WebView
                         originWhitelist={['*']}
                         source={{ html: eulaContentInternals }}
+                        onLoadEnd={onLoadEnd}
                         style={{ flex: 1, height: 50 /* WebView needs a fixed height set or it won't render */ }}
                     />
                 ) : (

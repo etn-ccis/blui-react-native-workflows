@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 -   ChangePassword was not using the correct error message
+-   EULA checkbox will only be available to tap after the webview has loaded
 
 ### Changed
 -   ChangePassword now uses the property callbacks rather than directly using security helper
