@@ -400,7 +400,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
             {spinner}
             {errorDialog}
 
-            <CloseHeader title={pageTitle()} backAction={(): void => navigation.goBack()} />
+            <CloseHeader title={pageTitle()} backAction={(): void => navigation.navigate('Login')} />
             <SafeAreaView style={[containerStyles.spaceBetween, { backgroundColor: theme.colors.surface }]}>
                 <ViewPager
                     ref={viewPager}
@@ -436,7 +436,10 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
         </View>
     ) : accountAlreadyExists ? (
         <View style={{ flex: 1, backgroundColor: 'white' }}>
-            <CloseHeader title={t('REGISTRATION.STEPS.COMPLETE')} backAction={(): void => navigation.goBack()} />
+            <CloseHeader
+                title={t('REGISTRATION.STEPS.COMPLETE')}
+                backAction={(): void => navigation.navigate('Login')}
+            />
             <SafeAreaView style={[containerStyles.safeContainer, { flex: 1 }]}>
                 <View style={{ flex: 1 }}>
                     <ExistingAccountComplete />
@@ -452,12 +455,12 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
         </View>
     ) : !validationComplete ? (
         <View style={{ flex: 1 }}>
-            <CloseHeader title={pageTitle()} backAction={(): void => navigation.goBack()} />
+            <CloseHeader title={pageTitle()} backAction={(): void => navigation.navigate('Login')} />
             <Spinner />
         </View>
     ) : (
         <View style={{ flex: 1 }}>
-            <CloseHeader title={pageTitle()} backAction={(): void => navigation.goBack()} />
+            <CloseHeader title={pageTitle()} backAction={(): void => navigation.navigate('Login')} />
             <ErrorState
                 title={t('MESSAGES.FAILURE')}
                 bodyText={validationTransitErrorMessage}

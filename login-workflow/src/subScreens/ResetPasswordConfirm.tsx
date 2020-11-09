@@ -10,7 +10,7 @@ import { useRoute } from '@react-navigation/native';
 import { Theme, useTheme } from 'react-native-paper';
 
 // Components
-import { View, StyleSheet, SafeAreaView } from 'react-native';
+import { View, StyleSheet, SafeAreaView, YellowBox } from 'react-native';
 import { CreatePassword } from './CreatePassword';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Spinner } from '../components/Spinner';
@@ -67,6 +67,9 @@ const makeStyles = (): Record<string, any> =>
 type ResetPasswordConfirmParams = {
     onResetPasswordPress: Function;
 };
+
+// Suppress function as initial parameter ResetPasswordConfirmParams yellowbox errors
+YellowBox.ignoreWarnings(['Non-serializable values were found in the navigation state']);
 
 /**
  * Handle the props for the Reset Password Confirm page.

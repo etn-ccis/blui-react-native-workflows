@@ -6,7 +6,7 @@
 import React from 'react';
 
 // Components
-import { Linking, View, StyleSheet, SafeAreaView } from 'react-native';
+import { Linking, View, StyleSheet, SafeAreaView, BackHandler } from 'react-native';
 import { Text, Theme, useTheme } from 'react-native-paper';
 import { CloseHeader } from '../components/CloseHeader';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
@@ -97,9 +97,20 @@ export const ContactSupport: React.FC<ContactSupportProps> = (props) => {
     const contactPhone = routeParams?.contactPhone ?? '';
     const contactPhoneLink = routeParams?.contactPhoneLink ?? '';
 
+    // Navigate appropriately with the hardware back button on android
+    React.useEffect(() => {
+        const onBackPress = (): boolean => {
+            navigation.navigate('Login');
+            return true;
+        };
+        BackHandler.addEventListener('hardwareBackPress', onBackPress);
+        return (): void => BackHandler.removeEventListener('hardwareBackPress', onBackPress);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    });
+
     return (
         <>
-            <CloseHeader title={t('USER_MENU.CONTACT_US')} backAction={(): void => navigation.goBack()} />
+            <CloseHeader title={t('USER_MENU.CONTACT_US')} backAction={(): void => navigation.navigate('Login')} />
             <SafeAreaView style={containerStyles.safeContainer}>
                 <View>
                     <MatIcon

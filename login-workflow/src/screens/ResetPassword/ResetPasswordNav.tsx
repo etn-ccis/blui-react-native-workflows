@@ -4,12 +4,12 @@
  */
 
 import * as React from 'react';
-
+import { BackHandler } from 'react-native';
 // Nav
 import { createStackNavigator } from '@react-navigation/stack';
 
 // Hooks
-import { useRoute } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 // Screens
 import { ResetPassword } from '../../subScreens/ResetPassword';
@@ -55,6 +55,7 @@ export const ResetPasswordNav: React.FC<ResetPasswordNavProps> = (props) => {
     const theme = useTheme(props.theme);
     const accountUIState = useAccountUIState();
     const accountUIActions = useAccountUIActions();
+    const navigation = useNavigation();
     const route = useRoute();
 
     // Reset state on dismissal
@@ -72,6 +73,17 @@ export const ResetPasswordNav: React.FC<ResetPasswordNavProps> = (props) => {
     const routeParams = route.params as ContactParams;
     const contactPhone = routeParams?.contactPhone ?? '';
 
+    // Navigate appropriately with the hardware back button on android
+    React.useEffect(() => {
+        const onBackPress = (): boolean => {
+            navigation.navigate('Login');
+            return true;
+        };
+        BackHandler.addEventListener('hardwareBackPress', onBackPress);
+        return (): void => BackHandler.removeEventListener('hardwareBackPress', onBackPress);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    });
+
     return (
         <Stack.Navigator
             screenOptions={{
@@ -84,12 +96,12 @@ export const ResetPasswordNav: React.FC<ResetPasswordNavProps> = (props) => {
                     name="ResetPassword"
                     initialParams={{ onResetPasswordPress: resetPassword, contactPhone: contactPhone }}
                     component={ResetPassword}
-                    options={({ navigation }): object => ({
+                    options={(): object => ({
                         header: (): JSX.Element | null =>
                             CloseHeader({
                                 title: t('FORMS.RESET_PASSWORD'),
                                 backAction: () => {
-                                    navigation.goBack();
+                                    navigation.navigate('Login');
                                 },
                             }),
                     })}
@@ -99,7 +111,7 @@ export const ResetPasswordNav: React.FC<ResetPasswordNavProps> = (props) => {
                     name="ResetPasswordSent"
                     component={ResetPasswordSent}
                     initialParams={{ email: accountUIState.forgotPassword.email }}
-                    options={({ navigation }): object => ({
+                    options={(): object => ({
                         gestureEnabled: false,
                         header: (): JSX.Element | null =>
                             CloseHeader({
