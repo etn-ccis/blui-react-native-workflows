@@ -1,7 +1,7 @@
 {
     "name": "@pxblue/react-native-auth-workflow",
     "description": "Re-usable workflow components for Authentication and Registration within Eaton applications.",
-    "version": "1.3.0",
+    "version": "1.4.0",
     "license": "BSD-3-Clause",
     "author": {
         "name": "PX Blue",
@@ -26,12 +26,13 @@
     "scripts": {
         "initialize": "bash scripts/initializeSubmodule.sh",
         "install:dependencies": "yarn install:dependencies-ios",
-        "install:dependencies-ios": "yarn && cd example && yarn && cd ios && pod install && cd ../../shared-auth && yarn && cd ..",
-        "install:dependencies-android": "yarn && cd example && yarn && cd ../shared-auth && yarn && cd ..",
-        "link:components": "bash ./scripts/linkWorkflow.sh",
+        "install:dependencies-ios": "yarn && cd example && yarn && cd ios && pod install && cd ../../shared-auth && yarn && cd .. && yarn link:shared",
+        "install:dependencies-android": "yarn && cd example && yarn && cd ../shared-auth && yarn && cd .. && yarn link:shared",
+        "link:workflows": "bash ./scripts/linkWorkflow.sh",
+        "link:shared": "bash ./scripts/linkShared.sh",
         "start:example": "yarn start:example-ios",
-        "start:example-ios": "yarn initialize && yarn install:dependencies-ios && yarn build && yarn link:components && cd example && yarn ios",
-        "start:example-android": "yarn initialize && yarn install:dependencies-android && yarn build && yarn link:components && cd example && yarn android",
+        "start:example-ios": "yarn initialize && yarn install:dependencies-ios && yarn build && yarn link:workflows && cd example && yarn ios",
+        "start:example-android": "yarn initialize && yarn install:dependencies-android && yarn build && yarn link:workflows && cd example && yarn android",
         "test": "jest",
         "lint": "eslint \"**/**/*.{tsx,ts}\"",
         "prettier": "prettier \"**/**.{tsx,ts,js,json}\" --write",
@@ -40,10 +41,11 @@
         "generate:licenses": "npm-license-crawler -onlyDirectDependencies -json LICENSES.json",
         "validate": "yarn prettier && yarn lint && yarn typescript && yarn test",
         "precommit": "yarn validate && yarn generate:licenses",
+        "update:submodule": "git submodule update --remote",
         "typescript": "tsc --noEmit"
     },
     "dependencies": {
-        "@pxblue/react-auth-shared": "^2.0.0",
+        "@pxblue/react-auth-shared": "^2.1.0",
         "react-native-status-bar-height": "^2.5.0"
     },
     "peerDependencies": {

@@ -6,7 +6,7 @@
 import React, { MutableRefObject } from 'react';
 
 // Components
-import { View, StyleSheet, StyleProp, ViewStyle, TextInput as ReactTextInput } from 'react-native';
+import { View, StyleSheet, StyleProp, ViewStyle, TextInput as ReactTextInput, Platform } from 'react-native';
 import { TextInput as PaperTextInput, Theme, useTheme } from 'react-native-paper';
 import { TextInputProps } from 'react-native-paper/lib/typescript/src/components/TextInput/TextInput';
 import { Subtitle2 } from '@pxblue/react-native-components';
@@ -70,6 +70,7 @@ const TextInputRender: React.ForwardRefRenderFunction<{}, TextInputRenderProps> 
         },
     }));
 
+    const selectionColor = Platform.OS === 'android' ? Colors.blue['100'] : undefined;
     return (
         <View>
             {/* 
@@ -82,6 +83,7 @@ const TextInputRender: React.ForwardRefRenderFunction<{}, TextInputRenderProps> 
                 returnKeyType={returnKeyType}
                 textContentType={props.secureTextEntry ? 'oneTimeCode' : 'none'} // "oneTimeCode" is workaround to avoid iOS 12 "strong password" autofill overlay on secure input password fields (ISSUE TRACKING: https://github.com/facebook/react-native/issues/21911)
                 underlineColor={Colors.gray['100']}
+                selectionColor={selectionColor}
                 {...inputProps}
             />
             {props.error ? <ErrorText errorText={errorText} /> : null}

@@ -83,7 +83,7 @@ const AuthNavigationContainerRender: React.ForwardRefRenderFunction<{}, Navigati
         <ChangePassword
             onChangePassword={injectedContext.authActions().changePassword}
             onCancel={securityActions.hideChangePassword}
-            onChangeComplete={securityActions.hideChangePassword}
+            onChangeComplete={securityActions.onUserNotAuthenticated}
         />
     );
 

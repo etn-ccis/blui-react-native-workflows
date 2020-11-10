@@ -413,6 +413,18 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
         }
     }, [navigation, isFirstStep, isLastStep, canGoBackProgress, advancePage]);
 
+    // Navigate appropriately with the hardware back button on android
+    React.useEffect(() => {
+        const onBackPress = (): boolean => {
+            backLogic();
+            return true;
+        };
+
+        BackHandler.addEventListener('hardwareBackPress', onBackPress);
+        return (): void => BackHandler.removeEventListener('hardwareBackPress', onBackPress);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [currentPage]);
+
     const pageTitle = (): string => {
         switch (currentPage) {
             case Pages.CreateAccount:
@@ -431,17 +443,6 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                 return '';
         }
     };
-
-    // Navigate appropriately with the hardware back button on android
-    useEffect(() => {
-        const onBackPress = (): boolean => {
-            backLogic();
-            return true;
-        };
-
-        BackHandler.addEventListener('hardwareBackPress', onBackPress);
-        return (): void => BackHandler.removeEventListener('hardwareBackPress', onBackPress);
-    }, [currentPage, advancePage, canGoBackProgress, isFirstStep, isLastStep, navigation, backLogic]);
 
     let buttonArea: JSX.Element;
     if (isLastStep) {
@@ -485,7 +486,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
         <View style={{ flex: 1 }}>
             {spinner}
             {errorDialog}
-            <CloseHeader title={pageTitle()} backAction={(): void => navigation.goBack()} />
+            <CloseHeader title={pageTitle()} backAction={(): void => navigation.navigate('Login')} />
             <SafeAreaView style={[containerStyles.spaceBetween, { backgroundColor: theme.colors.surface }]}>
                 <ViewPager
                     ref={viewPager}
@@ -529,7 +530,10 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
         </View>
     ) : (
         <View style={{ flex: 1, backgroundColor: 'white' }}>
-            <CloseHeader title={t('REGISTRATION.STEPS.COMPLETE')} backAction={(): void => navigation.goBack()} />
+            <CloseHeader
+                title={t('REGISTRATION.STEPS.COMPLETE')}
+                backAction={(): void => navigation.navigate('Login')}
+            />
             <SafeAreaView style={[containerStyles.safeContainer, { flex: 1 }]}>
                 <View style={{ flex: 1 }}>
                     <ExistingAccountComplete />
