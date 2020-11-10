@@ -26,9 +26,10 @@
     "scripts": {
         "initialize": "bash scripts/initializeSubmodule.sh",
         "install:dependencies": "yarn install:dependencies-ios",
-        "install:dependencies-ios": "yarn && cd example && yarn && cd ios && pod install && cd ../../shared-auth && yarn && cd ..",
-        "install:dependencies-android": "yarn && cd example && yarn && cd ../shared-auth && yarn && cd ..",
+        "install:dependencies-ios": "yarn && cd example && yarn && cd ios && pod install && cd ../../shared-auth && yarn && cd .. && yarn link:shared",
+        "install:dependencies-android": "yarn && cd example && yarn && cd ../shared-auth && yarn && cd .. && yarn link:shared",
         "link:workflows": "bash ./scripts/linkWorkflow.sh",
+        "link:shared": "bash ./scripts/linkShared.sh",
         "start:example": "yarn start:example-ios",
         "start:example-ios": "yarn initialize && yarn install:dependencies-ios && yarn build && yarn link:workflows && cd example && yarn ios",
         "start:example-android": "yarn initialize && yarn install:dependencies-android && yarn build && yarn link:workflows && cd example && yarn android",
