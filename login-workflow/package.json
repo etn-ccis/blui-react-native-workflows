@@ -1,7 +1,7 @@
 {
     "name": "@pxblue/react-native-auth-workflow",
     "description": "Re-usable workflow components for Authentication and Registration within Eaton applications.",
-    "version": "1.4.0-beta.0",
+    "version": "1.4.0",
     "license": "BSD-3-Clause",
     "author": {
         "name": "PX Blue",
@@ -41,10 +41,11 @@
         "generate:licenses": "npm-license-crawler -onlyDirectDependencies -json LICENSES.json",
         "validate": "yarn prettier && yarn lint && yarn typescript && yarn test",
         "precommit": "yarn validate && yarn generate:licenses",
+        "update:submodule": "git submodule update --remote",
         "typescript": "tsc --noEmit"
     },
     "dependencies": {
-        "@pxblue/react-auth-shared": "^2.1.0-beta.0",
+        "@pxblue/react-auth-shared": "^2.1.0",
         "react-native-status-bar-height": "^2.5.0"
     },
     "peerDependencies": {
