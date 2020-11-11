@@ -40,7 +40,6 @@ import {
     // Types
     PasswordRequirement,
     // Hooks
-    useSecurityActions,
     useLanguageLocale,
     useInjectedUIContext,
 } from '@pxblue/react-auth-shared';
@@ -128,7 +127,6 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
     const [confirmInput, setConfirmInput] = React.useState('');
     const [transitState, setTransitState] = React.useState(initialTransitState);
     const [hasAcknowledgedError, setHasAcknowledgedError] = React.useState(false);
-    const securityHelper = useSecurityActions();
     const { t } = useLanguageLocale();
 
     // styles
@@ -182,7 +180,7 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
             await props.onChangePassword(currentPasswordInput, newPasswordInput);
             setTransitState(transitSuccess());
         } catch (error) {
-            setTransitState(transitFailed(error.errorMessage));
+            setTransitState(transitFailed(error.message));
         }
     };
 
@@ -228,7 +226,7 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
                         <ToggleButton
                             text={t('ACTIONS.LOG_IN')}
                             style={{ marginHorizontal: 20 }}
-                            onPress={securityHelper.onUserNotAuthenticated}
+                            onPress={props.onChangeComplete}
                         />
                     </View>
                 </View>
@@ -287,11 +285,7 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
                 </ScrollView>
                 <View style={[styles.sideBySideButtons, containerStyles.containerMargins]}>
                     <View style={{ flex: 1, paddingRight: 5 }}>
-                        <ToggleButton
-                            text={t('CHANGE_PASSWORD.CANCEL')}
-                            outlined={true}
-                            onPress={(): void => securityHelper.hideChangePassword()}
-                        />
+                        <ToggleButton text={t('CHANGE_PASSWORD.CANCEL')} outlined={true} onPress={props.onCancel} />
                     </View>
                     <View style={{ flex: 1, paddingLeft: 5 }}>
                         <ToggleButton

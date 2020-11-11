@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v1.4.0
+
+### Added
+-   `phoneContactLink` prop to allow specification of tel URI details while keeping `phoneContact` for human-readable UI display of the same number
+
+### Fixed
+-   ChangePassword was not using the correct error message
+-   EULA checkbox will only be available to tap after the webview has loaded
+-   Tapping the "X" from an Android cold boot deep link will now properly navigate to Login
+
+### Changed
+-   ChangePassword now uses the property callbacks rather than directly using security helper
+-   Additional support for Android hardware back button closing out of the various deep link flow to Login
+-   Default TextInput selection color is now light blue for Android
+
 ## v1.3.0
 
 ### Added

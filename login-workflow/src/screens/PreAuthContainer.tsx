@@ -78,6 +78,7 @@ export const PreAuthContainer: React.FC<PreAuthContainerProps> = (props) => {
                     initialParams={{
                         contactEmail: authProps.contactEmail ?? 'exampleSupport@eaton.com',
                         contactPhone: authProps.contactPhone ?? '1-888-EXA-TEST',
+                        contactPhoneLink: authProps.contactPhoneLink ?? '1-888-EXA-TEST',
                     }}
                 />
                 <Stack.Screen name="Registration" component={SelfRegistrationPager} options={{ headerShown: false }} />

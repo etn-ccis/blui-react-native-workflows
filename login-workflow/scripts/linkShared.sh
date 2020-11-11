@@ -9,34 +9,30 @@ BGREEN='\033[1;32m' #BOLD
 GRAY='\033[1;30m'
 NC='\033[0m' # No Color
 
-echo -e "${BLUE}Building workflow package...${NC}"
-yarn build
+echo -e "${BLUE}Building shared-auth package...${NC}"
 cd ./shared-auth && yarn build && cd ..
 
-echo -en "${BLUE}Creating new folder in example node_modules...${NC}"
-rm -rf "./example/node_modules/@pxblue/react-native-auth-workflow"
-mkdir -p "./example/node_modules/@pxblue/react-native-auth-workflow"
+echo -en "${BLUE}Creating new folder in node_modules...${NC}"
+rm -rf "./node_modules/@pxblue/react-auth-shared"
+mkdir -p "./node_modules/@pxblue/react-auth-shared"
 
 rm -rf "./example/node_modules/@pxblue/react-auth-shared"
 mkdir -p "./example/node_modules/@pxblue/react-auth-shared"
 echo -e "${GREEN}Done${NC}"
 
-echo -e "${GREEN}Done${NC}"
-
-echo -en "${BLUE}Copying build output into example node_modules...${NC}";
-cp -r ./package.json ./example/node_modules/@pxblue/react-native-auth-workflow/package.json
-cp -r ./lib/. ./example/node_modules/@pxblue/react-native-auth-workflow/lib
+echo -en "${BLUE}Copying build output into node_modules...${NC}";
+cp -r ./shared-auth/package.json ./node_modules/@pxblue/react-auth-shared/package.json
+cp -r ./shared-auth/lib/. ./node_modules/@pxblue/react-auth-shared/lib
 
 cp -r ./shared-auth/package.json ./example/node_modules/@pxblue/react-auth-shared/package.json
 cp -r ./shared-auth/lib/. ./example/node_modules/@pxblue/react-auth-shared/lib
-
 echo -e "${GREEN}Done${NC}"
 
-echo -en "\r\n${BLUE}Linking Workflows to example: ${NC}"
-if [ ! -f ./example/node_modules/@pxblue/react-native-auth-workflow/package.json ]; then echo -e "${BRED}Not Linked${NC}" && exit 1; fi
-if [ ! -s ./example/node_modules/@pxblue/react-native-auth-workflow ];
+echo -en "\r\n${BLUE}Linking Shared Auth to workflow and example: ${NC}"
+if [ ! -f ./node_modules/@pxblue/react-auth-shared/package.json ]; then echo -e "${BRED}Not Linked${NC}" && exit 1; fi
+if [ ! -s ./node_modules/@pxblue/react-auth-shared ];
     then
-        if [ ! -f ./example/node_modules/@pxblue/react-native-auth-workflow/lib/commonjs/index.js ];
+        if [ ! -f ./node_modules/@pxblue/react-auth-shared/lib/commonjs/index.js ];
         then echo -e "${BRED}Not Linked${NC}" && exit 1;
         fi;
 fi
@@ -48,5 +44,4 @@ if [ ! -s ./example/node_modules/@pxblue/react-auth-shared ];
         then echo -e "${BRED}Not Linked${NC}" && exit 1;
         fi;
 fi
-
 echo -e "${GRAY}Complete${NC}\r\n"

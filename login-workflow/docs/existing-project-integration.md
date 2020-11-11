@@ -82,6 +82,7 @@ export const AuthUIConfiguration = (props) => {
             allowDebugMode={true}
             contactEmail={'something@email.com'}
             contactPhone={'1-800-123-4567'}
+            contactPhoneLink={'1-800-123-4567'}
             projectImage={require('./src/assets/images/some_image.png')}
         >
             {props.children}
