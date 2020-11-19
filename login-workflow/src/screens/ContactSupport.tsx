@@ -7,7 +7,7 @@ import React from 'react';
 
 // Components
 import { Linking, View, StyleSheet, SafeAreaView, BackHandler } from 'react-native';
-import { Text, Theme, useTheme } from 'react-native-paper';
+import { Text, useTheme } from 'react-native-paper';
 import { CloseHeader } from '../components/CloseHeader';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
 
@@ -29,7 +29,7 @@ import {
 /**
  * @ignore
  */
-const makeContainerStyles = (theme: Theme): Record<string, any> =>
+const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any> =>
     StyleSheet.create({
         safeContainer: {
             height: '100%',
@@ -57,7 +57,7 @@ const makeContainerStyles = (theme: Theme): Record<string, any> =>
 /**
  * @ignore
  */
-const makeStyles = (theme: Theme): Record<string, any> =>
+const makeStyles = (theme: ReactNativePaper.Theme): Record<string, any> =>
     StyleSheet.create({
         textSpacing: {
             marginVertical: 10,
@@ -74,7 +74,7 @@ const makeStyles = (theme: Theme): Record<string, any> =>
  * @param theme (Optional) react-native-paper theme partial to style the component.
  */
 type ContactSupportProps = {
-    theme?: Theme;
+    theme?: ReactNativePaper.Theme;
 };
 
 /**

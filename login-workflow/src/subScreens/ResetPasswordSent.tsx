@@ -8,7 +8,7 @@ import React from 'react';
 // Components
 import { View, StyleSheet, SafeAreaView } from 'react-native';
 import { Instruction } from '../components/Instruction';
-import { Theme, useTheme } from 'react-native-paper';
+import { useTheme } from 'react-native-paper';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import { ToggleButton } from '../components/ToggleButton';
 
@@ -26,7 +26,7 @@ import {
 /**
  * @ignore
  */
-const makeContainerStyles = (theme: Theme): Record<string, any> =>
+const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any> =>
     StyleSheet.create({
         safeContainer: {
             height: '100%',
@@ -62,7 +62,7 @@ const makeStyles = (): Record<string, any> =>
  * @param theme (Optional) react-native-paper theme partial to style the component.
  */
 type ResetPasswordSentProps = {
-    theme?: Theme;
+    theme?: ReactNativePaper.Theme;
 };
 
 /**

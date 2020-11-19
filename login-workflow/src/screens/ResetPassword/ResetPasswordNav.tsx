@@ -19,7 +19,7 @@ import { ResetPasswordSent } from '../../subScreens/ResetPasswordSent';
 import { CloseHeader } from '../../components/CloseHeader';
 
 // Theme
-import { Theme, useTheme } from 'react-native-paper';
+import { useTheme } from 'react-native-paper';
 
 // Shared Auth Logic
 import {
@@ -42,7 +42,7 @@ const Stack = createStackNavigator();
  * @param theme  (Optional) react-native-paper theme partial to style the component.
  */
 type ResetPasswordNavProps = {
-    theme?: Theme;
+    theme?: ReactNativePaper.Theme;
 };
 
 /**

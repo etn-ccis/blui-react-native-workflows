@@ -7,7 +7,7 @@ import React from 'react';
 
 // Hooks
 import { useRoute } from '@react-navigation/native';
-import { Theme, useTheme } from 'react-native-paper';
+import { useTheme } from 'react-native-paper';
 
 // Components
 import { View, StyleSheet, SafeAreaView, YellowBox } from 'react-native';
@@ -27,7 +27,7 @@ import {
 /**
  * @ignore
  */
-const makeContainerStyles = (theme: Theme): Record<string, any> =>
+const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any> =>
     StyleSheet.create({
         safeContainer: {
             height: '100%',
@@ -77,7 +77,7 @@ YellowBox.ignoreWarnings(['Non-serializable values were found in the navigation 
  * @param theme (Optional) react-native-paper theme partial for custom styling.
  */
 type ResetPasswordConfirmProps = {
-    theme?: Theme;
+    theme?: ReactNativePaper.Theme;
 };
 
 /**

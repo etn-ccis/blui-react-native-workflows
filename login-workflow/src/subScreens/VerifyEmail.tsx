@@ -9,7 +9,7 @@ import React, { useEffect } from 'react';
 import { View, StyleSheet, SafeAreaView } from 'react-native';
 import { TextInput } from '../components/TextInput';
 import { Instruction } from '../components/Instruction';
-import { Button, Theme, useTheme } from 'react-native-paper';
+import { Button, useTheme } from 'react-native-paper';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 // Hooks
@@ -18,7 +18,7 @@ import { useLanguageLocale } from '@pxblue/react-auth-shared';
 /**
  * @ignore
  */
-const makeContainerStyles = (theme: Theme): Record<string, any> =>
+const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any> =>
     StyleSheet.create({
         safeContainer: {
             height: '100%',
@@ -59,7 +59,7 @@ type VerifyEmailProps = {
     initialCode?: string;
     onVerifyCodeChanged(email: string): void;
     onResendVerificationEmail(): void;
-    theme?: Theme;
+    theme?: ReactNativePaper.Theme;
 };
 
 /**

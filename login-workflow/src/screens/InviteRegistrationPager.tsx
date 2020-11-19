@@ -21,7 +21,7 @@ import { ExistingAccountComplete } from '../subScreens/ExistingAccountComplete';
 
 // Components
 import { View, StyleSheet, SafeAreaView, BackHandler } from 'react-native';
-import { Theme, useTheme } from 'react-native-paper';
+import { useTheme } from 'react-native-paper';
 import ViewPager from '@react-native-community/viewpager';
 import { CloseHeader } from '../components/CloseHeader';
 import { PageIndicator } from '../components/PageIndicator';
@@ -49,7 +49,7 @@ import {
 /**
  * @ignore
  */
-const makeContainerStyles = (theme: Theme): Record<string, any> =>
+const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any> =>
     StyleSheet.create({
         safeContainer: {
             height: '100%',
@@ -107,7 +107,7 @@ type InviteRegistrationPagerParams = {
  * @param theme (Optional) react-native-paper theme partial to style the component.
  */
 type InviteRegistrationPagerProps = {
-    theme?: Theme;
+    theme?: ReactNativePaper.Theme;
 };
 
 enum Pages {

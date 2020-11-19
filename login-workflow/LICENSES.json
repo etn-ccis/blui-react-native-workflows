@@ -5,6 +5,12 @@
         "licenseUrl": "https://github.com/pxblue/icons",
         "parents": "example"
     },
+    "@pxblue/react-native-auth-workflow@1.4.0": {
+        "licenses": "BSD-3-Clause",
+        "repository": "https://github.com/pxblue/react-native-workflows/tree/master/login-workflow",
+        "licenseUrl": "https://github.com/pxblue/react-native-workflows/tree/master/login-workflow",
+        "parents": "example"
+    },
     "@pxblue/react-native-themes@5.0.0": {
         "licenses": "BSD-3-Clause",
         "repository": "https://github.com/pxblue/themes",

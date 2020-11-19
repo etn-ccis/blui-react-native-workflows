@@ -7,7 +7,7 @@ import React, { MutableRefObject } from 'react';
 
 // Components
 import { View, StyleSheet, StyleProp, ViewStyle, TextInput as ReactTextInput, Platform } from 'react-native';
-import { TextInput as PaperTextInput, Theme, useTheme } from 'react-native-paper';
+import { TextInput as PaperTextInput, useTheme } from 'react-native-paper';
 import { TextInputProps } from 'react-native-paper/lib/typescript/src/components/TextInput/TextInput';
 import { Subtitle2 } from '@pxblue/react-native-components';
 
@@ -17,7 +17,7 @@ import * as Colors from '@pxblue/colors';
 /**
  * @ignore
  */
-const makeStyles = (theme: Theme): Record<string, any> =>
+const makeStyles = (theme: ReactNativePaper.Theme): Record<string, any> =>
     StyleSheet.create({
         textInput: {
             height: 70,
@@ -37,7 +37,7 @@ const makeStyles = (theme: Theme): Record<string, any> =>
  */
 export type TextInputRenderProps = Omit<TextInputProps, 'theme'> & {
     errorText?: string;
-    theme?: Theme;
+    theme?: ReactNativePaper.Theme;
     testID?: string;
 };
 
@@ -102,7 +102,7 @@ TextInput.displayName = 'TextInput'; // Set a display name for testing with shal
 type ErrorTextProps = {
     errorText: string | undefined;
     style?: StyleProp<ViewStyle>;
-    theme?: Theme;
+    theme?: ReactNativePaper.Theme;
 };
 
 const ErrorText: React.FC<ErrorTextProps> = (props) => {

@@ -10,7 +10,7 @@ import { View, StyleSheet, SafeAreaView, TextInput } from 'react-native';
 import { PasswordRequirements } from '../components/PasswordRequirements';
 import { TextInputSecure } from '../components/TextInputSecure';
 import { Instruction } from '../components/Instruction';
-import { Theme, useTheme } from 'react-native-paper';
+import { useTheme } from 'react-native-paper';
 
 // Hooks
 import { ScrollView } from 'react-native-gesture-handler';
@@ -33,7 +33,7 @@ import {
 /**
  * @ignore
  */
-const makeContainerStyles = (theme: Theme): Record<string, any> =>
+const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any> =>
     StyleSheet.create({
         safeContainer: {
             backgroundColor: theme.colors.surface,
@@ -66,7 +66,7 @@ const makeStyles = (): Record<string, any> =>
  */
 type CreatePasswordProps = {
     onPasswordChanged(password: string): void;
-    theme?: Theme;
+    theme?: ReactNativePaper.Theme;
 };
 
 /**

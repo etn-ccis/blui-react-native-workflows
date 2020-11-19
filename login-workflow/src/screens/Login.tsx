@@ -7,7 +7,7 @@ import React from 'react';
 
 // Components
 import { Platform, View, StyleSheet, SafeAreaView, StatusBar, TextInput as ReactTextInput } from 'react-native';
-import { Button, Theme, useTheme } from 'react-native-paper';
+import { Button, useTheme } from 'react-native-paper';
 import { TextInput } from '../components/TextInput';
 import { TextInputSecure } from '../components/TextInputSecure';
 import { Checkbox } from '../components/Checkbox';
@@ -109,7 +109,7 @@ const makeStyles = (): Record<string, any> =>
  * @param theme (Optional) react-native-paper theme partial to style the component.
  */
 type LoginProps = {
-    theme?: Theme;
+    theme?: ReactNativePaper.Theme;
 };
 
 /**

@@ -7,7 +7,7 @@ import React from 'react';
 
 // Components
 import { View, StyleSheet, StyleProp, ViewStyle } from 'react-native';
-import { Theme, useTheme } from 'react-native-paper';
+import { useTheme } from 'react-native-paper';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
 
 /**
@@ -24,7 +24,7 @@ const makeContainerStyles = (): Record<string, any> =>
 /**
  * @ignore
  */
-const makeStyles = (theme: Theme, iconSize: number): Record<string, any> =>
+const makeStyles = (theme: ReactNativePaper.Theme, iconSize: number): Record<string, any> =>
     StyleSheet.create({
         circleIconBackground: {
             marginTop: 20,
@@ -48,7 +48,7 @@ type IconSplashProps = {
     icon?: string;
     style?: StyleProp<ViewStyle>;
     iconSize?: number;
-    theme?: Theme;
+    theme?: ReactNativePaper.Theme;
 };
 
 /**

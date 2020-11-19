@@ -8,7 +8,7 @@ import React from 'react';
 // Components
 import { StyleSheet, StyleProp, ViewStyle } from 'react-native';
 import { Body1 } from '@pxblue/react-native-components';
-import { Button, Theme, useTheme } from 'react-native-paper';
+import { Button, useTheme } from 'react-native-paper';
 
 // Styles
 import * as Colors from '@pxblue/colors';
@@ -16,7 +16,7 @@ import * as Colors from '@pxblue/colors';
 /**
  * @ignore
  */
-const makeStyles = (props: ToggleButtonProps, theme: Theme): Record<string, any> =>
+const makeStyles = (props: ToggleButtonProps, theme: ReactNativePaper.Theme): Record<string, any> =>
     StyleSheet.create({
         loginButton: {
             width: '100%',
@@ -49,7 +49,7 @@ export type ToggleButtonProps = {
     outlined?: boolean;
     disabled?: boolean;
     onPress: () => void;
-    theme?: Theme;
+    theme?: ReactNativePaper.Theme;
 };
 
 /**

@@ -8,7 +8,7 @@ import React from 'react';
 // Components
 import { View, StyleSheet, ScrollViewProperties } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { Theme, useTheme } from 'react-native-paper';
+import { useTheme } from 'react-native-paper';
 
 /**
  * @ignore
@@ -41,7 +41,7 @@ const makeStyles = (spaceSize: number, topColor: string, bottomColor: string): R
 export type ScrollViewWithBackgroundProps = ScrollViewProperties & {
     topColor?: string;
     bottomColor?: string;
-    theme?: Theme;
+    theme?: ReactNativePaper.Theme;
 };
 
 /**

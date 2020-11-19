@@ -7,7 +7,7 @@ import React from 'react';
 
 // Components
 import { Platform, View, StyleSheet } from 'react-native';
-import { ActivityIndicator, Portal, Theme, useTheme } from 'react-native-paper';
+import { ActivityIndicator, Portal, useTheme } from 'react-native-paper';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 
 /**
@@ -35,7 +35,7 @@ const makeStyles = (hasHeader: boolean): Record<string, any> =>
  */
 type SpinnerProps = {
     hasHeader?: boolean;
-    theme?: Theme;
+    theme?: ReactNativePaper.Theme;
 };
 
 /**

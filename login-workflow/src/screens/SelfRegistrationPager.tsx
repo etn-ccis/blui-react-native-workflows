@@ -9,7 +9,7 @@ import React, { useEffect, useCallback, useState } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
 // Hooks
-import { Theme, useTheme } from 'react-native-paper';
+import { useTheme } from 'react-native-paper';
 
 // Screens
 import { Eula as EulaScreen } from '../subScreens/Eula';
@@ -52,7 +52,7 @@ import {
 /**
  * @ignore
  */
-const makeContainerStyles = (theme: Theme): Record<string, any> =>
+const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any> =>
     StyleSheet.create({
         safeContainer: {
             height: '100%',
@@ -110,7 +110,7 @@ type SelfRegistrationPagerParams = {
  * @param theme (Optional) react-native-paper theme partial to style the component.
  */
 type SelfRegistrationPagerProps = {
-    theme?: Theme;
+    theme?: ReactNativePaper.Theme;
 };
 
 enum Pages {

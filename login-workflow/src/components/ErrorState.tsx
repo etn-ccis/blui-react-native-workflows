@@ -12,7 +12,7 @@ import { useLanguageLocale } from '@pxblue/react-auth-shared';
 import { EmptyState, wrapIcon } from '@pxblue/react-native-components';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import { View, StyleSheet, SafeAreaView } from 'react-native';
-import { Button, Theme, useTheme } from 'react-native-paper';
+import { Button, useTheme } from 'react-native-paper';
 
 const ReportIcon = wrapIcon({ IconClass: MatIcon, name: 'report' });
 
@@ -55,7 +55,7 @@ type ErrorStateProps = {
     bodyText: string | null;
     icon?: React.Component<{ size: number; color: string }>;
     onPress: Function;
-    theme?: Theme;
+    theme?: ReactNativePaper.Theme;
 };
 
 /**
