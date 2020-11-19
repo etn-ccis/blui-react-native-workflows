@@ -177,8 +177,6 @@ export const Login: React.FC<LoginProps> = (props) => {
         createAccountOption = (
             <View>
                 <Body1 style={styles.signUpText}>{t('LABELS.NEED_ACCOUNT')}</Body1>
-                {/* 
-                // @ts-ignore waiting for 4.0.0 of react-native-paper to fix these typings https://github.com/callstack/react-native-paper/issues/1920 */}
                 <Button
                     mode={'text'}
                     labelStyle={styles.clearButton}
@@ -207,7 +205,6 @@ export const Login: React.FC<LoginProps> = (props) => {
     let debugButton: JSX.Element = <></>;
     if (allowDebugMode) {
         debugButton = (
-            // @ts-ignore waiting for 4.0.0 of react-native-paper to fix these typings https://github.com/callstack/react-native-paper/issues/1920
             <Button
                 mode={'contained'}
                 style={{ position: 'absolute', top: 50, right: 20 }}
@@ -229,8 +226,6 @@ export const Login: React.FC<LoginProps> = (props) => {
     if (debugMode) {
         testForgotPasswordDeepLinkButton = (
             <View style={{ alignSelf: 'center' }}>
-                {/* 
-                // @ts-ignore waiting for 4.0.0 of react-native-paper to fix these typings https://github.com/callstack/react-native-paper/issues/1920 */}
                 <Button
                     mode={'text'}
                     labelStyle={styles.clearButton}
@@ -251,8 +246,6 @@ export const Login: React.FC<LoginProps> = (props) => {
     if (debugMode) {
         testInviteRegisterButton = (
             <View style={{ alignSelf: 'center' }}>
-                {/* 
-                // @ts-ignore waiting for 4.0.0 of react-native-paper to fix these typings https://github.com/callstack/react-native-paper/issues/1920 */}
                 <Button
                     mode={'text'}
                     labelStyle={styles.clearButton}
@@ -342,8 +335,6 @@ export const Login: React.FC<LoginProps> = (props) => {
                         {testInviteRegisterButton}
 
                         <View>
-                            {/* 
-                            // @ts-ignore waiting for 4.0.0 of react-native-paper to fix these typings https://github.com/callstack/react-native-paper/issues/1920 */}
                             <Button
                                 mode={'text'}
                                 labelStyle={styles.clearButton}

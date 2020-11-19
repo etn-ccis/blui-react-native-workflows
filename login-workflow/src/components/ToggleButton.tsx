@@ -63,7 +63,6 @@ export const ToggleButton: React.FC<ToggleButtonProps> = (props) => {
     const styles = makeStyles(props, theme);
 
     return (
-        // @ts-ignore waiting for 4.0.0 of react-native-paper to fix these typings https://github.com/callstack/react-native-paper/issues/1920
         <Button
             uppercase={false}
             mode={outlined ? 'outlined' : 'contained'}

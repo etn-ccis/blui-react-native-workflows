@@ -52,8 +52,6 @@ export const Checkbox: React.FC<CheckboxProps> = (props) => {
                 onPress={checkedBox}
                 activeOpacity={1}
             >
-                {/* 
-                // @ts-ignore waiting for 4.0.0 of react-native-paper to fix these typings https://github.com/callstack/react-native-paper/issues/1920 */}
                 <PaperCheckbox.Android
                     status={checked ? 'checked' : 'unchecked'}
                     color={theme.colors.primary}

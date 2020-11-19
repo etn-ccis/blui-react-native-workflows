@@ -73,8 +73,6 @@ const TextInputRender: React.ForwardRefRenderFunction<{}, TextInputRenderProps> 
     const selectionColor = Platform.OS === 'android' ? Colors.blue['100'] : undefined;
     return (
         <View>
-            {/* 
-            // @ts-ignore waiting for 4.0.0 of react-native-paper to fix these typings https://github.com/callstack/react-native-paper/issues/1920 */}
             <PaperTextInput
                 ref={inputRef}
                 style={[styles.textInput, style]}

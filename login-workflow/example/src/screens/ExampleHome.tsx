@@ -30,13 +30,9 @@ export const ExampleHome: React.FC = () => {
                             IconClass={Welcome}
                         />
                     </View>
-                    {/* 
-                    // @ts-ignore waiting for 4.0.0 of react-native-paper to fix these typings https://github.com/callstack/react-native-paper/issues/1920 */}
                     <Button mode={'outlined'} style={{ marginBottom: 20 }} onPress={securityHelper.showChangePassword}>
                         Change Password
                     </Button>
-                    {/* 
-                    // @ts-ignore waiting for 4.0.0 of react-native-paper to fix these typings https://github.com/callstack/react-native-paper/issues/1920 */}
                     <Button mode={'contained'} onPress={logOut}>
                         Log Out
                     </Button>

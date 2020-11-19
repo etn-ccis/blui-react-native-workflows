@@ -84,8 +84,6 @@ export const ErrorState: React.FC<ErrorStateProps> = (props) => {
             </View>
 
             <View style={[styles.sideBySideButtons, containerStyles.containerMargins]}>
-                {/* 
-                // @ts-ignore waiting for 4.0.0 of react-native-paper to fix these typings https://github.com/callstack/react-native-paper/issues/1920 */}
                 <Button
                     uppercase={false}
                     style={{ width: '100%', alignSelf: 'flex-end' }}

@@ -103,8 +103,6 @@ export const VerifyEmail: React.FC<VerifyEmailProps> = (props) => {
                         onChangeText={setVerifyCode}
                     />
                     <View style={{ flex: 1 }}>
-                        {/* 
-                        // @ts-ignore waiting for 4.0.0 of react-native-paper to fix these typings https://github.com/callstack/react-native-paper/issues/1920 */}
                         <Button
                             uppercase={false}
                             mode={'contained'}
