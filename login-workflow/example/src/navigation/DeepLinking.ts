@@ -10,29 +10,31 @@ import { LinkingOptions } from '@react-navigation/native/lib/typescript/src/type
 export const authLinkMapping: LinkingOptions = {
     prefixes: ['https://authui.com', 'authui://'],
     config: {
-        Login: 'login',
-        PasswordResetInitiation: {
-            initialRouteName: 'Login',
-            path: 'password/reset/initiate',
-        },
-        PasswordResetCompletion: {
-            initialRouteName: 'Login',
-            // email can be passed in as parameter if needed for the api
-            path: 'password/reset/:code',
-        },
-        RegistrationInvite: {
-            initialRouteName: 'Login',
-            // email can be passed in as parameter if needed for the api
-            path: 'invite/:code',
-        },
-        Registration: {
-            initialRouteName: 'Login',
-            // email can be passed in as parameter if needed for the api
-            path: 'register/:code',
-        },
-        SupportContact: {
-            initialRouteName: 'Login',
-            path: 'support',
+        screens: {
+            Login: 'login',
+            PasswordResetInitiation: {
+                initialRouteName: 'Login',
+                path: 'password/reset/initiate',
+            },
+            PasswordResetCompletion: {
+                initialRouteName: 'Login',
+                // email can be passed in as parameter if needed for the api
+                path: 'password/reset/:code',
+            },
+            RegistrationInvite: {
+                initialRouteName: 'Login',
+                // email can be passed in as parameter if needed for the api
+                path: 'invite/:code',
+            },
+            Registration: {
+                initialRouteName: 'Login',
+                // email can be passed in as parameter if needed for the api
+                path: 'register/:code',
+            },
+            SupportContact: {
+                initialRouteName: 'Login',
+                path: 'support',
+            },
         },
     },
 };

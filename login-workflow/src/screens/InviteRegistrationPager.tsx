@@ -394,7 +394,6 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
             </View>
         );
     }
-
     return !accountAlreadyExists && validationSuccess && !isValidationInTransit ? (
         <View style={{ flex: 1 }}>
             {spinner}
@@ -409,7 +408,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
                     transitionStyle="scroll"
                     style={{ flex: 1 }}
                 >
-                    <EulaScreen
+                     <EulaScreen
                         eulaAccepted={eulaAccepted}
                         onEulaChanged={setEulaAccepted}
                         loadEula={loadAndCacheEula}
@@ -430,7 +429,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
                             t('REGISTRATION.UNKNOWN_ORGANIZATION')
                         }
                     />
-                </ViewPager>
+                </ViewPager> 
                 {buttonArea}
             </SafeAreaView>
         </View>

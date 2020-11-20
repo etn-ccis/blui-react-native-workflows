@@ -74,6 +74,7 @@ const TextInputRender: React.ForwardRefRenderFunction<{}, TextInputRenderProps> 
     return (
         <View>
             <PaperTextInput
+                // @ts-ignore issue with refs on RNP input
                 ref={inputRef}
                 style={[styles.textInput, style]}
                 keyboardType={keyboardType}
