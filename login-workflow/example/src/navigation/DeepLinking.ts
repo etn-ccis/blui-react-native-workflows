@@ -44,7 +44,7 @@ export const authLinkMapping: LinkingOptions = {
  * @param getInitialState
  * @param setInitialState
  */
-export const resolveInitialState = (getInitialState: Function, setInitialState: Function): void => {
+export const resolveInitialState = (getInitialState: () => any, setInitialState: (state: any) => void): void => {
     Promise.race([
         getInitialState(),
         new Promise((resolve) =>
@@ -53,12 +53,12 @@ export const resolveInitialState = (getInitialState: Function, setInitialState: 
             setTimeout(resolve, 150)
         ),
     ])
-        .catch((e) => {
-            console.error(e);
-        })
         .then((state) => {
             if (state !== undefined) {
                 setInitialState(state);
             }
+        })
+        .catch((e) => {
+            console.error(e);
         });
 };

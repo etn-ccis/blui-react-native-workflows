@@ -21,7 +21,7 @@ import * as PXBThemes from '@pxblue/react-native-themes';
 
 const Stack = createStackNavigator();
 
-export function AuthUIConfiguration(props: { children: JSX.Element }): JSX.Element {
+export const AuthUIConfiguration: React.FC = (props) => {
     const securityContextActions = useSecurityActions();
 
     return (
@@ -39,7 +39,7 @@ export function AuthUIConfiguration(props: { children: JSX.Element }): JSX.Eleme
             {props.children}
         </AuthUIContextProvider>
     );
-}
+};
 
 export const App: React.FC = () => {
     const ref = React.useRef(null);

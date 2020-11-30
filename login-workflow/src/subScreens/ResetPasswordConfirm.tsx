@@ -65,7 +65,7 @@ const makeStyles = (): Record<string, any> =>
  * @param onResetPasswordPress   Handle the press of the reset password button.
  */
 type ResetPasswordConfirmParams = {
-    onResetPasswordPress: Function;
+    onResetPasswordPress: (password: string) => void;
 };
 
 // Suppress function as initial parameter ResetPasswordConfirmParams yellowbox errors

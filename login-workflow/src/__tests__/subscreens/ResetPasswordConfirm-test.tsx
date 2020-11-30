@@ -42,7 +42,7 @@ describe('ResetPasswordConfirm subScreen tested with enzyme', () => {
                     <Stack.Screen
                         name="ResetPasswordConfirm"
                         component={ResetPasswordConfirm}
-                        options={(): object => ({
+                        options={(): { header: () => JSX.Element } => ({
                             header: (): JSX.Element => <></>,
                         })}
                     />

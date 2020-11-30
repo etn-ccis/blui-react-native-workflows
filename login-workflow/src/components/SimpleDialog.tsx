@@ -19,7 +19,7 @@ import { useLanguageLocale } from '@pxblue/react-auth-shared';
  */
 type SimpleDialogProps = {
     visible: boolean;
-    onDismiss: Function;
+    onDismiss: () => void;
     title: string;
     bodyText: string | null;
 };

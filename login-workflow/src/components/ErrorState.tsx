@@ -54,7 +54,7 @@ type ErrorStateProps = {
     title: string;
     bodyText: string | null;
     icon?: React.Component<{ size: number; color: string }>;
-    onPress: Function;
+    onPress: () => void;
     theme?: ReactNativePaper.Theme;
 };
 

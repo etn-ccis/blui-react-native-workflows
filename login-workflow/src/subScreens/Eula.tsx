@@ -55,7 +55,7 @@ type EulaProps = {
     eulaContent?: string;
     onEulaChanged(accepted: boolean): void;
     eulaError: string | null;
-    loadEula: Function;
+    loadEula: () => void;
     htmlEula?: boolean;
     theme?: ReactNativePaper.Theme;
 };

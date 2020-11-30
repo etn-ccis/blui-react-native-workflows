@@ -25,7 +25,7 @@ export const ExampleHome: React.FC = () => {
                 <View style={{ flex: 1, padding: 20 }}>
                     <View style={{ flex: 1 }}>
                         <EmptyState
-                            title={`Welcome, ${securityState.email}!`}
+                            title={`Welcome, ${securityState.email || ''}!`}
                             description={'This is a placeholder screen that you should replace with your application.'}
                             IconClass={Welcome}
                         />

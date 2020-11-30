@@ -70,7 +70,7 @@ const makeStyles = (): Record<string, any> =>
  * @param contactPhone  The contact phone number string.
  */
 type ResetPasswordParams = {
-    onResetPasswordPress: Function;
+    onResetPasswordPress: (password: string) => void;
     contactPhone: string;
 };
 

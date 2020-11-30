@@ -46,7 +46,7 @@ export const PreAuthContainer: React.FC<PreAuthContainerProps> = (props) => {
     const authProps = useInjectedUIContext();
     const theme = useTheme(props.theme);
 
-    MatIcon.loadFont();
+    void MatIcon.loadFont();
     return (
         <SafeAreaProvider>
             <StatusBar backgroundColor={theme.colors.primary} barStyle="light-content" />

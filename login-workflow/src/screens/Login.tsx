@@ -141,7 +141,7 @@ export const Login: React.FC<LoginProps> = (props) => {
 
     const loginTapped = (): void => {
         setHasAcknowledgedError(false);
-        authUIActions.actions.logIn(emailInput, passwordInput, rememberPassword);
+        void authUIActions.actions.logIn(emailInput, passwordInput, rememberPassword);
     };
 
     const transitState = authUIState.login;

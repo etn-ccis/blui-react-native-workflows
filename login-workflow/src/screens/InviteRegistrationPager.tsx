@@ -109,7 +109,7 @@ type InviteRegistrationPagerParams = {
 type InviteRegistrationPagerProps = {
     theme?: ReactNativePaper.Theme;
 };
-
+/* eslint-disable @typescript-eslint/naming-convention */
 enum Pages {
     Eula = 0,
     CreatePassword,
@@ -117,6 +117,7 @@ enum Pages {
     Complete,
     __LENGTH,
 }
+/* eslint-enable @typescript-eslint/naming-convention */
 
 /**
  * Pager controlling the user registration via invitation screen flow.
@@ -196,7 +197,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
 
     useEffect(() => {
         if (!isValidationInTransit && !validationComplete && validationCode.length > 0) {
-            validateCode();
+            void validateCode();
         }
     }, [registrationState.inviteRegistration.validationTransit, validationCode, validateCode, validationEmail]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -298,7 +299,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
                 // If this is the last user-entry step of the invite flow, it is time to make a network call
                 // Check > 0 so advancing backwards does not risk going into the completion block
                 if (currentPage === Pages.AccountDetails && !registrationSuccess && canProgress() && delta > 0) {
-                    attemptRegistration();
+                    void attemptRegistration();
                 } else {
                     setCurrentPage(currentPage + (delta as number));
                 }

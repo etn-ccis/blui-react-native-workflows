@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/camelcase */
+/* eslint-disable @typescript-eslint/naming-convention */
 import { Platform, NativeModules } from 'react-native';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
@@ -15,7 +15,8 @@ if (AppleLocaleSettings && Platform.OS === 'ios') {
     deviceLocale = AndroidLocaleSettings.localeIdentifier;
 }
 
-i18n.use(initReactI18next) // passes i18n down to react-i18next
+void i18n
+    .use(initReactI18next) // passes i18n down to react-i18next
     .init({
         resources: {
             en: translations.english,

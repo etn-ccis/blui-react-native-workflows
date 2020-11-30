@@ -45,20 +45,20 @@ function saveAuthCredentials(user: string, userId: string): void {
         user: user,
         userId: userId,
     };
-    window.localStorage.setItem(LOCAL_USER_DATA, JSON.stringify(userData));
+    void window.localStorage.setItem(LOCAL_USER_DATA, JSON.stringify(userData));
 }
 function saveRememberMeData(user: string, rememberMe: boolean): void {
     const RememberMeData = {
         user: rememberMe ? user : '',
         rememberMe: rememberMe,
     };
-    window.localStorage.setItem(REMEMBER_ME_DATA, JSON.stringify(RememberMeData));
+    void window.localStorage.setItem(REMEMBER_ME_DATA, JSON.stringify(RememberMeData));
 }
 function clearAuthCredentials(): void {
-    window.localStorage.removeItem(LOCAL_USER_DATA);
+    void window.localStorage.removeItem(LOCAL_USER_DATA);
 }
 function clearRememberMeData(): void {
-    window.localStorage.removeItem(REMEMBER_ME_DATA);
+    void window.localStorage.removeItem(REMEMBER_ME_DATA);
 }
 export const LocalStorage = {
     readAuthData,

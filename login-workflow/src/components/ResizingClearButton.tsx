@@ -45,7 +45,7 @@ const makeStyles = (theme: ReactNativePaper.Theme, fontSize: number): Record<str
  */
 export type ResizingClearButtonProps = {
     title: string;
-    onPress: Function;
+    onPress: () => void;
     style?: StyleProp<ViewStyle>;
     fontSize?: number;
     numberOfLines?: number;

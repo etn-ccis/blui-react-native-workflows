@@ -46,9 +46,9 @@ export type TextInputRenderProps = Omit<TextInputProps, 'theme'> & {
  *
  * @category Component
  */
-const TextInputRender: React.ForwardRefRenderFunction<{}, TextInputRenderProps> = (
+const TextInputRender: React.ForwardRefRenderFunction<Record<string, unknown>, TextInputRenderProps> = (
     props: TextInputRenderProps,
-    ref: MutableRefObject<{} | null> | ((instance: {} | null) => void) | null
+    ref: MutableRefObject<Record<string, unknown> | null> | ((instance: Record<string, unknown> | null) => void) | null
 ) => {
     const {
         style,

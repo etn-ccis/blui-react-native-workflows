@@ -22,7 +22,7 @@ describe('ResetPasswordSent subScreen tested with enzyme', () => {
                     <Stack.Screen
                         name="ResetPasswordSent"
                         component={ResetPasswordSent}
-                        options={(): object => ({
+                        options={(): { header: () => JSX.Element } => ({
                             header: (): JSX.Element => <></>,
                         })}
                         initialParams={{ email: 'some@email.com' }}

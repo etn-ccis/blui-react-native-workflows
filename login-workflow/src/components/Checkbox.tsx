@@ -23,7 +23,7 @@ type CheckboxProps = {
     label: string;
     style?: StyleProp<ViewStyle>;
     checked: boolean;
-    onPress: Function;
+    onPress: () => void;
     disabled?: boolean;
     theme?: ReactNativePaper.Theme;
 };

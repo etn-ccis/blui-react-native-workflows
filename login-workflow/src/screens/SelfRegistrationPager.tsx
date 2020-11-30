@@ -113,6 +113,7 @@ type SelfRegistrationPagerProps = {
     theme?: ReactNativePaper.Theme;
 };
 
+/* eslint-disable @typescript-eslint/naming-convention */
 enum Pages {
     CreateAccount = 0,
     Eula,
@@ -122,6 +123,7 @@ enum Pages {
     Complete,
     __LENGTH,
 }
+/* eslint-enable @typescript-eslint/naming-convention */
 
 /**
  * Pager controlling the user self registration screen flow.
@@ -368,21 +370,21 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                 // If this is the last user-entry step of the invite flow, it is time to make a network call
                 // Check > 0 so advancing backwards does not risk going into the completion block
                 if (currentPage === Pages.AccountDetails && !registrationSuccess && canProgress() && delta > 0) {
-                    attemptRegistration();
+                    void attemptRegistration();
                 } else if (
                     currentPage === Pages.Eula &&
                     !codeRequestIsInTransit &&
                     canProgress() &&
                     (delta as number) > 0
                 ) {
-                    requestCode();
+                    void requestCode();
                 } else if (
                     currentPage === Pages.VerifyEmail &&
                     !isValidationInTransit &&
                     canProgress() &&
                     (delta as number) > 0
                 ) {
-                    validateCode();
+                    void validateCode();
                 } else {
                     setCurrentPage(currentPage + (delta as number));
                 }
@@ -508,7 +510,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                         initialCode={verificationCode}
                         onVerifyCodeChanged={setVerificationCode}
                         onResendVerificationEmail={(): void => {
-                            requestCode();
+                            void requestCode();
                         }}
                     />
                     <KeyboardAwareScrollView contentContainerStyle={[containerStyles.fullFlex]}>
