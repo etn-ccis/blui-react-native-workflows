@@ -46,9 +46,10 @@ export type TextInputRenderProps = Omit<TextInputProps, 'theme'> & {
  *
  * @category Component
  */
-const TextInputRender: React.ForwardRefRenderFunction<Record<string, unknown>, TextInputRenderProps> = (
+// eslint-disable-next-line @typescript-eslint/ban-types
+const TextInputRender: React.ForwardRefRenderFunction<{}, TextInputRenderProps> = (
     props: TextInputRenderProps,
-    ref: MutableRefObject<Record<string, unknown> | null> | ((instance: Record<string, unknown> | null) => void) | null
+    ref: MutableRefObject<{} | null> | ((instance: {} | null) => void) | null // eslint-disable-line @typescript-eslint/ban-types
 ) => {
     const {
         style,

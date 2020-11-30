@@ -58,7 +58,7 @@ type NavigationContainerComponentProps = React.ComponentProps<typeof NavigationC
  * @category Component
  */
 const AuthNavigationContainerRender: React.ForwardRefRenderFunction<
-    Record<string, unknown>,
+    {}, // eslint-disable-line @typescript-eslint/ban-types
     NavigationContainerComponentProps
 > = (props: NavigationContainerComponentProps, ref: any) => {
     const securityState = useSecurityState();

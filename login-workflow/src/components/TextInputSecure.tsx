@@ -40,11 +40,11 @@ type TextInputSecureRenderProps = TextInputRenderProps;
  * @category Component
  */
 export const TextInputSecureRender: React.ForwardRefRenderFunction<
-    Record<string, unknown>,
+    {}, // eslint-disable-line @typescript-eslint/ban-types
     TextInputSecureRenderProps
 > = (
     props: TextInputSecureRenderProps,
-    ref: MutableRefObject<Record<string, unknown> | null> | ((instance: Record<string, unknown> | null) => void) | null
+    ref: MutableRefObject<{} | null> | ((instance: {} | null) => void) | null // eslint-disable-line @typescript-eslint/ban-types
 ) => {
     const { style, theme: customTheme, ...inputProps } = props;
     const theme = useTheme(customTheme);

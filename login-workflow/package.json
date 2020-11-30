@@ -51,7 +51,7 @@
     "peerDependencies": {
         "@pxblue/colors": "^3.0.0",
         "@pxblue/react-native-components": "^3.0.1",
-        "@react-native-community/viewpager": "^4.0.0",
+        "@react-native-community/viewpager": "^3.0.0",
         "@react-navigation/native": "^5.1.1",
         "@react-navigation/stack": "^5.2.3",
         "date-fns": "^2.11.1",
@@ -75,7 +75,7 @@
         "@react-native-community/async-storage": "^1.9.0",
         "@react-native-community/bob": "^0.10.0",
         "@react-native-community/masked-view": "^0.1.7",
-        "@react-native-community/viewpager": "^4.0.0",
+        "@react-native-community/viewpager": "^3.0.0",
         "@react-navigation/native": "^5.1.1",
         "@react-navigation/stack": "^5.2.3",
         "@types/color": "^3.0.1",

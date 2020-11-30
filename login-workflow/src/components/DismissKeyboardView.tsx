@@ -10,8 +10,8 @@ import { View, Keyboard, TouchableWithoutFeedback } from 'react-native';
 /**
  * Dismisses the keyboard via tap outside text inputs. Can contain children.
  */
+// eslint-disable-next-line @typescript-eslint/naming-convention
 const DismissKeyboardWrapper = (CompositionView: React.ComponentType): ((props: any) => JSX.Element) => ({
-    // eslint-disable-line @typescript-eslint/naming-convention
     children,
     ...props
 }: any): JSX.Element => (
