@@ -416,7 +416,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
                         eulaError={loadEulaTransitErrorMessage}
                         eulaContent={eulaContent}
                     />
-                    {/* <KeyboardAwareScrollView contentContainerStyle={[containerStyles.fullFlex]}>
+                    <KeyboardAwareScrollView contentContainerStyle={[containerStyles.fullFlex]}>
                         <CreatePasswordScreen onPasswordChanged={setPassword} />
                     </KeyboardAwareScrollView>
                     <AccountDetailsScreen onDetailsChanged={setAccountDetails} />
@@ -428,7 +428,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
                             registrationState.inviteRegistration.organizationName ??
                             t('REGISTRATION.UNKNOWN_ORGANIZATION')
                         }
-                    /> */}
+                    />
                 </ViewPager>
                 {buttonArea}
             </SafeAreaView>
