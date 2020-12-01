@@ -57,10 +57,10 @@ type NavigationContainerComponentProps = React.ComponentProps<typeof NavigationC
  *
  * @category Component
  */
-const AuthNavigationContainerRender: React.ForwardRefRenderFunction<{}, NavigationContainerComponentProps> = (
-    props: NavigationContainerComponentProps,
-    ref: any
-) => {
+const AuthNavigationContainerRender: React.ForwardRefRenderFunction<
+    {}, // eslint-disable-line @typescript-eslint/ban-types
+    NavigationContainerComponentProps
+> = (props: NavigationContainerComponentProps, ref: any) => {
     const securityState = useSecurityState();
     const securityActions = useSecurityActions();
     const injectedContext = useInjectedUIContext();
@@ -70,7 +70,7 @@ const AuthNavigationContainerRender: React.ForwardRefRenderFunction<{}, Navigati
             await injectedContext.authActions().initiateSecurity();
         };
 
-        bootstrapAsync();
+        void bootstrapAsync();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

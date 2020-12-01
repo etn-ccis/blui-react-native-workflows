@@ -13,12 +13,12 @@ import { WebView } from 'react-native-webview';
 
 // Hooks
 import { useLanguageLocale } from '@pxblue/react-auth-shared';
-import { Theme, useTheme } from 'react-native-paper';
+import { useTheme } from 'react-native-paper';
 
 /**
  * @ignore
  */
-const makeContainerStyles = (theme: Theme): Record<string, any> =>
+const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any> =>
     StyleSheet.create({
         safeContainer: {
             height: '100%',
@@ -55,9 +55,9 @@ type EulaProps = {
     eulaContent?: string;
     onEulaChanged(accepted: boolean): void;
     eulaError: string | null;
-    loadEula: Function;
+    loadEula: () => void;
     htmlEula?: boolean;
-    theme?: Theme;
+    theme?: ReactNativePaper.Theme;
 };
 
 /**

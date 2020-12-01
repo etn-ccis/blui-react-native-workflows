@@ -12,7 +12,7 @@ import { useLanguageLocale } from '@pxblue/react-auth-shared';
 import { EmptyState, wrapIcon } from '@pxblue/react-native-components';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import { View, StyleSheet, SafeAreaView } from 'react-native';
-import { Button, Theme, useTheme } from 'react-native-paper';
+import { Button, useTheme } from 'react-native-paper';
 
 const ReportIcon = wrapIcon({ IconClass: MatIcon, name: 'report' });
 
@@ -54,8 +54,8 @@ type ErrorStateProps = {
     title: string;
     bodyText: string | null;
     icon?: React.Component<{ size: number; color: string }>;
-    onPress: Function;
-    theme?: Theme;
+    onPress: () => void;
+    theme?: ReactNativePaper.Theme;
 };
 
 /**
@@ -84,8 +84,6 @@ export const ErrorState: React.FC<ErrorStateProps> = (props) => {
             </View>
 
             <View style={[styles.sideBySideButtons, containerStyles.containerMargins]}>
-                {/* 
-                // @ts-ignore waiting for 4.0.0 of react-native-paper to fix these typings https://github.com/callstack/react-native-paper/issues/1920 */}
                 <Button
                     uppercase={false}
                     style={{ width: '100%', alignSelf: 'flex-end' }}

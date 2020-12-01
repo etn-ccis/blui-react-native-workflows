@@ -7,7 +7,7 @@ import React from 'react';
 
 // Components
 import { Platform, View, StyleSheet } from 'react-native';
-import { ActivityIndicator, Portal, Theme, useTheme } from 'react-native-paper';
+import { ActivityIndicator, Portal, useTheme } from 'react-native-paper';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 
 /**
@@ -35,7 +35,7 @@ const makeStyles = (hasHeader: boolean): Record<string, any> =>
  */
 type SpinnerProps = {
     hasHeader?: boolean;
-    theme?: Theme;
+    theme?: ReactNativePaper.Theme;
 };
 
 /**
@@ -51,8 +51,6 @@ export const Spinner: React.FC<SpinnerProps> = (props) => {
     return (
         <Portal>
             <View style={styles.overlay}>
-                {/* 
-                // @ts-ignore waiting for 4.0.0 of react-native-paper to fix these typings https://github.com/callstack/react-native-paper/issues/1920 */}
                 <ActivityIndicator animating={true} color={theme.colors.primary} style={styles.activityIndicator} />
             </View>
         </Portal>

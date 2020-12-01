@@ -89,13 +89,13 @@ export const ResetPasswordHandleDeepLink: React.FC = () => {
 
     useEffect(() => {
         if (!verifyIsInTransit && !verifyComplete && verifyCode.length > 0) {
-            accountUIActions.actions.verifyResetCode(verifyCode, verifyEmail);
+            void accountUIActions.actions.verifyResetCode(verifyCode, verifyEmail);
         }
         // eslint-disable-line react-hooks/exhaustive-deps
     }, [verifyIsInTransit, verifyCode, verifyEmail, verifyComplete, accountUIActions.actions]);
 
     const resetPassword = (password: string): void => {
-        accountUIActions.actions.setPassword(verifyCode, password, verifyEmail);
+        void accountUIActions.actions.setPassword(verifyCode, password, verifyEmail);
     };
 
     return verifySuccess && !verifyIsInTransit ? (

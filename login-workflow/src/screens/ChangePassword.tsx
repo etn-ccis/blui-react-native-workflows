@@ -22,7 +22,7 @@ import { Body1, H6 } from '@pxblue/react-native-components';
 // Hooks
 import { ScrollView } from 'react-native-gesture-handler';
 import { SimpleDialog } from '../components/SimpleDialog';
-import { Theme, useTheme } from 'react-native-paper';
+import { useTheme } from 'react-native-paper';
 
 // Shared Auth Logic
 import {
@@ -47,7 +47,7 @@ import {
 /**
  * @ignore
  */
-const makeContainerStyles = (theme: Theme): Record<string, any> =>
+const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any> =>
     StyleSheet.create({
         safeContainer: {
             height: '100%',
@@ -75,7 +75,7 @@ const makeContainerStyles = (theme: Theme): Record<string, any> =>
 /**
  * @ignore
  */
-const makeStyles = (theme: Theme): Record<string, any> =>
+const makeStyles = (theme: ReactNativePaper.Theme): Record<string, any> =>
     StyleSheet.create({
         inputMargin: {
             marginTop: 40,
@@ -111,7 +111,7 @@ type ChangePasswordProps = {
     onChangePassword: (oldPassword: string, newPassword: string) => Promise<void>;
     onCancel: () => void;
     onChangeComplete: () => void;
-    theme?: Theme;
+    theme?: ReactNativePaper.Theme;
 };
 
 /**

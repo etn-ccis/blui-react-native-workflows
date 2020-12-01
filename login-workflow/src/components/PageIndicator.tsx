@@ -5,7 +5,7 @@
 
 import * as React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Theme, useTheme } from 'react-native-paper';
+import { useTheme } from 'react-native-paper';
 
 // Styles
 import * as Colors from '@pxblue/colors';
@@ -13,7 +13,7 @@ import * as Colors from '@pxblue/colors';
 /**
  * @ignore
  */
-const makeStyles = (theme: Theme): Record<string, any> =>
+const makeStyles = (theme: ReactNativePaper.Theme): Record<string, any> =>
     StyleSheet.create({
         container: {
             flex: 1,
@@ -48,7 +48,7 @@ const makeStyles = (theme: Theme): Record<string, any> =>
 export type PageIndicatorProps = {
     currentPage: number;
     totalPages: number;
-    theme?: Theme;
+    theme?: ReactNativePaper.Theme;
 };
 
 /**

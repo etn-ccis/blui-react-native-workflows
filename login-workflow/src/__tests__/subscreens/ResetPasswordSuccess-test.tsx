@@ -22,7 +22,7 @@ describe('ResetPasswordSuccess subScreen tested with enzyme', () => {
                     <Stack.Screen
                         name="ResetPasswordSuccess"
                         component={ResetPasswordSuccess}
-                        options={(): object => ({
+                        options={(): { header: () => JSX.Element } => ({
                             header: (): JSX.Element => <></>,
                         })}
                     />

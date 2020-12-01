@@ -9,7 +9,7 @@ import React from 'react';
 import { View, StyleSheet, SafeAreaView, Image, ScrollView } from 'react-native';
 import { IconSplash } from '../components/IconSplash';
 import { FormattedText } from '../components/FormattedText';
-import { Theme, useTheme } from 'react-native-paper';
+import { useTheme } from 'react-native-paper';
 
 // Styles
 import * as Colors from '@pxblue/colors';
@@ -49,7 +49,7 @@ const makeContainerStyles = (): Record<string, any> =>
 /**
  * @ignore
  */
-const makeStyles = (theme: Theme): Record<string, any> =>
+const makeStyles = (theme: ReactNativePaper.Theme): Record<string, any> =>
     StyleSheet.create({
         headerText: {
             color: Colors.black['800'],
@@ -85,7 +85,7 @@ type CompleteSplashScreenProps = {
     boldTitle: string;
     bodyText: string;
     icon?: string;
-    theme?: Theme;
+    theme?: ReactNativePaper.Theme;
 };
 
 /**
