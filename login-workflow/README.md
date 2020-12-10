@@ -17,6 +17,13 @@ Integrating the user interface into your application is as easy as providing the
 ![Login Android](https://raw.githubusercontent.com/pxblue/react-native-workflows/master/login-workflow/media/android-login.png) ![Home Android](https://raw.githubusercontent.com/pxblue/react-native-workflows/master/login-workflow/media/android-home.png) ![Password Android](https://raw.githubusercontent.com/pxblue/react-native-workflows/master/login-workflow/media/android-password.png)
 
 
+# Compatibility
+
+This package has a peer dependency on [React Native Paper](https://github.com/callstack/react-native-paper). 
+
+-   @pxblue/react-auth-workflow @1.x --> react-native-paper @3.x
+-   @pxblue/react-auth-workflow @2.x --> react-native-paper @4.x
+
 # Installation
 To install the latest version of this package, run:
 ```shell

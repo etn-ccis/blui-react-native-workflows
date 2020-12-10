@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## v2.0.0 (Not Published)
+## v2.0.0
 
 ### Changed
 -   Updated to use React Native Paper version 4 components — this update requires you to update your project to use v4 as well.
