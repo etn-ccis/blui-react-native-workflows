@@ -7,7 +7,7 @@ import React from 'react';
 
 // Components
 import { Platform, View, StyleSheet, SafeAreaView, StatusBar, TextInput as ReactTextInput } from 'react-native';
-import { Button, Theme, useTheme } from 'react-native-paper';
+import { Button, useTheme } from 'react-native-paper';
 import { TextInput } from '../components/TextInput';
 import { TextInputSecure } from '../components/TextInputSecure';
 import { Checkbox } from '../components/Checkbox';
@@ -109,7 +109,7 @@ const makeStyles = (): Record<string, any> =>
  * @param theme (Optional) react-native-paper theme partial to style the component.
  */
 type LoginProps = {
-    theme?: Theme;
+    theme?: ReactNativePaper.Theme;
 };
 
 /**
@@ -141,7 +141,7 @@ export const Login: React.FC<LoginProps> = (props) => {
 
     const loginTapped = (): void => {
         setHasAcknowledgedError(false);
-        authUIActions.actions.logIn(emailInput, passwordInput, rememberPassword);
+        void authUIActions.actions.logIn(emailInput, passwordInput, rememberPassword);
     };
 
     const transitState = authUIState.login;
@@ -177,8 +177,6 @@ export const Login: React.FC<LoginProps> = (props) => {
         createAccountOption = (
             <View>
                 <Body1 style={styles.signUpText}>{t('LABELS.NEED_ACCOUNT')}</Body1>
-                {/* 
-                // @ts-ignore waiting for 4.0.0 of react-native-paper to fix these typings https://github.com/callstack/react-native-paper/issues/1920 */}
                 <Button
                     mode={'text'}
                     labelStyle={styles.clearButton}
@@ -207,7 +205,6 @@ export const Login: React.FC<LoginProps> = (props) => {
     let debugButton: JSX.Element = <></>;
     if (allowDebugMode) {
         debugButton = (
-            // @ts-ignore waiting for 4.0.0 of react-native-paper to fix these typings https://github.com/callstack/react-native-paper/issues/1920
             <Button
                 mode={'contained'}
                 style={{ position: 'absolute', top: 50, right: 20 }}
@@ -229,8 +226,6 @@ export const Login: React.FC<LoginProps> = (props) => {
     if (debugMode) {
         testForgotPasswordDeepLinkButton = (
             <View style={{ alignSelf: 'center' }}>
-                {/* 
-                // @ts-ignore waiting for 4.0.0 of react-native-paper to fix these typings https://github.com/callstack/react-native-paper/issues/1920 */}
                 <Button
                     mode={'text'}
                     labelStyle={styles.clearButton}
@@ -251,8 +246,6 @@ export const Login: React.FC<LoginProps> = (props) => {
     if (debugMode) {
         testInviteRegisterButton = (
             <View style={{ alignSelf: 'center' }}>
-                {/* 
-                // @ts-ignore waiting for 4.0.0 of react-native-paper to fix these typings https://github.com/callstack/react-native-paper/issues/1920 */}
                 <Button
                     mode={'text'}
                     labelStyle={styles.clearButton}
@@ -342,8 +335,6 @@ export const Login: React.FC<LoginProps> = (props) => {
                         {testInviteRegisterButton}
 
                         <View>
-                            {/* 
-                            // @ts-ignore waiting for 4.0.0 of react-native-paper to fix these typings https://github.com/callstack/react-native-paper/issues/1920 */}
                             <Button
                                 mode={'text'}
                                 labelStyle={styles.clearButton}

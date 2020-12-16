@@ -1,47 +1,23 @@
 {
-    "@pxblue/icons-svg@1.0.18": {
+    "@pxblue/icons-svg@1.1.1": {
         "licenses": "BSD-3-Clause",
         "repository": "https://github.com/pxblue/icons",
         "licenseUrl": "https://github.com/pxblue/icons",
         "parents": "example"
     },
-    "@pxblue/react-native-themes@5.0.0": {
+    "@pxblue/react-native-components@4.0.0": {
+        "licenses": "BSD-3-Clause",
+        "repository": "https://github.com/pxblue/react-native-component-library",
+        "licenseUrl": "https://github.com/pxblue/react-native-component-library/raw/master/LICENSE",
+        "parents": "example"
+    },
+    "@pxblue/react-native-themes@5.0.1": {
         "licenses": "BSD-3-Clause",
         "repository": "https://github.com/pxblue/themes",
         "licenseUrl": "https://github.com/pxblue/themes/raw/master/LICENSE",
         "parents": "example"
     },
-    "@react-native-community/async-storage@1.10.1": {
-        "licenses": "MIT",
-        "repository": "https://github.com/react-native-community/react-native-async-storage",
-        "licenseUrl": "https://github.com/react-native-community/react-native-async-storage/raw/master/LICENSE",
-        "parents": "example"
-    },
-    "@react-native-community/viewpager@4.0.0": {
-        "licenses": "MIT",
-        "repository": "https://github.com/react-native-community/react-native-viewpager",
-        "licenseUrl": "https://github.com/react-native-community/react-native-viewpager/raw/master/LICENSE",
-        "parents": "example"
-    },
-    "@react-navigation/native@5.4.3": {
-        "licenses": "MIT",
-        "repository": "https://github.com/react-navigation/react-navigation/tree/master/packages/native",
-        "licenseUrl": "https://github.com/react-navigation/react-navigation/tree/master/packages/native/raw/master/LICENSE",
-        "parents": "example"
-    },
-    "@react-navigation/stack@5.4.0": {
-        "licenses": "MIT",
-        "repository": "https://github.com/react-navigation/react-navigation/tree/master/packages/stack",
-        "licenseUrl": "https://github.com/react-navigation/react-navigation/tree/master/packages/stack/raw/master/LICENSE",
-        "parents": "example"
-    },
-    "react-native-safe-area-context@2.0.2": {
-        "licenses": "MIT",
-        "repository": "https://github.com/th3rdwave/react-native-safe-area-context",
-        "licenseUrl": "https://github.com/th3rdwave/react-native-safe-area-context/raw/master/LICENSE",
-        "parents": "example"
-    },
-    "react-native-status-bar-height@2.5.0": {
+    "react-native-status-bar-height@2.6.0": {
         "licenses": "MIT",
         "repository": "https://github.com/ovr/react-native-status-bar-height",
         "licenseUrl": "https://github.com/ovr/react-native-status-bar-height/raw/master/LICENSE",

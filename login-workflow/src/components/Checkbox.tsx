@@ -7,7 +7,7 @@ import React from 'react';
 
 // Components
 import { View, StyleProp, ViewStyle } from 'react-native';
-import { Checkbox as PaperCheckbox, Theme, useTheme } from 'react-native-paper';
+import { Checkbox as PaperCheckbox, useTheme } from 'react-native-paper';
 import { Body1 } from '@pxblue/react-native-components';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
@@ -23,9 +23,9 @@ type CheckboxProps = {
     label: string;
     style?: StyleProp<ViewStyle>;
     checked: boolean;
-    onPress: Function;
+    onPress: () => void;
     disabled?: boolean;
-    theme?: Theme;
+    theme?: ReactNativePaper.Theme;
 };
 
 /**
@@ -52,8 +52,6 @@ export const Checkbox: React.FC<CheckboxProps> = (props) => {
                 onPress={checkedBox}
                 activeOpacity={1}
             >
-                {/* 
-                // @ts-ignore waiting for 4.0.0 of react-native-paper to fix these typings https://github.com/callstack/react-native-paper/issues/1920 */}
                 <PaperCheckbox.Android
                     status={checked ? 'checked' : 'unchecked'}
                     color={theme.colors.primary}

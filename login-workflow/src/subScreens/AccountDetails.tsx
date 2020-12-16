@@ -10,7 +10,7 @@ import { View, StyleSheet, SafeAreaView, TextInput as ReactTextInput } from 'rea
 import { TextInput } from '../components/TextInput';
 import { Instruction } from '../components/Instruction';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { Theme, useTheme } from 'react-native-paper';
+import { useTheme } from 'react-native-paper';
 
 // Hooks
 import { useLanguageLocale } from '@pxblue/react-auth-shared';
@@ -18,7 +18,7 @@ import { useLanguageLocale } from '@pxblue/react-auth-shared';
 /**
  * @ignore
  */
-const makeContainerStyles = (theme: Theme): Record<string, any> =>
+const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any> =>
     StyleSheet.create({
         safeContainer: {
             height: '100%',
@@ -72,7 +72,7 @@ export const emptyAccountDetailInformation = {
  */
 export type AccountDetailsProps = {
     onDetailsChanged(details: AccountDetailInformation | null): void;
-    theme?: Theme;
+    theme?: ReactNativePaper.Theme;
 };
 
 /**

@@ -31,7 +31,7 @@ describe('ContactSupport screen tested with enzyme', () => {
                                 contactPhone: '1-888-EXA-TEST',
                             } as ContactParams
                         }
-                        options={(): object => ({
+                        options={(): { header: () => JSX.Element } => ({
                             header: (): JSX.Element => <></>,
                         })}
                     />

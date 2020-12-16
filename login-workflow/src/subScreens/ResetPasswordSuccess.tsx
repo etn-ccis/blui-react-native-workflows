@@ -13,12 +13,12 @@ import { ToggleButton } from '../components/ToggleButton';
 // Hooks
 import { useNavigation } from '@react-navigation/native';
 import { useLanguageLocale } from '@pxblue/react-auth-shared';
-import { Theme, useTheme } from 'react-native-paper';
+import { useTheme } from 'react-native-paper';
 
 /**
  * @ignore
  */
-const makeContainerStyles = (theme: Theme): Record<string, any> =>
+const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any> =>
     StyleSheet.create({
         safeContainer: {
             height: '100%',
@@ -45,7 +45,7 @@ const makeContainerStyles = (theme: Theme): Record<string, any> =>
  * @param theme (Optional) react-native-paper theme partial for custom styling.
  */
 type ResetPasswordSuccessProps = {
-    theme?: Theme;
+    theme?: ReactNativePaper.Theme;
 };
 
 /**

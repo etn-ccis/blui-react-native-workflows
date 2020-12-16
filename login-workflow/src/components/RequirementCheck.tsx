@@ -6,7 +6,7 @@
 import React from 'react';
 
 import { View, StyleSheet } from 'react-native';
-import { useTheme, Theme } from 'react-native-paper';
+import { useTheme } from 'react-native-paper';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
 
 // Styles
@@ -37,7 +37,7 @@ const makeStyles = (): Record<string, any> =>
 type RequirementCheckProps = {
     isChecked: boolean;
     text: string;
-    theme?: Theme;
+    theme?: ReactNativePaper.Theme;
 };
 
 /**

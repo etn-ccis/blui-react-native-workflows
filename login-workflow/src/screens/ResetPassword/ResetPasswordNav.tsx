@@ -19,7 +19,7 @@ import { ResetPasswordSent } from '../../subScreens/ResetPasswordSent';
 import { CloseHeader } from '../../components/CloseHeader';
 
 // Theme
-import { Theme, useTheme } from 'react-native-paper';
+import { useTheme } from 'react-native-paper';
 
 // Shared Auth Logic
 import {
@@ -42,7 +42,7 @@ const Stack = createStackNavigator();
  * @param theme  (Optional) react-native-paper theme partial to style the component.
  */
 type ResetPasswordNavProps = {
-    theme?: Theme;
+    theme?: ReactNativePaper.Theme;
 };
 
 /**
@@ -67,7 +67,7 @@ export const ResetPasswordNav: React.FC<ResetPasswordNavProps> = (props) => {
     );
 
     const resetPassword = (emailInput: string): void => {
-        accountUIActions.actions.forgotPassword(emailInput);
+        void accountUIActions.actions.forgotPassword(emailInput);
     };
 
     const routeParams = route.params as ContactParams;
@@ -96,7 +96,7 @@ export const ResetPasswordNav: React.FC<ResetPasswordNavProps> = (props) => {
                     name="ResetPassword"
                     initialParams={{ onResetPasswordPress: resetPassword, contactPhone: contactPhone }}
                     component={ResetPassword}
-                    options={(): object => ({
+                    options={(): { header: () => JSX.Element | null } => ({
                         header: (): JSX.Element | null =>
                             CloseHeader({
                                 title: t('FORMS.RESET_PASSWORD'),
@@ -111,7 +111,7 @@ export const ResetPasswordNav: React.FC<ResetPasswordNavProps> = (props) => {
                     name="ResetPasswordSent"
                     component={ResetPasswordSent}
                     initialParams={{ email: accountUIState.forgotPassword.email }}
-                    options={(): object => ({
+                    options={(): { gestureEnabled: boolean; header: () => JSX.Element | null } => ({
                         gestureEnabled: false,
                         header: (): JSX.Element | null =>
                             CloseHeader({

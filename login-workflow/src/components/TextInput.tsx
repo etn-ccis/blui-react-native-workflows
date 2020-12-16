@@ -7,7 +7,7 @@ import React, { MutableRefObject } from 'react';
 
 // Components
 import { View, StyleSheet, StyleProp, ViewStyle, TextInput as ReactTextInput, Platform } from 'react-native';
-import { TextInput as PaperTextInput, Theme, useTheme } from 'react-native-paper';
+import { TextInput as PaperTextInput, useTheme } from 'react-native-paper';
 import { TextInputProps } from 'react-native-paper/lib/typescript/src/components/TextInput/TextInput';
 import { Subtitle2 } from '@pxblue/react-native-components';
 
@@ -17,7 +17,7 @@ import * as Colors from '@pxblue/colors';
 /**
  * @ignore
  */
-const makeStyles = (theme: Theme): Record<string, any> =>
+const makeStyles = (theme: ReactNativePaper.Theme): Record<string, any> =>
     StyleSheet.create({
         textInput: {
             height: 70,
@@ -37,7 +37,7 @@ const makeStyles = (theme: Theme): Record<string, any> =>
  */
 export type TextInputRenderProps = Omit<TextInputProps, 'theme'> & {
     errorText?: string;
-    theme?: Theme;
+    theme?: ReactNativePaper.Theme;
     testID?: string;
 };
 
@@ -46,9 +46,10 @@ export type TextInputRenderProps = Omit<TextInputProps, 'theme'> & {
  *
  * @category Component
  */
+// eslint-disable-next-line @typescript-eslint/ban-types
 const TextInputRender: React.ForwardRefRenderFunction<{}, TextInputRenderProps> = (
     props: TextInputRenderProps,
-    ref: MutableRefObject<{} | null> | ((instance: {} | null) => void) | null
+    ref: MutableRefObject<{} | null> | ((instance: {} | null) => void) | null // eslint-disable-line @typescript-eslint/ban-types
 ) => {
     const {
         style,
@@ -73,9 +74,8 @@ const TextInputRender: React.ForwardRefRenderFunction<{}, TextInputRenderProps> 
     const selectionColor = Platform.OS === 'android' ? Colors.blue['100'] : undefined;
     return (
         <View>
-            {/* 
-            // @ts-ignore waiting for 4.0.0 of react-native-paper to fix these typings https://github.com/callstack/react-native-paper/issues/1920 */}
             <PaperTextInput
+                // @ts-ignore issue with refs on RNP input
                 ref={inputRef}
                 style={[styles.textInput, style]}
                 keyboardType={keyboardType}
@@ -102,7 +102,7 @@ TextInput.displayName = 'TextInput'; // Set a display name for testing with shal
 type ErrorTextProps = {
     errorText: string | undefined;
     style?: StyleProp<ViewStyle>;
-    theme?: Theme;
+    theme?: ReactNativePaper.Theme;
 };
 
 const ErrorText: React.FC<ErrorTextProps> = (props) => {

@@ -7,7 +7,7 @@ import React from 'react';
 
 // Components
 import { View, StyleSheet, TouchableHighlight, StyleProp, ViewStyle } from 'react-native';
-import { Theme, useTheme } from 'react-native-paper';
+import { useTheme } from 'react-native-paper';
 import { Body1 } from '@pxblue/react-native-components';
 
 // Styles
@@ -16,7 +16,7 @@ import color from 'color';
 /**
  * @ignore
  */
-const makeStyles = (theme: Theme, fontSize: number): Record<string, any> =>
+const makeStyles = (theme: ReactNativePaper.Theme, fontSize: number): Record<string, any> =>
     StyleSheet.create({
         container: {
             paddingVertical: 10,
@@ -45,11 +45,11 @@ const makeStyles = (theme: Theme, fontSize: number): Record<string, any> =>
  */
 export type ResizingClearButtonProps = {
     title: string;
-    onPress: Function;
+    onPress: () => void;
     style?: StyleProp<ViewStyle>;
     fontSize?: number;
     numberOfLines?: number;
-    theme?: Theme;
+    theme?: ReactNativePaper.Theme;
 };
 
 /**

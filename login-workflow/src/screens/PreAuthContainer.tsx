@@ -13,7 +13,7 @@ import 'react-native-gesture-handler';
 
 // Components
 import { StatusBar } from 'react-native';
-import { Theme, useTheme } from 'react-native-paper';
+import { useTheme } from 'react-native-paper';
 
 // Screens / Stacks
 import { Login } from './Login';
@@ -33,7 +33,7 @@ const Stack = createStackNavigator();
  * @param theme (Optional) react-native-paper theme partial to style the component.
  */
 type PreAuthContainerProps = {
-    theme?: Theme;
+    theme?: ReactNativePaper.Theme;
 };
 
 /**
@@ -46,7 +46,7 @@ export const PreAuthContainer: React.FC<PreAuthContainerProps> = (props) => {
     const authProps = useInjectedUIContext();
     const theme = useTheme(props.theme);
 
-    MatIcon.loadFont();
+    void MatIcon.loadFont();
     return (
         <SafeAreaProvider>
             <StatusBar backgroundColor={theme.colors.primary} barStyle="light-content" />

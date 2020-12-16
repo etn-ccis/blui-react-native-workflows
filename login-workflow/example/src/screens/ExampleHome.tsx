@@ -25,18 +25,14 @@ export const ExampleHome: React.FC = () => {
                 <View style={{ flex: 1, padding: 20 }}>
                     <View style={{ flex: 1 }}>
                         <EmptyState
-                            title={`Welcome, ${securityState.email}!`}
+                            title={`Welcome, ${securityState.email || ''}!`}
                             description={'This is a placeholder screen that you should replace with your application.'}
                             IconClass={Welcome}
                         />
                     </View>
-                    {/* 
-                    // @ts-ignore waiting for 4.0.0 of react-native-paper to fix these typings https://github.com/callstack/react-native-paper/issues/1920 */}
                     <Button mode={'outlined'} style={{ marginBottom: 20 }} onPress={securityHelper.showChangePassword}>
                         Change Password
                     </Button>
-                    {/* 
-                    // @ts-ignore waiting for 4.0.0 of react-native-paper to fix these typings https://github.com/callstack/react-native-paper/issues/1920 */}
                     <Button mode={'contained'} onPress={logOut}>
                         Log Out
                     </Button>
