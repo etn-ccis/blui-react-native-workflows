@@ -91,6 +91,8 @@ type ResetPasswordProps = {
 export const ResetPassword: React.FC<ResetPasswordProps> = (props) => {
     const theme = useTheme(props.theme);
     const [emailInput, setEmailInput] = React.useState('');
+    const [emailError, setEmailError] = React.useState('');
+    const [validateEmailOnChange, setValidateEmailOnChange] = React.useState(false);
     const [hasAcknowledgedError, setHasAcknowledgedError] = React.useState(false);
     const { t } = useLanguageLocale();
     const accountUIState = useAccountUIState();
@@ -104,6 +106,14 @@ export const ResetPassword: React.FC<ResetPasswordProps> = (props) => {
     const onResetPasswordTap = (): void => {
         setHasAcknowledgedError(false);
         routeParams.onResetPasswordPress(emailInput);
+    };
+
+    const validateEmail = (text?: string): void => {
+        if (text ? !EMAIL_REGEX.test(text) : !EMAIL_REGEX.test(emailInput)) {
+            setEmailError(t('MESSAGES.EMAIL_ENTRY_ERROR'));
+        } else {
+            setEmailError('');
+        }
     };
 
     // Network state (forgotPassword)
@@ -145,7 +155,16 @@ export const ResetPassword: React.FC<ResetPasswordProps> = (props) => {
                             style={styles.inputMargin}
                             keyboardType={'email-address'}
                             autoCapitalize={'none'}
-                            onChangeText={(text: string): void => setEmailInput(text)}
+                            onChangeText={(text: string): void => {
+                                setEmailInput(text);
+                                validateEmailOnChange ? validateEmail(text) : '';
+                            }}
+                            error={emailError.length > 0}
+                            errorText={emailError.length > 0 ? emailError : ''}
+                            onBlur={(): void => {
+                                setValidateEmailOnChange(true);
+                                validateEmail();
+                            }}
                         />
                     </View>
                 </View>

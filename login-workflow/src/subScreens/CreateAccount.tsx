@@ -83,17 +83,21 @@ function isValidEmail(text: string): boolean {
 export const CreateAccount: React.FC<CreateAccountProps> = (props) => {
     const theme = useTheme(props.theme);
     const [emailInput, setEmailInput] = React.useState('');
+    const [emailError, setEmailError] = React.useState('');
+    const [validateEmailOnChange, setValidateEmailOnChange] = React.useState(false);
     const { t } = useLanguageLocale();
 
     const containerStyles = makeContainerStyles(theme);
     const styles = makeStyles();
-    const onChangeText = (text: string): void => {
-        setEmailInput(text);
-        const validEmailOrEmpty = isValidEmail(text) ? text : '';
-        props.onEmailChanged(validEmailOrEmpty);
-    };
 
-    const showEmailError = emailInput.length !== 0 && !isValidEmail(emailInput);
+    const validateEmail = (text?: string): void => {
+        if (text ? !isValidEmail(text) : !isValidEmail(emailInput)) {
+            setEmailError(t('MESSAGES.EMAIL_ENTRY_ERROR'));
+        } else {
+            setEmailError('');
+            text ? props.onEmailChanged(text) : props.onEmailChanged(emailInput);
+        }
+    };
 
     return (
         <SafeAreaView style={containerStyles.safeContainer}>
@@ -107,9 +111,16 @@ export const CreateAccount: React.FC<CreateAccountProps> = (props) => {
                         style={styles.inputMargin}
                         keyboardType={'email-address'}
                         autoCapitalize={'none'}
-                        error={showEmailError}
-                        errorText={t('MESSAGES.EMAIL_ENTRY_ERROR')}
-                        onChangeText={onChangeText}
+                        error={emailError.length > 0}
+                        errorText={emailError.length > 0 ? emailError : ''}
+                        onChangeText={(text: string): void => {
+                            setEmailInput(text);
+                            validateEmailOnChange ? validateEmail(text) : '';
+                        }}
+                        onBlur={(): void => {
+                            setValidateEmailOnChange(true);
+                            validateEmail();
+                        }}
                     />
                 </View>
             </KeyboardAwareScrollView>
