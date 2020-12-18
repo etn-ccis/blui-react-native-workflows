@@ -31,6 +31,7 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
         },
         mainContainer: {
             flex: 1,
+            paddingBottom: 20,
         },
         containerMargins: {
             marginHorizontal: 20,
@@ -93,6 +94,7 @@ export const CreateAccount: React.FC<CreateAccountProps> = (props) => {
     const validateEmail = (text?: string): void => {
         if (text ? !isValidEmail(text) : !isValidEmail(emailInput)) {
             setEmailError(t('MESSAGES.EMAIL_ENTRY_ERROR'));
+            props.onEmailChanged('');
         } else {
             setEmailError('');
             text ? props.onEmailChanged(text) : props.onEmailChanged(emailInput);
@@ -112,7 +114,7 @@ export const CreateAccount: React.FC<CreateAccountProps> = (props) => {
                         keyboardType={'email-address'}
                         autoCapitalize={'none'}
                         error={emailError.length > 0}
-                        errorText={emailError.length > 0 ? emailError : ''}
+                        errorText={emailError}
                         onChangeText={(text: string): void => {
                             setEmailInput(text);
                             validateEmailOnChange ? validateEmail(text) : '';
