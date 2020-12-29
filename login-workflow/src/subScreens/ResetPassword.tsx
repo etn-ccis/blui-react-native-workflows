@@ -157,7 +157,7 @@ export const ResetPassword: React.FC<ResetPasswordProps> = (props) => {
                             autoCapitalize={'none'}
                             onChangeText={(text: string): void => {
                                 setEmailInput(text);
-                                validateEmailOnChange ? validateEmail(text) : '';
+                                if (validateEmailOnChange) validateEmail(text);
                             }}
                             error={emailError.length > 0}
                             errorText={emailError.length > 0 ? emailError : ''}

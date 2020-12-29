@@ -301,7 +301,7 @@ export const Login: React.FC<LoginProps> = (props) => {
                             keyboardType={'email-address'}
                             onChangeText={(text: string): void => {
                                 setEmailInput(text);
-                                validateEmailOnChange ? validateEmail(text) : '';
+                                if (validateEmailOnChange) validateEmail(text);
                             }}
                             onSubmitEditing={(): void => {
                                 goToNextInput();

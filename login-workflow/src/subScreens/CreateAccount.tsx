@@ -97,7 +97,11 @@ export const CreateAccount: React.FC<CreateAccountProps> = (props) => {
             props.onEmailChanged('');
         } else {
             setEmailError('');
-            text ? props.onEmailChanged(text) : props.onEmailChanged(emailInput);
+            if (text) {
+                props.onEmailChanged(text);
+            } else {
+                props.onEmailChanged(emailInput);
+            }
         }
     };
 
@@ -117,7 +121,7 @@ export const CreateAccount: React.FC<CreateAccountProps> = (props) => {
                         errorText={emailError}
                         onChangeText={(text: string): void => {
                             setEmailInput(text);
-                            validateEmailOnChange ? validateEmail(text) : '';
+                            if (validateEmailOnChange) validateEmail(text);
                         }}
                         onBlur={(): void => {
                             setValidateEmailOnChange(true);
