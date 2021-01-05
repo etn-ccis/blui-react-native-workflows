@@ -31,6 +31,7 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
         },
         mainContainer: {
             flex: 1,
+            paddingBottom: 20,
         },
         containerMargins: {
             marginHorizontal: 20,
@@ -64,18 +65,6 @@ type CreateAccountProps = {
 };
 
 /**
- * Regular expression used to validate email.
- */
-const emailRegex = new RegExp(EMAIL_REGEX);
-
-/**
- * Returns true if the email is valid against the emailRegext
- */
-function isValidEmail(text: string): boolean {
-    return emailRegex.test(text);
-}
-
-/**
  * Renders the content of the Create Account screen (input for email).
  *
  * @category Component
@@ -83,17 +72,11 @@ function isValidEmail(text: string): boolean {
 export const CreateAccount: React.FC<CreateAccountProps> = (props) => {
     const theme = useTheme(props.theme);
     const [emailInput, setEmailInput] = React.useState('');
+    const [hasEmailFormatError, setHasEmailFormatError] = React.useState(false);
     const { t } = useLanguageLocale();
 
     const containerStyles = makeContainerStyles(theme);
     const styles = makeStyles();
-    const onChangeText = (text: string): void => {
-        setEmailInput(text);
-        const validEmailOrEmpty = isValidEmail(text) ? text : '';
-        props.onEmailChanged(validEmailOrEmpty);
-    };
-
-    const showEmailError = emailInput.length !== 0 && !isValidEmail(emailInput);
 
     return (
         <SafeAreaView style={containerStyles.safeContainer}>
@@ -107,9 +90,17 @@ export const CreateAccount: React.FC<CreateAccountProps> = (props) => {
                         style={styles.inputMargin}
                         keyboardType={'email-address'}
                         autoCapitalize={'none'}
-                        error={showEmailError}
-                        errorText={t('MESSAGES.EMAIL_ENTRY_ERROR')}
-                        onChangeText={onChangeText}
+                        error={hasEmailFormatError}
+                        errorText={hasEmailFormatError ? t('MESSAGES.EMAIL_ENTRY_ERROR') : ''}
+                        onChangeText={(text: string): void => {
+                            setEmailInput(text);
+                            setHasEmailFormatError(false);
+                            const validEmailOrEmpty = EMAIL_REGEX.test(text) ? text : '';
+                            props.onEmailChanged(validEmailOrEmpty);
+                        }}
+                        onBlur={(): void => {
+                            if (emailInput.length > 0 && !EMAIL_REGEX.test(emailInput)) setHasEmailFormatError(true);
+                        }}
                     />
                 </View>
             </KeyboardAwareScrollView>

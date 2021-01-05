@@ -125,6 +125,7 @@ export const Login: React.FC<LoginProps> = (props) => {
     const securityState = useSecurityState();
     const [rememberPassword, setRememberPassword] = React.useState(securityState.rememberMeDetails.rememberMe ?? false);
     const [emailInput, setEmailInput] = React.useState(securityState.rememberMeDetails.email ?? '');
+    const [hasEmailFormatError, setHasEmailFormatError] = React.useState(false);
     const [passwordInput, setPasswordInput] = React.useState('');
     const [hasAcknowledgedError, setHasAcknowledgedError] = React.useState(false);
     const [debugMode, setDebugMode] = React.useState(false);
@@ -289,14 +290,27 @@ export const Login: React.FC<LoginProps> = (props) => {
                             label={t('LABELS.EMAIL')}
                             value={emailInput}
                             keyboardType={'email-address'}
-                            onChangeText={(text: string): void => setEmailInput(text)}
+                            onChangeText={(text: string): void => {
+                                setEmailInput(text);
+                                setHasEmailFormatError(false);
+                            }}
                             onSubmitEditing={(): void => {
                                 goToNextInput();
                             }}
                             blurOnSubmit={false}
                             returnKeyType={'next'}
-                            error={hasTransitError}
-                            errorText={t('LOGIN.INCORRECT_CREDENTIALS')}
+                            error={hasTransitError || hasEmailFormatError}
+                            errorText={
+                                hasTransitError
+                                    ? t('LOGIN.INCORRECT_CREDENTIALS')
+                                    : hasEmailFormatError
+                                    ? t('MESSAGES.EMAIL_ENTRY_ERROR')
+                                    : ''
+                            }
+                            onBlur={(): void => {
+                                if (emailInput.length > 0 && !EMAIL_REGEX.test(emailInput))
+                                    setHasEmailFormatError(true);
+                            }}
                         />
                         <TextInputSecure
                             testID={'password-text-field'}
