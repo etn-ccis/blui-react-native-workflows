@@ -91,8 +91,7 @@ type ResetPasswordProps = {
 export const ResetPassword: React.FC<ResetPasswordProps> = (props) => {
     const theme = useTheme(props.theme);
     const [emailInput, setEmailInput] = React.useState('');
-    const [emailError, setEmailError] = React.useState('');
-    const [validateEmailOnChange, setValidateEmailOnChange] = React.useState(false);
+    const [hasEmailFormatError, setHasEmailFormatError] = React.useState(false);
     const [hasAcknowledgedError, setHasAcknowledgedError] = React.useState(false);
     const { t } = useLanguageLocale();
     const accountUIState = useAccountUIState();
@@ -106,14 +105,6 @@ export const ResetPassword: React.FC<ResetPasswordProps> = (props) => {
     const onResetPasswordTap = (): void => {
         setHasAcknowledgedError(false);
         routeParams.onResetPasswordPress(emailInput);
-    };
-
-    const validateEmail = (text?: string): void => {
-        if (text ? !EMAIL_REGEX.test(text) : !EMAIL_REGEX.test(emailInput)) {
-            setEmailError(t('MESSAGES.EMAIL_ENTRY_ERROR'));
-        } else {
-            setEmailError('');
-        }
     };
 
     // Network state (forgotPassword)
@@ -157,13 +148,19 @@ export const ResetPassword: React.FC<ResetPasswordProps> = (props) => {
                             autoCapitalize={'none'}
                             onChangeText={(text: string): void => {
                                 setEmailInput(text);
-                                if (validateEmailOnChange) validateEmail(text);
+                                setHasEmailFormatError(false);
                             }}
-                            error={emailError.length > 0}
-                            errorText={emailError.length > 0 ? emailError : ''}
+                            error={hasTransitError || hasEmailFormatError}
+                            errorText={
+                                hasTransitError
+                                    ? t('LOGIN.INCORRECT_CREDENTIALS')
+                                    : hasEmailFormatError
+                                    ? t('MESSAGES.EMAIL_ENTRY_ERROR')
+                                    : ''
+                            }
                             onBlur={(): void => {
-                                setValidateEmailOnChange(true);
-                                validateEmail();
+                                if (emailInput.length > 0 && !EMAIL_REGEX.test(emailInput))
+                                    setHasEmailFormatError(true);
                             }}
                         />
                     </View>

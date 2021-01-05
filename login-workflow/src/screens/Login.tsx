@@ -125,8 +125,7 @@ export const Login: React.FC<LoginProps> = (props) => {
     const securityState = useSecurityState();
     const [rememberPassword, setRememberPassword] = React.useState(securityState.rememberMeDetails.rememberMe ?? false);
     const [emailInput, setEmailInput] = React.useState(securityState.rememberMeDetails.email ?? '');
-    const [emailError, setEmailError] = React.useState('');
-    const [validateEmailOnChange, setValidateEmailOnChange] = React.useState(false);
+    const [hasEmailFormatError, setHasEmailFormatError] = React.useState(false);
     const [passwordInput, setPasswordInput] = React.useState('');
     const [hasAcknowledgedError, setHasAcknowledgedError] = React.useState(false);
     const [debugMode, setDebugMode] = React.useState(false);
@@ -172,14 +171,6 @@ export const Login: React.FC<LoginProps> = (props) => {
 
     const confirmPasswordRef = React.useRef<ReactTextInput>(null);
     const goToNextInput = (): void => confirmPasswordRef?.current?.focus();
-
-    const validateEmail = (text?: string): void => {
-        if (text ? !EMAIL_REGEX.test(text) : !EMAIL_REGEX.test(emailInput)) {
-            setEmailError(t('MESSAGES.EMAIL_ENTRY_ERROR'));
-        } else {
-            setEmailError('');
-        }
-    };
 
     const showSelfRegistration = authProps.showSelfRegistration ?? true; // enabled by default
     let createAccountOption: JSX.Element = <></>;
@@ -301,24 +292,24 @@ export const Login: React.FC<LoginProps> = (props) => {
                             keyboardType={'email-address'}
                             onChangeText={(text: string): void => {
                                 setEmailInput(text);
-                                if (validateEmailOnChange) validateEmail(text);
+                                setHasEmailFormatError(false);
                             }}
                             onSubmitEditing={(): void => {
                                 goToNextInput();
                             }}
                             blurOnSubmit={false}
                             returnKeyType={'next'}
-                            error={hasTransitError || emailError.length > 0}
+                            error={hasTransitError || hasEmailFormatError}
                             errorText={
                                 hasTransitError
                                     ? t('LOGIN.INCORRECT_CREDENTIALS')
-                                    : emailError.length > 0
-                                    ? emailError
+                                    : hasEmailFormatError
+                                    ? t('MESSAGES.EMAIL_ENTRY_ERROR')
                                     : ''
                             }
                             onBlur={(): void => {
-                                setValidateEmailOnChange(true);
-                                validateEmail();
+                                if (emailInput.length > 0 && !EMAIL_REGEX.test(emailInput))
+                                    setHasEmailFormatError(true);
                             }}
                         />
                         <TextInputSecure
