@@ -22,7 +22,9 @@ import {
 /**
  * Type for the properties of the navigation container.
  */
-type NavigationContainerComponentProps = React.ComponentProps<typeof NavigationContainer>;
+type NavigationContainerComponentProps = React.ComponentProps<typeof NavigationContainer> & {
+    extraRoutes?: JSX.Element;
+};
 
 /**
  * Container component which holds the authentication and navigation state
@@ -61,6 +63,7 @@ const AuthNavigationContainerRender: React.ForwardRefRenderFunction<
     {}, // eslint-disable-line @typescript-eslint/ban-types
     NavigationContainerComponentProps
 > = (props: NavigationContainerComponentProps, ref: any) => {
+    const { children, extraRoutes, ...other } = props;
     const securityState = useSecurityState();
     const securityActions = useSecurityActions();
     const injectedContext = useInjectedUIContext();
@@ -93,12 +96,16 @@ const AuthNavigationContainerRender: React.ForwardRefRenderFunction<
     // Show PreAuthContainer unless the user is authenticated
     // Show the application
     return (
-        <NavigationContainer ref={ref} {...props}>
+        <NavigationContainer ref={ref} {...other}>
             {appShouldBeVisible ? (
-                <>{props.children}</>
+                <>{children}</>
             ) : (
                 <AuthUIInternalStore>
-                    {securityState.isShowingChangePassword ? ChangePasswordScreen : <PreAuthContainer />}
+                    {securityState.isShowingChangePassword ? (
+                        ChangePasswordScreen
+                    ) : (
+                        <PreAuthContainer extraRoutes={extraRoutes} />
+                    )}
                 </AuthUIInternalStore>
             )}
         </NavigationContainer>

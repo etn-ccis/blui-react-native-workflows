@@ -15,11 +15,12 @@ import { ProjectRegistrationUIActions } from './src/actions/RegistrationUIAction
 import { useLinking } from '@react-navigation/native';
 import { authLinkMapping, resolveInitialState } from './src/navigation/DeepLinking';
 
-import { Provider as ThemeProvider } from 'react-native-paper';
-import { Body1 } from '@pxblue/react-native-components';
+import { /*Button,*/ Provider as ThemeProvider } from 'react-native-paper';
+// import { H3 } from '@pxblue/react-native-components';
 
 import * as PXBThemes from '@pxblue/react-native-themes';
-import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+// import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+// import { Terms } from './src/screens/Terms';
 
 const Stack = createStackNavigator();
 
@@ -30,40 +31,30 @@ export const AuthUIConfiguration: React.FC = (props) => {
         <AuthUIContextProvider
             authActions={ProjectAuthUIActions(securityContextActions)}
             registrationActions={ProjectRegistrationUIActions}
-            // showSelfRegistration={false}
             allowDebugMode={true}
             htmlEula={false}
             contactEmail={'something@email.com'}
             contactPhone={'1-800-123-4567'}
             contactPhoneLink={'1-800-123-4567'}
-
             // showCybersecurityBadge={false}
             // showContactSupport={false}
             // showRememberMe={false}
-
-            // TODO
-        // projectImage={require('./src/assets/images/some_image.png')}
-        // background={{
-        //     backgroundImage: `url(${topology})`,
-        //     backgroundColor: 'orange',
-        //     backgroundSize: '50%',
-        // }}
-        
-        
-        // enableResetPassword={false}
-        // enableInviteRegistration={true}
-        
-        // loginFooter={
-        //     <>
-        //         <Typography variant="body2" color={'primary'}>
-        //             <Link to={'/fake-route'}>GO SOMEWHERE</Link>
-        //         </Typography>
-        //         <Typography variant="body2" color={'primary'}>
-        //             <Link to={'/fake-route-two'}>GO SOMEWHERE 2</Link>
-        //         </Typography>
-        //     </>
-        // }
-        loginHeader={<SafeAreaView><Body1 style={{}}>My Project</Body1></SafeAreaView>}
+            // loginFooter={(navigation: any) => (
+            //     <Button style={{}} onPress={() => navigation.navigate('Terms')}>
+            //         Terms of Service1
+            //     </Button>
+            // )}
+            // loginHeader={<SafeAreaView><H3 style={{ marginLeft: 20 }}>My Project</H3></SafeAreaView>}
+            // projectImage={require('./src/images/eaton.png')}
+            // enableResetPassword={false}
+            // showSelfRegistration={false}
+            // enableInviteRegistration={false}
+            // background={{
+            //     backgroundImage: require('./src/images/eaton_stacked_logo.png'),
+            //     // @ts-ignore
+            //     backgroundColor: 'rgba(255,165,0,0.3)',
+            //     backgroundSize: 120,
+            // }}
         >
             {props.children}
         </AuthUIContextProvider>
@@ -85,17 +76,8 @@ export const App: React.FC = () => {
                     <AuthNavigationContainer
                         initialState={initialState}
                         ref={ref}
-
-                    // extraRoutes={
-                    //     <>
-                    //         <Route path={'/fake-route'}>
-                    //             <Typography>FAKE ROUTE</Typography>
-                    //         </Route>
-                    //         <Route path={'/fake-route-two'}>
-                    //             <Typography>FAKE ROUTE TWO</Typography>
-                    //         </Route>
-                    //     </>
-                    // }
+                        // @ts-ignore
+                        // extraRoutes={[<Stack.Screen key={'Terms-Screen'} name="Terms" component={Terms} />]}
                     >
                         <Stack.Navigator initialRouteName="Home" headerMode={'none'}>
                             <Stack.Screen name="Home" component={ExampleHome} />

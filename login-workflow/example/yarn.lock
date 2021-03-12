@@ -1507,6 +1507,11 @@
   resolved "https://registry.yarnpkg.com/@pxblue/react-auth-shared/-/react-auth-shared-2.1.0.tgz#2130ec029d1cdf7f2abb7207fbeba9310af76d89"
   integrity sha512-OmaiTLfL4oEPhXl0uaRoKwqm1BPh/z1p8nnB6qpRnldQk3B2ACOcuETmA8B5J4sBF7v4mbHESMGb44q6vGnmQw==
 
+"@pxblue/react-auth-shared@^3.0.0-beta.3":
+  version "3.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/@pxblue/react-auth-shared/-/react-auth-shared-3.0.0-beta.3.tgz#f9b8684a3e90f6fa9e19cba4131875c07a835390"
+  integrity sha512-SDyA/iCo7Up9YHzZdZumOnQAY+tt6cA+nq0WY1sW77vSPG7UgBAlpywrQ+x+ARqxll3kOS5vdRrNDXb3SQcg/g==
+
 "@pxblue/react-native-auth-workflow@^1.4.0":
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/@pxblue/react-native-auth-workflow/-/react-native-auth-workflow-1.4.0.tgz#a52d862416acd4e21ee5b96c1028d827856becd4"

@@ -34,6 +34,7 @@ const Stack = createStackNavigator();
  */
 type PreAuthContainerProps = {
     theme?: ReactNativePaper.Theme;
+    extraRoutes?: JSX.Element;
 };
 
 /**
@@ -43,45 +44,69 @@ type PreAuthContainerProps = {
  * @category Component
  */
 export const PreAuthContainer: React.FC<PreAuthContainerProps> = (props) => {
-    const authProps = useInjectedUIContext();
+    // const authProps = useInjectedUIContext();
+    const {
+        contactEmail = 'exampleSupport@eaton.com',
+        contactPhone = '1-888-EXA-TEST',
+        contactPhoneLink = '1-888-EXA-TEST',
+        enableResetPassword = true,
+        showContactSupport = true,
+        enableInviteRegistration = true,
+        showSelfRegistration = true,
+    } = useInjectedUIContext();
     const theme = useTheme(props.theme);
 
     void MatIcon.loadFont();
     return (
         <SafeAreaProvider>
             <StatusBar backgroundColor={theme.colors.primary} barStyle="light-content" />
-            <Stack.Navigator initialRouteName="Login" mode="modal">
+            <Stack.Navigator initialRouteName="Login" mode="modal" headerMode={'none'}>
                 <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
-                <Stack.Screen
-                    name="PasswordResetInitiation"
-                    component={ResetPasswordNav}
-                    options={{ headerShown: false }}
-                    initialParams={{
-                        contactEmail: authProps.contactEmail ?? 'exampleSupport@eaton.com',
-                        contactPhone: authProps.contactPhone ?? '1-888-EXA-TEST',
-                    }}
-                />
-                <Stack.Screen
-                    name="PasswordResetCompletion"
-                    component={ResetPasswordHandleDeepLink}
-                    options={{ headerShown: false }}
-                />
-                <Stack.Screen
-                    name="RegistrationInvite"
-                    component={InviteRegistrationPager}
-                    options={{ headerShown: false }}
-                />
-                <Stack.Screen
-                    name="SupportContact"
-                    component={ContactSupport}
-                    options={{ headerShown: false }}
-                    initialParams={{
-                        contactEmail: authProps.contactEmail ?? 'exampleSupport@eaton.com',
-                        contactPhone: authProps.contactPhone ?? '1-888-EXA-TEST',
-                        contactPhoneLink: authProps.contactPhoneLink ?? '1-888-EXA-TEST',
-                    }}
-                />
-                <Stack.Screen name="Registration" component={SelfRegistrationPager} options={{ headerShown: false }} />
+                {enableResetPassword && (
+                    <Stack.Screen
+                        name="PasswordResetInitiation"
+                        component={ResetPasswordNav}
+                        options={{ headerShown: false }}
+                        initialParams={{
+                            contactEmail,
+                            contactPhone,
+                        }}
+                    />
+                )}
+                {enableResetPassword && (
+                    <Stack.Screen
+                        name="PasswordResetCompletion"
+                        component={ResetPasswordHandleDeepLink}
+                        options={{ headerShown: false }}
+                    />
+                )}
+                {enableInviteRegistration && (
+                    <Stack.Screen
+                        name="RegistrationInvite"
+                        component={InviteRegistrationPager}
+                        options={{ headerShown: false }}
+                    />
+                )}
+                {showContactSupport && (
+                    <Stack.Screen
+                        name="SupportContact"
+                        component={ContactSupport}
+                        options={{ headerShown: false }}
+                        initialParams={{
+                            contactEmail,
+                            contactPhone,
+                            contactPhoneLink,
+                        }}
+                    />
+                )}
+                {showSelfRegistration && (
+                    <Stack.Screen
+                        name="Registration"
+                        component={SelfRegistrationPager}
+                        options={{ headerShown: false }}
+                    />
+                )}
+                {props.extraRoutes}
             </Stack.Navigator>
         </SafeAreaProvider>
     );
