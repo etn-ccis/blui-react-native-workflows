@@ -18,6 +18,7 @@ import { authLinkMapping, resolveInitialState } from './src/navigation/DeepLinki
 import { Provider as ThemeProvider } from 'react-native-paper';
 
 import * as PXBThemes from '@pxblue/react-native-themes';
+import { CustomAccountDetails, CustomAccountDetailsTwo } from './src/screens/CustomRegistrationForm';
 
 const Stack = createStackNavigator();
 
@@ -34,6 +35,7 @@ export const AuthUIConfiguration: React.FC = (props) => {
             contactEmail={'something@email.com'}
             contactPhone={'1-800-123-4567'}
             contactPhoneLink={'1-800-123-4567'}
+            customAccountDetails={[CustomAccountDetails, CustomAccountDetailsTwo]}
             // projectImage={require('./src/assets/images/some_image.png')}
         >
             {props.children}

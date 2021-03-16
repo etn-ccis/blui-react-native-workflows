@@ -210,7 +210,11 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
             pageTitle: t('REGISTRATION.STEPS.PASSWORD'),
             pageBody: (
                 <KeyboardAwareScrollView key={'CreatePasswordPage'} contentContainerStyle={[containerStyles.fullFlex]}>
-                    <CreatePasswordScreen onPasswordChanged={setPassword} />
+                    <CreatePasswordScreen
+                        onPasswordChanged={setPassword}
+                        /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
+                        onSubmit={(): void => advancePage(1)}
+                    />
                 </KeyboardAwareScrollView>
             ),
             canGoForward: password.length > 0,
@@ -220,8 +224,33 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
             name: 'AccountDetails',
             pageTitle: t('REGISTRATION.STEPS.ACCOUNT_DETAILS'),
             pageBody: (
-                <AccountDetailsScreen key={'AccountDetailsScreen'} onDetailsChanged={setAccountDetails}>
-                    {FirstCustomPage && <FirstCustomPage onDetailsChanged={(): void => {}} />}
+                <AccountDetailsScreen
+                    key={'AccountDetailsScreen'}
+                    onDetailsChanged={setAccountDetails}
+                    onSubmit={
+                        FirstCustomPage
+                            ? (): void => {
+                                  /* TODO Focus first field in custom page */
+                              }
+                            : accountDetails !== null // && accountDetails.valid
+                            ? /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
+                              (): void => advancePage(1)
+                            : undefined
+                    }
+                >
+                    {FirstCustomPage && (
+                        <FirstCustomPage
+                            onDetailsChanged={(details: CustomAccountDetails | null, valid: boolean): void => {
+                                setCustomAccountDetails({
+                                    ...(customAccountDetails || {}),
+                                    0: { values: details || {}, valid },
+                                });
+                            }}
+                            initialDetails={customAccountDetails?.[0]?.values}
+                            /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
+                            onSubmit={customAccountDetails?.[0]?.valid ? (): void => advancePage(1) : undefined}
+                        />
+                    )}
                 </AccountDetailsScreen>
             ),
             canGoForward: accountDetails !== null, // &&
@@ -233,8 +262,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
             // Custom injected pages
             customDetails
                 .slice(1)
-                // @ts-ignore there won't be any more nulls
-                .filter((item: ComponentType<AccountDetailsFormProps>) => item !== null)
+                .filter((item: ComponentType<AccountDetailsFormProps> | null) => item !== null)
                 // @ts-ignore there won't be any nulls at this point
                 .map((page: ComponentType<AccountDetailsFormProps>, i: number) => {
                     const PageComponent = page;
@@ -242,28 +270,22 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
                         name: `CustomPage${i + 1}`,
                         pageTitle: t('REGISTRATION.STEPS.ACCOUNT_DETAILS'),
                         pageBody: (
-                            // <AccountDetailsWrapper>
                             <PageComponent
                                 key={`CustomDetailsPage_${i + 1}`}
-                                // @ts-ignore
-                                onDetailsChanged={(details: CustomAccountDetails, valid: boolean): void => {
+                                onDetailsChanged={(details: CustomAccountDetails | null, valid: boolean): void => {
                                     setCustomAccountDetails({
                                         ...customAccountDetails,
-                                        [i + 1]: { values: details, valid },
+                                        [i + 1]: { values: details || {}, valid },
                                     });
                                 }}
-                                // @ts-ignore
-                                initialDetails={customAccountDetails[i + 1]?.values}
+                                initialDetails={customAccountDetails?.[i + 1]?.values}
                                 onSubmit={
-                                    /* eslint-disable @typescript-eslint/no-use-before-define */
-                                    // @ts-ignore
-                                    customAccountDetails[i + 1]?.valid ? (): void => advancePage(1) : undefined
-                                    /* eslint-enable @typescript-eslint/no-use-before-define */
+                                    /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
+                                    customAccountDetails?.[i + 1]?.valid ? (): void => advancePage(1) : undefined
                                 }
                             />
-                            // </AccountDetailsWrapper>
                         ),
-                        canGoForward: true, //customAccountDetails[i + 1]?.valid,
+                        canGoForward: customAccountDetails ? customAccountDetails?.[i + 1]?.valid : false,
                         canGoBack: true,
                     };
                 })

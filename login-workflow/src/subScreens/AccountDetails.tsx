@@ -69,6 +69,7 @@ export const emptyAccountDetailInformation = {
  */
 export type AccountDetailsProps = {
     onDetailsChanged(details: AccountDetailInformation | null): void;
+    onSubmit: () => void;
     theme?: ReactNativePaper.Theme;
 };
 
@@ -129,7 +130,13 @@ export const AccountDetails: React.FC<AccountDetailsProps> = (props) => {
                         autoCapitalize={'sentences'}
                         returnKeyType={'next'}
                         onChangeText={(text: string): void => setLastNameInput(text)}
+                        onSubmitEditing={
+                            firstNameInput.length > 0 && lastNameInput.length > 0
+                                ? (): void => props.onSubmit()
+                                : undefined
+                        }
                     />
+                    {props.children}
                 </View>
             </KeyboardAwareScrollView>
         </SafeAreaView>
