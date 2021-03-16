@@ -47,12 +47,10 @@ const makeStyles = (): Record<string, any> =>
  *
  * @param firstName  The first name string.
  * @param lastName  The last name string.
- * @param phone  The phone number string.
  */
 export type AccountDetailInformation = {
     firstName: string;
     lastName: string;
-    phone: string;
 };
 
 /**
@@ -61,7 +59,6 @@ export type AccountDetailInformation = {
 export const emptyAccountDetailInformation = {
     firstName: '',
     lastName: '',
-    phone: '',
 };
 
 /**
@@ -85,26 +82,22 @@ export const AccountDetails: React.FC<AccountDetailsProps> = (props) => {
     const theme = useTheme(props.theme);
     const [firstNameInput, setFirstNameInput] = React.useState('');
     const [lastNameInput, setLastNameInput] = React.useState('');
-    const [phoneInput, setPhoneInput] = React.useState('');
     const { t } = useLanguageLocale();
 
     React.useEffect(() => {
         if (firstNameInput.length > 0 && lastNameInput.length > 0) {
-            props.onDetailsChanged({ firstName: firstNameInput, lastName: lastNameInput, phone: phoneInput });
+            props.onDetailsChanged({ firstName: firstNameInput, lastName: lastNameInput });
         } else {
             props.onDetailsChanged(null);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [firstNameInput, lastNameInput, phoneInput]); // ignore props
+    }, [firstNameInput, lastNameInput]); // ignore props
 
     const styles = makeStyles();
     const containerStyles = makeContainerStyles(theme);
 
     const lastNameRef = React.useRef<ReactTextInput>(null);
     const goToLastName = (): void => lastNameRef?.current?.focus();
-
-    const phoneNumberRef = React.useRef<ReactTextInput>(null);
-    const goToPhoneNumber = (): void => phoneNumberRef?.current?.focus();
 
     return (
         <SafeAreaView style={containerStyles.safeContainer}>
@@ -136,23 +129,7 @@ export const AccountDetails: React.FC<AccountDetailsProps> = (props) => {
                         autoCapitalize={'sentences'}
                         returnKeyType={'next'}
                         onChangeText={(text: string): void => setLastNameInput(text)}
-                        onSubmitEditing={(): void => {
-                            goToPhoneNumber();
-                        }}
-                        blurOnSubmit={false}
                     />
-
-                    <View>
-                        <TextInput
-                            ref={phoneNumberRef}
-                            label={`${t('FORMS.PHONE_NUMBER')} (${t('LABELS.OPTIONAL')})`}
-                            value={phoneInput}
-                            style={styles.inputMargin}
-                            autoCapitalize={'none'}
-                            returnKeyType={'done'}
-                            onChangeText={(text: string): void => setPhoneInput(text)}
-                        />
-                    </View>
                 </View>
             </KeyboardAwareScrollView>
         </SafeAreaView>
