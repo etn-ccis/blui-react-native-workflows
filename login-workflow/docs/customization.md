@@ -15,7 +15,7 @@ For more details, read the [full API details](https://github.com/pxblue/react-au
 
 The authentication workflow hides your application content behind a private routing mechanism that does not allow unauthenticated users to access any parts of the application. 
 
-If there are routes / screens that you would like to be available without logging in (such as a Terms of Service page or a welcome screen), you need to provide these to the `AuthNavigationContainer` through the `extraRoutes` property. The content passed in here will be publicly accessible.
+If there are routes / screens that you would like to be available without logging in (such as a Terms of Service page or a welcome screen), you need to provide these to the `AuthNavigationContainer` through the `extraRoutes` property. The content passed in here will be publicly accessible. You can also set the `initialRouteName` prop if you would like to load a different screen as the first screen of the workflow (e.g., a Welcome screen). Note that if you do this, you must provide a way to get from your custom screen to the 'Login' screen using the `navigation` prop.
 
 ```tsx
 const Stack = createStackNavigator();
@@ -27,6 +27,7 @@ const Stack = createStackNavigator();
             <Stack.Screen key={'Terms-Screen'} name="Terms" component={Terms} />
         ]
     }
+    initialRouteName={'Welcome'}
 >
     {/* Main Application Content */}
 </AuthNavigationContainer>

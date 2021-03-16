@@ -31,10 +31,13 @@ const Stack = createStackNavigator();
 
 /**
  * @param theme (Optional) react-native-paper theme partial to style the component.
+ * @param extraRoutes (Optional) array of additional screens to be available before authenticating.
+ * @param initialRouteName (Optional) default route to load in the PreAuthContainer.
  */
 type PreAuthContainerProps = {
     theme?: ReactNativePaper.Theme;
     extraRoutes?: JSX.Element;
+    initialRouteName?: string;
 };
 
 /**
@@ -60,7 +63,7 @@ export const PreAuthContainer: React.FC<PreAuthContainerProps> = (props) => {
     return (
         <SafeAreaProvider>
             <StatusBar backgroundColor={theme.colors.primary} barStyle="light-content" />
-            <Stack.Navigator initialRouteName="Login" mode="modal" headerMode={'none'}>
+            <Stack.Navigator initialRouteName={props.initialRouteName || 'Login'} mode="modal" headerMode={'none'}>
                 <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
                 {enableResetPassword && (
                     <Stack.Screen

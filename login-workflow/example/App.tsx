@@ -39,8 +39,8 @@ export const AuthUIConfiguration: React.FC = (props) => {
             // showCybersecurityBadge={false}
             // showContactSupport={false}
             // showRememberMe={false}
-            // loginFooter={(navigation: any) => (
-            //     <Button style={{}} onPress={() => navigation.navigate('Terms')}>
+            // loginFooter={(navigation: any): JSX.Element => (
+            //     <Button style={{}} onPress={(): void => navigation.navigate('Terms')}>
             //         Terms of Service1
             //     </Button>
             // )}

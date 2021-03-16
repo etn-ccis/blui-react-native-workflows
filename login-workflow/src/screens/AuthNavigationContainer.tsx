@@ -24,6 +24,7 @@ import {
  */
 type NavigationContainerComponentProps = React.ComponentProps<typeof NavigationContainer> & {
     extraRoutes?: JSX.Element;
+    initialRouteName?: string;
 };
 
 /**
@@ -52,6 +53,7 @@ type NavigationContainerComponentProps = React.ComponentProps<typeof NavigationC
  * ```
  *
  * @param props.initialState Initial state object for the navigation tree.
+ * @param props.initialRouteName Name of the default route to load in the navigator.
  * @param props.onStateChange Callback which is called with the latest navigation state when it changes.
  * @param props.theme Theme object for the navigators.
  * @param props.children Child elements to render the content.
@@ -63,7 +65,7 @@ const AuthNavigationContainerRender: React.ForwardRefRenderFunction<
     {}, // eslint-disable-line @typescript-eslint/ban-types
     NavigationContainerComponentProps
 > = (props: NavigationContainerComponentProps, ref: any) => {
-    const { children, extraRoutes, ...other } = props;
+    const { children, extraRoutes, initialRouteName, ...other } = props;
     const securityState = useSecurityState();
     const securityActions = useSecurityActions();
     const injectedContext = useInjectedUIContext();
@@ -104,7 +106,7 @@ const AuthNavigationContainerRender: React.ForwardRefRenderFunction<
                     {securityState.isShowingChangePassword ? (
                         ChangePasswordScreen
                     ) : (
-                        <PreAuthContainer extraRoutes={extraRoutes} />
+                        <PreAuthContainer extraRoutes={extraRoutes} initialRouteName={initialRouteName} />
                     )}
                 </AuthUIInternalStore>
             )}
