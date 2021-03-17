@@ -41,7 +41,7 @@ export const AuthUIConfiguration: React.FC = (props) => {
             // showRememberMe={false}
             // loginFooter={(navigation: any): JSX.Element => (
             //     <Button style={{}} onPress={(): void => navigation.navigate('Terms')}>
-            //         Terms of Service1
+            //         Terms of Service
             //     </Button>
             // )}
             // loginHeader={<SafeAreaView><H3 style={{ marginLeft: 20 }}>My Project</H3></SafeAreaView>}
