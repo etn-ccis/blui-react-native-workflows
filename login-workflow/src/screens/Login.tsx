@@ -355,6 +355,7 @@ export const Login: React.FC<LoginProps> = (props) => {
                             style={{ marginTop: 44 }}
                             error={hasTransitError}
                             errorText={t('LOGIN.INCORRECT_CREDENTIALS')}
+                            onSubmitEditing={!EMAIL_REGEX.test(emailInput) || !passwordInput ? undefined : loginTapped}
                         />
 
                         <View style={[containerStyles.loginControls]}>

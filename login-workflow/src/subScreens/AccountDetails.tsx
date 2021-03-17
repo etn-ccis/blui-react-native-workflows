@@ -65,11 +65,12 @@ export const emptyAccountDetailInformation = {
  * Handle the change of any of the account details inputs.
  *
  * @param onDetailsChanged   Handle the change of any of the account details inputs.
+ * @param onSubmit callback called when user submits on the last form field to advance the screen
  * @param theme (Optional) react-native-paper theme partial for custom styling.
  */
 export type AccountDetailsProps = {
     onDetailsChanged(details: AccountDetailInformation | null): void;
-    onSubmit: () => void;
+    onSubmit?: () => void;
     theme?: ReactNativePaper.Theme;
 };
 
@@ -131,9 +132,7 @@ export const AccountDetails: React.FC<AccountDetailsProps> = (props) => {
                         returnKeyType={'next'}
                         onChangeText={(text: string): void => setLastNameInput(text)}
                         onSubmitEditing={
-                            firstNameInput.length > 0 && lastNameInput.length > 0
-                                ? (): void => props.onSubmit()
-                                : undefined
+                            firstNameInput.length > 0 && lastNameInput.length > 0 ? props.onSubmit : undefined
                         }
                     />
                     {props.children}

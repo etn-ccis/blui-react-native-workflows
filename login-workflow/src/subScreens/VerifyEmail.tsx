@@ -53,12 +53,14 @@ const makeStyles = (): Record<string, any> =>
  * @param initialCode  value used to initialize the code.
  * @param onVerifyCodeChanged  Handle the verify code change action. Called each time the code changes.
  * @param onResendVerificationEmail  Handle the press of the resend verification email.
+ * @param onSubmit callback called when user submits on the last form field to advance the screen
  * @param theme (Optional) react-native-paper theme partial for custom styling.
  */
 type VerifyEmailProps = {
     initialCode?: string;
     onVerifyCodeChanged(email: string): void;
     onResendVerificationEmail(): void;
+    onSubmit?: () => void;
     theme?: ReactNativePaper.Theme;
 };
 
@@ -79,7 +81,7 @@ export const VerifyEmail: React.FC<VerifyEmailProps> = (props) => {
     }, [props.initialCode]);
 
     useEffect(() => {
-        onVerifyCodeChanged(verifyCode.length === 6 ? verifyCode : '');
+        onVerifyCodeChanged(verifyCode || '');
     }, [verifyCode, onVerifyCodeChanged]);
 
     const containerStyles = makeContainerStyles(theme);
@@ -101,6 +103,7 @@ export const VerifyEmail: React.FC<VerifyEmailProps> = (props) => {
                         keyboardType={'default'}
                         autoCapitalize={'none'}
                         onChangeText={setVerifyCode}
+                        onSubmitEditing={verifyCode.length ? props.onSubmit : undefined}
                     />
                     <View style={{ flex: 1 }}>
                         <Button
