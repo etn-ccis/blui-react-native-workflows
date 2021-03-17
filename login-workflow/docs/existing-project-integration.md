@@ -94,6 +94,8 @@ You can skip passing the `projectImage` property if you don't have one yet.
 
 The various configuration options are explained in more detail in the [API](https://github.com/pxblue/react-native-workflows/tree/master/login-workflow/docs/API.md) documentation.
 
+You can read more about customizing the `AuthUIContextProvider` in the [Customization Guide](https://github.com/pxblue/react-native-workflows/tree/master/login-workflow/docs/customization.md) 
+
 
 #### Setting Up Deep Links
 
