@@ -36,7 +36,7 @@ const Stack = createStackNavigator();
 
 For more details, read the [full API details](https://github.com/pxblue/react-auth-shared/tree/master/docs/API.md). 
 
-<!--## Registration Details
+## Registration Details
 
 By default, the user registration piece of the workflow will capture the minimum information that is required (i.e., First Name, Last Name, and email address).
 
@@ -67,4 +67,3 @@ In order to work correctly, custom form components that you pass into the workfl
 You can see a sample implementation of the custom details forms in the `/example` project.
 
 > **NOTE:**  If you are using a useEffect hook to call the `onDetailsChanged` function, you must make sure NOT to include the `onDetailsChanged` prop in your list of dependencies. This will cause an infinite update loop.
--->
