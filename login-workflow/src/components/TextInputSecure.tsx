@@ -6,9 +6,8 @@
 import React, { useState, MutableRefObject } from 'react';
 
 // Components
-import { View, StyleSheet, TouchableOpacity, TextInput as ReactTextInput } from 'react-native';
-import MatIcon from 'react-native-vector-icons/MaterialIcons';
-import { useTheme } from 'react-native-paper';
+import { View, StyleSheet, TextInput as ReactTextInput } from 'react-native';
+import { useTheme, TextInput as PaperTextInput } from 'react-native-paper';
 import { TextInput, TextInputRenderProps } from './TextInput';
 
 /**
@@ -63,18 +62,19 @@ export const TextInputSecureRender: React.ForwardRefRenderFunction<
 
     return (
         <View style={style}>
-            <TextInput ref={inputRef} style={styles.togglePadding} {...inputProps} secureTextEntry={shouldShowText} />
-            <TouchableOpacity
-                activeOpacity={0.8}
-                style={styles.visibilityToggleTouchable}
-                onPress={(): void => setShouldShowText(!shouldShowText)}
-            >
-                <MatIcon
-                    name={shouldShowText ? 'visibility-off' : 'visibility'}
-                    color={theme.colors.placeholder}
-                    size={30}
-                />
-            </TouchableOpacity>
+            <TextInput
+                ref={inputRef}
+                style={styles.togglePadding}
+                {...inputProps}
+                secureTextEntry={shouldShowText}
+                right={
+                    <PaperTextInput.Icon
+                        name={shouldShowText ? 'eye-off' : 'eye'}
+                        color={theme.colors.placeholder}
+                        onPress={(): void => setShouldShowText(!shouldShowText)}
+                    />
+                }
+            />
         </View>
     );
 };

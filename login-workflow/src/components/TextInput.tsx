@@ -8,6 +8,7 @@ import React, { MutableRefObject } from 'react';
 // Components
 import { View, StyleSheet, StyleProp, ViewStyle, TextInput as ReactTextInput, Platform } from 'react-native';
 import { TextInput as PaperTextInput, useTheme } from 'react-native-paper';
+// @ts-ignore
 import { TextInputProps } from 'react-native-paper/lib/typescript/src/components/TextInput/TextInput';
 import { Subtitle2 } from '@pxblue/react-native-components';
 
@@ -74,6 +75,7 @@ const TextInputRender: React.ForwardRefRenderFunction<{}, TextInputRenderProps> 
     const selectionColor = Platform.OS === 'android' ? Colors.blue['100'] : undefined;
     return (
         <View>
+            {/* @ts-ignore */}
             <PaperTextInput
                 // @ts-ignore issue with refs on RNP input
                 ref={inputRef}

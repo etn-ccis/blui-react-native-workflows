@@ -37,26 +37,29 @@ import {
     useInjectedUIContext,
     useSecurityState,
 } from '@pxblue/react-auth-shared';
+import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 /**
  * @ignore
  */
-const makeContainerStyles = (): Record<string, any> =>
+const makeContainerStyles = (insets: EdgeInsets): Record<string, any> =>
     StyleSheet.create({
         mainContainer: {
-            marginHorizontal: 20,
+            marginHorizontal: 16,
         },
         checkboxAndButton: {
             flexDirection: 'row',
             justifyContent: 'space-between',
             padding: 0,
             margin: 0,
-            marginLeft: -10,
         },
         checkbox: {
+            flex: 1,
             alignContent: 'flex-start',
             alignSelf: 'flex-start',
             margin: 0,
+            marginLeft: -10,
+            marginRight: 16,
         },
         spaceBetween: {
             flexGrow: 1,
@@ -64,27 +67,17 @@ const makeContainerStyles = (): Record<string, any> =>
         },
         loginButtonContainer: {
             flex: 1,
-            maxWidth: '50%',
             alignSelf: 'flex-end',
             height: '100%',
             flexDirection: 'row',
         },
         topArea: {
-            height: '20%',
             minHeight: 130,
-            paddingTop: 40,
-        },
-        inputAreas: {
-            flex: 3,
-            justifyContent: 'space-evenly',
-            minHeight: 200, // Space for error messages when visible (offsetting marginTops)
+            paddingTop: insets.top + 16,
         },
         loginControls: {
-            marginTop: 15,
-        },
-        bottomButtons: {
-            flex: 2,
-            justifyContent: 'space-around',
+            marginTop: 44,
+            marginBottom: 40,
         },
     });
 
@@ -123,26 +116,43 @@ type LoginProps = {
 
 export const Login: React.FC<LoginProps> = (props) => {
     const securityState = useSecurityState();
-    const [rememberPassword, setRememberPassword] = React.useState(securityState.rememberMeDetails.rememberMe ?? false);
-    const [emailInput, setEmailInput] = React.useState(securityState.rememberMeDetails.email ?? '');
+    const {
+        showSelfRegistration = true,
+        allowDebugMode = false,
+        projectImage,
+        showCybersecurityBadge = true,
+        showContactSupport = true,
+        showRememberMe = true,
+        enableResetPassword = true,
+        loginFooter,
+        loginHeader,
+    } = useInjectedUIContext();
+    const navigation = useNavigation();
+    const { t } = useLanguageLocale();
+    const authUIActions = useAccountUIActions();
+    const authUIState = useAccountUIState();
+
+    // Styles
+    const theme = useTheme(props.theme);
+    const insets = useSafeAreaInsets();
+    const containerStyles = makeContainerStyles(insets);
+    const styles = makeStyles();
+
+    // Local State
+    const [rememberPassword, setRememberPassword] = React.useState(
+        showRememberMe ? securityState.rememberMeDetails.rememberMe ?? false : false
+    );
+    const [emailInput, setEmailInput] = React.useState(
+        showRememberMe ? securityState.rememberMeDetails.email ?? '' : ''
+    );
     const [hasEmailFormatError, setHasEmailFormatError] = React.useState(false);
     const [passwordInput, setPasswordInput] = React.useState('');
     const [hasAcknowledgedError, setHasAcknowledgedError] = React.useState(false);
     const [debugMode, setDebugMode] = React.useState(false);
 
-    const navigation = useNavigation();
-    const { t } = useLanguageLocale();
-    const authUIActions = useAccountUIActions();
-    const authUIState = useAccountUIState();
-    const authProps = useInjectedUIContext();
-
-    const theme = useTheme(props.theme);
-    const containerStyles = makeContainerStyles();
-    const styles = makeStyles();
-
     const loginTapped = (): void => {
         setHasAcknowledgedError(false);
-        void authUIActions.actions.logIn(emailInput, passwordInput, rememberPassword);
+        void authUIActions.actions.logIn(emailInput, passwordInput, showRememberMe ? rememberPassword : false);
     };
 
     const transitState = authUIState.login;
@@ -161,22 +171,23 @@ export const Login: React.FC<LoginProps> = (props) => {
     );
 
     // Construct the optional elements
-    let contactEatonRepresentative: JSX.Element = (
+    let contactEatonRepresentative: JSX.Element = showContactSupport ? (
         <ResizingClearButton
             title={t('MESSAGES.CONTACT')}
             style={{ width: '100%' }}
             onPress={(): void => navigation.navigate('SupportContact')}
         />
+    ) : (
+        <></>
     );
 
     const confirmPasswordRef = React.useRef<ReactTextInput>(null);
     const goToNextInput = (): void => confirmPasswordRef?.current?.focus();
 
-    const showSelfRegistration = authProps.showSelfRegistration ?? true; // enabled by default
     let createAccountOption: JSX.Element = <></>;
-    if (showSelfRegistration || debugMode) {
+    if (showSelfRegistration) {
         createAccountOption = (
-            <View>
+            <View style={{ marginVertical: 32 }}>
                 <Body1 style={styles.signUpText}>{t('LABELS.NEED_ACCOUNT')}</Body1>
                 <Button
                     mode={'text'}
@@ -189,7 +200,7 @@ export const Login: React.FC<LoginProps> = (props) => {
             </View>
         );
     } else {
-        contactEatonRepresentative = (
+        contactEatonRepresentative = showContactSupport ? (
             <View style={{ alignSelf: 'center', flexShrink: 1 }}>
                 <Body1 style={styles.signUpText}>{t('LABELS.NEED_ACCOUNT')}</Body1>
                 <ResizingClearButton
@@ -198,11 +209,12 @@ export const Login: React.FC<LoginProps> = (props) => {
                     onPress={(): void => navigation.navigate('SupportContact')}
                 />
             </View>
+        ) : (
+            <></>
         );
     }
 
     // Create buttons for debug mode
-    const allowDebugMode = authProps.allowDebugMode ?? false; // don't allow debug mode by default
     let debugButton: JSX.Element = <></>;
     if (allowDebugMode) {
         debugButton = (
@@ -219,33 +231,14 @@ export const Login: React.FC<LoginProps> = (props) => {
     let debugMessage: JSX.Element = <></>;
     if (debugMode) {
         debugMessage = (
-            <H6 style={{ textAlign: 'center', lineHeight: 48, backgroundColor: Colors.yellow[500] }}>{'DEBUG MODE'}</H6>
+            <H6 style={{ textAlign: 'center', lineHeight: 48, backgroundColor: Colors.yellow[500], marginTop: 48 }}>
+                {'DEBUG MODE'}
+            </H6>
         );
     }
 
-    let testForgotPasswordDeepLinkButton: JSX.Element = <></>;
-    if (debugMode) {
-        testForgotPasswordDeepLinkButton = (
-            <View style={{ alignSelf: 'center' }}>
-                <Button
-                    mode={'text'}
-                    labelStyle={styles.clearButton}
-                    uppercase={false}
-                    onPress={(): void =>
-                        navigation.navigate('PasswordResetCompletion', {
-                            code: 'DEBUG_VALIDATION_CODE_DEADBEEF',
-                        })
-                    }
-                >
-                    [Test Forgot Password Email]
-                </Button>
-            </View>
-        );
-    }
-
-    let testInviteRegisterButton: JSX.Element = <></>;
-    if (debugMode) {
-        testInviteRegisterButton = (
+    const debugLinks = !debugMode ? null : (
+        <View>
             <View style={{ alignSelf: 'center' }}>
                 <Button
                     mode={'text'}
@@ -259,9 +252,45 @@ export const Login: React.FC<LoginProps> = (props) => {
                 >
                     [Test Invite Register]
                 </Button>
+                <Button
+                    mode={'text'}
+                    labelStyle={styles.clearButton}
+                    uppercase={false}
+                    onPress={(): void => navigation.navigate('Registration')}
+                >
+                    [Test Self Register]
+                </Button>
+                <Button
+                    mode={'text'}
+                    labelStyle={styles.clearButton}
+                    uppercase={false}
+                    onPress={(): void => navigation.navigate('PasswordResetInitiation')}
+                >
+                    [Test Forgot Password]
+                </Button>
+                <Button
+                    mode={'text'}
+                    labelStyle={styles.clearButton}
+                    uppercase={false}
+                    onPress={(): void =>
+                        navigation.navigate('PasswordResetCompletion', {
+                            code: 'DEBUG_VALIDATION_CODE_DEADBEEF',
+                        })
+                    }
+                >
+                    [Test Reset Password]
+                </Button>
+                <Button
+                    mode={'text'}
+                    labelStyle={styles.clearButton}
+                    uppercase={false}
+                    onPress={(): void => navigation.navigate('SupportContact')}
+                >
+                    [Test Contact Support]
+                </Button>
             </View>
-        );
-    }
+        </View>
+    );
 
     let statusBar: JSX.Element = <></>;
     statusBar =
@@ -278,18 +307,21 @@ export const Login: React.FC<LoginProps> = (props) => {
             {errorDialog}
             <ScrollViewWithBackground
                 bounces={false}
-                contentContainerStyle={[containerStyles.spaceBetween, { backgroundColor: theme.colors.surface }]}
+                contentContainerStyle={[{ flexGrow: 1, backgroundColor: theme.colors.surface }]}
+                keyboardShouldPersistTaps={'always'}
             >
-                <LoginHeaderSplash style={containerStyles.topArea} mainImage={authProps.projectImage} />
+                {loginHeader || <LoginHeaderSplash style={containerStyles.topArea} mainImage={projectImage} />}
                 {debugButton}
                 {debugMessage}
-                <SafeAreaView style={[containerStyles.mainContainer, containerStyles.spaceBetween]}>
-                    <View style={containerStyles.inputAreas}>
+                {debugLinks}
+                <SafeAreaView style={[containerStyles.mainContainer, { flexGrow: 1 }]}>
+                    <View style={[{ flexGrow: 1 }]}>
                         <TextInput
                             testID={'email-text-field'}
                             label={t('LABELS.EMAIL')}
                             value={emailInput}
                             keyboardType={'email-address'}
+                            style={{ marginTop: 48 }}
                             onChangeText={(text: string): void => {
                                 setEmailInput(text);
                                 setHasEmailFormatError(false);
@@ -320,19 +352,21 @@ export const Login: React.FC<LoginProps> = (props) => {
                             autoCapitalize={'none'}
                             onChangeText={(text: string): void => setPasswordInput(text)}
                             returnKeyType={'done'}
-                            style={{ marginTop: 15 }}
+                            style={{ marginTop: 44 }}
                             error={hasTransitError}
                             errorText={t('LOGIN.INCORRECT_CREDENTIALS')}
                         />
 
-                        <View style={containerStyles.loginControls}>
+                        <View style={[containerStyles.loginControls]}>
                             <View style={[containerStyles.checkboxAndButton]}>
-                                <Checkbox
-                                    label={t('ACTIONS.REMEMBER')}
-                                    checked={rememberPassword}
-                                    style={containerStyles.checkbox}
-                                    onPress={(): void => setRememberPassword(!rememberPassword)}
-                                />
+                                {showRememberMe && (
+                                    <Checkbox
+                                        label={t('ACTIONS.REMEMBER')}
+                                        checked={rememberPassword}
+                                        style={[containerStyles.checkbox]}
+                                        onPress={(): void => setRememberPassword(!rememberPassword)}
+                                    />
+                                )}
                                 <View style={[containerStyles.loginButtonContainer]}>
                                     <ToggleButton
                                         text={t('ACTIONS.LOG_IN')}
@@ -342,28 +376,24 @@ export const Login: React.FC<LoginProps> = (props) => {
                                 </View>
                             </View>
                         </View>
-                    </View>
-
-                    <View style={containerStyles.bottomButtons}>
-                        {testForgotPasswordDeepLinkButton}
-                        {testInviteRegisterButton}
-
                         <View>
-                            <Button
-                                mode={'text'}
-                                labelStyle={styles.clearButton}
-                                uppercase={false}
-                                onPress={(): void => navigation.navigate('PasswordResetInitiation')}
-                            >
-                                <Body1 color="primary">{t('LABELS.FORGOT_PASSWORD')}</Body1>
-                            </Button>
+                            {enableResetPassword && (
+                                <Button
+                                    mode={'text'}
+                                    labelStyle={styles.clearButton}
+                                    uppercase={false}
+                                    onPress={(): void => navigation.navigate('PasswordResetInitiation')}
+                                >
+                                    <Body1 color="primary">{t('LABELS.FORGOT_PASSWORD')}</Body1>
+                                </Button>
+                            )}
+
+                            {createAccountOption}
+                            {contactEatonRepresentative}
+                            {loginFooter && typeof loginFooter === 'function' && loginFooter(navigation)}
+                            {loginFooter && typeof loginFooter !== 'function' && loginFooter}
                         </View>
-
-                        {createAccountOption}
-
-                        {contactEatonRepresentative}
-
-                        <CybersecurityBadge containerStyle={styles.securityBadge} />
+                        {showCybersecurityBadge && <CybersecurityBadge containerStyle={styles.securityBadge} />}
                     </View>
                 </SafeAreaView>
             </ScrollViewWithBackground>
