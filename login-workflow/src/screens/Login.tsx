@@ -124,6 +124,7 @@ export const Login: React.FC<LoginProps> = (props) => {
         showContactSupport = true,
         showRememberMe = true,
         enableResetPassword = true,
+        loginActions,
         loginFooter,
         loginHeader,
     } = useInjectedUIContext();
@@ -377,6 +378,8 @@ export const Login: React.FC<LoginProps> = (props) => {
                                 </View>
                             </View>
                         </View>
+                        {loginActions && typeof loginActions === 'function' && loginActions(navigation)}
+                        {loginActions && typeof loginActions !== 'function' && loginActions}
                         <View>
                             {enableResetPassword && (
                                 <Button

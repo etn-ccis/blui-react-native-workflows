@@ -17,6 +17,12 @@
         "licenseUrl": "https://github.com/pxblue/themes/raw/master/LICENSE",
         "parents": "example"
     },
+    "react-native-paper@4.4.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/callstack/react-native-paper",
+        "licenseUrl": "https://github.com/callstack/react-native-paper/raw/master/LICENSE.md",
+        "parents": "example"
+    },
     "react-native-status-bar-height@2.6.0": {
         "licenses": "MIT",
         "repository": "https://github.com/ovr/react-native-status-bar-height",

@@ -1321,20 +1321,21 @@
   resolved "https://registry.yarnpkg.com/@pxblue/prettier-config/-/prettier-config-1.0.2.tgz#fb00503df6557b66c3d91d43c9101e614c35d2ec"
   integrity sha512-/3cLBoTjZs3kV1ATPA/Sp0tsL7XmlV/b8HW/qt0jqR/uP5+cdXL2YIhMXQngLRa7PhpSkEiRIYK5sl0rKsXTUg==
 
-"@pxblue/react-auth-shared@^3.0.0-beta.3":
-  version "3.0.0-beta.3"
-  resolved "https://registry.yarnpkg.com/@pxblue/react-auth-shared/-/react-auth-shared-3.0.0-beta.3.tgz#f9b8684a3e90f6fa9e19cba4131875c07a835390"
-  integrity sha512-SDyA/iCo7Up9YHzZdZumOnQAY+tt6cA+nq0WY1sW77vSPG7UgBAlpywrQ+x+ARqxll3kOS5vdRrNDXb3SQcg/g==
+"@pxblue/react-auth-shared@^3.0.0-beta.4":
+  version "3.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/@pxblue/react-auth-shared/-/react-auth-shared-3.0.0-beta.4.tgz#28cad54c900f4132c0c586f88f8df264a95ad35c"
+  integrity sha512-ZRM6aJAIRu+kLfqv9ICYdwjbcV2PERWopZJW5tbfiPWOyUgO8IV/+zpApu1qSRSiYLy95o+KGWD9/x5WsNlGSA==
 
-"@pxblue/react-native-components@^4.1.0":
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/@pxblue/react-native-components/-/react-native-components-4.1.0.tgz#51c90d69fe7d73597a746a7687218c4077df4d33"
-  integrity sha512-8H8ELv7XuqfRB4xsWVTXbRM9pmIpd0fFKX1SCyHVbspPWJGOqt5J6wBn1XRlrMDS2nGbJG5prUNMD4AMMc5PVA==
+"@pxblue/react-native-components@^4.1.1":
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/@pxblue/react-native-components/-/react-native-components-4.1.1.tgz#29555faf2a1680a7f3bc8c4f7dad4559a768abb8"
+  integrity sha512-iqnXnfIKvg9mrZgQ3deNJddQcEFrttq4Nkj4kjB0i9ZQ+rgCUcGAK9rxvvLGymT/szwXXkrycCEm8xN3zrnAgA==
   dependencies:
     "@pxblue/colors" "^3.0.0"
     color "^3.1.2"
     react-native-collapsible "^1.5.2"
     react-native-keyboard-aware-scroll-view "^0.8.0"
+    react-native-modal "^11.6.1"
     react-native-status-bar-height "^2.3.1"
 
 "@pxblue/types@^1.0.0":
@@ -7276,6 +7277,13 @@ react-is@^16.12.0, react-is@^16.13.0, react-is@^16.13.1, react-is@^16.7.0, react
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
+react-native-animatable@1.3.3:
+  version "1.3.3"
+  resolved "https://registry.yarnpkg.com/react-native-animatable/-/react-native-animatable-1.3.3.tgz#a13a4af8258e3bb14d0a9d839917e9bb9274ec8a"
+  integrity sha512-2ckIxZQAsvWn25Ho+DK3d1mXIgj7tITkrS4pYDvx96WyOttSvzzFeQnM2od0+FUMzILbdHDsDEqZvnz1DYNQ1w==
+  dependencies:
+    prop-types "^15.7.2"
+
 react-native-collapsible@^1.5.2:
   version "1.5.3"
   resolved "https://registry.yarnpkg.com/react-native-collapsible/-/react-native-collapsible-1.5.3.tgz#d6bc7274ae8f40f7688cca23ededa263e6c81c63"
@@ -7313,6 +7321,14 @@ react-native-keyboard-aware-scroll-view@^0.9.1:
   dependencies:
     prop-types "^15.6.2"
     react-native-iphone-x-helper "^1.0.3"
+
+react-native-modal@^11.6.1:
+  version "11.7.0"
+  resolved "https://registry.yarnpkg.com/react-native-modal/-/react-native-modal-11.7.0.tgz#6637d757eeac6eda85f7017a9dfdee0c0fe3a34c"
+  integrity sha512-0AeAugUrn12DaJK+k2XGmt8ZIUyWgl1nRdipfwHZDnzFSM8g1oqpf7rHxjOqhimHtmzSj4xJ//ZOn1DWe9aC5Q==
+  dependencies:
+    prop-types "^15.6.2"
+    react-native-animatable "1.3.3"
 
 react-native-paper@^4.7.2:
   version "4.7.2"

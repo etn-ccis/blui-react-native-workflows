@@ -45,12 +45,12 @@
         "typescript": "tsc --noEmit"
     },
     "dependencies": {
-        "@pxblue/react-auth-shared": "^3.0.0-beta.3",
+        "@pxblue/react-auth-shared": "^3.0.0-beta.4",
         "react-native-status-bar-height": "^2.5.0"
     },
     "peerDependencies": {
         "@pxblue/colors": "^3.0.0",
-        "@pxblue/react-native-components": "^4.1.0",
+        "@pxblue/react-native-components": "^4.1.1",
         "@react-native-community/viewpager": "~4.0.1",
         "@react-navigation/native": "^5.1.1",
         "@react-navigation/stack": "^5.2.3",
@@ -71,7 +71,7 @@
         "@pxblue/colors": "^2.0.0",
         "@pxblue/eslint-config": "^2.0.4",
         "@pxblue/prettier-config": "^1.0.2",
-        "@pxblue/react-native-components": "^4.1.0",
+        "@pxblue/react-native-components": "^4.1.1",
         "@react-native-async-storage/async-storage": "^1.14.1",
         "@react-native-community/bob": "^0.10.0",
         "@react-native-community/masked-view": "^0.1.7",

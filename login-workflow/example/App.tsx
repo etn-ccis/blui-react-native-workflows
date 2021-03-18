@@ -49,6 +49,7 @@ export const AuthUIConfiguration: React.FC = (props) => {
             //         Terms of Service
             //     </Button>
             // )}
+            // loginActions={(navigation: any): JSX.Element => <Button style={{}}>Log In With Google</Button>}
             // loginHeader={<SafeAreaView><H3 style={{ marginLeft: 20 }}>My Project</H3></SafeAreaView>}
             // projectImage={require('./src/images/eaton.png')}
             // enableResetPassword={false}
