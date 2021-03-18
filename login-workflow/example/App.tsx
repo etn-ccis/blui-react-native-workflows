@@ -37,7 +37,10 @@ export const AuthUIConfiguration: React.FC = (props) => {
             contactEmail={'something@email.com'}
             contactPhone={'1-800-123-4567'}
             contactPhoneLink={'1-800-123-4567'}
-            customAccountDetails={[CustomAccountDetails, CustomAccountDetailsTwo]}
+            customAccountDetails={[
+                { component: CustomAccountDetails },
+                { title: 'CustomTitle', instructions: 'Get your details in yo', component: CustomAccountDetailsTwo },
+            ]}
             // showCybersecurityBadge={false}
             // showContactSupport={false}
             // showRememberMe={false}

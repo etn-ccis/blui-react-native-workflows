@@ -48,9 +48,11 @@ import {
     useRegistrationUIActions,
     useRegistrationUIState,
     CustomAccountDetails,
+    CustomRegistrationForm,
     AccountDetailsFormProps,
 } from '@pxblue/react-auth-shared';
 import { CustomRegistrationDetailsGroup, RegistrationPage } from '../types';
+import { Instruction } from '../components/Instruction';
 
 /**
  * @ignore
@@ -227,7 +229,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
     // Page Definitions
     const customDetails = injectedUIContext.customAccountDetails || [];
     const FirstCustomPage: ComponentType<AccountDetailsFormProps> | null =
-        customDetails.length > 0 ? customDetails[0] : null;
+        customDetails.length > 0 && customDetails[0] ? customDetails[0].component : null;
     const RegistrationPages: RegistrationPage[] = [
         {
             name: 'CreateAccount',
@@ -335,28 +337,32 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
             // Custom injected pages
             customDetails
                 .slice(1)
-                .filter((item: ComponentType<AccountDetailsFormProps> | null) => item !== null)
-                // @ts-ignore there won't be any nulls at this point
-                .map((page: ComponentType<AccountDetailsFormProps>, i: number) => {
-                    const PageComponent = page;
+                .filter((item: CustomRegistrationForm | null) => item !== null)
+                // @ts-ignore there won't be any nulls after we filter them
+                .map((page: CustomRegistrationForm, i: number) => {
+                    const PageComponent = page.component;
                     return {
                         name: `CustomPage${i + 1}`,
-                        pageTitle: t('REGISTRATION.STEPS.ACCOUNT_DETAILS'),
+                        pageTitle: page.title || t('REGISTRATION.STEPS.ACCOUNT_DETAILS'),
                         pageBody: (
-                            <PageComponent
-                                key={`CustomDetailsPage_${i + 1}`}
-                                onDetailsChanged={(details: CustomAccountDetails | null, valid: boolean): void => {
-                                    setCustomAccountDetails({
-                                        ...customAccountDetails,
-                                        [i + 1]: { values: details || {}, valid },
-                                    });
-                                }}
-                                initialDetails={customAccountDetails?.[i + 1]?.values}
-                                onSubmit={
-                                    /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
-                                    customAccountDetails?.[i + 1]?.valid ? (): void => advancePage(1) : undefined
-                                }
-                            />
+                            <View key={`CustomDetailsPage_${i + 1}`}>
+                                {page.instructions && (
+                                    <Instruction text={page.instructions} style={{ marginHorizontal: 20 }} />
+                                )}
+                                <PageComponent
+                                    onDetailsChanged={(details: CustomAccountDetails | null, valid: boolean): void => {
+                                        setCustomAccountDetails({
+                                            ...customAccountDetails,
+                                            [i + 1]: { values: details || {}, valid },
+                                        });
+                                    }}
+                                    initialDetails={customAccountDetails?.[i + 1]?.values}
+                                    onSubmit={
+                                        /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
+                                        customAccountDetails?.[i + 1]?.valid ? (): void => advancePage(1) : undefined
+                                    }
+                                />
+                            </View>
                         ),
                         canGoForward: customAccountDetails ? customAccountDetails?.[i + 1]?.valid : false,
                         canGoBack: true,
