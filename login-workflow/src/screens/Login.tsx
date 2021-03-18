@@ -95,6 +95,7 @@ const makeStyles = (): Record<string, any> =>
         },
         securityBadge: {
             height: 60,
+            marginBottom: 20,
         },
     });
 
