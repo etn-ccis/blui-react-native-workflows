@@ -98,7 +98,7 @@ export const ProjectRegistrationUIActions: () => RegistrationUIActions = () => (
         validationCode: string,
         validationEmail?: string
     ): Promise<{ email: string; organizationName: string }> => {
-        const email = 'example@email.com';
+        const email = validationEmail || 'example@email.com';
         const organizationName = 'Acme Co.';
         const userInfo = { email, organizationName };
 

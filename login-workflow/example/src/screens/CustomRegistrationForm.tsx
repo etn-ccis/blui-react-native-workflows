@@ -6,22 +6,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 // Components
-import { View, StyleSheet, SafeAreaView, TextInput as ReactTextInput } from 'react-native';
+import { StyleSheet, TextInput as ReactTextInput } from 'react-native';
 import { TextInput } from '../components/TextInput';
-//  import { Instruction } from '../components/Instruction';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 // Hooks
 import { AccountDetailsFormProps } from '@pxblue/react-auth-shared';
-
-/**
- * @ignore
- */
-const makeContainerStyles = (): Record<string, any> => ({
-    mainContainer: {
-        flex: 1,
-    },
-});
 
 /**
  * @ignore
@@ -41,7 +30,6 @@ const makeStyles = (): Record<string, any> =>
  */
 export const CustomAccountDetails: React.FC<AccountDetailsFormProps> = (props) => {
     const styles = makeStyles();
-    const containerStyles = makeContainerStyles();
 
     const { onDetailsChanged, initialDetails, onSubmit } = props;
     const [country, setCountry] = useState(initialDetails ? initialDetails.country : '');
@@ -59,50 +47,40 @@ export const CustomAccountDetails: React.FC<AccountDetailsFormProps> = (props) =
     }, [currency, country]); // Do NOT include onDetailsChanged in the dependencies array here or you will run into an infinite loop of updates
 
     return (
-        <SafeAreaView>
-            <KeyboardAwareScrollView>
-                {/* <Instruction
-                     text={t('REGISTRATION.INSTRUCTIONS.ACCOUNT_DETAILS')}
-                     style={containerStyles.containerMargins}
-                 /> */}
+        <>
+            <TextInput
+                ref={countryRef}
+                label={'Country'}
+                value={country.toString()}
+                style={styles.inputMargin}
+                autoCapitalize={'sentences'}
+                returnKeyType={'next'}
+                onChangeText={(text: string): void => setCountry(text)}
+                onSubmitEditing={(): void => {
+                    goToCurrency();
+                }}
+                blurOnSubmit={true}
+            />
 
-                <View style={[containerStyles.mainContainer]}>
-                    <TextInput
-                        ref={countryRef}
-                        label={'Country'}
-                        value={country.toString()}
-                        style={styles.inputMargin}
-                        autoCapitalize={'sentences'}
-                        returnKeyType={'next'}
-                        onChangeText={(text: string): void => setCountry(text)}
-                        onSubmitEditing={(): void => {
-                            goToCurrency();
-                        }}
-                        blurOnSubmit={true}
-                    />
-
-                    <TextInput
-                        ref={currencyRef}
-                        label={'Currency'}
-                        value={currency.toString()}
-                        style={styles.inputMargin}
-                        autoCapitalize={'sentences'}
-                        returnKeyType={'next'}
-                        onChangeText={(text: string): void => setCurrency(text)}
-                        onSubmitEditing={(): void => {
-                            if (onSubmit) onSubmit();
-                        }}
-                        blurOnSubmit={false}
-                    />
-                </View>
-            </KeyboardAwareScrollView>
-        </SafeAreaView>
+            <TextInput
+                ref={currencyRef}
+                label={'Currency'}
+                value={currency.toString()}
+                style={styles.inputMargin}
+                autoCapitalize={'sentences'}
+                returnKeyType={'next'}
+                onChangeText={(text: string): void => setCurrency(text)}
+                onSubmitEditing={(): void => {
+                    if (onSubmit) onSubmit();
+                }}
+                blurOnSubmit={false}
+            />
+        </>
     );
 };
 
 export const CustomAccountDetailsTwo: React.FC<AccountDetailsFormProps> = (props) => {
     const styles = makeStyles();
-    const containerStyles = makeContainerStyles();
 
     const { onDetailsChanged, initialDetails, onSubmit } = props;
     const [company, setCompany] = useState(initialDetails ? initialDetails.company : '');
@@ -119,43 +97,34 @@ export const CustomAccountDetailsTwo: React.FC<AccountDetailsFormProps> = (props
     }, [company, role]); // Do NOT include onDetailsChanged in the dependencies array here or you will run into an infinite loop of updates
 
     return (
-        <SafeAreaView>
-            <KeyboardAwareScrollView>
-                {/* <Instruction
-                     text={t('REGISTRATION.INSTRUCTIONS.ACCOUNT_DETAILS')}
-                     style={containerStyles.containerMargins}
-                 /> */}
+        <>
+            <TextInput
+                ref={companyRef}
+                label={'Company'}
+                value={company.toString()}
+                style={styles.inputMargin}
+                autoCapitalize={'sentences'}
+                returnKeyType={'next'}
+                onChangeText={(text: string): void => setCompany(text)}
+                onSubmitEditing={(): void => {
+                    goToRole();
+                }}
+                blurOnSubmit={true}
+            />
 
-                <View style={[containerStyles.mainContainer, { margin: 20 }]}>
-                    <TextInput
-                        ref={companyRef}
-                        label={'Company'}
-                        value={company.toString()}
-                        style={styles.inputMargin}
-                        autoCapitalize={'sentences'}
-                        returnKeyType={'next'}
-                        onChangeText={(text: string): void => setCompany(text)}
-                        onSubmitEditing={(): void => {
-                            goToRole();
-                        }}
-                        blurOnSubmit={true}
-                    />
-
-                    <TextInput
-                        ref={roleRef}
-                        label={'Role'}
-                        value={role.toString()}
-                        style={styles.inputMargin}
-                        autoCapitalize={'sentences'}
-                        returnKeyType={'next'}
-                        onChangeText={(text: string): void => setRole(text)}
-                        onSubmitEditing={(): void => {
-                            if (onSubmit) onSubmit();
-                        }}
-                        blurOnSubmit={false}
-                    />
-                </View>
-            </KeyboardAwareScrollView>
-        </SafeAreaView>
+            <TextInput
+                ref={roleRef}
+                label={'Role'}
+                value={role.toString()}
+                style={styles.inputMargin}
+                autoCapitalize={'sentences'}
+                returnKeyType={'next'}
+                onChangeText={(text: string): void => setRole(text)}
+                onSubmitEditing={(): void => {
+                    if (onSubmit) onSubmit();
+                }}
+                blurOnSubmit={false}
+            />
+        </>
     );
 };

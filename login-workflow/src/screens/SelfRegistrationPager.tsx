@@ -345,24 +345,33 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                         name: `CustomPage${i + 1}`,
                         pageTitle: page.title || t('REGISTRATION.STEPS.ACCOUNT_DETAILS'),
                         pageBody: (
-                            <View key={`CustomDetailsPage_${i + 1}`}>
-                                {page.instructions && (
-                                    <Instruction text={page.instructions} style={{ marginHorizontal: 20 }} />
-                                )}
-                                <PageComponent
-                                    onDetailsChanged={(details: CustomAccountDetails | null, valid: boolean): void => {
-                                        setCustomAccountDetails({
-                                            ...customAccountDetails,
-                                            [i + 1]: { values: details || {}, valid },
-                                        });
-                                    }}
-                                    initialDetails={customAccountDetails?.[i + 1]?.values}
-                                    onSubmit={
-                                        /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
-                                        customAccountDetails?.[i + 1]?.valid ? (): void => advancePage(1) : undefined
-                                    }
-                                />
-                            </View>
+                            <SafeAreaView key={`CustomDetailsPage_${i + 1}`}>
+                                <KeyboardAwareScrollView>
+                                    {page.instructions && (
+                                        <Instruction text={page.instructions} style={{ marginHorizontal: 20 }} />
+                                    )}
+                                    <View style={{ flex: 1, marginHorizontal: 20 }}>
+                                        <PageComponent
+                                            onDetailsChanged={(
+                                                details: CustomAccountDetails | null,
+                                                valid: boolean
+                                            ): void => {
+                                                setCustomAccountDetails({
+                                                    ...customAccountDetails,
+                                                    [i + 1]: { values: details || {}, valid },
+                                                });
+                                            }}
+                                            initialDetails={customAccountDetails?.[i + 1]?.values}
+                                            onSubmit={
+                                                customAccountDetails?.[i + 1]?.valid
+                                                    ? /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
+                                                      (): void => advancePage(1)
+                                                    : undefined
+                                            }
+                                        />
+                                    </View>
+                                </KeyboardAwareScrollView>
+                            </SafeAreaView>
                         ),
                         canGoForward: customAccountDetails ? customAccountDetails?.[i + 1]?.valid : false,
                         canGoBack: true,
