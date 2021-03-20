@@ -19,6 +19,7 @@ import { /*Button,*/ Provider as ThemeProvider } from 'react-native-paper';
 // import { H3 } from '@pxblue/react-native-components';
 
 import * as PXBThemes from '@pxblue/react-native-themes';
+// import { CustomAccountDetails, CustomAccountDetailsTwo } from './src/screens/CustomRegistrationForm';
 // import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 // import { Terms } from './src/screens/Terms';
 
@@ -36,6 +37,10 @@ export const AuthUIConfiguration: React.FC = (props) => {
             contactEmail={'something@email.com'}
             contactPhone={'1-800-123-4567'}
             contactPhoneLink={'1-800-123-4567'}
+            // customAccountDetails={[
+            //     { component: CustomAccountDetails },
+            //     { title: 'Job Info', instructions: 'Enter your employment information below.', component: CustomAccountDetailsTwo },
+            // ]}
             // showCybersecurityBadge={false}
             // showContactSupport={false}
             // showRememberMe={false}
@@ -44,6 +49,7 @@ export const AuthUIConfiguration: React.FC = (props) => {
             //         Terms of Service
             //     </Button>
             // )}
+            // loginActions={(navigation: any): JSX.Element => <Button style={{}}>Log In With Google</Button>}
             // loginHeader={<SafeAreaView><H3 style={{ marginLeft: 20 }}>My Project</H3></SafeAreaView>}
             // projectImage={require('./src/images/eaton.png')}
             // enableResetPassword={false}
@@ -53,7 +59,7 @@ export const AuthUIConfiguration: React.FC = (props) => {
             //     backgroundImage: require('./src/images/eaton_stacked_logo.png'),
             //     // @ts-ignore
             //     backgroundColor: 'rgba(255,165,0,0.3)',
-            //     backgroundSize: 120,
+            //     backgroundSize: '100%',
             // }}
         >
             {props.children}
@@ -75,6 +81,7 @@ export const App: React.FC = () => {
                 <AuthUIConfiguration>
                     <AuthNavigationContainer
                         initialState={initialState}
+                        // initialRouteName={'Terms'}
                         ref={ref}
                         // @ts-ignore
                         // extraRoutes={[<Stack.Screen key={'Terms-Screen'} name="Terms" component={Terms} />]}

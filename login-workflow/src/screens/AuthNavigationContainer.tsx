@@ -52,6 +52,7 @@ type NavigationContainerComponentProps = React.ComponentProps<typeof NavigationC
  * };
  * ```
  *
+ * @param props.extraRoutes An array of routes to make accessible outside of the auth guard.
  * @param props.initialState Initial state object for the navigation tree.
  * @param props.initialRouteName Name of the default route to load in the navigator.
  * @param props.onStateChange Callback which is called with the latest navigation state when it changes.

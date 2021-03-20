@@ -95,6 +95,7 @@ const makeStyles = (): Record<string, any> =>
         },
         securityBadge: {
             height: 60,
+            marginBottom: 20,
         },
     });
 
@@ -124,6 +125,7 @@ export const Login: React.FC<LoginProps> = (props) => {
         showContactSupport = true,
         showRememberMe = true,
         enableResetPassword = true,
+        loginActions,
         loginFooter,
         loginHeader,
     } = useInjectedUIContext();
@@ -355,6 +357,7 @@ export const Login: React.FC<LoginProps> = (props) => {
                             style={{ marginTop: 44 }}
                             error={hasTransitError}
                             errorText={t('LOGIN.INCORRECT_CREDENTIALS')}
+                            onSubmitEditing={!EMAIL_REGEX.test(emailInput) || !passwordInput ? undefined : loginTapped}
                         />
 
                         <View style={[containerStyles.loginControls]}>
@@ -376,6 +379,8 @@ export const Login: React.FC<LoginProps> = (props) => {
                                 </View>
                             </View>
                         </View>
+                        {loginActions && typeof loginActions === 'function' && loginActions(navigation)}
+                        {loginActions && typeof loginActions !== 'function' && loginActions}
                         <View>
                             {enableResetPassword && (
                                 <Button

@@ -57,10 +57,12 @@ const makeStyles = (): Record<string, any> =>
  * Handle the change of any of the email inputs.
  *
  * @param onEmailChanged  Handle the change of any of the email inputs.
+ * @param onSubmit callback called when user submits on the last form field to advance the screen
  * @param theme (Optional) react-native-paper theme partial for custom styling.
  */
 type CreateAccountProps = {
     onEmailChanged(email: string): void;
+    onSubmit?: () => void;
     theme?: ReactNativePaper.Theme;
 };
 
@@ -101,6 +103,9 @@ export const CreateAccount: React.FC<CreateAccountProps> = (props) => {
                         onBlur={(): void => {
                             if (emailInput.length > 0 && !EMAIL_REGEX.test(emailInput)) setHasEmailFormatError(true);
                         }}
+                        onSubmitEditing={
+                            emailInput.length > 0 && EMAIL_REGEX.test(emailInput) ? props.onSubmit : undefined
+                        }
                     />
                 </View>
             </KeyboardAwareScrollView>

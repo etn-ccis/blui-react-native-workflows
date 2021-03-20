@@ -34,7 +34,7 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
         checkboxContainer: {
             height: 70,
             justifyContent: 'center',
-            alignSelf: 'flex-start',
+            alignSelf: 'stretch',
             marginLeft: 10,
         },
     });

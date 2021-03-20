@@ -126,7 +126,10 @@ export const ResetPasswordConfirm: React.FC<ResetPasswordConfirmProps> = (props)
             {spinner}
             {errorDialog}
             <KeyboardAwareScrollView>
-                <CreatePassword onPasswordChanged={setPassword} />
+                <CreatePassword
+                    onPasswordChanged={setPassword}
+                    onSubmit={canProgress() ? onResetPasswordTap : undefined}
+                />
             </KeyboardAwareScrollView>
 
             <View style={containerStyles.bottomButton}>

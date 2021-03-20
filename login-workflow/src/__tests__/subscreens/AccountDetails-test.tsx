@@ -33,9 +33,9 @@ describe('AccountDetails subScreen tested with enzyme', () => {
         expect(wrapper.find('Instruction')).toHaveLength(1);
     });
 
-    it('should render three TextInput components', () => {
+    it('should render two TextInput components', () => {
         const wrapper = shallow(baseXML());
-        expect(wrapper.find('TextInput')).toHaveLength(3);
+        expect(wrapper.find('TextInput')).toHaveLength(2);
     });
 
     it('test async useEffect update of onDetailsChanged returns AccountDetailInformation for good first and last name', async () => {
@@ -54,7 +54,7 @@ describe('AccountDetails subScreen tested with enzyme', () => {
             component.update();
         });
 
-        const accDetails: AccountDetailInformation = { firstName: 'First Name', lastName: 'Last Name', phone: '' };
+        const accDetails: AccountDetailInformation = { firstName: 'First Name', lastName: 'Last Name' };
 
         expect(component.find('TextInput').at(0).prop('value')).toEqual('First Name');
         expect(component.find('TextInput').at(4).prop('value')).toEqual('Last Name');

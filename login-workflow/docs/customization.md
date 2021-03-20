@@ -5,6 +5,7 @@
 The Login screen supports some simple customization (via the `AuthUIContextProvider`) to suit the needs of your application.
 
 -   You can pass in a custom header that will appear above the login form using the `loginHeader` prop. By default, we render your `productImage`.
+-   You can pass in custom content that will appear below the login button and above the registration links with any content you like (such as buttons for third-party login, etc.) using the `loginActions` prop.
 -   You can pass in a custom footer that will appear below the login form and registration links with any content you like (such as links to Privacy Policy, Terms of Service, etc.) using the `loginFooter` prop.
 -   You can customize the background of the login screen using the `background` prop including the color, tile image, etc.
 -   You can disable and hide various aspects of the workflow using the following props: `enableInviteRegistration`, `enableResetPassword`, `showContactSupport`, `showCybersecurityBadge`, `showRememberMe`, `showSelfRegistration`.
@@ -36,7 +37,7 @@ const Stack = createStackNavigator();
 
 For more details, read the [full API details](https://github.com/pxblue/react-auth-shared/tree/master/docs/API.md). 
 
-<!--## Registration Details
+## Registration Details
 
 By default, the user registration piece of the workflow will capture the minimum information that is required (i.e., First Name, Last Name, and email address).
 
@@ -44,15 +45,19 @@ Many applications will need to collect additional information about their users 
 
 ### Syntax
 
-The `customAccountDetails` prop takes an array of components that you would like to insert into the registration flow.
+The `customAccountDetails` prop takes an array of `CustomRegistrationForm`s describing components that you would like to insert into the registration flow (title, instructions, and form component).
 
-The first item in the array will render below the default fields (first and last name). Subsequent items will be rendered on new pages (one page per item in the array). If you do not want to render your custom elements below the default fields, you can pass `null` as the first item in the array.
+The first form in the array will render below the default fields (first and last name). Subsequent forms will be rendered on new pages (one page per item in the array). If you do not want to render your custom elements below the default fields, you can pass `null` as the first item in the array.
 
 ```tsx
 import { CustomDetailsScreen, CustomDetailsScreenTwo } from './path/to/file';
 ...
 <AuthUIContextProvider
-    customAccountDetails={[null, CustomDetailsScreen, CustomDetailsScreenTwo]}
+    customAccountDetails={[
+        null, 
+        { component: CustomDetailsScreen}, 
+        { title: 'Payment Info', instructions: 'Enter your credit card information below', component: CustomDetailsScreenTwo}
+    ]}
 />
 ```
 
@@ -67,4 +72,3 @@ In order to work correctly, custom form components that you pass into the workfl
 You can see a sample implementation of the custom details forms in the `/example` project.
 
 > **NOTE:**  If you are using a useEffect hook to call the `onDetailsChanged` function, you must make sure NOT to include the `onDetailsChanged` prop in your list of dependencies. This will cause an infinite update loop.
--->
