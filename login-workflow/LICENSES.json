@@ -5,6 +5,12 @@
         "licenseUrl": "https://github.com/pxblue/icons",
         "parents": "example"
     },
+    "@pxblue/react-auth-shared@3.0.0": {
+        "licenses": "BSD-3-Clause",
+        "repository": "https://github.com/pxblue/react-auth-shared/tree/master",
+        "licenseUrl": "https://github.com/pxblue/react-auth-shared/tree/master/raw/master/LICENSE.md",
+        "parents": "@pxblue/react-native-auth-workflow"
+    },
     "@pxblue/react-native-components@4.0.0": {
         "licenses": "BSD-3-Clause",
         "repository": "https://github.com/pxblue/react-native-component-library",
@@ -17,10 +23,58 @@
         "licenseUrl": "https://github.com/pxblue/themes/raw/master/LICENSE",
         "parents": "example"
     },
+    "@react-navigation/native@5.8.9": {
+        "licenses": "MIT",
+        "repository": "https://github.com/react-navigation/react-navigation",
+        "licenseUrl": "https://github.com/react-navigation/react-navigation/raw/master/LICENSE",
+        "parents": "example"
+    },
+    "@react-navigation/stack@5.12.6": {
+        "licenses": "MIT",
+        "repository": "https://github.com/react-navigation/react-navigation",
+        "licenseUrl": "https://github.com/react-navigation/react-navigation/raw/master/LICENSE",
+        "parents": "example"
+    },
+    "date-fns@2.16.1": {
+        "licenses": "MIT",
+        "repository": "https://github.com/date-fns/date-fns",
+        "licenseUrl": "https://github.com/date-fns/date-fns/raw/master/LICENSE.md",
+        "parents": "example"
+    },
+    "i18next@19.8.4": {
+        "licenses": "MIT",
+        "repository": "https://github.com/i18next/i18next",
+        "licenseUrl": "https://github.com/i18next/i18next/raw/master/LICENSE",
+        "parents": "example"
+    },
+    "react-i18next@11.7.3": {
+        "licenses": "MIT",
+        "repository": "https://github.com/i18next/react-i18next",
+        "licenseUrl": "https://github.com/i18next/react-i18next/raw/master/LICENSE",
+        "parents": "example"
+    },
+    "react-native-gesture-handler@1.8.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/software-mansion/react-native-gesture-handler",
+        "licenseUrl": "https://github.com/software-mansion/react-native-gesture-handler/raw/master/LICENSE",
+        "parents": "example"
+    },
     "react-native-paper@4.4.0": {
         "licenses": "MIT",
         "repository": "https://github.com/callstack/react-native-paper",
         "licenseUrl": "https://github.com/callstack/react-native-paper/raw/master/LICENSE.md",
+        "parents": "example"
+    },
+    "react-native-safe-area-context@2.0.3": {
+        "licenses": "MIT",
+        "repository": "https://github.com/th3rdwave/react-native-safe-area-context",
+        "licenseUrl": "https://github.com/th3rdwave/react-native-safe-area-context/raw/master/LICENSE",
+        "parents": "example"
+    },
+    "react-native-screens@2.15.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/kmagiera/react-native-screens",
+        "licenseUrl": "https://github.com/kmagiera/react-native-screens/raw/master/LICENSE",
         "parents": "example"
     },
     "react-native-status-bar-height@2.6.0": {
@@ -28,5 +82,23 @@
         "repository": "https://github.com/ovr/react-native-status-bar-height",
         "licenseUrl": "https://github.com/ovr/react-native-status-bar-height/raw/master/LICENSE",
         "parents": "@pxblue/react-native-auth-workflow"
+    },
+    "react-native-vector-icons@7.1.0": {
+        "licenses": "MIT",
+        "repository": "https://github.com/oblador/react-native-vector-icons",
+        "licenseUrl": "https://github.com/oblador/react-native-vector-icons/raw/master/LICENSE",
+        "parents": "example"
+    },
+    "react-native-webview@10.10.2": {
+        "licenses": "MIT",
+        "repository": "https://github.com/react-native-community/react-native-webview",
+        "licenseUrl": "https://github.com/react-native-community/react-native-webview/raw/master/LICENSE",
+        "parents": "example"
+    },
+    "react-native@0.63.3": {
+        "licenses": "MIT",
+        "repository": "https://github.com/facebook/react-native",
+        "licenseUrl": "https://github.com/facebook/react-native/raw/master/LICENSE",
+        "parents": "example"
     }
 }

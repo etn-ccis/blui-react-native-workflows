@@ -13,6 +13,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 -   Phone number from the default fields collected during registration
     - If you need to collect phone number, you must now do it through a custom Account Details form
+-   Dependency on `highcharts` — highcharts translation utilities have moved to [@pxblue/highcharts](https://www.npmjs.com/package/@pxblue/highcharts).
+
+### Changed
+-   Updated from deprecated `@react-native-community/viewpager` to `react-native-pager-view`. Update your peer dependencies accordingly.
 
 ## v2.0.0
 

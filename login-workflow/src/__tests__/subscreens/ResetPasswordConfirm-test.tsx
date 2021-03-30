@@ -12,6 +12,7 @@ import renderer from 'react-test-renderer';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import 'react-native-gesture-handler';
+import { Provider } from 'react-native-paper';
 const Stack = createStackNavigator();
 
 // mock hooks
@@ -37,17 +38,19 @@ jest.mock('@pxblue/react-auth-shared', () => ({
 describe('ResetPasswordConfirm subScreen tested with enzyme', () => {
     function baseXML(): JSX.Element {
         return (
-            <NavigationContainer>
-                <Stack.Navigator>
-                    <Stack.Screen
-                        name="ResetPasswordConfirm"
-                        component={ResetPasswordConfirm}
-                        options={(): { header: () => JSX.Element } => ({
-                            header: (): JSX.Element => <></>,
-                        })}
-                    />
-                </Stack.Navigator>
-            </NavigationContainer>
+            <Provider>
+                <NavigationContainer>
+                    <Stack.Navigator>
+                        <Stack.Screen
+                            name="ResetPasswordConfirm"
+                            component={ResetPasswordConfirm}
+                            options={(): { header: () => JSX.Element } => ({
+                                header: (): JSX.Element => <></>,
+                            })}
+                        />
+                    </Stack.Navigator>
+                </NavigationContainer>
+            </Provider>
         );
     }
 

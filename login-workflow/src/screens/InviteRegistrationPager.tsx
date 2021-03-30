@@ -22,7 +22,7 @@ import { ExistingAccountComplete } from '../subScreens/ExistingAccountComplete';
 // Components
 import { View, StyleSheet, SafeAreaView, BackHandler } from 'react-native';
 import { useTheme } from 'react-native-paper';
-import ViewPager from '@react-native-community/viewpager';
+import ViewPager from 'react-native-pager-view';
 import { CloseHeader } from '../components/CloseHeader';
 import { PageIndicator } from '../components/PageIndicator';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
