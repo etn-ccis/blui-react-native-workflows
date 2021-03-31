@@ -38,7 +38,7 @@
         "prettier": "prettier \"**/**.{tsx,ts,js,json}\" --write",
         "prettier:check": "prettier \"**/**.{tsx,ts,js,json}\" --check",
         "build": "bob build",
-        "generate:licenses": "npm-license-crawler -onlyDirectDependencies -json LICENSES.json",
+        "generate:licenses": "npm-license-crawler -onlyDirectDependencies --exclude ./shared-auth --exclude ./example -json LICENSES.json",
         "validate": "yarn prettier && yarn lint && yarn typescript && yarn test",
         "precommit": "yarn validate && yarn generate:licenses",
         "update:submodule": "git submodule update --remote",
