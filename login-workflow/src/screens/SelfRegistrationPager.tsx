@@ -3,7 +3,7 @@
  * @module Screens
  */
 
-import React, { useEffect, useCallback, useState } from 'react';
+import React, { useEffect, useCallback, useState, ComponentType } from 'react';
 
 // Nav
 import { useNavigation, useRoute } from '@react-navigation/native';
@@ -26,7 +26,7 @@ import { ExistingAccountComplete } from '../subScreens/ExistingAccountComplete';
 
 // Components
 import { View, StyleSheet, SafeAreaView, BackHandler } from 'react-native';
-import ViewPager from '@react-native-community/viewpager';
+import ViewPager from 'react-native-pager-view';
 import { CloseHeader } from '../components/CloseHeader';
 import { PageIndicator } from '../components/PageIndicator';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -47,7 +47,12 @@ import {
     useInjectedUIContext,
     useRegistrationUIActions,
     useRegistrationUIState,
+    CustomAccountDetails,
+    CustomRegistrationForm,
+    AccountDetailsFormProps,
 } from '@pxblue/react-auth-shared';
+import { CustomRegistrationDetailsGroup, RegistrationPage } from '../types';
+import { Instruction } from '../components/Instruction';
 
 /**
  * @ignore
@@ -113,18 +118,6 @@ type SelfRegistrationPagerProps = {
     theme?: ReactNativePaper.Theme;
 };
 
-/* eslint-disable @typescript-eslint/naming-convention */
-enum Pages {
-    CreateAccount = 0,
-    Eula,
-    VerifyEmail,
-    CreatePassword,
-    AccountDetails,
-    Complete,
-    __LENGTH,
-}
-/* eslint-enable @typescript-eslint/naming-convention */
-
 /**
  * Pager controlling the user self registration screen flow.
  * If the user taps on a deep link they will be taken
@@ -132,30 +125,35 @@ enum Pages {
  * @category Component
  */
 export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (props) => {
-    const theme = useTheme(props.theme);
     const { t } = useLanguageLocale();
-
-    const [eulaAccepted, setEulaAccepted] = useState(false);
-    const [password, setPassword] = useState('');
-    const [accountDetails, setAccountDetails] = useState<AccountDetailInformationScreen | null>(null);
-    // const [organization] = useState<string>(t('REGISTRATION.UNKNOWN_ORGANIZATION'));
-    const [eulaContent, setEulaContent] = useState<string>();
-    const [accountAlreadyExists, setAccountAlreadyExists] = useState<boolean>(false);
-    const [hasAcknowledgedError, setHasAcknowledgedError] = useState(false);
-
-    const [currentPage, setCurrentPage] = useState(0);
-
     const navigation = useNavigation();
-    const viewPager = React.createRef<ViewPager>();
     const registrationActions = useRegistrationUIActions();
     const registrationState = useRegistrationUIState();
     const injectedUIContext = useInjectedUIContext();
+    const theme = useTheme(props.theme);
+
+    // Styling
+    const containerStyles = makeContainerStyles(theme);
+    const styles = makeStyles();
+
+    // Local state
+    const [eulaAccepted, setEulaAccepted] = useState(false);
+    const [password, setPassword] = useState('');
+    const [accountDetails, setAccountDetails] = useState<AccountDetailInformationScreen | null>(null);
+    const [customAccountDetails, setCustomAccountDetails] = useState<CustomRegistrationDetailsGroup | null>({});
+    const [eulaContent, setEulaContent] = useState<string>();
+    const [accountAlreadyExists, setAccountAlreadyExists] = useState<boolean>(false);
+    const [hasAcknowledgedError, setHasAcknowledgedError] = useState(false);
+    const [currentPage, setCurrentPage] = useState(0);
+
+    const viewPager = React.createRef<ViewPager>();
 
     const route = useRoute();
     const routeParams = route.params as SelfRegistrationPagerParams | undefined;
     const [verificationCode, setVerificationCode] = React.useState<string>(routeParams?.code ?? '');
     const [email, setEmail] = React.useState(routeParams?.email ?? '');
 
+    // pre-populate values from the route params
     useEffect(() => {
         if (typeof routeParams?.code === 'string') {
             setVerificationCode(routeParams.code);
@@ -171,22 +169,6 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
     const hasCodeRequestTransitError = codeRequestTransit.transitErrorMessage !== null;
     const codeRequestTransitErrorMessage = codeRequestTransit.transitErrorMessage ?? t('MESSAGES.REQUEST_ERROR');
     const codeRequestSuccess = codeRequestTransit.transitSuccess;
-    // If there is a code and it is not confirmed, go to the verify screen
-    useEffect((): void => {
-        if (verificationCode && !codeRequestSuccess) {
-            setCurrentPage(Pages.VerifyEmail);
-        }
-    }, [codeRequestSuccess, verificationCode]);
-
-    const requestCode = useCallback(async (): Promise<void> => {
-        registrationActions.dispatch(RegistrationActions.requestRegistrationCodeReset());
-        setHasAcknowledgedError(false);
-        try {
-            await registrationActions.actions.requestRegistrationCode(email);
-        } catch {
-            // do nothing
-        }
-    }, [registrationActions, setHasAcknowledgedError, email]);
 
     // Network state (registration)
     const registrationTransit = registrationState.inviteRegistration.registrationTransit;
@@ -194,18 +176,6 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
     const hasRegistrationTransitError = registrationTransit.transitErrorMessage !== null;
     const registrationTransitErrorMessage = registrationTransit.transitErrorMessage ?? t('MESSAGES.REQUEST_ERROR');
     const registrationSuccess = registrationTransit.transitSuccess;
-    useEffect(() => {
-        if (currentPage === Pages.AccountDetails && registrationSuccess) {
-            setCurrentPage(Pages.Complete);
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [registrationSuccess]);
-    useEffect(() => {
-        if (currentPage === Pages.Eula && codeRequestSuccess) {
-            setCurrentPage(Pages.VerifyEmail);
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [codeRequestSuccess]);
 
     // Network state (invite code validation)
     const isValidationInTransit = registrationState.inviteRegistration.validationTransit.transitInProgress;
@@ -213,20 +183,9 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
     const hasValidationTransitError =
         registrationState.inviteRegistration.validationTransit.transitErrorMessage !== null;
     const validationSuccess = registrationState.inviteRegistration.validationTransit.transitSuccess;
-    const validateCode = useCallback(async (): Promise<void> => {
-        setHasAcknowledgedError(false);
-        try {
-            const registrationComplete = await registrationActions.actions.validateUserRegistrationRequest(
-                verificationCode,
-                email
-            );
-            if (registrationComplete) {
-                setAccountAlreadyExists(true);
-            }
-        } catch {
-            // do nothing
-        }
-    }, [setHasAcknowledgedError, registrationActions, verificationCode, email, setAccountAlreadyExists]);
+
+    // Network state (loading eula)
+    const loadEulaTransitErrorMessage = registrationState.eulaTransit.transitErrorMessage;
 
     // Reset registration and validation state on dismissal
     useEffect(() => {
@@ -246,21 +205,255 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [hasAcknowledgedError]);
 
+    const loadAndCacheEula = async (): Promise<void> => {
+        if (!eulaContent) {
+            try {
+                const eulaText = await registrationActions.actions.loadEULA(i18n.language);
+                setEulaContent(eulaText);
+            } catch {
+                // do nothing
+            }
+        }
+    };
+
+    const requestCode = useCallback(async (): Promise<void> => {
+        registrationActions.dispatch(RegistrationActions.requestRegistrationCodeReset());
+        setHasAcknowledgedError(false);
+        try {
+            await registrationActions.actions.requestRegistrationCode(email);
+        } catch {
+            // do nothing
+        }
+    }, [registrationActions, setHasAcknowledgedError, email]);
+
+    // Page Definitions
+    const customDetails = injectedUIContext.customAccountDetails || [];
+    const FirstCustomPage: ComponentType<AccountDetailsFormProps> | null =
+        customDetails.length > 0 && customDetails[0] ? customDetails[0].component : null;
+    const RegistrationPages: RegistrationPage[] = [
+        {
+            name: 'CreateAccount',
+            pageTitle: t('REGISTRATION.STEPS.CREATE_ACCOUNT'),
+            pageBody: (
+                <CreateAccountScreen
+                    key={'CreateAccountPage'}
+                    onEmailChanged={setEmail}
+                    /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
+                    onSubmit={(): void => advancePage(1)}
+                />
+            ),
+            canGoForward: email.length > 0,
+            canGoBack: true,
+        },
+        {
+            name: 'Eula',
+            pageTitle: t('REGISTRATION.STEPS.LICENSE'),
+            pageBody: (
+                <EulaScreen
+                    key={'EulaPage'}
+                    eulaAccepted={eulaAccepted}
+                    onEulaChanged={setEulaAccepted}
+                    loadEula={loadAndCacheEula}
+                    htmlEula={injectedUIContext.htmlEula ?? false}
+                    eulaError={loadEulaTransitErrorMessage}
+                    eulaContent={eulaContent}
+                />
+            ),
+            canGoForward: eulaAccepted,
+            canGoBack: false,
+        },
+        {
+            name: 'VerifyEmail',
+            pageTitle: t('REGISTRATION.STEPS.VERIFY_EMAIL'),
+            pageBody: (
+                <VerifyEmailScreen
+                    key={'VerifyEmailPage'}
+                    initialCode={verificationCode}
+                    onVerifyCodeChanged={setVerificationCode}
+                    onResendVerificationEmail={(): void => {
+                        void requestCode();
+                    }}
+                    /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
+                    onSubmit={(): void => advancePage(1)}
+                />
+            ),
+            canGoForward: verificationCode.length > 0,
+            canGoBack: false,
+        },
+        {
+            name: 'CreatePassword',
+            pageTitle: t('REGISTRATION.STEPS.PASSWORD'),
+            pageBody: (
+                <KeyboardAwareScrollView key={'CreatePasswordPage'} contentContainerStyle={[containerStyles.fullFlex]}>
+                    <CreatePasswordScreen
+                        onPasswordChanged={setPassword}
+                        /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
+                        onSubmit={(): void => advancePage(1)}
+                    />
+                </KeyboardAwareScrollView>
+            ),
+            canGoForward: password.length > 0,
+            canGoBack: false,
+        },
+        {
+            name: 'AccountDetails',
+            pageTitle: t('REGISTRATION.STEPS.ACCOUNT_DETAILS'),
+            pageBody: (
+                <AccountDetailsScreen
+                    key={'AccountDetailsPage'}
+                    onDetailsChanged={setAccountDetails}
+                    onSubmit={
+                        FirstCustomPage
+                            ? (): void => {
+                                  /* TODO Focus first field in custom page */
+                              }
+                            : accountDetails !== null // && accountDetails.valid
+                            ? /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
+                              (): void => advancePage(1)
+                            : undefined
+                    }
+                >
+                    {FirstCustomPage && (
+                        <FirstCustomPage
+                            onDetailsChanged={(details: CustomAccountDetails | null, valid: boolean): void => {
+                                setCustomAccountDetails({
+                                    ...(customAccountDetails || {}),
+                                    0: { values: details || {}, valid },
+                                });
+                            }}
+                            initialDetails={customAccountDetails?.[0]?.values}
+                            /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
+                            onSubmit={customAccountDetails?.[0]?.valid ? (): void => advancePage(1) : undefined}
+                        />
+                    )}
+                </AccountDetailsScreen>
+            ),
+            canGoForward: accountDetails !== null, // &&
+            // accountDetails.valid,
+            canGoBack: true,
+        },
+    ]
+        .concat(
+            // Custom injected pages
+            customDetails
+                .slice(1)
+                .filter((item: CustomRegistrationForm | null) => item !== null)
+                // @ts-ignore there won't be any nulls after we filter them
+                .map((page: CustomRegistrationForm, i: number) => {
+                    const PageComponent = page.component;
+                    return {
+                        name: `CustomPage${i + 1}`,
+                        pageTitle: page.title || t('REGISTRATION.STEPS.ACCOUNT_DETAILS'),
+                        pageBody: (
+                            <SafeAreaView key={`CustomDetailsPage_${i + 1}`}>
+                                <KeyboardAwareScrollView>
+                                    {page.instructions && (
+                                        <Instruction text={page.instructions} style={{ marginHorizontal: 20 }} />
+                                    )}
+                                    <View style={{ flex: 1, marginHorizontal: 20 }}>
+                                        <PageComponent
+                                            onDetailsChanged={(
+                                                details: CustomAccountDetails | null,
+                                                valid: boolean
+                                            ): void => {
+                                                setCustomAccountDetails({
+                                                    ...customAccountDetails,
+                                                    [i + 1]: { values: details || {}, valid },
+                                                });
+                                            }}
+                                            initialDetails={customAccountDetails?.[i + 1]?.values}
+                                            onSubmit={
+                                                customAccountDetails?.[i + 1]?.valid
+                                                    ? /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
+                                                      (): void => advancePage(1)
+                                                    : undefined
+                                            }
+                                        />
+                                    </View>
+                                </KeyboardAwareScrollView>
+                            </SafeAreaView>
+                        ),
+                        canGoForward: customAccountDetails ? customAccountDetails?.[i + 1]?.valid : false,
+                        canGoBack: true,
+                    };
+                })
+        )
+        .concat([
+            {
+                name: 'Complete',
+                pageTitle: t('REGISTRATION.STEPS.COMPLETE'),
+                pageBody: (
+                    <RegistrationCompleteScreen
+                        key={'RegistrationCompletePage'}
+                        firstName={accountDetails?.firstName ?? ''}
+                        lastName={accountDetails?.lastName ?? ''}
+                        email={registrationState.inviteRegistration.email ?? t('REGISTRATION.UNKNOWN_EMAIL')}
+                        organization={
+                            registrationState.inviteRegistration.organizationName ??
+                            t('REGISTRATION.UNKNOWN_ORGANIZATION')
+                        }
+                    />
+                ),
+                canGoForward: true,
+                canGoBack: false,
+            },
+        ]);
+    const isLastStep = currentPage === RegistrationPages.length - 1;
+    const isFirstStep = currentPage === 0;
+    const CompletePage = RegistrationPages.length - 1;
+    const EulaPage = RegistrationPages.findIndex((item) => item.name === 'Eula');
+    const VerifyEmailPage = RegistrationPages.findIndex((item) => item.name === 'VerifyEmail');
+    const CreatePasswordPage = RegistrationPages.findIndex((item) => item.name === 'CreatePassword');
+
+    // If there is a code and it is not confirmed, go to the verify screen
+    useEffect((): void => {
+        if (verificationCode && !codeRequestSuccess) {
+            setCurrentPage(VerifyEmailPage);
+        }
+    }, [codeRequestSuccess, verificationCode, VerifyEmailPage]);
+
     useEffect(() => {
-        if (currentPage === Pages.VerifyEmail && validationSuccess) {
-            setCurrentPage(Pages.CreatePassword);
+        if (currentPage === RegistrationPages.length - 2 && registrationSuccess) {
+            setCurrentPage(CompletePage);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [registrationSuccess]);
+
+    useEffect(() => {
+        if (currentPage === EulaPage && codeRequestSuccess) {
+            setCurrentPage(VerifyEmailPage);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [codeRequestSuccess]);
+
+    const validateCode = useCallback(async (): Promise<void> => {
+        setHasAcknowledgedError(false);
+        try {
+            const registrationComplete = await registrationActions.actions.validateUserRegistrationRequest(
+                verificationCode,
+                email
+            );
+            if (registrationComplete) {
+                setAccountAlreadyExists(true);
+            }
+        } catch {
+            // do nothing
+        }
+    }, [setHasAcknowledgedError, registrationActions, verificationCode, email, setAccountAlreadyExists]);
+
+    useEffect(() => {
+        if (currentPage === VerifyEmailPage && validationSuccess) {
+            setCurrentPage(CreatePasswordPage);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [validationSuccess]);
 
-    // Network state (loading eula)
-    const loadEulaTransitErrorMessage = registrationState.eulaTransit.transitErrorMessage;
     // Spinner - shows if either of registration of code validation are in progress
     const spinner = registrationIsInTransit || isValidationInTransit || codeRequestIsInTransit ? <Spinner /> : <></>;
 
     // View pager
     useEffect(() => {
-        if (currentPage === Pages.Complete) {
+        if (currentPage === CompletePage) {
             // eslint-disable-next-line no-unused-expressions
             viewPager?.current?.setPageWithoutAnimation(currentPage);
         } else {
@@ -269,10 +462,6 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentPage, viewPager, registrationSuccess]);
-
-    // Styling
-    const containerStyles = makeContainerStyles(theme);
-    const styles = makeStyles();
 
     // Network state (loading eula)
     const errorBodyText =
@@ -293,28 +482,20 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
             }}
         />
     );
-    const loadAndCacheEula = async (): Promise<void> => {
-        if (!eulaContent) {
-            try {
-                const eulaText = await registrationActions.actions.loadEULA(i18n.language);
-                setEulaContent(eulaText);
-            } catch {
-                // do nothing
-            }
-        }
-    };
-
-    // Pages
-    const isLastStep = currentPage === Pages.__LENGTH - 1;
-    const isFirstStep = currentPage === 0;
 
     const attemptRegistration = useCallback(async (): Promise<void> => {
         setHasAcknowledgedError(false);
+
+        let flattenedDetails = {};
+        Object.keys(customAccountDetails || {}).forEach((key) => {
+            flattenedDetails = { ...flattenedDetails, ...(customAccountDetails || {})[parseInt(key, 10)].values };
+        });
+
         try {
             await registrationActions.actions.completeRegistration(
                 {
                     password: password,
-                    accountDetails: accountDetails ?? emptyAccountDetailInformation,
+                    accountDetails: { ...(accountDetails ?? emptyAccountDetailInformation), ...flattenedDetails },
                 },
                 verificationCode,
                 email
@@ -322,41 +503,25 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
         } catch {
             // do nothing
         }
-    }, [setHasAcknowledgedError, registrationActions, password, accountDetails, verificationCode, email]);
+    }, [
+        setHasAcknowledgedError,
+        registrationActions,
+        password,
+        accountDetails,
+        customAccountDetails,
+        verificationCode,
+        email,
+    ]);
 
-    const canProgress = useCallback((): boolean => {
-        switch (currentPage) {
-            case Pages.CreateAccount:
-                return email.length > 0;
-            case Pages.Eula:
-                return eulaAccepted;
-            case Pages.VerifyEmail:
-                return verificationCode.length === 6;
-            case Pages.CreatePassword:
-                return password.length > 0;
-            case Pages.AccountDetails:
-                return accountDetails !== null;
-            case Pages.Complete:
-                return true;
-            default:
-                return false;
-        }
-    }, [currentPage, email, eulaAccepted, verificationCode, password, accountDetails]);
-
-    const canGoBackProgress = useCallback((): boolean => {
-        switch (currentPage) {
-            case Pages.VerifyEmail:
-                return false;
-            case Pages.CreateAccount:
-                return false;
-            case Pages.CreatePassword:
-                return false;
-            case Pages.Complete:
-                return false;
-            default:
-                return true;
-        }
-    }, [currentPage]);
+    // Screen transition logic
+    const canProgress = useCallback((): boolean => RegistrationPages[currentPage].canGoForward ?? false, [
+        RegistrationPages,
+        currentPage,
+    ]);
+    const canGoBackProgress = useCallback((): boolean => RegistrationPages[currentPage].canGoBack ?? true, [
+        RegistrationPages,
+        currentPage,
+    ]);
 
     const advancePage = useCallback(
         (delta = 0): void => {
@@ -369,17 +534,22 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
             } else {
                 // If this is the last user-entry step of the invite flow, it is time to make a network call
                 // Check > 0 so advancing backwards does not risk going into the completion block
-                if (currentPage === Pages.AccountDetails && !registrationSuccess && canProgress() && delta > 0) {
+                if (
+                    currentPage === RegistrationPages.length - 2 &&
+                    !registrationSuccess &&
+                    canProgress() &&
+                    delta > 0
+                ) {
                     void attemptRegistration();
                 } else if (
-                    currentPage === Pages.Eula &&
+                    currentPage === EulaPage &&
                     !codeRequestIsInTransit &&
                     canProgress() &&
                     (delta as number) > 0
                 ) {
                     void requestCode();
                 } else if (
-                    currentPage === Pages.VerifyEmail &&
+                    currentPage === VerifyEmailPage &&
                     !isValidationInTransit &&
                     canProgress() &&
                     (delta as number) > 0
@@ -402,6 +572,9 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
             registrationSuccess,
             requestCode,
             validateCode,
+            EulaPage,
+            RegistrationPages.length,
+            VerifyEmailPage,
         ]
     );
 
@@ -427,24 +600,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentPage]);
 
-    const pageTitle = (): string => {
-        switch (currentPage) {
-            case Pages.CreateAccount:
-                return t('REGISTRATION.STEPS.CREATE_ACCOUNT');
-            case Pages.Eula:
-                return t('REGISTRATION.STEPS.LICENSE');
-            case Pages.VerifyEmail:
-                return t('REGISTRATION.STEPS.VERIFY_EMAIL');
-            case Pages.CreatePassword:
-                return t('REGISTRATION.STEPS.PASSWORD');
-            case Pages.AccountDetails:
-                return t('REGISTRATION.STEPS.ACCOUNT_DETAILS');
-            case Pages.Complete:
-                return t('REGISTRATION.STEPS.COMPLETE');
-            default:
-                return '';
-        }
-    };
+    const pageTitle = (): string => RegistrationPages[currentPage].pageTitle || '';
 
     let buttonArea: JSX.Element;
     if (isLastStep) {
@@ -470,7 +626,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                             onPress={(): void => advancePage(-1)}
                         />
                     </View>
-                    <PageIndicator currentPage={currentPage} totalPages={Pages.__LENGTH} />
+                    <PageIndicator currentPage={currentPage} totalPages={RegistrationPages.length} />
                     <View style={{ flex: 1 }}>
                         <ToggleButton
                             text={t('ACTIONS.NEXT')}
@@ -497,35 +653,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                     transitionStyle="scroll"
                     style={{ flex: 1 }}
                 >
-                    <CreateAccountScreen onEmailChanged={setEmail} />
-                    <EulaScreen
-                        eulaAccepted={eulaAccepted}
-                        onEulaChanged={setEulaAccepted}
-                        loadEula={loadAndCacheEula}
-                        htmlEula={injectedUIContext.htmlEula ?? false}
-                        eulaError={loadEulaTransitErrorMessage}
-                        eulaContent={eulaContent}
-                    />
-                    <VerifyEmailScreen
-                        initialCode={verificationCode}
-                        onVerifyCodeChanged={setVerificationCode}
-                        onResendVerificationEmail={(): void => {
-                            void requestCode();
-                        }}
-                    />
-                    <KeyboardAwareScrollView contentContainerStyle={[containerStyles.fullFlex]}>
-                        <CreatePasswordScreen onPasswordChanged={setPassword} />
-                    </KeyboardAwareScrollView>
-                    <AccountDetailsScreen onDetailsChanged={setAccountDetails} />
-                    <RegistrationCompleteScreen
-                        firstName={accountDetails?.firstName ?? ''}
-                        lastName={accountDetails?.lastName ?? ''}
-                        email={registrationState.inviteRegistration.email ?? t('REGISTRATION.UNKNOWN_EMAIL')}
-                        organization={
-                            registrationState.inviteRegistration.organizationName ??
-                            t('REGISTRATION.UNKNOWN_ORGANIZATION')
-                        }
-                    />
+                    {RegistrationPages.map((page) => page.pageBody)}
                 </ViewPager>
                 {buttonArea}
             </SafeAreaView>

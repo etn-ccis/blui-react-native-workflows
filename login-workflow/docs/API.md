@@ -8,11 +8,13 @@ The majority of the types and export used in this package come from @pxblue/reac
 ### AuthNavigationContainer
 Container component which holds the authentication and navigation state designed for mobile apps. This should be rendered at the root wrapping the whole app (except for the Context Provider components). Any valid `NavigationContainer` props can be added.
 
+Additionally, we expose props for `extraRoutes` and `initialRouteName`. You can learn more about these props in the [Customization Guide](https://github.com/pxblue/react-native-workflows/tree/master/login-workflow/docs/customization.md).
+
 #### Usage
 ```tsx
 import { AuthNavigationContainer } from '@pxblue/react-native-auth-workflow';
 
-<AuthNavigationContainer initialState={initialState} ref={ref}>
+<AuthNavigationContainer ref={ref} initialState={initialState} extraRoutes={[]} initialRouteName={'Login'}>
     { /* ...contents */ }
 </AuthNavigationContainer>
 ```

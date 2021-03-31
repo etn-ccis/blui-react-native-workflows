@@ -14,12 +14,12 @@ yarn add @pxblue/react-native-auth-workflow
 
 This package also has a number of peer dependency requirements that you will also need to install in your project. To install the latest version of all of these peer dependencies, run the following command in your project root:
 ```
-npm install --save @pxblue/colors @pxblue/react-native-components @react-navigation/native @react-navigation/stack react react-i18next i18next highcharts@^8.1.2 react-native react-native-vector-icons react-native-paper date-fns @react-native-community/viewpager@~4.0.1 @react-native-community/masked-view react-native-gesture-handler react-native-safe-area-context react-native-screens react-native-keyboard-aware-scroll-view react-native-webview
+npm install --save @pxblue/colors @pxblue/react-native-components @react-navigation/native @react-navigation/stack react react-i18next i18next react-native react-native-vector-icons react-native-paper date-fns react-native-pager-view @react-native-community/masked-view react-native-gesture-handler react-native-safe-area-context react-native-screens react-native-keyboard-aware-scroll-view react-native-webview
 // or
-yarn add @pxblue/colors @pxblue/react-native-components @react-navigation/native @react-navigation/stack react react-i18next i18next highcharts@^8.1.2 react-native react-native-vector-icons react-native-paper date-fns @react-native-community/viewpager@~4.0.1 @react-native-community/masked-view react-native-gesture-handler react-native-safe-area-context react-native-screens react-native-keyboard-aware-scroll-view react-native-webview
+yarn add @pxblue/colors @pxblue/react-native-components @react-navigation/native @react-navigation/stack react react-i18next i18next react-native react-native-vector-icons react-native-paper date-fns react-native-pager-view @react-native-community/masked-view react-native-gesture-handler react-native-safe-area-context react-native-screens react-native-keyboard-aware-scroll-view react-native-webview
 ```
 
-You will also need `@react-native-community/async-storage` unless you plan to write your own local storage wrapper.
+You will also need `@react-native-async-storage/async-storage` unless you plan to write your own local storage wrapper.
 
 > If you are developing for iOS, don't forget to do a `pod install` in your /ios folder to finish linking these libraries.
 
@@ -34,7 +34,7 @@ You need to implement the backend networking for all networking within react-nat
     - The first file you created, `AuthUIActions.tsx`, will handle the implementation of the authentication related actions (such as login and forgot password).
     - The second file you created, `RegistrationActions.tsx`, will handle the implementation of the registration related actions (such as loading the EULA and registration by invitation).
     - You can copy these files directly from the [example](https://github.com/pxblue/react-native-workflows/tree/master/login-workflow/example) project as a starting point and then update the implementation details if you choose.
-4. You might also want to copy over the `example/src/store` and `example/src/constants` folders from react-native-auth-workflow for the purposes of compiling with the mock `AuthUIActions` and `RegistrationUIActions` before you write your own implementation. (Note you will need to install `@react-native-community/async-storage` if you use this `local-storage.ts`.)
+4. You might also want to copy over the `example/src/store` and `example/src/constants` folders from react-native-auth-workflow for the purposes of compiling with the mock `AuthUIActions` and `RegistrationUIActions` before you write your own implementation. (Note you will need to install `@react-native-async-storage/async-storage` if you use this `local-storage.ts`.)
 5. Import the actions in your root app file (usually App.tsx):
 ```
 import { ProjectAuthUIActions } from './src/actions/AuthUIActions';
@@ -93,6 +93,8 @@ export const AuthUIConfiguration = (props) => {
 You can skip passing the `projectImage` property if you don't have one yet.
 
 The various configuration options are explained in more detail in the [API](https://github.com/pxblue/react-native-workflows/tree/master/login-workflow/docs/API.md) documentation.
+
+You can read more about customizing the `AuthUIContextProvider` in the [Customization Guide](https://github.com/pxblue/react-native-workflows/tree/master/login-workflow/docs/customization.md) 
 
 
 #### Setting Up Deep Links

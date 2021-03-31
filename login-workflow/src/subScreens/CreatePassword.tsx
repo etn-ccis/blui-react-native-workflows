@@ -66,6 +66,7 @@ const makeStyles = (): Record<string, any> =>
  */
 type CreatePasswordProps = {
     onPasswordChanged(password: string): void;
+    onSubmit?: () => void;
     theme?: ReactNativePaper.Theme;
 };
 
@@ -152,6 +153,7 @@ export const CreatePassword: React.FC<CreatePasswordProps> = (props) => {
                         returnKeyType={'done'}
                         error={confirmInput !== '' && passwordInput !== confirmInput}
                         onChangeText={(text: string): void => setConfirmInput(text)}
+                        onSubmitEditing={areValidMatchingPasswords() ? props.onSubmit : undefined}
                     />
                 </View>
             </ScrollView>

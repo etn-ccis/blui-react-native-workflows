@@ -8,6 +8,7 @@ import React, { MutableRefObject } from 'react';
 // Components
 import { View, StyleSheet, StyleProp, ViewStyle, TextInput as ReactTextInput, Platform } from 'react-native';
 import { TextInput as PaperTextInput, useTheme } from 'react-native-paper';
+// @ts-ignore
 import { TextInputProps } from 'react-native-paper/lib/typescript/src/components/TextInput/TextInput';
 import { Subtitle2 } from '@pxblue/react-native-components';
 
@@ -31,6 +32,29 @@ const makeStyles = (theme: ReactNativePaper.Theme): Record<string, any> =>
             color: theme.colors.error,
         },
     });
+
+/**
+ * @param errorText  The text of the error.
+ * @param style  (Optional) Custom style applied to the error text.
+ * @param theme (Optional) react-native-paper theme partial to style the component.
+ **/
+type ErrorTextProps = {
+    errorText: string | undefined;
+    style?: StyleProp<ViewStyle>;
+    theme?: ReactNativePaper.Theme;
+};
+
+const ErrorText: React.FC<ErrorTextProps> = (props) => {
+    const { errorText, style } = props;
+    const theme = useTheme(props.theme);
+    const styles = makeStyles(theme);
+
+    return (
+        <Subtitle2 style={[styles.errorText, style]} font={'regular'}>
+            {errorText || null}
+        </Subtitle2>
+    );
+};
 
 /**
  * @param errorText  (Optional) The text to show if the text input is in error state.
@@ -74,6 +98,7 @@ const TextInputRender: React.ForwardRefRenderFunction<{}, TextInputRenderProps> 
     const selectionColor = Platform.OS === 'android' ? Colors.blue['100'] : undefined;
     return (
         <View>
+            {/* @ts-ignore */}
             <PaperTextInput
                 // @ts-ignore issue with refs on RNP input
                 ref={inputRef}
@@ -93,26 +118,3 @@ const TextInputRender: React.ForwardRefRenderFunction<{}, TextInputRenderProps> 
 // Necessary to allow use of ref (to pass focus to next TextInput on submit)
 export const TextInput = React.forwardRef(TextInputRender);
 TextInput.displayName = 'TextInput'; // Set a display name for testing with shallow renders
-
-/**
- * @param errorText  The text of the error.
- * @param style  (Optional) Custom style applied to the error text.
- * @param theme (Optional) react-native-paper theme partial to style the component.
- **/
-type ErrorTextProps = {
-    errorText: string | undefined;
-    style?: StyleProp<ViewStyle>;
-    theme?: ReactNativePaper.Theme;
-};
-
-const ErrorText: React.FC<ErrorTextProps> = (props) => {
-    const { errorText, style } = props;
-    const theme = useTheme(props.theme);
-    const styles = makeStyles(theme);
-
-    return (
-        <Subtitle2 style={[styles.errorText, style]} font={'regular'}>
-            {errorText || null}
-        </Subtitle2>
-    );
-};

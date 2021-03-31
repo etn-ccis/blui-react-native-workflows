@@ -91,6 +91,7 @@ type ResetPasswordProps = {
 export const ResetPassword: React.FC<ResetPasswordProps> = (props) => {
     const theme = useTheme(props.theme);
     const [emailInput, setEmailInput] = React.useState('');
+    const [hasEmailFormatError, setHasEmailFormatError] = React.useState(false);
     const [hasAcknowledgedError, setHasAcknowledgedError] = React.useState(false);
     const { t } = useLanguageLocale();
     const accountUIState = useAccountUIState();
@@ -145,7 +146,22 @@ export const ResetPassword: React.FC<ResetPasswordProps> = (props) => {
                             style={styles.inputMargin}
                             keyboardType={'email-address'}
                             autoCapitalize={'none'}
-                            onChangeText={(text: string): void => setEmailInput(text)}
+                            onChangeText={(text: string): void => {
+                                setEmailInput(text);
+                                setHasEmailFormatError(false);
+                            }}
+                            error={hasTransitError || hasEmailFormatError}
+                            errorText={
+                                hasTransitError
+                                    ? t('LOGIN.INCORRECT_CREDENTIALS')
+                                    : hasEmailFormatError
+                                    ? t('MESSAGES.EMAIL_ENTRY_ERROR')
+                                    : ''
+                            }
+                            onBlur={(): void => {
+                                if (emailInput.length > 0 && !EMAIL_REGEX.test(emailInput))
+                                    setHasEmailFormatError(true);
+                            }}
                         />
                     </View>
                 </View>

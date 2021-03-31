@@ -57,7 +57,7 @@ export const Checkbox: React.FC<CheckboxProps> = (props) => {
                     color={theme.colors.primary}
                     uncheckedColor={theme.colors.primary}
                 />
-                <Body1>{label}</Body1>
+                <Body1 style={{ flex: 1 }}>{label}</Body1>
             </TouchableOpacity>
         </View>
     );

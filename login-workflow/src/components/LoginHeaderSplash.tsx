@@ -10,6 +10,7 @@ import { View, Image, StyleSheet, StyleProp, ViewStyle } from 'react-native';
 
 // Styles
 import * as Colors from '@pxblue/colors';
+import { useInjectedUIContext } from '@pxblue/react-auth-shared';
 
 /**
  * @ignore
@@ -62,12 +63,13 @@ type LoginHeaderSplashProps = {
  */
 export const LoginHeaderSplash: React.FC<LoginHeaderSplashProps> = (props) => {
     const { style, mainImage } = props;
+    const { background = {} } = useInjectedUIContext();
     const styles = makeStyles();
 
     return (
         <>
-            <View style={style}>
-                <View style={styles.headerImageContainer}>
+            <View style={[style]}>
+                <View style={[styles.headerImageContainer]}>
                     <Image
                         resizeMethod="resize"
                         source={mainImage ?? require('../assets/images/eaton_stacked_logo.png')}
@@ -77,8 +79,15 @@ export const LoginHeaderSplash: React.FC<LoginHeaderSplashProps> = (props) => {
             </View>
             <Image
                 resizeMethod="resize"
-                source={require('../assets/images/normal-background.png')}
-                style={styles.splashBackgroundImage}
+                source={background.backgroundImage ?? require('../assets/images/normal-background.png')}
+                style={[
+                    styles.splashBackgroundImage,
+                    {
+                        backgroundColor: background.backgroundColor ?? 'transparent',
+                        height: background.backgroundSize ?? '30%',
+                        tintColor: background.backgroundImage ? undefined : Colors.gray[50],
+                    },
+                ]}
             />
         </>
     );

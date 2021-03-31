@@ -280,6 +280,9 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
                             returnKeyType={'done'}
                             error={confirmInput !== '' && newPasswordInput !== confirmInput}
                             onChangeText={(text: string): void => setConfirmInput(text)}
+                            onSubmitEditing={
+                                currentPasswordInput === '' || !areValidMatchingPasswords() ? undefined : changePassword
+                            }
                         />
                     </View>
                 </ScrollView>
