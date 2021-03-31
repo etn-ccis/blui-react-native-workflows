@@ -58,6 +58,7 @@ const PageTwo: React.FC<AppProps> = ({ navigation }): JSX.Element => {
                 navigation={{
                     icon: MenuIcon,
                     onPress: (): void => {
+                        // @ts-ignore
                         navigation.openDrawer();
                     },
                 }}

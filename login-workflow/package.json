@@ -1,7 +1,7 @@
 {
     "name": "@pxblue/react-native-auth-workflow",
     "description": "Re-usable workflow components for Authentication and Registration within Eaton applications.",
-    "version": "3.0.0-beta.0",
+    "version": "3.0.0",
     "license": "BSD-3-Clause",
     "author": {
         "name": "PX Blue",
@@ -53,11 +53,11 @@
         "@pxblue/react-native-components": "^4.1.1 || ^5.0.0",
         "@react-navigation/native": "^5.1.1",
         "@react-navigation/stack": "^5.2.3",
-        "date-fns": "^2.11.1",
-        "i18next": "^19.3.4 || ^20.0.0",
+        "date-fns": "^2.14.0",
+        "i18next": "^20.0.0",
         "react": "^16.13.1 || ^17.0.0",
         "react-i18next": "^11.3.4",
-        "react-native": "^0.63.2",
+        "react-native": "^0.63.2 || ^0.64.0",
         "react-native-keyboard-aware-scroll-view": "~0.9.1",
         "react-native-pager-view": "^5.0.0",
         "react-native-paper": "^4.0.0",

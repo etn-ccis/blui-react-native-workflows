@@ -13,6 +13,7 @@ import {
 import { Avatar, Button, Divider, useTheme } from 'react-native-paper';
 import { Body1, H4, Header, InfoListItemProps, UserMenu, wrapIcon } from '@pxblue/react-native-components';
 import { Theme } from 'react-native-paper/lib/typescript/types';
+// @ts-ignore
 import Logo from '../../assets/images/Logo.svg';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -134,6 +135,7 @@ const Home: React.FC<AppProps> = ({ navigation }): JSX.Element => {
                 navigation={{
                     icon: MenuIcon,
                     onPress: (): void => {
+                        // @ts-ignore
                         navigation.openDrawer();
                     },
                 }}

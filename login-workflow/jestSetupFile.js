@@ -2,5 +2,5 @@ import mockAsyncStorage from '@react-native-async-storage/async-storage/jest/asy
 jest.mock('react-native/Libraries/Animated/src/NativeAnimatedHelper');
 jest.mock('@react-native-async-storage/async-storage', () => mockAsyncStorage);
 jest.mock('react-i18next', () => ({
-    useTranslation: () => ({t: key => key})
-  }));
+    useTranslation: () => ({ t: (key) => key }),
+}));
