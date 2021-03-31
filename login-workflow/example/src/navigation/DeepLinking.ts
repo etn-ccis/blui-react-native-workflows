@@ -3,10 +3,8 @@ import { LinkingOptions } from '@react-navigation/native/lib/typescript/src/type
 /**
  * Map a Deep Link or Universal link to a screen in the application
  * https://reactnavigation.org/docs/deep-linking
- * Test iOS simulator with `xcrun simctl openurl booted "authui://invite/8k27jshInvite234Code?email=test%40domain.com"`
- * Test Android with `adb shell am start -W -a android.intent.action.VIEW -d "authui://invite/8k27jshInvite234Code" com.shiverware.eaton.authui`
- * Test on device from browser `authui://invite/8k27jshInvite234Code`
  */
+
 export const authLinkMapping: LinkingOptions = {
     prefixes: ['https://authui.com', 'authui://'],
     config: {
