@@ -8,7 +8,7 @@
     "@pxblue/react-native-auth-workflow@3.0.0-beta.0": {
         "licenses": "BSD-3-Clause",
         "repository": "https://github.com/pxblue/react-native-workflows/tree/master/login-workflow",
-        "licenseUrl": "https://github.com/pxblue/react-native-workflows/tree/master/login-workflow",
+        "licenseUrl": "https://github.com/pxblue/react-native-workflows/tree/master/login-workflow/raw/master/LICENSE.md",
         "parents": "example"
     },
     "@pxblue/react-native-themes@5.1.0": {
@@ -23,7 +23,7 @@
         "licenseUrl": "https://github.com/react-navigation/react-navigation/raw/master/LICENSE",
         "parents": "example"
     },
-    "react-native-reanimated@2.0.1": {
+    "react-native-reanimated@1.13.3": {
         "licenses": "MIT",
         "repository": "https://github.com/software-mansion/react-native-reanimated",
         "licenseUrl": "https://github.com/software-mansion/react-native-reanimated/raw/master/LICENSE",
