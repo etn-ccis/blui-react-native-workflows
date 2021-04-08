@@ -454,14 +454,12 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
     // View pager
     useEffect(() => {
         if (currentPage === CompletePage) {
-            // eslint-disable-next-line no-unused-expressions
-            viewPager?.current?.setPageWithoutAnimation(currentPage);
+            requestAnimationFrame(() => viewPager.current?.setPageWithoutAnimation(currentPage));
         } else {
-            // eslint-disable-next-line no-unused-expressions
-            viewPager?.current?.setPage(currentPage);
+            requestAnimationFrame(() => viewPager.current?.setPage(currentPage));
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [currentPage, viewPager, registrationSuccess]);
+    }, [currentPage, viewPager]);
 
     // Network state (loading eula)
     const errorBodyText =
