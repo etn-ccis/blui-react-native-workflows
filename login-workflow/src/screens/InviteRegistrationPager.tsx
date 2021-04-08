@@ -364,12 +364,12 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
     useEffect(() => {
         if (viewPager && viewPager.current) {
             if (currentPage === CompletePage) {
-                viewPager.current.setPageWithoutAnimation(currentPage);
+                requestAnimationFrame(() => viewPager.current?.setPageWithoutAnimation(currentPage));
             } else {
-                viewPager.current.setPage(currentPage);
+                requestAnimationFrame(() => viewPager.current?.setPage(currentPage));
             }
         }
-    }, [currentPage, viewPager, registrationSuccess, CompletePage]);
+    }, [currentPage, viewPager, CompletePage]);
 
     const errorDialog = (
         <SimpleDialog
