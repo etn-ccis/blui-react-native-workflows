@@ -382,7 +382,9 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
             {
                 name: 'Complete',
                 pageTitle: t('REGISTRATION.STEPS.COMPLETE'),
-                pageBody: (
+                pageBody: injectedUIContext.customRegistrationSuccessScreen ? (
+                    <View key={'CustomCompletePage'}>{injectedUIContext.customRegistrationSuccessScreen}</View>
+                ) : (
                     <RegistrationCompleteScreen
                         key={'RegistrationCompletePage'}
                         firstName={accountDetails?.firstName ?? ''}

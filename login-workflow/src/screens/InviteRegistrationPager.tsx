@@ -309,7 +309,9 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
             {
                 name: 'Complete',
                 pageTitle: t('REGISTRATION.STEPS.COMPLETE'),
-                pageBody: (
+                pageBody: injectedUIContext.customRegistrationSuccessScreen ? (
+                    <View key={'CustomCompletePage'}>{injectedUIContext.customRegistrationSuccessScreen}</View>
+                ) : (
                     <RegistrationComplete
                         key={'CompletePage'}
                         firstName={accountDetails?.firstName ?? ''}

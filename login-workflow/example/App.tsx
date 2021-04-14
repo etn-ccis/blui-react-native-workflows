@@ -13,7 +13,9 @@ import {
 } from '@pxblue/react-native-auth-workflow';
 import { useLinking } from '@react-navigation/native';
 import { authLinkMapping, resolveInitialState } from './src/navigation/DeepLinking';
-// import { H3 } from '@pxblue/react-native-components';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { View } from 'react-native';
+import { H3 } from '@pxblue/react-native-components';
 // import { CustomAccountDetails, CustomAccountDetailsTwo } from './src/screens/CustomRegistrationForm';
 // import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 // import { Terms } from './src/screens/Terms';
@@ -68,6 +70,13 @@ export const AuthUIConfiguration: React.FC = (props) => {
             //     backgroundColor: 'rgba(255,165,0,0.3)',
             //     backgroundSize: '100%',
             // }}
+            customRegistrationSuccessScreen={
+                <View style={{ flex: 1 }}>
+                    <SafeAreaView>
+                        <H3>Congratulations! You have made it to the custom success screen! yay!</H3>
+                    </SafeAreaView>
+                </View>
+            }
         >
             {props.children}
         </AuthUIContextProvider>
