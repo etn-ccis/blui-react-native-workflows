@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import React from 'react';
-import { /*Button,*/ Provider as ThemeProvider } from 'react-native-paper';
+import { Button, Provider as ThemeProvider } from 'react-native-paper';
 import * as PXBThemes from '@pxblue/react-native-themes';
 import { MainRouter } from './src/navigation';
 import { ProjectAuthUIActions } from './src/actions/AuthUIActions';
@@ -15,7 +15,8 @@ import { useLinking } from '@react-navigation/native';
 import { authLinkMapping, resolveInitialState } from './src/navigation/DeepLinking';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { View } from 'react-native';
-import { H3 } from '@pxblue/react-native-components';
+import { Body1, H3, Header, wrapIcon } from '@pxblue/react-native-components';
+import MatIcon from 'react-native-vector-icons/MaterialIcons';
 // import { CustomAccountDetails, CustomAccountDetailsTwo } from './src/screens/CustomRegistrationForm';
 // import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 // import { Terms } from './src/screens/Terms';
@@ -34,6 +35,8 @@ declare global {
         }
     }
 }
+
+const CloseIcon = wrapIcon({ IconClass: MatIcon, name: 'close' });
 
 export const AuthUIConfiguration: React.FC = (props) => {
     const securityContextActions = useSecurityActions();
@@ -70,13 +73,23 @@ export const AuthUIConfiguration: React.FC = (props) => {
             //     backgroundColor: 'rgba(255,165,0,0.3)',
             //     backgroundSize: '100%',
             // }}
-            customRegistrationSuccessScreen={
+            customRegistrationSuccessScreen={(navigation: any) => (
                 <View style={{ flex: 1 }}>
-                    <SafeAreaView>
-                        <H3>Congratulations! You have made it to the custom success screen! yay!</H3>
+                    <Header
+                        title={'Custom Title!'}
+                        navigation={{
+                            icon: CloseIcon,
+                            onPress: (): void => navigation.navigate('Login'),
+                        }}
+                    />
+                    <SafeAreaView style={{ marginHorizontal: 16 }}>
+                        <H3>Congratulations! You have made it to the custom success screen! Yay!</H3>
+                        <Button mode="contained" onPress={(): void => navigation.navigate('Login')}>
+                            <Body1 color="text">Custom Continue Button</Body1>
+                        </Button>
                     </SafeAreaView>
                 </View>
-            }
+            )}
         >
             {props.children}
         </AuthUIContextProvider>

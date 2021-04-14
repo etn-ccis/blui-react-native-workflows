@@ -185,6 +185,19 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
         }
     };
 
+    const getCustomRegistrationSuccessScreen = (): JSX.Element | ((navigation: any) => JSX.Element) => {
+        if (
+            injectedUIContext.customRegistrationSuccessScreen &&
+            typeof injectedUIContext.customRegistrationSuccessScreen === 'function'
+        ) {
+            return (
+                <View key={'CustomCompletePage'}>{injectedUIContext.customRegistrationSuccessScreen(navigation)}</View>
+            );
+        } else {
+            return <View key={'CustomCompletePage'}>{injectedUIContext.customRegistrationSuccessScreen}</View>;
+        }
+    };
+
     // Page Definitions
     const customDetails = injectedUIContext.customAccountDetails || [];
     const FirstCustomPage: ComponentType<AccountDetailsFormProps> | null =
@@ -310,7 +323,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
                 name: 'Complete',
                 pageTitle: t('REGISTRATION.STEPS.COMPLETE'),
                 pageBody: injectedUIContext.customRegistrationSuccessScreen ? (
-                    <View key={'CustomCompletePage'}>{injectedUIContext.customRegistrationSuccessScreen}</View>
+                    (getCustomRegistrationSuccessScreen() as JSX.Element)
                 ) : (
                     <RegistrationComplete
                         key={'CompletePage'}
@@ -531,8 +544,9 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
         <View style={{ flex: 1 }}>
             {spinner}
             {errorDialog}
-
-            <CloseHeader title={pageTitle()} backAction={(): void => navigation.navigate('Login')} />
+            {(!injectedUIContext.customRegistrationSuccessScreen || !isLastStep) && (
+                <CloseHeader title={pageTitle()} backAction={(): void => navigation.navigate('Login')} />
+            )}
             <SafeAreaView style={[containerStyles.spaceBetween, { backgroundColor: theme.colors.surface }]}>
                 <ViewPager
                     ref={viewPager}
@@ -543,7 +557,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
                 >
                     {RegistrationPages.map((page) => page.pageBody)}
                 </ViewPager>
-                {buttonArea}
+                {(!injectedUIContext.customRegistrationSuccessScreen || !isLastStep) && buttonArea}
             </SafeAreaView>
         </View>
     ) : accountAlreadyExists ? (
