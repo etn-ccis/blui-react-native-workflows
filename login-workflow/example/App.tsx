@@ -73,7 +73,7 @@ export const AuthUIConfiguration: React.FC = (props) => {
             //     backgroundColor: 'rgba(255,165,0,0.3)',
             //     backgroundSize: '100%',
             // }}
-            customRegistrationSuccessScreen={(navigation: any) => (
+            customRegistrationSuccessScreen={(navigation: any): JSX.Element => (
                 <View style={{ flex: 1 }}>
                     <Header
                         title={'Custom Title!'}

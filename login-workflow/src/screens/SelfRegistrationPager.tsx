@@ -226,7 +226,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
         }
     }, [registrationActions, setHasAcknowledgedError, email]);
 
-    const getCustomRegistrationSuccessScreen = (): JSX.Element | ((navigation: any) => JSX.Element) => {
+    const getCustomRegistrationSuccessScreen = (): JSX.Element | (() => JSX.Element) => {
         if (
             injectedUIContext.customRegistrationSuccessScreen &&
             typeof injectedUIContext.customRegistrationSuccessScreen === 'function'
@@ -234,9 +234,8 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
             return (
                 <View key={'CustomCompletePage'}>{injectedUIContext.customRegistrationSuccessScreen(navigation)}</View>
             );
-        } else {
-            return <View key={'CustomCompletePage'}>{injectedUIContext.customRegistrationSuccessScreen}</View>;
         }
+        return <View key={'CustomCompletePage'}>{injectedUIContext.customRegistrationSuccessScreen}</View>;
     };
 
     // Page Definitions
