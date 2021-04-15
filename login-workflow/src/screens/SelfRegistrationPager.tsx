@@ -152,6 +152,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
     const routeParams = route.params as SelfRegistrationPagerParams | undefined;
     const [verificationCode, setVerificationCode] = React.useState<string>(routeParams?.code ?? '');
     const [email, setEmail] = React.useState(routeParams?.email ?? '');
+    const customSuccess = injectedUIContext.customRegistrationSuccessScreen;
 
     // pre-populate values from the route params
     useEffect(() => {
@@ -225,18 +226,6 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
             // do nothing
         }
     }, [registrationActions, setHasAcknowledgedError, email]);
-
-    const getCustomRegistrationSuccessScreen = (): JSX.Element | (() => JSX.Element) => {
-        if (
-            injectedUIContext.customRegistrationSuccessScreen &&
-            typeof injectedUIContext.customRegistrationSuccessScreen === 'function'
-        ) {
-            return (
-                <View key={'CustomCompletePage'}>{injectedUIContext.customRegistrationSuccessScreen(navigation)}</View>
-            );
-        }
-        return <View key={'CustomCompletePage'}>{injectedUIContext.customRegistrationSuccessScreen}</View>;
-    };
 
     // Page Definitions
     const customDetails = injectedUIContext.customAccountDetails || [];
@@ -394,9 +383,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
             {
                 name: 'Complete',
                 pageTitle: t('REGISTRATION.STEPS.COMPLETE'),
-                pageBody: injectedUIContext.customRegistrationSuccessScreen ? (
-                    (getCustomRegistrationSuccessScreen() as JSX.Element)
-                ) : (
+                pageBody: (
                     <RegistrationCompleteScreen
                         key={'RegistrationCompletePage'}
                         firstName={accountDetails?.firstName ?? ''}
@@ -656,40 +643,58 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
         <View style={{ flex: 1 }}>
             {spinner}
             {errorDialog}
-            {(!injectedUIContext.customRegistrationSuccessScreen || !isLastStep) && (
-                <CloseHeader title={pageTitle()} backAction={(): void => navigation.navigate('Login')} />
+            {(!customSuccess || !isLastStep) && (
+                <>
+                    <CloseHeader title={pageTitle()} backAction={(): void => navigation.navigate('Login')} />
+                    <SafeAreaView style={[containerStyles.spaceBetween, { backgroundColor: theme.colors.surface }]}>
+                        <ViewPager
+                            ref={viewPager}
+                            initialPage={0}
+                            scrollEnabled={false}
+                            transitionStyle="scroll"
+                            style={{ flex: 1 }}
+                        >
+                            {RegistrationPages.map((page) => page.pageBody)}
+                        </ViewPager>
+                        {buttonArea}
+                    </SafeAreaView>
+                </>
             )}
-            <SafeAreaView style={[containerStyles.spaceBetween, { backgroundColor: theme.colors.surface }]}>
-                <ViewPager
-                    ref={viewPager}
-                    initialPage={0}
-                    scrollEnabled={false}
-                    transitionStyle="scroll"
-                    style={{ flex: 1 }}
-                >
-                    {RegistrationPages.map((page) => page.pageBody)}
-                </ViewPager>
-                {(!injectedUIContext.customRegistrationSuccessScreen || !isLastStep) && buttonArea}
-            </SafeAreaView>
+            {customSuccess && isLastStep && (
+                <>
+                    {typeof customSuccess === 'function' && customSuccess(navigation)}
+                    {typeof customSuccess !== 'function' && customSuccess}
+                </>
+            )}
         </View>
     ) : (
         <View style={{ flex: 1, backgroundColor: 'white' }}>
-            <CloseHeader
-                title={t('REGISTRATION.STEPS.COMPLETE')}
-                backAction={(): void => navigation.navigate('Login')}
-            />
-            <SafeAreaView style={[containerStyles.safeContainer, { flex: 1 }]}>
-                <View style={{ flex: 1 }}>
-                    <ExistingAccountComplete />
-                </View>
-                <View style={[styles.sideBySideButtons, containerStyles.containerMargins]}>
-                    <ToggleButton
-                        text={t('ACTIONS.CONTINUE')}
-                        style={{ width: '100%', alignSelf: 'flex-end' }}
-                        onPress={(): void => navigation.navigate('Login')}
+            {!customSuccess && (
+                <>
+                    <CloseHeader
+                        title={t('REGISTRATION.STEPS.COMPLETE')}
+                        backAction={(): void => navigation.navigate('Login')}
                     />
-                </View>
-            </SafeAreaView>
+                    <SafeAreaView style={[containerStyles.safeContainer, { flex: 1 }]}>
+                        <View style={{ flex: 1 }}>
+                            <ExistingAccountComplete />
+                        </View>
+                        <View style={[styles.sideBySideButtons, containerStyles.containerMargins]}>
+                            <ToggleButton
+                                text={t('ACTIONS.CONTINUE')}
+                                style={{ width: '100%', alignSelf: 'flex-end' }}
+                                onPress={(): void => navigation.navigate('Login')}
+                            />
+                        </View>
+                    </SafeAreaView>
+                </>
+            )}
+            {customSuccess && (
+                <>
+                    {typeof customSuccess === 'function' && customSuccess(navigation)}
+                    {typeof customSuccess !== 'function' && customSuccess}
+                </>
+            )}
         </View>
     );
 };

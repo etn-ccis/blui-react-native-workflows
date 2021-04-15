@@ -75,4 +75,8 @@ You can see a sample implementation of the custom details forms in the `/example
 
 ### Custom Success Screen
 
-You can customize the success screen in the Registration flows by passing any `JSX.Element` to the `AuthUIContextProvider` via the `customRegistrationSuccessScreen` prop.
+You can customize the success screen shown at the end of the Registration flows using the `customRegistrationSuccessScreen` prop on the `AuthUIContextProvider`. This prop gives you access to the `navigation` object so you can direct the user to the login page or elsewhere in your application after finishing registration:
+
+```tsx
+customRegistrationSuccessScreen={(navigation) => <MyCoolSuccessScreen navigation={navigation} />
+```

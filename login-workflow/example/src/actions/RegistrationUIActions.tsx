@@ -70,6 +70,7 @@ export const ProjectRegistrationUIActions: () => RegistrationUIActions = () => (
      *          If the code is not valid a rejection will occur with an error message.
      */
     validateUserRegistrationRequest: async (validationCode: string, validationEmail?: string): Promise<boolean> => {
+        return true;
         await sleep(800);
 
         if (isRandomFailure()) {
