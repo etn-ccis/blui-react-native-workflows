@@ -174,7 +174,8 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
     // Network state (loading eula)
     const loadEulaTransitErrorMessage = registrationState.eulaTransit.transitErrorMessage;
 
-    const customSuccess = injectedUIContext.customRegistrationSuccessScreen;
+    const customSuccess = injectedUIContext.registrationSuccessScreen;
+    const customAccountAlreadyExists = injectedUIContext.accountAlreadyExistsScreen;
 
     const loadAndCacheEula = async (): Promise<void> => {
         if (!eulaContent) {
@@ -551,14 +552,15 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
             )}
             {customSuccess && isLastStep && (
                 <>
-                    {typeof customSuccess === 'function' && customSuccess(navigation)}
+                    {typeof customSuccess === 'function' &&
+                        customSuccess(navigation, { accountDetails: accountDetails, email: validationEmail })}
                     {typeof customSuccess !== 'function' && customSuccess}
                 </>
             )}
         </View>
     ) : accountAlreadyExists ? (
         <View style={{ flex: 1, backgroundColor: 'white' }}>
-            {!customSuccess && (
+            {!customAccountAlreadyExists && (
                 <>
                     <CloseHeader
                         title={t('REGISTRATION.STEPS.COMPLETE')}
@@ -578,10 +580,14 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
                     </SafeAreaView>
                 </>
             )}
-            {customSuccess && (
+            {customAccountAlreadyExists && (
                 <>
-                    {typeof customSuccess === 'function' && customSuccess(navigation)}
-                    {typeof customSuccess !== 'function' && customSuccess}
+                    {typeof customAccountAlreadyExists === 'function' &&
+                        customAccountAlreadyExists(navigation, {
+                            accountDetails: accountDetails,
+                            email: validationEmail,
+                        })}
+                    {typeof customAccountAlreadyExists !== 'function' && customAccountAlreadyExists}
                 </>
             )}
         </View>

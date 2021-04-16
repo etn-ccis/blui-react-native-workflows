@@ -73,10 +73,18 @@ You can see a sample implementation of the custom details forms in the `/example
 
 > **NOTE:** If you are using a useEffect hook to call the `onDetailsChanged` function, you must make sure NOT to include the `onDetailsChanged` prop in your list of dependencies. This will cause an infinite update loop.
 
-### Custom Success Screen
+### Custom Registration Success Screen
 
-You can customize the success screen shown at the end of the Registration flows using the `customRegistrationSuccessScreen` prop on the `AuthUIContextProvider`. This prop gives you access to the `navigation` object so you can direct the user to the login page or elsewhere in your application after finishing registration:
+You can customize the success screen shown at the end of the Registration flows using the `registrationSuccessScreen` prop on the `AuthUIContextProvider`. This prop gives you access to the `navigation` object so you can direct the user to the login page or elsewhere in your application after finishing registration as well as a `registrationData` object that contains a user's `AccountDetailInformation` and email:
 
 ```tsx
-customRegistrationSuccessScreen={(navigation) => <MyCoolSuccessScreen navigation={navigation} />
+registrationSuccessScreen={(navigation, registrationData) => <MySuccessScreen navigation={navigation} email={registrationData.email}/>
+```
+
+### Custom Account Already Exists Success Screen
+
+You can customize the success screen shown at the end of the Registration flows for users that already have an account using the `accountAlreadyExistsScreen` prop on the `AuthUIContextProvider`. This prop gives you access to the `navigation` object so you can direct the user to the login page or elsewhere in your application after finishing registration as well as a `registrationData` object that contains a user's `AccountDetailInformation` and email:
+
+```tsx
+accountAlreadyExistsScreen={(navigation, registrationData) => <MyAccountAlreadyExistsScreen navigation={navigation} email={registrationData.email} />
 ```

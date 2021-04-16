@@ -10,12 +10,13 @@ import {
     AuthNavigationContainer,
     AuthUIContextProvider,
     useSecurityActions,
+    RegistrationData,
 } from '@pxblue/react-native-auth-workflow';
 import { useLinking } from '@react-navigation/native';
 import { authLinkMapping, resolveInitialState } from './src/navigation/DeepLinking';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { View } from 'react-native';
-import { Body1, H3, Header, wrapIcon } from '@pxblue/react-native-components';
+import { Image, ScrollView, View } from 'react-native';
+import { Body1, H5, Header, wrapIcon } from '@pxblue/react-native-components';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
 // import { CustomAccountDetails, CustomAccountDetailsTwo } from './src/screens/CustomRegistrationForm';
 // import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -73,8 +74,11 @@ export const AuthUIConfiguration: React.FC = (props) => {
             //     backgroundColor: 'rgba(255,165,0,0.3)',
             //     backgroundSize: '100%',
             // }}
-            customRegistrationSuccessScreen={(navigation: any): JSX.Element => (
-                <View style={{ flex: 1 }}>
+            registrationSuccessScreen={(
+                navigation: any,
+                registrationData: RegistrationData | undefined
+            ): JSX.Element => (
+                <View style={{ flex: 1, width: '100%', height: '100%', backgroundColor: '#fff' }}>
                     <Header
                         title={'Custom Title!'}
                         navigation={{
@@ -82,14 +86,124 @@ export const AuthUIConfiguration: React.FC = (props) => {
                             onPress: (): void => navigation.navigate('Login'),
                         }}
                     />
-                    <SafeAreaView style={{ marginHorizontal: 16 }}>
-                        <H3>Congratulations! You have made it to the custom success screen! Yay!</H3>
-                        <Button mode="contained" onPress={(): void => navigation.navigate('Login')}>
-                            <Body1 color="text">Custom Continue Button</Body1>
-                        </Button>
-                    </SafeAreaView>
+                    <View style={{ flex: 1, width: '100%', height: '100%', zIndex: 2 }}>
+                        <View style={{ flex: 1 }}>
+                            <Image
+                                style={{ position: 'absolute' }}
+                                source={require('./assets/images/blue_waves.png')}
+                            />
+                        </View>
+                        <ScrollView style={{ height: '100%', backgroundColor: 'transparent' }}>
+                            <View style={{ flex: 1, justifyContent: 'center', height: 200 }}>
+                                <View
+                                    style={{
+                                        marginTop: 20,
+                                        width: 90,
+                                        height: 90,
+                                        borderRadius: 90 / 2,
+                                        backgroundColor: '#007bc1',
+                                        justifyContent: 'center',
+                                        alignItems: 'center',
+                                        alignSelf: 'center',
+                                    }}
+                                >
+                                    <MatIcon name={'person'} size={90 * 0.55} color={'#fff'} />
+                                </View>
+                            </View>
+                            <SafeAreaView
+                                style={{
+                                    flex: 1,
+                                    marginHorizontal: 16,
+                                    height: '100%',
+                                    backgroundColor: 'transparent',
+                                }}
+                            >
+                                <H5 style={{ marginBottom: 32 }}>
+                                    Congratulations, {registrationData?.accountDetails?.firstName}!
+                                </H5>
+                                <Body1 style={{ marginBottom: 16 }}>
+                                    You made it to the custom success screen! Yay!
+                                </Body1>
+                                {registrationData?.email && (
+                                    <Body1>We sent an introductory email to {registrationData.email}.</Body1>
+                                )}
+                                <Button
+                                    mode="contained"
+                                    onPress={(): void => navigation.navigate('Login')}
+                                    style={{ marginTop: 32 }}
+                                >
+                                    <Body1 style={{ color: '#fff' }}>Continue</Body1>
+                                </Button>
+                            </SafeAreaView>
+                        </ScrollView>
+                    </View>
                 </View>
             )}
+            // accountAlreadyExistsScreen={(
+            //     navigation: any,
+            //     registrationData: RegistrationData | undefined
+            // ): JSX.Element => (
+            //     <View style={{ flex: 1, width: '100%', height: '100%', backgroundColor: '#fff' }}>
+            //         <Header
+            //             title={'Custom Title!'}
+            //             navigation={{
+            //                 icon: CloseIcon,
+            //                 onPress: (): void => navigation.navigate('Login'),
+            //             }}
+            //         />
+            //         <View style={{ flex: 1, width: '100%', height: '100%', zIndex: 2 }}>
+            //             <View style={{ flex: 1 }}>
+            //                 <Image
+            //                     style={{ position: 'absolute' }}
+            //                     source={require('./assets/images/blue_waves.png')}
+            //                 />
+            //             </View>
+            //             <ScrollView style={{ height: '100%', backgroundColor: 'transparent' }}>
+            //                 <View style={{ flex: 1, justifyContent: 'center', height: 200 }}>
+            //                     <View
+            //                         style={{
+            //                             marginTop: 20,
+            //                             width: 90,
+            //                             height: 90,
+            //                             borderRadius: 90 / 2,
+            //                             backgroundColor: '#007bc1',
+            //                             justifyContent: 'center',
+            //                             alignItems: 'center',
+            //                             alignSelf: 'center',
+            //                         }}
+            //                     >
+            //                         <MatIcon name={'person'} size={90 * 0.55} color={'#fff'} />
+            //                     </View>
+            //                 </View>
+            //                 <SafeAreaView
+            //                     style={{
+            //                         flex: 1,
+            //                         marginHorizontal: 16,
+            //                         height: '100%',
+            //                         backgroundColor: 'transparent',
+            //                     }}
+            //                 >
+            //                     <H5 style={{ marginBottom: 32 }}>
+            //                         Congratulations, {registrationData?.accountDetails?.firstName}!
+            //                     </H5>
+            //                     <Body1 style={{ marginBottom: 16 }}>
+            //                         You made it to the custom account already exists success screen! Yay!
+            //                     </Body1>
+            //                     {registrationData?.email && (
+            //                         <Body1>We sent an introductory email to {registrationData.email}.</Body1>
+            //                     )}
+            //                     <Button
+            //                         mode="contained"
+            //                         onPress={(): void => navigation.navigate('Login')}
+            //                         style={{ marginTop: 32 }}
+            //                     >
+            //                         <Body1 style={{ color: '#fff' }}>Continue</Body1>
+            //                     </Button>
+            //                 </SafeAreaView>
+            //             </ScrollView>
+            //         </View>
+            //     </View>
+            // )}
         >
             {props.children}
         </AuthUIContextProvider>

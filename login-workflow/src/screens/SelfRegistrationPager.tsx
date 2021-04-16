@@ -152,7 +152,8 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
     const routeParams = route.params as SelfRegistrationPagerParams | undefined;
     const [verificationCode, setVerificationCode] = React.useState<string>(routeParams?.code ?? '');
     const [email, setEmail] = React.useState(routeParams?.email ?? '');
-    const customSuccess = injectedUIContext.customRegistrationSuccessScreen;
+    const customSuccess = injectedUIContext.registrationSuccessScreen;
+    const customAccountAlreadyExists = injectedUIContext.accountAlreadyExistsScreen;
 
     // pre-populate values from the route params
     useEffect(() => {
@@ -662,14 +663,15 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
             )}
             {customSuccess && isLastStep && (
                 <>
-                    {typeof customSuccess === 'function' && customSuccess(navigation)}
+                    {typeof customSuccess === 'function' &&
+                        customSuccess(navigation, { accountDetails: accountDetails, email: email })}
                     {typeof customSuccess !== 'function' && customSuccess}
                 </>
             )}
         </View>
     ) : (
         <View style={{ flex: 1, backgroundColor: 'white' }}>
-            {!customSuccess && (
+            {!customAccountAlreadyExists && (
                 <>
                     <CloseHeader
                         title={t('REGISTRATION.STEPS.COMPLETE')}
@@ -689,10 +691,11 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                     </SafeAreaView>
                 </>
             )}
-            {customSuccess && (
+            {customAccountAlreadyExists && (
                 <>
-                    {typeof customSuccess === 'function' && customSuccess(navigation)}
-                    {typeof customSuccess !== 'function' && customSuccess}
+                    {typeof customAccountAlreadyExists === 'function' &&
+                        customAccountAlreadyExists(navigation, { accountDetails: accountDetails, email: email })}
+                    {typeof customAccountAlreadyExists !== 'function' && customAccountAlreadyExists}
                 </>
             )}
         </View>
