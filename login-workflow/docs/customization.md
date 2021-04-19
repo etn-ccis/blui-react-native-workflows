@@ -81,10 +81,10 @@ You can customize the success screen shown at the end of the Registration flows 
 registrationSuccessScreen={(navigation, registrationData) => <MySuccessScreen navigation={navigation} email={registrationData.email}/>
 ```
 
-### Custom Account Already Exists Success Screen
+#### Account Already Exists
 
-You can customize the success screen shown at the end of the Registration flows for users that already have an account using the `accountAlreadyExistsScreen` prop on the `AuthUIContextProvider`. This prop gives you access to the `navigation` object so you can direct the user to the login page or elsewhere in your application after finishing registration as well as a `registrationData` object that contains a user's `AccountDetailInformation` and email:
+In the case when a user already has an existing account, a separate success screen is shown. You can customize this screen in the same way using the `accountAlreadyExistsScreen` prop on the `AuthUIContextProvider`. This prop gives you access to the `navigation` object so you can direct the user to the login page or elsewhere in your application after finishing registration:
 
 ```tsx
-accountAlreadyExistsScreen={(navigation, registrationData) => <MyAccountAlreadyExistsScreen navigation={navigation} email={registrationData.email} />
+accountAlreadyExistsScreen={(navigation) => <MyAccountAlreadyExistsScreen navigation={navigation} />
 ```

@@ -582,11 +582,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
             )}
             {customAccountAlreadyExists && (
                 <>
-                    {typeof customAccountAlreadyExists === 'function' &&
-                        customAccountAlreadyExists(navigation, {
-                            accountDetails: accountDetails,
-                            email: validationEmail,
-                        })}
+                    {typeof customAccountAlreadyExists === 'function' && customAccountAlreadyExists(navigation)}
                     {typeof customAccountAlreadyExists !== 'function' && customAccountAlreadyExists}
                 </>
             )}

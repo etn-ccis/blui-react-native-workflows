@@ -693,8 +693,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
             )}
             {customAccountAlreadyExists && (
                 <>
-                    {typeof customAccountAlreadyExists === 'function' &&
-                        customAccountAlreadyExists(navigation, { accountDetails: accountDetails, email: email })}
+                    {typeof customAccountAlreadyExists === 'function' && customAccountAlreadyExists(navigation)}
                     {typeof customAccountAlreadyExists !== 'function' && customAccountAlreadyExists}
                 </>
             )}
