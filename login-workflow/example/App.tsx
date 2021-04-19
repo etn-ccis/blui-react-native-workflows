@@ -10,10 +10,14 @@ import {
     AuthNavigationContainer,
     AuthUIContextProvider,
     useSecurityActions,
+    /*RegistrationData,*/
 } from '@pxblue/react-native-auth-workflow';
 import { useLinking } from '@react-navigation/native';
 import { authLinkMapping, resolveInitialState } from './src/navigation/DeepLinking';
-// import { H3 } from '@pxblue/react-native-components';
+// import { SafeAreaView } from 'react-native-safe-area-context';
+// import { Image, ScrollView, View } from 'react-native';
+// import { Body1, H5, Header, Hero, wrapIcon } from '@pxblue/react-native-components';
+// import MatIcon from 'react-native-vector-icons/MaterialIcons';
 // import { CustomAccountDetails, CustomAccountDetailsTwo } from './src/screens/CustomRegistrationForm';
 // import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 // import { Terms } from './src/screens/Terms';
@@ -32,6 +36,9 @@ declare global {
         }
     }
 }
+
+// const CloseIcon = wrapIcon({ IconClass: MatIcon, name: 'close' });
+// const PersonIcon = wrapIcon({ IconClass: MatIcon, name: 'person' });
 
 export const AuthUIConfiguration: React.FC = (props) => {
     const securityContextActions = useSecurityActions();
@@ -68,6 +75,116 @@ export const AuthUIConfiguration: React.FC = (props) => {
             //     backgroundColor: 'rgba(255,165,0,0.3)',
             //     backgroundSize: '100%',
             // }}
+            // registrationSuccessScreen={(
+            //     navigation: any,
+            //     registrationData: RegistrationData | undefined
+            // ): JSX.Element => (
+            //     <View style={{ flex: 1, width: '100%', height: '100%', backgroundColor: '#fff' }}>
+            //         <Header
+            //             title={'Custom Title!'}
+            //             navigation={{
+            //                 icon: CloseIcon,
+            //                 onPress: (): void => navigation.navigate('Login'),
+            //             }}
+            //         />
+            //         <View style={{ flex: 1, width: '100%', height: '100%', zIndex: 2 }}>
+            //             <View style={{ flex: 1 }}>
+            //                 <Image
+            //                     style={{ position: 'absolute' }}
+            //                     source={require('./assets/images/blue_waves.png')}
+            //                 />
+            //             </View>
+            //             <ScrollView style={{ height: '100%', backgroundColor: 'transparent' }}>
+            //                 <View style={{ flex: 1, justifyContent: 'center', height: 200 }}>
+            //                     <Hero
+            //                         label=""
+            //                         IconClass={PersonIcon}
+            //                         iconSize={48}
+            //                         iconColor={'#fff'}
+            //                         iconBackgroundColor={'#007bc1'}
+            //                         styles={{ iconWrapper: { width: 90, height: 90, borderRadius: 90 } }}
+            //                     />
+            //                 </View>
+            //                 <SafeAreaView
+            //                     style={{
+            //                         flex: 1,
+            //                         marginHorizontal: 16,
+            //                         height: '100%',
+            //                         backgroundColor: 'transparent',
+            //                     }}
+            //                 >
+            //                     <H5 style={{ marginBottom: 32 }}>
+            //                         Congratulations, {registrationData?.accountDetails?.firstName}!
+            //                     </H5>
+            //                     <Body1 style={{ marginBottom: 16 }}>
+            //                         You made it to the custom success screen! Yay!
+            //                     </Body1>
+            //                     {registrationData?.email && (
+            //                         <Body1>We sent an introductory email to {registrationData.email}.</Body1>
+            //                     )}
+            //                     <Button
+            //                         mode="contained"
+            //                         onPress={(): void => navigation.navigate('Login')}
+            //                         style={{ marginTop: 32 }}
+            //                     >
+            //                         <Body1 style={{ color: '#fff' }}>Continue</Body1>
+            //                     </Button>
+            //                 </SafeAreaView>
+            //             </ScrollView>
+            //         </View>
+            //     </View>
+            // )}
+            // accountAlreadyExistsScreen={(navigation: any): JSX.Element => (
+            //     <View style={{ flex: 1, width: '100%', height: '100%', backgroundColor: '#fff' }}>
+            //         <Header
+            //             title={'Custom Title!'}
+            //             navigation={{
+            //                 icon: CloseIcon,
+            //                 onPress: (): void => navigation.navigate('Login'),
+            //             }}
+            //         />
+            //         <View style={{ flex: 1, width: '100%', height: '100%', zIndex: 2 }}>
+            //             <View style={{ flex: 1 }}>
+            //                 <Image
+            //                     style={{ position: 'absolute' }}
+            //                     source={require('./assets/images/blue_waves.png')}
+            //                 />
+            //             </View>
+            //             <ScrollView style={{ height: '100%', backgroundColor: 'transparent' }}>
+            //                 <View style={{ flex: 1, justifyContent: 'center', height: 200 }}>
+            //                     <Hero
+            //                         label=""
+            //                         IconClass={PersonIcon}
+            //                         iconSize={48}
+            //                         iconColor={'#fff'}
+            //                         iconBackgroundColor={'#007bc1'}
+            //                         styles={{ iconWrapper: { width: 90, height: 90, borderRadius: 90 } }}
+            //                     />
+            //                 </View>
+            //                 <SafeAreaView
+            //                     style={{
+            //                         flex: 1,
+            //                         marginHorizontal: 16,
+            //                         height: '100%',
+            //                         backgroundColor: 'transparent',
+            //                     }}
+            //                 >
+            //                     <H5 style={{ marginBottom: 32 }}>Congratulations!</H5>
+            //                     <Body1 style={{ marginBottom: 16 }}>
+            //                         You made it to the custom account already exists success screen! Yay!
+            //                     </Body1>
+            //                     <Button
+            //                         mode="contained"
+            //                         onPress={(): void => navigation.navigate('Login')}
+            //                         style={{ marginTop: 32 }}
+            //                     >
+            //                         <Body1 style={{ color: '#fff' }}>Continue</Body1>
+            //                     </Button>
+            //                 </SafeAreaView>
+            //             </ScrollView>
+            //         </View>
+            //     </View>
+            // )}
         >
             {props.children}
         </AuthUIContextProvider>
