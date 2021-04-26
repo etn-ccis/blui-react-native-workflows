@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 -   Ability to customize the success screen in the Registration flows.
 
+### Fixed
+
+-   Issue where Remember Me checkbox is cleared after changing password ([#56](https://github.com/pxblue/react-native-workflows/issues/56)).
+
 ## v3.0.1 (April 8, 2021)
 
 ### Fixed
