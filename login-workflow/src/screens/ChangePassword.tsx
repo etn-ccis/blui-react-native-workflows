@@ -226,7 +226,7 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
                         <ToggleButton
                             text={t('ACTIONS.LOG_IN')}
                             style={{ marginHorizontal: 20 }}
-                            onPress={props.onChangeComplete}
+                            onPress={(): void => props.onChangeComplete()}
                         />
                     </View>
                 </View>
