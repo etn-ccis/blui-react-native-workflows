@@ -152,6 +152,8 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
     const routeParams = route.params as SelfRegistrationPagerParams | undefined;
     const [verificationCode, setVerificationCode] = React.useState<string>(routeParams?.code ?? '');
     const [email, setEmail] = React.useState(routeParams?.email ?? '');
+    const customSuccess = injectedUIContext.registrationSuccessScreen;
+    const customAccountAlreadyExists = injectedUIContext.accountAlreadyExistsScreen;
 
     // pre-populate values from the route params
     useEffect(() => {
@@ -642,38 +644,59 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
         <View style={{ flex: 1 }}>
             {spinner}
             {errorDialog}
-            <CloseHeader title={pageTitle()} backAction={(): void => navigation.navigate('Login')} />
-            <SafeAreaView style={[containerStyles.spaceBetween, { backgroundColor: theme.colors.surface }]}>
-                <ViewPager
-                    ref={viewPager}
-                    initialPage={0}
-                    scrollEnabled={false}
-                    transitionStyle="scroll"
-                    style={{ flex: 1 }}
-                >
-                    {RegistrationPages.map((page) => page.pageBody)}
-                </ViewPager>
-                {buttonArea}
-            </SafeAreaView>
+            {(!customSuccess || !isLastStep) && (
+                <>
+                    <CloseHeader title={pageTitle()} backAction={(): void => navigation.navigate('Login')} />
+                    <SafeAreaView style={[containerStyles.spaceBetween, { backgroundColor: theme.colors.surface }]}>
+                        <ViewPager
+                            ref={viewPager}
+                            initialPage={0}
+                            scrollEnabled={false}
+                            transitionStyle="scroll"
+                            style={{ flex: 1 }}
+                        >
+                            {RegistrationPages.map((page) => page.pageBody)}
+                        </ViewPager>
+                        {buttonArea}
+                    </SafeAreaView>
+                </>
+            )}
+            {customSuccess && isLastStep && (
+                <>
+                    {typeof customSuccess === 'function' &&
+                        customSuccess(navigation, { accountDetails: accountDetails, email: email })}
+                    {typeof customSuccess !== 'function' && customSuccess}
+                </>
+            )}
         </View>
     ) : (
         <View style={{ flex: 1, backgroundColor: 'white' }}>
-            <CloseHeader
-                title={t('REGISTRATION.STEPS.COMPLETE')}
-                backAction={(): void => navigation.navigate('Login')}
-            />
-            <SafeAreaView style={[containerStyles.safeContainer, { flex: 1 }]}>
-                <View style={{ flex: 1 }}>
-                    <ExistingAccountComplete />
-                </View>
-                <View style={[styles.sideBySideButtons, containerStyles.containerMargins]}>
-                    <ToggleButton
-                        text={t('ACTIONS.CONTINUE')}
-                        style={{ width: '100%', alignSelf: 'flex-end' }}
-                        onPress={(): void => navigation.navigate('Login')}
+            {!customAccountAlreadyExists && (
+                <>
+                    <CloseHeader
+                        title={t('REGISTRATION.STEPS.COMPLETE')}
+                        backAction={(): void => navigation.navigate('Login')}
                     />
-                </View>
-            </SafeAreaView>
+                    <SafeAreaView style={[containerStyles.safeContainer, { flex: 1 }]}>
+                        <View style={{ flex: 1 }}>
+                            <ExistingAccountComplete />
+                        </View>
+                        <View style={[styles.sideBySideButtons, containerStyles.containerMargins]}>
+                            <ToggleButton
+                                text={t('ACTIONS.CONTINUE')}
+                                style={{ width: '100%', alignSelf: 'flex-end' }}
+                                onPress={(): void => navigation.navigate('Login')}
+                            />
+                        </View>
+                    </SafeAreaView>
+                </>
+            )}
+            {customAccountAlreadyExists && (
+                <>
+                    {typeof customAccountAlreadyExists === 'function' && customAccountAlreadyExists(navigation)}
+                    {typeof customAccountAlreadyExists !== 'function' && customAccountAlreadyExists}
+                </>
+            )}
         </View>
     );
 };
