@@ -11,8 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 -   Support for Spanish language.
 
-
-## v3.1.0 (April 26, 2021)
+## v3.1.0 (April 27, 2021)
 
 ### Added
 

@@ -1,8 +1,8 @@
 {
-    "@pxblue/react-auth-shared@3.0.0-beta.4": {
+    "@pxblue/react-auth-shared@3.2.0-beta.0": {
         "licenses": "BSD-3-Clause",
         "repository": "https://github.com/pxblue/react-auth-shared/tree/master",
-        "licenseUrl": "https://github.com/pxblue/react-auth-shared/tree/master",
+        "licenseUrl": "https://github.com/pxblue/react-auth-shared/tree/master/raw/master/LICENSE.md",
         "parents": "@pxblue/react-native-auth-workflow"
     },
     "react-native-status-bar-height@2.6.0": {
