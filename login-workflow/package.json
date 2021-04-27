@@ -42,7 +42,8 @@
         "validate": "yarn prettier && yarn lint && yarn typescript && yarn test",
         "precommit": "yarn validate && yarn generate:licenses",
         "update:submodule": "git submodule update --remote",
-        "typescript": "tsc --noEmit"
+        "typescript": "tsc --noEmit",
+        "publish:package": "set npm_config_yes=true && npx -p @pxblue/publish pxb-publish"
     },
     "dependencies": {
         "@pxblue/react-auth-shared": "^3.1.0",
