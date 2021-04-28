@@ -62,7 +62,7 @@ jobs:
       - run:
           name: Publish @pxblue/react-native-auth-workflow
           command:  |
-            cd login-workflow && yarn publish:package
+            cd login-workflow && yarn publish:package -b $CIRCLE_BRANCH
 
 workflows:
   version: 2
