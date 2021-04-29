@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
--   Support for Spanish language.
+-   Support for Spanish and Chinese languages.
 
 ## v3.1.0 (April 27, 2021)
 

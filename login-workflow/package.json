@@ -46,7 +46,7 @@
         "publish:package": "set npm_config_yes=true && npx -p @pxblue/publish pxb-publish"
     },
     "dependencies": {
-        "@pxblue/react-auth-shared": "^3.2.0-beta.0",
+        "@pxblue/react-auth-shared": "^3.2.0",
         "react-native-status-bar-height": "^2.5.0"
     },
     "peerDependencies": {
