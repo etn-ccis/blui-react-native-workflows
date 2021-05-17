@@ -47,23 +47,23 @@ export const PasswordRequirements: React.FC<PasswordRequirementsProps> = (props)
     const defaultRequirements: PasswordRequirement[] = [
         {
             regex: LENGTH_REGEX,
-            description: t('PASSWORD_REQUIREMENTS.LENGTH'),
+            description: t('pxb:PASSWORD_REQUIREMENTS.LENGTH'),
         },
         {
             regex: NUMBERS_REGEX,
-            description: t('PASSWORD_REQUIREMENTS.NUMBERS'),
+            description: t('pxb:PASSWORD_REQUIREMENTS.NUMBERS'),
         },
         {
             regex: UPPER_CASE_REGEX,
-            description: t('PASSWORD_REQUIREMENTS.UPPER'),
+            description: t('pxb:PASSWORD_REQUIREMENTS.UPPER'),
         },
         {
             regex: LOWER_CASE_REGEX,
-            description: t('PASSWORD_REQUIREMENTS.LOWER'),
+            description: t('pxb:PASSWORD_REQUIREMENTS.LOWER'),
         },
         {
             regex: SPECIAL_CHAR_REGEX,
-            description: t('PASSWORD_REQUIREMENTS.SPECIAL'),
+            description: t('pxb:PASSWORD_REQUIREMENTS.SPECIAL'),
         },
     ];
 

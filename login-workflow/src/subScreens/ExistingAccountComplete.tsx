@@ -14,7 +14,7 @@ import { useLanguageLocale } from '@pxblue/react-auth-shared';
  */
 export const ExistingAccountComplete = (): JSX.Element => {
     const { t } = useLanguageLocale();
-    const welcomeTitle = `${t('MESSAGES.WELCOME')}!`;
-    const bodyText = `${t('REGISTRATION.SUCCESS_EXISTING')}`;
+    const welcomeTitle = `${t('pxb:MESSAGES.WELCOME')}!`;
+    const bodyText = `${t('pxb:REGISTRATION.SUCCESS_EXISTING')}`;
     return <CompleteSplashScreen boldTitle={welcomeTitle} bodyText={bodyText} icon={'person'} />;
 };

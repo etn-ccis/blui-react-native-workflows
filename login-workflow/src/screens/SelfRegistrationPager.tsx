@@ -169,14 +169,14 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
     const codeRequestTransit = registrationState.inviteRegistration.codeRequestTransit;
     const codeRequestIsInTransit = codeRequestTransit.transitInProgress;
     const hasCodeRequestTransitError = codeRequestTransit.transitErrorMessage !== null;
-    const codeRequestTransitErrorMessage = codeRequestTransit.transitErrorMessage ?? t('MESSAGES.REQUEST_ERROR');
+    const codeRequestTransitErrorMessage = codeRequestTransit.transitErrorMessage ?? t('pxb:MESSAGES.REQUEST_ERROR');
     const codeRequestSuccess = codeRequestTransit.transitSuccess;
 
     // Network state (registration)
     const registrationTransit = registrationState.inviteRegistration.registrationTransit;
     const registrationIsInTransit = registrationTransit.transitInProgress;
     const hasRegistrationTransitError = registrationTransit.transitErrorMessage !== null;
-    const registrationTransitErrorMessage = registrationTransit.transitErrorMessage ?? t('MESSAGES.REQUEST_ERROR');
+    const registrationTransitErrorMessage = registrationTransit.transitErrorMessage ?? t('pxb:MESSAGES.REQUEST_ERROR');
     const registrationSuccess = registrationTransit.transitSuccess;
 
     // Network state (invite code validation)
@@ -235,7 +235,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
     const RegistrationPages: RegistrationPage[] = [
         {
             name: 'CreateAccount',
-            pageTitle: t('REGISTRATION.STEPS.CREATE_ACCOUNT'),
+            pageTitle: t('pxb:REGISTRATION.STEPS.CREATE_ACCOUNT'),
             pageBody: (
                 <CreateAccountScreen
                     key={'CreateAccountPage'}
@@ -249,7 +249,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
         },
         {
             name: 'Eula',
-            pageTitle: t('REGISTRATION.STEPS.LICENSE'),
+            pageTitle: t('pxb:REGISTRATION.STEPS.LICENSE'),
             pageBody: (
                 <EulaScreen
                     key={'EulaPage'}
@@ -266,7 +266,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
         },
         {
             name: 'VerifyEmail',
-            pageTitle: t('REGISTRATION.STEPS.VERIFY_EMAIL'),
+            pageTitle: t('pxb:REGISTRATION.STEPS.VERIFY_EMAIL'),
             pageBody: (
                 <VerifyEmailScreen
                     key={'VerifyEmailPage'}
@@ -284,7 +284,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
         },
         {
             name: 'CreatePassword',
-            pageTitle: t('REGISTRATION.STEPS.PASSWORD'),
+            pageTitle: t('pxb:REGISTRATION.STEPS.PASSWORD'),
             pageBody: (
                 <KeyboardAwareScrollView key={'CreatePasswordPage'} contentContainerStyle={[containerStyles.fullFlex]}>
                     <CreatePasswordScreen
@@ -299,7 +299,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
         },
         {
             name: 'AccountDetails',
-            pageTitle: t('REGISTRATION.STEPS.ACCOUNT_DETAILS'),
+            pageTitle: t('pxb:REGISTRATION.STEPS.ACCOUNT_DETAILS'),
             pageBody: (
                 <AccountDetailsScreen
                     key={'AccountDetailsPage'}
@@ -345,7 +345,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                     const PageComponent = page.component;
                     return {
                         name: `CustomPage${i + 1}`,
-                        pageTitle: page.title || t('REGISTRATION.STEPS.ACCOUNT_DETAILS'),
+                        pageTitle: page.title || t('pxb:REGISTRATION.STEPS.ACCOUNT_DETAILS'),
                         pageBody: (
                             <SafeAreaView key={`CustomDetailsPage_${i + 1}`}>
                                 <KeyboardAwareScrollView>
@@ -383,16 +383,16 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
         .concat([
             {
                 name: 'Complete',
-                pageTitle: t('REGISTRATION.STEPS.COMPLETE'),
+                pageTitle: t('pxb:REGISTRATION.STEPS.COMPLETE'),
                 pageBody: (
                     <RegistrationCompleteScreen
                         key={'RegistrationCompletePage'}
                         firstName={accountDetails?.firstName ?? ''}
                         lastName={accountDetails?.lastName ?? ''}
-                        email={registrationState.inviteRegistration.email ?? t('REGISTRATION.UNKNOWN_EMAIL')}
+                        email={registrationState.inviteRegistration.email ?? t('pxb:REGISTRATION.UNKNOWN_EMAIL')}
                         organization={
                             registrationState.inviteRegistration.organizationName ??
-                            t('REGISTRATION.UNKNOWN_ORGANIZATION')
+                            t('pxb:REGISTRATION.UNKNOWN_ORGANIZATION')
                         }
                     />
                 ),
@@ -471,7 +471,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
         registrationTransitErrorMessage;
     const errorDialog = (
         <SimpleDialog
-            title={t('MESSAGES.ERROR')}
+            title={t('pxb:MESSAGES.ERROR')}
             bodyText={t(errorBodyText)}
             visible={
                 !hasAcknowledgedError &&
@@ -607,7 +607,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
         buttonArea = (
             <View style={[styles.sideBySideButtons, containerStyles.containerMargins]}>
                 <ToggleButton
-                    text={t('ACTIONS.CONTINUE')}
+                    text={t('pxb:ACTIONS.CONTINUE')}
                     style={{ width: '100%', alignSelf: 'flex-end' }}
                     onPress={(): void => advancePage(1)}
                 />
@@ -619,7 +619,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                 <View style={[styles.sideBySideButtons, containerStyles.containerMargins]}>
                     <View style={{ flex: 1 }}>
                         <ToggleButton
-                            text={t('ACTIONS.BACK')}
+                            text={t('pxb:ACTIONS.BACK')}
                             style={{ width: 100, alignSelf: 'flex-start' }}
                             outlined={true}
                             disabled={!canGoBackProgress()}
@@ -629,7 +629,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                     <PageIndicator currentPage={currentPage} totalPages={RegistrationPages.length} />
                     <View style={{ flex: 1 }}>
                         <ToggleButton
-                            text={t('ACTIONS.NEXT')}
+                            text={t('pxb:ACTIONS.NEXT')}
                             style={{ width: 100, alignSelf: 'flex-end' }}
                             disabled={!canProgress()}
                             onPress={(): void => advancePage(1)}
@@ -674,7 +674,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
             {!customAccountAlreadyExists && (
                 <>
                     <CloseHeader
-                        title={t('REGISTRATION.STEPS.COMPLETE')}
+                        title={t('pxb:REGISTRATION.STEPS.COMPLETE')}
                         backAction={(): void => navigation.navigate('Login')}
                     />
                     <SafeAreaView style={[containerStyles.safeContainer, { flex: 1 }]}>
@@ -683,7 +683,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                         </View>
                         <View style={[styles.sideBySideButtons, containerStyles.containerMargins]}>
                             <ToggleButton
-                                text={t('ACTIONS.CONTINUE')}
+                                text={t('pxb:ACTIONS.CONTINUE')}
                                 style={{ width: '100%', alignSelf: 'flex-end' }}
                                 onPress={(): void => navigation.navigate('Login')}
                             />

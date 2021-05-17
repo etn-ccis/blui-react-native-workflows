@@ -93,7 +93,7 @@ export const ResetPasswordSent: React.FC<ResetPasswordSentProps> = (props) => {
                 />
 
                 <Instruction
-                    text={t('FORGOT_PASSWORD.LINK_SENT', {
+                    text={t('pxb:FORGOT_PASSWORD.LINK_SENT', {
                         replace: { email: email },
                     })}
                     style={containerStyles.containerMargins}
@@ -103,7 +103,7 @@ export const ResetPasswordSent: React.FC<ResetPasswordSentProps> = (props) => {
 
             <View style={[styles.wideButton, containerStyles.containerMargins]}>
                 <View style={{ flex: 1 }}>
-                    <ToggleButton text={t('ACTIONS.DONE')} onPress={(): void => navigation.navigate('Login')} />
+                    <ToggleButton text={t('pxb:ACTIONS.DONE')} onPress={(): void => navigation.navigate('Login')} />
                 </View>
             </View>
         </SafeAreaView>

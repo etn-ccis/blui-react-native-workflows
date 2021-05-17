@@ -108,7 +108,7 @@ export const ResetPasswordHandleDeepLink: React.FC = () => {
                     options={(): { header: () => JSX.Element | null } => ({
                         header: (): JSX.Element | null =>
                             CloseHeader({
-                                title: t('FORMS.RESET_PASSWORD'),
+                                title: t('pxb:FORMS.RESET_PASSWORD'),
                                 backAction: () => {
                                     navigation.navigate('Login');
                                 },
@@ -122,7 +122,7 @@ export const ResetPasswordHandleDeepLink: React.FC = () => {
                     options={(): { header: () => JSX.Element | null } => ({
                         header: (): JSX.Element | null =>
                             CloseHeader({
-                                title: t('FORMS.RESET_PASSWORD'),
+                                title: t('pxb:FORMS.RESET_PASSWORD'),
                                 backAction: () => {
                                     navigation.navigate('Login');
                                 },
@@ -133,14 +133,14 @@ export const ResetPasswordHandleDeepLink: React.FC = () => {
         </Stack.Navigator>
     ) : !verifyComplete ? (
         <View style={{ flex: 1 }}>
-            <CloseHeader title={t('FORMS.RESET_PASSWORD')} backAction={(): void => navigation.goBack()} />
+            <CloseHeader title={t('pxb:FORMS.RESET_PASSWORD')} backAction={(): void => navigation.goBack()} />
             <Spinner />
         </View>
     ) : (
         <View style={{ flex: 1 }}>
-            <CloseHeader title={t('MESSAGES.ERROR')} backAction={(): void => navigation.goBack()} />
+            <CloseHeader title={t('pxb:MESSAGES.ERROR')} backAction={(): void => navigation.goBack()} />
             <ErrorState
-                title={t('MESSAGES.FAILURE')}
+                title={t('pxb:MESSAGES.FAILURE')}
                 bodyText={validationTransitErrorMessage}
                 onPress={(): void => {
                     navigation.navigate('Login');

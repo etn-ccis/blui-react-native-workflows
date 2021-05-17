@@ -99,7 +99,7 @@ export const ResetPasswordNav: React.FC<ResetPasswordNavProps> = (props) => {
                     options={(): { header: () => JSX.Element | null } => ({
                         header: (): JSX.Element | null =>
                             CloseHeader({
-                                title: t('FORMS.RESET_PASSWORD'),
+                                title: t('pxb:FORMS.RESET_PASSWORD'),
                                 backAction: () => {
                                     navigation.navigate('Login');
                                 },
@@ -115,7 +115,7 @@ export const ResetPasswordNav: React.FC<ResetPasswordNavProps> = (props) => {
                         gestureEnabled: false,
                         header: (): JSX.Element | null =>
                             CloseHeader({
-                                title: t('FORMS.RESET_PASSWORD'),
+                                title: t('pxb:FORMS.RESET_PASSWORD'),
                                 backAction: () => {
                                     navigation.navigate('Login');
                                 },
