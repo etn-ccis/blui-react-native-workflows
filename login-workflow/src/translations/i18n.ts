@@ -20,7 +20,7 @@ void i18n
     .init({
         resources: {
             // English
-            en: translations.english,
+            en: translations.english.translation,
             // French
             fr: translations.french,
             fr_US: translations.french,
