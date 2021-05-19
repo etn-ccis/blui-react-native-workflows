@@ -60,15 +60,15 @@ export const ResetPasswordSuccess: React.FC<ResetPasswordSuccessProps> = (props)
 
     const containerStyles = makeContainerStyles(theme);
 
-    const titleText = t('PASSWORD_RESET.SUCCESS_MESSAGE');
-    const bodyText = t('CHANGE_PASSWORD.SUCCESS_MESSAGE');
+    const titleText = t('pxb:PASSWORD_RESET.SUCCESS_MESSAGE');
+    const bodyText = t('pxb:CHANGE_PASSWORD.SUCCESS_MESSAGE');
 
     return (
         <SafeAreaView style={containerStyles.safeContainer}>
             <CompleteSplashScreen boldTitle={titleText} bodyText={bodyText} icon={'vpn-key'} />
 
             <ToggleButton
-                text={t('ACTIONS.DONE')}
+                text={t('pxb:ACTIONS.DONE')}
                 style={containerStyles.buttonContainer}
                 onPress={(): void => navigation.navigate('Login')}
             />

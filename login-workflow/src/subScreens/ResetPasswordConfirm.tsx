@@ -113,7 +113,7 @@ export const ResetPasswordConfirm: React.FC<ResetPasswordConfirmProps> = (props)
     const canProgress = (): boolean => password.length > 0;
     const errorDialog = (
         <SimpleDialog
-            title={t('MESSAGES.ERROR')}
+            title={t('pxb:MESSAGES.ERROR')}
             bodyText={t(setPasswordTransitErrorMessage ?? '')}
             visible={setPasswordHasTransitError && !hasAcknowledgedError}
             onDismiss={(): void => {
@@ -135,7 +135,7 @@ export const ResetPasswordConfirm: React.FC<ResetPasswordConfirmProps> = (props)
             <View style={containerStyles.bottomButton}>
                 <View style={[containerStyles.containerMargins]}>
                     <ToggleButton
-                        text={t('FORMS.RESET_PASSWORD')}
+                        text={t('pxb:FORMS.RESET_PASSWORD')}
                         disabled={!canProgress()}
                         style={styles.bottomButton}
                         onPress={onResetPasswordTap}

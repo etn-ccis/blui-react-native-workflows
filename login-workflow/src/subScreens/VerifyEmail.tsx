@@ -92,12 +92,12 @@ export const VerifyEmail: React.FC<VerifyEmailProps> = (props) => {
             <KeyboardAwareScrollView>
                 <Instruction
                     style={containerStyles.containerMargins}
-                    text={t('SELF_REGISTRATION.VERIFY_EMAIL.MESSAGE')}
+                    text={t('pxb:SELF_REGISTRATION.VERIFY_EMAIL.MESSAGE')}
                 />
 
                 <View style={[containerStyles.containerMargins, containerStyles.mainContainer]}>
                     <TextInput
-                        label={t('SELF_REGISTRATION.VERIFY_EMAIL.VERIFICATION')}
+                        label={t('pxb:SELF_REGISTRATION.VERIFY_EMAIL.VERIFICATION')}
                         value={verifyCode}
                         style={styles.inputMargin}
                         keyboardType={'default'}
@@ -112,7 +112,7 @@ export const VerifyEmail: React.FC<VerifyEmailProps> = (props) => {
                             onPress={(): void => onResendVerificationEmail()}
                             style={styles.inputMargin}
                         >
-                            {t('SELF_REGISTRATION.VERIFY_EMAIL.RESEND')}
+                            {t('pxb:SELF_REGISTRATION.VERIFY_EMAIL.RESEND')}
                         </Button>
                     </View>
                 </View>

@@ -83,17 +83,17 @@ export const CreateAccount: React.FC<CreateAccountProps> = (props) => {
     return (
         <SafeAreaView style={containerStyles.safeContainer}>
             <KeyboardAwareScrollView>
-                <Instruction style={containerStyles.containerMargins} text={t('SELF_REGISTRATION.INSTRUCTIONS')} />
+                <Instruction style={containerStyles.containerMargins} text={t('pxb:SELF_REGISTRATION.INSTRUCTIONS')} />
 
                 <View style={[containerStyles.containerMargins, containerStyles.mainContainer]}>
                     <TextInput
-                        label={t('LABELS.EMAIL')}
+                        label={t('pxb:LABELS.EMAIL')}
                         value={emailInput}
                         style={styles.inputMargin}
                         keyboardType={'email-address'}
                         autoCapitalize={'none'}
                         error={hasEmailFormatError}
-                        errorText={hasEmailFormatError ? t('MESSAGES.EMAIL_ENTRY_ERROR') : ''}
+                        errorText={hasEmailFormatError ? t('pxb:MESSAGES.EMAIL_ENTRY_ERROR') : ''}
                         onChangeText={(text: string): void => {
                             setEmailInput(text);
                             setHasEmailFormatError(false);

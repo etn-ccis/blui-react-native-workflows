@@ -105,13 +105,13 @@ export const AccountDetails: React.FC<AccountDetailsProps> = (props) => {
         <SafeAreaView style={containerStyles.safeContainer}>
             <KeyboardAwareScrollView>
                 <Instruction
-                    text={t('REGISTRATION.INSTRUCTIONS.ACCOUNT_DETAILS')}
+                    text={t('pxb:REGISTRATION.INSTRUCTIONS.ACCOUNT_DETAILS')}
                     style={containerStyles.containerMargins}
                 />
 
                 <View style={[containerStyles.containerMargins, containerStyles.mainContainer]}>
                     <TextInput
-                        label={t('FORMS.FIRST_NAME')}
+                        label={t('pxb:FORMS.FIRST_NAME')}
                         value={firstNameInput}
                         style={styles.inputMargin}
                         autoCapitalize={'sentences'}
@@ -125,7 +125,7 @@ export const AccountDetails: React.FC<AccountDetailsProps> = (props) => {
 
                     <TextInput
                         ref={lastNameRef}
-                        label={t('FORMS.LAST_NAME')}
+                        label={t('pxb:FORMS.LAST_NAME')}
                         value={lastNameInput}
                         style={styles.inputMargin}
                         autoCapitalize={'sentences'}

@@ -90,23 +90,23 @@ export const CreatePassword: React.FC<CreatePasswordProps> = (props) => {
     const defaultRequirements: PasswordRequirement[] = [
         {
             regex: LENGTH_REGEX,
-            description: t('PASSWORD_REQUIREMENTS.LENGTH'),
+            description: t('pxb:PASSWORD_REQUIREMENTS.LENGTH'),
         },
         {
             regex: NUMBERS_REGEX,
-            description: t('PASSWORD_REQUIREMENTS.NUMBERS'),
+            description: t('pxb:PASSWORD_REQUIREMENTS.NUMBERS'),
         },
         {
             regex: UPPER_CASE_REGEX,
-            description: t('PASSWORD_REQUIREMENTS.UPPER'),
+            description: t('pxb:PASSWORD_REQUIREMENTS.UPPER'),
         },
         {
             regex: LOWER_CASE_REGEX,
-            description: t('PASSWORD_REQUIREMENTS.LOWER'),
+            description: t('pxb:PASSWORD_REQUIREMENTS.LOWER'),
         },
         {
             regex: SPECIAL_CHAR_REGEX,
-            description: t('PASSWORD_REQUIREMENTS.SPECIAL'),
+            description: t('pxb:PASSWORD_REQUIREMENTS.SPECIAL'),
         },
     ];
     const { passwordRequirements = defaultRequirements } = useInjectedUIContext();
@@ -126,11 +126,11 @@ export const CreatePassword: React.FC<CreatePasswordProps> = (props) => {
     return (
         <SafeAreaView style={[containerStyles.safeContainer, { flexGrow: 1 }]}>
             <ScrollView style={{ flexGrow: 1 }}>
-                <Instruction text={t('CHANGE_PASSWORD.PASSWORD_INFO')} style={[containerStyles.containerMargins]} />
+                <Instruction text={t('pxb:CHANGE_PASSWORD.PASSWORD_INFO')} style={[containerStyles.containerMargins]} />
 
                 <View style={[containerStyles.containerMargins, containerStyles.mainContainer]}>
                     <TextInputSecure
-                        label={t('FORMS.PASSWORD')}
+                        label={t('pxb:FORMS.PASSWORD')}
                         value={passwordInput}
                         style={styles.inputMargin}
                         autoCapitalize={'none'}
@@ -146,7 +146,7 @@ export const CreatePassword: React.FC<CreatePasswordProps> = (props) => {
 
                     <TextInputSecure
                         ref={confirmPasswordRef}
-                        label={t('FORMS.CONFIRM_PASSWORD')}
+                        label={t('pxb:FORMS.CONFIRM_PASSWORD')}
                         value={confirmInput}
                         style={styles.inputMargin}
                         autoCapitalize={'none'}

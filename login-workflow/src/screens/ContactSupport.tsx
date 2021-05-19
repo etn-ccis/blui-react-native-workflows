@@ -110,7 +110,7 @@ export const ContactSupport: React.FC<ContactSupportProps> = (props) => {
 
     return (
         <>
-            <CloseHeader title={t('USER_MENU.CONTACT_US')} backAction={(): void => navigation.navigate('Login')} />
+            <CloseHeader title={t('pxb:USER_MENU.CONTACT_US')} backAction={(): void => navigation.navigate('Login')} />
             <SafeAreaView style={containerStyles.safeContainer}>
                 <View>
                     <MatIcon
@@ -122,10 +122,10 @@ export const ContactSupport: React.FC<ContactSupportProps> = (props) => {
 
                     <View style={[containerStyles.containerMargins, containerStyles.containerSpacing]}>
                         <H6 style={[styles.headerText, styles.textSpacing]}>
-                            {t('CONTACT_SUPPORT.GENERAL_QUESTIONS')}
+                            {t('pxb:CONTACT_SUPPORT.GENERAL_QUESTIONS')}
                         </H6>
                         <Body1 style={[styles.bodyText, styles.textSpacing]}>
-                            {t('CONTACT_SUPPORT.SUPPORT_MESSAGE')}
+                            {t('pxb:CONTACT_SUPPORT.SUPPORT_MESSAGE')}
                             <Text
                                 style={{ color: theme.colors.accent }}
                                 onPress={(): Promise<void> => Linking.openURL(`mailto:${contactEmail}`)}
@@ -137,10 +137,10 @@ export const ContactSupport: React.FC<ContactSupportProps> = (props) => {
                     </View>
                     <View style={[containerStyles.containerMargins, containerStyles.containerSpacing]}>
                         <H6 style={[styles.headerText, styles.textSpacing]}>
-                            {t('CONTACT_SUPPORT.EMERGENCY_SUPPORT')}
+                            {t('pxb:CONTACT_SUPPORT.EMERGENCY_SUPPORT')}
                         </H6>
                         <Body1 style={[styles.bodyText, styles.textSpacing]}>
-                            {t('CONTACT_SUPPORT.TECHNICAL_ASSISTANCE')}
+                            {t('pxb:CONTACT_SUPPORT.TECHNICAL_ASSISTANCE')}
                             <Text
                                 style={{ color: theme.colors.accent }}
                                 onPress={(): Promise<void> => Linking.openURL(`tel:${contactPhoneLink}`)}

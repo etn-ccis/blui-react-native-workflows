@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 -   Support for Spanish and Chinese languages.
+-   Translation extension / override capability
 
 ## v3.1.0 (April 27, 2021)
 
