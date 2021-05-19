@@ -119,7 +119,7 @@ export const ResetPassword: React.FC<ResetPasswordProps> = (props) => {
 
     const errorDialog = (
         <SimpleDialog
-            title={t('MESSAGES.ERROR')}
+            title={t('pxb:MESSAGES.ERROR')}
             bodyText={t(transitErrorMessage ?? '')}
             visible={hasTransitError && !hasAcknowledgedError}
             onDismiss={(): void => {
@@ -135,13 +135,13 @@ export const ResetPassword: React.FC<ResetPasswordProps> = (props) => {
             <KeyboardAwareScrollView contentContainerStyle={containerStyles.spaceBetween}>
                 <View style={{ flex: 1 }}>
                     <Instruction
-                        text={t('FORGOT_PASSWORD.INSTRUCTIONS', { replace: { phone: contactPhone } })}
+                        text={t('pxb:FORGOT_PASSWORD.INSTRUCTIONS', { replace: { phone: contactPhone } })}
                         style={containerStyles.containerMargins}
                     />
 
                     <View style={[containerStyles.containerMargins, containerStyles.mainContainer]}>
                         <TextInput
-                            label={t('LABELS.EMAIL')}
+                            label={t('pxb:LABELS.EMAIL')}
                             value={emailInput}
                             style={styles.inputMargin}
                             keyboardType={'email-address'}
@@ -153,9 +153,9 @@ export const ResetPassword: React.FC<ResetPasswordProps> = (props) => {
                             error={hasTransitError || hasEmailFormatError}
                             errorText={
                                 hasTransitError
-                                    ? t('LOGIN.INCORRECT_CREDENTIALS')
+                                    ? t('pxb:LOGIN.INCORRECT_CREDENTIALS')
                                     : hasEmailFormatError
-                                    ? t('MESSAGES.EMAIL_ENTRY_ERROR')
+                                    ? t('pxb:MESSAGES.EMAIL_ENTRY_ERROR')
                                     : ''
                             }
                             onBlur={(): void => {
@@ -168,7 +168,7 @@ export const ResetPassword: React.FC<ResetPasswordProps> = (props) => {
                 <View style={[styles.wideButton, containerStyles.containerMargins]}>
                     <View style={{ flex: 1 }}>
                         <ToggleButton
-                            text={t('FORMS.RESET_PASSWORD')}
+                            text={t('pxb:FORMS.RESET_PASSWORD')}
                             disabled={!isValidPassword}
                             onPress={onResetPasswordTap}
                         />

@@ -160,10 +160,10 @@ export const Login: React.FC<LoginProps> = (props) => {
     const transitState = authUIState.login;
     const spinner = transitState.transitInProgress ? <Spinner hasHeader={false} /> : <></>;
     const hasTransitError = authUIState.login.transitErrorMessage !== null;
-    const transitErrorMessage = authUIState.login.transitErrorMessage ?? t('MESSAGES.REQUEST_ERROR');
+    const transitErrorMessage = authUIState.login.transitErrorMessage ?? t('pxb:MESSAGES.REQUEST_ERROR');
     const errorDialog = (
         <SimpleDialog
-            title={t('MESSAGES.ERROR')}
+            title={t('pxb:MESSAGES.ERROR')}
             bodyText={t(transitErrorMessage)}
             visible={hasTransitError && !hasAcknowledgedError}
             onDismiss={(): void => {
@@ -175,7 +175,7 @@ export const Login: React.FC<LoginProps> = (props) => {
     // Construct the optional elements
     let contactEatonRepresentative: JSX.Element = showContactSupport ? (
         <ResizingClearButton
-            title={t('MESSAGES.CONTACT')}
+            title={t('pxb:MESSAGES.CONTACT')}
             style={{ width: '100%' }}
             onPress={(): void => navigation.navigate('SupportContact')}
         />
@@ -190,23 +190,23 @@ export const Login: React.FC<LoginProps> = (props) => {
     if (showSelfRegistration) {
         createAccountOption = (
             <View style={{ marginVertical: 32 }}>
-                <Body1 style={styles.signUpText}>{t('LABELS.NEED_ACCOUNT')}</Body1>
+                <Body1 style={styles.signUpText}>{t('pxb:LABELS.NEED_ACCOUNT')}</Body1>
                 <Button
                     mode={'text'}
                     labelStyle={styles.clearButton}
                     uppercase={false}
                     onPress={(): void => navigation.navigate('Registration')}
                 >
-                    <Body1 color="primary">{t('ACTIONS.CREATE_ACCOUNT')}</Body1>
+                    <Body1 color="primary">{t('pxb:ACTIONS.CREATE_ACCOUNT')}</Body1>
                 </Button>
             </View>
         );
     } else {
         contactEatonRepresentative = showContactSupport ? (
             <View style={{ alignSelf: 'center', flexShrink: 1 }}>
-                <Body1 style={styles.signUpText}>{t('LABELS.NEED_ACCOUNT')}</Body1>
+                <Body1 style={styles.signUpText}>{t('pxb:LABELS.NEED_ACCOUNT')}</Body1>
                 <ResizingClearButton
-                    title={t('MESSAGES.CONTACT')}
+                    title={t('pxb:MESSAGES.CONTACT')}
                     style={{ width: '100%' }}
                     onPress={(): void => navigation.navigate('SupportContact')}
                 />
@@ -320,7 +320,7 @@ export const Login: React.FC<LoginProps> = (props) => {
                     <View style={[{ flexGrow: 1 }]}>
                         <TextInput
                             testID={'email-text-field'}
-                            label={t('LABELS.EMAIL')}
+                            label={t('pxb:LABELS.EMAIL')}
                             value={emailInput}
                             keyboardType={'email-address'}
                             style={{ marginTop: 48 }}
@@ -336,9 +336,9 @@ export const Login: React.FC<LoginProps> = (props) => {
                             error={hasTransitError || hasEmailFormatError}
                             errorText={
                                 hasTransitError
-                                    ? t('LOGIN.INCORRECT_CREDENTIALS')
+                                    ? t('pxb:LOGIN.INCORRECT_CREDENTIALS')
                                     : hasEmailFormatError
-                                    ? t('MESSAGES.EMAIL_ENTRY_ERROR')
+                                    ? t('pxb:MESSAGES.EMAIL_ENTRY_ERROR')
                                     : ''
                             }
                             onBlur={(): void => {
@@ -349,14 +349,14 @@ export const Login: React.FC<LoginProps> = (props) => {
                         <TextInputSecure
                             testID={'password-text-field'}
                             ref={confirmPasswordRef}
-                            label={t('LABELS.PASSWORD')}
+                            label={t('pxb:LABELS.PASSWORD')}
                             value={passwordInput}
                             autoCapitalize={'none'}
                             onChangeText={(text: string): void => setPasswordInput(text)}
                             returnKeyType={'done'}
                             style={{ marginTop: 44 }}
                             error={hasTransitError}
-                            errorText={t('LOGIN.INCORRECT_CREDENTIALS')}
+                            errorText={t('pxb:LOGIN.INCORRECT_CREDENTIALS')}
                             onSubmitEditing={!EMAIL_REGEX.test(emailInput) || !passwordInput ? undefined : loginTapped}
                         />
 
@@ -364,7 +364,7 @@ export const Login: React.FC<LoginProps> = (props) => {
                             <View style={[containerStyles.checkboxAndButton]}>
                                 {showRememberMe && (
                                     <Checkbox
-                                        label={t('ACTIONS.REMEMBER')}
+                                        label={t('pxb:ACTIONS.REMEMBER')}
                                         checked={rememberPassword}
                                         style={[containerStyles.checkbox]}
                                         onPress={(): void => setRememberPassword(!rememberPassword)}
@@ -372,7 +372,7 @@ export const Login: React.FC<LoginProps> = (props) => {
                                 )}
                                 <View style={[containerStyles.loginButtonContainer]}>
                                     <ToggleButton
-                                        text={t('ACTIONS.LOG_IN')}
+                                        text={t('pxb:ACTIONS.LOG_IN')}
                                         disabled={!EMAIL_REGEX.test(emailInput) || !passwordInput}
                                         onPress={loginTapped}
                                     />
@@ -389,7 +389,7 @@ export const Login: React.FC<LoginProps> = (props) => {
                                     uppercase={false}
                                     onPress={(): void => navigation.navigate('PasswordResetInitiation')}
                                 >
-                                    <Body1 color="primary">{t('LABELS.FORGOT_PASSWORD')}</Body1>
+                                    <Body1 color="primary">{t('pxb:LABELS.FORGOT_PASSWORD')}</Body1>
                                 </Button>
                             )}
 

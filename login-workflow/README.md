@@ -80,6 +80,9 @@ Note that the `authui://` prefix is set by your application, as in the file at `
 # APIs
 More information about React Native Auth Workflow's exported objects and functions can found in the [API](https://github.com/pxblue/react-native-workflows/tree/master/login-workflow/docs/API.md) documentation.
 
+# Language Support
+For information about supporting multiple languages, refer to our [Language Support](https://github.com/pxblue/react-workflows/tree/master/login-workflow/docs/language-support.md) guidelines.
+
 # Contributors
 
 To work on this package as a contributor, first clone down the repository:

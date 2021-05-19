@@ -78,8 +78,8 @@ export const ErrorState: React.FC<ErrorStateProps> = (props) => {
                     // @ts-ignore we need a new version of the component library that exposes the type for WrapIconProps
                     IconClass={icon ?? ReportIcon}
                     iconColor={theme.colors.error}
-                    title={title ?? t('MESSAGES.FAILURE')}
-                    description={bodyText !== null ? t(bodyText) : t('MESSAGES.REQUEST_ERROR')}
+                    title={title ?? t('pxb:MESSAGES.FAILURE')}
+                    description={bodyText !== null ? t(bodyText) : t('pxb:MESSAGES.REQUEST_ERROR')}
                 />
             </View>
 
@@ -92,7 +92,7 @@ export const ErrorState: React.FC<ErrorStateProps> = (props) => {
                         onPress();
                     }}
                 >
-                    {t('ACTIONS.FINISH')}
+                    {t('pxb:ACTIONS.FINISH')}
                 </Button>
             </View>
         </SafeAreaView>
