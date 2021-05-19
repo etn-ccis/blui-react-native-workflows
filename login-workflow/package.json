@@ -43,7 +43,8 @@
         "precommit": "yarn validate && yarn generate:licenses",
         "update:submodule": "git submodule update --remote",
         "typescript": "tsc --noEmit",
-        "publish:package": "set npm_config_yes=true && npx -p @pxblue/publish pxb-publish"
+        "publish:package": "set npm_config_yes=true && npx -p @pxblue/publish pxb-publish",
+        "coverage": "yarn test --coverage --watchAll=false"
     },
     "dependencies": {
         "@pxblue/react-auth-shared": "^3.2.0",
@@ -88,6 +89,7 @@
         "@typescript-eslint/eslint-plugin": "^4.0.0",
         "@typescript-eslint/parser": "^4.0.0",
         "babel-jest": "^25.0.0",
+        "codecov": "^3.8.2",
         "date-fns": "^2.11.1",
         "enzyme": "^3.11.0",
         "enzyme-adapter-react-16": "^1.15.2",
@@ -121,6 +123,8 @@
         "typescript": "^4.0.0"
     },
     "jest": {
+        "coverageDirectory": "./coverage/",
+        "collectCoverage": true,
         "snapshotSerializers": [
             "enzyme-to-json/serializer"
         ],
