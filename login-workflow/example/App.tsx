@@ -21,7 +21,7 @@ import { authLinkMapping, resolveInitialState } from './src/navigation/DeepLinki
 // import { Image, ScrollView, View } from 'react-native';
 // import { Body1, H5, Header, Hero, wrapIcon } from '@pxblue/react-native-components';
 // import MatIcon from 'react-native-vector-icons/MaterialIcons';
-// import { CustomAccountDetails, CustomAccountDetailsTwo } from './src/screens/CustomRegistrationForm';
+import { CustomAccountDetails, CustomAccountDetailsTwo } from './src/screens/CustomRegistrationForm';
 // import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 // import { Terms } from './src/screens/Terms';
 
@@ -72,10 +72,14 @@ export const AuthUIConfiguration: React.FC = (props) => {
             contactEmail={'something@email.com'}
             contactPhone={'1-800-123-4567'}
             contactPhoneLink={'1-800-123-4567'}
-            // customAccountDetails={[
-            //     { component: CustomAccountDetails },
-            //     { title: 'Job Info', instructions: 'Enter your employment information below.', component: CustomAccountDetailsTwo },
-            // ]}
+            customAccountDetails={[
+                { component: CustomAccountDetails },
+                {
+                    title: 'Job Info',
+                    instructions: 'Enter your employment information below.',
+                    component: CustomAccountDetailsTwo,
+                },
+            ]}
             // showCybersecurityBadge={false}
             // showContactSupport={false}
             // showRememberMe={false}
