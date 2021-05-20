@@ -23,9 +23,11 @@ const makeStyles = (props: ToggleButtonProps, theme: ReactNativePaper.Theme): Re
             width: '100%',
             alignSelf: 'center',
             borderRadius: theme.roundness,
-            borderColor: props.outlined ? Colors.black['100'] : 'transparent',
+            borderColor: props.disabled ? theme.colors.disabled : props.outlined ? theme.colors.primary : 'transparent',
         },
-        label: {},
+        label: {
+            color: props.disabled ? theme.colors.disabled : props.outlined ? theme.colors.primary : Colors.white[50],
+        },
     });
 
 /**

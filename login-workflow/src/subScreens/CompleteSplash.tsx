@@ -57,6 +57,11 @@ const makeStyles = (theme: ReactNativePaper.Theme): Record<string, any> =>
         },
         backgroundImage: {
             position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            width: '100%',
+            height: 150,
         },
         circleIconBackground: {
             width: 100,
@@ -95,11 +100,16 @@ export const CompleteSplashScreen: React.FC<CompleteSplashScreenProps> = (props)
 
     return (
         <View style={containerStyles.backgroundAndContentWrapper}>
-            <Image style={styles.backgroundImage} source={require('../assets/images/blue_waves.png')} />
+            <Image
+                resizeMethod={'resize'}
+                resizeMode={'cover'}
+                style={[styles.backgroundImage]}
+                source={require('../assets/images/waves.png')}
+            />
             <ScrollView style={[containerStyles.safeContainer]}>
                 <SafeAreaView style={[containerStyles.safeContainer]}>
                     <View style={[containerStyles.containerMargins, containerStyles.mainContainer]}>
-                        <IconSplash style={{ height: 200 }} icon={props.icon ?? 'person'} />
+                        <IconSplash style={{ height: 150 }} icon={props.icon ?? 'person'} />
 
                         <View style={containerStyles.textContainer}>
                             <H6 style={[styles.headerText, styles.textSpacing]}>{props.boldTitle}</H6>
