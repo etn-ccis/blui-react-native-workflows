@@ -51,7 +51,6 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme, insets: any): Record
         },
     });
 
-
 /**
  * @ignore
  */
@@ -166,8 +165,8 @@ export const ResetPassword: React.FC<ResetPasswordProps> = (props) => {
                                 hasTransitError
                                     ? t('pxb:LOGIN.INCORRECT_CREDENTIALS')
                                     : hasEmailFormatError
-                                        ? t('pxb:MESSAGES.EMAIL_ENTRY_ERROR')
-                                        : ''
+                                    ? t('pxb:MESSAGES.EMAIL_ENTRY_ERROR')
+                                    : ''
                             }
                             onBlur={(): void => {
                                 if (emailInput.length > 0 && !EMAIL_REGEX.test(emailInput))

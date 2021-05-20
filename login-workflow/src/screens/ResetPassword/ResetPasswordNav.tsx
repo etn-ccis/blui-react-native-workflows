@@ -89,14 +89,15 @@ export const ResetPasswordNav: React.FC<ResetPasswordNavProps> = (props) => {
             screenOptions={{
                 headerTintColor: theme.colors.surface,
                 headerStyle: { backgroundColor: theme.colors.primaryBase || theme.colors.primary },
-                header: (): JSX.Element | null =>
+                header: (): JSX.Element | null => (
                     <CloseHeader
                         title={t('pxb:FORMS.RESET_PASSWORD')}
-                        backAction={() => {
+                        backAction={(): void => {
                             navigation.navigate('Login');
                         }}
-                    />,
-                cardStyle: { backgroundColor: theme.colors.surface }
+                    />
+                ),
+                cardStyle: { backgroundColor: theme.colors.surface },
             }}
         >
             {accountUIState.forgotPassword.transitSuccess !== true ? (

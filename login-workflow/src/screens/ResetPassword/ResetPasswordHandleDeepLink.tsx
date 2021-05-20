@@ -102,15 +102,15 @@ export const ResetPasswordHandleDeepLink: React.FC = () => {
         <Stack.Navigator
             initialRouteName="ResetPasswordConfirm"
             screenOptions={{
-                header: (): JSX.Element | null =>
+                header: (): JSX.Element | null => (
                     <CloseHeader
                         title={t('pxb:FORMS.RESET_PASSWORD')}
-                        backAction={() => {
+                        backAction={(): void => {
                             navigation.navigate('Login');
                         }}
                     />
+                ),
             }}
-
         >
             {!setPasswordTransitSuccess ? (
                 <Stack.Screen
@@ -119,10 +119,7 @@ export const ResetPasswordHandleDeepLink: React.FC = () => {
                     component={ResetPasswordConfirm}
                 />
             ) : (
-                <Stack.Screen
-                    name="ResetPasswordSuccess"
-                    component={ResetPasswordSuccess}
-                />
+                <Stack.Screen name="ResetPasswordSuccess" component={ResetPasswordSuccess} />
             )}
         </Stack.Navigator>
     ) : !verifyComplete ? (
