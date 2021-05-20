@@ -132,6 +132,7 @@ const Home: React.FC<AppProps> = ({ navigation }): JSX.Element => {
         <>
             <Header
                 title={'Home Page'}
+                backgroundColor={theme.colors.primaryBase || theme.colors.primary}
                 navigation={{
                     icon: MenuIcon,
                     onPress: (): void => {

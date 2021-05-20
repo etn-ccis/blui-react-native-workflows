@@ -163,6 +163,10 @@ export const Login: React.FC<LoginProps> = (props) => {
     const spinner = transitState.transitInProgress ? <Spinner hasHeader={false} /> : <></>;
     const hasTransitError = authUIState.login.transitErrorMessage !== null;
     const transitErrorMessage = authUIState.login.transitErrorMessage ?? t('pxb:MESSAGES.REQUEST_ERROR');
+    const isInvalidCredentials =
+        transitErrorMessage.replace('pxb:', '') === 'LOGIN.INCORRECT_CREDENTIALS' ||
+        transitErrorMessage.replace('pxb:', '') === 'LOGIN.INVALID_CREDENTIALS';
+
     const errorDialog = (
         <SimpleDialog
             title={t('pxb:MESSAGES.ERROR')}
@@ -338,9 +342,9 @@ export const Login: React.FC<LoginProps> = (props) => {
                             }}
                             blurOnSubmit={false}
                             returnKeyType={'next'}
-                            error={hasTransitError || hasEmailFormatError}
+                            error={isInvalidCredentials || hasEmailFormatError}
                             errorText={
-                                hasTransitError
+                                isInvalidCredentials
                                     ? t('pxb:LOGIN.INCORRECT_CREDENTIALS')
                                     : hasEmailFormatError
                                     ? t('pxb:MESSAGES.EMAIL_ENTRY_ERROR')
@@ -360,7 +364,7 @@ export const Login: React.FC<LoginProps> = (props) => {
                             onChangeText={(text: string): void => setPasswordInput(text)}
                             returnKeyType={'done'}
                             style={{ marginTop: 44 }}
-                            error={hasTransitError}
+                            error={isInvalidCredentials}
                             errorText={t('pxb:LOGIN.INCORRECT_CREDENTIALS')}
                             onSubmitEditing={!EMAIL_REGEX.test(emailInput) || !passwordInput ? undefined : loginTapped}
                         />
