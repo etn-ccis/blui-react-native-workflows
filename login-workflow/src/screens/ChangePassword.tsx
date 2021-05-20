@@ -85,7 +85,7 @@ const makeStyles = (theme: ReactNativePaper.Theme): Record<string, any> =>
             alignItems: 'center',
             paddingVertical: 10,
         },
-        headerText: { },
+        headerText: {},
         bodyText: {
             color: theme.colors.text,
         },

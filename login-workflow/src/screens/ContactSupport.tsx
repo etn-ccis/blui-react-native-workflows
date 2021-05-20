@@ -61,7 +61,7 @@ const makeStyles = (theme: ReactNativePaper.Theme): Record<string, any> =>
         textSpacing: {
             marginVertical: 10,
         },
-        headerText: { },
+        headerText: {},
         bodyText: {
             color: theme.colors.text,
         },

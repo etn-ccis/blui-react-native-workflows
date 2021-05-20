@@ -25,7 +25,7 @@ const makeStyles = (props: ToggleButtonProps, theme: ReactNativePaper.Theme): Re
             borderRadius: theme.roundness,
             borderColor: props.outlined ? Colors.black['100'] : 'transparent',
         },
-        label: { },
+        label: {},
     });
 
 /**

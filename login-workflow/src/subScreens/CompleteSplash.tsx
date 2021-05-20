@@ -50,8 +50,8 @@ const makeContainerStyles = (): Record<string, any> =>
  */
 const makeStyles = (theme: ReactNativePaper.Theme): Record<string, any> =>
     StyleSheet.create({
-        headerText: { },
-        bodyText: { },
+        headerText: {},
+        bodyText: {},
         textSpacing: {
             marginVertical: 10,
         },

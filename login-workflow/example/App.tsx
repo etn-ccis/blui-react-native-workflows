@@ -13,6 +13,7 @@ import {
     useSecurityActions,
     /*RegistrationData,*/
     i18n,
+    AltThemeProvider,
 } from '@pxblue/react-native-auth-workflow';
 import { useLinking } from '@react-navigation/native';
 import { authLinkMapping, resolveInitialState } from './src/navigation/DeepLinking';
@@ -245,21 +246,23 @@ export const App: React.FC = () => {
     }, [getInitialState]);
 
     return (
-        <ThemeProvider theme={PXBThemes.blue}>
-            <SecurityContextProvider>
-                <AuthUIConfiguration>
-                    <AuthNavigationContainer
-                        initialState={initialState}
-                        // initialRouteName={'Terms'}
-                        ref={ref}
-                        // @ts-ignore
-                        // extraRoutes={[<Stack.Screen key={'Terms-Screen'} name="Terms" component={Terms} />]}
-                    >
-                        <MainRouter />
-                    </AuthNavigationContainer>
-                </AuthUIConfiguration>
-            </SecurityContextProvider>
-        </ThemeProvider>
+        <AltThemeProvider theme={PXBThemes.blueDarkAlt}>
+            <ThemeProvider theme={PXBThemes.blueDark}>
+                <SecurityContextProvider>
+                    <AuthUIConfiguration>
+                        <AuthNavigationContainer
+                            initialState={initialState}
+                            // initialRouteName={'Terms'}
+                            ref={ref}
+                            // @ts-ignore
+                            // extraRoutes={[<Stack.Screen key={'Terms-Screen'} name="Terms" component={Terms} />]}
+                        >
+                            <MainRouter />
+                        </AuthNavigationContainer>
+                    </AuthUIConfiguration>
+                </SecurityContextProvider>
+            </ThemeProvider>
+        </AltThemeProvider>
     );
 };
 

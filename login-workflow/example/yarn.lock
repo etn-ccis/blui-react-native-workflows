@@ -1001,17 +1001,18 @@
   resolved "https://registry.yarnpkg.com/@pxblue/prettier-config/-/prettier-config-1.0.2.tgz#fb00503df6557b66c3d91d43c9101e614c35d2ec"
   integrity sha512-/3cLBoTjZs3kV1ATPA/Sp0tsL7XmlV/b8HW/qt0jqR/uP5+cdXL2YIhMXQngLRa7PhpSkEiRIYK5sl0rKsXTUg==
 
-"@pxblue/react-auth-shared@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@pxblue/react-auth-shared/-/react-auth-shared-3.0.0.tgz#c0a5f26686e4bb0a736c80624dd9b58837b0c4b2"
-  integrity sha512-cWr1q/cMggpX2I40O6RwjOOM1De3TqP1ymqiMTW6nceBGxsrZQDu1ujo3Oiua/0hGbcwJKfYGQNoBSIV0fH+sA==
+"@pxblue/react-auth-shared@^3.2.0":
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/@pxblue/react-auth-shared/-/react-auth-shared-3.2.1.tgz#84d0b8f326fedfe9eb638323d4a5fe86b0420955"
+  integrity sha512-Kise5OobXaE/qmxOZ4k7pb2ygklxMPasiR4j7zDBi3g3YqZ4en1rohwyM4CJmbjT5dBZ+4dCJn+nkIMDUx7zLA==
 
-"@pxblue/react-native-auth-workflow@^3.0.0-beta.0":
-  version "3.0.0-beta.0"
-  resolved "https://registry.yarnpkg.com/@pxblue/react-native-auth-workflow/-/react-native-auth-workflow-3.0.0-beta.0.tgz#a8b0ff05826c54b3542b7327bc1bf1ec817dc967"
-  integrity sha512-5L2HPk0WADEZ0Lw4I29fGyL3YbZukcw0Z0K/peFT+78reF5Ns3yNZzU0B6XElOLaHJn41bDU0sqTH/FSXbeQPg==
+"@pxblue/react-native-auth-workflow@^3.2.0-beta.0":
+  version "3.2.0-beta.0"
+  resolved "https://registry.yarnpkg.com/@pxblue/react-native-auth-workflow/-/react-native-auth-workflow-3.2.0-beta.0.tgz#60a6e6af3a774edf5281c36852bdcbeb80ccd278"
+  integrity sha512-pzP5eqwljKB0j53K81R77dJVj2r+pDI5M1H11f507ulTc0OcQeNkZdLOIigBmVyF5xWysE116anzoVs7fzx6Ug==
   dependencies:
-    "@pxblue/react-auth-shared" "^3.0.0"
+    "@pxblue/react-auth-shared" "^3.2.0"
+    lodash.clonedeep "^4.5.0"
     react-native-status-bar-height "^2.5.0"
 
 "@pxblue/react-native-components@^5.0.0":
