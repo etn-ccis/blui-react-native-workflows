@@ -88,39 +88,28 @@ export const ResetPasswordNav: React.FC<ResetPasswordNavProps> = (props) => {
         <Stack.Navigator
             screenOptions={{
                 headerTintColor: theme.colors.surface,
-                headerStyle: { backgroundColor: theme.colors.primary },
+                headerStyle: { backgroundColor: theme.colors.primaryBase || theme.colors.primary },
+                header: (): JSX.Element | null =>
+                    <CloseHeader
+                        title={t('pxb:FORMS.RESET_PASSWORD')}
+                        backAction={() => {
+                            navigation.navigate('Login');
+                        }}
+                    />,
+                cardStyle: { backgroundColor: theme.colors.surface }
             }}
         >
             {accountUIState.forgotPassword.transitSuccess !== true ? (
                 <Stack.Screen
                     name="ResetPassword"
-                    initialParams={{ onResetPasswordPress: resetPassword, contactPhone: contactPhone }}
                     component={ResetPassword}
-                    options={(): { header: () => JSX.Element | null } => ({
-                        header: (): JSX.Element | null =>
-                            CloseHeader({
-                                title: t('pxb:FORMS.RESET_PASSWORD'),
-                                backAction: () => {
-                                    navigation.navigate('Login');
-                                },
-                            }),
-                    })}
+                    initialParams={{ onResetPasswordPress: resetPassword, contactPhone: contactPhone }}
                 />
             ) : (
                 <Stack.Screen
                     name="ResetPasswordSent"
                     component={ResetPasswordSent}
                     initialParams={{ email: accountUIState.forgotPassword.email }}
-                    options={(): { gestureEnabled: boolean; header: () => JSX.Element | null } => ({
-                        gestureEnabled: false,
-                        header: (): JSX.Element | null =>
-                            CloseHeader({
-                                title: t('pxb:FORMS.RESET_PASSWORD'),
-                                backAction: () => {
-                                    navigation.navigate('Login');
-                                },
-                            }),
-                    })}
                 />
             )}
         </Stack.Navigator>

@@ -36,7 +36,7 @@ export const CloseHeader: React.FC<CloseHeaderProps> = (props) => {
         <Header
             title={props.title}
             navigation={{ icon: CloseIcon, onPress: props.backAction }}
-            backgroundColor={theme.colors.primaryBase}
+            backgroundColor={theme.colors.primaryBase || theme.colors.primary}
         />
     );
 };

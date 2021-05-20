@@ -24,6 +24,7 @@
         "@react-navigation/drawer": "^5.12.3",
         "@react-navigation/native": "^5.9.3",
         "@react-navigation/stack": "^5.14.3",
+        "@types/react": "^17",
         "date-fns": "^2.19.0",
         "i18next": "^20.0.0",
         "prettier": "^2.2.1",

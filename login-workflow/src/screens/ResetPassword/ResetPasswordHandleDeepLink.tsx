@@ -99,35 +99,29 @@ export const ResetPasswordHandleDeepLink: React.FC = () => {
     };
 
     return verifySuccess && !verifyIsInTransit ? (
-        <Stack.Navigator initialRouteName="ResetPasswordConfirm">
+        <Stack.Navigator
+            initialRouteName="ResetPasswordConfirm"
+            screenOptions={{
+                header: (): JSX.Element | null =>
+                    <CloseHeader
+                        title={t('pxb:FORMS.RESET_PASSWORD')}
+                        backAction={() => {
+                            navigation.navigate('Login');
+                        }}
+                    />
+            }}
+
+        >
             {!setPasswordTransitSuccess ? (
                 <Stack.Screen
                     name="ResetPasswordConfirm"
                     initialParams={{ onResetPasswordPress: resetPassword }}
                     component={ResetPasswordConfirm}
-                    options={(): { header: () => JSX.Element | null } => ({
-                        header: (): JSX.Element | null =>
-                            CloseHeader({
-                                title: t('pxb:FORMS.RESET_PASSWORD'),
-                                backAction: () => {
-                                    navigation.navigate('Login');
-                                },
-                            }),
-                    })}
                 />
             ) : (
                 <Stack.Screen
                     name="ResetPasswordSuccess"
                     component={ResetPasswordSuccess}
-                    options={(): { header: () => JSX.Element | null } => ({
-                        header: (): JSX.Element | null =>
-                            CloseHeader({
-                                title: t('pxb:FORMS.RESET_PASSWORD'),
-                                backAction: () => {
-                                    navigation.navigate('Login');
-                                },
-                            }),
-                    })}
                 />
             )}
         </Stack.Navigator>

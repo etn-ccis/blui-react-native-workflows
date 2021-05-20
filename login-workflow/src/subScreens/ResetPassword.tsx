@@ -8,6 +8,7 @@ import React from 'react';
 // Hooks
 import { useRoute } from '@react-navigation/native';
 import { useTheme } from 'react-native-paper';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 // Components
 import { View, StyleSheet, SafeAreaView } from 'react-native';
@@ -30,11 +31,13 @@ import {
 /**
  * @ignore
  */
-const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any> =>
+const makeContainerStyles = (theme: ReactNativePaper.Theme, insets: any): Record<string, any> =>
     StyleSheet.create({
         safeContainer: {
-            height: '100%',
+            // height: '100%',
+            flexGrow: 1,
             backgroundColor: theme.colors.surface,
+            marginBottom: insets.bottom,
         },
         mainContainer: {
             flex: 1,
@@ -47,6 +50,7 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
             justifyContent: 'space-between',
         },
     });
+
 
 /**
  * @ignore
@@ -96,11 +100,18 @@ export const ResetPassword: React.FC<ResetPasswordProps> = (props) => {
     const { t } = useLanguageLocale();
     const accountUIState = useAccountUIState();
     const route = useRoute();
+    /*
+        For some strange reason the SafeAreaView doesn't work as expected on this route and the button gets 
+        pegged at the very bottom. If you switch the ResetPassword for the ResetPasswordSent component, it
+        has the same behavior, despite looking fine on its own route. The insets hack seems to work ok for now.
+    */
+    const insets = useSafeAreaInsets();
+
     const routeParams = route.params as ResetPasswordParams;
-    const containerStyles = makeContainerStyles(theme);
+    const containerStyles = makeContainerStyles(theme, insets);
     const styles = makeStyles();
 
-    const isValidPassword = new RegExp(EMAIL_REGEX).test(emailInput);
+    const isValidEmail = new RegExp(EMAIL_REGEX).test(emailInput);
 
     const onResetPasswordTap = (): void => {
         setHasAcknowledgedError(false);
@@ -132,7 +143,7 @@ export const ResetPassword: React.FC<ResetPasswordProps> = (props) => {
         <SafeAreaView style={containerStyles.safeContainer}>
             {spinner}
             {errorDialog}
-            <KeyboardAwareScrollView contentContainerStyle={containerStyles.spaceBetween}>
+            <KeyboardAwareScrollView style={{ flex: 1 }} contentContainerStyle={containerStyles.spaceBetween}>
                 <View style={{ flex: 1 }}>
                     <Instruction
                         text={t('pxb:FORGOT_PASSWORD.INSTRUCTIONS', { replace: { phone: contactPhone } })}
@@ -155,26 +166,27 @@ export const ResetPassword: React.FC<ResetPasswordProps> = (props) => {
                                 hasTransitError
                                     ? t('pxb:LOGIN.INCORRECT_CREDENTIALS')
                                     : hasEmailFormatError
-                                    ? t('pxb:MESSAGES.EMAIL_ENTRY_ERROR')
-                                    : ''
+                                        ? t('pxb:MESSAGES.EMAIL_ENTRY_ERROR')
+                                        : ''
                             }
                             onBlur={(): void => {
                                 if (emailInput.length > 0 && !EMAIL_REGEX.test(emailInput))
                                     setHasEmailFormatError(true);
                             }}
-                        />
-                    </View>
-                </View>
-                <View style={[styles.wideButton, containerStyles.containerMargins]}>
-                    <View style={{ flex: 1 }}>
-                        <ToggleButton
-                            text={t('pxb:FORMS.RESET_PASSWORD')}
-                            disabled={!isValidPassword}
-                            onPress={onResetPasswordTap}
+                            onSubmitEditing={isValidEmail ? onResetPasswordTap : undefined}
                         />
                     </View>
                 </View>
             </KeyboardAwareScrollView>
+            <View style={[styles.wideButton, containerStyles.containerMargins]}>
+                <View style={{ flex: 1 }}>
+                    <ToggleButton
+                        text={t('pxb:FORMS.RESET_PASSWORD')}
+                        disabled={!isValidEmail}
+                        onPress={onResetPasswordTap}
+                    />
+                </View>
+            </View>
         </SafeAreaView>
     );
 };
