@@ -559,7 +559,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
             )}
         </View>
     ) : accountAlreadyExists ? (
-        <View style={{ flex: 1, backgroundColor: 'white' }}>
+        <View style={{ flex: 1 }}>
             {!customAccountAlreadyExists && (
                 <>
                     <CloseHeader

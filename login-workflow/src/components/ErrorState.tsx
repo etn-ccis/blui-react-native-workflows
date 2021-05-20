@@ -12,7 +12,8 @@ import { useLanguageLocale } from '@pxblue/react-auth-shared';
 import { EmptyState, wrapIcon } from '@pxblue/react-native-components';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import { View, StyleSheet, SafeAreaView } from 'react-native';
-import { Button, useTheme } from 'react-native-paper';
+import { useTheme } from 'react-native-paper';
+import { ThemedButton as Button } from '../components/themed/ThemedButton';
 
 const ReportIcon = wrapIcon({ IconClass: MatIcon, name: 'report' });
 

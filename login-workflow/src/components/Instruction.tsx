@@ -12,22 +12,23 @@ import { Body1 } from '@pxblue/react-native-components';
 
 // Styles
 import * as Colors from '@pxblue/colors';
-
+import { useTheme } from 'react-native-paper';
+import Color from 'color';
 /**
  * @ignore
  */
-const makeStyles = (): Record<string, any> =>
+const makeStyles = (theme: ReactNativePaper.Theme): Record<string, any> =>
     StyleSheet.create({
         padding: {
             paddingVertical: 30,
         },
         bottomBorder: {
             borderBottomWidth: 1,
-            borderBottomColor: Colors.white['900'],
+            borderBottomColor: theme.dark
+                ? Color(Colors.black[200]).alpha(0.36).toString()
+                : Color(Colors.black['500']).alpha(0.12).toString(),
         },
-        mainText: {
-            color: Colors.black['500'],
-        },
+        mainText: {},
     });
 
 /**
@@ -50,7 +51,8 @@ type InstructionProps = {
  */
 export const Instruction: React.FC<InstructionProps> = (props) => {
     const { text, style, hasBottomBorder = true } = props;
-    const styles = makeStyles();
+    const theme = useTheme();
+    const styles = makeStyles(theme);
 
     return (
         <View style={[styles.padding, hasBottomBorder ? styles.bottomBorder : null]}>

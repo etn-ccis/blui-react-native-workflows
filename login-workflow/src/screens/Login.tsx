@@ -7,7 +7,9 @@ import React from 'react';
 
 // Components
 import { Platform, View, StyleSheet, SafeAreaView, StatusBar, TextInput as ReactTextInput } from 'react-native';
-import { Button, useTheme } from 'react-native-paper';
+import { useTheme } from 'react-native-paper';
+import { ThemedButton as Button } from '../components/themed/ThemedButton';
+
 import { TextInput } from '../components/TextInput';
 import { TextInputSecure } from '../components/TextInputSecure';
 import { Checkbox } from '../components/Checkbox';
@@ -297,7 +299,10 @@ export const Login: React.FC<LoginProps> = (props) => {
     let statusBar: JSX.Element = <></>;
     statusBar =
         Platform.OS === 'ios' ? (
-            <StatusBar backgroundColor={theme.colors.primary} barStyle="dark-content" />
+            <StatusBar
+                backgroundColor={theme.colors.primary}
+                barStyle={theme.dark ? 'light-content' : 'dark-content'}
+            />
         ) : (
             <StatusBar backgroundColor={theme.colors.primary} barStyle="light-content" />
         );

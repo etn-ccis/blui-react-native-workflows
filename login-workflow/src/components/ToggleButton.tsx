@@ -8,7 +8,8 @@ import React from 'react';
 // Components
 import { StyleSheet, StyleProp, ViewStyle } from 'react-native';
 import { Body1 } from '@pxblue/react-native-components';
-import { Button, useTheme } from 'react-native-paper';
+import { useTheme } from 'react-native-paper';
+import { ThemedButton as Button } from '../components/themed/ThemedButton';
 
 // Styles
 import * as Colors from '@pxblue/colors';
@@ -24,15 +25,7 @@ const makeStyles = (props: ToggleButtonProps, theme: ReactNativePaper.Theme): Re
             borderRadius: theme.roundness,
             borderColor: props.outlined ? Colors.black['100'] : 'transparent',
         },
-        label: {
-            color: props.outlined
-                ? props.disabled
-                    ? Colors.black['100']
-                    : theme.colors.primary
-                : props.disabled
-                ? Colors.gray['300']
-                : Colors.white['50'],
-        },
+        label: { },
     });
 
 /**

@@ -12,7 +12,6 @@ import { CloseHeader } from '../components/CloseHeader';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
 
 // Styles
-import * as Colors from '@pxblue/colors';
 import { Body1, H6 } from '@pxblue/react-native-components';
 
 // Hooks
@@ -62,9 +61,7 @@ const makeStyles = (theme: ReactNativePaper.Theme): Record<string, any> =>
         textSpacing: {
             marginVertical: 10,
         },
-        headerText: {
-            color: Colors.black['800'],
-        },
+        headerText: { },
         bodyText: {
             color: theme.colors.text,
         },

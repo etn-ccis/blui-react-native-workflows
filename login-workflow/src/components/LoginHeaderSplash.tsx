@@ -7,6 +7,7 @@ import React from 'react';
 
 // Components
 import { View, Image, StyleSheet, StyleProp, ViewStyle } from 'react-native';
+import { useTheme } from 'react-native-paper';
 
 // Styles
 import * as Colors from '@pxblue/colors';
@@ -42,7 +43,6 @@ const makeStyles = (): Record<string, any> =>
             resizeMode: 'cover',
             flex: 1,
             justifyContent: 'center',
-            tintColor: Colors.gray['50'],
             zIndex: -1,
         },
     });
@@ -64,6 +64,7 @@ type LoginHeaderSplashProps = {
 export const LoginHeaderSplash: React.FC<LoginHeaderSplashProps> = (props) => {
     const { style, mainImage } = props;
     const { background = {} } = useInjectedUIContext();
+    const theme = useTheme();
     const styles = makeStyles();
 
     return (
@@ -85,7 +86,11 @@ export const LoginHeaderSplash: React.FC<LoginHeaderSplashProps> = (props) => {
                     {
                         backgroundColor: background.backgroundColor ?? 'transparent',
                         height: background.backgroundSize ?? '30%',
-                        tintColor: background.backgroundImage ? undefined : Colors.gray[50],
+                        tintColor: background.backgroundImage
+                            ? undefined
+                            : theme.dark
+                            ? Colors.gray[800]
+                            : Colors.gray[50],
                     },
                 ]}
             />

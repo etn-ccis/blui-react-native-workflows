@@ -6,7 +6,8 @@
 import React from 'react';
 
 // Components
-import { Button, Paragraph, Dialog, Portal } from 'react-native-paper';
+import { Paragraph, Dialog, Portal } from 'react-native-paper';
+import { ThemedButton as Button } from '../components/themed/ThemedButton';
 
 // Hooks
 import { useLanguageLocale } from '@pxblue/react-auth-shared';

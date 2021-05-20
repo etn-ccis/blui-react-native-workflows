@@ -47,6 +47,7 @@
     },
     "dependencies": {
         "@pxblue/react-auth-shared": "^3.2.0",
+        "lodash.clonedeep": "^4.5.0",
         "react-native-status-bar-height": "^2.5.0"
     },
     "peerDependencies": {
@@ -81,6 +82,7 @@
         "@types/enzyme": "^3.10.5",
         "@types/enzyme-adapter-react-16": "^1.0.6",
         "@types/jest": "^24.0.0",
+        "@types/lodash.clonedeep": "^4.5.6",
         "@types/node": "^14.11.0",
         "@types/react-native": "^0.63.0",
         "@types/react-native-vector-icons": "^6.4.5",

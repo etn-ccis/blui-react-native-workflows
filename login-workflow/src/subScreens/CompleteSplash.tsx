@@ -12,7 +12,6 @@ import { FormattedText } from '../components/FormattedText';
 import { useTheme } from 'react-native-paper';
 
 // Styles
-import * as Colors from '@pxblue/colors';
 import { Body1, H6 } from '@pxblue/react-native-components';
 
 /**
@@ -51,12 +50,8 @@ const makeContainerStyles = (): Record<string, any> =>
  */
 const makeStyles = (theme: ReactNativePaper.Theme): Record<string, any> =>
     StyleSheet.create({
-        headerText: {
-            color: Colors.black['800'],
-        },
-        bodyText: {
-            color: theme.colors.text,
-        },
+        headerText: { },
+        bodyText: { },
         textSpacing: {
             marginVertical: 10,
         },
