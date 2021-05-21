@@ -27,7 +27,9 @@ import {
     // Hooks
     useAccountUIState,
     useAccountUIActions,
+    useLanguageLocale,
 } from '@pxblue/react-auth-shared';
+import { CloseHeader } from '../../components/CloseHeader';
 
 /**
  * Stack navigator for reset password navigation.
@@ -52,6 +54,7 @@ export const ResetPasswordNav: React.FC<ResetPasswordNavProps> = (props) => {
     const accountUIActions = useAccountUIActions();
     const navigation = useNavigation();
     const route = useRoute();
+    const { t } = useLanguageLocale();
 
     // Reset state on dismissal
     React.useEffect(
@@ -81,9 +84,16 @@ export const ResetPasswordNav: React.FC<ResetPasswordNavProps> = (props) => {
 
     return (
         <Stack.Navigator
-            headerMode={'none'}
             screenOptions={{
                 cardStyle: { backgroundColor: theme.colors.surface },
+                header: (): JSX.Element | null => (
+                    <CloseHeader
+                        title={t('pxb:FORMS.RESET_PASSWORD')}
+                        backAction={(): void => {
+                            navigation.navigate('Login');
+                        }}
+                    />
+                ),
             }}
         >
             {accountUIState.forgotPassword.transitSuccess !== true ? (
