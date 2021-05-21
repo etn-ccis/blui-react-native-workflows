@@ -58,7 +58,7 @@ export const PreAuthContainer: React.FC<PreAuthContainerProps> = (props) => {
 
     void MatIcon.loadFont();
     return (
-        <SafeAreaProvider>
+        <SafeAreaProvider style={{ backgroundColor: theme.colors.background }}>
             <Stack.Navigator
                 initialRouteName={props.initialRouteName || 'Login'}
                 mode="modal"

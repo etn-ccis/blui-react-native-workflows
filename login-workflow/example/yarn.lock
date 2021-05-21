@@ -1006,10 +1006,10 @@
   resolved "https://registry.yarnpkg.com/@pxblue/react-auth-shared/-/react-auth-shared-3.2.1.tgz#84d0b8f326fedfe9eb638323d4a5fe86b0420955"
   integrity sha512-Kise5OobXaE/qmxOZ4k7pb2ygklxMPasiR4j7zDBi3g3YqZ4en1rohwyM4CJmbjT5dBZ+4dCJn+nkIMDUx7zLA==
 
-"@pxblue/react-native-auth-workflow@^3.2.0-beta.0":
-  version "3.2.0-beta.0"
-  resolved "https://registry.yarnpkg.com/@pxblue/react-native-auth-workflow/-/react-native-auth-workflow-3.2.0-beta.0.tgz#60a6e6af3a774edf5281c36852bdcbeb80ccd278"
-  integrity sha512-pzP5eqwljKB0j53K81R77dJVj2r+pDI5M1H11f507ulTc0OcQeNkZdLOIigBmVyF5xWysE116anzoVs7fzx6Ug==
+"@pxblue/react-native-auth-workflow@^3.2.0-beta.1":
+  version "3.2.0-beta.1"
+  resolved "https://registry.yarnpkg.com/@pxblue/react-native-auth-workflow/-/react-native-auth-workflow-3.2.0-beta.1.tgz#a19d0af85d53ab8b2bca6494680d099c9345eeb3"
+  integrity sha512-4AT1rEMXSE2Xkbrd+Ss3rBNgbbLMQtBifPFz+p/q8SkMsiigAby6kHj6Bu4ieeDEM2N4yt+ULMTep1iX8vkw7g==
   dependencies:
     "@pxblue/react-auth-shared" "^3.2.0"
     lodash.clonedeep "^4.5.0"
@@ -6212,10 +6212,10 @@ react-native-vector-icons@^8.1.0:
     prop-types "^15.7.2"
     yargs "^16.1.1"
 
-react-native-webview@^11.2.3:
-  version "11.4.6"
-  resolved "https://registry.yarnpkg.com/react-native-webview/-/react-native-webview-11.4.6.tgz#97074fecd27c9590602a4f210164865470bc40e2"
-  integrity sha512-O5k2H3e89O6/g0qkFm0yQiEiB7mz0FUW6RsowX+a5xJ4T+0axQD1boxu3kfgH0iWBO0PVceNW402SlVNjjB5sA==
+react-native-webview@^11.6.0:
+  version "11.6.1"
+  resolved "https://registry.yarnpkg.com/react-native-webview/-/react-native-webview-11.6.1.tgz#e2a3a025761d78547579fc0426dbb993efd9e85a"
+  integrity sha512-F7DvrBpVvSsOzdB5WW4MNofV/T7POpCq4MrIMK8AnGzGgWTfLi5Jhff3T18owXH74TKQcjEnfQKBPTXDGM06ow==
   dependencies:
     escape-string-regexp "2.0.0"
     invariant "2.2.4"
