@@ -9,7 +9,7 @@ import React from 'react';
 import { StyleSheet, SafeAreaView } from 'react-native';
 import { CompleteSplashScreen } from './CompleteSplash';
 import { ToggleButton } from '../components/ToggleButton';
-
+import { CloseHeader } from '../components/CloseHeader';
 // Hooks
 import { useNavigation } from '@react-navigation/native';
 import { useLanguageLocale } from '@pxblue/react-auth-shared';
@@ -64,14 +64,21 @@ export const ResetPasswordSuccess: React.FC<ResetPasswordSuccessProps> = (props)
     const bodyText = t('pxb:CHANGE_PASSWORD.SUCCESS_MESSAGE');
 
     return (
-        <SafeAreaView style={containerStyles.safeContainer}>
-            <CompleteSplashScreen boldTitle={titleText} bodyText={bodyText} icon={'vpn-key'} />
-
-            <ToggleButton
-                text={t('pxb:ACTIONS.DONE')}
-                style={containerStyles.buttonContainer}
-                onPress={(): void => navigation.navigate('Login')}
+        <>
+            <CloseHeader
+                title={t('pxb:FORMS.RESET_PASSWORD')}
+                backAction={(): void => navigation.navigate('Login')}
+                backgroundColor={theme.colors.primaryBase || theme.colors.primary}
             />
-        </SafeAreaView>
+            <SafeAreaView style={containerStyles.safeContainer}>
+                <CompleteSplashScreen boldTitle={titleText} bodyText={bodyText} icon={'vpn-key'} />
+
+                <ToggleButton
+                    text={t('pxb:ACTIONS.DONE')}
+                    style={containerStyles.buttonContainer}
+                    onPress={(): void => navigation.navigate('Login')}
+                />
+            </SafeAreaView>
+        </>
     );
 };

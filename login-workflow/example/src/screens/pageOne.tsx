@@ -56,7 +56,7 @@ const PageOne: React.FC<AppProps> = ({ navigation }): JSX.Element => {
         <>
             <Header
                 title={'Page One'}
-                backgroundColor={theme.colors.primaryBase || theme.colors.primary}
+                backgroundColor={theme.dark ? Colors.black[800] : theme.colors.primary}
                 navigation={{
                     icon: MenuIcon,
                     onPress: (): void => {
@@ -69,6 +69,7 @@ const PageOne: React.FC<AppProps> = ({ navigation }): JSX.Element => {
                         component: (
                             <UserMenu
                                 menuItems={menuItems}
+                                iconColor={theme.dark ? Colors.black[200] : Colors.gray[500]}
                                 avatar={
                                     <Avatar.Text
                                         label="UN"

@@ -653,7 +653,11 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
             {errorDialog}
             {(!customSuccess || !isLastStep) && (
                 <>
-                    <CloseHeader title={pageTitle()} backAction={(): void => navigation.navigate('Login')} />
+                    <CloseHeader
+                        title={pageTitle()}
+                        backAction={(): void => navigation.navigate('Login')}
+                        backgroundColor={isLastStep ? theme.colors.primaryBase || theme.colors.primary : undefined}
+                    />
                     <SafeAreaView style={[containerStyles.spaceBetween, { backgroundColor: theme.colors.surface }]}>
                         <ViewPager
                             ref={viewPager}
@@ -683,6 +687,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                     <CloseHeader
                         title={t('pxb:REGISTRATION.STEPS.COMPLETE')}
                         backAction={(): void => navigation.navigate('Login')}
+                        backgroundColor={theme.colors.primaryBase || theme.colors.primary}
                     />
                     <SafeAreaView style={[containerStyles.safeContainer, { flex: 1 }]}>
                         <View style={{ flex: 1 }}>

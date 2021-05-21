@@ -17,4 +17,9 @@ export { default as i18n } from './translations/i18n';
 
 export * from './contexts/AltThemeProvider/AltThemeProvider';
 
+// Themed Components
+export * from './components/themed/ThemedActivityIndicator';
+export * from './components/themed/ThemedButton';
+export * from './components/themed/ThemedTextInput';
+
 export * from '@pxblue/react-auth-shared';

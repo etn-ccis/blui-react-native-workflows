@@ -28,6 +28,7 @@ import {
     useAccountUIActions,
     useAccountUIState,
 } from '@pxblue/react-auth-shared';
+import { useTheme } from 'react-native-paper';
 
 /**
  * Stack navigator for reset password handle deep link navigation.
@@ -50,6 +51,7 @@ export const ResetPasswordHandleDeepLink: React.FC = () => {
     const accountUIState = useAccountUIState();
     const accountUIActions = useAccountUIActions();
     const navigation = useNavigation();
+    const theme = useTheme();
 
     const route = useRoute();
     const routeParams = route.params as ResetPasswordHandleDeepLinkParams;
@@ -101,15 +103,9 @@ export const ResetPasswordHandleDeepLink: React.FC = () => {
     return verifySuccess && !verifyIsInTransit ? (
         <Stack.Navigator
             initialRouteName="ResetPasswordConfirm"
+            headerMode={'none'}
             screenOptions={{
-                header: (): JSX.Element | null => (
-                    <CloseHeader
-                        title={t('pxb:FORMS.RESET_PASSWORD')}
-                        backAction={(): void => {
-                            navigation.navigate('Login');
-                        }}
-                    />
-                ),
+                cardStyle: { backgroundColor: theme.colors.surface },
             }}
         >
             {!setPasswordTransitSuccess ? (

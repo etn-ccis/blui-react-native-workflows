@@ -1,9 +1,17 @@
 import React, { MutableRefObject } from 'react';
-import { TextInput as ReactTextInput } from 'react-native';
+import { StyleSheet, TextInput as ReactTextInput } from 'react-native';
 import { TextInput, useTheme } from 'react-native-paper';
 import { TextInputProps } from 'react-native-paper/lib/typescript/components/TextInput/TextInput';
 import { useAltTheme } from '../../contexts/AltThemeProvider/AltThemeProvider';
 import _clonedeep from 'lodash.clonedeep';
+import * as Colors from '@pxblue/colors';
+
+const makeStyles = (theme: ReactNativePaper.Theme): Record<string, any> =>
+    StyleSheet.create({
+        textInput: {
+            backgroundColor: theme.dark ? Colors.black[800] : Colors.white[200],
+        },
+    });
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 const ThemedTextInputRender: React.ForwardRefRenderFunction<{}, TextInputProps> = (
@@ -16,8 +24,10 @@ const ThemedTextInputRender: React.ForwardRefRenderFunction<{}, TextInputProps> 
             if (inputRef && inputRef.current) inputRef.current.focus();
         },
     }));
-    const theme = useTheme(props.theme);
+    const { theme: customTheme, style = {}, ...otherProps } = props;
+    const theme = useTheme(customTheme);
     const altTheme = useAltTheme();
+    const defaultStyles = makeStyles(theme);
 
     // Merging blueDark colors.primary with blueDarkAlt theme so TextInput border is blueDark.colors.primary
     const darkTheme = _clonedeep(altTheme);
@@ -29,7 +39,8 @@ const ThemedTextInputRender: React.ForwardRefRenderFunction<{}, TextInputProps> 
         <TextInput
             // @ts-ignore
             ref={inputRef}
-            {...props}
+            style={[defaultStyles.textInput, style]}
+            {...otherProps}
             theme={themeToUse}
         />
     );

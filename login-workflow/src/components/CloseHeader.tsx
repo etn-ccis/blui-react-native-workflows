@@ -9,6 +9,7 @@ import * as React from 'react';
 import { Header, wrapIcon } from '@pxblue/react-native-components';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import { useTheme } from 'react-native-paper';
+import * as Colors from '@pxblue/colors';
 
 // PxBlue: It is advised to always call wrapIcon() once per Icon type, and to do so outside of any methods
 /**
@@ -19,10 +20,12 @@ const CloseIcon = wrapIcon({ IconClass: MatIcon, name: 'close' });
 /**
  * @param title  The title to show in the header.
  * @param backAction  The function to handle the back action.
+ * @param backgroundColor  A custom background color to override the default
  */
 type CloseHeaderProps = {
     title: string;
     backAction: () => void;
+    backgroundColor?: string;
 };
 
 /**
@@ -36,7 +39,10 @@ export const CloseHeader: React.FC<CloseHeaderProps> = (props) => {
         <Header
             title={props.title}
             navigation={{ icon: CloseIcon, onPress: props.backAction }}
-            backgroundColor={theme.colors.primaryBase || theme.colors.primary}
+            backgroundColor={
+                props.backgroundColor ||
+                (theme.dark ? Colors.black[800] : theme.colors.primaryBase || theme.colors.primary)
+            }
         />
     );
 };

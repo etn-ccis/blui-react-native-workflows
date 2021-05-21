@@ -52,7 +52,8 @@ export const RequirementCheck: React.FC<RequirementCheckProps> = (props) => {
     const styles = makeStyles();
 
     function colorIfValid(valid: boolean): string {
-        return valid ? theme.colors.primary : Colors.gray['100'];
+        if (theme.dark) return valid ? theme.colors.primaryBase || theme.colors.primary : Colors.black[500];
+        return valid ? theme.colors.primary : Colors.gray[200];
     }
 
     return (

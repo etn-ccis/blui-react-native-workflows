@@ -78,7 +78,7 @@ const makeStyles = (theme: ReactNativePaper.Theme): Record<string, any> =>
  *
  * @param boldTitle  The bold title text.
  * @param bodyText  The body text.
- * @param icon  (Optional) The optional icon to show on the slash. Default 'blue_waves.png'.
+ * @param icon  (Optional) The optional icon to show on the slash. Default 'waves.png'.
  * @param theme (Optional) react-native-paper theme partial for custom styling.
  */
 type CompleteSplashScreenProps = {

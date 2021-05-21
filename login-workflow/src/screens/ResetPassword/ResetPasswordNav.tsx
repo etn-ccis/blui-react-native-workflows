@@ -15,9 +15,6 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import { ResetPassword } from '../../subScreens/ResetPassword';
 import { ResetPasswordSent } from '../../subScreens/ResetPasswordSent';
 
-// Components
-import { CloseHeader } from '../../components/CloseHeader';
-
 // Theme
 import { useTheme } from 'react-native-paper';
 
@@ -30,7 +27,6 @@ import {
     // Hooks
     useAccountUIState,
     useAccountUIActions,
-    useLanguageLocale,
 } from '@pxblue/react-auth-shared';
 
 /**
@@ -51,7 +47,6 @@ type ResetPasswordNavProps = {
  * @category Component
  */
 export const ResetPasswordNav: React.FC<ResetPasswordNavProps> = (props) => {
-    const { t } = useLanguageLocale();
     const theme = useTheme(props.theme);
     const accountUIState = useAccountUIState();
     const accountUIActions = useAccountUIActions();
@@ -86,17 +81,8 @@ export const ResetPasswordNav: React.FC<ResetPasswordNavProps> = (props) => {
 
     return (
         <Stack.Navigator
+            headerMode={'none'}
             screenOptions={{
-                headerTintColor: theme.colors.surface,
-                headerStyle: { backgroundColor: theme.colors.primaryBase || theme.colors.primary },
-                header: (): JSX.Element | null => (
-                    <CloseHeader
-                        title={t('pxb:FORMS.RESET_PASSWORD')}
-                        backAction={(): void => {
-                            navigation.navigate('Login');
-                        }}
-                    />
-                ),
                 cardStyle: { backgroundColor: theme.colors.surface },
             }}
         >

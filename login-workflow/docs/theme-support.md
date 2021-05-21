@@ -39,6 +39,12 @@ import * as PXBThemes from '@pxblue/react-native-themes';
 
 When using the PX Blue dark themes, you will need to create wrappers around some of the default React Native Paper components so that they have the correct styles in your application content. You can read more about this in the [themes documentation](https://github.com/pxblue/themes/tree/master/react-native#dark-theme). A future update to PX Blue will provide these wrapper elements in a shared library.
 
+For now, these are available from the auth workflow package for TextInput, ActivityIndicator, and Button:
+
+```tsx
+import { ThemedTextInput, ThemedActivityIndicator, ThemedButton } from '@pxblue/react-native-auth-workflow';
+```
+
 ## Supporting Multiple Themes
 
 If you are supporting multiple themes for your application and at least one of them is the PX Blue dark theme, you will need to include the `AltThemeProvider` described above. For the light theme, or dark themes that do not require an alternate theme, you can set the theme property to `undefined`.

@@ -19,6 +19,7 @@ import { InviteRegistrationPager } from './InviteRegistrationPager';
 import { SelfRegistrationPager } from './SelfRegistrationPager';
 import { ContactSupport } from './ContactSupport';
 import { useInjectedUIContext } from '@pxblue/react-auth-shared';
+import { useTheme } from 'react-native-paper';
 
 /**
  * @ignore
@@ -44,6 +45,7 @@ type PreAuthContainerProps = {
  */
 export const PreAuthContainer: React.FC<PreAuthContainerProps> = (props) => {
     // const authProps = useInjectedUIContext();
+    const theme = useTheme(props.theme);
     const {
         contactEmail = 'exampleSupport@eaton.com',
         contactPhone = '1-888-EXA-TEST',
@@ -57,7 +59,14 @@ export const PreAuthContainer: React.FC<PreAuthContainerProps> = (props) => {
     void MatIcon.loadFont();
     return (
         <SafeAreaProvider>
-            <Stack.Navigator initialRouteName={props.initialRouteName || 'Login'} mode="modal" headerMode={'none'}>
+            <Stack.Navigator
+                initialRouteName={props.initialRouteName || 'Login'}
+                mode="modal"
+                headerMode={'none'}
+                screenOptions={{
+                    cardStyle: { backgroundColor: theme.colors.background },
+                }}
+            >
                 <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
                 {enableResetPassword && (
                     <Stack.Screen
