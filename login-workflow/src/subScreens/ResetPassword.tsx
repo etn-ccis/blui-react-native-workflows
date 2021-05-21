@@ -40,10 +40,11 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme, insets: any): Record
             marginBottom: insets.bottom,
         },
         mainContainer: {
+            marginTop: 8,
             flex: 1,
         },
         containerMargins: {
-            marginHorizontal: 20,
+            marginHorizontal: 16,
         },
         spaceBetween: {
             flex: 1,
@@ -57,11 +58,11 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme, insets: any): Record
 const makeStyles = (): Record<string, any> =>
     StyleSheet.create({
         inputMargin: {
-            marginTop: 40,
+            marginTop: 24,
         },
         wideButton: {
             height: 60,
-            paddingVertical: 10,
+            paddingVertical: 8,
             justifyContent: 'space-between',
         },
     });

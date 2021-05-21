@@ -65,7 +65,7 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
             flex: 1,
         },
         containerMargins: {
-            marginHorizontal: 20,
+            marginHorizontal: 16,
         },
         fullFlex: {
             flex: 1,
@@ -93,7 +93,7 @@ const makeStyles = (): Record<string, any> =>
             flexDirection: 'row',
             justifyContent: 'space-between',
             alignItems: 'center',
-            paddingVertical: 10,
+            paddingVertical: 8,
         },
         wideButton: {
             width: '100%',
@@ -282,9 +282,9 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
                             <SafeAreaView key={`CustomDetailsPage_${i + 1}`}>
                                 <KeyboardAwareScrollView>
                                     {page.instructions && (
-                                        <Instruction text={page.instructions} style={{ marginHorizontal: 20 }} />
+                                        <Instruction text={page.instructions} style={{ marginHorizontal: 16 }} />
                                     )}
-                                    <View style={{ flex: 1, marginHorizontal: 20 }}>
+                                    <View style={{ flex: 1, marginHorizontal: 16 }}>
                                         <PageComponent
                                             onDetailsChanged={(
                                                 details: CustomAccountDetails | null,
@@ -511,7 +511,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
             <>
                 <Divider style={containerStyles.divider} />
                 <MobileStepper
-                    styles={{ root: [containerStyles.topBorder, { flex: 0, marginHorizontal: 20 }] }}
+                    styles={{ root: [containerStyles.topBorder, { flex: 0 }] }}
                     steps={RegistrationPages.length}
                     activeStep={currentPage}
                     activeColor={theme.colors.primaryBase || theme.colors.primary}

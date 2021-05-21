@@ -29,7 +29,7 @@ const makeContainerStyles = (): Record<string, any> =>
 const makeStyles = (theme: ReactNativePaper.Theme, iconSize: number): Record<string, any> =>
     StyleSheet.create({
         circleIconBackground: {
-            marginTop: 20,
+            marginTop: 16,
             width: iconSize,
             height: iconSize,
             borderRadius: iconSize / 2,

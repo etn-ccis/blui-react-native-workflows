@@ -67,7 +67,7 @@ const makeStyles = (): Record<string, any> =>
         logoCyber: {
             height: 85,
             width: '100%',
-            marginVertical: 20,
+            marginVertical: 16,
         },
         svg: {
             width: '100%',
@@ -77,7 +77,7 @@ const makeStyles = (): Record<string, any> =>
         signUpText: {
             fontSize: 20,
             alignSelf: 'center',
-            paddingTop: 20,
+            paddingTop: 16,
             color: Colors.gray['300'],
         },
         clearButton: {

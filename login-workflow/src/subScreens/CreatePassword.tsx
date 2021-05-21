@@ -37,24 +37,14 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
     StyleSheet.create({
         safeContainer: {
             backgroundColor: theme.colors.surface,
-            marginBottom: 20,
+            marginBottom: 16,
             flex: 1,
         },
         mainContainer: {
             flex: 1,
         },
         containerMargins: {
-            marginHorizontal: 20,
-        },
-    });
-
-/**
- * @ignore
- */
-const makeStyles = (): Record<string, any> =>
-    StyleSheet.create({
-        inputMargin: {
-            marginTop: 40,
+            marginHorizontal: 16,
         },
     });
 
@@ -82,7 +72,6 @@ export const CreatePassword: React.FC<CreatePasswordProps> = (props) => {
     const { t } = useLanguageLocale();
 
     const containerStyles = makeContainerStyles(theme);
-    const styles = makeStyles();
 
     const confirmPasswordRef = React.useRef<TextInput>(null);
     const goToNextInput = (): void => confirmPasswordRef?.current?.focus();
@@ -132,7 +121,7 @@ export const CreatePassword: React.FC<CreatePasswordProps> = (props) => {
                     <TextInputSecure
                         label={t('pxb:FORMS.PASSWORD')}
                         value={passwordInput}
-                        style={styles.inputMargin}
+                        style={{ marginTop: 32 }}
                         autoCapitalize={'none'}
                         returnKeyType={'next'}
                         onChangeText={(text: string): void => setPasswordInput(text)}
@@ -142,13 +131,13 @@ export const CreatePassword: React.FC<CreatePasswordProps> = (props) => {
                         blurOnSubmit={false}
                     />
 
-                    <PasswordRequirements style={{ paddingTop: 10 }} passwordText={passwordInput} />
+                    <PasswordRequirements style={{ paddingTop: 8 }} passwordText={passwordInput} />
 
                     <TextInputSecure
                         ref={confirmPasswordRef}
                         label={t('pxb:FORMS.CONFIRM_PASSWORD')}
                         value={confirmInput}
-                        style={styles.inputMargin}
+                        style={{ marginTop: 24 }}
                         autoCapitalize={'none'}
                         returnKeyType={'done'}
                         error={confirmInput !== '' && passwordInput !== confirmInput}

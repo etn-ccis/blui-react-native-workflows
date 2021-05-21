@@ -39,7 +39,7 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
             flex: 1,
         },
         containerMargins: {
-            marginHorizontal: 20,
+            marginHorizontal: 16,
         },
         spaceBetween: {
             flexGrow: 1,
@@ -47,7 +47,7 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
         },
         bottomButton: {
             backgroundColor: theme.colors.surface,
-            paddingTop: 10,
+            paddingTop: 8,
         },
     });
 
@@ -57,7 +57,7 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
 const makeStyles = (): Record<string, any> =>
     StyleSheet.create({
         bottomButton: {
-            marginBottom: 10,
+            marginBottom: 8,
         },
     });
 

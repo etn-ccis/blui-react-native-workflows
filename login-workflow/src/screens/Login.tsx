@@ -97,7 +97,7 @@ const makeStyles = (): Record<string, any> =>
         },
         securityBadge: {
             height: 60,
-            marginBottom: 20,
+            marginBottom: 16,
         },
     });
 
@@ -228,7 +228,7 @@ export const Login: React.FC<LoginProps> = (props) => {
         debugButton = (
             <Button
                 mode={'contained'}
-                style={{ position: 'absolute', top: 50, right: 20 }}
+                style={{ position: 'absolute', top: 50, right: 16 }}
                 onPress={(): void => setDebugMode(!debugMode)}
             >
                 {'DEBUG'}

@@ -51,22 +51,23 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
         safeContainer: {
             height: '100%',
             backgroundColor: theme.colors.surface,
-            marginBottom: 20,
+            marginBottom: 16,
             flex: 1,
             justifyContent: 'space-between',
         },
         mainContainer: {
+            marginTop: 8,
             flex: 1,
         },
         containerMargins: {
-            marginHorizontal: 20,
+            marginHorizontal: 16,
         },
         containerSpacing: {
-            marginVertical: 20,
+            marginVertical: 16,
         },
         iconContainer: {
             marginTop: 80,
-            marginBottom: 30,
+            marginBottom: 32,
             alignSelf: 'center',
         },
     });
@@ -77,24 +78,24 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
 const makeStyles = (theme: ReactNativePaper.Theme): Record<string, any> =>
     StyleSheet.create({
         inputMargin: {
-            marginTop: 40,
+            marginTop: 24,
         },
         sideBySideButtons: {
             flexDirection: 'row',
             justifyContent: 'space-evenly',
             alignItems: 'center',
-            paddingVertical: 10,
+            paddingVertical: 8,
         },
         headerText: {},
         bodyText: {
             color: theme.colors.text,
         },
         textSpacing: {
-            marginVertical: 10,
+            marginVertical: 8,
         },
         wideButton: {
             height: 60,
-            paddingVertical: 10,
+            paddingVertical: 8,
         },
     });
 
@@ -228,7 +229,7 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
                         <View style={{ flex: 1 }}>
                             <ToggleButton
                                 text={t('pxb:ACTIONS.LOG_IN')}
-                                style={{ marginHorizontal: 20 }}
+                                style={{ marginHorizontal: 16 }}
                                 onPress={(): void => props.onChangeComplete()}
                             />
                         </View>
@@ -275,7 +276,7 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
                             blurOnSubmit={false}
                         />
 
-                        <PasswordRequirements style={{ paddingTop: 10 }} passwordText={newPasswordInput} />
+                        <PasswordRequirements style={{ paddingTop: 8 }} passwordText={newPasswordInput} />
 
                         <TextInputSecure
                             ref={confirmInputRef}
@@ -293,10 +294,10 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
                     </View>
                 </ScrollView>
                 <View style={[styles.sideBySideButtons, containerStyles.containerMargins]}>
-                    <View style={{ flex: 1, paddingRight: 5 }}>
+                    <View style={{ flex: 1, paddingRight: 8 }}>
                         <ToggleButton text={t('pxb:CHANGE_PASSWORD.CANCEL')} outlined={true} onPress={props.onCancel} />
                     </View>
-                    <View style={{ flex: 1, paddingLeft: 5 }}>
+                    <View style={{ flex: 1, paddingLeft: 8 }}>
                         <ToggleButton
                             text={t('pxb:CHANGE_PASSWORD.UPDATE')}
                             disabled={currentPasswordInput === '' || !areValidMatchingPasswords()}

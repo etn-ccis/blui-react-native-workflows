@@ -34,7 +34,7 @@ const makeContainerStyles = (): Record<string, any> =>
             alignContent: 'center',
         },
         containerMargins: {
-            marginHorizontal: 20,
+            marginHorizontal: 16,
         },
         textContainer: {
             flex: 2,
@@ -53,7 +53,7 @@ const makeStyles = (theme: ReactNativePaper.Theme): Record<string, any> =>
         headerText: {},
         bodyText: {},
         textSpacing: {
-            marginVertical: 10,
+            marginVertical: 8,
         },
         backgroundImage: {
             position: 'absolute',

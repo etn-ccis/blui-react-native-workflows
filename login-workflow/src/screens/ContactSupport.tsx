@@ -38,17 +38,17 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
         },
         mainContainer: {
             flex: 1,
-            paddingTop: 20,
+            paddingTop: 16,
         },
         containerMargins: {
-            marginHorizontal: 20,
+            marginHorizontal: 16,
         },
         containerSpacing: {
-            marginVertical: 20,
+            marginVertical: 16,
         },
         iconContainer: {
             marginTop: 80,
-            marginBottom: 30,
+            marginBottom: 32,
             alignSelf: 'center',
         },
     });
@@ -59,7 +59,7 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
 const makeStyles = (theme: ReactNativePaper.Theme): Record<string, any> =>
     StyleSheet.create({
         textSpacing: {
-            marginVertical: 10,
+            marginVertical: 8,
         },
         headerText: {},
         bodyText: {

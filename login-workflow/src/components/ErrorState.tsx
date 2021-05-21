@@ -23,7 +23,7 @@ const ReportIcon = wrapIcon({ IconClass: MatIcon, name: 'report' });
 const makeContainerStyles = (): Record<string, any> =>
     StyleSheet.create({
         containerMargins: {
-            marginHorizontal: 20,
+            marginHorizontal: 16,
         },
         spaceBetween: {
             flexGrow: 1,
@@ -40,7 +40,7 @@ const makeStyles = (): Record<string, any> =>
             flexDirection: 'row',
             justifyContent: 'space-between',
             alignItems: 'center',
-            paddingVertical: 10,
+            paddingVertical: 8,
         },
     });
 

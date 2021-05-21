@@ -30,7 +30,7 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
             zIndex: 2,
         },
         containerMargins: {
-            marginHorizontal: 20,
+            marginHorizontal: 16,
         },
         buttonContainer: {
             bottom: 48,

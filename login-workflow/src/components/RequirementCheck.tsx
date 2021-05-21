@@ -19,13 +19,12 @@ import { Subtitle2 } from '@pxblue/react-native-components';
 const makeStyles = (): Record<string, any> =>
     StyleSheet.create({
         itemContainer: {
-            // paddingHorizontal: 10,
             flexDirection: 'row',
             justifyContent: 'flex-start',
             alignItems: 'center',
         },
         text: {
-            paddingLeft: 10,
+            paddingLeft: 8,
         },
     });
 

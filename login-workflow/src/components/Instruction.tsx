@@ -20,7 +20,8 @@ import Color from 'color';
 const makeStyles = (theme: ReactNativePaper.Theme): Record<string, any> =>
     StyleSheet.create({
         padding: {
-            paddingVertical: 30,
+            paddingTop: 16,
+            paddingBottom: 32,
         },
         divider: {
             height: 1,
