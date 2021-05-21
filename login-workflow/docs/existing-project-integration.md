@@ -14,10 +14,12 @@ yarn add @pxblue/react-native-auth-workflow
 
 This package also has a number of peer dependency requirements that you will also need to install in your project. To install the latest version of all of these peer dependencies, run the following command in your project root:
 ```
-npm install --save @pxblue/colors @pxblue/react-native-components @react-navigation/native @react-navigation/stack react react-i18next i18next react-native react-native-vector-icons react-native-paper date-fns react-native-pager-view @react-native-community/masked-view react-native-gesture-handler react-native-safe-area-context react-native-screens react-native-keyboard-aware-scroll-view react-native-webview
+npm install --save @pxblue/colors @pxblue/react-native-components @react-navigation/native @react-navigation/stack react react-i18next i18next react-native react-native-vector-icons react-native-paper date-fns react-native-pager-view @react-native-community/masked-view react-native-gesture-handler react-native-safe-area-context react-native-screens react-native-keyboard-aware-scroll-view react-native-webview@^10.0.0
 // or
-yarn add @pxblue/colors @pxblue/react-native-components @react-navigation/native @react-navigation/stack react react-i18next i18next react-native react-native-vector-icons react-native-paper date-fns react-native-pager-view @react-native-community/masked-view react-native-gesture-handler react-native-safe-area-context react-native-screens react-native-keyboard-aware-scroll-view react-native-webview
+yarn add @pxblue/colors @pxblue/react-native-components @react-navigation/native @react-navigation/stack react react-i18next i18next react-native react-native-vector-icons react-native-paper date-fns react-native-pager-view @react-native-community/masked-view react-native-gesture-handler react-native-safe-area-context react-native-screens react-native-keyboard-aware-scroll-view react-native-webview@^10.0.0
 ```
+
+> **NOTE:** we use version 10 of react-native-webview because of compatibility issues with version 11 on Android.
 
 You will also need `@react-native-async-storage/async-storage` unless you plan to write your own local storage wrapper.
 
