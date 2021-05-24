@@ -31,14 +31,15 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
         },
         mainContainer: {
             flex: 1,
-            paddingBottom: 20,
+            marginTop: 8,
+            paddingBottom: 16,
         },
         containerMargins: {
-            marginHorizontal: 20,
+            marginHorizontal: 16,
         },
         bottomButtonContainer: {
             position: 'absolute',
-            bottom: 20,
+            bottom: 16,
             width: '100%',
         },
     });
@@ -49,7 +50,7 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
 const makeStyles = (): Record<string, any> =>
     StyleSheet.create({
         inputMargin: {
-            marginTop: 40,
+            marginTop: 24,
         },
     });
 

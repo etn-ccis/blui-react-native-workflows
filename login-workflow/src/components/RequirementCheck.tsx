@@ -19,13 +19,12 @@ import { Subtitle2 } from '@pxblue/react-native-components';
 const makeStyles = (): Record<string, any> =>
     StyleSheet.create({
         itemContainer: {
-            // paddingHorizontal: 10,
             flexDirection: 'row',
             justifyContent: 'flex-start',
             alignItems: 'center',
         },
         text: {
-            paddingLeft: 10,
+            paddingLeft: 8,
         },
     });
 
@@ -52,7 +51,8 @@ export const RequirementCheck: React.FC<RequirementCheckProps> = (props) => {
     const styles = makeStyles();
 
     function colorIfValid(valid: boolean): string {
-        return valid ? theme.colors.primary : Colors.gray['100'];
+        if (theme.dark) return valid ? theme.colors.primaryBase || theme.colors.primary : Colors.black[500];
+        return valid ? theme.colors.primary : Colors.gray[200];
     }
 
     return (

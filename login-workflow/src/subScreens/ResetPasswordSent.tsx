@@ -38,11 +38,11 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
             flex: 1,
         },
         containerMargins: {
-            marginHorizontal: 20,
+            marginHorizontal: 16,
         },
         iconContainer: {
             marginTop: 60,
-            marginBottom: 20,
+            marginBottom: 16,
             alignSelf: 'center',
         },
     });
@@ -54,7 +54,7 @@ const makeStyles = (): Record<string, any> =>
     StyleSheet.create({
         wideButton: {
             height: 60,
-            paddingVertical: 10,
+            paddingVertical: 8,
         },
     });
 

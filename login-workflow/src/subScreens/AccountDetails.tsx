@@ -25,10 +25,11 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
             backgroundColor: theme.colors.surface,
         },
         mainContainer: {
+            marginTop: 8,
             flex: 1,
         },
         containerMargins: {
-            marginHorizontal: 20,
+            marginHorizontal: 16,
         },
     });
 
@@ -38,7 +39,7 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
 const makeStyles = (): Record<string, any> =>
     StyleSheet.create({
         inputMargin: {
-            marginTop: 40,
+            marginTop: 24,
         },
     });
 

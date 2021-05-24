@@ -2,7 +2,8 @@ import React, { MutableRefObject } from 'react';
 
 // Components
 import { View, StyleSheet, StyleProp, ViewStyle, TextInput as ReactTextInput, Platform } from 'react-native';
-import { TextInput as PaperTextInput, useTheme } from 'react-native-paper';
+import { useTheme } from 'react-native-paper';
+import { ThemedTextInput } from '@pxblue/react-native-auth-workflow';
 import { TextInputProps } from 'react-native-paper/lib/typescript/components/TextInput/TextInput';
 import { Subtitle2 } from '@pxblue/react-native-components';
 
@@ -17,7 +18,6 @@ const makeStyles = (theme: ReactNativePaper.Theme): Record<string, any> =>
         textInput: {
             height: 70,
             fontSize: 18,
-            backgroundColor: Colors.white['200'],
         },
         errorText: {
             position: 'absolute',
@@ -92,7 +92,8 @@ const TextInputRender: React.ForwardRefRenderFunction<{}, TextInputRenderProps> 
     const selectionColor = Platform.OS === 'android' ? Colors.blue['100'] : undefined;
     return (
         <View>
-            <PaperTextInput
+            {/* @ts-ignore `theme` is optional prop but the type thinks it's required */}
+            <ThemedTextInput
                 // @ts-ignore issue with refs on RNP input
                 ref={inputRef}
                 style={[styles.textInput, style]}

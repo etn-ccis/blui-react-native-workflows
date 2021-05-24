@@ -16,7 +16,6 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { ToggleButton } from '../components/ToggleButton';
 
 // Styles
-import * as Colors from '@pxblue/colors';
 import { Body1, H6 } from '@pxblue/react-native-components';
 
 // Hooks
@@ -52,22 +51,23 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
         safeContainer: {
             height: '100%',
             backgroundColor: theme.colors.surface,
-            marginBottom: 20,
+            marginBottom: 16,
             flex: 1,
             justifyContent: 'space-between',
         },
         mainContainer: {
+            marginTop: 8,
             flex: 1,
         },
         containerMargins: {
-            marginHorizontal: 20,
+            marginHorizontal: 16,
         },
         containerSpacing: {
-            marginVertical: 20,
+            marginVertical: 16,
         },
         iconContainer: {
             marginTop: 80,
-            marginBottom: 30,
+            marginBottom: 32,
             alignSelf: 'center',
         },
     });
@@ -78,26 +78,24 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
 const makeStyles = (theme: ReactNativePaper.Theme): Record<string, any> =>
     StyleSheet.create({
         inputMargin: {
-            marginTop: 40,
+            marginTop: 24,
         },
         sideBySideButtons: {
             flexDirection: 'row',
             justifyContent: 'space-evenly',
             alignItems: 'center',
-            paddingVertical: 10,
+            paddingVertical: 8,
         },
-        headerText: {
-            color: Colors.black['800'],
-        },
+        headerText: {},
         bodyText: {
             color: theme.colors.text,
         },
         textSpacing: {
-            marginVertical: 10,
+            marginVertical: 8,
         },
         wideButton: {
             height: 60,
-            paddingVertical: 10,
+            paddingVertical: 8,
         },
     });
 
@@ -198,45 +196,55 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
     let statusBar: JSX.Element = <></>;
     statusBar =
         Platform.OS === 'ios' ? (
-            <StatusBar backgroundColor={theme.colors.primary} barStyle="dark-content" />
+            <StatusBar
+                backgroundColor={theme.colors.primaryBase || theme.colors.primary}
+                barStyle={theme.dark ? 'light-content' : 'dark-content'}
+            />
         ) : (
-            <StatusBar backgroundColor={theme.colors.primary} barStyle="light-content" />
+            <StatusBar
+                backgroundColor={theme.colors.primaryBase || theme.colors.primary}
+                barStyle={theme.dark ? 'light-content' : 'dark-content'}
+            />
         );
 
     return transitState.transitSuccess ? ( // if the password was changed
-        <SafeAreaView style={[containerStyles.safeContainer, { flexGrow: 1 }]}>
-            {statusBar}
-            <View style={[containerStyles.mainContainer]}>
-                <ScrollView>
-                    <MatIcon
-                        name={'check'}
-                        color={theme.colors.placeholder}
-                        style={containerStyles.iconContainer}
-                        size={100}
-                    />
-                    <View style={[containerStyles.containerMargins, containerStyles.containerSpacing]}>
-                        <H6 style={[styles.headerText, styles.textSpacing]}>
-                            {t('pxb:CHANGE_PASSWORD.PASSWORD_CHANGED')}
-                        </H6>
-                        <Body1 style={[styles.bodyText, styles.textSpacing]}>
-                            {t('pxb:CHANGE_PASSWORD.SUCCESS_MESSAGE')}
-                        </Body1>
-                    </View>
-                </ScrollView>
-                <View style={[styles.wideButton, containerStyles.containerMargins]}>
-                    <View style={{ flex: 1 }}>
-                        <ToggleButton
-                            text={t('pxb:ACTIONS.LOG_IN')}
-                            style={{ marginHorizontal: 20 }}
-                            onPress={(): void => props.onChangeComplete()}
+        <View style={{ flex: 1, height: '100%', backgroundColor: theme.colors.surface }}>
+            <SafeAreaView style={[containerStyles.safeContainer, { flexGrow: 1 }]}>
+                {statusBar}
+                <View style={[containerStyles.mainContainer]}>
+                    <ScrollView>
+                        <MatIcon
+                            name={'check'}
+                            color={theme.colors.placeholder}
+                            style={containerStyles.iconContainer}
+                            size={100}
                         />
+                        <View style={[containerStyles.containerMargins, containerStyles.containerSpacing]}>
+                            <H6 style={[styles.headerText, styles.textSpacing]}>
+                                {t('pxb:CHANGE_PASSWORD.PASSWORD_CHANGED')}
+                            </H6>
+                            <Body1 style={[styles.bodyText, styles.textSpacing]}>
+                                {t('pxb:CHANGE_PASSWORD.SUCCESS_MESSAGE')}
+                            </Body1>
+                        </View>
+                    </ScrollView>
+                    <View style={[styles.wideButton, containerStyles.containerMargins]}>
+                        <View style={{ flex: 1 }}>
+                            <ToggleButton
+                                text={t('pxb:ACTIONS.LOG_IN')}
+                                style={{ marginHorizontal: 16 }}
+                                onPress={(): void => props.onChangeComplete()}
+                            />
+                        </View>
                     </View>
                 </View>
-            </View>
-        </SafeAreaView>
+            </SafeAreaView>
+        </View>
     ) : (
         // if the password hasn't been changed yet
-        <KeyboardAwareScrollView contentContainerStyle={{ flex: 1, height: '100%' }}>
+        <KeyboardAwareScrollView
+            contentContainerStyle={{ flex: 1, height: '100%', backgroundColor: theme.colors.surface }}
+        >
             <SafeAreaView style={[containerStyles.safeContainer, { flexGrow: 1 }]}>
                 {statusBar}
                 {spinner}
@@ -271,7 +279,7 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
                             blurOnSubmit={false}
                         />
 
-                        <PasswordRequirements style={{ paddingTop: 10 }} passwordText={newPasswordInput} />
+                        <PasswordRequirements style={{ paddingTop: 8 }} passwordText={newPasswordInput} />
 
                         <TextInputSecure
                             ref={confirmInputRef}
@@ -289,10 +297,10 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
                     </View>
                 </ScrollView>
                 <View style={[styles.sideBySideButtons, containerStyles.containerMargins]}>
-                    <View style={{ flex: 1, paddingRight: 5 }}>
+                    <View style={{ flex: 1, paddingRight: 8 }}>
                         <ToggleButton text={t('pxb:CHANGE_PASSWORD.CANCEL')} outlined={true} onPress={props.onCancel} />
                     </View>
-                    <View style={{ flex: 1, paddingLeft: 5 }}>
+                    <View style={{ flex: 1, paddingLeft: 8 }}>
                         <ToggleButton
                             text={t('pxb:CHANGE_PASSWORD.UPDATE')}
                             disabled={currentPasswordInput === '' || !areValidMatchingPasswords()}

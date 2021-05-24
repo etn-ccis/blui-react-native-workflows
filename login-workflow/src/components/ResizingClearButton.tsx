@@ -19,9 +19,9 @@ import color from 'color';
 const makeStyles = (theme: ReactNativePaper.Theme, fontSize: number): Record<string, any> =>
     StyleSheet.create({
         container: {
-            paddingVertical: 10,
-            paddingHorizontal: 10,
-            borderRadius: 5,
+            paddingVertical: 8,
+            paddingHorizontal: 8,
+            borderRadius: 8,
             borderWidth: 1,
             borderColor: 'transparent',
         },

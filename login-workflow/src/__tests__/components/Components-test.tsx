@@ -11,7 +11,6 @@ import { ErrorState } from '../../components/ErrorState';
 import { IconSplash } from '../../components/IconSplash';
 import { Instruction } from '../../components/Instruction';
 import { LoginHeaderSplash } from '../../components/LoginHeaderSplash';
-import { PageIndicator } from '../../components/PageIndicator';
 import { PasswordRequirements } from '../../components/PasswordRequirements';
 import { RequirementCheck } from '../../components/RequirementCheck';
 import { ResizingClearButton } from '../../components/ResizingClearButton';
@@ -94,11 +93,6 @@ describe('All components tested with enzyme', () => {
 
     it('LoginHeaderSplash renders correctly', () => {
         const rendered = renderer.create(<LoginHeaderSplash />).toJSON();
-        expect(rendered).toBeTruthy();
-    });
-
-    it('PageIndicator renders correctly', () => {
-        const rendered = renderer.create(<PageIndicator currentPage={0} totalPages={10} />).toJSON();
         expect(rendered).toBeTruthy();
     });
 

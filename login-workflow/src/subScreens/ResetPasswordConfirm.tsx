@@ -6,7 +6,7 @@
 import React from 'react';
 
 // Hooks
-import { useRoute } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { useTheme } from 'react-native-paper';
 
 // Components
@@ -23,6 +23,7 @@ import {
     useLanguageLocale,
     useAccountUIState,
 } from '@pxblue/react-auth-shared';
+import { CloseHeader } from '../components/CloseHeader';
 
 /**
  * @ignore
@@ -30,14 +31,15 @@ import {
 const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any> =>
     StyleSheet.create({
         safeContainer: {
-            height: '100%',
+            // height: '100%',
+            flex: 1,
             backgroundColor: theme.colors.surface,
         },
         mainContainer: {
             flex: 1,
         },
         containerMargins: {
-            marginHorizontal: 20,
+            marginHorizontal: 16,
         },
         spaceBetween: {
             flexGrow: 1,
@@ -45,7 +47,7 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
         },
         bottomButton: {
             backgroundColor: theme.colors.surface,
-            paddingTop: 10,
+            paddingTop: 8,
         },
     });
 
@@ -55,7 +57,7 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
 const makeStyles = (): Record<string, any> =>
     StyleSheet.create({
         bottomButton: {
-            marginBottom: 10,
+            marginBottom: 8,
         },
     });
 
@@ -93,6 +95,7 @@ export const ResetPasswordConfirm: React.FC<ResetPasswordConfirmProps> = (props)
     const { t } = useLanguageLocale();
     const authUIState = useAccountUIState();
     const route = useRoute();
+    const navigation = useNavigation();
     const routeParams = route.params as ResetPasswordConfirmParams;
 
     const containerStyles = makeContainerStyles(theme);
@@ -100,7 +103,7 @@ export const ResetPasswordConfirm: React.FC<ResetPasswordConfirmProps> = (props)
 
     // Network state (setPassword)
     const setPasswordTransit = authUIState.setPassword.setPasswordTransit;
-    const setPassowordIsInTransit = setPasswordTransit.transitInProgress;
+    const setPasswordIsInTransit = setPasswordTransit.transitInProgress;
     const setPasswordHasTransitError = setPasswordTransit.transitErrorMessage !== null;
     const setPasswordTransitErrorMessage = setPasswordTransit.transitErrorMessage;
 
@@ -109,7 +112,7 @@ export const ResetPasswordConfirm: React.FC<ResetPasswordConfirmProps> = (props)
         routeParams.onResetPasswordPress(password);
     };
 
-    const spinner = setPassowordIsInTransit ? <Spinner /> : <></>;
+    const spinner = setPasswordIsInTransit ? <Spinner /> : <></>;
     const canProgress = (): boolean => password.length > 0;
     const errorDialog = (
         <SimpleDialog
@@ -122,26 +125,33 @@ export const ResetPasswordConfirm: React.FC<ResetPasswordConfirmProps> = (props)
         />
     );
     return (
-        <SafeAreaView style={containerStyles.safeContainer}>
+        <View style={{ height: '100%' }}>
             {spinner}
             {errorDialog}
-            <KeyboardAwareScrollView>
-                <CreatePassword
-                    onPasswordChanged={setPassword}
-                    onSubmit={canProgress() ? onResetPasswordTap : undefined}
-                />
-            </KeyboardAwareScrollView>
-
-            <View style={containerStyles.bottomButton}>
-                <View style={[containerStyles.containerMargins]}>
-                    <ToggleButton
-                        text={t('pxb:FORMS.RESET_PASSWORD')}
-                        disabled={!canProgress()}
-                        style={styles.bottomButton}
-                        onPress={onResetPasswordTap}
+            <CloseHeader
+                title={t('pxb:FORMS.RESET_PASSWORD')}
+                backAction={(): void => navigation.navigate('Login')}
+                // backgroundColor={theme.colors.primaryBase || theme.colors.primary}
+            />
+            <SafeAreaView style={containerStyles.safeContainer}>
+                <KeyboardAwareScrollView>
+                    <CreatePassword
+                        onPasswordChanged={setPassword}
+                        onSubmit={canProgress() ? onResetPasswordTap : undefined}
                     />
+                </KeyboardAwareScrollView>
+
+                <View style={containerStyles.bottomButton}>
+                    <View style={[containerStyles.containerMargins]}>
+                        <ToggleButton
+                            text={t('pxb:FORMS.RESET_PASSWORD')}
+                            disabled={!canProgress()}
+                            style={styles.bottomButton}
+                            onPress={onResetPasswordTap}
+                        />
+                    </View>
                 </View>
-            </View>
-        </SafeAreaView>
+            </SafeAreaView>
+        </View>
     );
 };

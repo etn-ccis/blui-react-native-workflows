@@ -11,10 +11,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import 'react-native-gesture-handler';
 
-// Components
-import { StatusBar } from 'react-native';
-import { useTheme } from 'react-native-paper';
-
 // Screens / Stacks
 import { Login } from './Login';
 import { ResetPasswordNav } from './ResetPassword/ResetPasswordNav';
@@ -23,6 +19,7 @@ import { InviteRegistrationPager } from './InviteRegistrationPager';
 import { SelfRegistrationPager } from './SelfRegistrationPager';
 import { ContactSupport } from './ContactSupport';
 import { useInjectedUIContext } from '@pxblue/react-auth-shared';
+import { useTheme } from 'react-native-paper';
 
 /**
  * @ignore
@@ -48,6 +45,7 @@ type PreAuthContainerProps = {
  */
 export const PreAuthContainer: React.FC<PreAuthContainerProps> = (props) => {
     // const authProps = useInjectedUIContext();
+    const theme = useTheme(props.theme);
     const {
         contactEmail = 'exampleSupport@eaton.com',
         contactPhone = '1-888-EXA-TEST',
@@ -57,13 +55,18 @@ export const PreAuthContainer: React.FC<PreAuthContainerProps> = (props) => {
         enableInviteRegistration = true,
         showSelfRegistration = true,
     } = useInjectedUIContext();
-    const theme = useTheme(props.theme);
 
     void MatIcon.loadFont();
     return (
-        <SafeAreaProvider>
-            <StatusBar backgroundColor={theme.colors.primary} barStyle="light-content" />
-            <Stack.Navigator initialRouteName={props.initialRouteName || 'Login'} mode="modal" headerMode={'none'}>
+        <SafeAreaProvider style={{ backgroundColor: theme.colors.background }}>
+            <Stack.Navigator
+                initialRouteName={props.initialRouteName || 'Login'}
+                mode="modal"
+                headerMode={'none'}
+                screenOptions={{
+                    cardStyle: { backgroundColor: theme.colors.background },
+                }}
+            >
                 <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
                 {enableResetPassword && (
                     <Stack.Screen

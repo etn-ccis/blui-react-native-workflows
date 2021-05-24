@@ -9,7 +9,7 @@ import React, { useEffect, useCallback, useState, ComponentType } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
 // Hooks
-import { useTheme } from 'react-native-paper';
+import { Divider, useTheme } from 'react-native-paper';
 
 // Screens
 import { Eula as EulaScreen } from '../subScreens/Eula';
@@ -28,12 +28,12 @@ import { ExistingAccountComplete } from '../subScreens/ExistingAccountComplete';
 import { View, StyleSheet, SafeAreaView, BackHandler } from 'react-native';
 import ViewPager from 'react-native-pager-view';
 import { CloseHeader } from '../components/CloseHeader';
-import { PageIndicator } from '../components/PageIndicator';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Spinner } from '../components/Spinner';
 import { SimpleDialog } from '../components/SimpleDialog';
 import { ToggleButton } from '../components/ToggleButton';
 import i18n from '../translations/i18n';
+import { MobileStepper } from '@pxblue/react-native-components';
 
 // Styles
 import * as Colors from '@pxblue/colors';
@@ -53,6 +53,7 @@ import {
 } from '@pxblue/react-auth-shared';
 import { CustomRegistrationDetailsGroup, RegistrationPage } from '../types';
 import { Instruction } from '../components/Instruction';
+import Color from 'color';
 
 /**
  * @ignore
@@ -67,15 +68,17 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
             flex: 1,
         },
         containerMargins: {
-            marginHorizontal: 20,
+            marginHorizontal: 16,
         },
         fullFlex: {
             flex: 1,
             height: '100%',
         },
-        topBorder: {
-            borderTopColor: Colors.gray['200'],
-            borderTopWidth: StyleSheet.hairlineWidth,
+        divider: {
+            height: 1,
+            backgroundColor: theme.dark
+                ? Color(Colors.black[200]).alpha(0.36).toString()
+                : Color(Colors.black[500]).alpha(0.12).toString(),
         },
         spaceBetween: {
             flexGrow: 1,
@@ -92,7 +95,7 @@ const makeStyles = (): Record<string, any> =>
             flexDirection: 'row',
             justifyContent: 'space-between',
             alignItems: 'center',
-            paddingVertical: 10,
+            paddingVertical: 8,
         },
         wideButton: {
             width: '100%',
@@ -350,9 +353,9 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                             <SafeAreaView key={`CustomDetailsPage_${i + 1}`}>
                                 <KeyboardAwareScrollView>
                                     {page.instructions && (
-                                        <Instruction text={page.instructions} style={{ marginHorizontal: 20 }} />
+                                        <Instruction text={page.instructions} style={{ marginHorizontal: 16 }} />
                                     )}
-                                    <View style={{ flex: 1, marginHorizontal: 20 }}>
+                                    <View style={{ flex: 1, marginHorizontal: 16 }}>
                                         <PageComponent
                                             onDetailsChanged={(
                                                 details: CustomAccountDetails | null,
@@ -615,9 +618,14 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
         );
     } else {
         buttonArea = (
-            <View style={containerStyles.topBorder}>
-                <View style={[styles.sideBySideButtons, containerStyles.containerMargins]}>
-                    <View style={{ flex: 1 }}>
+            <>
+                <Divider style={containerStyles.divider} />
+                <MobileStepper
+                    styles={{ root: [{ flex: 0 }] }}
+                    steps={RegistrationPages.length}
+                    activeStep={currentPage}
+                    activeColor={theme.colors.primaryBase || theme.colors.primary}
+                    leftButton={
                         <ToggleButton
                             text={t('pxb:ACTIONS.BACK')}
                             style={{ width: 100, alignSelf: 'flex-start' }}
@@ -625,18 +633,17 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                             disabled={!canGoBackProgress()}
                             onPress={(): void => advancePage(-1)}
                         />
-                    </View>
-                    <PageIndicator currentPage={currentPage} totalPages={RegistrationPages.length} />
-                    <View style={{ flex: 1 }}>
+                    }
+                    rightButton={
                         <ToggleButton
                             text={t('pxb:ACTIONS.NEXT')}
                             style={{ width: 100, alignSelf: 'flex-end' }}
                             disabled={!canProgress()}
                             onPress={(): void => advancePage(1)}
                         />
-                    </View>
-                </View>
-            </View>
+                    }
+                />
+            </>
         );
     }
 
@@ -646,7 +653,11 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
             {errorDialog}
             {(!customSuccess || !isLastStep) && (
                 <>
-                    <CloseHeader title={pageTitle()} backAction={(): void => navigation.navigate('Login')} />
+                    <CloseHeader
+                        title={pageTitle()}
+                        backAction={(): void => navigation.navigate('Login')}
+                        backgroundColor={isLastStep ? theme.colors.primaryBase || theme.colors.primary : undefined}
+                    />
                     <SafeAreaView style={[containerStyles.spaceBetween, { backgroundColor: theme.colors.surface }]}>
                         <ViewPager
                             ref={viewPager}
@@ -670,12 +681,13 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
             )}
         </View>
     ) : (
-        <View style={{ flex: 1, backgroundColor: 'white' }}>
+        <View style={{ flex: 1 }}>
             {!customAccountAlreadyExists && (
                 <>
                     <CloseHeader
                         title={t('pxb:REGISTRATION.STEPS.COMPLETE')}
                         backAction={(): void => navigation.navigate('Login')}
+                        backgroundColor={theme.colors.primaryBase || theme.colors.primary}
                     />
                     <SafeAreaView style={[containerStyles.safeContainer, { flex: 1 }]}>
                         <View style={{ flex: 1 }}>

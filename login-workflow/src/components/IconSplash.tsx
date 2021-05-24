@@ -3,7 +3,9 @@
  * @module Components
  */
 
+import Color from 'color';
 import React from 'react';
+import * as Colors from '@pxblue/colors';
 
 // Components
 import { View, StyleSheet, StyleProp, ViewStyle } from 'react-native';
@@ -27,11 +29,11 @@ const makeContainerStyles = (): Record<string, any> =>
 const makeStyles = (theme: ReactNativePaper.Theme, iconSize: number): Record<string, any> =>
     StyleSheet.create({
         circleIconBackground: {
-            marginTop: 20,
+            marginTop: 16,
             width: iconSize,
             height: iconSize,
             borderRadius: iconSize / 2,
-            backgroundColor: theme.colors.primary,
+            backgroundColor: theme.colors.primaryBase || theme.colors.primary,
             justifyContent: 'center',
             alignItems: 'center',
             alignSelf: 'center',
@@ -57,15 +59,18 @@ type IconSplashProps = {
  * @category Component
  */
 export const IconSplash: React.FC<IconSplashProps> = (props) => {
-    const { icon, iconSize = 90, style } = props;
+    const { icon, iconSize = 70, style } = props;
     const theme = useTheme(props.theme);
     const styles = makeStyles(theme, iconSize);
     const containerStyles = makeContainerStyles();
+    const iconColor = Color(theme.colors.primaryBase || theme.colors.primary).isDark()
+        ? Colors.white[50]
+        : Colors.black[500];
 
     return (
         <View style={[containerStyles.iconContainer, style]}>
             <View style={styles.circleIconBackground}>
-                <MatIcon name={icon ?? 'vpn-key'} size={iconSize * 0.55} color={theme.colors.surface} />
+                <MatIcon name={icon ?? 'vpn-key'} size={iconSize * 0.55} color={iconColor} />
             </View>
         </View>
     );

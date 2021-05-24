@@ -12,7 +12,8 @@ import { useLanguageLocale } from '@pxblue/react-auth-shared';
 import { EmptyState, wrapIcon } from '@pxblue/react-native-components';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import { View, StyleSheet, SafeAreaView } from 'react-native';
-import { Button, useTheme } from 'react-native-paper';
+import { useTheme } from 'react-native-paper';
+import { ThemedButton as Button } from '../components/themed/ThemedButton';
 
 const ReportIcon = wrapIcon({ IconClass: MatIcon, name: 'report' });
 
@@ -22,7 +23,7 @@ const ReportIcon = wrapIcon({ IconClass: MatIcon, name: 'report' });
 const makeContainerStyles = (): Record<string, any> =>
     StyleSheet.create({
         containerMargins: {
-            marginHorizontal: 20,
+            marginHorizontal: 16,
         },
         spaceBetween: {
             flexGrow: 1,
@@ -39,7 +40,7 @@ const makeStyles = (): Record<string, any> =>
             flexDirection: 'row',
             justifyContent: 'space-between',
             alignItems: 'center',
-            paddingVertical: 10,
+            paddingVertical: 8,
         },
     });
 

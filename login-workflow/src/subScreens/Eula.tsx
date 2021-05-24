@@ -26,16 +26,16 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
         },
         mainContainer: {
             flex: 1,
-            paddingTop: 20,
+            paddingTop: 16,
         },
         containerMargins: {
-            marginHorizontal: 20,
+            marginHorizontal: 16,
         },
         checkboxContainer: {
-            height: 70,
+            height: 72,
             justifyContent: 'center',
             alignSelf: 'stretch',
-            marginLeft: 10,
+            marginLeft: 8,
         },
     });
 

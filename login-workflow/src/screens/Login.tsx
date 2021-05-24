@@ -7,7 +7,9 @@ import React from 'react';
 
 // Components
 import { Platform, View, StyleSheet, SafeAreaView, StatusBar, TextInput as ReactTextInput } from 'react-native';
-import { Button, useTheme } from 'react-native-paper';
+import { useTheme } from 'react-native-paper';
+import { ThemedButton as Button } from '../components/themed/ThemedButton';
+
 import { TextInput } from '../components/TextInput';
 import { TextInputSecure } from '../components/TextInputSecure';
 import { Checkbox } from '../components/Checkbox';
@@ -95,7 +97,7 @@ const makeStyles = (): Record<string, any> =>
         },
         securityBadge: {
             height: 60,
-            marginBottom: 20,
+            marginBottom: 16,
         },
     });
 
@@ -161,6 +163,10 @@ export const Login: React.FC<LoginProps> = (props) => {
     const spinner = transitState.transitInProgress ? <Spinner hasHeader={false} /> : <></>;
     const hasTransitError = authUIState.login.transitErrorMessage !== null;
     const transitErrorMessage = authUIState.login.transitErrorMessage ?? t('pxb:MESSAGES.REQUEST_ERROR');
+    const isInvalidCredentials =
+        transitErrorMessage.replace('pxb:', '') === 'LOGIN.INCORRECT_CREDENTIALS' ||
+        transitErrorMessage.replace('pxb:', '') === 'LOGIN.INVALID_CREDENTIALS';
+
     const errorDialog = (
         <SimpleDialog
             title={t('pxb:MESSAGES.ERROR')}
@@ -222,7 +228,7 @@ export const Login: React.FC<LoginProps> = (props) => {
         debugButton = (
             <Button
                 mode={'contained'}
-                style={{ position: 'absolute', top: 50, right: 20 }}
+                style={{ position: 'absolute', top: 50, right: 16 }}
                 onPress={(): void => setDebugMode(!debugMode)}
             >
                 {'DEBUG'}
@@ -297,9 +303,15 @@ export const Login: React.FC<LoginProps> = (props) => {
     let statusBar: JSX.Element = <></>;
     statusBar =
         Platform.OS === 'ios' ? (
-            <StatusBar backgroundColor={theme.colors.primary} barStyle="dark-content" />
+            <StatusBar
+                backgroundColor={theme.colors.primaryBase || theme.colors.primary}
+                barStyle={theme.dark ? 'light-content' : 'dark-content'}
+            />
         ) : (
-            <StatusBar backgroundColor={theme.colors.primary} barStyle="light-content" />
+            <StatusBar
+                backgroundColor={theme.colors.primaryBase || theme.colors.primary}
+                barStyle={theme.dark ? 'light-content' : 'dark-content'}
+            />
         );
 
     return (
@@ -333,9 +345,9 @@ export const Login: React.FC<LoginProps> = (props) => {
                             }}
                             blurOnSubmit={false}
                             returnKeyType={'next'}
-                            error={hasTransitError || hasEmailFormatError}
+                            error={isInvalidCredentials || hasEmailFormatError}
                             errorText={
-                                hasTransitError
+                                isInvalidCredentials
                                     ? t('pxb:LOGIN.INCORRECT_CREDENTIALS')
                                     : hasEmailFormatError
                                     ? t('pxb:MESSAGES.EMAIL_ENTRY_ERROR')
@@ -355,7 +367,7 @@ export const Login: React.FC<LoginProps> = (props) => {
                             onChangeText={(text: string): void => setPasswordInput(text)}
                             returnKeyType={'done'}
                             style={{ marginTop: 44 }}
-                            error={hasTransitError}
+                            error={isInvalidCredentials}
                             errorText={t('pxb:LOGIN.INCORRECT_CREDENTIALS')}
                             onSubmitEditing={!EMAIL_REGEX.test(emailInput) || !passwordInput ? undefined : loginTapped}
                         />

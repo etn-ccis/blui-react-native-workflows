@@ -132,6 +132,7 @@ const Home: React.FC<AppProps> = ({ navigation }): JSX.Element => {
         <>
             <Header
                 title={'Home Page'}
+                backgroundColor={theme.dark ? Colors.black[800] : theme.colors.primary}
                 navigation={{
                     icon: MenuIcon,
                     onPress: (): void => {
@@ -143,6 +144,7 @@ const Home: React.FC<AppProps> = ({ navigation }): JSX.Element => {
                     {
                         component: (
                             <UserMenu
+                                iconColor={theme.dark ? Colors.black[200] : Colors.gray[500]}
                                 menuItems={menuItems}
                                 avatar={
                                     <Avatar.Text

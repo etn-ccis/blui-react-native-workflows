@@ -12,6 +12,7 @@ import { AccountDetailsFormProps } from '@pxblue/react-auth-shared';
  */
 const makeContainerStyles = (): Record<string, any> => ({
     mainContainer: {
+        marginTop: 8,
         flex: 1,
     },
 });
@@ -22,7 +23,7 @@ const makeContainerStyles = (): Record<string, any> => ({
 const makeStyles = (): Record<string, any> =>
     StyleSheet.create({
         inputMargin: {
-            marginTop: 40,
+            marginTop: 24,
         },
     });
 

@@ -1,7 +1,7 @@
 {
     "name": "@pxblue/react-native-auth-workflow",
     "description": "Re-usable workflow components for Authentication and Registration within Eaton applications.",
-    "version": "3.2.0",
+    "version": "3.2.0-beta.1",
     "license": "BSD-3-Clause",
     "author": {
         "name": "PX Blue",
@@ -48,6 +48,7 @@
     },
     "dependencies": {
         "@pxblue/react-auth-shared": "^3.2.0",
+        "lodash.clonedeep": "^4.5.0",
         "react-native-status-bar-height": "^2.5.0"
     },
     "peerDependencies": {
@@ -64,7 +65,7 @@
         "react-native-pager-view": "^5.0.0",
         "react-native-paper": "^4.0.0",
         "react-native-vector-icons": "^7.0.0 || ^8.0.0",
-        "react-native-webview": "^10.3.2 || ^11.0.0"
+        "react-native-webview": "^10.3.2"
     },
     "devDependencies": {
         "@babel/core": "^7.9.0",
@@ -82,6 +83,7 @@
         "@types/enzyme": "^3.10.5",
         "@types/enzyme-adapter-react-16": "^1.0.6",
         "@types/jest": "^24.0.0",
+        "@types/lodash.clonedeep": "^4.5.6",
         "@types/node": "^14.11.0",
         "@types/react-native": "^0.63.0",
         "@types/react-native-vector-icons": "^6.4.5",
@@ -118,7 +120,7 @@
         "react-native-safe-area-context": "^3.0.0",
         "react-native-screens": "^3.0.0",
         "react-native-vector-icons": "^8.0.0",
-        "react-native-webview": "^11.0.0",
+        "react-native-webview": "^10.0.0",
         "react-test-renderer": "^16.0.0",
         "typescript": "^4.0.0"
     },
