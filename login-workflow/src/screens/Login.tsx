@@ -328,8 +328,13 @@ export const Login: React.FC<LoginProps> = (props) => {
                 {debugButton}
                 {debugMessage}
                 {debugLinks}
-                <SafeAreaView style={[containerStyles.mainContainer, { flexGrow: 1 }]}>
-                    <View style={[{ flexGrow: 1 }]}>
+                <SafeAreaView
+                    style={[
+                        containerStyles.mainContainer,
+                        { flexGrow: 1, width: '100%', flexDirection: 'row', justifyContent: 'center' },
+                    ]}
+                >
+                    <View style={[{ flexGrow: 1, maxWidth: 600 }]}>
                         <TextInput
                             testID={'email-text-field'}
                             label={t('pxb:LABELS.EMAIL')}
