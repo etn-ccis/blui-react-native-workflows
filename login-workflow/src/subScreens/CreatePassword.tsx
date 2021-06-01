@@ -39,6 +39,9 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
             backgroundColor: theme.colors.surface,
             marginBottom: 16,
             flex: 1,
+            width: '100%',
+            flexDirection: 'row',
+            justifyContent: 'center',
         },
         mainContainer: {
             flex: 1,
@@ -114,38 +117,43 @@ export const CreatePassword: React.FC<CreatePasswordProps> = (props) => {
 
     return (
         <SafeAreaView style={[containerStyles.safeContainer, { flexGrow: 1 }]}>
-            <ScrollView style={{ flexGrow: 1 }}>
-                <Instruction text={t('pxb:CHANGE_PASSWORD.PASSWORD_INFO')} style={[containerStyles.containerMargins]} />
-
-                <View style={[containerStyles.containerMargins, containerStyles.mainContainer]}>
-                    <TextInputSecure
-                        label={t('pxb:FORMS.PASSWORD')}
-                        value={passwordInput}
-                        style={{ marginTop: 32 }}
-                        autoCapitalize={'none'}
-                        returnKeyType={'next'}
-                        onChangeText={(text: string): void => setPasswordInput(text)}
-                        onSubmitEditing={(): void => {
-                            goToNextInput();
-                        }}
-                        blurOnSubmit={false}
+            <View style={{ width: '100%', maxWidth: 600 }}>
+                <ScrollView style={{ flexGrow: 1 }}>
+                    <Instruction
+                        text={t('pxb:CHANGE_PASSWORD.PASSWORD_INFO')}
+                        style={[containerStyles.containerMargins]}
                     />
 
-                    <PasswordRequirements style={{ paddingTop: 8 }} passwordText={passwordInput} />
+                    <View style={[containerStyles.containerMargins, containerStyles.mainContainer]}>
+                        <TextInputSecure
+                            label={t('pxb:FORMS.PASSWORD')}
+                            value={passwordInput}
+                            style={{ marginTop: 32 }}
+                            autoCapitalize={'none'}
+                            returnKeyType={'next'}
+                            onChangeText={(text: string): void => setPasswordInput(text)}
+                            onSubmitEditing={(): void => {
+                                goToNextInput();
+                            }}
+                            blurOnSubmit={false}
+                        />
 
-                    <TextInputSecure
-                        ref={confirmPasswordRef}
-                        label={t('pxb:FORMS.CONFIRM_PASSWORD')}
-                        value={confirmInput}
-                        style={{ marginTop: 24 }}
-                        autoCapitalize={'none'}
-                        returnKeyType={'done'}
-                        error={confirmInput !== '' && passwordInput !== confirmInput}
-                        onChangeText={(text: string): void => setConfirmInput(text)}
-                        onSubmitEditing={areValidMatchingPasswords() ? props.onSubmit : undefined}
-                    />
-                </View>
-            </ScrollView>
+                        <PasswordRequirements style={{ paddingTop: 8 }} passwordText={passwordInput} />
+
+                        <TextInputSecure
+                            ref={confirmPasswordRef}
+                            label={t('pxb:FORMS.CONFIRM_PASSWORD')}
+                            value={confirmInput}
+                            style={{ marginTop: 24 }}
+                            autoCapitalize={'none'}
+                            returnKeyType={'done'}
+                            error={confirmInput !== '' && passwordInput !== confirmInput}
+                            onChangeText={(text: string): void => setConfirmInput(text)}
+                            onSubmitEditing={areValidMatchingPasswords() ? props.onSubmit : undefined}
+                        />
+                    </View>
+                </ScrollView>
+            </View>
         </SafeAreaView>
     );
 };

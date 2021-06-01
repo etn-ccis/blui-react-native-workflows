@@ -350,32 +350,37 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                         name: `CustomPage${i + 1}`,
                         pageTitle: page.title || t('pxb:REGISTRATION.STEPS.ACCOUNT_DETAILS'),
                         pageBody: (
-                            <SafeAreaView key={`CustomDetailsPage_${i + 1}`}>
-                                <KeyboardAwareScrollView>
-                                    {page.instructions && (
-                                        <Instruction text={page.instructions} style={{ marginHorizontal: 16 }} />
-                                    )}
-                                    <View style={{ flex: 1, marginHorizontal: 16 }}>
-                                        <PageComponent
-                                            onDetailsChanged={(
-                                                details: CustomAccountDetails | null,
-                                                valid: boolean
-                                            ): void => {
-                                                setCustomAccountDetails({
-                                                    ...customAccountDetails,
-                                                    [i + 1]: { values: details || {}, valid },
-                                                });
-                                            }}
-                                            initialDetails={customAccountDetails?.[i + 1]?.values}
-                                            onSubmit={
-                                                customAccountDetails?.[i + 1]?.valid
-                                                    ? /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
-                                                      (): void => advancePage(1)
-                                                    : undefined
-                                            }
-                                        />
-                                    </View>
-                                </KeyboardAwareScrollView>
+                            <SafeAreaView
+                                key={`CustomDetailsPage_${i + 1}`}
+                                style={{ width: '100%', flexDirection: 'row', justifyContent: 'center' }}
+                            >
+                                <View style={{ width: '100%', maxWidth: 600 }}>
+                                    <KeyboardAwareScrollView>
+                                        {page.instructions && (
+                                            <Instruction text={page.instructions} style={{ marginHorizontal: 16 }} />
+                                        )}
+                                        <View style={{ flex: 1, marginHorizontal: 16 }}>
+                                            <PageComponent
+                                                onDetailsChanged={(
+                                                    details: CustomAccountDetails | null,
+                                                    valid: boolean
+                                                ): void => {
+                                                    setCustomAccountDetails({
+                                                        ...customAccountDetails,
+                                                        [i + 1]: { values: details || {}, valid },
+                                                    });
+                                                }}
+                                                initialDetails={customAccountDetails?.[i + 1]?.values}
+                                                onSubmit={
+                                                    customAccountDetails?.[i + 1]?.valid
+                                                        ? /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
+                                                          (): void => advancePage(1)
+                                                        : undefined
+                                                }
+                                            />
+                                        </View>
+                                    </KeyboardAwareScrollView>
+                                </View>
                             </SafeAreaView>
                         ),
                         canGoForward: customAccountDetails ? customAccountDetails?.[i + 1]?.valid : false,
