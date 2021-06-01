@@ -34,7 +34,8 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
             height: '100%',
             backgroundColor: theme.colors.surface,
             flex: 1,
-            justifyContent: 'space-between',
+            flexDirection: 'row',
+            justifyContent: 'center',
         },
         mainContainer: {
             flex: 1,
@@ -109,7 +110,7 @@ export const ContactSupport: React.FC<ContactSupportProps> = (props) => {
         <>
             <CloseHeader title={t('pxb:USER_MENU.CONTACT_US')} backAction={(): void => navigation.navigate('Login')} />
             <SafeAreaView style={containerStyles.safeContainer}>
-                <View>
+                <View style={{ maxWidth: 600 }}>
                     <MatIcon
                         name={'chat-bubble-outline'}
                         style={containerStyles.iconContainer}
