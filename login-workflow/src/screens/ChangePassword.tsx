@@ -58,6 +58,9 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
         mainContainer: {
             marginTop: 8,
             flex: 1,
+            flexDirection: 'row',
+            justifyContent: 'center',
+            width: '100%',
         },
         containerMargins: {
             marginHorizontal: 16,
@@ -212,7 +215,7 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
             <SafeAreaView style={[containerStyles.safeContainer, { flexGrow: 1 }]}>
                 {statusBar}
                 <View style={[containerStyles.mainContainer]}>
-                    <ScrollView>
+                    <ScrollView style={{ maxWidth: 600 }}>
                         <MatIcon
                             name={'check'}
                             color={theme.colors.placeholder}
@@ -228,14 +231,14 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
                             </Body1>
                         </View>
                     </ScrollView>
-                    <View style={[styles.wideButton, containerStyles.containerMargins]}>
-                        <View style={{ flex: 1 }}>
-                            <ToggleButton
-                                text={t('pxb:ACTIONS.LOG_IN')}
-                                style={{ marginHorizontal: 16 }}
-                                onPress={(): void => props.onChangeComplete()}
-                            />
-                        </View>
+                </View>
+                <View style={[styles.wideButton, containerStyles.containerMargins]}>
+                    <View style={{ flex: 1 }}>
+                        <ToggleButton
+                            text={t('pxb:ACTIONS.LOG_IN')}
+                            style={{ marginHorizontal: 16 }}
+                            onPress={(): void => props.onChangeComplete()}
+                        />
                     </View>
                 </View>
             </SafeAreaView>
@@ -249,51 +252,65 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
                 {statusBar}
                 {spinner}
                 {errorDialog}
-                <Instruction text={t('pxb:CHANGE_PASSWORD.PASSWORD_INFO')} style={[containerStyles.containerMargins]} />
+                <View
+                    style={{
+                        flexDirection: 'row',
+                        justifyContent: 'center',
+                        width: '100%',
+                    }}
+                >
+                    <View style={{ maxWidth: 600 }}>
+                        <Instruction text={t('pxb:CHANGE_PASSWORD.PASSWORD_INFO')} />
+                    </View>
+                </View>
                 <ScrollView>
                     <View style={[containerStyles.containerMargins, containerStyles.mainContainer]}>
-                        <TextInputSecure
-                            label={t('pxb:LABELS.CURRENT_PASSWORD')}
-                            value={currentPasswordInput}
-                            style={styles.inputMargin}
-                            autoCapitalize={'none'}
-                            returnKeyType={'next'}
-                            onChangeText={(text: string): void => setCurrentPasswordInput(text)}
-                            onSubmitEditing={(): void => {
-                                goToNewPasswordInput();
-                            }}
-                            blurOnSubmit={false}
-                        />
+                        <View style={{ width: '100%', maxWidth: 600 }}>
+                            <TextInputSecure
+                                label={t('pxb:LABELS.CURRENT_PASSWORD')}
+                                value={currentPasswordInput}
+                                style={styles.inputMargin}
+                                autoCapitalize={'none'}
+                                returnKeyType={'next'}
+                                onChangeText={(text: string): void => setCurrentPasswordInput(text)}
+                                onSubmitEditing={(): void => {
+                                    goToNewPasswordInput();
+                                }}
+                                blurOnSubmit={false}
+                            />
 
-                        <TextInputSecure
-                            label={t('pxb:LABELS.NEW_PASSWORD')}
-                            ref={newPasswordRef}
-                            value={newPasswordInput}
-                            style={styles.inputMargin}
-                            autoCapitalize={'none'}
-                            returnKeyType={'next'}
-                            onChangeText={(text: string): void => setNewPasswordInput(text)}
-                            onSubmitEditing={(): void => {
-                                goToConfirmInput();
-                            }}
-                            blurOnSubmit={false}
-                        />
+                            <TextInputSecure
+                                label={t('pxb:LABELS.NEW_PASSWORD')}
+                                ref={newPasswordRef}
+                                value={newPasswordInput}
+                                style={styles.inputMargin}
+                                autoCapitalize={'none'}
+                                returnKeyType={'next'}
+                                onChangeText={(text: string): void => setNewPasswordInput(text)}
+                                onSubmitEditing={(): void => {
+                                    goToConfirmInput();
+                                }}
+                                blurOnSubmit={false}
+                            />
 
-                        <PasswordRequirements style={{ paddingTop: 8 }} passwordText={newPasswordInput} />
+                            <PasswordRequirements style={{ paddingTop: 8 }} passwordText={newPasswordInput} />
 
-                        <TextInputSecure
-                            ref={confirmInputRef}
-                            label={t('pxb:CHANGE_PASSWORD.CONFIRM_NEW_PASSWORD')}
-                            value={confirmInput}
-                            style={styles.inputMargin}
-                            autoCapitalize={'none'}
-                            returnKeyType={'done'}
-                            error={confirmInput !== '' && newPasswordInput !== confirmInput}
-                            onChangeText={(text: string): void => setConfirmInput(text)}
-                            onSubmitEditing={
-                                currentPasswordInput === '' || !areValidMatchingPasswords() ? undefined : changePassword
-                            }
-                        />
+                            <TextInputSecure
+                                ref={confirmInputRef}
+                                label={t('pxb:CHANGE_PASSWORD.CONFIRM_NEW_PASSWORD')}
+                                value={confirmInput}
+                                style={styles.inputMargin}
+                                autoCapitalize={'none'}
+                                returnKeyType={'done'}
+                                error={confirmInput !== '' && newPasswordInput !== confirmInput}
+                                onChangeText={(text: string): void => setConfirmInput(text)}
+                                onSubmitEditing={
+                                    currentPasswordInput === '' || !areValidMatchingPasswords()
+                                        ? undefined
+                                        : changePassword
+                                }
+                            />
+                        </View>
                     </View>
                 </ScrollView>
                 <View style={[styles.sideBySideButtons, containerStyles.containerMargins]}>
