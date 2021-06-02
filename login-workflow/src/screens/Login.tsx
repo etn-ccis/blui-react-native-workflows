@@ -331,7 +331,12 @@ export const Login: React.FC<LoginProps> = (props) => {
                 <SafeAreaView
                     style={[
                         containerStyles.mainContainer,
-                        { flexGrow: 1, width: '100%', flexDirection: 'row', justifyContent: 'center' },
+                        {
+                            flexGrow: 1,
+                            width: 'auto',
+                            flexDirection: 'row',
+                            justifyContent: 'center',
+                        },
                     ]}
                 >
                     <View style={[{ flexGrow: 1, maxWidth: 600 }]}>

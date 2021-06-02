@@ -60,7 +60,7 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
             flex: 1,
             flexDirection: 'row',
             justifyContent: 'center',
-            width: '100%',
+            width: 'auto',
         },
         containerMargins: {
             marginHorizontal: 16,
@@ -256,7 +256,7 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
                     style={{
                         flexDirection: 'row',
                         justifyContent: 'center',
-                        width: '100%',
+                        width: 'auto',
                     }}
                 >
                     <View style={{ maxWidth: 600 }}>
