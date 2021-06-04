@@ -5,12 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## v3.2.0 (Unpublished)
+## v3.2.0 (June 4, 2021)
 
 ### Added
 
 -   Support for Spanish and Chinese languages.
--   Translation extension / override capability
+-   Translation extension / override capability.
+-   Dark theme support.
+-   Tablet device styles.
 
 ## v3.1.0 (April 27, 2021)
 
