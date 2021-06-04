@@ -38,6 +38,9 @@ const makeContainerStyles = (): Record<string, any> =>
         },
         textContainer: {
             flex: 2,
+            width: '100%',
+            flexDirection: 'row',
+            justifyContent: 'center',
         },
         iconContainer: {
             flex: 1,
@@ -112,10 +115,12 @@ export const CompleteSplashScreen: React.FC<CompleteSplashScreenProps> = (props)
                         <IconSplash style={{ height: 150 }} icon={props.icon ?? 'person'} />
 
                         <View style={containerStyles.textContainer}>
-                            <H6 style={[styles.headerText, styles.textSpacing]}>{props.boldTitle}</H6>
-                            <Body1 style={[styles.bodyText, styles.textSpacing]}>
-                                <FormattedText parseableText={props.bodyText} />
-                            </Body1>
+                            <View style={{ width: '100%', maxWidth: 600 }}>
+                                <H6 style={[styles.headerText, styles.textSpacing]}>{props.boldTitle}</H6>
+                                <Body1 style={[styles.bodyText, styles.textSpacing]}>
+                                    <FormattedText parseableText={props.bodyText} />
+                                </Body1>
+                            </View>
                         </View>
                     </View>
                 </SafeAreaView>

@@ -32,6 +32,7 @@
         "link:shared": "bash ./scripts/linkShared.sh",
         "start:example": "yarn start:example-ios",
         "start:example-ios": "yarn initialize && yarn install:dependencies-ios && yarn build && yarn link:workflows && cd example && yarn ios",
+        "start:example-ipad": "yarn initialize && yarn install:dependencies-ios && yarn build && yarn link:workflows && cd example && yarn ipad",
         "start:example-android": "yarn initialize && yarn install:dependencies-android && yarn build && yarn link:workflows && cd example && yarn android",
         "test": "jest src",
         "lint": "eslint \"**/**/*.{tsx,ts}\"",

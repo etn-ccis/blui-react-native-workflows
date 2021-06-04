@@ -27,6 +27,9 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
         mainContainer: {
             flex: 1,
             paddingTop: 16,
+            width: '100%',
+            flexDirection: 'row',
+            justifyContent: 'center',
         },
         containerMargins: {
             marginHorizontal: 16,
@@ -99,18 +102,20 @@ export const Eula: React.FC<EulaProps> = (props) => {
     return (
         <SafeAreaView style={containerStyles.safeContainer}>
             <View style={[containerStyles.mainContainer, containerStyles.containerMargins]}>
-                {htmlEula ? (
-                    <WebView
-                        originWhitelist={['*']}
-                        source={{ html: eulaContentInternals }}
-                        onLoadEnd={onLoadEnd}
-                        style={{ flex: 1, height: 50 /* WebView needs a fixed height set or it won't render */ }}
-                    />
-                ) : (
-                    <ScrollView>
-                        <Body1>{eulaContentInternals}</Body1>
-                    </ScrollView>
-                )}
+                <View style={{ maxWidth: 600 }}>
+                    {htmlEula ? (
+                        <WebView
+                            originWhitelist={['*']}
+                            source={{ html: eulaContentInternals }}
+                            onLoadEnd={onLoadEnd}
+                            style={{ flex: 1, height: 50 /* WebView needs a fixed height set or it won't render */ }}
+                        />
+                    ) : (
+                        <ScrollView>
+                            <Body1>{eulaContentInternals}</Body1>
+                        </ScrollView>
+                    )}
+                </View>
             </View>
             <View style={[containerStyles.containerMargins, containerStyles.checkboxContainer]}>
                 <Checkbox

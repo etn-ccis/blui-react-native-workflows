@@ -84,21 +84,23 @@ export const ResetPasswordSent: React.FC<ResetPasswordSentProps> = (props) => {
 
     return (
         <SafeAreaView style={containerStyles.safeContainer}>
-            <View>
-                <MatIcon
-                    name={'mail-outline'}
-                    style={containerStyles.iconContainer}
-                    size={100}
-                    color={theme.colors.placeholder}
-                />
+            <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+                <View style={{ maxWidth: 600 }}>
+                    <MatIcon
+                        name={'mail-outline'}
+                        style={containerStyles.iconContainer}
+                        size={100}
+                        color={theme.colors.placeholder}
+                    />
 
-                <Instruction
-                    text={t('pxb:FORGOT_PASSWORD.LINK_SENT', {
-                        replace: { email: email },
-                    })}
-                    style={containerStyles.containerMargins}
-                    hasBottomBorder={false}
-                />
+                    <Instruction
+                        text={t('pxb:FORGOT_PASSWORD.LINK_SENT', {
+                            replace: { email: email },
+                        })}
+                        style={containerStyles.containerMargins}
+                        hasBottomBorder={false}
+                    />
+                </View>
             </View>
 
             <View style={[styles.wideButton, containerStyles.containerMargins]}>
