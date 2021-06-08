@@ -27,7 +27,7 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
         mainContainer: {
             flex: 1,
             paddingTop: 16,
-            width: '100%',
+            width: 'auto',
             flexDirection: 'row',
             justifyContent: 'center',
         },
