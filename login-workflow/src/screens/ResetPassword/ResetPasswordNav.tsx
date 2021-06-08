@@ -15,9 +15,6 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import { ResetPassword } from '../../subScreens/ResetPassword';
 import { ResetPasswordSent } from '../../subScreens/ResetPasswordSent';
 
-// Components
-import { CloseHeader } from '../../components/CloseHeader';
-
 // Theme
 import { useTheme } from 'react-native-paper';
 
@@ -32,6 +29,7 @@ import {
     useAccountUIActions,
     useLanguageLocale,
 } from '@pxblue/react-auth-shared';
+import { CloseHeader } from '../../components/CloseHeader';
 
 /**
  * Stack navigator for reset password navigation.
@@ -51,12 +49,12 @@ type ResetPasswordNavProps = {
  * @category Component
  */
 export const ResetPasswordNav: React.FC<ResetPasswordNavProps> = (props) => {
-    const { t } = useLanguageLocale();
     const theme = useTheme(props.theme);
     const accountUIState = useAccountUIState();
     const accountUIActions = useAccountUIActions();
     const navigation = useNavigation();
     const route = useRoute();
+    const { t } = useLanguageLocale();
 
     // Reset state on dismissal
     React.useEffect(
@@ -87,40 +85,28 @@ export const ResetPasswordNav: React.FC<ResetPasswordNavProps> = (props) => {
     return (
         <Stack.Navigator
             screenOptions={{
-                headerTintColor: theme.colors.surface,
-                headerStyle: { backgroundColor: theme.colors.primary },
+                cardStyle: { backgroundColor: theme.colors.surface },
+                header: (): JSX.Element | null => (
+                    <CloseHeader
+                        title={t('pxb:FORMS.RESET_PASSWORD')}
+                        backAction={(): void => {
+                            navigation.navigate('Login');
+                        }}
+                    />
+                ),
             }}
         >
             {accountUIState.forgotPassword.transitSuccess !== true ? (
                 <Stack.Screen
                     name="ResetPassword"
-                    initialParams={{ onResetPasswordPress: resetPassword, contactPhone: contactPhone }}
                     component={ResetPassword}
-                    options={(): { header: () => JSX.Element | null } => ({
-                        header: (): JSX.Element | null =>
-                            CloseHeader({
-                                title: t('FORMS.RESET_PASSWORD'),
-                                backAction: () => {
-                                    navigation.navigate('Login');
-                                },
-                            }),
-                    })}
+                    initialParams={{ onResetPasswordPress: resetPassword, contactPhone: contactPhone }}
                 />
             ) : (
                 <Stack.Screen
                     name="ResetPasswordSent"
                     component={ResetPasswordSent}
                     initialParams={{ email: accountUIState.forgotPassword.email }}
-                    options={(): { gestureEnabled: boolean; header: () => JSX.Element | null } => ({
-                        gestureEnabled: false,
-                        header: (): JSX.Element | null =>
-                            CloseHeader({
-                                title: t('FORMS.RESET_PASSWORD'),
-                                backAction: () => {
-                                    navigation.navigate('Login');
-                                },
-                            }),
-                    })}
                 />
             )}
         </Stack.Navigator>

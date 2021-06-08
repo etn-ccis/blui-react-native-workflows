@@ -28,6 +28,7 @@ import {
     useAccountUIActions,
     useAccountUIState,
 } from '@pxblue/react-auth-shared';
+import { useTheme } from 'react-native-paper';
 
 /**
  * Stack navigator for reset password handle deep link navigation.
@@ -50,6 +51,7 @@ export const ResetPasswordHandleDeepLink: React.FC = () => {
     const accountUIState = useAccountUIState();
     const accountUIActions = useAccountUIActions();
     const navigation = useNavigation();
+    const theme = useTheme();
 
     const route = useRoute();
     const routeParams = route.params as ResetPasswordHandleDeepLinkParams;
@@ -99,48 +101,33 @@ export const ResetPasswordHandleDeepLink: React.FC = () => {
     };
 
     return verifySuccess && !verifyIsInTransit ? (
-        <Stack.Navigator initialRouteName="ResetPasswordConfirm">
+        <Stack.Navigator
+            initialRouteName="ResetPasswordConfirm"
+            headerMode={'none'}
+            screenOptions={{
+                cardStyle: { backgroundColor: theme.colors.surface },
+            }}
+        >
             {!setPasswordTransitSuccess ? (
                 <Stack.Screen
                     name="ResetPasswordConfirm"
                     initialParams={{ onResetPasswordPress: resetPassword }}
                     component={ResetPasswordConfirm}
-                    options={(): { header: () => JSX.Element | null } => ({
-                        header: (): JSX.Element | null =>
-                            CloseHeader({
-                                title: t('FORMS.RESET_PASSWORD'),
-                                backAction: () => {
-                                    navigation.navigate('Login');
-                                },
-                            }),
-                    })}
                 />
             ) : (
-                <Stack.Screen
-                    name="ResetPasswordSuccess"
-                    component={ResetPasswordSuccess}
-                    options={(): { header: () => JSX.Element | null } => ({
-                        header: (): JSX.Element | null =>
-                            CloseHeader({
-                                title: t('FORMS.RESET_PASSWORD'),
-                                backAction: () => {
-                                    navigation.navigate('Login');
-                                },
-                            }),
-                    })}
-                />
+                <Stack.Screen name="ResetPasswordSuccess" component={ResetPasswordSuccess} />
             )}
         </Stack.Navigator>
     ) : !verifyComplete ? (
         <View style={{ flex: 1 }}>
-            <CloseHeader title={t('FORMS.RESET_PASSWORD')} backAction={(): void => navigation.goBack()} />
+            <CloseHeader title={t('pxb:FORMS.RESET_PASSWORD')} backAction={(): void => navigation.goBack()} />
             <Spinner />
         </View>
     ) : (
         <View style={{ flex: 1 }}>
-            <CloseHeader title={t('MESSAGES.ERROR')} backAction={(): void => navigation.goBack()} />
+            <CloseHeader title={t('pxb:MESSAGES.ERROR')} backAction={(): void => navigation.goBack()} />
             <ErrorState
-                title={t('MESSAGES.FAILURE')}
+                title={t('pxb:MESSAGES.FAILURE')}
                 bodyText={validationTransitErrorMessage}
                 onPress={(): void => {
                     navigation.navigate('Login');

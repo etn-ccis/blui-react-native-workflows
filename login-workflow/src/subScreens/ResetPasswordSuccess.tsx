@@ -6,10 +6,10 @@
 import React from 'react';
 
 // Components
-import { StyleSheet, SafeAreaView } from 'react-native';
+import { StyleSheet, SafeAreaView, View } from 'react-native';
 import { CompleteSplashScreen } from './CompleteSplash';
 import { ToggleButton } from '../components/ToggleButton';
-
+import { CloseHeader } from '../components/CloseHeader';
 // Hooks
 import { useNavigation } from '@react-navigation/native';
 import { useLanguageLocale } from '@pxblue/react-auth-shared';
@@ -21,7 +21,8 @@ import { useTheme } from 'react-native-paper';
 const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any> =>
     StyleSheet.create({
         safeContainer: {
-            height: '100%',
+            // height: '100%',
+            flex: 1,
             backgroundColor: theme.colors.surface,
         },
         mainContainer: {
@@ -29,7 +30,7 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
             zIndex: 2,
         },
         containerMargins: {
-            marginHorizontal: 20,
+            marginHorizontal: 16,
         },
         buttonContainer: {
             bottom: 48,
@@ -60,18 +61,25 @@ export const ResetPasswordSuccess: React.FC<ResetPasswordSuccessProps> = (props)
 
     const containerStyles = makeContainerStyles(theme);
 
-    const titleText = t('PASSWORD_RESET.SUCCESS_MESSAGE');
-    const bodyText = t('CHANGE_PASSWORD.SUCCESS_MESSAGE');
+    const titleText = t('pxb:PASSWORD_RESET.SUCCESS_MESSAGE');
+    const bodyText = t('pxb:CHANGE_PASSWORD.SUCCESS_MESSAGE');
 
     return (
-        <SafeAreaView style={containerStyles.safeContainer}>
-            <CompleteSplashScreen boldTitle={titleText} bodyText={bodyText} icon={'vpn-key'} />
-
-            <ToggleButton
-                text={t('ACTIONS.DONE')}
-                style={containerStyles.buttonContainer}
-                onPress={(): void => navigation.navigate('Login')}
+        <View style={{ height: '100%' }}>
+            <CloseHeader
+                title={t('pxb:FORMS.RESET_PASSWORD')}
+                backAction={(): void => navigation.navigate('Login')}
+                backgroundColor={theme.colors.primaryBase || theme.colors.primary}
             />
-        </SafeAreaView>
+            <SafeAreaView style={containerStyles.safeContainer}>
+                <CompleteSplashScreen boldTitle={titleText} bodyText={bodyText} icon={'vpn-key'} />
+
+                <ToggleButton
+                    text={t('pxb:ACTIONS.DONE')}
+                    style={containerStyles.buttonContainer}
+                    onPress={(): void => navigation.navigate('Login')}
+                />
+            </SafeAreaView>
+        </View>
     );
 };

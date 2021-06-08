@@ -21,10 +21,9 @@ import { ExistingAccountComplete } from '../subScreens/ExistingAccountComplete';
 
 // Components
 import { View, StyleSheet, SafeAreaView, BackHandler } from 'react-native';
-import { useTheme } from 'react-native-paper';
+import { useTheme, Divider } from 'react-native-paper';
 import ViewPager from 'react-native-pager-view';
 import { CloseHeader } from '../components/CloseHeader';
-import { PageIndicator } from '../components/PageIndicator';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Spinner } from '../components/Spinner';
 import { SimpleDialog } from '../components/SimpleDialog';
@@ -50,6 +49,8 @@ import {
 } from '@pxblue/react-auth-shared';
 import { CustomRegistrationDetailsGroup, RegistrationPage } from '../types';
 import { Instruction } from '../components/Instruction';
+import { MobileStepper } from '@pxblue/react-native-components';
+import Color from 'color';
 
 /**
  * @ignore
@@ -64,15 +65,18 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
             flex: 1,
         },
         containerMargins: {
-            marginHorizontal: 20,
+            marginHorizontal: 16,
         },
         fullFlex: {
             flex: 1,
             height: '100%',
         },
-        topBorder: {
-            borderTopColor: Colors.gray['200'],
-            borderTopWidth: StyleSheet.hairlineWidth,
+        divider: {
+            height: 1,
+            // marginTop: 16,
+            backgroundColor: theme.dark
+                ? Color(Colors.black[200]).alpha(0.36).toString()
+                : Color(Colors.black[500]).alpha(0.12).toString(),
         },
         spaceBetween: {
             flexGrow: 1,
@@ -89,7 +93,7 @@ const makeStyles = (): Record<string, any> =>
             flexDirection: 'row',
             justifyContent: 'space-between',
             alignItems: 'center',
-            paddingVertical: 10,
+            paddingVertical: 8,
         },
         wideButton: {
             width: '100%',
@@ -162,7 +166,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
     const registrationTransit = registrationState.inviteRegistration.registrationTransit;
     const registrationIsInTransit = registrationTransit.transitInProgress;
     const hasRegistrationTransitError = registrationTransit.transitErrorMessage !== null;
-    const registrationTransitErrorMessage = registrationTransit.transitErrorMessage ?? t('MESSAGES.REQUEST_ERROR');
+    const registrationTransitErrorMessage = registrationTransit.transitErrorMessage ?? t('pxb:MESSAGES.REQUEST_ERROR');
     const registrationSuccess = registrationState.inviteRegistration.registrationTransit.transitSuccess;
 
     // Network state (invite code validation)
@@ -195,7 +199,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
     const RegistrationPages: RegistrationPage[] = [
         {
             name: 'Eula',
-            pageTitle: t('REGISTRATION.STEPS.LICENSE'),
+            pageTitle: t('pxb:REGISTRATION.STEPS.LICENSE'),
             pageBody: (
                 <EulaScreen
                     key={'EulaPage'}
@@ -212,7 +216,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
         },
         {
             name: 'CreatePassword',
-            pageTitle: t('REGISTRATION.STEPS.PASSWORD'),
+            pageTitle: t('pxb:REGISTRATION.STEPS.PASSWORD'),
             pageBody: (
                 <KeyboardAwareScrollView key={'CreatePasswordPage'} contentContainerStyle={[containerStyles.fullFlex]}>
                     <CreatePasswordScreen
@@ -227,7 +231,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
         },
         {
             name: 'AccountDetails',
-            pageTitle: t('REGISTRATION.STEPS.ACCOUNT_DETAILS'),
+            pageTitle: t('pxb:REGISTRATION.STEPS.ACCOUNT_DETAILS'),
             pageBody: (
                 <AccountDetailsScreen
                     key={'AccountDetailsScreen'}
@@ -273,34 +277,39 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
                     const PageComponent = page.component;
                     return {
                         name: `CustomPage${i + 1}`,
-                        pageTitle: page.title || t('REGISTRATION.STEPS.ACCOUNT_DETAILS'),
+                        pageTitle: page.title || t('pxb:REGISTRATION.STEPS.ACCOUNT_DETAILS'),
                         pageBody: (
-                            <SafeAreaView key={`CustomDetailsPage_${i + 1}`}>
-                                <KeyboardAwareScrollView>
-                                    {page.instructions && (
-                                        <Instruction text={page.instructions} style={{ marginHorizontal: 20 }} />
-                                    )}
-                                    <View style={{ flex: 1, marginHorizontal: 20 }}>
-                                        <PageComponent
-                                            onDetailsChanged={(
-                                                details: CustomAccountDetails | null,
-                                                valid: boolean
-                                            ): void => {
-                                                setCustomAccountDetails({
-                                                    ...customAccountDetails,
-                                                    [i + 1]: { values: details || {}, valid },
-                                                });
-                                            }}
-                                            initialDetails={customAccountDetails?.[i + 1]?.values}
-                                            onSubmit={
-                                                customAccountDetails?.[i + 1]?.valid
-                                                    ? /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
-                                                      (): void => advancePage(1)
-                                                    : undefined
-                                            }
-                                        />
-                                    </View>
-                                </KeyboardAwareScrollView>
+                            <SafeAreaView
+                                key={`CustomDetailsPage_${i + 1}`}
+                                style={{ width: '100%', flexDirection: 'row', justifyContent: 'center' }}
+                            >
+                                <View style={{ width: '100%', maxWidth: 600 }}>
+                                    <KeyboardAwareScrollView>
+                                        {page.instructions && (
+                                            <Instruction text={page.instructions} style={{ marginHorizontal: 16 }} />
+                                        )}
+                                        <View style={{ flex: 1, marginHorizontal: 16 }}>
+                                            <PageComponent
+                                                onDetailsChanged={(
+                                                    details: CustomAccountDetails | null,
+                                                    valid: boolean
+                                                ): void => {
+                                                    setCustomAccountDetails({
+                                                        ...customAccountDetails,
+                                                        [i + 1]: { values: details || {}, valid },
+                                                    });
+                                                }}
+                                                initialDetails={customAccountDetails?.[i + 1]?.values}
+                                                onSubmit={
+                                                    customAccountDetails?.[i + 1]?.valid
+                                                        ? /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
+                                                          (): void => advancePage(1)
+                                                        : undefined
+                                                }
+                                            />
+                                        </View>
+                                    </KeyboardAwareScrollView>
+                                </View>
                             </SafeAreaView>
                         ),
                         canGoForward: customAccountDetails ? customAccountDetails?.[i + 1]?.valid : false,
@@ -311,16 +320,16 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
         .concat([
             {
                 name: 'Complete',
-                pageTitle: t('REGISTRATION.STEPS.COMPLETE'),
+                pageTitle: t('pxb:REGISTRATION.STEPS.COMPLETE'),
                 pageBody: (
                     <RegistrationComplete
                         key={'CompletePage'}
                         firstName={accountDetails?.firstName ?? ''}
                         lastName={accountDetails?.lastName ?? ''}
-                        email={registrationState.inviteRegistration.email ?? t('REGISTRATION.UNKNOWN_EMAIL')}
+                        email={registrationState.inviteRegistration.email ?? t('pxb:REGISTRATION.UNKNOWN_EMAIL')}
                         organization={
                             registrationState.inviteRegistration.organizationName ??
-                            t('REGISTRATION.UNKNOWN_ORGANIZATION')
+                            t('pxb:REGISTRATION.UNKNOWN_ORGANIZATION')
                         }
                     />
                 ),
@@ -376,7 +385,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
 
     const errorDialog = (
         <SimpleDialog
-            title={t('MESSAGES.ERROR')}
+            title={t('pxb:MESSAGES.ERROR')}
             bodyText={t(registrationTransitErrorMessage)}
             visible={hasRegistrationTransitError && !hasAcknowledgedError}
             onDismiss={(): void => {
@@ -473,9 +482,9 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
 
     const pageTitle = (): string => {
         if (isValidationInTransit) {
-            return t('MESSAGES.LOADING');
+            return t('pxb:MESSAGES.LOADING');
         } else if (validationTransitErrorMessage !== null) {
-            return t('MESSAGES.ERROR');
+            return t('pxb:MESSAGES.ERROR');
         }
         return RegistrationPages[currentPage].pageTitle || '';
     };
@@ -496,7 +505,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
         buttonArea = (
             <View style={[styles.sideBySideButtons, containerStyles.containerMargins]}>
                 <ToggleButton
-                    text={t('ACTIONS.CONTINUE')}
+                    text={t('pxb:ACTIONS.CONTINUE')}
                     style={{ width: '100%', alignSelf: 'flex-end' }}
                     onPress={(): void => advancePage(1)}
                 />
@@ -504,28 +513,32 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
         );
     } else {
         buttonArea = (
-            <View style={containerStyles.topBorder}>
-                <View style={[styles.sideBySideButtons, containerStyles.containerMargins]}>
-                    <View style={{ flex: 1 }}>
+            <>
+                <Divider style={containerStyles.divider} />
+                <MobileStepper
+                    styles={{ root: [containerStyles.topBorder, { flex: 0 }] }}
+                    steps={RegistrationPages.length}
+                    activeStep={currentPage}
+                    activeColor={theme.colors.primaryBase || theme.colors.primary}
+                    leftButton={
                         <ToggleButton
-                            text={t('ACTIONS.BACK')}
+                            text={t('pxb:ACTIONS.BACK')}
                             style={{ width: 100, alignSelf: 'flex-start' }}
                             outlined={true}
                             disabled={!canGoBackProgress()}
                             onPress={(): void => advancePage(-1)}
                         />
-                    </View>
-                    <PageIndicator currentPage={currentPage} totalPages={RegistrationPages.length} />
-                    <View style={{ flex: 1 }}>
+                    }
+                    rightButton={
                         <ToggleButton
-                            text={t('ACTIONS.NEXT')}
+                            text={t('pxb:ACTIONS.NEXT')}
                             style={{ width: 100, alignSelf: 'flex-end' }}
                             disabled={!canProgress()}
                             onPress={(): void => advancePage(1)}
                         />
-                    </View>
-                </View>
-            </View>
+                    }
+                />
+            </>
         );
     }
     return !accountAlreadyExists && validationSuccess && !isValidationInTransit ? (
@@ -534,7 +547,11 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
             {errorDialog}
             {(!customSuccess || !isLastStep) && (
                 <>
-                    <CloseHeader title={pageTitle()} backAction={(): void => navigation.navigate('Login')} />
+                    <CloseHeader
+                        title={pageTitle()}
+                        backAction={(): void => navigation.navigate('Login')}
+                        backgroundColor={isLastStep ? theme.colors.primaryBase || theme.colors.primary : undefined}
+                    />
 
                     <SafeAreaView style={[containerStyles.spaceBetween, { backgroundColor: theme.colors.surface }]}>
                         <ViewPager
@@ -559,12 +576,13 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
             )}
         </View>
     ) : accountAlreadyExists ? (
-        <View style={{ flex: 1, backgroundColor: 'white' }}>
+        <View style={{ flex: 1 }}>
             {!customAccountAlreadyExists && (
                 <>
                     <CloseHeader
-                        title={t('REGISTRATION.STEPS.COMPLETE')}
+                        title={t('pxb:REGISTRATION.STEPS.COMPLETE')}
                         backAction={(): void => navigation.navigate('Login')}
+                        backgroundColor={theme.colors.primaryBase || theme.colors.primary}
                     />
                     <SafeAreaView style={[containerStyles.safeContainer, { flex: 1 }]}>
                         <View style={{ flex: 1 }}>
@@ -572,7 +590,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
                         </View>
                         <View style={[styles.sideBySideButtons, containerStyles.containerMargins]}>
                             <ToggleButton
-                                text={t('ACTIONS.CONTINUE')}
+                                text={t('pxb:ACTIONS.CONTINUE')}
                                 style={{ width: '100%', alignSelf: 'flex-end' }}
                                 onPress={(): void => navigation.navigate('Login')}
                             />
@@ -596,7 +614,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
         <View style={{ flex: 1 }}>
             <CloseHeader title={pageTitle()} backAction={(): void => navigation.navigate('Login')} />
             <ErrorState
-                title={t('MESSAGES.FAILURE')}
+                title={t('pxb:MESSAGES.FAILURE')}
                 bodyText={validationTransitErrorMessage}
                 onPress={(): void => {
                     navigation.navigate('Login');

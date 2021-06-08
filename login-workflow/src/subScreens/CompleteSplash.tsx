@@ -12,7 +12,6 @@ import { FormattedText } from '../components/FormattedText';
 import { useTheme } from 'react-native-paper';
 
 // Styles
-import * as Colors from '@pxblue/colors';
 import { Body1, H6 } from '@pxblue/react-native-components';
 
 /**
@@ -35,10 +34,13 @@ const makeContainerStyles = (): Record<string, any> =>
             alignContent: 'center',
         },
         containerMargins: {
-            marginHorizontal: 20,
+            marginHorizontal: 16,
         },
         textContainer: {
             flex: 2,
+            width: '100%',
+            flexDirection: 'row',
+            justifyContent: 'center',
         },
         iconContainer: {
             flex: 1,
@@ -51,17 +53,18 @@ const makeContainerStyles = (): Record<string, any> =>
  */
 const makeStyles = (theme: ReactNativePaper.Theme): Record<string, any> =>
     StyleSheet.create({
-        headerText: {
-            color: Colors.black['800'],
-        },
-        bodyText: {
-            color: theme.colors.text,
-        },
+        headerText: {},
+        bodyText: {},
         textSpacing: {
-            marginVertical: 10,
+            marginVertical: 8,
         },
         backgroundImage: {
             position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            width: '100%',
+            height: 150,
         },
         circleIconBackground: {
             width: 100,
@@ -78,7 +81,7 @@ const makeStyles = (theme: ReactNativePaper.Theme): Record<string, any> =>
  *
  * @param boldTitle  The bold title text.
  * @param bodyText  The body text.
- * @param icon  (Optional) The optional icon to show on the slash. Default 'blue_waves.png'.
+ * @param icon  (Optional) The optional icon to show on the slash. Default 'waves.png'.
  * @param theme (Optional) react-native-paper theme partial for custom styling.
  */
 type CompleteSplashScreenProps = {
@@ -100,17 +103,24 @@ export const CompleteSplashScreen: React.FC<CompleteSplashScreenProps> = (props)
 
     return (
         <View style={containerStyles.backgroundAndContentWrapper}>
-            <Image style={styles.backgroundImage} source={require('../assets/images/blue_waves.png')} />
+            <Image
+                resizeMethod={'resize'}
+                resizeMode={'cover'}
+                style={[styles.backgroundImage]}
+                source={require('../assets/images/waves.png')}
+            />
             <ScrollView style={[containerStyles.safeContainer]}>
                 <SafeAreaView style={[containerStyles.safeContainer]}>
                     <View style={[containerStyles.containerMargins, containerStyles.mainContainer]}>
-                        <IconSplash style={{ height: 200 }} icon={props.icon ?? 'person'} />
+                        <IconSplash style={{ height: 150 }} icon={props.icon ?? 'person'} />
 
                         <View style={containerStyles.textContainer}>
-                            <H6 style={[styles.headerText, styles.textSpacing]}>{props.boldTitle}</H6>
-                            <Body1 style={[styles.bodyText, styles.textSpacing]}>
-                                <FormattedText parseableText={props.bodyText} />
-                            </Body1>
+                            <View style={{ width: '100%', maxWidth: 600 }}>
+                                <H6 style={[styles.headerText, styles.textSpacing]}>{props.boldTitle}</H6>
+                                <Body1 style={[styles.bodyText, styles.textSpacing]}>
+                                    <FormattedText parseableText={props.bodyText} />
+                                </Body1>
+                            </View>
                         </View>
                     </View>
                 </SafeAreaView>

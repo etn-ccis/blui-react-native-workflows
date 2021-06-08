@@ -4,7 +4,7 @@ import { EmptyState, Header, InfoListItemProps, UserMenu, wrapIcon } from '@pxbl
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../navigation';
-import { Avatar } from 'react-native-paper';
+import { Avatar, useTheme } from 'react-native-paper';
 import { LocalStorage } from '../store/local-storage';
 import { useSecurityActions } from '@pxblue/react-native-auth-workflow';
 import * as Colors from '@pxblue/colors';
@@ -34,6 +34,7 @@ type AppProps = {
 };
 
 const PageOne: React.FC<AppProps> = ({ navigation }): JSX.Element => {
+    const theme = useTheme();
     const defaultStyles = styles();
     const securityHelper = useSecurityActions();
 
@@ -55,6 +56,7 @@ const PageOne: React.FC<AppProps> = ({ navigation }): JSX.Element => {
         <>
             <Header
                 title={'Page One'}
+                backgroundColor={theme.dark ? Colors.black[800] : theme.colors.primary}
                 navigation={{
                     icon: MenuIcon,
                     onPress: (): void => {
@@ -67,6 +69,7 @@ const PageOne: React.FC<AppProps> = ({ navigation }): JSX.Element => {
                         component: (
                             <UserMenu
                                 menuItems={menuItems}
+                                iconColor={theme.dark ? Colors.black[200] : Colors.gray[500]}
                                 avatar={
                                     <Avatar.Text
                                         label="UN"

@@ -7,16 +7,16 @@ import React from 'react';
 
 // Components
 import { Platform, View, StyleSheet } from 'react-native';
-import { ActivityIndicator, Portal, useTheme } from 'react-native-paper';
+import { Portal, useTheme } from 'react-native-paper';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
-
+import { ThemedActivityIndicator as ActivityIndicator } from '../components/themed/ThemedActivityIndicator';
 /**
  * @ignore
  */
-const makeStyles = (hasHeader: boolean): Record<string, any> =>
+const makeStyles = (theme: ReactNativePaper.Theme, hasHeader: boolean): Record<string, any> =>
     StyleSheet.create({
         overlay: {
-            backgroundColor: 'rgba(255, 255, 255, 0.6)',
+            backgroundColor: theme.dark ? 'rgba(0,0,0,0.6)' : 'rgba(255, 255, 255, 0.6)',
             position: 'absolute',
             top: Platform.OS === 'ios' ? getStatusBarHeight() + (hasHeader ? 56 : 0) : hasHeader ? 56 : 0,
             bottom: 0,
@@ -46,12 +46,12 @@ type SpinnerProps = {
 export const Spinner: React.FC<SpinnerProps> = (props) => {
     const { hasHeader = true } = props;
     const theme = useTheme(props.theme);
-    const styles = makeStyles(hasHeader);
+    const styles = makeStyles(theme, hasHeader);
 
     return (
         <Portal>
             <View style={styles.overlay}>
-                <ActivityIndicator animating={true} color={theme.colors.primary} style={styles.activityIndicator} />
+                <ActivityIndicator animating={true} style={styles.activityIndicator} />
             </View>
         </Portal>
     );

@@ -38,11 +38,11 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
             flex: 1,
         },
         containerMargins: {
-            marginHorizontal: 20,
+            marginHorizontal: 16,
         },
         iconContainer: {
             marginTop: 60,
-            marginBottom: 20,
+            marginBottom: 16,
             alignSelf: 'center',
         },
     });
@@ -54,7 +54,7 @@ const makeStyles = (): Record<string, any> =>
     StyleSheet.create({
         wideButton: {
             height: 60,
-            paddingVertical: 10,
+            paddingVertical: 8,
         },
     });
 
@@ -84,26 +84,28 @@ export const ResetPasswordSent: React.FC<ResetPasswordSentProps> = (props) => {
 
     return (
         <SafeAreaView style={containerStyles.safeContainer}>
-            <View>
-                <MatIcon
-                    name={'mail-outline'}
-                    style={containerStyles.iconContainer}
-                    size={100}
-                    color={theme.colors.placeholder}
-                />
+            <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+                <View style={{ maxWidth: 600 }}>
+                    <MatIcon
+                        name={'mail-outline'}
+                        style={containerStyles.iconContainer}
+                        size={100}
+                        color={theme.colors.placeholder}
+                    />
 
-                <Instruction
-                    text={t('FORGOT_PASSWORD.LINK_SENT', {
-                        replace: { email: email },
-                    })}
-                    style={containerStyles.containerMargins}
-                    hasBottomBorder={false}
-                />
+                    <Instruction
+                        text={t('pxb:FORGOT_PASSWORD.LINK_SENT', {
+                            replace: { email: email },
+                        })}
+                        style={containerStyles.containerMargins}
+                        hasBottomBorder={false}
+                    />
+                </View>
             </View>
 
             <View style={[styles.wideButton, containerStyles.containerMargins]}>
                 <View style={{ flex: 1 }}>
-                    <ToggleButton text={t('ACTIONS.DONE')} onPress={(): void => navigation.navigate('Login')} />
+                    <ToggleButton text={t('pxb:ACTIONS.DONE')} onPress={(): void => navigation.navigate('Login')} />
                 </View>
             </View>
         </SafeAreaView>

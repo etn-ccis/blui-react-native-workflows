@@ -23,12 +23,16 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
         safeContainer: {
             height: '100%',
             backgroundColor: theme.colors.surface,
+            width: '100%',
+            flexDirection: 'row',
+            justifyContent: 'center',
         },
         mainContainer: {
+            marginTop: 8,
             flex: 1,
         },
         containerMargins: {
-            marginHorizontal: 20,
+            marginHorizontal: 16,
         },
     });
 
@@ -38,7 +42,7 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
 const makeStyles = (): Record<string, any> =>
     StyleSheet.create({
         inputMargin: {
-            marginTop: 40,
+            marginTop: 24,
         },
     });
 
@@ -103,41 +107,43 @@ export const AccountDetails: React.FC<AccountDetailsProps> = (props) => {
 
     return (
         <SafeAreaView style={containerStyles.safeContainer}>
-            <KeyboardAwareScrollView>
-                <Instruction
-                    text={t('REGISTRATION.INSTRUCTIONS.ACCOUNT_DETAILS')}
-                    style={containerStyles.containerMargins}
-                />
-
-                <View style={[containerStyles.containerMargins, containerStyles.mainContainer]}>
-                    <TextInput
-                        label={t('FORMS.FIRST_NAME')}
-                        value={firstNameInput}
-                        style={styles.inputMargin}
-                        autoCapitalize={'sentences'}
-                        returnKeyType={'next'}
-                        onChangeText={(text: string): void => setFirstNameInput(text)}
-                        onSubmitEditing={(): void => {
-                            goToLastName();
-                        }}
-                        blurOnSubmit={false}
+            <View style={{ width: '100%', maxWidth: 600 }}>
+                <KeyboardAwareScrollView>
+                    <Instruction
+                        text={t('pxb:REGISTRATION.INSTRUCTIONS.ACCOUNT_DETAILS')}
+                        style={containerStyles.containerMargins}
                     />
 
-                    <TextInput
-                        ref={lastNameRef}
-                        label={t('FORMS.LAST_NAME')}
-                        value={lastNameInput}
-                        style={styles.inputMargin}
-                        autoCapitalize={'sentences'}
-                        returnKeyType={'next'}
-                        onChangeText={(text: string): void => setLastNameInput(text)}
-                        onSubmitEditing={
-                            firstNameInput.length > 0 && lastNameInput.length > 0 ? props.onSubmit : undefined
-                        }
-                    />
-                    {props.children}
-                </View>
-            </KeyboardAwareScrollView>
+                    <View style={[containerStyles.containerMargins, containerStyles.mainContainer]}>
+                        <TextInput
+                            label={t('pxb:FORMS.FIRST_NAME')}
+                            value={firstNameInput}
+                            style={styles.inputMargin}
+                            autoCapitalize={'sentences'}
+                            returnKeyType={'next'}
+                            onChangeText={(text: string): void => setFirstNameInput(text)}
+                            onSubmitEditing={(): void => {
+                                goToLastName();
+                            }}
+                            blurOnSubmit={false}
+                        />
+
+                        <TextInput
+                            ref={lastNameRef}
+                            label={t('pxb:FORMS.LAST_NAME')}
+                            value={lastNameInput}
+                            style={styles.inputMargin}
+                            autoCapitalize={'sentences'}
+                            returnKeyType={'next'}
+                            onChangeText={(text: string): void => setLastNameInput(text)}
+                            onSubmitEditing={
+                                firstNameInput.length > 0 && lastNameInput.length > 0 ? props.onSubmit : undefined
+                            }
+                        />
+                        {props.children}
+                    </View>
+                </KeyboardAwareScrollView>
+            </View>
         </SafeAreaView>
     );
 };

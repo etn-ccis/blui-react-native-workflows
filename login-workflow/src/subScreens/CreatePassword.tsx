@@ -37,24 +37,17 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
     StyleSheet.create({
         safeContainer: {
             backgroundColor: theme.colors.surface,
-            marginBottom: 20,
+            marginBottom: 16,
             flex: 1,
+            width: '100%',
+            flexDirection: 'row',
+            justifyContent: 'center',
         },
         mainContainer: {
             flex: 1,
         },
         containerMargins: {
-            marginHorizontal: 20,
-        },
-    });
-
-/**
- * @ignore
- */
-const makeStyles = (): Record<string, any> =>
-    StyleSheet.create({
-        inputMargin: {
-            marginTop: 40,
+            marginHorizontal: 16,
         },
     });
 
@@ -82,7 +75,6 @@ export const CreatePassword: React.FC<CreatePasswordProps> = (props) => {
     const { t } = useLanguageLocale();
 
     const containerStyles = makeContainerStyles(theme);
-    const styles = makeStyles();
 
     const confirmPasswordRef = React.useRef<TextInput>(null);
     const goToNextInput = (): void => confirmPasswordRef?.current?.focus();
@@ -90,23 +82,23 @@ export const CreatePassword: React.FC<CreatePasswordProps> = (props) => {
     const defaultRequirements: PasswordRequirement[] = [
         {
             regex: LENGTH_REGEX,
-            description: t('PASSWORD_REQUIREMENTS.LENGTH'),
+            description: t('pxb:PASSWORD_REQUIREMENTS.LENGTH'),
         },
         {
             regex: NUMBERS_REGEX,
-            description: t('PASSWORD_REQUIREMENTS.NUMBERS'),
+            description: t('pxb:PASSWORD_REQUIREMENTS.NUMBERS'),
         },
         {
             regex: UPPER_CASE_REGEX,
-            description: t('PASSWORD_REQUIREMENTS.UPPER'),
+            description: t('pxb:PASSWORD_REQUIREMENTS.UPPER'),
         },
         {
             regex: LOWER_CASE_REGEX,
-            description: t('PASSWORD_REQUIREMENTS.LOWER'),
+            description: t('pxb:PASSWORD_REQUIREMENTS.LOWER'),
         },
         {
             regex: SPECIAL_CHAR_REGEX,
-            description: t('PASSWORD_REQUIREMENTS.SPECIAL'),
+            description: t('pxb:PASSWORD_REQUIREMENTS.SPECIAL'),
         },
     ];
     const { passwordRequirements = defaultRequirements } = useInjectedUIContext();
@@ -125,38 +117,43 @@ export const CreatePassword: React.FC<CreatePasswordProps> = (props) => {
 
     return (
         <SafeAreaView style={[containerStyles.safeContainer, { flexGrow: 1 }]}>
-            <ScrollView style={{ flexGrow: 1 }}>
-                <Instruction text={t('CHANGE_PASSWORD.PASSWORD_INFO')} style={[containerStyles.containerMargins]} />
-
-                <View style={[containerStyles.containerMargins, containerStyles.mainContainer]}>
-                    <TextInputSecure
-                        label={t('FORMS.PASSWORD')}
-                        value={passwordInput}
-                        style={styles.inputMargin}
-                        autoCapitalize={'none'}
-                        returnKeyType={'next'}
-                        onChangeText={(text: string): void => setPasswordInput(text)}
-                        onSubmitEditing={(): void => {
-                            goToNextInput();
-                        }}
-                        blurOnSubmit={false}
+            <View style={{ width: '100%', maxWidth: 600 }}>
+                <ScrollView style={{ flexGrow: 1 }}>
+                    <Instruction
+                        text={t('pxb:CHANGE_PASSWORD.PASSWORD_INFO')}
+                        style={[containerStyles.containerMargins]}
                     />
 
-                    <PasswordRequirements style={{ paddingTop: 10 }} passwordText={passwordInput} />
+                    <View style={[containerStyles.containerMargins, containerStyles.mainContainer]}>
+                        <TextInputSecure
+                            label={t('pxb:FORMS.PASSWORD')}
+                            value={passwordInput}
+                            style={{ marginTop: 32 }}
+                            autoCapitalize={'none'}
+                            returnKeyType={'next'}
+                            onChangeText={(text: string): void => setPasswordInput(text)}
+                            onSubmitEditing={(): void => {
+                                goToNextInput();
+                            }}
+                            blurOnSubmit={false}
+                        />
 
-                    <TextInputSecure
-                        ref={confirmPasswordRef}
-                        label={t('FORMS.CONFIRM_PASSWORD')}
-                        value={confirmInput}
-                        style={styles.inputMargin}
-                        autoCapitalize={'none'}
-                        returnKeyType={'done'}
-                        error={confirmInput !== '' && passwordInput !== confirmInput}
-                        onChangeText={(text: string): void => setConfirmInput(text)}
-                        onSubmitEditing={areValidMatchingPasswords() ? props.onSubmit : undefined}
-                    />
-                </View>
-            </ScrollView>
+                        <PasswordRequirements style={{ paddingTop: 8 }} passwordText={passwordInput} />
+
+                        <TextInputSecure
+                            ref={confirmPasswordRef}
+                            label={t('pxb:FORMS.CONFIRM_PASSWORD')}
+                            value={confirmInput}
+                            style={{ marginTop: 24 }}
+                            autoCapitalize={'none'}
+                            returnKeyType={'done'}
+                            error={confirmInput !== '' && passwordInput !== confirmInput}
+                            onChangeText={(text: string): void => setConfirmInput(text)}
+                            onSubmitEditing={areValidMatchingPasswords() ? props.onSubmit : undefined}
+                        />
+                    </View>
+                </ScrollView>
+            </View>
         </SafeAreaView>
     );
 };

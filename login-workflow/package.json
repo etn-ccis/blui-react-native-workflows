@@ -1,7 +1,7 @@
 {
     "name": "@pxblue/react-native-auth-workflow",
     "description": "Re-usable workflow components for Authentication and Registration within Eaton applications.",
-    "version": "3.1.0",
+    "version": "3.2.0",
     "license": "BSD-3-Clause",
     "author": {
         "name": "PX Blue",
@@ -32,6 +32,7 @@
         "link:shared": "bash ./scripts/linkShared.sh",
         "start:example": "yarn start:example-ios",
         "start:example-ios": "yarn initialize && yarn install:dependencies-ios && yarn build && yarn link:workflows && cd example && yarn ios",
+        "start:example-ipad": "yarn initialize && yarn install:dependencies-ios && yarn build && yarn link:workflows && cd example && yarn ipad",
         "start:example-android": "yarn initialize && yarn install:dependencies-android && yarn build && yarn link:workflows && cd example && yarn android",
         "test": "jest src",
         "lint": "eslint \"**/**/*.{tsx,ts}\"",
@@ -43,10 +44,12 @@
         "precommit": "yarn validate && yarn generate:licenses",
         "update:submodule": "git submodule update --remote",
         "typescript": "tsc --noEmit",
-        "publish:package": "set npm_config_yes=true && npx -p @pxblue/publish pxb-publish"
+        "publish:package": "set npm_config_yes=true && npx -p @pxblue/publish pxb-publish",
+        "coverage": "yarn test --coverage --watchAll=false"
     },
     "dependencies": {
-        "@pxblue/react-auth-shared": "^3.1.0",
+        "@pxblue/react-auth-shared": "^3.2.0",
+        "lodash.clonedeep": "^4.5.0",
         "react-native-status-bar-height": "^2.5.0"
     },
     "peerDependencies": {
@@ -63,7 +66,7 @@
         "react-native-pager-view": "^5.0.0",
         "react-native-paper": "^4.0.0",
         "react-native-vector-icons": "^7.0.0 || ^8.0.0",
-        "react-native-webview": "^10.3.2 || ^11.0.0"
+        "react-native-webview": "^10.3.2"
     },
     "devDependencies": {
         "@babel/core": "^7.9.0",
@@ -81,6 +84,7 @@
         "@types/enzyme": "^3.10.5",
         "@types/enzyme-adapter-react-16": "^1.0.6",
         "@types/jest": "^24.0.0",
+        "@types/lodash.clonedeep": "^4.5.6",
         "@types/node": "^14.11.0",
         "@types/react-native": "^0.63.0",
         "@types/react-native-vector-icons": "^6.4.5",
@@ -88,6 +92,7 @@
         "@typescript-eslint/eslint-plugin": "^4.0.0",
         "@typescript-eslint/parser": "^4.0.0",
         "babel-jest": "^25.0.0",
+        "codecov": "^3.8.2",
         "date-fns": "^2.11.1",
         "enzyme": "^3.11.0",
         "enzyme-adapter-react-16": "^1.15.2",
@@ -116,11 +121,13 @@
         "react-native-safe-area-context": "^3.0.0",
         "react-native-screens": "^3.0.0",
         "react-native-vector-icons": "^8.0.0",
-        "react-native-webview": "^11.0.0",
+        "react-native-webview": "^10.0.0",
         "react-test-renderer": "^16.0.0",
         "typescript": "^4.0.0"
     },
     "jest": {
+        "coverageDirectory": "./coverage/",
+        "collectCoverage": true,
         "snapshotSerializers": [
             "enzyme-to-json/serializer"
         ],

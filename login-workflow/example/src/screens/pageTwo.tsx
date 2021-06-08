@@ -6,7 +6,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../navigation';
 import { useSecurityActions } from '@pxblue/react-native-auth-workflow';
 import { LocalStorage } from '../store/local-storage';
-import { Avatar } from 'react-native-paper';
+import { Avatar, useTheme } from 'react-native-paper';
 import * as Colors from '@pxblue/colors';
 
 const Event = wrapIcon({ IconClass: MatIcon, name: 'event', flip: false });
@@ -34,6 +34,7 @@ type AppProps = {
 };
 
 const PageTwo: React.FC<AppProps> = ({ navigation }): JSX.Element => {
+    const theme = useTheme();
     const defaultStyles = styles();
     const securityHelper = useSecurityActions();
 
@@ -55,6 +56,7 @@ const PageTwo: React.FC<AppProps> = ({ navigation }): JSX.Element => {
         <>
             <Header
                 title={'Page Two'}
+                backgroundColor={theme.dark ? Colors.black[800] : theme.colors.primary}
                 navigation={{
                     icon: MenuIcon,
                     onPress: (): void => {
@@ -67,6 +69,7 @@ const PageTwo: React.FC<AppProps> = ({ navigation }): JSX.Element => {
                         component: (
                             <UserMenu
                                 menuItems={menuItems}
+                                iconColor={theme.dark ? Colors.black[200] : Colors.gray[500]}
                                 avatar={
                                     <Avatar.Text
                                         label="UN"

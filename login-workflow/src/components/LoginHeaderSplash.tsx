@@ -7,6 +7,7 @@ import React from 'react';
 
 // Components
 import { View, Image, StyleSheet, StyleProp, ViewStyle } from 'react-native';
+import { useTheme } from 'react-native-paper';
 
 // Styles
 import * as Colors from '@pxblue/colors';
@@ -23,7 +24,7 @@ const makeStyles = (): Record<string, any> =>
             height: 90,
             flex: 1,
             justifyContent: 'center',
-            marginHorizontal: 20,
+            marginHorizontal: 16,
             marginTop: '1%',
         },
         headerImage: {
@@ -34,15 +35,14 @@ const makeStyles = (): Record<string, any> =>
             position: 'absolute',
             top: 0,
             left: 0,
-            bottom: 10,
-            padding: 5,
+            bottom: 8,
+            padding: 8,
             width: '100%',
             height: '30%',
             overflow: 'hidden',
             resizeMode: 'cover',
             flex: 1,
             justifyContent: 'center',
-            tintColor: Colors.gray['50'],
             zIndex: -1,
         },
     });
@@ -64,6 +64,7 @@ type LoginHeaderSplashProps = {
 export const LoginHeaderSplash: React.FC<LoginHeaderSplashProps> = (props) => {
     const { style, mainImage } = props;
     const { background = {} } = useInjectedUIContext();
+    const theme = useTheme();
     const styles = makeStyles();
 
     return (
@@ -85,7 +86,11 @@ export const LoginHeaderSplash: React.FC<LoginHeaderSplashProps> = (props) => {
                     {
                         backgroundColor: background.backgroundColor ?? 'transparent',
                         height: background.backgroundSize ?? '30%',
-                        tintColor: background.backgroundImage ? undefined : Colors.gray[50],
+                        tintColor: background.backgroundImage
+                            ? undefined
+                            : theme.dark
+                            ? Colors.gray[800]
+                            : Colors.gray[50],
                     },
                 ]}
             />

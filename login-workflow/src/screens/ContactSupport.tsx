@@ -12,7 +12,6 @@ import { CloseHeader } from '../components/CloseHeader';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
 
 // Styles
-import * as Colors from '@pxblue/colors';
 import { Body1, H6 } from '@pxblue/react-native-components';
 
 // Hooks
@@ -35,21 +34,22 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
             height: '100%',
             backgroundColor: theme.colors.surface,
             flex: 1,
-            justifyContent: 'space-between',
+            flexDirection: 'row',
+            justifyContent: 'center',
         },
         mainContainer: {
             flex: 1,
-            paddingTop: 20,
+            paddingTop: 16,
         },
         containerMargins: {
-            marginHorizontal: 20,
+            marginHorizontal: 16,
         },
         containerSpacing: {
-            marginVertical: 20,
+            marginVertical: 16,
         },
         iconContainer: {
             marginTop: 80,
-            marginBottom: 30,
+            marginBottom: 32,
             alignSelf: 'center',
         },
     });
@@ -60,11 +60,9 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
 const makeStyles = (theme: ReactNativePaper.Theme): Record<string, any> =>
     StyleSheet.create({
         textSpacing: {
-            marginVertical: 10,
+            marginVertical: 8,
         },
-        headerText: {
-            color: Colors.black['800'],
-        },
+        headerText: {},
         bodyText: {
             color: theme.colors.text,
         },
@@ -110,9 +108,9 @@ export const ContactSupport: React.FC<ContactSupportProps> = (props) => {
 
     return (
         <>
-            <CloseHeader title={t('USER_MENU.CONTACT_US')} backAction={(): void => navigation.navigate('Login')} />
+            <CloseHeader title={t('pxb:USER_MENU.CONTACT_US')} backAction={(): void => navigation.navigate('Login')} />
             <SafeAreaView style={containerStyles.safeContainer}>
-                <View>
+                <View style={{ maxWidth: 600 }}>
                     <MatIcon
                         name={'chat-bubble-outline'}
                         style={containerStyles.iconContainer}
@@ -122,10 +120,10 @@ export const ContactSupport: React.FC<ContactSupportProps> = (props) => {
 
                     <View style={[containerStyles.containerMargins, containerStyles.containerSpacing]}>
                         <H6 style={[styles.headerText, styles.textSpacing]}>
-                            {t('CONTACT_SUPPORT.GENERAL_QUESTIONS')}
+                            {t('pxb:CONTACT_SUPPORT.GENERAL_QUESTIONS')}
                         </H6>
                         <Body1 style={[styles.bodyText, styles.textSpacing]}>
-                            {t('CONTACT_SUPPORT.SUPPORT_MESSAGE')}
+                            {t('pxb:CONTACT_SUPPORT.SUPPORT_MESSAGE')}
                             <Text
                                 style={{ color: theme.colors.accent }}
                                 onPress={(): Promise<void> => Linking.openURL(`mailto:${contactEmail}`)}
@@ -137,10 +135,10 @@ export const ContactSupport: React.FC<ContactSupportProps> = (props) => {
                     </View>
                     <View style={[containerStyles.containerMargins, containerStyles.containerSpacing]}>
                         <H6 style={[styles.headerText, styles.textSpacing]}>
-                            {t('CONTACT_SUPPORT.EMERGENCY_SUPPORT')}
+                            {t('pxb:CONTACT_SUPPORT.EMERGENCY_SUPPORT')}
                         </H6>
                         <Body1 style={[styles.bodyText, styles.textSpacing]}>
-                            {t('CONTACT_SUPPORT.TECHNICAL_ASSISTANCE')}
+                            {t('pxb:CONTACT_SUPPORT.TECHNICAL_ASSISTANCE')}
                             <Text
                                 style={{ color: theme.colors.accent }}
                                 onPress={(): Promise<void> => Linking.openURL(`tel:${contactPhoneLink}`)}

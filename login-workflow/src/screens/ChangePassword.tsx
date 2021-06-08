@@ -16,7 +16,6 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { ToggleButton } from '../components/ToggleButton';
 
 // Styles
-import * as Colors from '@pxblue/colors';
 import { Body1, H6 } from '@pxblue/react-native-components';
 
 // Hooks
@@ -52,22 +51,26 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
         safeContainer: {
             height: '100%',
             backgroundColor: theme.colors.surface,
-            marginBottom: 20,
+            marginBottom: 16,
             flex: 1,
             justifyContent: 'space-between',
         },
         mainContainer: {
+            marginTop: 8,
             flex: 1,
+            flexDirection: 'row',
+            justifyContent: 'center',
+            width: 'auto',
         },
         containerMargins: {
-            marginHorizontal: 20,
+            marginHorizontal: 16,
         },
         containerSpacing: {
-            marginVertical: 20,
+            marginVertical: 16,
         },
         iconContainer: {
             marginTop: 80,
-            marginBottom: 30,
+            marginBottom: 32,
             alignSelf: 'center',
         },
     });
@@ -78,26 +81,24 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
 const makeStyles = (theme: ReactNativePaper.Theme): Record<string, any> =>
     StyleSheet.create({
         inputMargin: {
-            marginTop: 40,
+            marginTop: 24,
         },
         sideBySideButtons: {
             flexDirection: 'row',
             justifyContent: 'space-evenly',
             alignItems: 'center',
-            paddingVertical: 10,
+            paddingVertical: 8,
         },
-        headerText: {
-            color: Colors.black['800'],
-        },
+        headerText: {},
         bodyText: {
             color: theme.colors.text,
         },
         textSpacing: {
-            marginVertical: 10,
+            marginVertical: 8,
         },
         wideButton: {
             height: 60,
-            paddingVertical: 10,
+            paddingVertical: 8,
         },
     });
 
@@ -143,23 +144,23 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
     const defaultRequirements: PasswordRequirement[] = [
         {
             regex: LENGTH_REGEX,
-            description: t('PASSWORD_REQUIREMENTS.LENGTH'),
+            description: t('pxb:PASSWORD_REQUIREMENTS.LENGTH'),
         },
         {
             regex: NUMBERS_REGEX,
-            description: t('PASSWORD_REQUIREMENTS.NUMBERS'),
+            description: t('pxb:PASSWORD_REQUIREMENTS.NUMBERS'),
         },
         {
             regex: UPPER_CASE_REGEX,
-            description: t('PASSWORD_REQUIREMENTS.UPPER'),
+            description: t('pxb:PASSWORD_REQUIREMENTS.UPPER'),
         },
         {
             regex: LOWER_CASE_REGEX,
-            description: t('PASSWORD_REQUIREMENTS.LOWER'),
+            description: t('pxb:PASSWORD_REQUIREMENTS.LOWER'),
         },
         {
             regex: SPECIAL_CHAR_REGEX,
-            description: t('PASSWORD_REQUIREMENTS.SPECIAL'),
+            description: t('pxb:PASSWORD_REQUIREMENTS.SPECIAL'),
         },
     ];
     const { passwordRequirements = defaultRequirements } = useInjectedUIContext();
@@ -186,7 +187,7 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
 
     const errorDialog = (
         <SimpleDialog
-            title={t('MESSAGES.ERROR')}
+            title={t('pxb:MESSAGES.ERROR')}
             bodyText={transitState.transitErrorMessage ?? ''}
             visible={transitState.transitErrorMessage !== null && !hasAcknowledgedError}
             onDismiss={(): void => {
@@ -198,101 +199,127 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
     let statusBar: JSX.Element = <></>;
     statusBar =
         Platform.OS === 'ios' ? (
-            <StatusBar backgroundColor={theme.colors.primary} barStyle="dark-content" />
+            <StatusBar
+                backgroundColor={theme.colors.primaryBase || theme.colors.primary}
+                barStyle={theme.dark ? 'light-content' : 'dark-content'}
+            />
         ) : (
-            <StatusBar backgroundColor={theme.colors.primary} barStyle="light-content" />
+            <StatusBar
+                backgroundColor={theme.colors.primaryBase || theme.colors.primary}
+                barStyle={theme.dark ? 'light-content' : 'dark-content'}
+            />
         );
 
     return transitState.transitSuccess ? ( // if the password was changed
-        <SafeAreaView style={[containerStyles.safeContainer, { flexGrow: 1 }]}>
-            {statusBar}
-            <View style={[containerStyles.mainContainer]}>
-                <ScrollView>
-                    <MatIcon
-                        name={'check'}
-                        color={theme.colors.placeholder}
-                        style={containerStyles.iconContainer}
-                        size={100}
-                    />
-                    <View style={[containerStyles.containerMargins, containerStyles.containerSpacing]}>
-                        <H6 style={[styles.headerText, styles.textSpacing]}>{t('CHANGE_PASSWORD.PASSWORD_CHANGED')}</H6>
-                        <Body1 style={[styles.bodyText, styles.textSpacing]}>
-                            {t('CHANGE_PASSWORD.SUCCESS_MESSAGE')}
-                        </Body1>
-                    </View>
-                </ScrollView>
+        <View style={{ flex: 1, height: '100%', backgroundColor: theme.colors.surface }}>
+            <SafeAreaView style={[containerStyles.safeContainer, { flexGrow: 1 }]}>
+                {statusBar}
+                <View style={[containerStyles.mainContainer]}>
+                    <ScrollView style={{ maxWidth: 600 }}>
+                        <MatIcon
+                            name={'check'}
+                            color={theme.colors.placeholder}
+                            style={containerStyles.iconContainer}
+                            size={100}
+                        />
+                        <View style={[containerStyles.containerMargins, containerStyles.containerSpacing]}>
+                            <H6 style={[styles.headerText, styles.textSpacing]}>
+                                {t('pxb:CHANGE_PASSWORD.PASSWORD_CHANGED')}
+                            </H6>
+                            <Body1 style={[styles.bodyText, styles.textSpacing]}>
+                                {t('pxb:CHANGE_PASSWORD.SUCCESS_MESSAGE')}
+                            </Body1>
+                        </View>
+                    </ScrollView>
+                </View>
                 <View style={[styles.wideButton, containerStyles.containerMargins]}>
                     <View style={{ flex: 1 }}>
                         <ToggleButton
-                            text={t('ACTIONS.LOG_IN')}
-                            style={{ marginHorizontal: 20 }}
+                            text={t('pxb:ACTIONS.LOG_IN')}
+                            style={{ marginHorizontal: 16 }}
                             onPress={(): void => props.onChangeComplete()}
                         />
                     </View>
                 </View>
-            </View>
-        </SafeAreaView>
+            </SafeAreaView>
+        </View>
     ) : (
         // if the password hasn't been changed yet
-        <KeyboardAwareScrollView contentContainerStyle={{ flex: 1, height: '100%' }}>
+        <KeyboardAwareScrollView
+            contentContainerStyle={{ flex: 1, height: '100%', backgroundColor: theme.colors.surface }}
+        >
             <SafeAreaView style={[containerStyles.safeContainer, { flexGrow: 1 }]}>
                 {statusBar}
                 {spinner}
                 {errorDialog}
-                <Instruction text={t('CHANGE_PASSWORD.PASSWORD_INFO')} style={[containerStyles.containerMargins]} />
+                <View
+                    style={{
+                        flexDirection: 'row',
+                        justifyContent: 'center',
+                        width: 'auto',
+                    }}
+                >
+                    <View style={{ maxWidth: 600 }}>
+                        <Instruction text={t('pxb:CHANGE_PASSWORD.PASSWORD_INFO')} />
+                    </View>
+                </View>
                 <ScrollView>
                     <View style={[containerStyles.containerMargins, containerStyles.mainContainer]}>
-                        <TextInputSecure
-                            label={t('LABELS.CURRENT_PASSWORD')}
-                            value={currentPasswordInput}
-                            style={styles.inputMargin}
-                            autoCapitalize={'none'}
-                            returnKeyType={'next'}
-                            onChangeText={(text: string): void => setCurrentPasswordInput(text)}
-                            onSubmitEditing={(): void => {
-                                goToNewPasswordInput();
-                            }}
-                            blurOnSubmit={false}
-                        />
+                        <View style={{ width: '100%', maxWidth: 600 }}>
+                            <TextInputSecure
+                                label={t('pxb:LABELS.CURRENT_PASSWORD')}
+                                value={currentPasswordInput}
+                                style={styles.inputMargin}
+                                autoCapitalize={'none'}
+                                returnKeyType={'next'}
+                                onChangeText={(text: string): void => setCurrentPasswordInput(text)}
+                                onSubmitEditing={(): void => {
+                                    goToNewPasswordInput();
+                                }}
+                                blurOnSubmit={false}
+                            />
 
-                        <TextInputSecure
-                            label={t('LABELS.NEW_PASSWORD')}
-                            ref={newPasswordRef}
-                            value={newPasswordInput}
-                            style={styles.inputMargin}
-                            autoCapitalize={'none'}
-                            returnKeyType={'next'}
-                            onChangeText={(text: string): void => setNewPasswordInput(text)}
-                            onSubmitEditing={(): void => {
-                                goToConfirmInput();
-                            }}
-                            blurOnSubmit={false}
-                        />
+                            <TextInputSecure
+                                label={t('pxb:LABELS.NEW_PASSWORD')}
+                                ref={newPasswordRef}
+                                value={newPasswordInput}
+                                style={styles.inputMargin}
+                                autoCapitalize={'none'}
+                                returnKeyType={'next'}
+                                onChangeText={(text: string): void => setNewPasswordInput(text)}
+                                onSubmitEditing={(): void => {
+                                    goToConfirmInput();
+                                }}
+                                blurOnSubmit={false}
+                            />
 
-                        <PasswordRequirements style={{ paddingTop: 10 }} passwordText={newPasswordInput} />
+                            <PasswordRequirements style={{ paddingTop: 8 }} passwordText={newPasswordInput} />
 
-                        <TextInputSecure
-                            ref={confirmInputRef}
-                            label={t('CHANGE_PASSWORD.CONFIRM_NEW_PASSWORD')}
-                            value={confirmInput}
-                            style={styles.inputMargin}
-                            autoCapitalize={'none'}
-                            returnKeyType={'done'}
-                            error={confirmInput !== '' && newPasswordInput !== confirmInput}
-                            onChangeText={(text: string): void => setConfirmInput(text)}
-                            onSubmitEditing={
-                                currentPasswordInput === '' || !areValidMatchingPasswords() ? undefined : changePassword
-                            }
-                        />
+                            <TextInputSecure
+                                ref={confirmInputRef}
+                                label={t('pxb:CHANGE_PASSWORD.CONFIRM_NEW_PASSWORD')}
+                                value={confirmInput}
+                                style={styles.inputMargin}
+                                autoCapitalize={'none'}
+                                returnKeyType={'done'}
+                                error={confirmInput !== '' && newPasswordInput !== confirmInput}
+                                onChangeText={(text: string): void => setConfirmInput(text)}
+                                onSubmitEditing={
+                                    currentPasswordInput === '' || !areValidMatchingPasswords()
+                                        ? undefined
+                                        : changePassword
+                                }
+                            />
+                        </View>
                     </View>
                 </ScrollView>
                 <View style={[styles.sideBySideButtons, containerStyles.containerMargins]}>
-                    <View style={{ flex: 1, paddingRight: 5 }}>
-                        <ToggleButton text={t('CHANGE_PASSWORD.CANCEL')} outlined={true} onPress={props.onCancel} />
+                    <View style={{ flex: 1, paddingRight: 8 }}>
+                        <ToggleButton text={t('pxb:CHANGE_PASSWORD.CANCEL')} outlined={true} onPress={props.onCancel} />
                     </View>
-                    <View style={{ flex: 1, paddingLeft: 5 }}>
+                    <View style={{ flex: 1, paddingLeft: 8 }}>
                         <ToggleButton
-                            text={t('CHANGE_PASSWORD.UPDATE')}
+                            text={t('pxb:CHANGE_PASSWORD.UPDATE')}
                             disabled={currentPasswordInput === '' || !areValidMatchingPasswords()}
                             onPress={changePassword}
                         />

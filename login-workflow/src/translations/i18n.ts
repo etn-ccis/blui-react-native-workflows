@@ -18,14 +18,32 @@ if (AppleLocaleSettings && Platform.OS === 'ios') {
 void i18n
     .use(initReactI18next) // passes i18n down to react-i18next
     .init({
+        ns: ['app', 'pxb'],
+        defaultNS: 'app',
+        fallbackNS: 'pxb',
         resources: {
-            en: translations.english,
-            fr: translations.french,
-            fr_US: translations.french,
-            fr_CA: translations.french,
-            fr_FR: translations.french,
+            // English
+            en: {
+                pxb: translations.english.translation,
+                app: {},
+            },
+            // French
+            fr: {
+                pxb: translations.french.translation,
+                app: {},
+            },
+            // Spanish
+            es: {
+                pxb: translations.spanish.translation,
+                app: {},
+            },
+            // Chinese
+            zh: {
+                pxb: translations.chinese.translation,
+                app: {},
+            },
         },
-        lng: deviceLocale,
+        lng: deviceLocale.substr(0, 2),
         fallbackLng: 'en',
         interpolation: {
             escapeValue: false,

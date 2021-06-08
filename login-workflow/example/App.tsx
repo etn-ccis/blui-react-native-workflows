@@ -1,5 +1,6 @@
 import 'react-native-gesture-handler';
 import React from 'react';
+// import { View } from 'react-native';
 import { /*Button,*/ Provider as ThemeProvider } from 'react-native-paper';
 import * as PXBThemes from '@pxblue/react-native-themes';
 import { MainRouter } from './src/navigation';
@@ -11,6 +12,8 @@ import {
     AuthUIContextProvider,
     useSecurityActions,
     /*RegistrationData,*/
+    i18n,
+    AltThemeProvider,
 } from '@pxblue/react-native-auth-workflow';
 import { useLinking } from '@react-navigation/native';
 import { authLinkMapping, resolveInitialState } from './src/navigation/DeepLinking';
@@ -18,9 +21,26 @@ import { authLinkMapping, resolveInitialState } from './src/navigation/DeepLinki
 // import { Image, ScrollView, View } from 'react-native';
 // import { Body1, H5, Header, Hero, wrapIcon } from '@pxblue/react-native-components';
 // import MatIcon from 'react-native-vector-icons/MaterialIcons';
-// import { CustomAccountDetails, CustomAccountDetailsTwo } from './src/screens/CustomRegistrationForm';
+import { CustomAccountDetails, CustomAccountDetailsTwo } from './src/screens/CustomRegistrationForm';
 // import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 // import { Terms } from './src/screens/Terms';
+
+// Imports for internationalization
+// import { useTranslation } from 'react-i18next';
+
+// Set the initial app language (load from settings, local storage, etc.)
+// If you do not set the language, the default will be set based on the device language setting.
+void i18n.changeLanguage('en');
+
+// Uncomment these lines to add your app-specific translation resource
+i18n.addResourceBundle('en', 'app', { BUTTONLABEL: 'Change Language' });
+i18n.addResourceBundle('es', 'app', { BUTTONLABEL: '¡Cambia el idioma!' });
+i18n.addResourceBundle('fr', 'app', { BUTTONLABEL: 'Changez de Langue' });
+
+// Uncomment these lines to override workflow strings / translations
+i18n.addResourceBundle('en', 'pxb', { ACTIONS: { CREATE_ACCOUNT: 'Register now!' } }, true, true);
+i18n.addResourceBundle('es', 'pxb', { ACTIONS: { CREATE_ACCOUNT: '¡Regístrate ahora!' } }, true, true);
+i18n.addResourceBundle('fr', 'pxb', { ACTIONS: { CREATE_ACCOUNT: `S'inscrire maintenant!` } }, true, true);
 
 declare global {
     // eslint-disable-next-line @typescript-eslint/no-namespace
@@ -42,6 +62,7 @@ declare global {
 
 export const AuthUIConfiguration: React.FC = (props) => {
     const securityContextActions = useSecurityActions();
+    // const { t } = useTranslation();
     return (
         <AuthUIContextProvider
             authActions={ProjectAuthUIActions(securityContextActions)}
@@ -51,10 +72,14 @@ export const AuthUIConfiguration: React.FC = (props) => {
             contactEmail={'something@email.com'}
             contactPhone={'1-800-123-4567'}
             contactPhoneLink={'1-800-123-4567'}
-            // customAccountDetails={[
-            //     { component: CustomAccountDetails },
-            //     { title: 'Job Info', instructions: 'Enter your employment information below.', component: CustomAccountDetailsTwo },
-            // ]}
+            customAccountDetails={[
+                { component: CustomAccountDetails },
+                {
+                    title: 'Job Info',
+                    instructions: 'Enter your employment information below.',
+                    component: CustomAccountDetailsTwo,
+                },
+            ]}
             // showCybersecurityBadge={false}
             // showContactSupport={false}
             // showRememberMe={false}
@@ -63,8 +88,33 @@ export const AuthUIConfiguration: React.FC = (props) => {
             //         Terms of Service
             //     </Button>
             // )}
+            // loginFooter={
+            //     <View style={{ alignItems: 'center' }}>
+            //         <Button
+            //             onPress={(): void => {
+            //                 void i18n.changeLanguage('en');
+            //             }}
+            //         >
+            //             {`${t('BUTTONLABEL')}-EN`}
+            //         </Button>
+            //         <Button
+            //             onPress={(): void => {
+            //                 void i18n.changeLanguage('es');
+            //             }}
+            //         >
+            //             {`${t('BUTTONLABEL')}-ES`}
+            //         </Button>
+            //         <Button
+            //             onPress={(): void => {
+            //                 void i18n.changeLanguage('fr');
+            //             }}
+            //         >
+            //             {`${t('BUTTONLABEL')}-FR`}
+            //         </Button>
+            //     </View>
+            // }
             // loginActions={(navigation: any): JSX.Element => <Button style={{}}>Log In With Google</Button>}
-            // loginHeader={<SafeAreaView><H3 style={{ marginLeft: 20 }}>My Project</H3></SafeAreaView>}
+            // loginHeader={<SafeAreaView><H3 style={{ marginLeft: 16 }}>My Project</H3></SafeAreaView>}
             // projectImage={require('./src/images/eaton.png')}
             // enableResetPassword={false}
             // showSelfRegistration={false}
@@ -200,21 +250,25 @@ export const App: React.FC = () => {
     }, [getInitialState]);
 
     return (
-        <ThemeProvider theme={PXBThemes.blue}>
-            <SecurityContextProvider>
-                <AuthUIConfiguration>
-                    <AuthNavigationContainer
-                        initialState={initialState}
-                        // initialRouteName={'Terms'}
-                        ref={ref}
-                        // @ts-ignore
-                        // extraRoutes={[<Stack.Screen key={'Terms-Screen'} name="Terms" component={Terms} />]}
-                    >
-                        <MainRouter />
-                    </AuthNavigationContainer>
-                </AuthUIConfiguration>
-            </SecurityContextProvider>
-        </ThemeProvider>
+        <AltThemeProvider theme={PXBThemes.blueDarkAlt}>
+            <ThemeProvider theme={PXBThemes.blueDark}>
+                <SecurityContextProvider>
+                    <AuthUIConfiguration>
+                        <AuthNavigationContainer
+                            initialState={initialState}
+                            // initialRouteName={'Terms'}
+                            ref={ref}
+                            // @ts-ignore
+                            // extraRoutes={[<Stack.Screen key={'Terms-Screen'} name="Terms" component={Terms} />]}
+                        >
+                            <MainRouter />
+                        </AuthNavigationContainer>
+                    </AuthUIConfiguration>
+                </SecurityContextProvider>
+            </ThemeProvider>
+        </AltThemeProvider>
     );
 };
+
+// export const App: React.FC = () => <View/>
 export default App;

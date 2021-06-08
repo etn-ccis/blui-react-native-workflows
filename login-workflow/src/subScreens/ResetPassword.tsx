@@ -8,6 +8,7 @@ import React from 'react';
 // Hooks
 import { useRoute } from '@react-navigation/native';
 import { useTheme } from 'react-native-paper';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 // Components
 import { View, StyleSheet, SafeAreaView } from 'react-native';
@@ -30,17 +31,20 @@ import {
 /**
  * @ignore
  */
-const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any> =>
+const makeContainerStyles = (theme: ReactNativePaper.Theme, insets: any): Record<string, any> =>
     StyleSheet.create({
         safeContainer: {
-            height: '100%',
+            // height: '100%',
+            flexGrow: 1,
             backgroundColor: theme.colors.surface,
+            marginBottom: insets.bottom,
         },
         mainContainer: {
+            marginTop: 8,
             flex: 1,
         },
         containerMargins: {
-            marginHorizontal: 20,
+            marginHorizontal: 16,
         },
         spaceBetween: {
             flex: 1,
@@ -54,11 +58,11 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
 const makeStyles = (): Record<string, any> =>
     StyleSheet.create({
         inputMargin: {
-            marginTop: 40,
+            marginTop: 24,
         },
         wideButton: {
             height: 60,
-            paddingVertical: 10,
+            paddingVertical: 8,
             justifyContent: 'space-between',
         },
     });
@@ -96,11 +100,18 @@ export const ResetPassword: React.FC<ResetPasswordProps> = (props) => {
     const { t } = useLanguageLocale();
     const accountUIState = useAccountUIState();
     const route = useRoute();
+    /*
+        For some strange reason the SafeAreaView doesn't work as expected on this route and the button gets 
+        pegged at the very bottom. If you switch the ResetPassword for the ResetPasswordSent component, it
+        has the same behavior, despite looking fine on its own route. The insets hack seems to work ok for now.
+    */
+    const insets = useSafeAreaInsets();
+
     const routeParams = route.params as ResetPasswordParams;
-    const containerStyles = makeContainerStyles(theme);
+    const containerStyles = makeContainerStyles(theme, insets);
     const styles = makeStyles();
 
-    const isValidPassword = new RegExp(EMAIL_REGEX).test(emailInput);
+    const isValidEmail = new RegExp(EMAIL_REGEX).test(emailInput);
 
     const onResetPasswordTap = (): void => {
         setHasAcknowledgedError(false);
@@ -119,7 +130,7 @@ export const ResetPassword: React.FC<ResetPasswordProps> = (props) => {
 
     const errorDialog = (
         <SimpleDialog
-            title={t('MESSAGES.ERROR')}
+            title={t('pxb:MESSAGES.ERROR')}
             bodyText={t(transitErrorMessage ?? '')}
             visible={hasTransitError && !hasAcknowledgedError}
             onDismiss={(): void => {
@@ -132,49 +143,52 @@ export const ResetPassword: React.FC<ResetPasswordProps> = (props) => {
         <SafeAreaView style={containerStyles.safeContainer}>
             {spinner}
             {errorDialog}
-            <KeyboardAwareScrollView contentContainerStyle={containerStyles.spaceBetween}>
-                <View style={{ flex: 1 }}>
-                    <Instruction
-                        text={t('FORGOT_PASSWORD.INSTRUCTIONS', { replace: { phone: contactPhone } })}
-                        style={containerStyles.containerMargins}
-                    />
+            <KeyboardAwareScrollView style={{ flex: 1 }} contentContainerStyle={containerStyles.spaceBetween}>
+                <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center' }}>
+                    <View style={{ maxWidth: 600 }}>
+                        <Instruction
+                            text={t('pxb:FORGOT_PASSWORD.INSTRUCTIONS', { replace: { phone: contactPhone } })}
+                            style={containerStyles.containerMargins}
+                        />
 
-                    <View style={[containerStyles.containerMargins, containerStyles.mainContainer]}>
-                        <TextInput
-                            label={t('LABELS.EMAIL')}
-                            value={emailInput}
-                            style={styles.inputMargin}
-                            keyboardType={'email-address'}
-                            autoCapitalize={'none'}
-                            onChangeText={(text: string): void => {
-                                setEmailInput(text);
-                                setHasEmailFormatError(false);
-                            }}
-                            error={hasTransitError || hasEmailFormatError}
-                            errorText={
-                                hasTransitError
-                                    ? t('LOGIN.INCORRECT_CREDENTIALS')
-                                    : hasEmailFormatError
-                                    ? t('MESSAGES.EMAIL_ENTRY_ERROR')
-                                    : ''
-                            }
-                            onBlur={(): void => {
-                                if (emailInput.length > 0 && !EMAIL_REGEX.test(emailInput))
-                                    setHasEmailFormatError(true);
-                            }}
-                        />
-                    </View>
-                </View>
-                <View style={[styles.wideButton, containerStyles.containerMargins]}>
-                    <View style={{ flex: 1 }}>
-                        <ToggleButton
-                            text={t('FORMS.RESET_PASSWORD')}
-                            disabled={!isValidPassword}
-                            onPress={onResetPasswordTap}
-                        />
+                        <View style={[containerStyles.containerMargins, containerStyles.mainContainer]}>
+                            <TextInput
+                                label={t('pxb:LABELS.EMAIL')}
+                                value={emailInput}
+                                style={styles.inputMargin}
+                                keyboardType={'email-address'}
+                                autoCapitalize={'none'}
+                                onChangeText={(text: string): void => {
+                                    setEmailInput(text);
+                                    setHasEmailFormatError(false);
+                                }}
+                                error={hasTransitError || hasEmailFormatError}
+                                errorText={
+                                    hasTransitError
+                                        ? t('pxb:LOGIN.INCORRECT_CREDENTIALS')
+                                        : hasEmailFormatError
+                                        ? t('pxb:MESSAGES.EMAIL_ENTRY_ERROR')
+                                        : ''
+                                }
+                                onBlur={(): void => {
+                                    if (emailInput.length > 0 && !EMAIL_REGEX.test(emailInput))
+                                        setHasEmailFormatError(true);
+                                }}
+                                onSubmitEditing={isValidEmail ? onResetPasswordTap : undefined}
+                            />
+                        </View>
                     </View>
                 </View>
             </KeyboardAwareScrollView>
+            <View style={[styles.wideButton, containerStyles.containerMargins]}>
+                <View style={{ flex: 1 }}>
+                    <ToggleButton
+                        text={t('pxb:FORMS.RESET_PASSWORD')}
+                        disabled={!isValidEmail}
+                        onPress={onResetPasswordTap}
+                    />
+                </View>
+            </View>
         </SafeAreaView>
     );
 };

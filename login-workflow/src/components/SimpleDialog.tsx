@@ -6,7 +6,8 @@
 import React from 'react';
 
 // Components
-import { Button, Paragraph, Dialog, Portal } from 'react-native-paper';
+import { Paragraph, Dialog, Portal } from 'react-native-paper';
+import { ThemedButton as Button } from '../components/themed/ThemedButton';
 
 // Hooks
 import { useLanguageLocale } from '@pxblue/react-auth-shared';
@@ -37,7 +38,7 @@ export const SimpleDialog: React.FC<SimpleDialogProps> = (props) => {
             <Dialog visible={visible} dismissable={false}>
                 <Dialog.Title>{title}</Dialog.Title>
                 <Dialog.Content>
-                    <Paragraph>{bodyText ?? t('MESSAGES.REQUEST_ERROR')}</Paragraph>
+                    <Paragraph>{bodyText ?? t('pxb:MESSAGES.REQUEST_ERROR')}</Paragraph>
                 </Dialog.Content>
                 <Dialog.Actions>
                     <Button
@@ -46,7 +47,7 @@ export const SimpleDialog: React.FC<SimpleDialogProps> = (props) => {
                             onDismiss();
                         }}
                     >
-                        {t('ACTIONS.OKAY')}
+                        {t('pxb:ACTIONS.OKAY')}
                     </Button>
                 </Dialog.Actions>
             </Dialog>

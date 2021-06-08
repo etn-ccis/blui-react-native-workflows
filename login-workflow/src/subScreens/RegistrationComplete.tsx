@@ -35,8 +35,8 @@ type RegistrationCompleteProps = {
 export const RegistrationComplete: React.FC<RegistrationCompleteProps> = (props) => {
     const { t } = useLanguageLocale();
 
-    const welcomeTitle = `${t('MESSAGES.WELCOME')}, ${props.firstName} ${props.lastName}!`;
-    const bodyText = t('REGISTRATION.SUCCESS_MESSAGE', {
+    const welcomeTitle = `${t('pxb:MESSAGES.WELCOME')}, ${props.firstName} ${props.lastName}!`;
+    const bodyText = t('pxb:REGISTRATION.SUCCESS_MESSAGE', {
         replace: { email: props.email, organization: props.organization },
     });
 

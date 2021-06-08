@@ -1,16 +1,10 @@
-/**
- * @packageDocumentation
- * @module Components
- */
-
 import React, { MutableRefObject } from 'react';
 
 // Components
 import { View, StyleSheet, StyleProp, ViewStyle, TextInput as ReactTextInput, Platform } from 'react-native';
 import { useTheme } from 'react-native-paper';
-import { ThemedTextInput } from './themed/ThemedTextInput';
-// @ts-ignore
-import { TextInputProps } from 'react-native-paper/lib/typescript/src/components/TextInput/TextInput';
+import { ThemedTextInput } from '@pxblue/react-native-auth-workflow';
+import { TextInputProps } from 'react-native-paper/lib/typescript/components/TextInput/TextInput';
 import { Subtitle2 } from '@pxblue/react-native-components';
 
 // Styles
@@ -84,7 +78,6 @@ const TextInputRender: React.ForwardRefRenderFunction<{}, TextInputRenderProps> 
         theme: customTheme,
         ...inputProps
     } = props;
-
     const theme = useTheme(customTheme);
     const styles = makeStyles(theme);
 
@@ -99,6 +92,7 @@ const TextInputRender: React.ForwardRefRenderFunction<{}, TextInputRenderProps> 
     const selectionColor = Platform.OS === 'android' ? Colors.blue['100'] : undefined;
     return (
         <View>
+            {/* @ts-ignore `theme` is optional prop but the type thinks it's required */}
             <ThemedTextInput
                 // @ts-ignore issue with refs on RNP input
                 ref={inputRef}
@@ -109,8 +103,6 @@ const TextInputRender: React.ForwardRefRenderFunction<{}, TextInputRenderProps> 
                 textContentType={props.secureTextEntry ? 'oneTimeCode' : 'none'} // "oneTimeCode" is workaround to avoid iOS 12 "strong password" autofill overlay on secure input password fields (ISSUE TRACKING: https://github.com/facebook/react-native/issues/21911)
                 underlineColor={Colors.gray['100']}
                 selectionColor={selectionColor}
-                // @ts-ignore Theme is optional in RNP, but the type def we're using says it's required
-                theme={customTheme}
                 {...inputProps}
             />
             {props.error ? <ErrorText errorText={errorText} /> : null}

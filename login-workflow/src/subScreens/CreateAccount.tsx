@@ -28,17 +28,21 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
         safeContainer: {
             height: '100%',
             backgroundColor: theme.colors.surface,
+            width: '100%',
+            flexDirection: 'row',
+            justifyContent: 'center',
         },
         mainContainer: {
             flex: 1,
-            paddingBottom: 20,
+            marginTop: 8,
+            paddingBottom: 16,
         },
         containerMargins: {
-            marginHorizontal: 20,
+            marginHorizontal: 16,
         },
         bottomButtonContainer: {
             position: 'absolute',
-            bottom: 20,
+            bottom: 16,
             width: '100%',
         },
     });
@@ -49,7 +53,7 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
 const makeStyles = (): Record<string, any> =>
     StyleSheet.create({
         inputMargin: {
-            marginTop: 40,
+            marginTop: 24,
         },
     });
 
@@ -82,33 +86,39 @@ export const CreateAccount: React.FC<CreateAccountProps> = (props) => {
 
     return (
         <SafeAreaView style={containerStyles.safeContainer}>
-            <KeyboardAwareScrollView>
-                <Instruction style={containerStyles.containerMargins} text={t('SELF_REGISTRATION.INSTRUCTIONS')} />
-
-                <View style={[containerStyles.containerMargins, containerStyles.mainContainer]}>
-                    <TextInput
-                        label={t('LABELS.EMAIL')}
-                        value={emailInput}
-                        style={styles.inputMargin}
-                        keyboardType={'email-address'}
-                        autoCapitalize={'none'}
-                        error={hasEmailFormatError}
-                        errorText={hasEmailFormatError ? t('MESSAGES.EMAIL_ENTRY_ERROR') : ''}
-                        onChangeText={(text: string): void => {
-                            setEmailInput(text);
-                            setHasEmailFormatError(false);
-                            const validEmailOrEmpty = EMAIL_REGEX.test(text) ? text : '';
-                            props.onEmailChanged(validEmailOrEmpty);
-                        }}
-                        onBlur={(): void => {
-                            if (emailInput.length > 0 && !EMAIL_REGEX.test(emailInput)) setHasEmailFormatError(true);
-                        }}
-                        onSubmitEditing={
-                            emailInput.length > 0 && EMAIL_REGEX.test(emailInput) ? props.onSubmit : undefined
-                        }
+            <View style={{ width: '100%', maxWidth: 600 }}>
+                <KeyboardAwareScrollView>
+                    <Instruction
+                        style={containerStyles.containerMargins}
+                        text={t('pxb:SELF_REGISTRATION.INSTRUCTIONS')}
                     />
-                </View>
-            </KeyboardAwareScrollView>
+
+                    <View style={[containerStyles.containerMargins, containerStyles.mainContainer]}>
+                        <TextInput
+                            label={t('pxb:LABELS.EMAIL')}
+                            value={emailInput}
+                            style={styles.inputMargin}
+                            keyboardType={'email-address'}
+                            autoCapitalize={'none'}
+                            error={hasEmailFormatError}
+                            errorText={hasEmailFormatError ? t('pxb:MESSAGES.EMAIL_ENTRY_ERROR') : ''}
+                            onChangeText={(text: string): void => {
+                                setEmailInput(text);
+                                setHasEmailFormatError(false);
+                                const validEmailOrEmpty = EMAIL_REGEX.test(text) ? text : '';
+                                props.onEmailChanged(validEmailOrEmpty);
+                            }}
+                            onBlur={(): void => {
+                                if (emailInput.length > 0 && !EMAIL_REGEX.test(emailInput))
+                                    setHasEmailFormatError(true);
+                            }}
+                            onSubmitEditing={
+                                emailInput.length > 0 && EMAIL_REGEX.test(emailInput) ? props.onSubmit : undefined
+                            }
+                        />
+                    </View>
+                </KeyboardAwareScrollView>
+            </View>
         </SafeAreaView>
     );
 };
