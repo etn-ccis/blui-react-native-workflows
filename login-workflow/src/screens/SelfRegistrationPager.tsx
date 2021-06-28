@@ -254,15 +254,18 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
             name: 'Eula',
             pageTitle: t('pxb:REGISTRATION.STEPS.LICENSE'),
             pageBody: (
-                <EulaScreen
-                    key={'EulaPage'}
-                    eulaAccepted={eulaAccepted}
-                    onEulaChanged={setEulaAccepted}
-                    loadEula={loadAndCacheEula}
-                    htmlEula={injectedUIContext.htmlEula ?? false}
-                    eulaError={loadEulaTransitErrorMessage}
-                    eulaContent={eulaContent}
-                />
+                // This View wrapper is necessary to avoid an issue with the pager-view where the EULA screen
+                // doesn't load. It only works if we put it here (doesn't work if added to the Eula component).
+                <View key={'EulaPage'} style={{ flex: 1 }}>
+                    <EulaScreen
+                        eulaAccepted={eulaAccepted}
+                        onEulaChanged={setEulaAccepted}
+                        loadEula={loadAndCacheEula}
+                        htmlEula={injectedUIContext.htmlEula ?? false}
+                        eulaError={loadEulaTransitErrorMessage}
+                        eulaContent={eulaContent}
+                    />
+                </View>
             ),
             canGoForward: eulaAccepted,
             canGoBack: false,
