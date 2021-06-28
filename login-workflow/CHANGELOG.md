@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v3.2.1 (Unpublished)
+
+### Fixed
+
+-   Issue with EULA screen not loading in self-registration flow ([#81](https://github.com/pxblue/react-native-workflows/issues/81)).
+
 ## v3.2.0 (June 8, 2021)
 
 ### Added
