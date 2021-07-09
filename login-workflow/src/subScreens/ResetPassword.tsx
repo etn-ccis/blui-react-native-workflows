@@ -43,12 +43,16 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme, insets: any): Record
             marginTop: 8,
             flex: 1,
         },
+        scrollContainer: {
+            flex: 1,
+            alignContent: 'center',
+        },
+        scrollContentContainer: {
+            alignSelf: 'center',
+            maxWidth: 600,
+        },
         containerMargins: {
             marginHorizontal: 16,
-        },
-        spaceBetween: {
-            flex: 1,
-            justifyContent: 'space-between',
         },
     });
 
@@ -143,41 +147,39 @@ export const ResetPassword: React.FC<ResetPasswordProps> = (props) => {
         <SafeAreaView style={containerStyles.safeContainer}>
             {spinner}
             {errorDialog}
-            <KeyboardAwareScrollView style={{ flex: 1 }} contentContainerStyle={containerStyles.spaceBetween}>
-                <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center' }}>
-                    <View style={{ maxWidth: 600 }}>
-                        <Instruction
-                            text={t('pxb:FORGOT_PASSWORD.INSTRUCTIONS', { replace: { phone: contactPhone } })}
-                            style={containerStyles.containerMargins}
-                        />
+            <KeyboardAwareScrollView
+                style={containerStyles.scrollContainer}
+                contentContainerStyle={[containerStyles.scrollContentContainer]}
+            >
+                <Instruction
+                    text={t('pxb:FORGOT_PASSWORD.INSTRUCTIONS', { replace: { phone: contactPhone } })}
+                    style={containerStyles.containerMargins}
+                />
 
-                        <View style={[containerStyles.containerMargins, containerStyles.mainContainer]}>
-                            <TextInput
-                                label={t('pxb:LABELS.EMAIL')}
-                                value={emailInput}
-                                style={styles.inputMargin}
-                                keyboardType={'email-address'}
-                                autoCapitalize={'none'}
-                                onChangeText={(text: string): void => {
-                                    setEmailInput(text);
-                                    setHasEmailFormatError(false);
-                                }}
-                                error={hasTransitError || hasEmailFormatError}
-                                errorText={
-                                    hasTransitError
-                                        ? t('pxb:LOGIN.INCORRECT_CREDENTIALS')
-                                        : hasEmailFormatError
-                                        ? t('pxb:MESSAGES.EMAIL_ENTRY_ERROR')
-                                        : ''
-                                }
-                                onBlur={(): void => {
-                                    if (emailInput.length > 0 && !EMAIL_REGEX.test(emailInput))
-                                        setHasEmailFormatError(true);
-                                }}
-                                onSubmitEditing={isValidEmail ? onResetPasswordTap : undefined}
-                            />
-                        </View>
-                    </View>
+                <View style={[containerStyles.containerMargins, containerStyles.mainContainer]}>
+                    <TextInput
+                        label={t('pxb:LABELS.EMAIL')}
+                        value={emailInput}
+                        style={[styles.inputMargin, { marginTop: 150 }]}
+                        keyboardType={'email-address'}
+                        autoCapitalize={'none'}
+                        onChangeText={(text: string): void => {
+                            setEmailInput(text);
+                            setHasEmailFormatError(false);
+                        }}
+                        error={hasTransitError || hasEmailFormatError}
+                        errorText={
+                            hasTransitError
+                                ? t('pxb:LOGIN.INCORRECT_CREDENTIALS')
+                                : hasEmailFormatError
+                                ? t('pxb:MESSAGES.EMAIL_ENTRY_ERROR')
+                                : ''
+                        }
+                        onBlur={(): void => {
+                            if (emailInput.length > 0 && !EMAIL_REGEX.test(emailInput)) setHasEmailFormatError(true);
+                        }}
+                        onSubmitEditing={isValidEmail ? onResetPasswordTap : undefined}
+                    />
                 </View>
             </KeyboardAwareScrollView>
             <View style={[styles.wideButton, containerStyles.containerMargins]}>

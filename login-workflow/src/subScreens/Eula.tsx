@@ -100,9 +100,9 @@ export const Eula: React.FC<EulaProps> = (props) => {
     };
 
     return (
-        <SafeAreaView style={containerStyles.safeContainer}>
+        <SafeAreaView style={[containerStyles.safeContainer]}>
             <View style={[containerStyles.mainContainer, containerStyles.containerMargins]}>
-                <View style={{ maxWidth: 600 }}>
+                <View style={{ flex: 1, maxWidth: 600 }}>
                     {htmlEula ? (
                         <WebView
                             originWhitelist={['*']}
