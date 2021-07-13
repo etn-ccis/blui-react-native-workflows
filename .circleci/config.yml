@@ -86,9 +86,9 @@ jobs:
       - checkout
       - gh/setup
       - run:
-          name: Tag @pxblue/publish
+          name: Tag @pxblue/react-native-auth-workflow
           command: |
-            cd pxb-publish
+            cd login-workflow
             yarn tag-package -b $CIRCLE_BRANCH -s -react-native-auth-workflow
 
 workflows:
