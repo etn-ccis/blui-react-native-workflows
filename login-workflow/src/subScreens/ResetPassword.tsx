@@ -160,7 +160,7 @@ export const ResetPassword: React.FC<ResetPasswordProps> = (props) => {
                     <TextInput
                         label={t('pxb:LABELS.EMAIL')}
                         value={emailInput}
-                        style={[styles.inputMargin, { marginTop: 150 }]}
+                        style={[styles.inputMargin]}
                         keyboardType={'email-address'}
                         autoCapitalize={'none'}
                         onChangeText={(text: string): void => {
