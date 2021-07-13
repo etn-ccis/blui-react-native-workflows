@@ -29,6 +29,14 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
             flexDirection: 'row',
             justifyContent: 'center',
         },
+        scrollContainer: {
+            flex: 1,
+            alignContent: 'center',
+        },
+        scrollContentContainer: {
+            alignSelf: 'center',
+            maxWidth: 600,
+        },
         mainContainer: {
             marginTop: 8,
             flex: 1,
@@ -95,36 +103,37 @@ export const VerifyEmail: React.FC<VerifyEmailProps> = (props) => {
 
     return (
         <SafeAreaView style={containerStyles.safeContainer}>
-            <View style={{ width: '100%', maxWidth: 600 }}>
-                <KeyboardAwareScrollView>
-                    <Instruction
-                        style={containerStyles.containerMargins}
-                        text={t('pxb:SELF_REGISTRATION.VERIFY_EMAIL.MESSAGE')}
-                    />
+            <KeyboardAwareScrollView
+                style={containerStyles.scrollContainer}
+                contentContainerStyle={containerStyles.scrollContentContainer}
+            >
+                <Instruction
+                    style={containerStyles.containerMargins}
+                    text={t('pxb:SELF_REGISTRATION.VERIFY_EMAIL.MESSAGE')}
+                />
 
-                    <View style={[containerStyles.containerMargins, containerStyles.mainContainer]}>
-                        <TextInput
-                            label={t('pxb:SELF_REGISTRATION.VERIFY_EMAIL.VERIFICATION')}
-                            value={verifyCode}
+                <View style={[containerStyles.containerMargins, containerStyles.mainContainer]}>
+                    <TextInput
+                        label={t('pxb:SELF_REGISTRATION.VERIFY_EMAIL.VERIFICATION')}
+                        value={verifyCode}
+                        style={styles.inputMargin}
+                        keyboardType={'default'}
+                        autoCapitalize={'none'}
+                        onChangeText={setVerifyCode}
+                        onSubmitEditing={verifyCode.length ? props.onSubmit : undefined}
+                    />
+                    <View style={{ flex: 1 }}>
+                        <Button
+                            uppercase={false}
+                            mode={'contained'}
+                            onPress={(): void => onResendVerificationEmail()}
                             style={styles.inputMargin}
-                            keyboardType={'default'}
-                            autoCapitalize={'none'}
-                            onChangeText={setVerifyCode}
-                            onSubmitEditing={verifyCode.length ? props.onSubmit : undefined}
-                        />
-                        <View style={{ flex: 1 }}>
-                            <Button
-                                uppercase={false}
-                                mode={'contained'}
-                                onPress={(): void => onResendVerificationEmail()}
-                                style={styles.inputMargin}
-                            >
-                                {t('pxb:SELF_REGISTRATION.VERIFY_EMAIL.RESEND')}
-                            </Button>
-                        </View>
+                        >
+                            {t('pxb:SELF_REGISTRATION.VERIFY_EMAIL.RESEND')}
+                        </Button>
                     </View>
-                </KeyboardAwareScrollView>
-            </View>
+                </View>
+            </KeyboardAwareScrollView>
         </SafeAreaView>
     );
 };
