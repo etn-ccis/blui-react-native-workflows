@@ -45,7 +45,8 @@
         "update:submodule": "git submodule update --remote",
         "typescript": "tsc --noEmit",
         "publish:package": "set npm_config_yes=true && npx -p @pxblue/publish pxb-publish",
-        "coverage": "yarn test --coverage --watchAll=false"
+        "coverage": "yarn test --coverage --watchAll=false",
+        "tag-package": "npx -p @pxblue/tag pxb-tag"
     },
     "dependencies": {
         "@pxblue/react-auth-shared": "^3.2.0",
