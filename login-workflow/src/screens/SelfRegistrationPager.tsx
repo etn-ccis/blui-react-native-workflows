@@ -268,7 +268,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                 </View>
             ),
             canGoForward: eulaAccepted,
-            canGoBack: false,
+            canGoBack: true,
         },
         {
             name: 'VerifyEmail',
@@ -286,7 +286,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                 />
             ),
             canGoForward: verificationCode.length > 0,
-            canGoBack: false,
+            canGoBack: true,
         },
         {
             name: 'CreatePassword',
@@ -301,7 +301,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                 </KeyboardAwareScrollView>
             ),
             canGoForward: password.length > 0,
-            canGoBack: false,
+            canGoBack: true,
         },
         {
             name: 'AccountDetails',

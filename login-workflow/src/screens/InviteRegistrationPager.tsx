@@ -212,7 +212,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
                 />
             ),
             canGoForward: eulaAccepted,
-            canGoBack: false,
+            canGoBack: true,
         },
         {
             name: 'CreatePassword',
