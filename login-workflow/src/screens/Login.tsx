@@ -349,6 +349,7 @@ export const Login: React.FC<LoginProps> = (props) => {
                             onChangeText={(text: string): void => {
                                 setEmailInput(text);
                                 setHasEmailFormatError(false);
+                                authUIState.login.transitErrorMessage = null;
                             }}
                             onSubmitEditing={(): void => {
                                 goToNextInput();
@@ -374,7 +375,10 @@ export const Login: React.FC<LoginProps> = (props) => {
                             label={t('pxb:LABELS.PASSWORD')}
                             value={passwordInput}
                             autoCapitalize={'none'}
-                            onChangeText={(text: string): void => setPasswordInput(text)}
+                            onChangeText={(text: string): void => {
+                                setPasswordInput(text);
+                                authUIState.login.transitErrorMessage = null;
+                            }}
                             returnKeyType={'done'}
                             style={{ marginTop: 44 }}
                             error={isInvalidCredentials}

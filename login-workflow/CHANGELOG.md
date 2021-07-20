@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 -   Issue with disabled back button at certain points in the registration workflows.
+-   Issue where "Invalid Credentials" error message would persist on login screen.
 
 ### Changed
 
