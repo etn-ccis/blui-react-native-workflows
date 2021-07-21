@@ -522,7 +522,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
                     activeColor={theme.colors.primaryBase || theme.colors.primary}
                     leftButton={
                         <ToggleButton
-                            text={t('pxb:ACTIONS.BACK')}
+                            text={isFirstStep ? t('pxb:ACTIONS.CANCEL') : t('pxb:ACTIONS.BACK')}
                             style={{ width: 100, alignSelf: 'flex-start' }}
                             outlined={true}
                             disabled={!canGoBackProgress()}
