@@ -414,7 +414,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
     const isLastStep = currentPage === RegistrationPages.length - 1;
     const isFirstStep = currentPage === 0;
     const CompletePage = RegistrationPages.length - 1;
-    const EulaPage = RegistrationPages.findIndex((item) => item.name === 'Eula');
+    const CreateAccountPage = RegistrationPages.findIndex((item) => item.name === 'CreateAccount');
     const VerifyEmailPage = RegistrationPages.findIndex((item) => item.name === 'VerifyEmail');
     const CreatePasswordPage = RegistrationPages.findIndex((item) => item.name === 'CreatePassword');
 
@@ -433,7 +433,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
     }, [registrationSuccess]);
 
     useEffect(() => {
-        if (currentPage === EulaPage && codeRequestSuccess) {
+        if (currentPage === CreateAccountPage && codeRequestSuccess) {
             setCurrentPage(VerifyEmailPage);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -553,7 +553,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                 ) {
                     void attemptRegistration();
                 } else if (
-                    currentPage === EulaPage &&
+                    currentPage === CreateAccountPage &&
                     !codeRequestIsInTransit &&
                     canProgress() &&
                     (delta as number) > 0
@@ -583,7 +583,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
             registrationSuccess,
             requestCode,
             validateCode,
-            EulaPage,
+            CreateAccountPage,
             RegistrationPages.length,
             VerifyEmailPage,
         ]
