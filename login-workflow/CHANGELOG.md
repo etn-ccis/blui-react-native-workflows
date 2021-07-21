@@ -9,16 +9,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
--   Issue with disabled back button at certain points in the registration workflows.
 -   Issue where "Invalid Credentials" error message would persist on login screen.
 
 ### Changed
 
--   EULA page order in the self registration workflow.
+-   EULA screen now appears first in the self registration workflow.
+-   Allow users to go back at all steps of the registration flow ([#83](https://github.com/pxblue/react-native-workflows/issues/83)).
 
 ### Added
 
--   Ability to customize the character limits for first and last name text fields in the registration workflow via the `registrationConfig` prop on the `AuthUIContextProvider`.
+-   Ability to customize the character limits for first and last name text fields in the registration workflow via the `registrationConfig` prop on the `AuthUIContextProvider` ([#90](https://github.com/pxblue/react-native-workflows/issues/90)).
 
 ## v3.2.2 (July 15, 2021)
 
