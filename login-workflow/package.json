@@ -1,7 +1,7 @@
 {
     "name": "@pxblue/react-native-auth-workflow",
     "description": "Re-usable workflow components for Authentication and Registration within Eaton applications.",
-    "version": "3.2.2",
+    "version": "3.3.0",
     "license": "BSD-3-Clause",
     "author": {
         "name": "PX Blue",
@@ -49,7 +49,7 @@
         "tag-package": "npx -p @pxblue/tag pxb-tag"
     },
     "dependencies": {
-        "@pxblue/react-auth-shared": "^3.2.0",
+        "@pxblue/react-auth-shared": "^3.4.0",
         "lodash.clonedeep": "^4.5.0",
         "react-native-status-bar-height": "^2.5.0"
     },

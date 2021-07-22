@@ -33,7 +33,7 @@ import { Spinner } from '../components/Spinner';
 import { SimpleDialog } from '../components/SimpleDialog';
 import { ToggleButton } from '../components/ToggleButton';
 import i18n from '../translations/i18n';
-import { MobileStepper } from '@pxblue/react-native-components';
+import { MobileStepper, Spacer } from '@pxblue/react-native-components';
 
 // Styles
 import * as Colors from '@pxblue/colors';
@@ -237,20 +237,6 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
         customDetails.length > 0 && customDetails[0] ? customDetails[0].component : null;
     const RegistrationPages: RegistrationPage[] = [
         {
-            name: 'CreateAccount',
-            pageTitle: t('pxb:REGISTRATION.STEPS.CREATE_ACCOUNT'),
-            pageBody: (
-                <CreateAccountScreen
-                    key={'CreateAccountPage'}
-                    onEmailChanged={setEmail}
-                    /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
-                    onSubmit={(): void => advancePage(1)}
-                />
-            ),
-            canGoForward: email.length > 0,
-            canGoBack: true,
-        },
-        {
             name: 'Eula',
             pageTitle: t('pxb:REGISTRATION.STEPS.LICENSE'),
             pageBody: (
@@ -268,7 +254,21 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                 </View>
             ),
             canGoForward: eulaAccepted,
-            canGoBack: false,
+            canGoBack: true,
+        },
+        {
+            name: 'CreateAccount',
+            pageTitle: t('pxb:REGISTRATION.STEPS.CREATE_ACCOUNT'),
+            pageBody: (
+                <CreateAccountScreen
+                    key={'CreateAccountPage'}
+                    onEmailChanged={setEmail}
+                    /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
+                    onSubmit={(): void => advancePage(1)}
+                />
+            ),
+            canGoForward: email.length > 0,
+            canGoBack: true,
         },
         {
             name: 'VerifyEmail',
@@ -286,7 +286,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                 />
             ),
             canGoForward: verificationCode.length > 0,
-            canGoBack: false,
+            canGoBack: true,
         },
         {
             name: 'CreatePassword',
@@ -301,7 +301,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                 </KeyboardAwareScrollView>
             ),
             canGoForward: password.length > 0,
-            canGoBack: false,
+            canGoBack: true,
         },
         {
             name: 'AccountDetails',
@@ -414,7 +414,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
     const isLastStep = currentPage === RegistrationPages.length - 1;
     const isFirstStep = currentPage === 0;
     const CompletePage = RegistrationPages.length - 1;
-    const EulaPage = RegistrationPages.findIndex((item) => item.name === 'Eula');
+    const CreateAccountPage = RegistrationPages.findIndex((item) => item.name === 'CreateAccount');
     const VerifyEmailPage = RegistrationPages.findIndex((item) => item.name === 'VerifyEmail');
     const CreatePasswordPage = RegistrationPages.findIndex((item) => item.name === 'CreatePassword');
 
@@ -433,7 +433,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
     }, [registrationSuccess]);
 
     useEffect(() => {
-        if (currentPage === EulaPage && codeRequestSuccess) {
+        if (currentPage === CreateAccountPage && codeRequestSuccess) {
             setCurrentPage(VerifyEmailPage);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -553,7 +553,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                 ) {
                     void attemptRegistration();
                 } else if (
-                    currentPage === EulaPage &&
+                    currentPage === CreateAccountPage &&
                     !codeRequestIsInTransit &&
                     canProgress() &&
                     (delta as number) > 0
@@ -583,7 +583,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
             registrationSuccess,
             requestCode,
             validateCode,
-            EulaPage,
+            CreateAccountPage,
             RegistrationPages.length,
             VerifyEmailPage,
         ]
@@ -634,13 +634,17 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                     activeStep={currentPage}
                     activeColor={theme.colors.primaryBase || theme.colors.primary}
                     leftButton={
-                        <ToggleButton
-                            text={t('pxb:ACTIONS.BACK')}
-                            style={{ width: 100, alignSelf: 'flex-start' }}
-                            outlined={true}
-                            disabled={!canGoBackProgress()}
-                            onPress={(): void => advancePage(-1)}
-                        />
+                        isFirstStep ? (
+                            <Spacer flex={0} width={100} />
+                        ) : (
+                            <ToggleButton
+                                text={t('pxb:ACTIONS.BACK')}
+                                style={{ width: 100, alignSelf: 'flex-start' }}
+                                outlined={true}
+                                disabled={!canGoBackProgress()}
+                                onPress={(): void => advancePage(-1)}
+                            />
+                        )
                     }
                     rightButton={
                         <ToggleButton
