@@ -13,7 +13,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { useTheme } from 'react-native-paper';
 
 // Hooks
-import { useLanguageLocale } from '@pxblue/react-auth-shared';
+import { useInjectedUIContext, useLanguageLocale } from '@pxblue/react-auth-shared';
 
 /**
  * @ignore
@@ -90,6 +90,9 @@ export const AccountDetails: React.FC<AccountDetailsProps> = (props) => {
     const [lastNameInput, setLastNameInput] = React.useState('');
     const { t } = useLanguageLocale();
 
+    const firstNameLengthLimit = useInjectedUIContext()?.registrationConfig?.firstName?.maxLength || null;
+    const lastNameLengthLimit = useInjectedUIContext()?.registrationConfig?.lastName?.maxLength || null;
+
     React.useEffect(() => {
         if (firstNameInput.length > 0 && lastNameInput.length > 0) {
             props.onDetailsChanged({ firstName: firstNameInput, lastName: lastNameInput });
@@ -126,6 +129,7 @@ export const AccountDetails: React.FC<AccountDetailsProps> = (props) => {
                                 goToLastName();
                             }}
                             blurOnSubmit={false}
+                            maxLength={firstNameLengthLimit}
                         />
 
                         <TextInput
@@ -139,6 +143,7 @@ export const AccountDetails: React.FC<AccountDetailsProps> = (props) => {
                             onSubmitEditing={
                                 firstNameInput.length > 0 && lastNameInput.length > 0 ? props.onSubmit : undefined
                             }
+                            maxLength={lastNameLengthLimit}
                         />
                         {props.children}
                     </View>

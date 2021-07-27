@@ -5,13 +5,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## v3.2.2 (July 15, 2020)
+## v3.3.0 (July 27, 2021)
+
+### Fixed
+
+-   Issue where "Invalid Credentials" error message would persist on login screen.
+
+### Changed
+
+-   EULA screen now appears first in the self registration workflow.
+-   Allow users to go back at all steps of the registration flow ([#83](https://github.com/pxblue/react-native-workflows/issues/83)).
+
+### Added
+
+-   Ability to customize the character limits for first and last name text fields in the registration workflow via the `registrationConfig` prop on the `AuthUIContextProvider` ([#90](https://github.com/pxblue/react-native-workflows/issues/90)).
+
+## v3.2.2 (July 15, 2021)
 
 ### Fixed
 
 -   Issue with html EULA screen not appearing ([#86](https://github.com/pxblue/react-native-workflows/issues/86)).
 -   Issue with soft keyboard blocking input field ([#84](https://github.com/pxblue/react-native-workflows/issues/84)).
-
 
 ## v3.2.1 (June 30, 2021)
 

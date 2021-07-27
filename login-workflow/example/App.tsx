@@ -80,6 +80,14 @@ export const AuthUIConfiguration: React.FC = (props) => {
                     component: CustomAccountDetailsTwo,
                 },
             ]}
+            // registrationConfig={{
+            //     firstName: {
+            //         maxLength: 30,
+            //     },
+            //     lastName: {
+            //         maxLength: 30,
+            //     },
+            // }}
             // showCybersecurityBadge={false}
             // showContactSupport={false}
             // showRememberMe={false}

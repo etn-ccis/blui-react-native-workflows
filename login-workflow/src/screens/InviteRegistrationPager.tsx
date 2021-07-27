@@ -49,7 +49,7 @@ import {
 } from '@pxblue/react-auth-shared';
 import { CustomRegistrationDetailsGroup, RegistrationPage } from '../types';
 import { Instruction } from '../components/Instruction';
-import { MobileStepper } from '@pxblue/react-native-components';
+import { MobileStepper, Spacer } from '@pxblue/react-native-components';
 import Color from 'color';
 
 /**
@@ -212,7 +212,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
                 />
             ),
             canGoForward: eulaAccepted,
-            canGoBack: false,
+            canGoBack: true,
         },
         {
             name: 'CreatePassword',
@@ -521,13 +521,17 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
                     activeStep={currentPage}
                     activeColor={theme.colors.primaryBase || theme.colors.primary}
                     leftButton={
-                        <ToggleButton
-                            text={t('pxb:ACTIONS.BACK')}
-                            style={{ width: 100, alignSelf: 'flex-start' }}
-                            outlined={true}
-                            disabled={!canGoBackProgress()}
-                            onPress={(): void => advancePage(-1)}
-                        />
+                        isFirstStep ? (
+                            <Spacer flex={0} width={100} />
+                        ) : (
+                            <ToggleButton
+                                text={t('pxb:ACTIONS.BACK')}
+                                style={{ width: 100, alignSelf: 'flex-start' }}
+                                outlined={true}
+                                disabled={!canGoBackProgress()}
+                                onPress={(): void => advancePage(-1)}
+                            />
+                        )
                     }
                     rightButton={
                         <ToggleButton

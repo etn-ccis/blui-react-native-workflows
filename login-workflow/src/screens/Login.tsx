@@ -38,6 +38,7 @@ import {
     useAccountUIState,
     useInjectedUIContext,
     useSecurityState,
+    AccountActions,
 } from '@pxblue/react-auth-shared';
 import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -349,6 +350,8 @@ export const Login: React.FC<LoginProps> = (props) => {
                             onChangeText={(text: string): void => {
                                 setEmailInput(text);
                                 setHasEmailFormatError(false);
+                                if (authUIState.login.transitErrorMessage !== null)
+                                    authUIActions.dispatch(AccountActions.resetLogin());
                             }}
                             onSubmitEditing={(): void => {
                                 goToNextInput();
@@ -374,7 +377,11 @@ export const Login: React.FC<LoginProps> = (props) => {
                             label={t('pxb:LABELS.PASSWORD')}
                             value={passwordInput}
                             autoCapitalize={'none'}
-                            onChangeText={(text: string): void => setPasswordInput(text)}
+                            onChangeText={(text: string): void => {
+                                setPasswordInput(text);
+                                if (authUIState.login.transitErrorMessage !== null)
+                                    authUIActions.dispatch(AccountActions.resetLogin());
+                            }}
                             returnKeyType={'done'}
                             style={{ marginTop: 44 }}
                             error={isInvalidCredentials}

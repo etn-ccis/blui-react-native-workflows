@@ -12,6 +12,21 @@ import renderer from 'react-test-renderer';
 import { AccountDetails, AccountDetailInformation } from '../../subScreens/AccountDetails';
 import { TextInputHTMLAttributes } from '@pxblue/react-auth-shared';
 
+jest.mock('@pxblue/react-auth-shared', () => ({
+    ...jest.requireActual('@pxblue/react-auth-shared'),
+    useAuthUIActions: (): any => ({ dispatch: jest.fn(() => true) }),
+    useInjectedUIContext: jest.fn().mockReturnValue({
+        registrationConfig: {
+            firstName: {
+                maxLength: 30,
+            },
+            lastName: {
+                maxLength: 30,
+            },
+        },
+    }),
+}));
+
 describe('AccountDetails subScreen tested with enzyme', () => {
     const act = renderer.act;
 
