@@ -5,6 +5,7 @@
 import React from 'react';
 import 'react-native';
 import { Login } from '../../screens/Login';
+import { cleanup } from '@testing-library/react-native';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
@@ -26,6 +27,7 @@ jest.mock('@pxblue/react-auth-shared', () => ({
 }));
 
 describe('Login screen tested with enzyme', () => {
+    afterEach(cleanup);
     const act = renderer.act;
 
     function baseXML(): JSX.Element {
