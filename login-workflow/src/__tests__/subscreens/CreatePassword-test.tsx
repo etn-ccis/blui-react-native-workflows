@@ -7,6 +7,7 @@ import React from 'react';
 import 'react-native';
 import { shallow, mount } from 'enzyme';
 import { CreatePassword } from '../../subScreens/CreatePassword';
+import { cleanup } from '@testing-library/react-native';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 import { TextInputHTMLAttributes } from '@pxblue/react-auth-shared';
@@ -18,6 +19,7 @@ jest.mock('@pxblue/react-auth-shared', () => ({
 }));
 
 describe('CreatePassword subScreen tested with enzyme', () => {
+    afterEach(cleanup);
     const act = renderer.act;
 
     function baseXML(

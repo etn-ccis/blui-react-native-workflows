@@ -5,6 +5,7 @@
 import React from 'react';
 import 'react-native';
 import { ContactSupport } from '../../screens/ContactSupport';
+import { cleanup } from '@testing-library/react-native';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
@@ -18,6 +19,7 @@ const Stack = createStackNavigator();
 import { ContactParams } from '@pxblue/react-auth-shared';
 
 describe('ContactSupport screen tested with enzyme', () => {
+    afterEach(cleanup);
     function baseXML(): JSX.Element {
         return (
             <NavigationContainer>

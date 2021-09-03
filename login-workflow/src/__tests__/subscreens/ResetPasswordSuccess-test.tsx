@@ -5,6 +5,7 @@
 import React from 'react';
 import 'react-native';
 import { ResetPasswordSuccess } from '../../subScreens/ResetPasswordSuccess';
+import { cleanup } from '@testing-library/react-native';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
@@ -15,6 +16,7 @@ import 'react-native-gesture-handler';
 const Stack = createStackNavigator();
 
 describe('ResetPasswordSuccess subScreen tested with enzyme', () => {
+    afterEach(cleanup);
     function baseXML(): JSX.Element {
         return (
             <NavigationContainer>
