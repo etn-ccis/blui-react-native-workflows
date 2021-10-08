@@ -1023,25 +1023,29 @@
     lodash.clonedeep "^4.5.0"
     react-native-status-bar-height "^2.5.0"
 
-"@pxblue/react-native-components@^5.0.0":
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@pxblue/react-native-components/-/react-native-components-5.1.0.tgz#442a3d2eb951b3fcaf2564deb213178109d67425"
-  integrity sha512-4FKar51vIL/ShzJ4no6rXZM+8BAXmUqL7AaHGrFrEo4nPa5xgUChhXjCqklOzXa3vJ88+6euyCgbFfTU3+WiZg==
+"@pxblue/react-native-components@^6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@pxblue/react-native-components/-/react-native-components-6.0.0.tgz#2347f207e8757fe210f1b3e3f6ae4f3a570207a0"
+  integrity sha512-G0fq6yhJYiaJftkp/vmS8uN/tJ/0SWCwfCrKn/Sv5FsooTEC9ZsGUwxR4Q/odzekpuMZfWWFsXe3hMHd+JmorQ==
   dependencies:
     "@pxblue/colors" "^3.0.0"
     color "^3.1.2"
     react-native-collapsible "^1.5.3"
     react-native-keyboard-aware-scroll-view "^0.8.0"
-    react-native-modal "^11.6.1"
-    react-native-status-bar-height "^2.3.1"
+    react-native-modal ">=11.6.1"
 
-"@pxblue/react-native-themes@^5.1.0":
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@pxblue/react-native-themes/-/react-native-themes-5.1.0.tgz#e1f2a2b150ceab5e0c19dc70304df60930865684"
-  integrity sha512-KHKzdubixgXdtKPsL3nlFyFZ5EHCj2rXHLyMmU1eFw7vrDDvJ0/i8hKGpAevFGfgBTDIIDnMzBD+K5GD4u+RLA==
+"@pxblue/react-native-themes@^6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@pxblue/react-native-themes/-/react-native-themes-6.0.0.tgz#9225efcaa972b60d5c60b6ca2707f4d850d13a83"
+  integrity sha512-dlVIhRI7uqLDtjYIn73lGuwZj7Tl4mIjWrsbZ43HB9qEU/5PZJvQla90n4oZz40ZsdLRCFY0YVKqFEn2xu+JLQ==
   dependencies:
     "@pxblue/colors" "^3.0.0"
     color "^3.1.3"
+
+"@pxblue/react-native-vector-icons@^1.3.0":
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/@pxblue/react-native-vector-icons/-/react-native-vector-icons-1.3.0.tgz#fc44e00b25b722c1d34145fdb87a38b2d61077d4"
+  integrity sha512-fLtaTu4oEAXdF1w0gSzfcaMaSYe+ruwTOIbJD4z41VmU+AexDkp8LmShdr+dmksfJZ0YpNJ8upBUd8scPuQOkw==
 
 "@pxblue/types@^2.0.0":
   version "2.0.0"
@@ -6034,7 +6038,15 @@ react-native-keyboard-aware-scroll-view@^0.9.3:
     prop-types "^15.6.2"
     react-native-iphone-x-helper "^1.0.3"
 
-react-native-modal@^11.6.1, react-native-modal@^11.7.0:
+react-native-modal@>=11.6.1:
+  version "13.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-modal/-/react-native-modal-13.0.0.tgz#b7117400cae8548e713eed760077dee44f78628e"
+  integrity sha512-k6r9T31mc7HIDFj1V53ceAAN1dwc8052c4JLtDVEmEQ19Bbq9yiLXoDsQuNb+hB8A+2tVOXmo5Gq4IQfb11upw==
+  dependencies:
+    prop-types "^15.6.2"
+    react-native-animatable "1.3.3"
+
+react-native-modal@^11.7.0:
   version "11.10.0"
   resolved "https://registry.yarnpkg.com/react-native-modal/-/react-native-modal-11.10.0.tgz#94a6d3a2428ba5228cfb4dc174cacea79c871591"
   integrity sha512-syRYDJYSh16bR37R5EKU9T/wC+5bEOfF17IUqf5URdhbEDd+hxyMInC++l45E8oI+MtdOaEp9yAws5xDqk8dnA==
@@ -6075,7 +6087,7 @@ react-native-screens@^3.0.0:
   dependencies:
     warn-once "^0.1.0"
 
-react-native-status-bar-height@^2.3.1, react-native-status-bar-height@^2.5.0:
+react-native-status-bar-height@^2.5.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/react-native-status-bar-height/-/react-native-status-bar-height-2.6.0.tgz#b6afd25b6e3d533c43d0fcdcfd5cafd775592cea"
   integrity sha512-z3SGLF0mHT+OlJDq7B7h/jXPjWcdBT3V14Le5L2PjntjjWM3+EJzq2BcXDwV+v67KFNJic5pgA26cCmseYek6w==

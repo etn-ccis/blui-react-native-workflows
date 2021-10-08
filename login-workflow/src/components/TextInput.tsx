@@ -8,7 +8,8 @@ import React, { MutableRefObject } from 'react';
 // Components
 import { View, StyleSheet, StyleProp, ViewStyle, TextInput as ReactTextInput, Platform } from 'react-native';
 import { useTheme } from 'react-native-paper';
-import { ThemedTextInput } from './themed/ThemedTextInput';
+import { ThemedTextInput } from '@pxblue/react-native-components/themed';
+
 // @ts-ignore
 import { TextInputProps } from 'react-native-paper/lib/typescript/src/components/TextInput/TextInput';
 import { Subtitle2 } from '@pxblue/react-native-components';

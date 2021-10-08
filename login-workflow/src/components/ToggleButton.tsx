@@ -9,7 +9,7 @@ import React from 'react';
 import { StyleSheet, StyleProp, ViewStyle } from 'react-native';
 import { Body1 } from '@pxblue/react-native-components';
 import { useTheme } from 'react-native-paper';
-import { ThemedButton as Button } from '../components/themed/ThemedButton';
+import { ThemedButton as Button } from '@pxblue/react-native-components/themed';
 
 // Styles
 import * as Colors from '@pxblue/colors';

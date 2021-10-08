@@ -1,18 +1,18 @@
 import React from 'react';
 import { SafeAreaView, ScrollView, StyleSheet, ViewStyle } from 'react-native';
-import { EmptyState, Header, InfoListItemProps, UserMenu, wrapIcon } from '@pxblue/react-native-components';
-import MatIcon from 'react-native-vector-icons/MaterialIcons';
+import { EmptyState, Header, IconFamily, InfoListItemProps, UserMenu } from '@pxblue/react-native-components';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../navigation';
-import { Avatar, useTheme } from 'react-native-paper';
+import { useTheme } from 'react-native-paper';
+import { ThemedAvatar as Avatar } from '@pxblue/react-native-components/themed';
 import { LocalStorage } from '../store/local-storage';
 import { useSecurityActions } from '@pxblue/react-native-auth-workflow';
 import * as Colors from '@pxblue/colors';
 
-const Event = wrapIcon({ IconClass: MatIcon, name: 'event', flip: false });
-const MenuIcon = wrapIcon({ IconClass: MatIcon, name: 'menu', flip: false });
-const LockIcon = wrapIcon({ IconClass: MatIcon, name: 'lock', flip: false });
-const ExitToAppIcon = wrapIcon({ IconClass: MatIcon, name: 'exit-to-app', flip: false });
+const Event: IconFamily = { name: 'event', direction: 'ltr' };
+const MenuIcon: IconFamily = { name: 'menu', direction: 'ltr' };
+const LockIcon: IconFamily = { name: 'lock', direction: 'ltr' };
+const ExitToAppIcon: IconFamily = { name: 'exit-to-app', direction: 'ltr' };
 
 const styles = (): StyleSheet.NamedStyles<{
     content: ViewStyle;
@@ -48,8 +48,8 @@ const PageOne: React.FC<AppProps> = ({ navigation }): JSX.Element => {
     };
 
     const menuItems: InfoListItemProps[] = [
-        { title: 'Change Password', IconClass: LockIcon, onPress: (): void => changePassword() },
-        { title: 'Log Out', IconClass: ExitToAppIcon, onPress: (): void => logOut() },
+        { title: 'Change Password', icon: LockIcon, onPress: (): void => changePassword() },
+        { title: 'Log Out', icon: ExitToAppIcon, onPress: (): void => logOut() },
     ];
 
     return (
@@ -57,12 +57,10 @@ const PageOne: React.FC<AppProps> = ({ navigation }): JSX.Element => {
             <Header
                 title={'Page One'}
                 backgroundColor={theme.dark ? Colors.black[800] : theme.colors.primary}
-                navigation={{
-                    icon: MenuIcon,
-                    onPress: (): void => {
-                        // @ts-ignore
-                        navigation.openDrawer();
-                    },
+                icon={MenuIcon}
+                onIconPress={(): void => {
+                    // @ts-ignore
+                    navigation.openDrawer();
                 }}
                 actionItems={[
                     {
@@ -86,7 +84,7 @@ const PageOne: React.FC<AppProps> = ({ navigation }): JSX.Element => {
             <SafeAreaView style={defaultStyles.content}>
                 <ScrollView contentContainerStyle={defaultStyles.scrollViewContent}>
                     <EmptyState
-                        IconClass={Event}
+                        icon={Event}
                         title={'Coming Soon'}
                         description={'Replace this page with your own content'}
                     />

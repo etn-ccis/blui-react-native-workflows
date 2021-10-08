@@ -9,13 +9,12 @@ import React from 'react';
 import { useLanguageLocale } from '@pxblue/react-auth-shared';
 
 // Components
-import { EmptyState, wrapIcon } from '@pxblue/react-native-components';
-import MatIcon from 'react-native-vector-icons/MaterialIcons';
+import { EmptyState, IconFamily } from '@pxblue/react-native-components';
 import { View, StyleSheet, SafeAreaView } from 'react-native';
 import { useTheme } from 'react-native-paper';
-import { ThemedButton as Button } from '../components/themed/ThemedButton';
+import { ThemedButton as Button } from '@pxblue/react-native-components/themed';
 
-const ReportIcon = wrapIcon({ IconClass: MatIcon, name: 'report' });
+const ReportIcon: IconFamily = { name: 'report' };
 
 /**
  * @ignore

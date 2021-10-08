@@ -8,7 +8,7 @@ import React from 'react';
 // Components
 import { Platform, View, StyleSheet, SafeAreaView, StatusBar, TextInput as ReactTextInput } from 'react-native';
 import { useTheme } from 'react-native-paper';
-import { ThemedButton as Button } from '../components/themed/ThemedButton';
+import { ThemedButton as Button } from '@pxblue/react-native-components/themed';
 
 import { TextInput } from '../components/TextInput';
 import { TextInputSecure } from '../components/TextInputSecure';

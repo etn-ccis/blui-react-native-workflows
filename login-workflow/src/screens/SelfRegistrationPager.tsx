@@ -9,7 +9,7 @@ import React, { useEffect, useCallback, useState, ComponentType } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
 // Hooks
-import { Divider, useTheme } from 'react-native-paper';
+import { useTheme } from 'react-native-paper';
 
 // Screens
 import { Eula as EulaScreen } from '../subScreens/Eula';
@@ -34,6 +34,7 @@ import { SimpleDialog } from '../components/SimpleDialog';
 import { ToggleButton } from '../components/ToggleButton';
 import i18n from '../translations/i18n';
 import { MobileStepper, Spacer } from '@pxblue/react-native-components';
+import { ThemedDivider as Divider } from '@pxblue/react-native-components/themed';
 
 // Styles
 import * as Colors from '@pxblue/colors';
