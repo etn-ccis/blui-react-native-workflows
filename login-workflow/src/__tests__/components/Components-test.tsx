@@ -30,6 +30,9 @@ jest.mock('@pxblue/react-auth-shared', () => ({
     useAuthUIActions: (): any => ({ dispatch: jest.fn(() => true) }),
     useInjectedUIContext: jest.fn().mockReturnValue({ showSelfRegistration: true }),
 }));
+jest.mock('react-native-safe-area-context', () => ({
+    useSafeAreaInsets: (): any => ({ top: 0, left: 0, right: 0, bottom: 0 }),
+}));
 
 // test that all components render
 describe('All components tested with enzyme', () => {

@@ -100,8 +100,8 @@ const TextInputRender: React.ForwardRefRenderFunction<{}, TextInputRenderProps> 
     const selectionColor = Platform.OS === 'android' ? Colors.blue['100'] : undefined;
     return (
         <View>
+            {/* @ts-ignore */}
             <ThemedTextInput
-                // @ts-ignore issue with refs on RNP input
                 ref={inputRef}
                 style={[styles.textInput, style]}
                 keyboardType={keyboardType}
@@ -110,7 +110,6 @@ const TextInputRender: React.ForwardRefRenderFunction<{}, TextInputRenderProps> 
                 textContentType={props.secureTextEntry ? 'oneTimeCode' : 'none'} // "oneTimeCode" is workaround to avoid iOS 12 "strong password" autofill overlay on secure input password fields (ISSUE TRACKING: https://github.com/facebook/react-native/issues/21911)
                 underlineColor={Colors.gray['100']}
                 selectionColor={selectionColor}
-                // @ts-ignore Theme is optional in RNP, but the type def we're using says it's required
                 theme={customTheme}
                 {...inputProps}
             />

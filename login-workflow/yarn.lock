@@ -1344,10 +1344,10 @@
   resolved "https://registry.yarnpkg.com/@pxblue/react-auth-shared/-/react-auth-shared-3.4.0.tgz#cfa80ed761e22ec8109b166dd53d6e0e35c47b51"
   integrity sha512-O9iCUW2NpxcAs9RJmlQwXdnvFIMzjN+OXhqbE0b+cleIJugHs4rV/8Zm1UneT8PyK6zsEeMwdI+SFG3F2j19UQ==
 
-"@pxblue/react-native-components@^6.0.0":
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/@pxblue/react-native-components/-/react-native-components-6.0.0.tgz#2347f207e8757fe210f1b3e3f6ae4f3a570207a0"
-  integrity sha512-G0fq6yhJYiaJftkp/vmS8uN/tJ/0SWCwfCrKn/Sv5FsooTEC9ZsGUwxR4Q/odzekpuMZfWWFsXe3hMHd+JmorQ==
+"@pxblue/react-native-components@^6.0.1-beta.0":
+  version "6.0.1-beta.0"
+  resolved "https://registry.yarnpkg.com/@pxblue/react-native-components/-/react-native-components-6.0.1-beta.0.tgz#fc9ea55223e735160e8f6c87755e418c2e5e8785"
+  integrity sha512-JNmo+vce5SwAuBwIp4ofZCTYe+bWlB6ByrGGysyR/0S/yJZOU/ztBOj7e0rlCfleNTABy1BmBX0/60LFTfbiFw==
   dependencies:
     "@pxblue/colors" "^3.0.0"
     color "^3.1.2"
