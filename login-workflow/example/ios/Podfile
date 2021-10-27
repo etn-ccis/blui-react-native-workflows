@@ -34,4 +34,6 @@ target 'example' do
       end  
     end    
   end
+
+  pod 'RNPXBVectorIcons', :path => '../node_modules/@pxblue/react-native-vector-icons'
 end

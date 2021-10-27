@@ -1,7 +1,8 @@
 import 'react-native-gesture-handler';
 import React from 'react';
 // import { View } from 'react-native';
-import { /*Button,*/ Provider as ThemeProvider } from 'react-native-paper';
+import { Provider as ThemeProvider } from 'react-native-paper';
+// import { ThemedButton as Button } from '@pxblue/react-native-components/themed';
 import * as PXBThemes from '@pxblue/react-native-themes';
 import { MainRouter } from './src/navigation';
 import { ProjectAuthUIActions } from './src/actions/AuthUIActions';
@@ -13,7 +14,6 @@ import {
     useSecurityActions,
     /*RegistrationData,*/
     i18n,
-    AltThemeProvider,
 } from '@pxblue/react-native-auth-workflow';
 import { useLinking } from '@react-navigation/native';
 import { authLinkMapping, resolveInitialState } from './src/navigation/DeepLinking';
@@ -258,23 +258,21 @@ export const App: React.FC = () => {
     }, [getInitialState]);
 
     return (
-        <AltThemeProvider theme={PXBThemes.blueDarkAlt}>
-            <ThemeProvider theme={PXBThemes.blueDark}>
-                <SecurityContextProvider>
-                    <AuthUIConfiguration>
-                        <AuthNavigationContainer
-                            initialState={initialState}
-                            // initialRouteName={'Terms'}
-                            ref={ref}
-                            // @ts-ignore
-                            // extraRoutes={[<Stack.Screen key={'Terms-Screen'} name="Terms" component={Terms} />]}
-                        >
-                            <MainRouter />
-                        </AuthNavigationContainer>
-                    </AuthUIConfiguration>
-                </SecurityContextProvider>
-            </ThemeProvider>
-        </AltThemeProvider>
+        <ThemeProvider theme={PXBThemes.blueDark}>
+            <SecurityContextProvider>
+                <AuthUIConfiguration>
+                    <AuthNavigationContainer
+                        initialState={initialState}
+                        // initialRouteName={'Terms'}
+                        ref={ref}
+                        // @ts-ignore
+                        // extraRoutes={[<Stack.Screen key={'Terms-Screen'} name="Terms" component={Terms} />]}
+                    >
+                        <MainRouter />
+                    </AuthNavigationContainer>
+                </AuthUIConfiguration>
+            </SecurityContextProvider>
+        </ThemeProvider>
     );
 };
 

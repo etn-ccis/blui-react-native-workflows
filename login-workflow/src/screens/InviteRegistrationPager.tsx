@@ -21,7 +21,7 @@ import { ExistingAccountComplete } from '../subScreens/ExistingAccountComplete';
 
 // Components
 import { View, StyleSheet, SafeAreaView, BackHandler } from 'react-native';
-import { useTheme, Divider } from 'react-native-paper';
+import { useTheme } from 'react-native-paper';
 import ViewPager from 'react-native-pager-view';
 import { CloseHeader } from '../components/CloseHeader';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -30,6 +30,7 @@ import { SimpleDialog } from '../components/SimpleDialog';
 import { ErrorState } from '../components/ErrorState';
 import { ToggleButton } from '../components/ToggleButton';
 import i18n from '../translations/i18n';
+import { ThemedDivider as Divider } from '@pxblue/react-native-components/themed';
 
 // Styles
 import * as Colors from '@pxblue/colors';

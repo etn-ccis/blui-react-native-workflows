@@ -7,8 +7,9 @@ import React from 'react';
 
 // Components
 import { View, StyleProp, ViewStyle } from 'react-native';
-import { Checkbox as PaperCheckbox, useTheme } from 'react-native-paper';
+import { useTheme } from 'react-native-paper';
 import { Body1 } from '@pxblue/react-native-components';
+import { ThemedCheckbox as PaperCheckbox } from '@pxblue/react-native-components/themed';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 /**

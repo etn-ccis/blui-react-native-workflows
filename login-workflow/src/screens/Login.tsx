@@ -8,7 +8,7 @@ import React from 'react';
 // Components
 import { Platform, View, StyleSheet, SafeAreaView, StatusBar, TextInput as ReactTextInput } from 'react-native';
 import { useTheme } from 'react-native-paper';
-import { ThemedButton as Button } from '../components/themed/ThemedButton';
+import { ThemedButton as Button } from '@pxblue/react-native-components/themed';
 
 import { TextInput } from '../components/TextInput';
 import { TextInputSecure } from '../components/TextInputSecure';
@@ -305,12 +305,12 @@ export const Login: React.FC<LoginProps> = (props) => {
     statusBar =
         Platform.OS === 'ios' ? (
             <StatusBar
-                backgroundColor={theme.colors.primaryBase || theme.colors.primary}
+                backgroundColor={theme.colors?.primaryPalette?.main || theme.colors.primary}
                 barStyle={theme.dark ? 'light-content' : 'dark-content'}
             />
         ) : (
             <StatusBar
-                backgroundColor={theme.colors.primaryBase || theme.colors.primary}
+                backgroundColor={theme.colors?.primaryPalette?.dark || theme.colors.primary}
                 barStyle={theme.dark ? 'light-content' : 'dark-content'}
             />
         );
