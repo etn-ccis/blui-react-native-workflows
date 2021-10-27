@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, ScrollView, StyleSheet, ViewStyle } from 'react-native';
+import { Platform, SafeAreaView, ScrollView, StatusBar, StyleSheet, ViewStyle } from 'react-native';
 import { EmptyState, Header, IconFamily, InfoListItemProps, UserMenu } from '@pxblue/react-native-components';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../navigation';
@@ -37,6 +37,20 @@ const PageOne: React.FC<AppProps> = ({ navigation }): JSX.Element => {
     const theme = useTheme();
     const defaultStyles = styles();
     const securityHelper = useSecurityActions();
+    let statusBar: JSX.Element = <></>;
+
+    statusBar =
+        Platform.OS === 'ios' ? (
+            <StatusBar
+                backgroundColor={theme.colors?.primaryPalette?.main || theme.colors.primary}
+                barStyle={theme.dark ? 'light-content' : 'dark-content'}
+            />
+        ) : (
+            <StatusBar
+                backgroundColor={theme.colors?.primaryPalette?.dark || theme.colors.primary}
+                barStyle={theme.dark ? 'light-content' : 'dark-content'}
+            />
+        );
 
     const changePassword = (): void => {
         securityHelper.showChangePassword();
@@ -54,6 +68,7 @@ const PageOne: React.FC<AppProps> = ({ navigation }): JSX.Element => {
 
     return (
         <>
+            {statusBar}
             <Header
                 title={'Page One'}
                 backgroundColor={theme.dark ? Colors.black[800] : theme.colors.primary}

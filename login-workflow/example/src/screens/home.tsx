@@ -9,6 +9,8 @@ import {
     View,
     Animated,
     Easing,
+    StatusBar,
+    Platform,
 } from 'react-native';
 import { useTheme } from 'react-native-paper';
 import {
@@ -103,6 +105,20 @@ const Home: React.FC<AppProps> = ({ navigation }): JSX.Element => {
     const defaultStyles = styles(theme);
     const spinValue = new Animated.Value(0);
     const securityHelper = useSecurityActions();
+    let statusBar: JSX.Element = <></>;
+
+    statusBar =
+        Platform.OS === 'ios' ? (
+            <StatusBar
+                backgroundColor={theme.colors?.primaryPalette?.main || theme.colors.primary}
+                barStyle={theme.dark ? 'light-content' : 'dark-content'}
+            />
+        ) : (
+            <StatusBar
+                backgroundColor={theme.colors?.primaryPalette?.dark || theme.colors.primary}
+                barStyle={theme.dark ? 'light-content' : 'dark-content'}
+            />
+        );
 
     Animated.loop(
         Animated.timing(spinValue, {
@@ -134,6 +150,7 @@ const Home: React.FC<AppProps> = ({ navigation }): JSX.Element => {
 
     return (
         <>
+            {statusBar}
             <Header
                 title={'Home Page'}
                 backgroundColor={theme.dark ? Colors.black[800] : theme.colors.primary}
