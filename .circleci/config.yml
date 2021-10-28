@@ -6,7 +6,7 @@ jobs:
   build_login_workflow:
     working_directory: ~/login-workflow
     docker:
-      - image: circleci/node:12.6
+      - image: circleci/node:14.17-browsers
     steps:
       - checkout
       - restore_cache:
@@ -29,7 +29,7 @@ jobs:
             yarn prettier:check
       - run:
           name: Set Max Memory
-          command: NODE_OPTIONS=--max_old_space_size=4096
+          command: NODE_OPTIONS=--max_old_space_size=2048
       - run:
           name: Lint
           command: |
@@ -39,7 +39,7 @@ jobs:
           name: Tests
           command: |
             cd login-workflow
-            yarn test --coverage --watchAll=false
+            yarn test --maxWorkers=2 --coverage --watchAll=false
       - run:
           name: Build
           command: |

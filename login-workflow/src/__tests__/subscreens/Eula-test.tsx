@@ -6,10 +6,12 @@ import React from 'react';
 import 'react-native';
 import { mount } from 'enzyme';
 import { Eula } from '../../subScreens/Eula';
+import { cleanup } from '@testing-library/react-native';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
 describe('Eula subScreen tested with enzyme', () => {
+    afterEach(cleanup);
     function baseXML(
         onEulaChanged = (): void => {
             /* do nothing */

@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v4.0.0 (October 27, 2021)
+
+### Changed
+
+-   Updated to use `@pxblue/react-native-components` v6 — you will need to update your project dependencies to at least version 6.0.0.
+-   This package now has a new peerDependency on `@pxblue/react-native-vector-icons`.
+
+### Removed
+
+-   The themed components previously available from this package (ActivityIndicator, Button, and TextInput) are no longer part of this package. You should import these from `@pxblue/react-native-components/themed` instead.
+-   The `AltThemeProvider` is no longer part of this package. The latest themes from `@pxblue/react-native-themes` (v6) no longer require any alternate themes.
+
 ## v3.3.0 (July 27, 2021)
 
 ### Fixed

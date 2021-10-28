@@ -3,7 +3,7 @@ import React, { MutableRefObject } from 'react';
 // Components
 import { View, StyleSheet, StyleProp, ViewStyle, TextInput as ReactTextInput, Platform } from 'react-native';
 import { useTheme } from 'react-native-paper';
-import { ThemedTextInput } from '@pxblue/react-native-auth-workflow';
+import { ThemedTextInput } from '@pxblue/react-native-components/themed';
 import { TextInputProps } from 'react-native-paper/lib/typescript/components/TextInput/TextInput';
 import { Subtitle2 } from '@pxblue/react-native-components';
 

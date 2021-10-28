@@ -5,6 +5,7 @@
 import React from 'react';
 import 'react-native';
 import { ResetPasswordConfirm } from '../../subScreens/ResetPasswordConfirm';
+import { cleanup } from '@testing-library/react-native';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
@@ -36,6 +37,7 @@ jest.mock('@pxblue/react-auth-shared', () => ({
 }));
 
 describe('ResetPasswordConfirm subScreen tested with enzyme', () => {
+    afterEach(cleanup);
     function baseXML(): JSX.Element {
         return (
             <Provider>

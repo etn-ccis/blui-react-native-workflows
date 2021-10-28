@@ -200,12 +200,12 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
     statusBar =
         Platform.OS === 'ios' ? (
             <StatusBar
-                backgroundColor={theme.colors.primaryBase || theme.colors.primary}
+                backgroundColor={theme.colors?.primaryPalette?.main || theme.colors.primary}
                 barStyle={theme.dark ? 'light-content' : 'dark-content'}
             />
         ) : (
             <StatusBar
-                backgroundColor={theme.colors.primaryBase || theme.colors.primary}
+                backgroundColor={theme.colors?.primaryPalette?.dark || theme.colors.primary}
                 barStyle={theme.dark ? 'light-content' : 'dark-content'}
             />
         );

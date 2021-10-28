@@ -10,7 +10,7 @@ import { View, StyleSheet, SafeAreaView } from 'react-native';
 import { TextInput } from '../components/TextInput';
 import { Instruction } from '../components/Instruction';
 import { useTheme } from 'react-native-paper';
-import { ThemedButton as Button } from '../components/themed/ThemedButton';
+import { ThemedButton as Button } from '@pxblue/react-native-components/themed';
 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 

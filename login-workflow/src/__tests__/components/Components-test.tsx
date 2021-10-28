@@ -20,6 +20,7 @@ import { Spinner } from '../../components/Spinner';
 import { TextInput } from '../../components/TextInput';
 import { TextInputSecure } from '../../components/TextInputSecure';
 import { ToggleButton } from '../../components/ToggleButton';
+import { cleanup } from '@testing-library/react-native';
 
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
@@ -29,9 +30,13 @@ jest.mock('@pxblue/react-auth-shared', () => ({
     useAuthUIActions: (): any => ({ dispatch: jest.fn(() => true) }),
     useInjectedUIContext: jest.fn().mockReturnValue({ showSelfRegistration: true }),
 }));
+jest.mock('react-native-safe-area-context', () => ({
+    useSafeAreaInsets: (): any => ({ top: 0, left: 0, right: 0, bottom: 0 }),
+}));
 
 // test that all components render
 describe('All components tested with enzyme', () => {
+    afterEach(cleanup);
     it('Checkbox renders correctly', () => {
         const rendered = renderer
             .create(

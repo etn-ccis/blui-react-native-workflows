@@ -5,10 +5,12 @@
 import React from 'react';
 import 'react-native';
 import { RegistrationComplete } from '../../subScreens/RegistrationComplete';
+import { cleanup } from '@testing-library/react-native';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
 describe('RegistrationComplete subScreen tested with enzyme', () => {
+    afterEach(cleanup);
     function baseXML(): JSX.Element {
         return (
             <RegistrationComplete
