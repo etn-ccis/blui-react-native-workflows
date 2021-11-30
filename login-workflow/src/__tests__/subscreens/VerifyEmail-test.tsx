@@ -10,7 +10,7 @@ import { VerifyEmail } from '../../subScreens/VerifyEmail';
 import { cleanup } from '@testing-library/react-native';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
-import { TextInputHTMLAttributes } from '@pxblue/react-auth-shared';
+import { TextInputHTMLAttributes } from '@brightlayer-ui/react-auth-shared';
 
 describe('VerifyEmail subScreen tested with enzyme', () => {
     afterEach(cleanup);

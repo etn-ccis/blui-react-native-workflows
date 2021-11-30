@@ -12,7 +12,7 @@ import { FormattedText } from '../components/FormattedText';
 import { useTheme } from 'react-native-paper';
 
 // Styles
-import { Body1, H6 } from '@pxblue/react-native-components';
+import { Body1, H6 } from '@brightlayer-ui/react-native-components';
 
 /**
  * @ignore

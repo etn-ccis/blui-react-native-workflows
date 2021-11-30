@@ -11,7 +11,7 @@ import { LoginHeaderSplash } from '../components/LoginHeaderSplash';
 import { useTheme } from 'react-native-paper';
 
 // Styles
-import * as Colors from '@pxblue/colors';
+import * as Colors from '@brightlayer-ui/colors';
 // @ts-ignore
 import CyberLogo from '../assets/images/cybersecurity_certified.png';
 

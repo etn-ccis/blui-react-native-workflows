@@ -28,7 +28,7 @@ import {
     useAccountUIState,
     useAccountUIActions,
     useLanguageLocale,
-} from '@pxblue/react-auth-shared';
+} from '@brightlayer-ui/react-auth-shared';
 import { CloseHeader } from '../../components/CloseHeader';
 
 /**
@@ -88,7 +88,7 @@ export const ResetPasswordNav: React.FC<ResetPasswordNavProps> = (props) => {
                 cardStyle: { backgroundColor: theme.colors.surface },
                 header: (): JSX.Element | null => (
                     <CloseHeader
-                        title={t('pxb:FORMS.RESET_PASSWORD')}
+                        title={t('blui:FORMS.RESET_PASSWORD')}
                         backAction={(): void => {
                             navigation.navigate('Login');
                         }}

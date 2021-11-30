@@ -11,10 +11,10 @@ import { cleanup } from '@testing-library/react-native';
 import renderer from 'react-test-renderer';
 
 import { AccountDetails, AccountDetailInformation } from '../../subScreens/AccountDetails';
-import { TextInputHTMLAttributes } from '@pxblue/react-auth-shared';
+import { TextInputHTMLAttributes } from '@brightlayer-ui/react-auth-shared';
 
-jest.mock('@pxblue/react-auth-shared', () => ({
-    ...jest.requireActual('@pxblue/react-auth-shared'),
+jest.mock('@brightlayer-ui/react-auth-shared', () => ({
+    ...jest.requireActual('@brightlayer-ui/react-auth-shared'),
     useAuthUIActions: (): any => ({ dispatch: jest.fn(() => true) }),
     useInjectedUIContext: jest.fn().mockReturnValue({
         registrationConfig: {
