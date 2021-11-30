@@ -315,7 +315,11 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
                 </ScrollView>
                 <View style={[styles.sideBySideButtons, containerStyles.containerMargins]}>
                     <View style={{ flex: 1, paddingRight: 8 }}>
-                        <ToggleButton text={t('blui:CHANGE_PASSWORD.CANCEL')} outlined={true} onPress={props.onCancel} />
+                        <ToggleButton
+                            text={t('blui:CHANGE_PASSWORD.CANCEL')}
+                            outlined={true}
+                            onPress={props.onCancel}
+                        />
                     </View>
                     <View style={{ flex: 1, paddingLeft: 8 }}>
                         <ToggleButton

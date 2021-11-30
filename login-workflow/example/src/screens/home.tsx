@@ -185,9 +185,7 @@ const Home: React.FC<AppProps> = ({ navigation }): JSX.Element => {
                             <Logo height={100} width={100} fill={'#007bc1'} />
                         </Animated.View>
                     </View>
-                    <H4 style={defaultStyles.title}>
-                        Welcome to Brightlayer UI
-                    </H4>
+                    <H4 style={defaultStyles.title}>Welcome to Brightlayer UI</H4>
                     <Body1 style={defaultStyles.subtitle}>
                         Edit <Body1 style={defaultStyles.bold}>pages/home.tsx</Body1> and save to reload.
                     </Body1>
@@ -197,7 +195,10 @@ const Home: React.FC<AppProps> = ({ navigation }): JSX.Element => {
                         title={'React Native Getting Started Guide'}
                         url={'https://brightlayer-ui.github.io/development/frameworks-mobile/react-native'}
                     />
-                    <OpenURLButton title={'Design Pattern Descriptions'} url={'https://brightlayer-ui.github.io/patterns'} />
+                    <OpenURLButton
+                        title={'Design Pattern Descriptions'}
+                        url={'https://brightlayer-ui.github.io/patterns'}
+                    />
                     <OpenURLButton
                         title={'Brightlayer UI React Native Component Library'}
                         url={'https://brightlayer-ui-components.github.io/react-native/'}
