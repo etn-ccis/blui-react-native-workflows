@@ -3,9 +3,9 @@
  */
 
 import React from 'react';
-import 'react-native';
 import { ResetPasswordConfirm } from '../../subScreens/ResetPasswordConfirm';
 import { cleanup } from '@testing-library/react-native';
+import 'react-native';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
@@ -14,7 +14,13 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import 'react-native-gesture-handler';
 import { Provider } from 'react-native-paper';
+
 const Stack = createStackNavigator();
+
+jest.mock('react-native-keyboard-aware-scroll-view', () => {
+    const KeyboardAwareScrollView = ({ children }: any): any => children;
+    return { KeyboardAwareScrollView };
+});
 
 // mock hooks
 jest.mock('@brightlayer-ui/react-auth-shared', () => ({

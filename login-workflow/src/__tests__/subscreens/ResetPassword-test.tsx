@@ -19,6 +19,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 const Stack = createStackNavigator();
 
+jest.mock('react-native-keyboard-aware-scroll-view', () => {
+    const KeyboardAwareScrollView = ({ children }: any): any => children;
+    return { KeyboardAwareScrollView };
+});
+
 // mock hooks
 jest.mock('@brightlayer-ui/react-auth-shared', () => ({
     ...jest.requireActual('@brightlayer-ui/react-auth-shared'),

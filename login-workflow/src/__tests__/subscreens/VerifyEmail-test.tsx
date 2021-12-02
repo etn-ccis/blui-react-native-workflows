@@ -12,6 +12,11 @@ import { cleanup } from '@testing-library/react-native';
 import renderer from 'react-test-renderer';
 import { TextInputHTMLAttributes } from '@brightlayer-ui/react-auth-shared';
 
+jest.mock('react-native-keyboard-aware-scroll-view', () => {
+    const KeyboardAwareScrollView = ({ children }: any): any => children;
+    return { KeyboardAwareScrollView };
+});
+
 describe('VerifyEmail subScreen tested with enzyme', () => {
     afterEach(cleanup);
     const act = renderer.act;

@@ -4,14 +4,19 @@
  */
 
 import React from 'react';
-import 'react-native';
 import { shallow, mount } from 'enzyme';
 import { cleanup } from '@testing-library/react-native';
+import 'react-native';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
 import { AccountDetails, AccountDetailInformation } from '../../subScreens/AccountDetails';
 import { TextInputHTMLAttributes } from '@brightlayer-ui/react-auth-shared';
+
+jest.mock('react-native-keyboard-aware-scroll-view', () => {
+    const KeyboardAwareScrollView = ({ children }: any): any => children;
+    return { KeyboardAwareScrollView };
+});
 
 jest.mock('@brightlayer-ui/react-auth-shared', () => ({
     ...jest.requireActual('@brightlayer-ui/react-auth-shared'),
