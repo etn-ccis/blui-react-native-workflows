@@ -2,7 +2,7 @@
 import { Platform, NativeModules } from 'react-native';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import { translations } from '@pxblue/react-auth-shared';
+import { translations } from '@brightlayer-ui/react-auth-shared';
 
 // for getting the device's language locale
 // 'en' is default deviceLocale
@@ -18,28 +18,28 @@ if (AppleLocaleSettings && Platform.OS === 'ios') {
 void i18n
     .use(initReactI18next) // passes i18n down to react-i18next
     .init({
-        ns: ['app', 'pxb'],
+        ns: ['app', 'blui'],
         defaultNS: 'app',
-        fallbackNS: 'pxb',
+        fallbackNS: 'blui',
         resources: {
             // English
             en: {
-                pxb: translations.english.translation,
+                blui: translations.english.translation,
                 app: {},
             },
             // French
             fr: {
-                pxb: translations.french.translation,
+                blui: translations.french.translation,
                 app: {},
             },
             // Spanish
             es: {
-                pxb: translations.spanish.translation,
+                blui: translations.spanish.translation,
                 app: {},
             },
             // Chinese
             zh: {
-                pxb: translations.chinese.translation,
+                blui: translations.chinese.translation,
                 app: {},
             },
         },

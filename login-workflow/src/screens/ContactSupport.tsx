@@ -12,7 +12,7 @@ import { CloseHeader } from '../components/CloseHeader';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
 
 // Styles
-import { Body1, H6 } from '@pxblue/react-native-components';
+import { Body1, H6 } from '@brightlayer-ui/react-native-components';
 
 // Hooks
 import { useNavigation, useRoute } from '@react-navigation/native';
@@ -23,7 +23,7 @@ import {
     ContactParams,
     // Hooks
     useLanguageLocale,
-} from '@pxblue/react-auth-shared';
+} from '@brightlayer-ui/react-auth-shared';
 
 /**
  * @ignore
@@ -108,7 +108,7 @@ export const ContactSupport: React.FC<ContactSupportProps> = (props) => {
 
     return (
         <>
-            <CloseHeader title={t('pxb:USER_MENU.CONTACT_US')} backAction={(): void => navigation.navigate('Login')} />
+            <CloseHeader title={t('blui:USER_MENU.CONTACT_US')} backAction={(): void => navigation.navigate('Login')} />
             <SafeAreaView style={containerStyles.safeContainer}>
                 <View style={{ maxWidth: 600 }}>
                     <MatIcon
@@ -120,10 +120,10 @@ export const ContactSupport: React.FC<ContactSupportProps> = (props) => {
 
                     <View style={[containerStyles.containerMargins, containerStyles.containerSpacing]}>
                         <H6 style={[styles.headerText, styles.textSpacing]}>
-                            {t('pxb:CONTACT_SUPPORT.GENERAL_QUESTIONS')}
+                            {t('blui:CONTACT_SUPPORT.GENERAL_QUESTIONS')}
                         </H6>
                         <Body1 style={[styles.bodyText, styles.textSpacing]}>
-                            {t('pxb:CONTACT_SUPPORT.SUPPORT_MESSAGE')}
+                            {t('blui:CONTACT_SUPPORT.SUPPORT_MESSAGE')}
                             <Text
                                 style={{ color: theme.colors.accent }}
                                 onPress={(): Promise<void> => Linking.openURL(`mailto:${contactEmail}`)}
@@ -135,10 +135,10 @@ export const ContactSupport: React.FC<ContactSupportProps> = (props) => {
                     </View>
                     <View style={[containerStyles.containerMargins, containerStyles.containerSpacing]}>
                         <H6 style={[styles.headerText, styles.textSpacing]}>
-                            {t('pxb:CONTACT_SUPPORT.EMERGENCY_SUPPORT')}
+                            {t('blui:CONTACT_SUPPORT.EMERGENCY_SUPPORT')}
                         </H6>
                         <Body1 style={[styles.bodyText, styles.textSpacing]}>
-                            {t('pxb:CONTACT_SUPPORT.TECHNICAL_ASSISTANCE')}
+                            {t('blui:CONTACT_SUPPORT.TECHNICAL_ASSISTANCE')}
                             <Text
                                 style={{ color: theme.colors.accent }}
                                 onPress={(): Promise<void> => Linking.openURL(`tel:${contactPhoneLink}`)}

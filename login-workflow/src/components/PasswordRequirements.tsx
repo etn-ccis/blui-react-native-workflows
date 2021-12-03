@@ -23,7 +23,7 @@ import {
     // Hooks
     useInjectedUIContext,
     useLanguageLocale,
-} from '@pxblue/react-auth-shared';
+} from '@brightlayer-ui/react-auth-shared';
 
 /**
  * @param passwordText  The password to be used for checking.
@@ -47,23 +47,23 @@ export const PasswordRequirements: React.FC<PasswordRequirementsProps> = (props)
     const defaultRequirements: PasswordRequirement[] = [
         {
             regex: LENGTH_REGEX,
-            description: t('pxb:PASSWORD_REQUIREMENTS.LENGTH'),
+            description: t('blui:PASSWORD_REQUIREMENTS.LENGTH'),
         },
         {
             regex: NUMBERS_REGEX,
-            description: t('pxb:PASSWORD_REQUIREMENTS.NUMBERS'),
+            description: t('blui:PASSWORD_REQUIREMENTS.NUMBERS'),
         },
         {
             regex: UPPER_CASE_REGEX,
-            description: t('pxb:PASSWORD_REQUIREMENTS.UPPER'),
+            description: t('blui:PASSWORD_REQUIREMENTS.UPPER'),
         },
         {
             regex: LOWER_CASE_REGEX,
-            description: t('pxb:PASSWORD_REQUIREMENTS.LOWER'),
+            description: t('blui:PASSWORD_REQUIREMENTS.LOWER'),
         },
         {
             regex: SPECIAL_CHAR_REGEX,
-            description: t('pxb:PASSWORD_REQUIREMENTS.SPECIAL'),
+            description: t('blui:PASSWORD_REQUIREMENTS.SPECIAL'),
         },
     ];
 

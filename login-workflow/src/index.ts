@@ -21,4 +21,4 @@ export { LoginHeaderSplash } from './components/LoginHeaderSplash';
 export { DismissKeyboardView } from './components/DismissKeyboardView';
 export { default as i18n } from './translations/i18n';
 
-export * from '@pxblue/react-auth-shared';
+export * from '@brightlayer-ui/react-auth-shared';

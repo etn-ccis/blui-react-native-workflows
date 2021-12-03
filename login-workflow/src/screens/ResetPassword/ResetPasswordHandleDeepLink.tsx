@@ -27,7 +27,7 @@ import {
     useLanguageLocale,
     useAccountUIActions,
     useAccountUIState,
-} from '@pxblue/react-auth-shared';
+} from '@brightlayer-ui/react-auth-shared';
 import { useTheme } from 'react-native-paper';
 
 /**
@@ -120,14 +120,14 @@ export const ResetPasswordHandleDeepLink: React.FC = () => {
         </Stack.Navigator>
     ) : !verifyComplete ? (
         <View style={{ flex: 1 }}>
-            <CloseHeader title={t('pxb:FORMS.RESET_PASSWORD')} backAction={(): void => navigation.goBack()} />
+            <CloseHeader title={t('blui:FORMS.RESET_PASSWORD')} backAction={(): void => navigation.goBack()} />
             <Spinner />
         </View>
     ) : (
         <View style={{ flex: 1 }}>
-            <CloseHeader title={t('pxb:MESSAGES.ERROR')} backAction={(): void => navigation.goBack()} />
+            <CloseHeader title={t('blui:MESSAGES.ERROR')} backAction={(): void => navigation.goBack()} />
             <ErrorState
-                title={t('pxb:MESSAGES.FAILURE')}
+                title={t('blui:MESSAGES.FAILURE')}
                 bodyText={validationTransitErrorMessage}
                 onPress={(): void => {
                     navigation.navigate('Login');

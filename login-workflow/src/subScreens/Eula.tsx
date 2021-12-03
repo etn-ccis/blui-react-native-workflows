@@ -7,12 +7,12 @@ import React, { useCallback, useState } from 'react';
 
 // Components
 import { View, StyleSheet, SafeAreaView, ScrollView } from 'react-native';
-import { Body1 } from '@pxblue/react-native-components';
+import { Body1 } from '@brightlayer-ui/react-native-components';
 import { Checkbox } from '../components/Checkbox';
 import { WebView } from 'react-native-webview';
 
 // Hooks
-import { useLanguageLocale } from '@pxblue/react-auth-shared';
+import { useLanguageLocale } from '@brightlayer-ui/react-auth-shared';
 import { useTheme } from 'react-native-paper';
 
 /**
@@ -88,11 +88,11 @@ export const Eula: React.FC<EulaProps> = (props) => {
     const disableCheckBox = props.eulaError || (!contentLoaded && htmlEula) || !props.eulaContent ? true : false;
 
     const eulaContentInternals = !htmlEula
-        ? props.eulaContent ?? props.eulaError ?? t('pxb:REGISTRATION.EULA.LOADING')
+        ? props.eulaContent ?? props.eulaError ?? t('blui:REGISTRATION.EULA.LOADING')
         : props.eulaContent ??
           '<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>' +
               '<style>body { font-size: 120%; word-wrap: break-word; overflow-wrap: break-word; }</style>' +
-              `<body>${props.eulaError ?? t('pxb:REGISTRATION.EULA.LOADING')}</body>` +
+              `<body>${props.eulaError ?? t('blui:REGISTRATION.EULA.LOADING')}</body>` +
               '</html>';
 
     const onLoadEnd = (): void => {
@@ -119,7 +119,7 @@ export const Eula: React.FC<EulaProps> = (props) => {
             </View>
             <View style={[containerStyles.containerMargins, containerStyles.checkboxContainer]}>
                 <Checkbox
-                    label={t('pxb:REGISTRATION.EULA.AGREE_TERMS')}
+                    label={t('blui:REGISTRATION.EULA.AGREE_TERMS')}
                     disabled={disableCheckBox}
                     checked={eulaIsChecked}
                     onPress={checkedBox}

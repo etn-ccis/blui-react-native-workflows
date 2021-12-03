@@ -10,7 +10,7 @@ The Login screen supports some simple customization (via the `AuthUIContextProvi
 -   You can customize the background of the login screen using the `background` prop including the color, tile image, etc.
 -   You can disable and hide various aspects of the workflow using the following props: `enableInviteRegistration`, `enableResetPassword`, `showContactSupport`, `showCybersecurityBadge`, `showRememberMe`, `showSelfRegistration`.
 
-For more details, read the [full API details](https://github.com/pxblue/react-auth-shared/tree/master/docs/API.md).
+For more details, read the [full API details](https://github.com/brightlayer-ui/react-auth-shared/tree/master/docs/API.md).
 
 ## Additional Routes
 
@@ -35,7 +35,7 @@ const Stack = createStackNavigator();
 
 ```
 
-For more details, read the [full API details](https://github.com/pxblue/react-auth-shared/tree/master/docs/API.md).
+For more details, read the [full API details](https://github.com/brightlayer-ui/react-auth-shared/tree/master/docs/API.md).
 
 ## Registration Details
 

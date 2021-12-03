@@ -17,16 +17,16 @@ import {
     ThemedAvatar as Avatar,
     ThemedButton as Button,
     ThemedDivider as Divider,
-} from '@pxblue/react-native-components/themed';
-import { Body1, H4, Header, InfoListItemProps, UserMenu, IconFamily } from '@pxblue/react-native-components';
+} from '@brightlayer-ui/react-native-components/themed';
+import { Body1, H4, Header, InfoListItemProps, UserMenu, IconFamily } from '@brightlayer-ui/react-native-components';
 import { Theme } from 'react-native-paper/lib/typescript/types';
 // @ts-ignore
 import Logo from '../../assets/images/Logo.svg';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../navigation';
-import { useSecurityActions } from '@pxblue/react-native-auth-workflow';
+import { useSecurityActions } from '@brightlayer-ui/react-native-auth-workflow';
 import { LocalStorage } from '../store/local-storage';
-import * as Colors from '@pxblue/colors';
+import * as Colors from '@brightlayer-ui/colors';
 
 const MenuIcon: IconFamily = { name: 'menu', direction: 'ltr' };
 const LockIcon: IconFamily = { name: 'lock', direction: 'ltr' };
@@ -185,32 +185,33 @@ const Home: React.FC<AppProps> = ({ navigation }): JSX.Element => {
                             <Logo height={100} width={100} fill={'#007bc1'} />
                         </Animated.View>
                     </View>
-                    <H4 style={defaultStyles.title}>
-                        Welcome to PX <H4 color={'primary'}>Blue</H4>.
-                    </H4>
+                    <H4 style={defaultStyles.title}>Welcome to Brightlayer UI</H4>
                     <Body1 style={defaultStyles.subtitle}>
                         Edit <Body1 style={defaultStyles.bold}>pages/home.tsx</Body1> and save to reload.
                     </Body1>
                     <Divider style={defaultStyles.divider} />
-                    <OpenURLButton title={'PX Blue Documentation'} url={'https://pxblue.github.io/'} />
+                    <OpenURLButton title={'Brightlayer UI Documentation'} url={'https://brightlayer-ui.github.io/'} />
                     <OpenURLButton
                         title={'React Native Getting Started Guide'}
-                        url={'https://pxblue.github.io/development/frameworks-mobile/react-native'}
+                        url={'https://brightlayer-ui.github.io/development/frameworks-mobile/react-native'}
                     />
-                    <OpenURLButton title={'Design Pattern Descriptions'} url={'https://pxblue.github.io/patterns'} />
                     <OpenURLButton
-                        title={'PX Blue React Native Component Library'}
-                        url={'https://pxblue-components.github.io/react-native/'}
+                        title={'Design Pattern Descriptions'}
+                        url={'https://brightlayer-ui.github.io/patterns'}
                     />
-                    <OpenURLButton title={'Visit Us on GitHub'} url={'https://github.com/pxblue'} />
+                    <OpenURLButton
+                        title={'Brightlayer UI React Native Component Library'}
+                        url={'https://brightlayer-ui-components.github.io/react-native/'}
+                    />
+                    <OpenURLButton title={'Visit Us on GitHub'} url={'https://github.com/brightlayer-ui'} />
                     <OpenURLButton
                         title={'Design Pattern Source on GitHub'}
-                        url={'https://github.com/pxblue/react-native-design-patterns'}
+                        url={'https://github.com/brightlayer-ui/react-native-design-patterns'}
                     />
-                    <OpenURLButton title={'Release Roadmap'} url={'https://pxblue.github.io/roadmap'} />
+                    <OpenURLButton title={'Release Roadmap'} url={'https://brightlayer-ui.github.io/roadmap'} />
                     <OpenURLButton
                         title={'Send Feedback or Suggestions'}
-                        url={'https://pxblue.github.io/community/contactus'}
+                        url={'https://brightlayer-ui.github.io/community/contactus'}
                     />
                 </ScrollView>
             </SafeAreaView>

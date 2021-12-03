@@ -12,7 +12,7 @@ import { ToggleButton } from '../components/ToggleButton';
 import { CloseHeader } from '../components/CloseHeader';
 // Hooks
 import { useNavigation } from '@react-navigation/native';
-import { useLanguageLocale } from '@pxblue/react-auth-shared';
+import { useLanguageLocale } from '@brightlayer-ui/react-auth-shared';
 import { useTheme } from 'react-native-paper';
 
 /**
@@ -61,13 +61,13 @@ export const ResetPasswordSuccess: React.FC<ResetPasswordSuccessProps> = (props)
 
     const containerStyles = makeContainerStyles(theme);
 
-    const titleText = t('pxb:PASSWORD_RESET.SUCCESS_MESSAGE');
-    const bodyText = t('pxb:CHANGE_PASSWORD.SUCCESS_MESSAGE');
+    const titleText = t('blui:PASSWORD_RESET.SUCCESS_MESSAGE');
+    const bodyText = t('blui:CHANGE_PASSWORD.SUCCESS_MESSAGE');
 
     return (
         <View style={{ height: '100%' }}>
             <CloseHeader
-                title={t('pxb:FORMS.RESET_PASSWORD')}
+                title={t('blui:FORMS.RESET_PASSWORD')}
                 backAction={(): void => navigation.navigate('Login')}
                 backgroundColor={theme.colors.primaryBase || theme.colors.primary}
             />
@@ -75,7 +75,7 @@ export const ResetPasswordSuccess: React.FC<ResetPasswordSuccessProps> = (props)
                 <CompleteSplashScreen boldTitle={titleText} bodyText={bodyText} icon={'vpn-key'} />
 
                 <ToggleButton
-                    text={t('pxb:ACTIONS.DONE')}
+                    text={t('blui:ACTIONS.DONE')}
                     style={containerStyles.buttonContainer}
                     onPress={(): void => navigation.navigate('Login')}
                 />

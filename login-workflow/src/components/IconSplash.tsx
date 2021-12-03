@@ -5,7 +5,7 @@
 
 import Color from 'color';
 import React from 'react';
-import * as Colors from '@pxblue/colors';
+import * as Colors from '@brightlayer-ui/colors';
 
 // Components
 import { View, StyleSheet, StyleProp, ViewStyle } from 'react-native';
