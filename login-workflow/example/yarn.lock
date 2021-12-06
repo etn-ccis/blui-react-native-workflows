@@ -744,6 +744,20 @@
   resolved "https://registry.yarnpkg.com/@brightlayer-ui/prettier-config/-/prettier-config-1.0.3.tgz#e40a7ae7435c6fd5118acbf249080e0aa81e93af"
   integrity sha512-EYm3+V7Qd+oYEF+8FadsXAZqXryEHHbGnrV1BMp9selhABjceqUqXPVE4Sn3SKWQdBNJ3En2A3EzgrzRbvRTaw==
 
+"@brightlayer-ui/react-auth-shared@^3.4.0":
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-auth-shared/-/react-auth-shared-3.5.0.tgz#218c26fde35c41fd691bf3730234c06233f735d6"
+  integrity sha512-rMImuIZ10CKVYpTQGfluApYeYUr/E4LBW5tLKQsduW0Bdag/Jw9UsjBwFr6o+IjXIWZYpsy26r48F5vr7KuMkQ==
+
+"@brightlayer-ui/react-native-auth-workflow@^4.0.0-beta.0":
+  version "4.0.0-beta.0"
+  resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-native-auth-workflow/-/react-native-auth-workflow-4.0.0-beta.0.tgz#8d47eb7cac26dc75d17696cec77906c7fec2e6fc"
+  integrity sha512-LcAruykBPgZ63ABWQRtTVAKSSVvF5Vd0Gq0u7hdkk+mFmpo0NZloRlPgEQI6lthTzZNiVuA00b1P482R4PxMdQ==
+  dependencies:
+    "@brightlayer-ui/react-auth-shared" "^3.4.0"
+    lodash.clonedeep "^4.5.0"
+    react-native-status-bar-height "^2.5.0"
+
 "@brightlayer-ui/react-native-components@^6.0.1":
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-native-components/-/react-native-components-6.0.1.tgz#8143bc7dc01045a68be5e293db9f3ae8276e48e6"
@@ -1051,20 +1065,6 @@
   dependencies:
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
-
-"@pxblue/react-auth-shared@^3.4.0":
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/@pxblue/react-auth-shared/-/react-auth-shared-3.5.0.tgz#e3526c4b1962fa2a2d9ee848a7f88c013de6502b"
-  integrity sha512-cc1f8dBPuwq59dk0xmiSVwPRk7R2SAgRHeG/NaKc11/+oir5VL+rbWuZ4Y/X16ZbtPeYylRDFmDuNSOV53wjeg==
-
-"@pxblue/react-native-auth-workflow@^4.0.0-beta.0":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@pxblue/react-native-auth-workflow/-/react-native-auth-workflow-4.0.0.tgz#cb0b43c42fece00933fc9baec84b6251c273a161"
-  integrity sha512-y/DLZGCu3bs/MWfjZb2RzwlKtDE9qeZ2wWd8NAIrI9AF/B53V1rVGp9mraapxtgMZ8PKQMVxqAqKIL8B+CIZEA==
-  dependencies:
-    "@pxblue/react-auth-shared" "^3.4.0"
-    lodash.clonedeep "^4.5.0"
-    react-native-status-bar-height "^2.5.0"
 
 "@react-native-async-storage/async-storage@^1.14.1":
   version "1.15.14"
