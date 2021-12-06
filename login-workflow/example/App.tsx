@@ -258,7 +258,7 @@ export const App: React.FC = () => {
     }, [getInitialState]);
 
     return (
-        <ThemeProvider theme={BLUIThemes.blueDark}>
+        <ThemeProvider theme={BLUIThemes.blue}>
             <SecurityContextProvider>
                 <AuthUIConfiguration>
                     <AuthNavigationContainer
