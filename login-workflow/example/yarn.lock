@@ -717,7 +717,7 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@brightlayer-ui/colors@^3.0.0":
+"@brightlayer-ui/colors@^3.0.0", "@brightlayer-ui/colors@^3.0.1":
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/@brightlayer-ui/colors/-/colors-3.0.1.tgz#f085acf6b6b4266a01798c78bc25841d15e44b3e"
   integrity sha512-AE9F6FN1EQWMoqFTak6q8MN3wg9et2u2SUs6HjYhcS3GVSHjMWVSsuJZ2aD5Lu9409Gfi6pBHDWsJZ5PyeLsdQ==
@@ -734,7 +734,7 @@
   optionalDependencies:
     eslint-plugin-react "^7.16.0"
 
-"@brightlayer-ui/icons-svg@^1.2.0":
+"@brightlayer-ui/icons-svg@^1.7.0":
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/@brightlayer-ui/icons-svg/-/icons-svg-1.7.0.tgz#8e80ce276eaa1b9d6aa1f736f3857856d3e1179a"
   integrity sha512-z6LZgr0XFJ+HSDR7PxEHXavClsfR8I7FQww53vmFU0jv4fW5e3m5z2iYQjTi5MddgZJDX1CHvsvX+Mls8Z9iow==
@@ -763,7 +763,7 @@
     "@brightlayer-ui/colors" "^3.0.0"
     color "^3.1.3"
 
-"@brightlayer-ui/react-native-vector-icons@^1.3.0":
+"@brightlayer-ui/react-native-vector-icons@^1.3.1":
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-native-vector-icons/-/react-native-vector-icons-1.3.1.tgz#3b4e3cb8f6cdfd122e721e6d73612a971cf92d9f"
   integrity sha512-4U9UOjI4u4Y8uPys8JxvpsdKVNYsvxabY54WMEyrDbGCbxWbji3XEHhw//tcFDKacLWJ5zvTYMwrxzYXHB0cPg==
@@ -1057,10 +1057,10 @@
   resolved "https://registry.yarnpkg.com/@pxblue/react-auth-shared/-/react-auth-shared-3.5.0.tgz#e3526c4b1962fa2a2d9ee848a7f88c013de6502b"
   integrity sha512-cc1f8dBPuwq59dk0xmiSVwPRk7R2SAgRHeG/NaKc11/+oir5VL+rbWuZ4Y/X16ZbtPeYylRDFmDuNSOV53wjeg==
 
-"@pxblue/react-native-auth-workflow@^3.3.0":
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/@pxblue/react-native-auth-workflow/-/react-native-auth-workflow-3.3.0.tgz#1510c8b10345511b5dd31e0fa15df0644ed86857"
-  integrity sha512-wJKBtjE4oZIkZMBibI+sSkHr6BPVLVJpIJ6bzBihwa5NHlqgjX2E4rR1XSIYU2Zr+rOw1SYmA4ST9MFfSotVDQ==
+"@pxblue/react-native-auth-workflow@^4.0.0-beta.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@pxblue/react-native-auth-workflow/-/react-native-auth-workflow-4.0.0.tgz#cb0b43c42fece00933fc9baec84b6251c273a161"
+  integrity sha512-y/DLZGCu3bs/MWfjZb2RzwlKtDE9qeZ2wWd8NAIrI9AF/B53V1rVGp9mraapxtgMZ8PKQMVxqAqKIL8B+CIZEA==
   dependencies:
     "@pxblue/react-auth-shared" "^3.4.0"
     lodash.clonedeep "^4.5.0"
