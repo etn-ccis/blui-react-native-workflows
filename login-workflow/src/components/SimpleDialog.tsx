@@ -36,6 +36,7 @@ export const SimpleDialog: React.FC<SimpleDialogProps> = (props) => {
     return (
         <Portal>
             <Dialog visible={visible} dismissable={false}>
+                {/* @ts-ignore */}
                 <Dialog.Title>{title}</Dialog.Title>
                 <Dialog.Content>
                     <Paragraph>{bodyText ?? t('blui:MESSAGES.REQUEST_ERROR')}</Paragraph>

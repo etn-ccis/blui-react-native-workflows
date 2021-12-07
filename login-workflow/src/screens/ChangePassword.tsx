@@ -181,7 +181,9 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
             await props.onChangePassword(currentPasswordInput, newPasswordInput);
             setTransitState(transitSuccess());
         } catch (error) {
-            setTransitState(transitFailed(error.message));
+            if (error instanceof Error) {
+                setTransitState(transitFailed(error.message));
+            } else throw error;
         }
     };
 
