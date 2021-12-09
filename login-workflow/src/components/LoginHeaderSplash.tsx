@@ -10,8 +10,8 @@ import { View, Image, StyleSheet, StyleProp, ViewStyle } from 'react-native';
 import { useTheme } from 'react-native-paper';
 
 // Styles
-import * as Colors from '@pxblue/colors';
-import { useInjectedUIContext } from '@pxblue/react-auth-shared';
+import * as Colors from '@brightlayer-ui/colors';
+import { useInjectedUIContext } from '@brightlayer-ui/react-auth-shared';
 
 /**
  * @ignore

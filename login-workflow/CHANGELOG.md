@@ -5,17 +5,29 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v4.0.0 (December 9, 2021)
+
+### Changed
+
+-   Changed package namespace from `@pxblue` to `@brightlayer-ui`.
+
+## Package Migration Notice
+
+Previous versions listed after this indicator refer to our deprecated `@pxblue` packages.
+
+---
+
 ## v4.0.0 (October 27, 2021)
 
 ### Changed
 
--   Updated to use `@pxblue/react-native-components` v6 — you will need to update your project dependencies to at least version 6.0.0.
--   This package now has a new peerDependency on `@pxblue/react-native-vector-icons`.
+-   Updated to use `@brightlayer-ui/react-native-components` v6 — you will need to update your project dependencies to at least version 6.0.0.
+-   This package now has a new peerDependency on `@brightlayer-ui/react-native-vector-icons`.
 
 ### Removed
 
--   The themed components previously available from this package (ActivityIndicator, Button, and TextInput) are no longer part of this package. You should import these from `@pxblue/react-native-components/themed` instead.
--   The `AltThemeProvider` is no longer part of this package. The latest themes from `@pxblue/react-native-themes` (v6) no longer require any alternate themes.
+-   The themed components previously available from this package (ActivityIndicator, Button, and TextInput) are no longer part of this package. You should import these from `@brightlayer-ui/react-native-components/themed` instead.
+-   The `AltThemeProvider` is no longer part of this package. The latest themes from `@brightlayer-ui/react-native-themes` (v6) no longer require any alternate themes.
 
 ## v3.3.0 (July 27, 2021)
 
@@ -26,24 +38,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 -   EULA screen now appears first in the self registration workflow.
--   Allow users to go back at all steps of the registration flow ([#83](https://github.com/pxblue/react-native-workflows/issues/83)).
+-   Allow users to go back at all steps of the registration flow ([#83](https://github.com/brightlayer-ui/react-native-workflows/issues/83)).
 
 ### Added
 
--   Ability to customize the character limits for first and last name text fields in the registration workflow via the `registrationConfig` prop on the `AuthUIContextProvider` ([#90](https://github.com/pxblue/react-native-workflows/issues/90)).
+-   Ability to customize the character limits for first and last name text fields in the registration workflow via the `registrationConfig` prop on the `AuthUIContextProvider` ([#90](https://github.com/brightlayer-ui/react-native-workflows/issues/90)).
 
 ## v3.2.2 (July 15, 2021)
 
 ### Fixed
 
--   Issue with html EULA screen not appearing ([#86](https://github.com/pxblue/react-native-workflows/issues/86)).
--   Issue with soft keyboard blocking input field ([#84](https://github.com/pxblue/react-native-workflows/issues/84)).
+-   Issue with html EULA screen not appearing ([#86](https://github.com/brightlayer-ui/react-native-workflows/issues/86)).
+-   Issue with soft keyboard blocking input field ([#84](https://github.com/brightlayer-ui/react-native-workflows/issues/84)).
 
 ## v3.2.1 (June 30, 2021)
 
 ### Fixed
 
--   Issue with EULA screen not loading in self-registration flow ([#81](https://github.com/pxblue/react-native-workflows/issues/81)).
+-   Issue with EULA screen not loading in self-registration flow ([#81](https://github.com/brightlayer-ui/react-native-workflows/issues/81)).
 
 ## v3.2.0 (June 8, 2021)
 
@@ -62,13 +74,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
--   Issue where Remember Me checkbox is cleared after changing password ([#56](https://github.com/pxblue/react-native-workflows/issues/56)).
+-   Issue where Remember Me checkbox is cleared after changing password ([#56](https://github.com/brightlayer-ui/react-native-workflows/issues/56)).
 
 ## v3.0.1 (April 8, 2021)
 
 ### Fixed
 
--   Issue causing application to crash when existing user completes self-registration flow ([#50](https://github.com/pxblue/react-native-workflows/issues/50)).
+-   Issue causing application to crash when existing user completes self-registration flow ([#50](https://github.com/brightlayer-ui/react-native-workflows/issues/50)).
 
 ## v3.0.0 (March 31, 2021)
 
@@ -81,7 +93,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 -   Phone number from the default fields collected during registration
     -   If you need to collect phone number, you must now do it through a custom Account Details form
--   Dependency on `highcharts` — highcharts translation utilities have moved to [@pxblue/highcharts](https://www.npmjs.com/package/@pxblue/highcharts).
+-   Dependency on `highcharts` — highcharts translation utilities have moved to [@brightlayer-ui/highcharts](https://www.npmjs.com/package/@brightlayer-ui/highcharts).
 
 ### Changed
 
@@ -116,9 +128,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 -   i18n utilities
-    -   This was relocated from [@pxblue/react-auth-shared](https://www.npmjs.com/package/@pxblue/react-auth-shared)
+    -   This was relocated from [@brightlayer-ui/react-auth-shared](https://www.npmjs.com/package/@brightlayer-ui/react-auth-shared)
 -   DismissKeyboardView component
-    -   This was relocated from @pxblue/react-auth-shared
+    -   This was relocated from @brightlayer-ui/react-auth-shared
 
 ### Fixed
 
@@ -128,7 +140,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
--   Shareable logic has been extracted to [@pxblue/react-auth-shared](https://www.npmjs.com/package/@pxblue/react-auth-shared). This package re-exports all exports from the shared package, so there are no breaking changes in usage. The majority of the API documentation in now in the shared repository.
+-   Shareable logic has been extracted to [@brightlayer-ui/react-auth-shared](https://www.npmjs.com/package/@brightlayer-ui/react-auth-shared). This package re-exports all exports from the shared package, so there are no breaking changes in usage. The majority of the API documentation in now in the shared repository.
 
 ## v1.1.0 (July 7, 2020)
 
@@ -151,7 +163,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
--   Package published under the @pxblue scope and made publicly available
+-   Package published under the @brightlayer-ui scope and made publicly available
 -   Removed internal theming to defer to the end-user application theme
 -   Removed dependency on react-native-elements
 

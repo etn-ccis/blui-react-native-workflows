@@ -22,7 +22,7 @@ import {
     // Hooks
     useLanguageLocale,
     useAccountUIState,
-} from '@pxblue/react-auth-shared';
+} from '@brightlayer-ui/react-auth-shared';
 import { CloseHeader } from '../components/CloseHeader';
 
 /**
@@ -116,7 +116,7 @@ export const ResetPasswordConfirm: React.FC<ResetPasswordConfirmProps> = (props)
     const canProgress = (): boolean => password.length > 0;
     const errorDialog = (
         <SimpleDialog
-            title={t('pxb:MESSAGES.ERROR')}
+            title={t('blui:MESSAGES.ERROR')}
             bodyText={t(setPasswordTransitErrorMessage ?? '')}
             visible={setPasswordHasTransitError && !hasAcknowledgedError}
             onDismiss={(): void => {
@@ -129,7 +129,7 @@ export const ResetPasswordConfirm: React.FC<ResetPasswordConfirmProps> = (props)
             {spinner}
             {errorDialog}
             <CloseHeader
-                title={t('pxb:FORMS.RESET_PASSWORD')}
+                title={t('blui:FORMS.RESET_PASSWORD')}
                 backAction={(): void => navigation.navigate('Login')}
                 // backgroundColor={theme.colors.primaryBase || theme.colors.primary}
             />
@@ -144,7 +144,7 @@ export const ResetPasswordConfirm: React.FC<ResetPasswordConfirmProps> = (props)
                 <View style={containerStyles.bottomButton}>
                     <View style={[containerStyles.containerMargins]}>
                         <ToggleButton
-                            text={t('pxb:FORMS.RESET_PASSWORD')}
+                            text={t('blui:FORMS.RESET_PASSWORD')}
                             disabled={!canProgress()}
                             style={styles.bottomButton}
                             onPress={onResetPasswordTap}

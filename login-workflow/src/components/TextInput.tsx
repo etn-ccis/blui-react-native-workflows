@@ -8,14 +8,14 @@ import React, { MutableRefObject } from 'react';
 // Components
 import { View, StyleSheet, StyleProp, ViewStyle, TextInput as ReactTextInput, Platform } from 'react-native';
 import { useTheme } from 'react-native-paper';
-import { ThemedTextInput } from '@pxblue/react-native-components/themed';
+import { ThemedTextInput } from '@brightlayer-ui/react-native-components/themed';
 
 // @ts-ignore
 import { TextInputProps } from 'react-native-paper/lib/typescript/src/components/TextInput/TextInput';
-import { Subtitle2 } from '@pxblue/react-native-components';
+import { Subtitle2 } from '@brightlayer-ui/react-native-components';
 
 // Styles
-import * as Colors from '@pxblue/colors';
+import * as Colors from '@brightlayer-ui/colors';
 
 /**
  * @ignore

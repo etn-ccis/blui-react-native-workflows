@@ -9,7 +9,7 @@ import React from 'react';
 import { Platform, View, StyleSheet } from 'react-native';
 import { Portal, useTheme } from 'react-native-paper';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
-import { ThemedActivityIndicator as ActivityIndicator } from '@pxblue/react-native-components/themed';
+import { ThemedActivityIndicator as ActivityIndicator } from '@brightlayer-ui/react-native-components/themed';
 /**
  * @ignore
  */

@@ -10,12 +10,12 @@ import { View, StyleSheet, SafeAreaView } from 'react-native';
 import { TextInput } from '../components/TextInput';
 import { Instruction } from '../components/Instruction';
 import { useTheme } from 'react-native-paper';
-import { ThemedButton as Button } from '@pxblue/react-native-components/themed';
+import { ThemedButton as Button } from '@brightlayer-ui/react-native-components/themed';
 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 // Hooks
-import { useLanguageLocale } from '@pxblue/react-auth-shared';
+import { useLanguageLocale } from '@brightlayer-ui/react-auth-shared';
 
 /**
  * @ignore
@@ -109,12 +109,12 @@ export const VerifyEmail: React.FC<VerifyEmailProps> = (props) => {
             >
                 <Instruction
                     style={containerStyles.containerMargins}
-                    text={t('pxb:SELF_REGISTRATION.VERIFY_EMAIL.MESSAGE')}
+                    text={t('blui:SELF_REGISTRATION.VERIFY_EMAIL.MESSAGE')}
                 />
 
                 <View style={[containerStyles.containerMargins, containerStyles.mainContainer]}>
                     <TextInput
-                        label={t('pxb:SELF_REGISTRATION.VERIFY_EMAIL.VERIFICATION')}
+                        label={t('blui:SELF_REGISTRATION.VERIFY_EMAIL.VERIFICATION')}
                         value={verifyCode}
                         style={styles.inputMargin}
                         keyboardType={'default'}
@@ -129,7 +129,7 @@ export const VerifyEmail: React.FC<VerifyEmailProps> = (props) => {
                             onPress={(): void => onResendVerificationEmail()}
                             style={styles.inputMargin}
                         >
-                            {t('pxb:SELF_REGISTRATION.VERIFY_EMAIL.RESEND')}
+                            {t('blui:SELF_REGISTRATION.VERIFY_EMAIL.RESEND')}
                         </Button>
                     </View>
                 </View>

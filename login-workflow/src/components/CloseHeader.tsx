@@ -6,9 +6,9 @@
 import * as React from 'react';
 
 // Components
-import { Header, IconFamily } from '@pxblue/react-native-components';
+import { Header, IconFamily } from '@brightlayer-ui/react-native-components';
 import { useTheme } from 'react-native-paper';
-import * as Colors from '@pxblue/colors';
+import * as Colors from '@brightlayer-ui/colors';
 
 const CloseIcon: IconFamily = { name: 'close' };
 

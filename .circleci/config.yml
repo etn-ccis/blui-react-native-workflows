@@ -1,7 +1,7 @@
 version: 2.1
 orbs:
-    codecov: codecov/codecov@1.1.3
-    gh: circleci/github-cli@1.0
+  codecov: codecov/codecov@1.1.3
+  gh: circleci/github-cli@1.0
 jobs:
   build_login_workflow:
     working_directory: ~/login-workflow
@@ -51,16 +51,16 @@ jobs:
             - login-workflow/lib
             - login-workflow/coverage
   coverage_report:
-        working_directory: ~/react-native-workflows
-        docker:
-            - image: circleci/node:12.9.1-browsers
-        steps:
-            - checkout
-            - attach_workspace:
-                at: .
-            - codecov/upload:
-                file: './login-workflow/coverage/clover.xml'
-                token: 6bd0adf7-ec9c-43ad-b1e9-dd71013923f2
+    working_directory: ~/react-native-workflows
+    docker:
+      - image: circleci/node:12.9.1-browsers
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - codecov/upload:
+          file: "./login-workflow/coverage/clover.xml"
+          token: 6bd0adf7-ec9c-43ad-b1e9-dd71013923f2
 
   publish_login_workflow:
     docker:
@@ -71,12 +71,12 @@ jobs:
           at: .
       - run:
           name: Authenticate with registry
-          command:  |
+          command: |
             echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
             echo "//registry.yarnpkg.com/:_authToken=$NPM_TOKEN" >> ~/.npmrc
       - run:
-          name: Publish @pxblue/react-native-auth-workflow
-          command:  |
+          name: Publish @brightlayer-ui/react-native-auth-workflow
+          command: |
             cd login-workflow && yarn publish:package -b $CIRCLE_BRANCH
 
   gh_tag_login_workflow:
@@ -86,7 +86,7 @@ jobs:
       - checkout
       - gh/setup
       - run:
-          name: Tag @pxblue/react-native-auth-workflow
+          name: Tag @brightlayer-ui/react-native-auth-workflow
           command: |
             cd login-workflow
             yarn tag-package -b $CIRCLE_BRANCH -s -react-native-auth-workflow
@@ -113,8 +113,8 @@ workflows:
                 - master
       - coverage_report:
           requires:
-              - build_login_workflow
+            - build_login_workflow
           filters:
-              branches:
-                  only:
-                      - master
+            branches:
+              only:
+                - master

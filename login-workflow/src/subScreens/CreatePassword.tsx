@@ -28,7 +28,7 @@ import {
     // Hooks
     useLanguageLocale,
     useInjectedUIContext,
-} from '@pxblue/react-auth-shared';
+} from '@brightlayer-ui/react-auth-shared';
 
 /**
  * @ignore
@@ -82,23 +82,23 @@ export const CreatePassword: React.FC<CreatePasswordProps> = (props) => {
     const defaultRequirements: PasswordRequirement[] = [
         {
             regex: LENGTH_REGEX,
-            description: t('pxb:PASSWORD_REQUIREMENTS.LENGTH'),
+            description: t('blui:PASSWORD_REQUIREMENTS.LENGTH'),
         },
         {
             regex: NUMBERS_REGEX,
-            description: t('pxb:PASSWORD_REQUIREMENTS.NUMBERS'),
+            description: t('blui:PASSWORD_REQUIREMENTS.NUMBERS'),
         },
         {
             regex: UPPER_CASE_REGEX,
-            description: t('pxb:PASSWORD_REQUIREMENTS.UPPER'),
+            description: t('blui:PASSWORD_REQUIREMENTS.UPPER'),
         },
         {
             regex: LOWER_CASE_REGEX,
-            description: t('pxb:PASSWORD_REQUIREMENTS.LOWER'),
+            description: t('blui:PASSWORD_REQUIREMENTS.LOWER'),
         },
         {
             regex: SPECIAL_CHAR_REGEX,
-            description: t('pxb:PASSWORD_REQUIREMENTS.SPECIAL'),
+            description: t('blui:PASSWORD_REQUIREMENTS.SPECIAL'),
         },
     ];
     const { passwordRequirements = defaultRequirements } = useInjectedUIContext();
@@ -120,13 +120,13 @@ export const CreatePassword: React.FC<CreatePasswordProps> = (props) => {
             <View style={{ width: '100%', maxWidth: 600 }}>
                 <ScrollView style={{ flexGrow: 1 }}>
                     <Instruction
-                        text={t('pxb:CHANGE_PASSWORD.PASSWORD_INFO')}
+                        text={t('blui:CHANGE_PASSWORD.PASSWORD_INFO')}
                         style={[containerStyles.containerMargins]}
                     />
 
                     <View style={[containerStyles.containerMargins, containerStyles.mainContainer]}>
                         <TextInputSecure
-                            label={t('pxb:FORMS.PASSWORD')}
+                            label={t('blui:FORMS.PASSWORD')}
                             value={passwordInput}
                             style={{ marginTop: 32 }}
                             autoCapitalize={'none'}
@@ -142,7 +142,7 @@ export const CreatePassword: React.FC<CreatePasswordProps> = (props) => {
 
                         <TextInputSecure
                             ref={confirmPasswordRef}
-                            label={t('pxb:FORMS.CONFIRM_PASSWORD')}
+                            label={t('blui:FORMS.CONFIRM_PASSWORD')}
                             value={confirmInput}
                             style={{ marginTop: 24 }}
                             autoCapitalize={'none'}
