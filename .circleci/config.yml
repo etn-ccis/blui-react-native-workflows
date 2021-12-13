@@ -6,7 +6,7 @@ jobs:
   build_login_workflow:
     working_directory: ~/login-workflow
     docker:
-      - image: circleci/node:12.6
+      - image: circleci/node:14.17
     steps:
       - checkout
       - restore_cache:
@@ -53,7 +53,7 @@ jobs:
   coverage_report:
     working_directory: ~/react-native-workflows
     docker:
-      - image: circleci/node:12.9.1-browsers
+      - image: circleci/node:14.17-browsers
     steps:
       - checkout
       - attach_workspace:
@@ -64,7 +64,7 @@ jobs:
 
   publish_login_workflow:
     docker:
-      - image: circleci/node:12.9.1-browsers
+      - image: circleci/node:14.17-browsers
     steps:
       - checkout
       - attach_workspace:
@@ -81,7 +81,7 @@ jobs:
 
   gh_tag_login_workflow:
     docker:
-      - image: circleci/node:12.16.3-browsers
+      - image: circleci/node:14.17-browsers
     steps:
       - checkout
       - gh/setup
