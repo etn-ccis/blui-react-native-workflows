@@ -425,14 +425,14 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
     ]);
 
     // Screen transition logic
-    const canProgress = useCallback(
-        (): boolean => RegistrationPages[currentPage].canGoForward ?? false,
-        [RegistrationPages, currentPage]
-    );
-    const canGoBackProgress = useCallback(
-        (): boolean => RegistrationPages[currentPage].canGoBack ?? true,
-        [RegistrationPages, currentPage]
-    );
+    const canProgress = useCallback((): boolean => RegistrationPages[currentPage].canGoForward ?? false, [
+        RegistrationPages,
+        currentPage,
+    ]);
+    const canGoBackProgress = useCallback((): boolean => RegistrationPages[currentPage].canGoBack ?? true, [
+        RegistrationPages,
+        currentPage,
+    ]);
 
     const advancePage = useCallback(
         (delta = 0): void => {
