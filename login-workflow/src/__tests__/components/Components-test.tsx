@@ -20,6 +20,7 @@ import { Spinner } from '../../components/Spinner';
 import { TextInput } from '../../components/TextInput';
 import { TextInputSecure } from '../../components/TextInputSecure';
 import { ToggleButton } from '../../components/ToggleButton';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
@@ -50,12 +51,14 @@ describe('All components tested with enzyme', () => {
     it('CloseHeader renders correctly', () => {
         const rendered = renderer
             .create(
-                <CloseHeader
-                    title={'CloseHeader'}
-                    backAction={(): void => {
-                        /* do nothing */
-                    }}
-                />
+                <SafeAreaProvider>
+                    <CloseHeader
+                        title={'CloseHeader'}
+                        backAction={(): void => {
+                            /* do nothing */
+                        }}
+                    />
+                </SafeAreaProvider>
             )
             .toJSON();
         expect(rendered).toBeTruthy();
