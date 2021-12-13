@@ -7,12 +7,12 @@ import React from 'react';
 
 // Components
 import { StyleSheet, StyleProp, ViewStyle } from 'react-native';
-import { Body1 } from '@pxblue/react-native-components';
+import { Body1 } from '@brightlayer-ui/react-native-components';
 import { useTheme } from 'react-native-paper';
 import { ThemedButton as Button } from '../components/themed/ThemedButton';
 
 // Styles
-import * as Colors from '@pxblue/colors';
+import * as Colors from '@brightlayer-ui/colors';
 
 /**
  * @ignore
@@ -48,7 +48,7 @@ export type ToggleButtonProps = {
 };
 
 /**
- * Displays a PX Blue compliant button which may be disabled. Optionally present as an outline-only button.
+ * Displays a Brightlayer UI compliant button which may be disabled. Optionally present as an outline-only button.
  *
  * @category Component
  */

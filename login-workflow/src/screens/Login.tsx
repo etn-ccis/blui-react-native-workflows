@@ -22,8 +22,8 @@ import { SimpleDialog } from '../components/SimpleDialog';
 import { ToggleButton } from '../components/ToggleButton';
 
 // Styles
-import * as Colors from '@pxblue/colors';
-import { Body1, H6 } from '@pxblue/react-native-components';
+import * as Colors from '@brightlayer-ui/colors';
+import { Body1, H6 } from '@brightlayer-ui/react-native-components';
 
 // Hooks
 import { useNavigation } from '@react-navigation/native';
@@ -39,7 +39,7 @@ import {
     useInjectedUIContext,
     useSecurityState,
     AccountActions,
-} from '@pxblue/react-auth-shared';
+} from '@brightlayer-ui/react-auth-shared';
 import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 /**
@@ -163,14 +163,14 @@ export const Login: React.FC<LoginProps> = (props) => {
     const transitState = authUIState.login;
     const spinner = transitState.transitInProgress ? <Spinner hasHeader={false} /> : <></>;
     const hasTransitError = authUIState.login.transitErrorMessage !== null;
-    const transitErrorMessage = authUIState.login.transitErrorMessage ?? t('pxb:MESSAGES.REQUEST_ERROR');
+    const transitErrorMessage = authUIState.login.transitErrorMessage ?? t('blui:MESSAGES.REQUEST_ERROR');
     const isInvalidCredentials =
-        transitErrorMessage.replace('pxb:', '') === 'LOGIN.INCORRECT_CREDENTIALS' ||
-        transitErrorMessage.replace('pxb:', '') === 'LOGIN.INVALID_CREDENTIALS';
+        transitErrorMessage.replace('blui:', '') === 'LOGIN.INCORRECT_CREDENTIALS' ||
+        transitErrorMessage.replace('blui:', '') === 'LOGIN.INVALID_CREDENTIALS';
 
     const errorDialog = (
         <SimpleDialog
-            title={t('pxb:MESSAGES.ERROR')}
+            title={t('blui:MESSAGES.ERROR')}
             bodyText={t(transitErrorMessage)}
             visible={hasTransitError && !hasAcknowledgedError}
             onDismiss={(): void => {
@@ -182,7 +182,7 @@ export const Login: React.FC<LoginProps> = (props) => {
     // Construct the optional elements
     let contactEatonRepresentative: JSX.Element = showContactSupport ? (
         <ResizingClearButton
-            title={t('pxb:MESSAGES.CONTACT')}
+            title={t('blui:MESSAGES.CONTACT')}
             style={{ width: '100%' }}
             onPress={(): void => navigation.navigate('SupportContact')}
         />
@@ -197,23 +197,23 @@ export const Login: React.FC<LoginProps> = (props) => {
     if (showSelfRegistration) {
         createAccountOption = (
             <View style={{ marginVertical: 32 }}>
-                <Body1 style={styles.signUpText}>{t('pxb:LABELS.NEED_ACCOUNT')}</Body1>
+                <Body1 style={styles.signUpText}>{t('blui:LABELS.NEED_ACCOUNT')}</Body1>
                 <Button
                     mode={'text'}
                     labelStyle={styles.clearButton}
                     uppercase={false}
                     onPress={(): void => navigation.navigate('Registration')}
                 >
-                    <Body1 color="primary">{t('pxb:ACTIONS.CREATE_ACCOUNT')}</Body1>
+                    <Body1 color="primary">{t('blui:ACTIONS.CREATE_ACCOUNT')}</Body1>
                 </Button>
             </View>
         );
     } else {
         contactEatonRepresentative = showContactSupport ? (
             <View style={{ alignSelf: 'center', flexShrink: 1 }}>
-                <Body1 style={styles.signUpText}>{t('pxb:LABELS.NEED_ACCOUNT')}</Body1>
+                <Body1 style={styles.signUpText}>{t('blui:LABELS.NEED_ACCOUNT')}</Body1>
                 <ResizingClearButton
-                    title={t('pxb:MESSAGES.CONTACT')}
+                    title={t('blui:MESSAGES.CONTACT')}
                     style={{ width: '100%' }}
                     onPress={(): void => navigation.navigate('SupportContact')}
                 />
@@ -343,7 +343,7 @@ export const Login: React.FC<LoginProps> = (props) => {
                     <View style={[{ flexGrow: 1, maxWidth: 600 }]}>
                         <TextInput
                             testID={'email-text-field'}
-                            label={t('pxb:LABELS.EMAIL')}
+                            label={t('blui:LABELS.EMAIL')}
                             value={emailInput}
                             keyboardType={'email-address'}
                             style={{ marginTop: 48 }}
@@ -361,9 +361,9 @@ export const Login: React.FC<LoginProps> = (props) => {
                             error={isInvalidCredentials || hasEmailFormatError}
                             errorText={
                                 isInvalidCredentials
-                                    ? t('pxb:LOGIN.INCORRECT_CREDENTIALS')
+                                    ? t('blui:LOGIN.INCORRECT_CREDENTIALS')
                                     : hasEmailFormatError
-                                    ? t('pxb:MESSAGES.EMAIL_ENTRY_ERROR')
+                                    ? t('blui:MESSAGES.EMAIL_ENTRY_ERROR')
                                     : ''
                             }
                             onBlur={(): void => {
@@ -374,7 +374,7 @@ export const Login: React.FC<LoginProps> = (props) => {
                         <TextInputSecure
                             testID={'password-text-field'}
                             ref={confirmPasswordRef}
-                            label={t('pxb:LABELS.PASSWORD')}
+                            label={t('blui:LABELS.PASSWORD')}
                             value={passwordInput}
                             autoCapitalize={'none'}
                             onChangeText={(text: string): void => {
@@ -385,7 +385,7 @@ export const Login: React.FC<LoginProps> = (props) => {
                             returnKeyType={'done'}
                             style={{ marginTop: 44 }}
                             error={isInvalidCredentials}
-                            errorText={t('pxb:LOGIN.INCORRECT_CREDENTIALS')}
+                            errorText={t('blui:LOGIN.INCORRECT_CREDENTIALS')}
                             onSubmitEditing={!EMAIL_REGEX.test(emailInput) || !passwordInput ? undefined : loginTapped}
                         />
 
@@ -393,7 +393,7 @@ export const Login: React.FC<LoginProps> = (props) => {
                             <View style={[containerStyles.checkboxAndButton]}>
                                 {showRememberMe && (
                                     <Checkbox
-                                        label={t('pxb:ACTIONS.REMEMBER')}
+                                        label={t('blui:ACTIONS.REMEMBER')}
                                         checked={rememberPassword}
                                         style={[containerStyles.checkbox]}
                                         onPress={(): void => setRememberPassword(!rememberPassword)}
@@ -401,7 +401,7 @@ export const Login: React.FC<LoginProps> = (props) => {
                                 )}
                                 <View style={[containerStyles.loginButtonContainer]}>
                                     <ToggleButton
-                                        text={t('pxb:ACTIONS.LOG_IN')}
+                                        text={t('blui:ACTIONS.LOG_IN')}
                                         disabled={!EMAIL_REGEX.test(emailInput) || !passwordInput}
                                         onPress={loginTapped}
                                     />
@@ -418,7 +418,7 @@ export const Login: React.FC<LoginProps> = (props) => {
                                     uppercase={false}
                                     onPress={(): void => navigation.navigate('PasswordResetInitiation')}
                                 >
-                                    <Body1 color="primary">{t('pxb:LABELS.FORGOT_PASSWORD')}</Body1>
+                                    <Body1 color="primary">{t('blui:LABELS.FORGOT_PASSWORD')}</Body1>
                                 </Button>
                             )}
 

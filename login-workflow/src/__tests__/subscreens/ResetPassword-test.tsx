@@ -11,7 +11,7 @@ import { Provider } from 'react-native-paper';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
-import { TextInputHTMLAttributes } from '@pxblue/react-auth-shared';
+import { TextInputHTMLAttributes } from '@brightlayer-ui/react-auth-shared';
 
 // Nav
 import { NavigationContainer } from '@react-navigation/native';
@@ -19,8 +19,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 const Stack = createStackNavigator();
 
 // mock hooks
-jest.mock('@pxblue/react-auth-shared', () => ({
-    ...jest.requireActual('@pxblue/react-auth-shared'),
+jest.mock('@brightlayer-ui/react-auth-shared', () => ({
+    ...jest.requireActual('@brightlayer-ui/react-auth-shared'),
     useAccountUIActions: (): any => ({ dispatch: jest.fn(() => true) }),
     useAccountUIState: jest.fn().mockReturnValue({ forgotPassword: { transitSuccess: true } }),
     AccountActions: { resetPasswordReset: jest.fn(() => true) },

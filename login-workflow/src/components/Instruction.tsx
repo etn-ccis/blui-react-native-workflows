@@ -8,10 +8,10 @@ import React from 'react';
 // Components
 import { View, StyleSheet, StyleProp, ViewStyle } from 'react-native';
 import { FormattedText } from './FormattedText';
-import { Body1 } from '@pxblue/react-native-components';
+import { Body1 } from '@brightlayer-ui/react-native-components';
 
 // Styles
-import * as Colors from '@pxblue/colors';
+import * as Colors from '@brightlayer-ui/colors';
 import { Divider, useTheme } from 'react-native-paper';
 import Color from 'color';
 /**

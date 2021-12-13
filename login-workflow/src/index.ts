@@ -29,4 +29,4 @@ export * from './components/themed/ThemedActivityIndicator';
 export * from './components/themed/ThemedButton';
 export * from './components/themed/ThemedTextInput';
 
-export * from '@pxblue/react-auth-shared';
+export * from '@brightlayer-ui/react-auth-shared';

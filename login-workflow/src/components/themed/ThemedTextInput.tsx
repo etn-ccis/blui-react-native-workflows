@@ -4,7 +4,7 @@ import { TextInput, useTheme } from 'react-native-paper';
 import { TextInputProps } from 'react-native-paper/lib/typescript/components/TextInput/TextInput';
 import { useAltTheme } from '../../contexts/AltThemeProvider/AltThemeProvider';
 import _clonedeep from 'lodash.clonedeep';
-import * as Colors from '@pxblue/colors';
+import * as Colors from '@brightlayer-ui/colors';
 
 const makeStyles = (theme: ReactNativePaper.Theme): Record<string, any> =>
     StyleSheet.create({

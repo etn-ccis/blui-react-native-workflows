@@ -11,10 +11,10 @@ import { useTheme } from 'react-native-paper';
 import { ThemedTextInput } from './themed/ThemedTextInput';
 // @ts-ignore
 import { TextInputProps } from 'react-native-paper/lib/typescript/src/components/TextInput/TextInput';
-import { Subtitle2 } from '@pxblue/react-native-components';
+import { Subtitle2 } from '@brightlayer-ui/react-native-components';
 
 // Styles
-import * as Colors from '@pxblue/colors';
+import * as Colors from '@brightlayer-ui/colors';
 
 /**
  * @ignore

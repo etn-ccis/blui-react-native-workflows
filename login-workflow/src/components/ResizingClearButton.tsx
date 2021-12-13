@@ -8,7 +8,7 @@ import React from 'react';
 // Components
 import { View, StyleSheet, TouchableHighlight, StyleProp, ViewStyle } from 'react-native';
 import { useTheme } from 'react-native-paper';
-import { Body1 } from '@pxblue/react-native-components';
+import { Body1 } from '@brightlayer-ui/react-native-components';
 
 // Styles
 import color from 'color';

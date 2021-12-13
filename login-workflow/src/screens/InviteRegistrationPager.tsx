@@ -32,7 +32,7 @@ import { ToggleButton } from '../components/ToggleButton';
 import i18n from '../translations/i18n';
 
 // Styles
-import * as Colors from '@pxblue/colors';
+import * as Colors from '@brightlayer-ui/colors';
 
 // Shared Auth Logic
 import {
@@ -46,10 +46,10 @@ import {
     AccountDetailsFormProps,
     CustomAccountDetails,
     CustomRegistrationForm,
-} from '@pxblue/react-auth-shared';
+} from '@brightlayer-ui/react-auth-shared';
 import { CustomRegistrationDetailsGroup, RegistrationPage } from '../types';
 import { Instruction } from '../components/Instruction';
-import { MobileStepper, Spacer } from '@pxblue/react-native-components';
+import { MobileStepper, Spacer } from '@brightlayer-ui/react-native-components';
 import Color from 'color';
 
 /**
@@ -166,7 +166,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
     const registrationTransit = registrationState.inviteRegistration.registrationTransit;
     const registrationIsInTransit = registrationTransit.transitInProgress;
     const hasRegistrationTransitError = registrationTransit.transitErrorMessage !== null;
-    const registrationTransitErrorMessage = registrationTransit.transitErrorMessage ?? t('pxb:MESSAGES.REQUEST_ERROR');
+    const registrationTransitErrorMessage = registrationTransit.transitErrorMessage ?? t('blui:MESSAGES.REQUEST_ERROR');
     const registrationSuccess = registrationState.inviteRegistration.registrationTransit.transitSuccess;
 
     // Network state (invite code validation)
@@ -199,7 +199,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
     const RegistrationPages: RegistrationPage[] = [
         {
             name: 'Eula',
-            pageTitle: t('pxb:REGISTRATION.STEPS.LICENSE'),
+            pageTitle: t('blui:REGISTRATION.STEPS.LICENSE'),
             pageBody: (
                 <EulaScreen
                     key={'EulaPage'}
@@ -216,7 +216,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
         },
         {
             name: 'CreatePassword',
-            pageTitle: t('pxb:REGISTRATION.STEPS.PASSWORD'),
+            pageTitle: t('blui:REGISTRATION.STEPS.PASSWORD'),
             pageBody: (
                 <KeyboardAwareScrollView key={'CreatePasswordPage'} contentContainerStyle={[containerStyles.fullFlex]}>
                     <CreatePasswordScreen
@@ -231,7 +231,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
         },
         {
             name: 'AccountDetails',
-            pageTitle: t('pxb:REGISTRATION.STEPS.ACCOUNT_DETAILS'),
+            pageTitle: t('blui:REGISTRATION.STEPS.ACCOUNT_DETAILS'),
             pageBody: (
                 <AccountDetailsScreen
                     key={'AccountDetailsScreen'}
@@ -277,7 +277,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
                     const PageComponent = page.component;
                     return {
                         name: `CustomPage${i + 1}`,
-                        pageTitle: page.title || t('pxb:REGISTRATION.STEPS.ACCOUNT_DETAILS'),
+                        pageTitle: page.title || t('blui:REGISTRATION.STEPS.ACCOUNT_DETAILS'),
                         pageBody: (
                             <SafeAreaView
                                 key={`CustomDetailsPage_${i + 1}`}
@@ -320,16 +320,16 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
         .concat([
             {
                 name: 'Complete',
-                pageTitle: t('pxb:REGISTRATION.STEPS.COMPLETE'),
+                pageTitle: t('blui:REGISTRATION.STEPS.COMPLETE'),
                 pageBody: (
                     <RegistrationComplete
                         key={'CompletePage'}
                         firstName={accountDetails?.firstName ?? ''}
                         lastName={accountDetails?.lastName ?? ''}
-                        email={registrationState.inviteRegistration.email ?? t('pxb:REGISTRATION.UNKNOWN_EMAIL')}
+                        email={registrationState.inviteRegistration.email ?? t('blui:REGISTRATION.UNKNOWN_EMAIL')}
                         organization={
                             registrationState.inviteRegistration.organizationName ??
-                            t('pxb:REGISTRATION.UNKNOWN_ORGANIZATION')
+                            t('blui:REGISTRATION.UNKNOWN_ORGANIZATION')
                         }
                     />
                 ),
@@ -385,7 +385,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
 
     const errorDialog = (
         <SimpleDialog
-            title={t('pxb:MESSAGES.ERROR')}
+            title={t('blui:MESSAGES.ERROR')}
             bodyText={t(registrationTransitErrorMessage)}
             visible={hasRegistrationTransitError && !hasAcknowledgedError}
             onDismiss={(): void => {
@@ -425,14 +425,14 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
     ]);
 
     // Screen transition logic
-    const canProgress = useCallback((): boolean => RegistrationPages[currentPage].canGoForward ?? false, [
-        RegistrationPages,
-        currentPage,
-    ]);
-    const canGoBackProgress = useCallback((): boolean => RegistrationPages[currentPage].canGoBack ?? true, [
-        RegistrationPages,
-        currentPage,
-    ]);
+    const canProgress = useCallback(
+        (): boolean => RegistrationPages[currentPage].canGoForward ?? false,
+        [RegistrationPages, currentPage]
+    );
+    const canGoBackProgress = useCallback(
+        (): boolean => RegistrationPages[currentPage].canGoBack ?? true,
+        [RegistrationPages, currentPage]
+    );
 
     const advancePage = useCallback(
         (delta = 0): void => {
@@ -482,9 +482,9 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
 
     const pageTitle = (): string => {
         if (isValidationInTransit) {
-            return t('pxb:MESSAGES.LOADING');
+            return t('blui:MESSAGES.LOADING');
         } else if (validationTransitErrorMessage !== null) {
-            return t('pxb:MESSAGES.ERROR');
+            return t('blui:MESSAGES.ERROR');
         }
         return RegistrationPages[currentPage].pageTitle || '';
     };
@@ -505,7 +505,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
         buttonArea = (
             <View style={[styles.sideBySideButtons, containerStyles.containerMargins]}>
                 <ToggleButton
-                    text={t('pxb:ACTIONS.CONTINUE')}
+                    text={t('blui:ACTIONS.CONTINUE')}
                     style={{ width: '100%', alignSelf: 'flex-end' }}
                     onPress={(): void => advancePage(1)}
                 />
@@ -525,7 +525,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
                             <Spacer flex={0} width={100} />
                         ) : (
                             <ToggleButton
-                                text={t('pxb:ACTIONS.BACK')}
+                                text={t('blui:ACTIONS.BACK')}
                                 style={{ width: 100, alignSelf: 'flex-start' }}
                                 outlined={true}
                                 disabled={!canGoBackProgress()}
@@ -535,7 +535,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
                     }
                     rightButton={
                         <ToggleButton
-                            text={t('pxb:ACTIONS.NEXT')}
+                            text={t('blui:ACTIONS.NEXT')}
                             style={{ width: 100, alignSelf: 'flex-end' }}
                             disabled={!canProgress()}
                             onPress={(): void => advancePage(1)}
@@ -584,7 +584,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
             {!customAccountAlreadyExists && (
                 <>
                     <CloseHeader
-                        title={t('pxb:REGISTRATION.STEPS.COMPLETE')}
+                        title={t('blui:REGISTRATION.STEPS.COMPLETE')}
                         backAction={(): void => navigation.navigate('Login')}
                         backgroundColor={theme.colors.primaryBase || theme.colors.primary}
                     />
@@ -594,7 +594,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
                         </View>
                         <View style={[styles.sideBySideButtons, containerStyles.containerMargins]}>
                             <ToggleButton
-                                text={t('pxb:ACTIONS.CONTINUE')}
+                                text={t('blui:ACTIONS.CONTINUE')}
                                 style={{ width: '100%', alignSelf: 'flex-end' }}
                                 onPress={(): void => navigation.navigate('Login')}
                             />
@@ -618,7 +618,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
         <View style={{ flex: 1 }}>
             <CloseHeader title={pageTitle()} backAction={(): void => navigation.navigate('Login')} />
             <ErrorState
-                title={t('pxb:MESSAGES.FAILURE')}
+                title={t('blui:MESSAGES.FAILURE')}
                 bodyText={validationTransitErrorMessage}
                 onPress={(): void => {
                     navigation.navigate('Login');

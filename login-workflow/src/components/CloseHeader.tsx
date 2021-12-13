@@ -6,12 +6,12 @@
 import * as React from 'react';
 
 // Components
-import { Header, wrapIcon } from '@pxblue/react-native-components';
+import { Header, wrapIcon } from '@brightlayer-ui/react-native-components';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import { useTheme } from 'react-native-paper';
-import * as Colors from '@pxblue/colors';
+import * as Colors from '@brightlayer-ui/colors';
 
-// PxBlue: It is advised to always call wrapIcon() once per Icon type, and to do so outside of any methods
+// Brightlayer UI: It is advised to always call wrapIcon() once per Icon type, and to do so outside of any methods
 /**
  * @ignore
  */

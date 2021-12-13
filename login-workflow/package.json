@@ -1,18 +1,18 @@
 {
-    "name": "@pxblue/react-native-auth-workflow",
+    "name": "@brightlayer-ui/react-native-auth-workflow",
     "description": "Re-usable workflow components for Authentication and Registration within Eaton applications.",
     "version": "3.3.0",
     "license": "BSD-3-Clause",
     "author": {
-        "name": "PX Blue",
-        "email": "pxblue@eaton.com"
+        "name": "Brightlayer UI",
+        "email": "brightlayer-ui@eaton.com"
     },
-    "homepage": "https://github.com/pxblue/react-native-workflows/tree/master/login-workflow",
+    "homepage": "https://github.com/brightlayer-ui/react-native-workflows/tree/master/login-workflow",
     "repository": {
         "type": "git",
-        "url": "https://github.com/pxblue/react-native-workflows/tree/master/login-workflow"
+        "url": "https://github.com/brightlayer-ui/react-native-workflows/tree/master/login-workflow"
     },
-    "prettier": "@pxblue/prettier-config",
+    "prettier": "@brightlayer-ui/prettier-config",
     "main": "lib/commonjs/index.js",
     "module": "lib/module/index.js",
     "types": "lib/typescript/src/index.d.ts",
@@ -44,18 +44,18 @@
         "precommit": "yarn validate && yarn generate:licenses",
         "update:submodule": "git submodule update --remote",
         "typescript": "tsc --noEmit",
-        "publish:package": "set npm_config_yes=true && npx -p @pxblue/publish pxb-publish",
+        "publish:package": "set npm_config_yes=true && npx -p @brightlayer-ui/publish blui-publish",
         "coverage": "yarn test --coverage --watchAll=false",
-        "tag-package": "npx -p @pxblue/tag pxb-tag"
+        "tag-package": "npx -p @brightlayer-ui/tag blui-tag"
     },
     "dependencies": {
-        "@pxblue/react-auth-shared": "^3.4.0",
+        "@brightlayer-ui/react-auth-shared": "^3.4.0",
         "lodash.clonedeep": "^4.5.0",
         "react-native-status-bar-height": "^2.5.0"
     },
     "peerDependencies": {
-        "@pxblue/colors": "^3.0.0",
-        "@pxblue/react-native-components": "^4.1.1 || ^5.0.0",
+        "@brightlayer-ui/colors": "^3.0.0",
+        "@brightlayer-ui/react-native-components": "^4.1.1 || ^5.0.0",
         "@react-navigation/native": "^5.1.1",
         "@react-navigation/stack": "^5.2.3",
         "date-fns": "^2.14.0",
@@ -72,10 +72,10 @@
     "devDependencies": {
         "@babel/core": "^7.9.0",
         "@babel/runtime": "^7.9.2",
-        "@pxblue/colors": "^3.0.0",
-        "@pxblue/eslint-config": "^2.0.4",
-        "@pxblue/prettier-config": "^1.0.2",
-        "@pxblue/react-native-components": "^5.0.0",
+        "@brightlayer-ui/colors": "^3.0.0",
+        "@brightlayer-ui/eslint-config": "^2.0.4",
+        "@brightlayer-ui/prettier-config": "^1.0.2",
+        "@brightlayer-ui/react-native-components": "^5.0.0",
         "@react-native-async-storage/async-storage": "^1.14.1",
         "@react-native-community/bob": "^0.10.0",
         "@react-native-community/masked-view": "^0.1.7",

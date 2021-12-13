@@ -21,7 +21,7 @@ import {
     ResetPasswordParams,
     // Hooks
     useLanguageLocale,
-} from '@pxblue/react-auth-shared';
+} from '@brightlayer-ui/react-auth-shared';
 
 /**
  * @ignore
@@ -94,7 +94,7 @@ export const ResetPasswordSent: React.FC<ResetPasswordSentProps> = (props) => {
                     />
 
                     <Instruction
-                        text={t('pxb:FORGOT_PASSWORD.LINK_SENT', {
+                        text={t('blui:FORGOT_PASSWORD.LINK_SENT', {
                             replace: { email: email },
                         })}
                         style={containerStyles.containerMargins}
@@ -105,7 +105,7 @@ export const ResetPasswordSent: React.FC<ResetPasswordSentProps> = (props) => {
 
             <View style={[styles.wideButton, containerStyles.containerMargins]}>
                 <View style={{ flex: 1 }}>
-                    <ToggleButton text={t('pxb:ACTIONS.DONE')} onPress={(): void => navigation.navigate('Login')} />
+                    <ToggleButton text={t('blui:ACTIONS.DONE')} onPress={(): void => navigation.navigate('Login')} />
                 </View>
             </View>
         </SafeAreaView>

@@ -1,20 +1,20 @@
 {
-    "@pxblue/react-auth-shared@3.2.1": {
+    "@brightlayer-ui/react-auth-shared@3.2.1": {
         "licenses": "BSD-3-Clause",
-        "repository": "https://github.com/pxblue/react-auth-shared/tree/master",
-        "licenseUrl": "https://github.com/pxblue/react-auth-shared/tree/master",
-        "parents": "@pxblue/react-native-auth-workflow"
+        "repository": "https://github.com/brightlayer-ui/react-auth-shared/tree/master",
+        "licenseUrl": "https://github.com/brightlayer-ui/react-auth-shared/tree/master",
+        "parents": "@brightlayer-ui/react-native-auth-workflow"
     },
     "lodash.clonedeep@4.5.0": {
         "licenses": "MIT",
         "repository": "https://github.com/lodash/lodash",
         "licenseUrl": "https://github.com/lodash/lodash/raw/master/LICENSE",
-        "parents": "@pxblue/react-native-auth-workflow"
+        "parents": "@brightlayer-ui/react-native-auth-workflow"
     },
     "react-native-status-bar-height@2.6.0": {
         "licenses": "MIT",
         "repository": "https://github.com/ovr/react-native-status-bar-height",
         "licenseUrl": "https://github.com/ovr/react-native-status-bar-height/raw/master/LICENSE",
-        "parents": "@pxblue/react-native-auth-workflow"
+        "parents": "@brightlayer-ui/react-native-auth-workflow"
     }
 }

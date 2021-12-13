@@ -2,7 +2,7 @@ import 'react-native-gesture-handler';
 import React from 'react';
 // import { View } from 'react-native';
 import { /*Button,*/ Provider as ThemeProvider } from 'react-native-paper';
-import * as PXBThemes from '@pxblue/react-native-themes';
+import * as BLUIThemes from '@brightlayer-ui/react-native-themes';
 import { MainRouter } from './src/navigation';
 import { ProjectAuthUIActions } from './src/actions/AuthUIActions';
 import { ProjectRegistrationUIActions } from './src/actions/RegistrationUIActions';
@@ -14,12 +14,12 @@ import {
     /*RegistrationData,*/
     i18n,
     AltThemeProvider,
-} from '@pxblue/react-native-auth-workflow';
+} from '@brightlayer-ui/react-native-auth-workflow';
 import { useLinking } from '@react-navigation/native';
 import { authLinkMapping, resolveInitialState } from './src/navigation/DeepLinking';
 // import { SafeAreaView } from 'react-native-safe-area-context';
 // import { Image, ScrollView, View } from 'react-native';
-// import { Body1, H5, Header, Hero, wrapIcon } from '@pxblue/react-native-components';
+// import { Body1, H5, Header, Hero, wrapIcon } from '@brightlayer-ui/react-native-components';
 // import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import { CustomAccountDetails, CustomAccountDetailsTwo } from './src/screens/CustomRegistrationForm';
 // import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -38,9 +38,9 @@ i18n.addResourceBundle('es', 'app', { BUTTONLABEL: '¡Cambia el idioma!' });
 i18n.addResourceBundle('fr', 'app', { BUTTONLABEL: 'Changez de Langue' });
 
 // Uncomment these lines to override workflow strings / translations
-i18n.addResourceBundle('en', 'pxb', { ACTIONS: { CREATE_ACCOUNT: 'Register now!' } }, true, true);
-i18n.addResourceBundle('es', 'pxb', { ACTIONS: { CREATE_ACCOUNT: '¡Regístrate ahora!' } }, true, true);
-i18n.addResourceBundle('fr', 'pxb', { ACTIONS: { CREATE_ACCOUNT: `S'inscrire maintenant!` } }, true, true);
+i18n.addResourceBundle('en', 'blui', { ACTIONS: { CREATE_ACCOUNT: 'Register now!' } }, true, true);
+i18n.addResourceBundle('es', 'blui', { ACTIONS: { CREATE_ACCOUNT: '¡Regístrate ahora!' } }, true, true);
+i18n.addResourceBundle('fr', 'blui', { ACTIONS: { CREATE_ACCOUNT: `S'inscrire maintenant!` } }, true, true);
 
 declare global {
     // eslint-disable-next-line @typescript-eslint/no-namespace
@@ -258,8 +258,8 @@ export const App: React.FC = () => {
     }, [getInitialState]);
 
     return (
-        <AltThemeProvider theme={PXBThemes.blueDarkAlt}>
-            <ThemeProvider theme={PXBThemes.blueDark}>
+        <AltThemeProvider theme={BLUIThemes.blueDarkAlt}>
+            <ThemeProvider theme={BLUIThemes.blueDark}>
                 <SecurityContextProvider>
                     <AuthUIConfiguration>
                         <AuthNavigationContainer

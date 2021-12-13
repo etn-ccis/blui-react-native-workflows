@@ -6,7 +6,7 @@ import React from 'react';
 // Components
 import { CompleteSplashScreen } from './CompleteSplash';
 // Hooks
-import { useLanguageLocale } from '@pxblue/react-auth-shared';
+import { useLanguageLocale } from '@brightlayer-ui/react-auth-shared';
 /**
  * Renders the content of the notice of completed account creation screen.
  *
@@ -14,7 +14,7 @@ import { useLanguageLocale } from '@pxblue/react-auth-shared';
  */
 export const ExistingAccountComplete = (): JSX.Element => {
     const { t } = useLanguageLocale();
-    const welcomeTitle = `${t('pxb:MESSAGES.WELCOME')}!`;
-    const bodyText = `${t('pxb:REGISTRATION.SUCCESS_EXISTING')}`;
+    const welcomeTitle = `${t('blui:MESSAGES.WELCOME')}!`;
+    const bodyText = `${t('blui:REGISTRATION.SUCCESS_EXISTING')}`;
     return <CompleteSplashScreen boldTitle={welcomeTitle} bodyText={bodyText} icon={'person'} />;
 };

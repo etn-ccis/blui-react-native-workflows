@@ -24,8 +24,8 @@ import { ToggleButton } from '../../components/ToggleButton';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
-jest.mock('@pxblue/react-auth-shared', () => ({
-    ...jest.requireActual('@pxblue/react-auth-shared'),
+jest.mock('@brightlayer-ui/react-auth-shared', () => ({
+    ...jest.requireActual('@brightlayer-ui/react-auth-shared'),
     useAuthUIActions: (): any => ({ dispatch: jest.fn(() => true) }),
     useInjectedUIContext: jest.fn().mockReturnValue({ showSelfRegistration: true }),
 }));

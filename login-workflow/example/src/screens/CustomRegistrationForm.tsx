@@ -5,7 +5,7 @@ import { View, StyleSheet, TextInput as ReactTextInput } from 'react-native';
 import { TextInput } from '../components/TextInput';
 
 // Hooks
-import { AccountDetailsFormProps } from '@pxblue/react-auth-shared';
+import { AccountDetailsFormProps } from '@brightlayer-ui/react-auth-shared';
 
 /**
  * @ignore

@@ -13,34 +13,34 @@ echo -e "${BLUE}Building shared-auth package...${NC}"
 cd ./shared-auth && yarn build && cd ..
 
 echo -en "${BLUE}Creating new folder in node_modules...${NC}"
-rm -rf "./node_modules/@pxblue/react-auth-shared"
-mkdir -p "./node_modules/@pxblue/react-auth-shared"
+rm -rf "./node_modules/@brightlayer-ui/react-auth-shared"
+mkdir -p "./node_modules/@brightlayer-ui/react-auth-shared"
 
-rm -rf "./example/node_modules/@pxblue/react-auth-shared"
-mkdir -p "./example/node_modules/@pxblue/react-auth-shared"
+rm -rf "./example/node_modules/@brightlayer-ui/react-auth-shared"
+mkdir -p "./example/node_modules/@brightlayer-ui/react-auth-shared"
 echo -e "${GREEN}Done${NC}"
 
 echo -en "${BLUE}Copying build output into node_modules...${NC}";
-cp -r ./shared-auth/package.json ./node_modules/@pxblue/react-auth-shared/package.json
-cp -r ./shared-auth/lib/. ./node_modules/@pxblue/react-auth-shared/lib
+cp -r ./shared-auth/package.json ./node_modules/@brightlayer-ui/react-auth-shared/package.json
+cp -r ./shared-auth/lib/. ./node_modules/@brightlayer-ui/react-auth-shared/lib
 
-cp -r ./shared-auth/package.json ./example/node_modules/@pxblue/react-auth-shared/package.json
-cp -r ./shared-auth/lib/. ./example/node_modules/@pxblue/react-auth-shared/lib
+cp -r ./shared-auth/package.json ./example/node_modules/@brightlayer-ui/react-auth-shared/package.json
+cp -r ./shared-auth/lib/. ./example/node_modules/@brightlayer-ui/react-auth-shared/lib
 echo -e "${GREEN}Done${NC}"
 
 echo -en "\r\n${BLUE}Linking Shared Auth to workflow and example: ${NC}"
-if [ ! -f ./node_modules/@pxblue/react-auth-shared/package.json ]; then echo -e "${BRED}Not Linked${NC}" && exit 1; fi
-if [ ! -s ./node_modules/@pxblue/react-auth-shared ];
+if [ ! -f ./node_modules/@brightlayer-ui/react-auth-shared/package.json ]; then echo -e "${BRED}Not Linked${NC}" && exit 1; fi
+if [ ! -s ./node_modules/@brightlayer-ui/react-auth-shared ];
     then
-        if [ ! -f ./node_modules/@pxblue/react-auth-shared/lib/commonjs/index.js ];
+        if [ ! -f ./node_modules/@brightlayer-ui/react-auth-shared/lib/commonjs/index.js ];
         then echo -e "${BRED}Not Linked${NC}" && exit 1;
         fi;
 fi
 
-if [ ! -f ./example/node_modules/@pxblue/react-auth-shared/package.json ]; then echo -e "${BRED}Not Linked${NC}" && exit 1; fi
-if [ ! -s ./example/node_modules/@pxblue/react-auth-shared ];
+if [ ! -f ./example/node_modules/@brightlayer-ui/react-auth-shared/package.json ]; then echo -e "${BRED}Not Linked${NC}" && exit 1; fi
+if [ ! -s ./example/node_modules/@brightlayer-ui/react-auth-shared ];
     then
-        if [ ! -f ./example/node_modules/@pxblue/react-auth-shared/lib/commonjs/index.js ];
+        if [ ! -f ./example/node_modules/@brightlayer-ui/react-auth-shared/lib/commonjs/index.js ];
         then echo -e "${BRED}Not Linked${NC}" && exit 1;
         fi;
 fi

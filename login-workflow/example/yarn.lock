@@ -717,6 +717,57 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
+"@brightlayer-ui/colors@^3.0.0":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@brightlayer-ui/colors/-/colors-3.0.1.tgz#f085acf6b6b4266a01798c78bc25841d15e44b3e"
+  integrity sha512-AE9F6FN1EQWMoqFTak6q8MN3wg9et2u2SUs6HjYhcS3GVSHjMWVSsuJZ2aD5Lu9409Gfi6pBHDWsJZ5PyeLsdQ==
+  dependencies:
+    "@brightlayer-ui/types" "^2.0.0"
+
+"@brightlayer-ui/eslint-config@^2.0.4":
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/@brightlayer-ui/eslint-config/-/eslint-config-2.0.5.tgz#b7ee0c47f4669d2ecefc45d5fc37d7a9e209ccc9"
+  integrity sha512-qUxNX/1z+cmBWzbOeFftxGD7SPT+xkT1rUj++xsZjIQajEkwF1Ka+0mRlSY5qqAsQpRLGDCHDszx8uztmSm1lA==
+  dependencies:
+    "@typescript-eslint/parser" "^4.8.0"
+    eslint-config-prettier ">= 6.3.0"
+  optionalDependencies:
+    eslint-plugin-react "^7.16.0"
+
+"@brightlayer-ui/icons-svg@^1.2.0":
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/@brightlayer-ui/icons-svg/-/icons-svg-1.8.0.tgz#83089b53ec9487a563b0b13971aa4b84a67b129b"
+  integrity sha512-QodGlJyUw6k1z7+c+L3s1n1tOZaNKF7UenYO7VQH2EVM/TSzoXPBd6x6fnV9CNqJCSg3uA121wrrhU7ZS3O2MQ==
+
+"@brightlayer-ui/prettier-config@^1.0.2":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@brightlayer-ui/prettier-config/-/prettier-config-1.0.3.tgz#e40a7ae7435c6fd5118acbf249080e0aa81e93af"
+  integrity sha512-EYm3+V7Qd+oYEF+8FadsXAZqXryEHHbGnrV1BMp9selhABjceqUqXPVE4Sn3SKWQdBNJ3En2A3EzgrzRbvRTaw==
+
+"@brightlayer-ui/react-native-components@^5.0.0":
+  version "5.4.1"
+  resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-native-components/-/react-native-components-5.4.1.tgz#e01441b2a0087fc3e44cfa6b33dca3d839323a85"
+  integrity sha512-3sisLxvhilHg0kGVvQoecuEeoKNGmIJ0mK69sdYIsWathpVtYXIedO6U+8zzFFpk2v7WG5wwEq58ngaEteVi6A==
+  dependencies:
+    "@brightlayer-ui/colors" "^3.0.0"
+    color "^3.1.2"
+    react-native-collapsible "^1.5.3"
+    react-native-keyboard-aware-scroll-view "^0.8.0"
+    react-native-modal ">=11.6.1"
+
+"@brightlayer-ui/react-native-themes@5.2.0":
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-native-themes/-/react-native-themes-5.2.0.tgz#d0814a4d020230e10f8fc83e2c36269fd18e6d15"
+  integrity sha512-EzMCVF8hej8Nhacj5VpsgNjI+RujIxw9pyVPQLsSk/ckyDvVoLqYfaW2G3AvfnCZPJ1k9eYryGXcsxLnox+pJA==
+  dependencies:
+    "@brightlayer-ui/colors" "^3.0.0"
+    color "^3.1.3"
+
+"@brightlayer-ui/types@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@brightlayer-ui/types/-/types-2.0.0.tgz#d8adc0cdb96c164943adbad6e74043128a8b4112"
+  integrity sha512-DTCVwND6YC9qrkQl7pkFlN6QxDReJHtjuAiFU9HkXJN368vlw+fzHQ5/j4sB1sZl2eNwOgccv5ecl2XrlolOCw==
+
 "@callstack/react-theme-provider@^3.0.6":
   version "3.0.6"
   resolved "https://registry.yarnpkg.com/@callstack/react-theme-provider/-/react-theme-provider-3.0.6.tgz#7dac483037e27e28676bdf1431ba87b88f21118f"
@@ -982,71 +1033,19 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@pxblue/colors@^3.0.0":
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/@pxblue/colors/-/colors-3.0.1.tgz#4f89fc9ed10d754eac1ea699b722f5ac8c723173"
-  integrity sha512-3iROA/tvf7BiXRA4R9DobWeEE4Tg7bFgFWNuLzqqwHBEz/uI/J83XTW913g/wba9V5IAVt2DYAQFb/qbqYyjKQ==
-  dependencies:
-    "@pxblue/types" "^2.0.0"
+"@pxblue/react-auth-shared@^3.4.0":
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/@pxblue/react-auth-shared/-/react-auth-shared-3.5.0.tgz#e3526c4b1962fa2a2d9ee848a7f88c013de6502b"
+  integrity sha512-cc1f8dBPuwq59dk0xmiSVwPRk7R2SAgRHeG/NaKc11/+oir5VL+rbWuZ4Y/X16ZbtPeYylRDFmDuNSOV53wjeg==
 
-"@pxblue/eslint-config@^2.0.4":
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/@pxblue/eslint-config/-/eslint-config-2.0.5.tgz#2c9f9156175cd99aef2d579e834716f3c0877c93"
-  integrity sha512-nkFi1CSD37OutixMlapg5zPJ3HE+RyokgYmR4J7Uput5Jp6MIzvUw+YeRCT0KWOoWq5snTxyUvIA0ANuX/sXig==
-  dependencies:
-    "@typescript-eslint/parser" "^4.8.0"
-    eslint-config-prettier ">= 6.3.0"
-  optionalDependencies:
-    eslint-plugin-react "^7.16.0"
-
-"@pxblue/icons-svg@^1.2.0":
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/@pxblue/icons-svg/-/icons-svg-1.3.0.tgz#90c18855bf8fc09ae7204c1e8a3cfe20684704a5"
-  integrity sha512-kDf6rIrmRh52iyn/oRbWEK3OXgAJnxJMGWqO3+uP+u87F7wHJaAsHMZbtJHvY1Lu3cf5ElgTW3vWTsUaSOXn3g==
-
-"@pxblue/prettier-config@^1.0.2":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@pxblue/prettier-config/-/prettier-config-1.0.3.tgz#285b9ba346f714d397ef4a59579443b95a77e63e"
-  integrity sha512-x9SDup4pf5H54r/stZBXz7/XlMcIqnwHkEJ+9pyXVtGyQljI28lDGQCWQj6heipWAett50yx0RB3P2+MWZDhJA==
-
-"@pxblue/react-auth-shared@^3.2.0":
+"@pxblue/react-native-auth-workflow@^3.3.0":
   version "3.3.0"
-  resolved "https://registry.yarnpkg.com/@pxblue/react-auth-shared/-/react-auth-shared-3.3.0.tgz#9b3d8ada559d149d199a00710503eec9c1149bdb"
-  integrity sha512-lSGgTnETlmI+74888LNTo/wqPZL/Y13aIEXoGhzWyZJGbOOnRTycbtJFSzeNNddZPGTp5lhfyZ+D7gXtJYN5FQ==
-
-"@pxblue/react-native-auth-workflow@^3.2.0-beta.1":
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/@pxblue/react-native-auth-workflow/-/react-native-auth-workflow-3.2.0.tgz#15fa2069aa4e59bee457fe3e1cfd0099b29cbaee"
-  integrity sha512-KBTGAmFifvSCf/nRT6ZwH1fYzzuv+GGILQxlscQSosD2jDHJvurJXv6b1O8IVXPVnGlc0c9/JMDWBJjlaAzd0Q==
+  resolved "https://registry.yarnpkg.com/@pxblue/react-native-auth-workflow/-/react-native-auth-workflow-3.3.0.tgz#1510c8b10345511b5dd31e0fa15df0644ed86857"
+  integrity sha512-wJKBtjE4oZIkZMBibI+sSkHr6BPVLVJpIJ6bzBihwa5NHlqgjX2E4rR1XSIYU2Zr+rOw1SYmA4ST9MFfSotVDQ==
   dependencies:
-    "@pxblue/react-auth-shared" "^3.2.0"
+    "@pxblue/react-auth-shared" "^3.4.0"
     lodash.clonedeep "^4.5.0"
     react-native-status-bar-height "^2.5.0"
-
-"@pxblue/react-native-components@^5.0.0":
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@pxblue/react-native-components/-/react-native-components-5.1.0.tgz#442a3d2eb951b3fcaf2564deb213178109d67425"
-  integrity sha512-4FKar51vIL/ShzJ4no6rXZM+8BAXmUqL7AaHGrFrEo4nPa5xgUChhXjCqklOzXa3vJ88+6euyCgbFfTU3+WiZg==
-  dependencies:
-    "@pxblue/colors" "^3.0.0"
-    color "^3.1.2"
-    react-native-collapsible "^1.5.3"
-    react-native-keyboard-aware-scroll-view "^0.8.0"
-    react-native-modal "^11.6.1"
-    react-native-status-bar-height "^2.3.1"
-
-"@pxblue/react-native-themes@^5.1.0":
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@pxblue/react-native-themes/-/react-native-themes-5.1.0.tgz#e1f2a2b150ceab5e0c19dc70304df60930865684"
-  integrity sha512-KHKzdubixgXdtKPsL3nlFyFZ5EHCj2rXHLyMmU1eFw7vrDDvJ0/i8hKGpAevFGfgBTDIIDnMzBD+K5GD4u+RLA==
-  dependencies:
-    "@pxblue/colors" "^3.0.0"
-    color "^3.1.3"
-
-"@pxblue/types@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@pxblue/types/-/types-2.0.0.tgz#3df970352aca5256974a10a97d75a2264bad1eba"
-  integrity sha512-rHABCqYALGjrDxdCfw/v4mFsHhE9y9+vdSD3VHfIzA3HY1g1Bp/VWwEuEXWbtj2H5n75D+jkMQZ0rTqSKY3vLw==
 
 "@react-native-async-storage/async-storage@^1.14.1":
   version "1.15.5"
@@ -6034,7 +6033,15 @@ react-native-keyboard-aware-scroll-view@^0.9.3:
     prop-types "^15.6.2"
     react-native-iphone-x-helper "^1.0.3"
 
-react-native-modal@^11.6.1, react-native-modal@^11.7.0:
+react-native-modal@>=11.6.1:
+  version "13.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-modal/-/react-native-modal-13.0.0.tgz#b7117400cae8548e713eed760077dee44f78628e"
+  integrity sha512-k6r9T31mc7HIDFj1V53ceAAN1dwc8052c4JLtDVEmEQ19Bbq9yiLXoDsQuNb+hB8A+2tVOXmo5Gq4IQfb11upw==
+  dependencies:
+    prop-types "^15.6.2"
+    react-native-animatable "1.3.3"
+
+react-native-modal@^11.7.0:
   version "11.10.0"
   resolved "https://registry.yarnpkg.com/react-native-modal/-/react-native-modal-11.10.0.tgz#94a6d3a2428ba5228cfb4dc174cacea79c871591"
   integrity sha512-syRYDJYSh16bR37R5EKU9T/wC+5bEOfF17IUqf5URdhbEDd+hxyMInC++l45E8oI+MtdOaEp9yAws5xDqk8dnA==
@@ -6075,7 +6082,7 @@ react-native-screens@^3.0.0:
   dependencies:
     warn-once "^0.1.0"
 
-react-native-status-bar-height@^2.3.1, react-native-status-bar-height@^2.5.0:
+react-native-status-bar-height@^2.5.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/react-native-status-bar-height/-/react-native-status-bar-height-2.6.0.tgz#b6afd25b6e3d533c43d0fcdcfd5cafd775592cea"
   integrity sha512-z3SGLF0mHT+OlJDq7B7h/jXPjWcdBT3V14Le5L2PjntjjWM3+EJzq2BcXDwV+v67KFNJic5pgA26cCmseYek6w==

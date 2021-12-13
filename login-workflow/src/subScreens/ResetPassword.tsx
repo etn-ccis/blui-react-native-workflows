@@ -26,7 +26,7 @@ import {
     // Hooks
     useLanguageLocale,
     useAccountUIState,
-} from '@pxblue/react-auth-shared';
+} from '@brightlayer-ui/react-auth-shared';
 
 /**
  * @ignore
@@ -134,7 +134,7 @@ export const ResetPassword: React.FC<ResetPasswordProps> = (props) => {
 
     const errorDialog = (
         <SimpleDialog
-            title={t('pxb:MESSAGES.ERROR')}
+            title={t('blui:MESSAGES.ERROR')}
             bodyText={t(transitErrorMessage ?? '')}
             visible={hasTransitError && !hasAcknowledgedError}
             onDismiss={(): void => {
@@ -152,13 +152,13 @@ export const ResetPassword: React.FC<ResetPasswordProps> = (props) => {
                 contentContainerStyle={[containerStyles.scrollContentContainer]}
             >
                 <Instruction
-                    text={t('pxb:FORGOT_PASSWORD.INSTRUCTIONS', { replace: { phone: contactPhone } })}
+                    text={t('blui:FORGOT_PASSWORD.INSTRUCTIONS', { replace: { phone: contactPhone } })}
                     style={containerStyles.containerMargins}
                 />
 
                 <View style={[containerStyles.containerMargins, containerStyles.mainContainer]}>
                     <TextInput
-                        label={t('pxb:LABELS.EMAIL')}
+                        label={t('blui:LABELS.EMAIL')}
                         value={emailInput}
                         style={[styles.inputMargin]}
                         keyboardType={'email-address'}
@@ -170,9 +170,9 @@ export const ResetPassword: React.FC<ResetPasswordProps> = (props) => {
                         error={hasTransitError || hasEmailFormatError}
                         errorText={
                             hasTransitError
-                                ? t('pxb:LOGIN.INCORRECT_CREDENTIALS')
+                                ? t('blui:LOGIN.INCORRECT_CREDENTIALS')
                                 : hasEmailFormatError
-                                ? t('pxb:MESSAGES.EMAIL_ENTRY_ERROR')
+                                ? t('blui:MESSAGES.EMAIL_ENTRY_ERROR')
                                 : ''
                         }
                         onBlur={(): void => {
@@ -185,7 +185,7 @@ export const ResetPassword: React.FC<ResetPasswordProps> = (props) => {
             <View style={[styles.wideButton, containerStyles.containerMargins]}>
                 <View style={{ flex: 1 }}>
                     <ToggleButton
-                        text={t('pxb:FORMS.RESET_PASSWORD')}
+                        text={t('blui:FORMS.RESET_PASSWORD')}
                         disabled={!isValidEmail}
                         onPress={onResetPasswordTap}
                     />

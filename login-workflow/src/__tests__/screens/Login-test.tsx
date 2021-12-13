@@ -15,8 +15,8 @@ import 'react-native-gesture-handler';
 const Stack = createStackNavigator();
 
 // mock hooks
-jest.mock('@pxblue/react-auth-shared', () => ({
-    ...jest.requireActual('@pxblue/react-auth-shared'),
+jest.mock('@brightlayer-ui/react-auth-shared', () => ({
+    ...jest.requireActual('@brightlayer-ui/react-auth-shared'),
     useAccountUIActions: (): any => ({ dispatch: jest.fn(() => true) }),
     useAccountUIState: jest.fn().mockReturnValue({ login: { transitSuccess: true } }),
     AccountActions: { resetPasswordReset: jest.fn(() => true) },

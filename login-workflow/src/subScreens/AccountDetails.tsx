@@ -13,7 +13,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { useTheme } from 'react-native-paper';
 
 // Hooks
-import { useInjectedUIContext, useLanguageLocale } from '@pxblue/react-auth-shared';
+import { useInjectedUIContext, useLanguageLocale } from '@brightlayer-ui/react-auth-shared';
 
 /**
  * @ignore
@@ -113,13 +113,13 @@ export const AccountDetails: React.FC<AccountDetailsProps> = (props) => {
             <View style={{ width: '100%', maxWidth: 600 }}>
                 <KeyboardAwareScrollView>
                     <Instruction
-                        text={t('pxb:REGISTRATION.INSTRUCTIONS.ACCOUNT_DETAILS')}
+                        text={t('blui:REGISTRATION.INSTRUCTIONS.ACCOUNT_DETAILS')}
                         style={containerStyles.containerMargins}
                     />
 
                     <View style={[containerStyles.containerMargins, containerStyles.mainContainer]}>
                         <TextInput
-                            label={t('pxb:FORMS.FIRST_NAME')}
+                            label={t('blui:FORMS.FIRST_NAME')}
                             value={firstNameInput}
                             style={styles.inputMargin}
                             autoCapitalize={'sentences'}
@@ -134,7 +134,7 @@ export const AccountDetails: React.FC<AccountDetailsProps> = (props) => {
 
                         <TextInput
                             ref={lastNameRef}
-                            label={t('pxb:FORMS.LAST_NAME')}
+                            label={t('blui:FORMS.LAST_NAME')}
                             value={lastNameInput}
                             style={styles.inputMargin}
                             autoCapitalize={'sentences'}

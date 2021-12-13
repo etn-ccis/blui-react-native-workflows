@@ -6,10 +6,10 @@
 import React from 'react';
 
 // Hooks
-import { useLanguageLocale } from '@pxblue/react-auth-shared';
+import { useLanguageLocale } from '@brightlayer-ui/react-auth-shared';
 
 // Components
-import { EmptyState, wrapIcon } from '@pxblue/react-native-components';
+import { EmptyState, wrapIcon } from '@brightlayer-ui/react-native-components';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import { View, StyleSheet, SafeAreaView } from 'react-native';
 import { useTheme } from 'react-native-paper';
@@ -79,8 +79,8 @@ export const ErrorState: React.FC<ErrorStateProps> = (props) => {
                     // @ts-ignore we need a new version of the component library that exposes the type for WrapIconProps
                     IconClass={icon ?? ReportIcon}
                     iconColor={theme.colors.error}
-                    title={title ?? t('pxb:MESSAGES.FAILURE')}
-                    description={bodyText !== null ? t(bodyText) : t('pxb:MESSAGES.REQUEST_ERROR')}
+                    title={title ?? t('blui:MESSAGES.FAILURE')}
+                    description={bodyText !== null ? t(bodyText) : t('blui:MESSAGES.REQUEST_ERROR')}
                 />
             </View>
 
@@ -93,7 +93,7 @@ export const ErrorState: React.FC<ErrorStateProps> = (props) => {
                         onPress();
                     }}
                 >
-                    {t('pxb:ACTIONS.FINISH')}
+                    {t('blui:ACTIONS.FINISH')}
                 </Button>
             </View>
         </SafeAreaView>

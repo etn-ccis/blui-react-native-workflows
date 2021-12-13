@@ -9,7 +9,7 @@ import { shallow, mount } from 'enzyme';
 import { VerifyEmail } from '../../subScreens/VerifyEmail';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
-import { TextInputHTMLAttributes } from '@pxblue/react-auth-shared';
+import { TextInputHTMLAttributes } from '@brightlayer-ui/react-auth-shared';
 
 describe('VerifyEmail subScreen tested with enzyme', () => {
     const act = renderer.act;

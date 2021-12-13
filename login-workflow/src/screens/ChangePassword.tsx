@@ -16,7 +16,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { ToggleButton } from '../components/ToggleButton';
 
 // Styles
-import { Body1, H6 } from '@pxblue/react-native-components';
+import { Body1, H6 } from '@brightlayer-ui/react-native-components';
 
 // Hooks
 import { ScrollView } from 'react-native-gesture-handler';
@@ -41,7 +41,7 @@ import {
     // Hooks
     useLanguageLocale,
     useInjectedUIContext,
-} from '@pxblue/react-auth-shared';
+} from '@brightlayer-ui/react-auth-shared';
 
 /**
  * @ignore
@@ -144,23 +144,23 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
     const defaultRequirements: PasswordRequirement[] = [
         {
             regex: LENGTH_REGEX,
-            description: t('pxb:PASSWORD_REQUIREMENTS.LENGTH'),
+            description: t('blui:PASSWORD_REQUIREMENTS.LENGTH'),
         },
         {
             regex: NUMBERS_REGEX,
-            description: t('pxb:PASSWORD_REQUIREMENTS.NUMBERS'),
+            description: t('blui:PASSWORD_REQUIREMENTS.NUMBERS'),
         },
         {
             regex: UPPER_CASE_REGEX,
-            description: t('pxb:PASSWORD_REQUIREMENTS.UPPER'),
+            description: t('blui:PASSWORD_REQUIREMENTS.UPPER'),
         },
         {
             regex: LOWER_CASE_REGEX,
-            description: t('pxb:PASSWORD_REQUIREMENTS.LOWER'),
+            description: t('blui:PASSWORD_REQUIREMENTS.LOWER'),
         },
         {
             regex: SPECIAL_CHAR_REGEX,
-            description: t('pxb:PASSWORD_REQUIREMENTS.SPECIAL'),
+            description: t('blui:PASSWORD_REQUIREMENTS.SPECIAL'),
         },
     ];
     const { passwordRequirements = defaultRequirements } = useInjectedUIContext();
@@ -187,7 +187,7 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
 
     const errorDialog = (
         <SimpleDialog
-            title={t('pxb:MESSAGES.ERROR')}
+            title={t('blui:MESSAGES.ERROR')}
             bodyText={transitState.transitErrorMessage ?? ''}
             visible={transitState.transitErrorMessage !== null && !hasAcknowledgedError}
             onDismiss={(): void => {
@@ -224,10 +224,10 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
                         />
                         <View style={[containerStyles.containerMargins, containerStyles.containerSpacing]}>
                             <H6 style={[styles.headerText, styles.textSpacing]}>
-                                {t('pxb:CHANGE_PASSWORD.PASSWORD_CHANGED')}
+                                {t('blui:CHANGE_PASSWORD.PASSWORD_CHANGED')}
                             </H6>
                             <Body1 style={[styles.bodyText, styles.textSpacing]}>
-                                {t('pxb:CHANGE_PASSWORD.SUCCESS_MESSAGE')}
+                                {t('blui:CHANGE_PASSWORD.SUCCESS_MESSAGE')}
                             </Body1>
                         </View>
                     </ScrollView>
@@ -235,7 +235,7 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
                 <View style={[styles.wideButton, containerStyles.containerMargins]}>
                     <View style={{ flex: 1 }}>
                         <ToggleButton
-                            text={t('pxb:ACTIONS.LOG_IN')}
+                            text={t('blui:ACTIONS.LOG_IN')}
                             style={{ marginHorizontal: 16 }}
                             onPress={(): void => props.onChangeComplete()}
                         />
@@ -260,14 +260,14 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
                     }}
                 >
                     <View style={{ maxWidth: 600 }}>
-                        <Instruction text={t('pxb:CHANGE_PASSWORD.PASSWORD_INFO')} />
+                        <Instruction text={t('blui:CHANGE_PASSWORD.PASSWORD_INFO')} />
                     </View>
                 </View>
                 <ScrollView>
                     <View style={[containerStyles.containerMargins, containerStyles.mainContainer]}>
                         <View style={{ width: '100%', maxWidth: 600 }}>
                             <TextInputSecure
-                                label={t('pxb:LABELS.CURRENT_PASSWORD')}
+                                label={t('blui:LABELS.CURRENT_PASSWORD')}
                                 value={currentPasswordInput}
                                 style={styles.inputMargin}
                                 autoCapitalize={'none'}
@@ -280,7 +280,7 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
                             />
 
                             <TextInputSecure
-                                label={t('pxb:LABELS.NEW_PASSWORD')}
+                                label={t('blui:LABELS.NEW_PASSWORD')}
                                 ref={newPasswordRef}
                                 value={newPasswordInput}
                                 style={styles.inputMargin}
@@ -297,7 +297,7 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
 
                             <TextInputSecure
                                 ref={confirmInputRef}
-                                label={t('pxb:CHANGE_PASSWORD.CONFIRM_NEW_PASSWORD')}
+                                label={t('blui:CHANGE_PASSWORD.CONFIRM_NEW_PASSWORD')}
                                 value={confirmInput}
                                 style={styles.inputMargin}
                                 autoCapitalize={'none'}
@@ -315,11 +315,15 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
                 </ScrollView>
                 <View style={[styles.sideBySideButtons, containerStyles.containerMargins]}>
                     <View style={{ flex: 1, paddingRight: 8 }}>
-                        <ToggleButton text={t('pxb:CHANGE_PASSWORD.CANCEL')} outlined={true} onPress={props.onCancel} />
+                        <ToggleButton
+                            text={t('blui:CHANGE_PASSWORD.CANCEL')}
+                            outlined={true}
+                            onPress={props.onCancel}
+                        />
                     </View>
                     <View style={{ flex: 1, paddingLeft: 8 }}>
                         <ToggleButton
-                            text={t('pxb:CHANGE_PASSWORD.UPDATE')}
+                            text={t('blui:CHANGE_PASSWORD.UPDATE')}
                             disabled={currentPasswordInput === '' || !areValidMatchingPasswords()}
                             onPress={changePassword}
                         />

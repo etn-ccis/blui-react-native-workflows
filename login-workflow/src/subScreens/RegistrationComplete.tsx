@@ -9,7 +9,7 @@ import React from 'react';
 import { CompleteSplashScreen } from './CompleteSplash';
 
 // Hooks
-import { useLanguageLocale } from '@pxblue/react-auth-shared';
+import { useLanguageLocale } from '@brightlayer-ui/react-auth-shared';
 
 /**
  * Type to represent the content of the registration complete component.
@@ -35,8 +35,8 @@ type RegistrationCompleteProps = {
 export const RegistrationComplete: React.FC<RegistrationCompleteProps> = (props) => {
     const { t } = useLanguageLocale();
 
-    const welcomeTitle = `${t('pxb:MESSAGES.WELCOME')}, ${props.firstName} ${props.lastName}!`;
-    const bodyText = t('pxb:REGISTRATION.SUCCESS_MESSAGE', {
+    const welcomeTitle = `${t('blui:MESSAGES.WELCOME')}, ${props.firstName} ${props.lastName}!`;
+    const bodyText = t('blui:REGISTRATION.SUCCESS_MESSAGE', {
         replace: { email: props.email, organization: props.organization },
     });
 
