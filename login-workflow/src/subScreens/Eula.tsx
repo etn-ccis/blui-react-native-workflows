@@ -107,6 +107,7 @@ export const Eula: React.FC<EulaProps> = (props) => {
                         <WebView
                             originWhitelist={['*']}
                             source={{ html: eulaContentInternals }}
+                            scalesPageToFit={false}
                             onLoadEnd={onLoadEnd}
                             style={{ flex: 1, height: 50 /* WebView needs a fixed height set or it won't render */ }}
                         />
