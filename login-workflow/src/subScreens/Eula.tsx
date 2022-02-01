@@ -91,7 +91,7 @@ export const Eula: React.FC<EulaProps> = (props) => {
         ? props.eulaContent ?? props.eulaError ?? t('blui:REGISTRATION.EULA.LOADING')
         : props.eulaContent ??
           '<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>' +
-              `<style>html, body { font-size: 120%; word-wrap: break-word; overflow-wrap: break-word; margin: 0; padding: 0; color: ${theme.colors.text}; background-color: ${theme.colors.surface}; }</style>` +
+              `<style>body { font-size: 120%; word-wrap: break-word; overflow-wrap: break-word; margin: 0; padding: 0; color: ${theme.colors.text}; background-color: ${theme.colors.surface}; }</style>` +
               `<body>${props.eulaError ?? t('blui:REGISTRATION.EULA.LOADING')}</body>` +
               '</html>';
 
