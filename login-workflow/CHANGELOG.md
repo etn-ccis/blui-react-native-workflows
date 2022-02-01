@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixes
 
 -   Issue with horizontal scrolling when using HTML EULA on Android ([#113](https://github.com/brightlayer-ui/react-native-workflows/issues/113)).
+-   Issue with background colors when using HTML EULA with the dark theme.
 
 ## v4.0.0 (December 9, 2021)
 
