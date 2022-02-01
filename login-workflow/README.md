@@ -64,9 +64,9 @@ The following is a list of the screens and their parameters which a deep link ma
 
 -   `login`: the login screen.
 -   `PasswordResetInitiation`: the first screen of the Password Reset flow.
--   `PasswordResetCompletion`: the later half of the Password Reset flow, takes parameter `verifyCode`.
--   `RegistrationInvite`: the Registration via Invitation flow, takes parameter `validationCode`.
--   `Registration`: the later half of the Self Registration flow, takes parameter: `verificationCode`.
+-   `PasswordResetCompletion`: the later half of the Password Reset flow, takes parameter `code` and `email`.
+-   `RegistrationInvite`: the Registration via Invitation flow, takes parameter `code` and `email`.
+-   `Registration`: the later half of the Self Registration flow, takes parameter: `code` and `email`.
 -   `SupportContact`: the Contact Support screen.
 
 #### Testing Deep Links
