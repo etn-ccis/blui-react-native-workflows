@@ -6,7 +6,7 @@
 import React, { useCallback } from 'react';
 
 // Components
-import { Platform, View, StyleSheet, SafeAreaView, StatusBar, TextInput } from 'react-native';
+import { View, StyleSheet, SafeAreaView, StatusBar, TextInput } from 'react-native';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import { PasswordRequirements } from '../components/PasswordRequirements';
 import { TextInputSecure } from '../components/TextInputSecure';
