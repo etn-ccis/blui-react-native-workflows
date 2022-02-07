@@ -200,18 +200,12 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
     );
 
     let statusBar: JSX.Element = <></>;
-    statusBar =
-        Platform.OS === 'ios' ? (
-            <StatusBar
-                backgroundColor={theme.colors?.primaryPalette?.main || theme.colors.primary}
-                barStyle={theme.dark ? 'light-content' : 'dark-content'}
-            />
-        ) : (
-            <StatusBar
-                backgroundColor={theme.colors?.primaryPalette?.dark || theme.colors.primary}
-                barStyle={theme.dark ? 'light-content' : 'dark-content'}
-            />
-        );
+    statusBar = (
+        <StatusBar
+            backgroundColor={theme.colors?.primaryPalette?.main || theme.colors.primary}
+            barStyle={'light-content'}
+        />
+    );
 
     return transitState.transitSuccess ? ( // if the password was changed
         <View style={{ flex: 1, height: '100%', backgroundColor: theme.colors.surface }}>
