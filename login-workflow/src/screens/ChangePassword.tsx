@@ -209,7 +209,7 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
 
     return transitState.transitSuccess ? ( // if the password was changed
         <View style={{ flex: 1, height: '100%', backgroundColor: theme.colors.surface }}>
-            <CloseHeader title={'Change Password'} backAction={props.onCancel} />
+            <CloseHeader title={'Change Password'} backAction={props.onChangeComplete} />
             <SafeAreaView style={[containerStyles.safeContainer, { flexGrow: 1 }]}>
                 {statusBar}
                 <View style={[containerStyles.mainContainer]}>
@@ -235,7 +235,7 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
                         <ToggleButton
                             text={t('blui:ACTIONS.LOG_IN')}
                             style={{ marginHorizontal: 16 }}
-                            onPress={(): void => props.onChangeComplete()}
+                            onPress={props.onChangeComplete}
                         />
                     </View>
                 </View>
