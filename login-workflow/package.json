@@ -24,6 +24,7 @@
         "package.json"
     ],
     "scripts": {
+        "prepack": "yarn && yarn prepare",
         "prepare": "yarn initialize && yarn build",
         "initialize": "bash scripts/initializeSubmodule.sh",
         "install:dependencies": "yarn install:dependencies-ios",
