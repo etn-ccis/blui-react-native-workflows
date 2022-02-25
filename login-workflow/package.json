@@ -24,6 +24,7 @@
         "package.json"
     ],
     "scripts": {
+        "prepare": "yarn initialize && yarn build",
         "initialize": "bash scripts/initializeSubmodule.sh",
         "install:dependencies": "yarn install:dependencies-ios",
         "install:dependencies-ios": "yarn && cd example && yarn && cd ios && pod install && cd ../../shared-auth && yarn && cd .. && yarn link:shared",

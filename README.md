@@ -5,3 +5,7 @@ This repository contains reusable, multi-screen workflows that can dramatically 
 We currently have workflows available for:
 
 - [Login & User Registration](/login-workflow)
+
+Specific branches or forks can be tested using yarn v2.1 or greater with workspaces.
+
+`"@brightlayer-ui/react-native-auth-workflow": "https://github.com/REPOOWNER/react-native-workflows.git&workspace=@brightlayer-ui/react-native-auth-workflow"`
