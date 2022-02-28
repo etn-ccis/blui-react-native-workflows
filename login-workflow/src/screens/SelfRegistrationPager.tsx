@@ -223,8 +223,8 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
         }
     };
 
-    const onEmailChanged = useCallback((email: string) => {
-        setEmail(email); 
+    const onEmailChanged = useCallback((changedEmail: string) => {
+        setEmail(changedEmail);
         setVerificationCode('');
     }, []);
 
