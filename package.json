@@ -1,5 +1,8 @@
 {
     "private": true,
-    "workspaces": ["login-workflow"],
+    "workspaces": {
+      "packages": ["login-workflow"],
+      "nohoist": ["**"]
+    },
     "scripts": {"prepare": "yarn workspace @brightlayer-ui/react-native-auth-workflow prepare"}
   }
