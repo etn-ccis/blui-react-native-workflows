@@ -72,7 +72,7 @@ const makeStyles = (): Record<string, any> =>
  */
 type VerifyEmailProps = {
     initialCode?: string;
-    onVerifyCodeChanged(email: string): void;
+    onVerifyCodeChanged(code: string): void;
     onResendVerificationEmail(): void;
     onSubmit?: () => void;
     theme?: ReactNativePaper.Theme;

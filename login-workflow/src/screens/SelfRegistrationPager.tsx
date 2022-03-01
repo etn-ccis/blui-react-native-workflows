@@ -275,16 +275,17 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
             name: 'VerifyEmail',
             pageTitle: t('blui:REGISTRATION.STEPS.VERIFY_EMAIL'),
             pageBody: (
-                <VerifyEmailScreen
-                    key={'VerifyEmailPage'}
-                    initialCode={verificationCode}
-                    onVerifyCodeChanged={setVerificationCode}
-                    onResendVerificationEmail={(): void => {
-                        void requestCode();
-                    }}
-                    /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
-                    onSubmit={(): void => advancePage(1)}
-                />
+                <View key={'VerifyEmailPage'} style={{ width: '100%', maxWidth: 600 }}>
+                    <VerifyEmailScreen
+                        initialCode={verificationCode}
+                        onVerifyCodeChanged={setVerificationCode}
+                        onResendVerificationEmail={(): void => {
+                            void requestCode();
+                        }}
+                        /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
+                        onSubmit={(): void => advancePage(1)}
+                    />
+                </View>
             ),
             canGoForward: verificationCode.length > 0,
             canGoBack: true,
