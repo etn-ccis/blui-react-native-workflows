@@ -379,7 +379,8 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
             if (currentPage === CompletePage) {
                 requestAnimationFrame(() => viewPager.current?.setPageWithoutAnimation(currentPage));
             } else {
-                requestAnimationFrame(() => viewPager.current?.setPage(currentPage));
+                viewPager.current?.setPageWithoutAnimation(currentPage);
+                // requestAnimationFrame(() => viewPager.current?.setPage(currentPage)); // @TODO: Add this animation back in after react-native-pager-view 6.0.0 is released and integrated
             }
         }
     }, [currentPage, viewPager, CompletePage]);
