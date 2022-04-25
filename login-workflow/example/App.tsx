@@ -80,6 +80,7 @@ export const AuthUIConfiguration: React.FC = (props) => {
                     component: CustomAccountDetailsTwo,
                 },
             ]}
+            // disablePagerAnimation={true}
             // registrationConfig={{
             //     firstName: {
             //         maxLength: 30,
