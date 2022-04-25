@@ -158,6 +158,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
     const [email, setEmail] = React.useState(routeParams?.email ?? '');
     const customSuccess = injectedUIContext.registrationSuccessScreen;
     const customAccountAlreadyExists = injectedUIContext.accountAlreadyExistsScreen;
+    const disablePagerAnimations = injectedUIContext.disablePagerAnimation || false;
 
     // pre-populate values from the route params
     useEffect(() => {
@@ -479,14 +480,12 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
 
     // View pager
     useEffect(() => {
-        if (currentPage === CompletePage) {
+        if (currentPage === CompletePage || disablePagerAnimations) {
             requestAnimationFrame(() => viewPager.current?.setPageWithoutAnimation(currentPage));
         } else {
-            viewPager.current?.setPageWithoutAnimation(currentPage);
-            // requestAnimationFrame(() => viewPager.current?.setPage(currentPage)); // @TODO: Add this animation back in after react-native-pager-view 6.0.0 is released and integrated
+            requestAnimationFrame(() => viewPager.current?.setPage(currentPage));
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [currentPage, viewPager]);
+    }, [currentPage, viewPager, CompletePage, disablePagerAnimations]);
 
     // Network state (loading eula)
     const errorBodyText =

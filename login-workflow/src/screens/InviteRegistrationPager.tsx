@@ -153,6 +153,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
     const routeParams = route.params as InviteRegistrationPagerParams;
     const validationCode = routeParams?.code ?? 'NoCodeEntered';
     const validationEmail = routeParams?.email;
+    const disablePagerAnimations = injectedUIContext.disablePagerAnimation || false;
 
     // Reset registration and validation state on dismissal
     useEffect(
@@ -376,14 +377,13 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
     // View pager
     useEffect(() => {
         if (viewPager && viewPager.current) {
-            if (currentPage === CompletePage) {
+            if (currentPage === CompletePage || disablePagerAnimations) {
                 requestAnimationFrame(() => viewPager.current?.setPageWithoutAnimation(currentPage));
             } else {
-                viewPager.current?.setPageWithoutAnimation(currentPage);
-                // requestAnimationFrame(() => viewPager.current?.setPage(currentPage)); // @TODO: Add this animation back in after react-native-pager-view 6.0.0 is released and integrated
+                requestAnimationFrame(() => viewPager.current?.setPage(currentPage));
             }
         }
-    }, [currentPage, viewPager, CompletePage]);
+    }, [currentPage, viewPager, CompletePage, disablePagerAnimations]);
 
     const errorDialog = (
         <SimpleDialog
