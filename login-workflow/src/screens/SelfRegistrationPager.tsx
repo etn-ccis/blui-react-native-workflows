@@ -482,7 +482,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
         if (currentPage === CompletePage) {
             requestAnimationFrame(() => viewPager.current?.setPageWithoutAnimation(currentPage));
         } else {
-            viewPager.current?.setPageWithoutAnimation(currentPage)
+            viewPager.current?.setPageWithoutAnimation(currentPage);
             // requestAnimationFrame(() => viewPager.current?.setPage(currentPage)); // @TODO: Add this animation back in after react-native-pager-view 6.0.0 is released and integrated
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
