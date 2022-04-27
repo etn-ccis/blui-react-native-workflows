@@ -131,7 +131,7 @@ export const ResetPasswordConfirm: React.FC<ResetPasswordConfirmProps> = (props)
             <CloseHeader
                 title={t('blui:FORMS.RESET_PASSWORD')}
                 backAction={(): void => navigation.navigate('Login')}
-                // backgroundColor={theme.colors.primaryBase || theme.colors.primary}
+                // backgroundColor={(theme.dark ? theme.colors.actionPalette.active : theme.colors.primary) || theme.colors.primary}
             />
             <SafeAreaView style={containerStyles.safeContainer}>
                 <KeyboardAwareScrollView>

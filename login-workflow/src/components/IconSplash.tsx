@@ -33,7 +33,8 @@ const makeStyles = (theme: ReactNativePaper.Theme, iconSize: number): Record<str
             width: iconSize,
             height: iconSize,
             borderRadius: iconSize / 2,
-            backgroundColor: theme.colors.primaryBase || theme.colors.primary,
+            backgroundColor:
+                (theme.dark ? theme.colors.actionPalette.active : theme.colors.primary) || theme.colors.primary,
             justifyContent: 'center',
             alignItems: 'center',
             alignSelf: 'center',
@@ -63,7 +64,9 @@ export const IconSplash: React.FC<IconSplashProps> = (props) => {
     const theme = useTheme(props.theme);
     const styles = makeStyles(theme, iconSize);
     const containerStyles = makeContainerStyles();
-    const iconColor = Color(theme.colors.primaryBase || theme.colors.primary).isDark()
+    const iconColor = Color(
+        (theme.dark ? theme.colors.actionPalette.active : theme.colors.primary) || theme.colors.primary
+    ).isDark()
         ? Colors.white[50]
         : Colors.black[500];
 
