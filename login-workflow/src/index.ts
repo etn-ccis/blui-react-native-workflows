@@ -24,7 +24,9 @@ export { default as i18n } from './translations/i18n';
 export * from '@brightlayer-ui/react-auth-shared';
 
 declare global {
+    // eslint-disable-next-line @typescript-eslint/no-namespace
     namespace ReactNativePaper {
+        // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
         interface ThemeColors {
             primaryPalette: {
                 light: string;
@@ -61,6 +63,7 @@ declare global {
             // overrides: $DeepPartial<ThemeOverrides>;
             // opacity: Partial<ThemeOpacity>;
         }
+        // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
         interface ThemeFonts {
             bold: ThemeFont;
         }
