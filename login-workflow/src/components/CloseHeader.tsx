@@ -37,7 +37,9 @@ export const CloseHeader: React.FC<CloseHeaderProps> = (props) => {
             onIconPress={props.backAction}
             backgroundColor={
                 props.backgroundColor ||
-                (theme.dark ? Colors.black[800] : theme.colors.primaryBase || theme.colors.primary)
+                (theme.dark
+                    ? Colors.black[800]
+                    : (theme.dark ? theme.colors.actionPalette.active : theme.colors.primary) || theme.colors.primary)
             }
         />
     );
