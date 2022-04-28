@@ -22,3 +22,50 @@ export { DismissKeyboardView } from './components/DismissKeyboardView';
 export { default as i18n } from './translations/i18n';
 
 export * from '@brightlayer-ui/react-auth-shared';
+
+declare global {
+    // eslint-disable-next-line @typescript-eslint/no-namespace
+    namespace ReactNativePaper {
+        // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
+        interface ThemeColors {
+            primaryPalette: {
+                light: string;
+                main: string;
+                dark: string;
+            };
+            accentPalette: {
+                light: string;
+                main: string;
+                dark: string;
+            };
+            errorPalette: {
+                light: string;
+                main: string;
+                dark: string;
+            };
+            divider: string;
+            textPalette: {
+                primary: string;
+                secondary: string;
+                onPrimary: {
+                    light: string;
+                    main: string;
+                    dark: string;
+                };
+                disabled: string;
+            };
+            actionPalette: {
+                active: string;
+                background: string;
+                disabled: string;
+                disabledBackground: string;
+            };
+            // overrides: $DeepPartial<ThemeOverrides>;
+            // opacity: Partial<ThemeOpacity>;
+        }
+        // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
+        interface ThemeFonts {
+            bold: ThemeFont;
+        }
+    }
+}

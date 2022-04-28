@@ -153,6 +153,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
     const routeParams = route.params as InviteRegistrationPagerParams;
     const validationCode = routeParams?.code ?? 'NoCodeEntered';
     const validationEmail = routeParams?.email;
+    const disablePagerAnimations = injectedUIContext.disablePagerAnimation || false;
 
     // Reset registration and validation state on dismissal
     useEffect(
@@ -376,13 +377,13 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
     // View pager
     useEffect(() => {
         if (viewPager && viewPager.current) {
-            if (currentPage === CompletePage) {
+            if (currentPage === CompletePage || disablePagerAnimations) {
                 requestAnimationFrame(() => viewPager.current?.setPageWithoutAnimation(currentPage));
             } else {
                 requestAnimationFrame(() => viewPager.current?.setPage(currentPage));
             }
         }
-    }, [currentPage, viewPager, CompletePage]);
+    }, [currentPage, viewPager, CompletePage, disablePagerAnimations]);
 
     const errorDialog = (
         <SimpleDialog
@@ -520,7 +521,9 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
                     styles={{ root: [containerStyles.topBorder, { flex: 0 }] }}
                     steps={RegistrationPages.length}
                     activeStep={currentPage}
-                    activeColor={theme.colors.primaryBase || theme.colors.primary}
+                    activeColor={
+                        (theme.dark ? theme.colors.actionPalette.active : theme.colors.primary) || theme.colors.primary
+                    }
                     leftButton={
                         isFirstStep ? (
                             <Spacer flex={0} width={100} />
@@ -555,7 +558,12 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
                     <CloseHeader
                         title={pageTitle()}
                         backAction={(): void => navigation.navigate('Login')}
-                        backgroundColor={isLastStep ? theme.colors.primaryBase || theme.colors.primary : undefined}
+                        backgroundColor={
+                            isLastStep
+                                ? (theme.dark ? theme.colors.actionPalette.active : theme.colors.primary) ||
+                                  theme.colors.primary
+                                : undefined
+                        }
                     />
 
                     <SafeAreaView style={[containerStyles.spaceBetween, { backgroundColor: theme.colors.surface }]}>
@@ -587,7 +595,10 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
                     <CloseHeader
                         title={t('blui:REGISTRATION.STEPS.COMPLETE')}
                         backAction={(): void => navigation.navigate('Login')}
-                        backgroundColor={theme.colors.primaryBase || theme.colors.primary}
+                        backgroundColor={
+                            (theme.dark ? theme.colors.actionPalette.active : theme.colors.primary) ||
+                            theme.colors.primary
+                        }
                     />
                     <SafeAreaView style={[containerStyles.safeContainer, { flex: 1 }]}>
                         <View style={{ flex: 1 }}>

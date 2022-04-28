@@ -8,3 +8,5 @@ lib/
 jestSetupFile.js
 setup-tests.js
 shared-auth/
+
+example/

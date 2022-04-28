@@ -158,6 +158,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
     const [email, setEmail] = React.useState(routeParams?.email ?? '');
     const customSuccess = injectedUIContext.registrationSuccessScreen;
     const customAccountAlreadyExists = injectedUIContext.accountAlreadyExistsScreen;
+    const disablePagerAnimations = injectedUIContext.disablePagerAnimation || false;
 
     // pre-populate values from the route params
     useEffect(() => {
@@ -479,13 +480,12 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
 
     // View pager
     useEffect(() => {
-        if (currentPage === CompletePage) {
+        if (currentPage === CompletePage || disablePagerAnimations) {
             requestAnimationFrame(() => viewPager.current?.setPageWithoutAnimation(currentPage));
         } else {
             requestAnimationFrame(() => viewPager.current?.setPage(currentPage));
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [currentPage, viewPager]);
+    }, [currentPage, viewPager, CompletePage, disablePagerAnimations]);
 
     // Network state (loading eula)
     const errorBodyText =
@@ -645,7 +645,9 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                     styles={{ root: [{ flex: 0 }] }}
                     steps={RegistrationPages.length}
                     activeStep={currentPage}
-                    activeColor={theme.colors.primaryBase || theme.colors.primary}
+                    activeColor={
+                        (theme.dark ? theme.colors.actionPalette.active : theme.colors.primary) || theme.colors.primary
+                    }
                     leftButton={
                         isFirstStep ? (
                             <Spacer flex={0} width={100} />
@@ -681,7 +683,12 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                     <CloseHeader
                         title={pageTitle()}
                         backAction={(): void => navigation.navigate('Login')}
-                        backgroundColor={isLastStep ? theme.colors.primaryBase || theme.colors.primary : undefined}
+                        backgroundColor={
+                            isLastStep
+                                ? (theme.dark ? theme.colors.actionPalette.active : theme.colors.primary) ||
+                                  theme.colors.primary
+                                : undefined
+                        }
                     />
                     <SafeAreaView style={[containerStyles.spaceBetween, { backgroundColor: theme.colors.surface }]}>
                         <ViewPager
@@ -712,7 +719,10 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                     <CloseHeader
                         title={t('blui:REGISTRATION.STEPS.COMPLETE')}
                         backAction={(): void => navigation.navigate('Login')}
-                        backgroundColor={theme.colors.primaryBase || theme.colors.primary}
+                        backgroundColor={
+                            (theme.dark ? theme.colors.actionPalette.active : theme.colors.primary) ||
+                            theme.colors.primary
+                        }
                     />
                     <SafeAreaView style={[containerStyles.safeContainer, { flex: 1 }]}>
                         <View style={{ flex: 1 }}>
