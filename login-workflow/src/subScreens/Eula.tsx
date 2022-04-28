@@ -91,7 +91,7 @@ export const Eula: React.FC<EulaProps> = (props) => {
         ? props.eulaContent ?? props.eulaError ?? t('blui:REGISTRATION.EULA.LOADING')
         : props.eulaContent ??
           '<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>' +
-              '<style>body { font-size: 120%; word-wrap: break-word; overflow-wrap: break-word; }</style>' +
+              `<style>body { font-size: 120%; word-wrap: break-word; overflow-wrap: break-word; margin: 0; padding: 0; color: ${theme.colors.text}; background-color: ${theme.colors.surface}; }</style>` +
               `<body>${props.eulaError ?? t('blui:REGISTRATION.EULA.LOADING')}</body>` +
               '</html>';
 
@@ -106,9 +106,14 @@ export const Eula: React.FC<EulaProps> = (props) => {
                     {htmlEula ? (
                         <WebView
                             originWhitelist={['*']}
-                            source={{ html: eulaContentInternals }}
+                            source={{ html: eulaContentInternals, baseUrl: '' }}
+                            scalesPageToFit={false}
                             onLoadEnd={onLoadEnd}
-                            style={{ flex: 1, height: 50 /* WebView needs a fixed height set or it won't render */ }}
+                            style={{
+                                flex: 1,
+                                height: 50 /* WebView needs a fixed height set or it won't render */,
+                                backgroundColor: theme.colors.surface,
+                            }}
                         />
                     ) : (
                         <ScrollView>

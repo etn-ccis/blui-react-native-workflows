@@ -1,6 +1,6 @@
 # React Native Auth Workflow
 
-![npm (scoped)](https://img.shields.io/npm/v/@brightlayer-ui/react-native-auth-workflow)
+![npm (scoped)](https://img.shields.io/npm/v/@brightlayer-ui/react-native-auth-workflow) [![codecov](https://codecov.io/gh/brightlayer-ui/react-native-workflows/branch/master/graph/badge.svg?token=U4OI0D5UVP)](https://codecov.io/gh/brightlayer-ui/react-native-workflows)
 
 The React Native Auth Workflow package provides a consistent authentication and registration experience across Eaton mobile applications using React Native.
 
@@ -64,9 +64,9 @@ The following is a list of the screens and their parameters which a deep link ma
 
 -   `login`: the login screen.
 -   `PasswordResetInitiation`: the first screen of the Password Reset flow.
--   `PasswordResetCompletion`: the later half of the Password Reset flow, takes parameter `verifyCode`.
--   `RegistrationInvite`: the Registration via Invitation flow, takes parameter `validationCode`.
--   `Registration`: the later half of the Self Registration flow, takes parameter: `verificationCode`.
+-   `PasswordResetCompletion`: the later half of the Password Reset flow, takes parameter `code` and `email`.
+-   `RegistrationInvite`: the Registration via Invitation flow, takes parameter `code` and `email`.
+-   `Registration`: the later half of the Self Registration flow, takes parameter: `code` and `email`.
 -   `SupportContact`: the Contact Support screen.
 
 #### Testing Deep Links

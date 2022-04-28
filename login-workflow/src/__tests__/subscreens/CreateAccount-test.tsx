@@ -26,7 +26,7 @@ describe('CreateAccount subScreen tested with enzyme', () => {
             /* do nothing */
         }
     ): JSX.Element {
-        return <CreateAccount onEmailChanged={onEmailChanged} />;
+        return <CreateAccount onEmailChanged={onEmailChanged} initialEmail={''} />;
     }
 
     it('renders correctly', () => {

@@ -4,7 +4,10 @@
  */
 
 import * as React from 'react';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+
 import { NavigationContainer } from '@react-navigation/native';
+import { useTheme } from 'react-native-paper';
 import { Splash as SplashScreen } from './Splash';
 import { PreAuthContainer } from './PreAuthContainer';
 import { ChangePassword } from '../screens/ChangePassword';
@@ -68,6 +71,7 @@ const AuthNavigationContainerRender: React.ForwardRefRenderFunction<
 > = (props: NavigationContainerComponentProps, ref: any) => {
     const { children, extraRoutes, initialRouteName, ...other } = props;
     const securityState = useSecurityState();
+    const theme = useTheme();
     const securityActions = useSecurityActions();
     const injectedContext = useInjectedUIContext();
 
@@ -99,19 +103,21 @@ const AuthNavigationContainerRender: React.ForwardRefRenderFunction<
     // Show PreAuthContainer unless the user is authenticated
     // Show the application
     return (
-        <NavigationContainer ref={ref} {...other}>
-            {appShouldBeVisible ? (
-                <>{children}</>
-            ) : (
-                <AuthUIInternalStore>
-                    {securityState.isShowingChangePassword ? (
-                        ChangePasswordScreen
-                    ) : (
-                        <PreAuthContainer extraRoutes={extraRoutes} initialRouteName={initialRouteName} />
-                    )}
-                </AuthUIInternalStore>
-            )}
-        </NavigationContainer>
+        <SafeAreaProvider style={{ backgroundColor: theme.colors.background }}>
+            <NavigationContainer ref={ref} {...other}>
+                {appShouldBeVisible ? (
+                    <>{children}</>
+                ) : (
+                    <AuthUIInternalStore>
+                        {securityState.isShowingChangePassword ? (
+                            ChangePasswordScreen
+                        ) : (
+                            <PreAuthContainer extraRoutes={extraRoutes} initialRouteName={initialRouteName} />
+                        )}
+                    </AuthUIInternalStore>
+                )}
+            </NavigationContainer>
+        </SafeAreaProvider>
     );
 };
 

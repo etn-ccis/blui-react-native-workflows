@@ -69,8 +69,9 @@
         "metro.config.js",
         "jest.config.js",
         "tsconfig.json",
+        "jestSetupFile.js",
         "lib/**/*",
         "docs/**/*",
-        "examples/node_modules"
+        "example/**/*"
     ]
 }

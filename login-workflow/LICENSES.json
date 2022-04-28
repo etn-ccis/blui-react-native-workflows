@@ -1,8 +1,8 @@
 {
-    "@brightlayer-ui/react-auth-shared@3.4.0": {
+    "@brightlayer-ui/react-auth-shared@3.7.0": {
         "licenses": "BSD-3-Clause",
         "repository": "https://github.com/brightlayer-ui/react-auth-shared/tree/master",
-        "licenseUrl": "https://github.com/brightlayer-ui/react-auth-shared/tree/master/raw/master/LICENSE.md",
+        "licenseUrl": "https://github.com/brightlayer-ui/react-auth-shared/tree/master",
         "parents": "@brightlayer-ui/react-native-auth-workflow"
     },
     "lodash.clonedeep@4.5.0": {

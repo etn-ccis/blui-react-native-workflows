@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v4.1.0 (April 28, 2022)
+
+### Fixes
+
+-   Issue with horizontal scrolling when using HTML EULA on Android ([#113](https://github.com/brightlayer-ui/react-native-workflows/issues/113)).
+-   Issue with background colors when using HTML EULA with the dark theme.
+-   Fixed missing header on Change Password screen ([#122](https://github.com/brightlayer-ui/react-native-workflows/issues/122)).
+-   Fixed Verify Email and Account Created page not being wrapped with a View.
+-   Fixed email not being populated when navigating back while creating an account via deeplink.
+
+### Added
+
+-   Added functionality to disable pager animations on the registration pagers by using the `disablePagerAnimation` prop on `AuthUIContextProvider`.
+
 ## v4.0.0 (December 9, 2021)
 
 ### Changed

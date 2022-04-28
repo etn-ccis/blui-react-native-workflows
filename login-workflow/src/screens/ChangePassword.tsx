@@ -6,7 +6,7 @@
 import React, { useCallback } from 'react';
 
 // Components
-import { Platform, View, StyleSheet, SafeAreaView, StatusBar, TextInput } from 'react-native';
+import { View, StyleSheet, SafeAreaView, StatusBar, TextInput } from 'react-native';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import { PasswordRequirements } from '../components/PasswordRequirements';
 import { TextInputSecure } from '../components/TextInputSecure';
@@ -42,6 +42,7 @@ import {
     useLanguageLocale,
     useInjectedUIContext,
 } from '@brightlayer-ui/react-auth-shared';
+import { CloseHeader } from '../components/CloseHeader';
 
 /**
  * @ignore
@@ -199,21 +200,16 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
     );
 
     let statusBar: JSX.Element = <></>;
-    statusBar =
-        Platform.OS === 'ios' ? (
-            <StatusBar
-                backgroundColor={theme.colors?.primaryPalette?.main || theme.colors.primary}
-                barStyle={theme.dark ? 'light-content' : 'dark-content'}
-            />
-        ) : (
-            <StatusBar
-                backgroundColor={theme.colors?.primaryPalette?.dark || theme.colors.primary}
-                barStyle={theme.dark ? 'light-content' : 'dark-content'}
-            />
-        );
+    statusBar = (
+        <StatusBar
+            backgroundColor={theme.colors?.primaryPalette?.main || theme.colors.primary}
+            barStyle={'light-content'}
+        />
+    );
 
     return transitState.transitSuccess ? ( // if the password was changed
         <View style={{ flex: 1, height: '100%', backgroundColor: theme.colors.surface }}>
+            <CloseHeader title={'Change Password'} backAction={props.onChangeComplete} />
             <SafeAreaView style={[containerStyles.safeContainer, { flexGrow: 1 }]}>
                 {statusBar}
                 <View style={[containerStyles.mainContainer]}>
@@ -239,7 +235,7 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
                         <ToggleButton
                             text={t('blui:ACTIONS.LOG_IN')}
                             style={{ marginHorizontal: 16 }}
-                            onPress={(): void => props.onChangeComplete()}
+                            onPress={props.onChangeComplete}
                         />
                     </View>
                 </View>
@@ -247,91 +243,94 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
         </View>
     ) : (
         // if the password hasn't been changed yet
-        <KeyboardAwareScrollView
-            contentContainerStyle={{ flex: 1, height: '100%', backgroundColor: theme.colors.surface }}
-        >
-            <SafeAreaView style={[containerStyles.safeContainer, { flexGrow: 1 }]}>
-                {statusBar}
-                {spinner}
-                {errorDialog}
-                <View
-                    style={{
-                        flexDirection: 'row',
-                        justifyContent: 'center',
-                        width: 'auto',
-                    }}
-                >
-                    <View style={{ maxWidth: 600 }}>
-                        <Instruction text={t('blui:CHANGE_PASSWORD.PASSWORD_INFO')} />
+        <>
+            <CloseHeader title={'Change Password'} backAction={props.onCancel} />
+            <KeyboardAwareScrollView
+                contentContainerStyle={{ flex: 1, height: '100%', backgroundColor: theme.colors.surface }}
+            >
+                <View style={[containerStyles.safeContainer, { flexGrow: 1 }]}>
+                    {statusBar}
+                    {spinner}
+                    {errorDialog}
+                    <View
+                        style={{
+                            flexDirection: 'row',
+                            justifyContent: 'center',
+                            width: 'auto',
+                        }}
+                    >
+                        <View style={{ maxWidth: 600 }}>
+                            <Instruction text={t('blui:CHANGE_PASSWORD.PASSWORD_INFO')} />
+                        </View>
                     </View>
-                </View>
-                <ScrollView>
-                    <View style={[containerStyles.containerMargins, containerStyles.mainContainer]}>
-                        <View style={{ width: '100%', maxWidth: 600 }}>
-                            <TextInputSecure
-                                label={t('blui:LABELS.CURRENT_PASSWORD')}
-                                value={currentPasswordInput}
-                                style={styles.inputMargin}
-                                autoCapitalize={'none'}
-                                returnKeyType={'next'}
-                                onChangeText={(text: string): void => setCurrentPasswordInput(text)}
-                                onSubmitEditing={(): void => {
-                                    goToNewPasswordInput();
-                                }}
-                                blurOnSubmit={false}
+                    <ScrollView>
+                        <View style={[containerStyles.containerMargins, containerStyles.mainContainer]}>
+                            <View style={{ width: '100%', maxWidth: 600 }}>
+                                <TextInputSecure
+                                    label={t('blui:LABELS.CURRENT_PASSWORD')}
+                                    value={currentPasswordInput}
+                                    style={styles.inputMargin}
+                                    autoCapitalize={'none'}
+                                    returnKeyType={'next'}
+                                    onChangeText={(text: string): void => setCurrentPasswordInput(text)}
+                                    onSubmitEditing={(): void => {
+                                        goToNewPasswordInput();
+                                    }}
+                                    blurOnSubmit={false}
+                                />
+
+                                <TextInputSecure
+                                    label={t('blui:LABELS.NEW_PASSWORD')}
+                                    ref={newPasswordRef}
+                                    value={newPasswordInput}
+                                    style={styles.inputMargin}
+                                    autoCapitalize={'none'}
+                                    returnKeyType={'next'}
+                                    onChangeText={(text: string): void => setNewPasswordInput(text)}
+                                    onSubmitEditing={(): void => {
+                                        goToConfirmInput();
+                                    }}
+                                    blurOnSubmit={false}
+                                />
+
+                                <PasswordRequirements style={{ paddingTop: 8 }} passwordText={newPasswordInput} />
+
+                                <TextInputSecure
+                                    ref={confirmInputRef}
+                                    label={t('blui:CHANGE_PASSWORD.CONFIRM_NEW_PASSWORD')}
+                                    value={confirmInput}
+                                    style={styles.inputMargin}
+                                    autoCapitalize={'none'}
+                                    returnKeyType={'done'}
+                                    error={confirmInput !== '' && newPasswordInput !== confirmInput}
+                                    onChangeText={(text: string): void => setConfirmInput(text)}
+                                    onSubmitEditing={
+                                        currentPasswordInput === '' || !areValidMatchingPasswords()
+                                            ? undefined
+                                            : changePassword
+                                    }
+                                />
+                            </View>
+                        </View>
+                    </ScrollView>
+                    <View style={[styles.sideBySideButtons, containerStyles.containerMargins]}>
+                        <View style={{ flex: 1, paddingRight: 8 }}>
+                            <ToggleButton
+                                text={t('blui:CHANGE_PASSWORD.CANCEL')}
+                                outlined={true}
+                                onPress={props.onCancel}
                             />
-
-                            <TextInputSecure
-                                label={t('blui:LABELS.NEW_PASSWORD')}
-                                ref={newPasswordRef}
-                                value={newPasswordInput}
-                                style={styles.inputMargin}
-                                autoCapitalize={'none'}
-                                returnKeyType={'next'}
-                                onChangeText={(text: string): void => setNewPasswordInput(text)}
-                                onSubmitEditing={(): void => {
-                                    goToConfirmInput();
-                                }}
-                                blurOnSubmit={false}
-                            />
-
-                            <PasswordRequirements style={{ paddingTop: 8 }} passwordText={newPasswordInput} />
-
-                            <TextInputSecure
-                                ref={confirmInputRef}
-                                label={t('blui:CHANGE_PASSWORD.CONFIRM_NEW_PASSWORD')}
-                                value={confirmInput}
-                                style={styles.inputMargin}
-                                autoCapitalize={'none'}
-                                returnKeyType={'done'}
-                                error={confirmInput !== '' && newPasswordInput !== confirmInput}
-                                onChangeText={(text: string): void => setConfirmInput(text)}
-                                onSubmitEditing={
-                                    currentPasswordInput === '' || !areValidMatchingPasswords()
-                                        ? undefined
-                                        : changePassword
-                                }
+                        </View>
+                        <View style={{ flex: 1, paddingLeft: 8 }}>
+                            <ToggleButton
+                                text={t('blui:CHANGE_PASSWORD.UPDATE')}
+                                disabled={currentPasswordInput === '' || !areValidMatchingPasswords()}
+                                onPress={changePassword}
                             />
                         </View>
                     </View>
-                </ScrollView>
-                <View style={[styles.sideBySideButtons, containerStyles.containerMargins]}>
-                    <View style={{ flex: 1, paddingRight: 8 }}>
-                        <ToggleButton
-                            text={t('blui:CHANGE_PASSWORD.CANCEL')}
-                            outlined={true}
-                            onPress={props.onCancel}
-                        />
-                    </View>
-                    <View style={{ flex: 1, paddingLeft: 8 }}>
-                        <ToggleButton
-                            text={t('blui:CHANGE_PASSWORD.UPDATE')}
-                            disabled={currentPasswordInput === '' || !areValidMatchingPasswords()}
-                            onPress={changePassword}
-                        />
-                    </View>
                 </View>
-            </SafeAreaView>
-        </KeyboardAwareScrollView>
+            </KeyboardAwareScrollView>
+        </>
     );
 };

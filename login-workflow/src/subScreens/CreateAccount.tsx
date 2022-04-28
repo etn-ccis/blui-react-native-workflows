@@ -65,6 +65,7 @@ const makeStyles = (): Record<string, any> =>
  * @param theme (Optional) react-native-paper theme partial for custom styling.
  */
 type CreateAccountProps = {
+    initialEmail: string;
     onEmailChanged(email: string): void;
     onSubmit?: () => void;
     theme?: ReactNativePaper.Theme;
@@ -77,7 +78,7 @@ type CreateAccountProps = {
  */
 export const CreateAccount: React.FC<CreateAccountProps> = (props) => {
     const theme = useTheme(props.theme);
-    const [emailInput, setEmailInput] = React.useState('');
+    const [emailInput, setEmailInput] = React.useState(props.initialEmail ?? '');
     const [hasEmailFormatError, setHasEmailFormatError] = React.useState(false);
     const { t } = useLanguageLocale();
 
