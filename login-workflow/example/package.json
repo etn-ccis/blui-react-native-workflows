@@ -49,7 +49,7 @@
     "devDependencies": {
         "@babel/core": "^7.12.9",
         "@babel/runtime": "^7.12.5",
-        "@brightlayer-ui/eslint-config": "^2.0.5",
+        "@brightlayer-ui/eslint-config": "^3.0.1",
         "@brightlayer-ui/prettier-config": "^1.0.3",
         "@react-native-community/eslint-config": "^2.0.0",
         "@types/jest": "^26.0.20",

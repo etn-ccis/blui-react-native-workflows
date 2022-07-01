@@ -16,6 +16,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 
 // Hooks
 import { useLanguageLocale } from '@brightlayer-ui/react-auth-shared';
+import { Body1 } from '@brightlayer-ui/react-native-components';
 
 /**
  * @ignore
@@ -122,14 +123,10 @@ export const VerifyEmail: React.FC<VerifyEmailProps> = (props) => {
                         onChangeText={setVerifyCode}
                         onSubmitEditing={verifyCode.length ? props.onSubmit : undefined}
                     />
-                    <View style={{ flex: 1 }}>
-                        <Button
-                            uppercase={false}
-                            mode={'contained'}
-                            onPress={(): void => onResendVerificationEmail()}
-                            style={styles.inputMargin}
-                        >
-                            {t('blui:SELF_REGISTRATION.VERIFY_EMAIL.RESEND')}
+                    <View style={{ flex: 1, flexDirection: 'row', marginTop: 24, alignItems: 'center' }}>
+                        <Body1>{t('blui:SELF_REGISTRATION.VERIFY_EMAIL.VERIFICATION_CODE_PROMPT')}</Body1>
+                        <Button uppercase={false} mode={'text'} onPress={(): void => onResendVerificationEmail()}>
+                            {t('blui:ACTIONS.RESEND')}
                         </Button>
                     </View>
                 </View>

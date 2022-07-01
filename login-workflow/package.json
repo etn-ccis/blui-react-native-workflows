@@ -82,7 +82,7 @@
         "@babel/core": "^7.9.0",
         "@babel/runtime": "^7.9.2",
         "@brightlayer-ui/colors": "^3.0.0",
-        "@brightlayer-ui/eslint-config": "^2.0.4",
+        "@brightlayer-ui/eslint-config": "^3.0.1",
         "@brightlayer-ui/prettier-config": "^1.0.2",
         "@brightlayer-ui/react-native-components": "^6.0.1",
         "@brightlayer-ui/react-native-themes": "^6.0.0",
