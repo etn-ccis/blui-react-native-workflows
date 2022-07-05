@@ -10,7 +10,6 @@ import { View, StyleSheet, SafeAreaView, TouchableOpacity } from 'react-native';
 import { TextInput } from '../components/TextInput';
 import { Instruction } from '../components/Instruction';
 import { useTheme } from 'react-native-paper';
-// import { ThemedButton as Button } from '@brightlayer-ui/react-native-components/themed';
 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
