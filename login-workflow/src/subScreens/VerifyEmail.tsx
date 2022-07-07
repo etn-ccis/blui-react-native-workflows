@@ -122,7 +122,7 @@ export const VerifyEmail: React.FC<VerifyEmailProps> = (props) => {
                         onChangeText={setVerifyCode}
                         onSubmitEditing={verifyCode.length ? props.onSubmit : undefined}
                     />
-                     <View style={{ flex: 1, flexDirection: 'row', marginTop: 24, alignItems: 'center' }}>
+                    <View style={{ flex: 1, flexDirection: 'row', marginTop: 24, alignItems: 'center' }}>
                         <Body1>{t('blui:SELF_REGISTRATION.VERIFY_EMAIL.VERIFICATION_CODE_PROMPT')}</Body1>
                         <TouchableOpacity onPress={(): void => onResendVerificationEmail()}>
                             <Body1 color="primary">&nbsp;{t('blui:ACTIONS.RESEND')}</Body1>
