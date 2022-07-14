@@ -521,9 +521,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
                     styles={{ root: [containerStyles.topBorder, { flex: 0 }] }}
                     steps={RegistrationPages.length}
                     activeStep={currentPage}
-                    activeColor={
-                        (theme.dark ? theme.colors.actionPalette.active : theme.colors.primary) || theme.colors.primary
-                    }
+                    activeColor={theme.colors.primary}
                     leftButton={
                         isFirstStep ? (
                             <Spacer flex={0} width={100} />

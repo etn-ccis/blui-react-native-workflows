@@ -5,11 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## v4.2.0 (unreleased)
+## v4.2.0 (Unreleased)
 
 ### Changed
 
 -   Changed the verification code styles for the self registration workflow ([#157](https://github.com/brightlayer-ui/react-native-workflows/issues/157)).
+
+### Fixes
+
+-   Issue with `<MobileStepper>` and `<RequirementCheck>` active/valid state color in dark theme ([#161](https://github.com/brightlayer-ui/react-native-workflows/issues/161)).
 
 ## v4.1.0 (April 28, 2022)
 
