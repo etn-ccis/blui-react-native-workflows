@@ -7,13 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## v4.2.0 (unreleased)
 
+### Fixed
+
+-   Issue with Eula checkbox alignment ([#76](https://github.com/brightlayer-ui/react-native-workflows/issues/76)).
+
 ### Changed
 
 -   Changed the verification code styles for the self registration workflow ([#157](https://github.com/brightlayer-ui/react-native-workflows/issues/157)).
 
 ## v4.1.0 (April 28, 2022)
 
-### Fixes
+### Fixed
 
 -   Issue with horizontal scrolling when using HTML EULA on Android ([#113](https://github.com/brightlayer-ui/react-native-workflows/issues/113)).
 -   Issue with background colors when using HTML EULA with the dark theme.
