@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 -   Issue with Eula checkbox alignment ([#76](https://github.com/brightlayer-ui/react-native-workflows/issues/76)).
 
+### Added
+
+-   Support for Portuguese translations ([#110](https://github.com/brightlayer-ui/react-native-workflows/issues/110)).
+
 ### Changed
 
 -   Changed the verification code styles for the self registration workflow ([#157](https://github.com/brightlayer-ui/react-native-workflows/issues/157)).

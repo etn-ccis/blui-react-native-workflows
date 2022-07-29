@@ -36,11 +36,13 @@ void i18n.changeLanguage('en');
 i18n.addResourceBundle('en', 'app', { BUTTONLABEL: 'Change Language' });
 i18n.addResourceBundle('es', 'app', { BUTTONLABEL: '¡Cambia el idioma!' });
 i18n.addResourceBundle('fr', 'app', { BUTTONLABEL: 'Changez de Langue' });
+i18n.addResourceBundle('pt', 'app', { BUTTONLABEL: 'Mudar idioma' });
 
 // Uncomment these lines to override workflow strings / translations
 i18n.addResourceBundle('en', 'blui', { ACTIONS: { CREATE_ACCOUNT: 'Register now!' } }, true, true);
 i18n.addResourceBundle('es', 'blui', { ACTIONS: { CREATE_ACCOUNT: '¡Regístrate ahora!' } }, true, true);
 i18n.addResourceBundle('fr', 'blui', { ACTIONS: { CREATE_ACCOUNT: `S'inscrire maintenant!` } }, true, true);
+i18n.addResourceBundle('pt', 'blui', { ACTIONS: { CREATE_ACCOUNT: `Registrar agora!` } }, true, true);
 
 declare global {
     // eslint-disable-next-line @typescript-eslint/no-namespace
