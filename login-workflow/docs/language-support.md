@@ -4,7 +4,7 @@ This package supports translations to different languages using [i18next](https:
 
 -   English
 -   French
--   Portuguese
+-
 -   Spanish
 -   Simplified Chinese
 
@@ -14,7 +14,7 @@ When the app is loaded, you will need to set the language that will be used by t
 
 ```tsx
 import { i18n } from '@brightlayer-ui/react-native-auth-workflow';
-i18n.changeLanguage('fr'); // 'en', 'es', 'fr', 'pt, 'zh'
+i18n.changeLanguage('fr'); // 'en', 'es', 'fr', 'pt', 'zh'
 ```
 
 > If you do not set the language when the application loads, the workflow will automatically select the language based on the device settings (unsupported languages will fall back to English).
