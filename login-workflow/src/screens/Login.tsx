@@ -128,6 +128,7 @@ export const Login: React.FC<LoginProps> = (props) => {
         showContactSupport = true,
         showRememberMe = true,
         enableResetPassword = true,
+        loginType = 'email',
         loginActions,
         loginFooter,
         loginHeader,
@@ -343,9 +344,9 @@ export const Login: React.FC<LoginProps> = (props) => {
                     <View style={[{ flexGrow: 1, maxWidth: 600 }]}>
                         <TextInput
                             testID={'email-text-field'}
-                            label={t('blui:LABELS.EMAIL')}
+                            label={loginType === 'email' ? t('blui:LABELS.EMAIL') : t('blui:LABELS.USERNAME')}
                             value={emailInput}
-                            keyboardType={'email-address'}
+                            keyboardType={loginType === 'email' ? 'email-address' : 'default'}
                             style={{ marginTop: 48 }}
                             onChangeText={(text: string): void => {
                                 setEmailInput(text);
@@ -367,7 +368,7 @@ export const Login: React.FC<LoginProps> = (props) => {
                                     : ''
                             }
                             onBlur={(): void => {
-                                if (emailInput.length > 0 && !EMAIL_REGEX.test(emailInput))
+                                if (loginType === 'email' && emailInput.length > 0 && !EMAIL_REGEX.test(emailInput))
                                     setHasEmailFormatError(true);
                             }}
                         />
@@ -402,7 +403,11 @@ export const Login: React.FC<LoginProps> = (props) => {
                                 <View style={[containerStyles.loginButtonContainer]}>
                                     <ToggleButton
                                         text={t('blui:ACTIONS.LOG_IN')}
-                                        disabled={!EMAIL_REGEX.test(emailInput) || !passwordInput}
+                                        disabled={
+                                            loginType === 'email'
+                                                ? !EMAIL_REGEX.test(emailInput) || !passwordInput
+                                                : !emailInput || !passwordInput
+                                        }
                                         onPress={loginTapped}
                                     />
                                 </View>
