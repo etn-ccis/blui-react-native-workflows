@@ -57,13 +57,13 @@
         "tag-package": "npx -p @brightlayer-ui/tag blui-tag"
     },
     "dependencies": {
-        "@brightlayer-ui/react-auth-shared": "^3.7.1-beta.0",
+        "@brightlayer-ui/react-auth-shared": "^3.7.1",
         "lodash.clonedeep": "^4.5.0",
         "react-native-status-bar-height": "^2.5.0"
     },
     "peerDependencies": {
         "@brightlayer-ui/colors": "^3.0.1",
-        "@brightlayer-ui/react-native-components": "^6.0.1",
+        "@brightlayer-ui/react-native-components": "^6.0.3",
         "@brightlayer-ui/react-native-vector-icons": "^1.3.0",
         "@react-navigation/native": "^5.1.1",
         "@react-navigation/stack": "^5.2.3",
@@ -84,7 +84,7 @@
         "@brightlayer-ui/colors": "^3.0.0",
         "@brightlayer-ui/eslint-config": "^2.0.4",
         "@brightlayer-ui/prettier-config": "^1.0.2",
-        "@brightlayer-ui/react-native-components": "^6.0.1",
+        "@brightlayer-ui/react-native-components": "^6.0.3",
         "@brightlayer-ui/react-native-themes": "^6.0.0",
         "@brightlayer-ui/react-native-vector-icons": "^1.3.0",
         "@react-native-async-storage/async-storage": "^1.14.1",
