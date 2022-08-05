@@ -32,6 +32,7 @@ import { useNavigation } from '@react-navigation/native';
 import {
     // Constants
     EMAIL_REGEX,
+    USERNAME_REGEX,
     // Hooks
     useLanguageLocale,
     useAccountUIActions,
@@ -152,6 +153,7 @@ export const Login: React.FC<LoginProps> = (props) => {
         showRememberMe ? securityState.rememberMeDetails.email ?? '' : ''
     );
     const [hasEmailFormatError, setHasEmailFormatError] = React.useState(false);
+    const [hasUsernameFormatError, setHasUsernameFormatError] = React.useState(false);
     const [passwordInput, setPasswordInput] = React.useState('');
     const [hasAcknowledgedError, setHasAcknowledgedError] = React.useState(false);
     const [debugMode, setDebugMode] = React.useState(false);
@@ -351,6 +353,7 @@ export const Login: React.FC<LoginProps> = (props) => {
                             onChangeText={(text: string): void => {
                                 setEmailInput(text);
                                 setHasEmailFormatError(false);
+                                setHasUsernameFormatError(false);
                                 if (authUIState.login.transitErrorMessage !== null)
                                     authUIActions.dispatch(AccountActions.resetLogin());
                             }}
@@ -359,17 +362,25 @@ export const Login: React.FC<LoginProps> = (props) => {
                             }}
                             blurOnSubmit={false}
                             returnKeyType={'next'}
-                            error={isInvalidCredentials || hasEmailFormatError}
+                            error={isInvalidCredentials || hasEmailFormatError || hasUsernameFormatError}
                             errorText={
                                 isInvalidCredentials
                                     ? t('blui:LOGIN.INCORRECT_CREDENTIALS')
                                     : hasEmailFormatError
                                     ? t('blui:MESSAGES.EMAIL_ENTRY_ERROR')
+                                    : hasUsernameFormatError
+                                    ? t('blui:MESSAGES.USERNAME_ENTRY_ERROR')
                                     : ''
                             }
                             onBlur={(): void => {
-                                if (loginType === 'email' && emailInput.length > 0 && !EMAIL_REGEX.test(emailInput))
+                                if (loginType === 'email' && emailInput.length > 0 && !EMAIL_REGEX.test(emailInput)) {
                                     setHasEmailFormatError(true);
+                                } else if (
+                                    loginType === 'username' &&
+                                    emailInput.length > 0 &&
+                                    !USERNAME_REGEX.test(emailInput)
+                                )
+                                    setHasUsernameFormatError(true);
                             }}
                         />
                         <TextInputSecure
@@ -387,7 +398,11 @@ export const Login: React.FC<LoginProps> = (props) => {
                             style={{ marginTop: 44 }}
                             error={isInvalidCredentials}
                             errorText={t('blui:LOGIN.INCORRECT_CREDENTIALS')}
-                            onSubmitEditing={!EMAIL_REGEX.test(emailInput) || !passwordInput ? undefined : loginTapped}
+                            onSubmitEditing={
+                                !EMAIL_REGEX.test(emailInput) || !USERNAME_REGEX.test(emailInput) || !passwordInput
+                                    ? undefined
+                                    : loginTapped
+                            }
                         />
 
                         <View style={[containerStyles.loginControls]}>
@@ -406,6 +421,8 @@ export const Login: React.FC<LoginProps> = (props) => {
                                         disabled={
                                             loginType === 'email'
                                                 ? !EMAIL_REGEX.test(emailInput) || !passwordInput
+                                                : loginType === 'username'
+                                                ? !USERNAME_REGEX.test(emailInput) || !passwordInput
                                                 : !emailInput || !passwordInput
                                         }
                                         onPress={loginTapped}
