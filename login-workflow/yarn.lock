@@ -1086,15 +1086,15 @@
   resolved "https://registry.yarnpkg.com/@brightlayer-ui/prettier-config/-/prettier-config-1.0.3.tgz#e40a7ae7435c6fd5118acbf249080e0aa81e93af"
   integrity sha512-EYm3+V7Qd+oYEF+8FadsXAZqXryEHHbGnrV1BMp9selhABjceqUqXPVE4Sn3SKWQdBNJ3En2A3EzgrzRbvRTaw==
 
-"@brightlayer-ui/react-auth-shared@^3.7.1-beta.0":
-  version "3.7.1-beta.0"
-  resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-auth-shared/-/react-auth-shared-3.7.1-beta.0.tgz#d626955de2d5690807356a56eba91cf174a8448b"
-  integrity sha512-YV5pxkSr6Wlh6mx6Jr+hXFvUSMGnRi27OrCOdIvaxztQhMx9mFG6BA9zx+VAMOchJAkONZFP+QpEnfUkeurnHg==
+"@brightlayer-ui/react-auth-shared@^3.7.1":
+  version "3.7.1"
+  resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-auth-shared/-/react-auth-shared-3.7.1.tgz#e8ee16f592a4225f9ef9de2f8741bdc941f9cf55"
+  integrity sha512-Kmvmj2pPTTp1v1TE38ZmrTtGhQcnEeY+7pnU/fE39A1dzNTn3nX5ZWGrysfoDU5c33lvWbJIsss7PUCaOKZ3nA==
 
-"@brightlayer-ui/react-native-components@^6.0.3-beta.0":
-  version "6.0.3-beta.0"
-  resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-native-components/-/react-native-components-6.0.3-beta.0.tgz#73ea28ee97b9b51dabcefc7f881a3b3c23ccfdaf"
-  integrity sha512-Q2ewKw1qo8kLD6I0zacMHPVDzbRvQv7YA/PXPpPzPp6rt3w1MqaIKmz0Iw2BKxhDSkmAmnclnzTAhZXqtePs2w==
+"@brightlayer-ui/react-native-components@^6.0.3":
+  version "6.0.3"
+  resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-native-components/-/react-native-components-6.0.3.tgz#fcf8aa5c380d81041aeccc93e0d84a915452ba71"
+  integrity sha512-ZRsoOnDLn5E+ZejG3OXzMv+YFG1pfBcq5sLkTSQvfL9Vnv5Co4o/QIYFPjztNt46RaUCRk20+4cqhrO5IVPsBA==
   dependencies:
     "@brightlayer-ui/colors" "^3.0.0"
     color "^3.1.2"

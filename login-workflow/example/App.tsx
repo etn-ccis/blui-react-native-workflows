@@ -82,6 +82,7 @@ export const AuthUIConfiguration: React.FC = (props) => {
                     component: CustomAccountDetailsTwo,
                 },
             ]}
+            // loginType={'username'}
             // disablePagerAnimation={true}
             // registrationConfig={{
             //     firstName: {
