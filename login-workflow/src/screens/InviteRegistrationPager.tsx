@@ -371,7 +371,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
         }
     }, [registrationState.inviteRegistration.validationTransit, validationCode, validateCode, validationEmail]); // eslint-disable-line react-hooks/exhaustive-deps
 
-    // Spinner - shows if either of registration or code validation are in progress
+    // Spinner - shows if registration, code validation, or EULA loading is in progress
     const spinner =
         registrationIsInTransit || isValidationInTransit ? (
             <Spinner />

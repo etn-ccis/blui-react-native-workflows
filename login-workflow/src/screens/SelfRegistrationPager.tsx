@@ -475,7 +475,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [validationSuccess]);
 
-    // Spinner - shows if either registration or code validation are in progress
+    // Spinner - shows if registration, code validation, or EULA loading is in progress
     const spinner =
         registrationIsInTransit || isValidationInTransit || codeRequestIsInTransit ? (
             <Spinner />
