@@ -10,18 +10,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 -   Issue with Eula checkbox alignment ([#76](https://github.com/brightlayer-ui/react-native-workflows/issues/76)).
+-   Fixed `<MobileStepper>` and `<RequirementCheck>` active/valid state color in dark theme ([#161](https://github.com/brightlayer-ui/react-native-workflows/issues/161)).
 
 ### Added
 
--   Support for Portuguese translations ([#110](https://github.com/brightlayer-ui/react-native-workflows/issues/110)).
+-   Added support for Portuguese translations ([#110](https://github.com/brightlayer-ui/react-native-workflows/issues/110)).
 
 ### Changed
 
--   Changed the verification code styles for the self registration workflow ([#157](https://github.com/brightlayer-ui/react-native-workflows/issues/157)).
-
-### Fixes
-
--   Issue with `<MobileStepper>` and `<RequirementCheck>` active/valid state color in dark theme ([#161](https://github.com/brightlayer-ui/react-native-workflows/issues/161)).
+-   Changed the verification code styles for the self registration workflow ([#77](https://github.com/brightlayer-ui/react-native-workflows/issues/157)).
+-   Updated styles for EULA loading screen ([#77](https://github.com/brightlayer-ui/react-native-workflows/issues/157)).
 
 ## v4.1.0 (April 28, 2022)
 
