@@ -198,6 +198,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
     const customDetails = injectedUIContext.customAccountDetails || [];
     const FirstCustomPage: ComponentType<AccountDetailsFormProps> | null =
         customDetails.length > 0 && customDetails[0] ? customDetails[0].component : null;
+    const [shouldFocusFirstCustomInput, setShouldFocusFirstCustomInput] = useState(false);
     const RegistrationPages: RegistrationPage[] = [
         {
             name: 'Eula',
@@ -241,7 +242,8 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
                     onSubmit={
                         FirstCustomPage
                             ? (): void => {
-                                  /* TODO Focus first field in custom page */
+                                  setShouldFocusFirstCustomInput(true);
+                                  setTimeout(() => setShouldFocusFirstCustomInput(false), 0);
                               }
                             : accountDetails !== null // && accountDetails.valid
                             ? /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
@@ -257,6 +259,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
                                     0: { values: details || {}, valid },
                                 });
                             }}
+                            shouldFocusFirstCustomInput={shouldFocusFirstCustomInput}
                             initialDetails={customAccountDetails?.[0]?.values}
                             /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
                             onSubmit={customAccountDetails?.[0]?.valid ? (): void => advancePage(1) : undefined}
@@ -308,6 +311,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
                                                           (): void => advancePage(1)
                                                         : undefined
                                                 }
+                                                shouldFocusFirstCustomInput={shouldFocusFirstCustomInput}
                                             />
                                         </View>
                                     </KeyboardAwareScrollView>

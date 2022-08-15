@@ -43,13 +43,18 @@ export const CustomAccountDetails: React.FC<AccountDetailsFormProps> = (props) =
 
     const countryRef = useRef<ReactTextInput>(null);
     const currencyRef = useRef<ReactTextInput>(null);
+    const goToCountry = (): void => countryRef?.current?.focus();
     const goToCurrency = (): void => currencyRef?.current?.focus();
 
     useEffect((): void => {
         // validation checks
         const valid = country !== '';
         onDetailsChanged({ country, currency }, valid);
-    }, [currency, country]); // Do NOT include onDetailsChanged in the dependencies array here or you will run into an infinite loop of updates
+
+        if (props.shouldFocusFirstCustomInput) {
+            goToCountry();
+        }
+    }, [currency, country, props.shouldFocusFirstCustomInput]); // Do NOT include onDetailsChanged in the dependencies array here or you will run into an infinite loop of updates
 
     return (
         <View style={[containerStyles.mainContainer]}>
