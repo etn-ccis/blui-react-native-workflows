@@ -475,8 +475,15 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [validationSuccess]);
 
-    // Spinner - shows if either of registration of code validation are in progress
-    const spinner = registrationIsInTransit || isValidationInTransit || codeRequestIsInTransit ? <Spinner /> : <></>;
+    // Spinner - shows if registration, code validation, or EULA loading is in progress
+    const spinner =
+        registrationIsInTransit || isValidationInTransit || codeRequestIsInTransit ? (
+            <Spinner />
+        ) : !eulaContent && !loadEulaTransitErrorMessage ? (
+            <Spinner loadingText={t('blui:REGISTRATION.EULA.LOADING')} />
+        ) : (
+            <></>
+        );
 
     // View pager
     useEffect(() => {
