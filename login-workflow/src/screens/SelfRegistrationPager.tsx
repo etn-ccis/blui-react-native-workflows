@@ -645,7 +645,6 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                     styles={{ root: [{ flex: 0 }] }}
                     steps={RegistrationPages.length}
                     activeStep={currentPage}
-                    activeColor={theme.colors.primary}
                     leftButton={
                         isFirstStep ? (
                             <Spacer flex={0} width={100} />
