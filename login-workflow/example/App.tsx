@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 import React from 'react';
 import { Provider as ThemeProvider } from 'react-native-paper';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { ThemedButton as Button } from '@brightlayer-ui/react-native-components/themed';
 import * as BLUIThemes from '@brightlayer-ui/react-native-themes';
 import { MainRouter } from './src/navigation';
@@ -17,7 +17,6 @@ import {
 } from '@brightlayer-ui/react-native-auth-workflow';
 import { useLinking } from '@react-navigation/native';
 import { authLinkMapping, resolveInitialState } from './src/navigation/DeepLinking';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { Image, ScrollView, View } from 'react-native';
 import { Body1, H5, Header, Hero /*, wrapIcon*/ } from '@brightlayer-ui/react-native-components';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
