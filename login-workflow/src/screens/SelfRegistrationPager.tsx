@@ -3,7 +3,7 @@
  * @module Screens
  */
 
-import React, { useEffect, useCallback, useState, ComponentType } from 'react';
+import React, { useEffect, useCallback, useState, ComponentType, useRef } from 'react';
 
 // Nav
 import { useNavigation, useRoute } from '@react-navigation/native';
@@ -135,6 +135,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
     const registrationState = useRegistrationUIState();
     const injectedUIContext = useInjectedUIContext();
     const theme = useTheme(props.theme);
+    const customRegistrationFormRef = useRef();
 
     // Styling
     const containerStyles = makeContainerStyles(theme);
@@ -327,6 +328,9 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                             FirstCustomPage
                                 ? (): void => {
                                       /* TODO Focus first field in custom page */
+                                      // eslint-disable-next-line no-console
+                                      console.log('onsubmit method called...');
+                                      customRegistrationFormRef?.current?.focusFirstCustomInput();
                                   }
                                 : accountDetails !== null // && accountDetails.valid
                                 ? /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
@@ -345,6 +349,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                                 initialDetails={customAccountDetails?.[0]?.values}
                                 /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
                                 onSubmit={customAccountDetails?.[0]?.valid ? (): void => advancePage(1) : undefined}
+                                customAccountDetailsRef={customRegistrationFormRef}
                             />
                         )}
                     </AccountDetailsScreen>
@@ -394,6 +399,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                                                           (): void => advancePage(1)
                                                         : undefined
                                                 }
+                                                customAccountDetailsRef={customRegistrationFormRef}
                                             />
                                         </View>
                                     </KeyboardAwareScrollView>

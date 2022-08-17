@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, forwardRef, useImperativeHandle } from 'react';
 
 // Components
 import { View, StyleSheet, TextInput as ReactTextInput } from 'react-native';
@@ -33,7 +33,7 @@ const makeStyles = (): Record<string, any> =>
  *
  * @category Component
  */
-export const CustomAccountDetails: React.FC<AccountDetailsFormProps> = (props) => {
+export const CustomAccountDetails: React.FC<AccountDetailsFormProps> = forwardRef((props, customAccountDetailsRef) => {
     const styles = makeStyles();
     const containerStyles = makeContainerStyles();
 
@@ -45,10 +45,20 @@ export const CustomAccountDetails: React.FC<AccountDetailsFormProps> = (props) =
     const currencyRef = useRef<ReactTextInput>(null);
     const goToCurrency = (): void => currencyRef?.current?.focus();
 
+    const focusFirstCustomInput = (): void => {
+        console.log('focusFirstCustomInput() called...');
+        countryRef?.current?.focus();
+    };
+
+    useImperativeHandle(customAccountDetailsRef, () => ({
+        focusFirstCustomInput,
+    }));
+
     useEffect((): void => {
         // validation checks
         const valid = country !== '';
         onDetailsChanged({ country, currency }, valid);
+        console.log('ref: ', customAccountDetailsRef);
     }, [currency, country]); // Do NOT include onDetailsChanged in the dependencies array here or you will run into an infinite loop of updates
 
     return (
@@ -82,7 +92,7 @@ export const CustomAccountDetails: React.FC<AccountDetailsFormProps> = (props) =
             />
         </View>
     );
-};
+});
 
 export const CustomAccountDetailsTwo: React.FC<AccountDetailsFormProps> = (props) => {
     const styles = makeStyles();

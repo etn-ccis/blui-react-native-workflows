@@ -3,7 +3,7 @@
  * @module Screens
  */
 
-import React, { useState, useEffect, useCallback, ComponentType } from 'react';
+import React, { useState, useEffect, useCallback, ComponentType, useRef } from 'react';
 
 // Nav
 import { useNavigation, useRoute } from '@react-navigation/native';
@@ -132,6 +132,9 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
     const registrationActions = useRegistrationUIActions();
     const injectedUIContext = useInjectedUIContext();
     const theme = useTheme(props.theme);
+    const customRegistrationFormRef = useRef();
+    // eslint-disable-next-line no-console
+    console.log('ref from invite registration pager: ', customRegistrationFormRef);
 
     // Styling
     const containerStyles = makeContainerStyles(theme);
@@ -242,6 +245,9 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
                         FirstCustomPage
                             ? (): void => {
                                   /* TODO Focus first field in custom page */
+                                  // eslint-disable-next-line no-console
+                                  console.log('onsubmit method called...');
+                                  customRegistrationFormRef?.current?.focusFirstCustomInput();
                               }
                             : accountDetails !== null // && accountDetails.valid
                             ? /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
@@ -260,6 +266,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
                             initialDetails={customAccountDetails?.[0]?.values}
                             /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
                             onSubmit={customAccountDetails?.[0]?.valid ? (): void => advancePage(1) : undefined}
+                            customAccountDetailsRef={customRegistrationFormRef}
                         />
                     )}
                 </AccountDetailsScreen>
@@ -308,6 +315,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
                                                           (): void => advancePage(1)
                                                         : undefined
                                                 }
+                                                customAccountDetailsRef={customRegistrationFormRef}
                                             />
                                         </View>
                                     </KeyboardAwareScrollView>
