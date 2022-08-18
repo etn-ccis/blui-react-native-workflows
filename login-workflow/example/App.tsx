@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 import React from 'react';
 import { Provider as ThemeProvider } from 'react-native-paper';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ThemedButton as Button } from '@brightlayer-ui/react-native-components/themed';
 import * as BLUIThemes from '@brightlayer-ui/react-native-themes';
 import { MainRouter } from './src/navigation';
@@ -18,7 +18,7 @@ import {
 import { useLinking } from '@react-navigation/native';
 import { authLinkMapping, resolveInitialState } from './src/navigation/DeepLinking';
 import { Image, ScrollView, View } from 'react-native';
-import { Body1, H5, Header, Hero /*, wrapIcon*/ } from '@brightlayer-ui/react-native-components';
+import { Body1, H5, Header, Hero /*, wrapIcon*/, Spacer } from '@brightlayer-ui/react-native-components';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
 // import { CustomAccountDetails, CustomAccountDetailsTwo } from './src/screens/CustomRegistrationForm';
 // import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -140,7 +140,7 @@ export const AuthUIConfiguration: React.FC = (props) => {
                 navigation: any,
                 registrationData: RegistrationData | undefined
             ): JSX.Element => (
-                <View style={{ backgroundColor: '#fff' }}>
+                <View style={{ backgroundColor: '#fff', maxHeight: '100%' }}>
                     <Header
                         title={'Custom Title!'}
                         navigation={{
@@ -148,14 +148,21 @@ export const AuthUIConfiguration: React.FC = (props) => {
                             onPress: (): void => navigation.navigate('Login'),
                         }}
                     />
-                    <View>
-                        <View>
-                            <Image
-                                style={{ position: 'absolute' }}
-                                source={require('./assets/images/blue_waves.png')}
-                            />
-                        </View>
-                        <ScrollView style={{ height: '100%', backgroundColor: 'transparent' }}>
+                    <ScrollView
+                        style={{
+                            height: '100%',
+                        }}
+                        contentContainerStyle={{
+                            flexGrow: 1,
+                        }}
+                    >
+                        <Image style={{ position: 'absolute' }} source={require('./assets/images/blue_waves.png')} />
+                        <View
+                            style={{
+                                height: '100%',
+                                backgroundColor: 'transparent',
+                            }}
+                        >
                             <View style={{ justifyContent: 'center', height: 200 }}>
                                 <Hero
                                     label=""
@@ -164,32 +171,35 @@ export const AuthUIConfiguration: React.FC = (props) => {
                                     styles={{ iconWrapper: { width: 90, height: 90, borderRadius: 90 } }}
                                 />
                             </View>
-                            <SafeAreaView
+                            <View
                                 style={{
                                     marginHorizontal: 16,
-                                    height: '100%',
-                                    backgroundColor: 'transparent',
+                                    flex: 1,
+                                    marginBottom: useSafeAreaInsets().bottom,
                                 }}
                             >
-                                <H5 style={{ marginBottom: 32 }}>
-                                    Congratulations, {registrationData?.accountDetails?.firstName}!
-                                </H5>
-                                <Body1 style={{ marginBottom: 16 }}>
-                                    You made it to the custom success screen! Yay!
-                                </Body1>
-                                {registrationData?.email && (
-                                    <Body1>We sent an introductory email to {registrationData.email}.</Body1>
-                                )}
-                            </SafeAreaView>
-                            <Button
-                                mode="contained"
-                                style={{ marginHorizontal: 16 }}
-                                onPress={(): void => navigation.navigate('Login')}
-                            >
-                                <Body1 style={{ color: '#fff' }}>Continue</Body1>
-                            </Button>
-                        </ScrollView>
-                    </View>
+                                <View>
+                                    <H5 style={{ marginBottom: 32 }}>
+                                        Congratulations, {registrationData?.accountDetails?.firstName}!
+                                    </H5>
+                                    <Body1 style={{ marginBottom: 16 }}>
+                                        You made it to the custom success screen! Yay!
+                                    </Body1>
+                                    {registrationData?.email && (
+                                        <Body1>We sent an introductory email to {registrationData.email}.</Body1>
+                                    )}
+                                </View>
+                                <Spacer />
+                                <Button
+                                    mode="contained"
+                                    style={{ marginHorizontal: 16 }}
+                                    onPress={(): void => navigation.navigate('Login')}
+                                >
+                                    <Body1 style={{ color: '#fff' }}>Continue</Body1>
+                                </Button>
+                            </View>
+                        </View>
+                    </ScrollView>
                 </View>
             )}
             // accountAlreadyExistsScreen={(navigation: any): JSX.Element => (
