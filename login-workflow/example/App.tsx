@@ -63,6 +63,7 @@ declare global {
 
 export const AuthUIConfiguration: React.FC = (props) => {
     const securityContextActions = useSecurityActions();
+    const safeAreaInset = useSafeAreaInsets();
     // const { t } = useTranslation();
     return (
         <AuthUIContextProvider
@@ -175,7 +176,7 @@ export const AuthUIConfiguration: React.FC = (props) => {
                                 style={{
                                     marginHorizontal: 16,
                                     flex: 1,
-                                    marginBottom: useSafeAreaInsets().bottom,
+                                    marginBottom: safeAreaInset.bottom,
                                 }}
                             >
                                 <View>
@@ -192,7 +193,7 @@ export const AuthUIConfiguration: React.FC = (props) => {
                                 <Spacer />
                                 <Button
                                     mode="contained"
-                                    style={{ marginHorizontal: 16 }}
+                                    style={{ marginHorizontal: 8 }}
                                     onPress={(): void => navigation.navigate('Login')}
                                 >
                                     <Body1 style={{ color: '#fff' }}>Continue</Body1>
@@ -270,19 +271,19 @@ export const App: React.FC = () => {
     return (
         <ThemeProvider theme={BLUIThemes.blue}>
             <SecurityContextProvider>
-                <AuthUIConfiguration>
-                    <AuthNavigationContainer
-                        initialState={initialState}
-                        // initialRouteName={'Terms'}
-                        ref={ref}
-                        // @ts-ignore
-                        // extraRoutes={[<Stack.Screen key={'Terms-Screen'} name="Terms" component={Terms} />]}
-                    >
-                        <SafeAreaProvider>
+                <SafeAreaProvider>
+                    <AuthUIConfiguration>
+                        <AuthNavigationContainer
+                            initialState={initialState}
+                            // initialRouteName={'Terms'}
+                            ref={ref}
+                            // @ts-ignore
+                            // extraRoutes={[<Stack.Screen key={'Terms-Screen'} name="Terms" component={Terms} />]}
+                        >
                             <MainRouter />
-                        </SafeAreaProvider>
-                    </AuthNavigationContainer>
-                </AuthUIConfiguration>
+                        </AuthNavigationContainer>
+                    </AuthUIConfiguration>
+                </SafeAreaProvider>
             </SecurityContextProvider>
         </ThemeProvider>
     );
