@@ -191,11 +191,7 @@ export const AuthUIConfiguration: React.FC = (props) => {
                                     )}
                                 </View>
                                 <Spacer />
-                                <Button
-                                    mode="contained"
-                                    style={{ marginHorizontal: 8 }}
-                                    onPress={(): void => navigation.navigate('Login')}
-                                >
+                                <Button mode="contained" onPress={(): void => navigation.navigate('Login')}>
                                     <Body1 style={{ color: '#fff' }}>Continue</Body1>
                                 </Button>
                             </View>
