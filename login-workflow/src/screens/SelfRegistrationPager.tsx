@@ -25,7 +25,7 @@ import { RegistrationComplete as RegistrationCompleteScreen } from '../subScreen
 import { ExistingAccountComplete } from '../subScreens/ExistingAccountComplete';
 
 // Components
-import { View, StyleSheet, SafeAreaView, BackHandler } from 'react-native';
+import { View, StyleSheet, SafeAreaView, BackHandler, TextInput } from 'react-native';
 import ViewPager from 'react-native-pager-view';
 import { CloseHeader } from '../components/CloseHeader';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -349,7 +349,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                                 initialDetails={customAccountDetails?.[0]?.values}
                                 /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
                                 onSubmit={customAccountDetails?.[0]?.valid ? (): void => advancePage(1) : undefined}
-                                customAccountDetailsRef={customRegistrationFormRef}
+                                ref={customRegistrationFormRef}
                             />
                         )}
                     </AccountDetailsScreen>
@@ -399,7 +399,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                                                           (): void => advancePage(1)
                                                         : undefined
                                                 }
-                                                customAccountDetailsRef={customRegistrationFormRef}
+                                                ref={customRegistrationFormRef}
                                             />
                                         </View>
                                     </KeyboardAwareScrollView>

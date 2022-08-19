@@ -33,7 +33,7 @@ const makeStyles = (): Record<string, any> =>
  *
  * @category Component
  */
-export const CustomAccountDetails: React.FC<AccountDetailsFormProps> = forwardRef((props, customAccountDetailsRef) => {
+export const CustomAccountDetails: React.FC<AccountDetailsFormProps> = forwardRef((props, ref) => {
     const styles = makeStyles();
     const containerStyles = makeContainerStyles();
 
@@ -45,20 +45,17 @@ export const CustomAccountDetails: React.FC<AccountDetailsFormProps> = forwardRe
     const currencyRef = useRef<ReactTextInput>(null);
     const goToCurrency = (): void => currencyRef?.current?.focus();
 
-    const focusFirstCustomInput = (): void => {
-        console.log('focusFirstCustomInput() called...');
-        countryRef?.current?.focus();
-    };
-
-    useImperativeHandle(customAccountDetailsRef, () => ({
-        focusFirstCustomInput,
+    useImperativeHandle(ref, () => ({
+        focusFirstCustomInput: (): void => {
+            ref?.current?.focus();
+        },
     }));
 
     useEffect((): void => {
         // validation checks
         const valid = country !== '';
         onDetailsChanged({ country, currency }, valid);
-        console.log('ref: ', customAccountDetailsRef);
+        console.log('ref: ', ref);
     }, [currency, country]); // Do NOT include onDetailsChanged in the dependencies array here or you will run into an infinite loop of updates
 
     return (
@@ -101,15 +98,23 @@ export const CustomAccountDetailsTwo: React.FC<AccountDetailsFormProps> = (props
     const { onDetailsChanged, initialDetails, onSubmit } = props;
     const [company, setCompany] = useState(initialDetails ? initialDetails.company : '');
     const [role, setRole] = useState(initialDetails ? initialDetails.role : '');
+    const [test1, setTest1] = useState(initialDetails ? initialDetails.role : '');
+    const [test2, setTest2] = useState(initialDetails ? initialDetails.role : '');
 
     const companyRef = useRef<ReactTextInput>(null);
     const roleRef = useRef<ReactTextInput>(null);
     const goToRole = (): void => roleRef?.current?.focus();
 
+    const test1Ref = useRef<ReactTextInput>(null);
+    const goToTest1 = (): void => test1Ref?.current?.focus();
+
+    const test2Ref = useRef<ReactTextInput>(null);
+    const goToTest2 = (): void => test2Ref?.current?.focus();
+
     useEffect((): void => {
         // validation checks
-        onDetailsChanged({ company, role }, true);
-    }, [company, role]); // Do NOT include onDetailsChanged in the dependencies array here or you will run into an infinite loop of updates
+        onDetailsChanged({ company, role, test1, test2 }, true);
+    }, [company, role, test1, test2]); // Do NOT include onDetailsChanged in the dependencies array here or you will run into an infinite loop of updates
 
     return (
         <View style={[containerStyles.mainContainer]}>
@@ -135,6 +140,34 @@ export const CustomAccountDetailsTwo: React.FC<AccountDetailsFormProps> = (props
                 autoCapitalize={'sentences'}
                 returnKeyType={'next'}
                 onChangeText={(text: string): void => setRole(text)}
+                onSubmitEditing={(): void => {
+                    goToTest1();
+                }}
+                blurOnSubmit={false}
+            />
+
+            <TextInput
+                ref={test1Ref}
+                label={'Test 1'}
+                value={test1.toString()}
+                style={styles.inputMargin}
+                autoCapitalize={'sentences'}
+                returnKeyType={'next'}
+                onChangeText={(text: string): void => setTest1(text)}
+                onSubmitEditing={(): void => {
+                    goToTest2();
+                }}
+                blurOnSubmit={false}
+            />
+
+            <TextInput
+                ref={test2Ref}
+                label={'Test2'}
+                value={test2.toString()}
+                style={styles.inputMargin}
+                autoCapitalize={'sentences'}
+                returnKeyType={'next'}
+                onChangeText={(text: string): void => setTest2(text)}
                 onSubmitEditing={(): void => {
                     if (onSubmit) onSubmit();
                 }}

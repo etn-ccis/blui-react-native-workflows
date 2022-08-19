@@ -20,7 +20,7 @@ import { RegistrationComplete } from '../subScreens/RegistrationComplete';
 import { ExistingAccountComplete } from '../subScreens/ExistingAccountComplete';
 
 // Components
-import { View, StyleSheet, SafeAreaView, BackHandler } from 'react-native';
+import { View, StyleSheet, SafeAreaView, BackHandler, TextInput } from 'react-native';
 import { useTheme } from 'react-native-paper';
 import ViewPager from 'react-native-pager-view';
 import { CloseHeader } from '../components/CloseHeader';
@@ -133,8 +133,6 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
     const injectedUIContext = useInjectedUIContext();
     const theme = useTheme(props.theme);
     const customRegistrationFormRef = useRef();
-    // eslint-disable-next-line no-console
-    console.log('ref from invite registration pager: ', customRegistrationFormRef);
 
     // Styling
     const containerStyles = makeContainerStyles(theme);
@@ -266,7 +264,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
                             initialDetails={customAccountDetails?.[0]?.values}
                             /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
                             onSubmit={customAccountDetails?.[0]?.valid ? (): void => advancePage(1) : undefined}
-                            customAccountDetailsRef={customRegistrationFormRef}
+                            ref={customRegistrationFormRef}
                         />
                     )}
                 </AccountDetailsScreen>
@@ -315,7 +313,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
                                                           (): void => advancePage(1)
                                                         : undefined
                                                 }
-                                                customAccountDetailsRef={customRegistrationFormRef}
+                                                ref={customRegistrationFormRef}
                                             />
                                         </View>
                                     </KeyboardAwareScrollView>
