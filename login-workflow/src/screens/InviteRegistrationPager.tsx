@@ -59,7 +59,7 @@ import Color from 'color';
 const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any> =>
     StyleSheet.create({
         safeContainer: {
-            height: '100%',
+            flexGrow: 1,
             backgroundColor: theme.colors.surface,
         },
         mainContainer: {
@@ -72,9 +72,16 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
             flex: 1,
             height: '100%',
         },
+        scrollContainer: {
+            flex: 1,
+            alignContent: 'center',
+        },
+        scrollContentContainer: {
+            alignSelf: 'center',
+            maxWidth: 600,
+        },
         divider: {
             height: 1,
-            // marginTop: 16,
             backgroundColor: theme.dark
                 ? Color(Colors.black[200]).alpha(0.36).toString()
                 : Color(Colors.black[500]).alpha(0.12).toString(),
@@ -285,33 +292,34 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
                                 key={`CustomDetailsPage_${i + 1}`}
                                 style={{ width: '100%', flexDirection: 'row', justifyContent: 'center' }}
                             >
-                                <View style={{ width: '100%', maxWidth: 600 }}>
-                                    <KeyboardAwareScrollView>
-                                        {page.instructions && (
-                                            <Instruction text={page.instructions} style={{ marginHorizontal: 16 }} />
-                                        )}
-                                        <View style={{ flex: 1, marginHorizontal: 16 }}>
-                                            <PageComponent
-                                                onDetailsChanged={(
-                                                    details: CustomAccountDetails | null,
-                                                    valid: boolean
-                                                ): void => {
-                                                    setCustomAccountDetails({
-                                                        ...customAccountDetails,
-                                                        [i + 1]: { values: details || {}, valid },
-                                                    });
-                                                }}
-                                                initialDetails={customAccountDetails?.[i + 1]?.values}
-                                                onSubmit={
-                                                    customAccountDetails?.[i + 1]?.valid
-                                                        ? /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
-                                                          (): void => advancePage(1)
-                                                        : undefined
-                                                }
-                                            />
-                                        </View>
-                                    </KeyboardAwareScrollView>
-                                </View>
+                                <KeyboardAwareScrollView
+                                    style={containerStyles.scrollContainer}
+                                    contentContainerStyle={[containerStyles.scrollContentContainer]}
+                                >
+                                    {page.instructions && (
+                                        <Instruction text={page.instructions} style={{ marginHorizontal: 16 }} />
+                                    )}
+                                    <View style={{ flex: 1, marginHorizontal: 16 }}>
+                                        <PageComponent
+                                            onDetailsChanged={(
+                                                details: CustomAccountDetails | null,
+                                                valid: boolean
+                                            ): void => {
+                                                setCustomAccountDetails({
+                                                    ...customAccountDetails,
+                                                    [i + 1]: { values: details || {}, valid },
+                                                });
+                                            }}
+                                            initialDetails={customAccountDetails?.[i + 1]?.values}
+                                            onSubmit={
+                                                customAccountDetails?.[i + 1]?.valid
+                                                    ? /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
+                                                      (): void => advancePage(1)
+                                                    : undefined
+                                            }
+                                        />
+                                    </View>
+                                </KeyboardAwareScrollView>
                             </SafeAreaView>
                         ),
                         canGoForward: customAccountDetails ? customAccountDetails?.[i + 1]?.valid : false,
