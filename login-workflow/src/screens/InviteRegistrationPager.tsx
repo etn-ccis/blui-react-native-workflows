@@ -74,7 +74,6 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
         },
         divider: {
             height: 1,
-            // marginTop: 16,
             backgroundColor: theme.dark
                 ? Color(Colors.black[200]).alpha(0.36).toString()
                 : Color(Colors.black[500]).alpha(0.12).toString(),
@@ -132,7 +131,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
     const registrationActions = useRegistrationUIActions();
     const injectedUIContext = useInjectedUIContext();
     const theme = useTheme(props.theme);
-    const customRegistrationFormRef = useRef();
+    const customRegistrationFormRef = useRef<TextInput>();
 
     // Styling
     const containerStyles = makeContainerStyles(theme);
@@ -242,10 +241,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
                     onSubmit={
                         FirstCustomPage
                             ? (): void => {
-                                  /* TODO Focus first field in custom page */
-                                  // eslint-disable-next-line no-console
-                                  console.log('onsubmit method called...');
-                                  customRegistrationFormRef?.current?.focusFirstCustomInput();
+                                  customRegistrationFormRef?.current?.focus();
                               }
                             : accountDetails !== null // && accountDetails.valid
                             ? /* eslint-disable-next-line @typescript-eslint/no-use-before-define */

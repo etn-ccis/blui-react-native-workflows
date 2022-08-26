@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, forwardRef, useImperativeHandle } from 'react';
+import React, { useEffect, useRef, useState, forwardRef } from 'react';
 
 // Components
 import { View, StyleSheet, TextInput as ReactTextInput } from 'react-native';
@@ -41,27 +41,19 @@ export const CustomAccountDetails: React.FC<AccountDetailsFormProps> = forwardRe
     const [country, setCountry] = useState(initialDetails ? initialDetails.country : '');
     const [currency, setCurrency] = useState(initialDetails ? initialDetails.currency : '');
 
-    const countryRef = useRef<ReactTextInput>(null);
     const currencyRef = useRef<ReactTextInput>(null);
     const goToCurrency = (): void => currencyRef?.current?.focus();
-
-    useImperativeHandle(ref, () => ({
-        focusFirstCustomInput: (): void => {
-            ref?.current?.focus();
-        },
-    }));
 
     useEffect((): void => {
         // validation checks
         const valid = country !== '';
         onDetailsChanged({ country, currency }, valid);
-        console.log('ref: ', ref);
     }, [currency, country]); // Do NOT include onDetailsChanged in the dependencies array here or you will run into an infinite loop of updates
 
     return (
         <View style={[containerStyles.mainContainer]}>
             <TextInput
-                ref={countryRef}
+                ref={ref}
                 label={'Country'}
                 value={country.toString()}
                 style={styles.inputMargin}

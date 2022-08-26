@@ -135,7 +135,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
     const registrationState = useRegistrationUIState();
     const injectedUIContext = useInjectedUIContext();
     const theme = useTheme(props.theme);
-    const customRegistrationFormRef = useRef();
+    const customRegistrationFormRef = useRef<TextInput>();
 
     // Styling
     const containerStyles = makeContainerStyles(theme);
@@ -327,10 +327,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                         onSubmit={
                             FirstCustomPage
                                 ? (): void => {
-                                      /* TODO Focus first field in custom page */
-                                      // eslint-disable-next-line no-console
-                                      console.log('onsubmit method called...');
-                                      customRegistrationFormRef?.current?.focusFirstCustomInput();
+                                      customRegistrationFormRef?.current?.focus();
                                   }
                                 : accountDetails !== null // && accountDetails.valid
                                 ? /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
