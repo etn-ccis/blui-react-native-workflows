@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 -   Issue with Eula checkbox alignment ([#76](https://github.com/brightlayer-ui/react-native-workflows/issues/76)).
 -   Fixed `<MobileStepper>` and `<RequirementCheck>` active/valid state color in dark theme ([#161](https://github.com/brightlayer-ui/react-native-workflows/issues/161)).
+-   Fixed keyboard dismissed on initial click on input fields ([#130](https://github.com/brightlayer-ui/react-native-workflows/issues/130)).
 
 ### Added
 
