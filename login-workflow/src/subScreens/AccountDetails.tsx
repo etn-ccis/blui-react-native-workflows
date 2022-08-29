@@ -23,7 +23,6 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
         safeContainer: {
             height: '100%',
             backgroundColor: theme.colors.surface,
-            // width: '100%',
             flexDirection: 'row',
             justifyContent: 'center',
         },
@@ -118,7 +117,6 @@ export const AccountDetails: React.FC<AccountDetailsProps> = (props) => {
 
     return (
         <SafeAreaView style={containerStyles.safeContainer}>
-            {/* <View style={{ width: '100%', maxWidth: 600 }}> */}
             <KeyboardAwareScrollView
                 style={containerStyles.scrollContainer}
                 contentContainerStyle={[containerStyles.scrollContentContainer]}
@@ -159,7 +157,6 @@ export const AccountDetails: React.FC<AccountDetailsProps> = (props) => {
                     {props.children}
                 </View>
             </KeyboardAwareScrollView>
-            {/* </View> */}
         </SafeAreaView>
     );
 };
