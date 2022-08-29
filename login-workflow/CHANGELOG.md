@@ -9,10 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
--   Fixed issue with Eula checkbox alignment ([#76](https://github.com/brightlayer-ui/react-native-workflows/issues/76)).
+-   Fixed Eula checkbox alignment ([#76](https://github.com/brightlayer-ui/react-native-workflows/issues/76)).
 -   Fixed `<MobileStepper>` and `<RequirementCheck>` active/valid state color in dark theme ([#161](https://github.com/brightlayer-ui/react-native-workflows/issues/161)).
 -   Fixed issue with scroll containers not filling the screen ([#75](https://github.com/brightlayer-ui/react-native-workflows/issues/75)).
 -   Fixed issue with Eula text not being centered ([#164](https://github.com/brightlayer-ui/react-native-workflows/issues/164)).
+-   Fixed keyboard dismissal on initial click of input fields ([#130](https://github.com/brightlayer-ui/react-native-workflows/issues/130)).
+
 
 ### Added
 
