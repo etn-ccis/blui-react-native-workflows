@@ -28,7 +28,7 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
             flex: 1,
             paddingTop: 16,
             width: 'auto',
-            flexDirection: 'row',
+            flexDirection: 'column',
             justifyContent: 'center',
         },
         containerMargins: {
@@ -37,9 +37,18 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
         checkboxContainer: {
             height: 72,
             justifyContent: 'center',
-            alignSelf: 'stretch',
             marginRight: 16,
             marginLeft: -10,
+            maxWidth: 600,
+            alignSelf: 'stretch',
+        },
+        scrollContainer: {
+            flex: 1,
+            alignContent: 'center',
+        },
+        scrollContentContainer: {
+            alignSelf: 'center',
+            maxWidth: 600,
         },
     });
 
@@ -103,32 +112,33 @@ export const Eula: React.FC<EulaProps> = (props) => {
     return (
         <SafeAreaView style={[containerStyles.safeContainer]}>
             <View style={[containerStyles.mainContainer, containerStyles.containerMargins]}>
-                <View style={{ flex: 1, maxWidth: 600 }}>
-                    {htmlEula ? (
-                        <WebView
-                            originWhitelist={['*']}
-                            source={{ html: eulaContentInternals, baseUrl: '' }}
-                            scalesPageToFit={false}
-                            onLoadEnd={onLoadEnd}
-                            style={{
-                                flex: 1,
-                                height: 50 /* WebView needs a fixed height set or it won't render */,
-                                backgroundColor: theme.colors.surface,
-                            }}
-                        />
-                    ) : (
-                        <ScrollView>
-                            <Body1>{eulaContentInternals}</Body1>
-                        </ScrollView>
-                    )}
-                    <View style={[containerStyles.checkboxContainer]}>
-                        <Checkbox
-                            label={t('blui:REGISTRATION.EULA.AGREE_TERMS')}
-                            disabled={disableCheckBox}
-                            checked={eulaIsChecked}
-                            onPress={checkedBox}
-                        />
-                    </View>
+                {htmlEula ? (
+                    <WebView
+                        originWhitelist={['*']}
+                        source={{ html: eulaContentInternals, baseUrl: '' }}
+                        scalesPageToFit={false}
+                        onLoadEnd={onLoadEnd}
+                        style={{
+                            flex: 1,
+                            height: 50 /* WebView needs a fixed height set or it won't render */,
+                            backgroundColor: theme.colors.surface,
+                        }}
+                    />
+                ) : (
+                    <ScrollView
+                        style={containerStyles.scrollContainer}
+                        contentContainerStyle={[containerStyles.scrollContentContainer]}
+                    >
+                        <Body1>{eulaContentInternals}</Body1>
+                    </ScrollView>
+                )}
+                <View style={[containerStyles.checkboxContainer]}>
+                    <Checkbox
+                        label={t('blui:REGISTRATION.EULA.AGREE_TERMS')}
+                        disabled={disableCheckBox}
+                        checked={eulaIsChecked}
+                        onPress={checkedBox}
+                    />
                 </View>
             </View>
         </SafeAreaView>

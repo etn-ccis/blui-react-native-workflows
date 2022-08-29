@@ -59,7 +59,7 @@ import Color from 'color';
 const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any> =>
     StyleSheet.create({
         safeContainer: {
-            height: '100%',
+            flexGrow: 1,
             backgroundColor: theme.colors.surface,
         },
         mainContainer: {
@@ -72,8 +72,17 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
             flex: 1,
             height: '100%',
         },
+        scrollContainer: {
+            flex: 1,
+            alignContent: 'center',
+        },
+        scrollContentContainer: {
+            alignSelf: 'center',
+            maxWidth: 600,
+        },
         divider: {
             height: 1,
+            // marginTop: 16,
             backgroundColor: theme.dark
                 ? Color(Colors.black[200]).alpha(0.36).toString()
                 : Color(Colors.black[500]).alpha(0.12).toString(),
