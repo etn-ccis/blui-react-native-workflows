@@ -15,10 +15,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -   Fixed issue with Eula text not being centered ([#164](https://github.com/brightlayer-ui/react-native-workflows/issues/164)).
 -   Fixed keyboard dismissal on initial click of input fields ([#130](https://github.com/brightlayer-ui/react-native-workflows/issues/130)).
 
-
 ### Added
 
 -   Added support for Portuguese translations ([#110](https://github.com/brightlayer-ui/react-native-workflows/issues/110)).
+-   Ability to customize how error messages are displayed on the login screen via the `loginErrorDisplayConfig` prop on the `AuthUIContextProvider` ([#124](https://github.com/brightlayer-ui/react-native-workflows/issues/124)).
 
 ### Changed
 
