@@ -37,6 +37,8 @@ const makeStyles = (props: ToggleButtonProps, theme: ReactNativePaper.Theme): Re
  * @param disabled  (Optional) If true, the button will be disabled.
  * @param onPress  Action to take when button is tapped.
  * @param theme (Optional) react-native-paper theme partial to style the component.
+ * @param testID (Optional)  testID.
+ * @param accessibilityLabel (Optional)  accessibilityLabel.
  */
 export type ToggleButtonProps = {
     text: string;
@@ -45,6 +47,8 @@ export type ToggleButtonProps = {
     disabled?: boolean;
     onPress: () => void;
     theme?: ReactNativePaper.Theme;
+    testID?: string;
+    accessibilityLabel?: string;
 };
 
 /**
@@ -53,7 +57,7 @@ export type ToggleButtonProps = {
  * @category Component
  */
 export const ToggleButton: React.FC<ToggleButtonProps> = (props) => {
-    const { text, style, outlined = false, disabled = false, onPress, theme: customTheme } = props;
+    const { text, style, outlined = false, disabled = false, onPress, theme: customTheme, testID, accessibilityLabel } = props;
     const theme = useTheme(customTheme);
     const styles = makeStyles(props, theme);
 
@@ -64,6 +68,8 @@ export const ToggleButton: React.FC<ToggleButtonProps> = (props) => {
             style={[styles.loginButton, style]}
             disabled={disabled}
             onPress={onPress}
+            testID={testID}
+            accessibilityLabel={accessibilityLabel}
         >
             <Body1 color="text" style={styles.label}>
                 {text}
