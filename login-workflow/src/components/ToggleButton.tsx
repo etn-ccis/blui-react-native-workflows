@@ -57,7 +57,16 @@ export type ToggleButtonProps = {
  * @category Component
  */
 export const ToggleButton: React.FC<ToggleButtonProps> = (props) => {
-    const { text, style, outlined = false, disabled = false, onPress, theme: customTheme, testID, accessibilityLabel } = props;
+    const {
+        text,
+        style,
+        outlined = false,
+        disabled = false,
+        onPress,
+        theme: customTheme,
+        testID,
+        accessibilityLabel,
+    } = props;
     const theme = useTheme(customTheme);
     const styles = makeStyles(props, theme);
 
