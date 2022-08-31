@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 import React from 'react';
 import { Provider as ThemeProvider } from 'react-native-paper';
-import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { SafeAreaProvider /*, useSafeAreaInsets */ } from 'react-native-safe-area-context';
 // import { ThemedButton as Button } from '@brightlayer-ui/react-native-components/themed';
 import * as BLUIThemes from '@brightlayer-ui/react-native-themes';
 import { MainRouter } from './src/navigation';
@@ -63,7 +63,7 @@ declare global {
 
 export const AuthUIConfiguration: React.FC = (props) => {
     const securityContextActions = useSecurityActions();
-    const safeAreaInset = useSafeAreaInsets();
+    // const safeAreaInset = useSafeAreaInsets();
     // const { t } = useTranslation();
     return (
         <AuthUIContextProvider
