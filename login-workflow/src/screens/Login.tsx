@@ -343,6 +343,7 @@ export const Login: React.FC<LoginProps> = (props) => {
                     <View style={[{ flexGrow: 1, maxWidth: 600 }]}>
                         <TextInput
                             testID={'email-text-field'}
+                            accessibilityLabel={'email-text-field'}
                             label={t('blui:LABELS.EMAIL')}
                             value={emailInput}
                             keyboardType={'email-address'}
@@ -373,6 +374,7 @@ export const Login: React.FC<LoginProps> = (props) => {
                         />
                         <TextInputSecure
                             testID={'password-text-field'}
+                            accessibilityLabel={'password-text-field'}
                             ref={confirmPasswordRef}
                             label={t('blui:LABELS.PASSWORD')}
                             value={passwordInput}
@@ -404,6 +406,8 @@ export const Login: React.FC<LoginProps> = (props) => {
                                         text={t('blui:ACTIONS.LOG_IN')}
                                         disabled={!EMAIL_REGEX.test(emailInput) || !passwordInput}
                                         onPress={loginTapped}
+                                        testID={'login-button'}
+                                        accessibilityLabel={'login-button'}
                                     />
                                 </View>
                             </View>
