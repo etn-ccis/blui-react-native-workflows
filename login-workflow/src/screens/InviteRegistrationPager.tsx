@@ -3,7 +3,7 @@
  * @module Screens
  */
 
-import React, { useState, useEffect, useCallback, ComponentType } from 'react';
+import React, { useState, useEffect, useCallback, ComponentType, useRef } from 'react';
 
 // Nav
 import { useNavigation, useRoute } from '@react-navigation/native';
@@ -20,7 +20,7 @@ import { RegistrationComplete } from '../subScreens/RegistrationComplete';
 import { ExistingAccountComplete } from '../subScreens/ExistingAccountComplete';
 
 // Components
-import { View, StyleSheet, SafeAreaView, BackHandler } from 'react-native';
+import { View, StyleSheet, SafeAreaView, BackHandler, TextInput } from 'react-native';
 import { useTheme } from 'react-native-paper';
 import ViewPager from 'react-native-pager-view';
 import { CloseHeader } from '../components/CloseHeader';
@@ -139,6 +139,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
     const registrationActions = useRegistrationUIActions();
     const injectedUIContext = useInjectedUIContext();
     const theme = useTheme(props.theme);
+    const customRegistrationFormRef = useRef<TextInput>();
 
     // Styling
     const containerStyles = makeContainerStyles(theme);
@@ -248,7 +249,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
                     onSubmit={
                         FirstCustomPage
                             ? (): void => {
-                                  /* TODO Focus first field in custom page */
+                                  customRegistrationFormRef?.current?.focus();
                               }
                             : accountDetails !== null // && accountDetails.valid
                             ? /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
@@ -267,6 +268,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
                             initialDetails={customAccountDetails?.[0]?.values}
                             /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
                             onSubmit={customAccountDetails?.[0]?.valid ? (): void => advancePage(1) : undefined}
+                            ref={customRegistrationFormRef}
                         />
                     )}
                 </AccountDetailsScreen>
@@ -292,34 +294,34 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
                                 key={`CustomDetailsPage_${i + 1}`}
                                 style={{ width: '100%', flexDirection: 'row', justifyContent: 'center' }}
                             >
-                                <KeyboardAwareScrollView
-                                    style={containerStyles.scrollContainer}
-                                    contentContainerStyle={[containerStyles.scrollContentContainer]}
-                                >
-                                    {page.instructions && (
-                                        <Instruction text={page.instructions} style={{ marginHorizontal: 16 }} />
-                                    )}
-                                    <View style={{ flex: 1, marginHorizontal: 16 }}>
-                                        <PageComponent
-                                            onDetailsChanged={(
-                                                details: CustomAccountDetails | null,
-                                                valid: boolean
-                                            ): void => {
-                                                setCustomAccountDetails({
-                                                    ...customAccountDetails,
-                                                    [i + 1]: { values: details || {}, valid },
-                                                });
-                                            }}
-                                            initialDetails={customAccountDetails?.[i + 1]?.values}
-                                            onSubmit={
-                                                customAccountDetails?.[i + 1]?.valid
-                                                    ? /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
-                                                      (): void => advancePage(1)
-                                                    : undefined
-                                            }
-                                        />
-                                    </View>
-                                </KeyboardAwareScrollView>
+                                <View style={{ width: '100%', maxWidth: 600 }}>
+                                    <KeyboardAwareScrollView>
+                                        {page.instructions && (
+                                            <Instruction text={page.instructions} style={{ marginHorizontal: 16 }} />
+                                        )}
+                                        <View style={{ flex: 1, marginHorizontal: 16 }}>
+                                            <PageComponent
+                                                onDetailsChanged={(
+                                                    details: CustomAccountDetails | null,
+                                                    valid: boolean
+                                                ): void => {
+                                                    setCustomAccountDetails({
+                                                        ...customAccountDetails,
+                                                        [i + 1]: { values: details || {}, valid },
+                                                    });
+                                                }}
+                                                initialDetails={customAccountDetails?.[i + 1]?.values}
+                                                onSubmit={
+                                                    customAccountDetails?.[i + 1]?.valid
+                                                        ? /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
+                                                          (): void => advancePage(1)
+                                                        : undefined
+                                                }
+                                                ref={customRegistrationFormRef}
+                                            />
+                                        </View>
+                                    </KeyboardAwareScrollView>
+                                </View>
                             </SafeAreaView>
                         ),
                         canGoForward: customAccountDetails ? customAccountDetails?.[i + 1]?.valid : false,

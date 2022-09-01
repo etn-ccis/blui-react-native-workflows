@@ -61,6 +61,24 @@ import { CustomDetailsScreen, CustomDetailsScreenTwo } from './path/to/file';
 />
 ```
 
+> **NOTE:** If you want the native keyboard "next" button to navigate between the provided inputs and your custom inputs (on the first page), you'll need to wrap your CustomDetailsScreen with a forwardRef method and pass the provided ref to your first input.
+
+```tsx
+export const CustomDetailsScreen = forwardRef((props, ref) => {
+    ...
+     <TextInput
+        ref={ref}
+        label={'MyFirstTextInput'}
+        returnKeyType={'next'}
+        onChangeText={(text) => setFirstInput(text)}
+        onSubmitEditing={() => {
+            goToNextField();
+        }}
+        blurOnSubmit={true}
+    />
+});
+```
+
 ### Form Implementation
 
 In order to work correctly, custom form components that you pass into the workflow must match the interface `ComponentType<AccountDetailsFormProps>`, meaning your component must accept and hook up the following three props:

@@ -3,7 +3,7 @@
  * @module Screens
  */
 
-import React, { useEffect, useCallback, useState, ComponentType } from 'react';
+import React, { useEffect, useCallback, useState, ComponentType, useRef } from 'react';
 
 // Nav
 import { useNavigation, useRoute } from '@react-navigation/native';
@@ -25,7 +25,7 @@ import { RegistrationComplete as RegistrationCompleteScreen } from '../subScreen
 import { ExistingAccountComplete } from '../subScreens/ExistingAccountComplete';
 
 // Components
-import { View, StyleSheet, SafeAreaView, BackHandler } from 'react-native';
+import { View, StyleSheet, SafeAreaView, BackHandler, TextInput } from 'react-native';
 import ViewPager from 'react-native-pager-view';
 import { CloseHeader } from '../components/CloseHeader';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -132,6 +132,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
     const registrationState = useRegistrationUIState();
     const injectedUIContext = useInjectedUIContext();
     const theme = useTheme(props.theme);
+    const customRegistrationFormRef = useRef<TextInput>();
 
     // Styling
     const containerStyles = makeContainerStyles(theme);
@@ -310,34 +311,36 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
             name: 'AccountDetails',
             pageTitle: t('blui:REGISTRATION.STEPS.ACCOUNT_DETAILS'),
             pageBody: (
-                <AccountDetailsScreen
-                    key={'AccountDetailsPage'}
-                    onDetailsChanged={setAccountDetails}
-                    onSubmit={
-                        FirstCustomPage
-                            ? (): void => {
-                                  /* TODO Focus first field in custom page */
-                              }
-                            : accountDetails !== null // && accountDetails.valid
-                            ? /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
-                              (): void => advancePage(1)
-                            : undefined
-                    }
-                >
-                    {FirstCustomPage && (
-                        <FirstCustomPage
-                            onDetailsChanged={(details: CustomAccountDetails | null, valid: boolean): void => {
-                                setCustomAccountDetails({
-                                    ...(customAccountDetails || {}),
-                                    0: { values: details || {}, valid },
-                                });
-                            }}
-                            initialDetails={customAccountDetails?.[0]?.values}
-                            /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
-                            onSubmit={customAccountDetails?.[0]?.valid ? (): void => advancePage(1) : undefined}
-                        />
-                    )}
-                </AccountDetailsScreen>
+                <View key={'AccountDetailsPage'} style={{ width: '100%', maxWidth: 600 }}>
+                    <AccountDetailsScreen
+                        onDetailsChanged={setAccountDetails}
+                        onSubmit={
+                            FirstCustomPage
+                                ? (): void => {
+                                      customRegistrationFormRef?.current?.focus();
+                                  }
+                                : accountDetails !== null // && accountDetails.valid
+                                ? /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
+                                  (): void => advancePage(1)
+                                : undefined
+                        }
+                    >
+                        {FirstCustomPage && (
+                            <FirstCustomPage
+                                onDetailsChanged={(details: CustomAccountDetails | null, valid: boolean): void => {
+                                    setCustomAccountDetails({
+                                        ...(customAccountDetails || {}),
+                                        0: { values: details || {}, valid },
+                                    });
+                                }}
+                                initialDetails={customAccountDetails?.[0]?.values}
+                                /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
+                                onSubmit={customAccountDetails?.[0]?.valid ? (): void => advancePage(1) : undefined}
+                                ref={customRegistrationFormRef}
+                            />
+                        )}
+                    </AccountDetailsScreen>
+                </View>
             ),
             canGoForward: accountDetails !== null, // &&
             // accountDetails.valid,
@@ -383,6 +386,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                                                           (): void => advancePage(1)
                                                         : undefined
                                                 }
+                                                ref={customRegistrationFormRef}
                                             />
                                         </View>
                                     </KeyboardAwareScrollView>
