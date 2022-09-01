@@ -82,7 +82,6 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
         },
         divider: {
             height: 1,
-            // marginTop: 16,
             backgroundColor: theme.dark
                 ? Color(Colors.black[200]).alpha(0.36).toString()
                 : Color(Colors.black[500]).alpha(0.12).toString(),
