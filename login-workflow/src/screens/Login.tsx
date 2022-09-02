@@ -110,7 +110,7 @@ const makeStyles = (theme: Theme, config: LoginErrorDisplayConfig): Record<strin
             borderRadius: 4,
             padding: 16,
             color: config.fontColor || Colors.white['50'],
-            marginHorizontal: 16,
+            marginHorizontal: config.position !== 'bottom' ? 16 : 0,
             marginTop: config.position !== 'bottom' ? 8 : 16,
             marginBottom: config.position !== 'bottom' ? 0 : -8,
         },
