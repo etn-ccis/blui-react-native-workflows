@@ -74,6 +74,7 @@ export const AuthUIConfiguration: React.FC = (props) => {
             contactEmail={'something@email.com'}
             contactPhone={'1-800-123-4567'}
             contactPhoneLink={'1-800-123-4567'}
+            // loginErrorDisplayConfig={{ mode: 'message-box', position: 'top' }}
             // customAccountDetails={[
             //     { component: CustomAccountDetails },
             //     {

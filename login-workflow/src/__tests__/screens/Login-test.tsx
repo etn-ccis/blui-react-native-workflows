@@ -13,6 +13,7 @@ import renderer from 'react-test-renderer';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import 'react-native-gesture-handler';
+import { Provider } from 'react-native-paper';
 const Stack = createStackNavigator();
 
 // mock hooks
@@ -32,17 +33,19 @@ describe('Login screen tested with enzyme', () => {
 
     function baseXML(): JSX.Element {
         return (
-            <NavigationContainer>
-                <Stack.Navigator>
-                    <Stack.Screen
-                        name="Login"
-                        component={Login}
-                        options={(): any => ({
-                            header: (): JSX.Element => <></>,
-                        })}
-                    />
-                </Stack.Navigator>
-            </NavigationContainer>
+            <Provider>
+                <NavigationContainer>
+                    <Stack.Navigator>
+                        <Stack.Screen
+                            name="Login"
+                            component={Login}
+                            options={(): any => ({
+                                header: (): JSX.Element => <></>,
+                            })}
+                        />
+                    </Stack.Navigator>
+                </NavigationContainer>
+            </Provider>
         );
     }
 

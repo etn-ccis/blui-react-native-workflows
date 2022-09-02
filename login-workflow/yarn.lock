@@ -1086,10 +1086,10 @@
   resolved "https://registry.yarnpkg.com/@brightlayer-ui/prettier-config/-/prettier-config-1.0.3.tgz#e40a7ae7435c6fd5118acbf249080e0aa81e93af"
   integrity sha512-EYm3+V7Qd+oYEF+8FadsXAZqXryEHHbGnrV1BMp9selhABjceqUqXPVE4Sn3SKWQdBNJ3En2A3EzgrzRbvRTaw==
 
-"@brightlayer-ui/react-auth-shared@^3.7.2-beta.0":
-  version "3.7.2-beta.0"
-  resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-auth-shared/-/react-auth-shared-3.7.2-beta.0.tgz#29b2cf065b822fc40663b2fd550753a1d9e82dd9"
-  integrity sha512-g83+YrPMU1OB0temlMNiuKUx+f6yvMst2pWvCZPBTbKTEGk5rMcApr3GkNvKz3rQx1f0dwdwIQSqlwKzgGMltw==
+"@brightlayer-ui/react-auth-shared@^3.7.2-beta.1":
+  version "3.7.2-beta.1"
+  resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-auth-shared/-/react-auth-shared-3.7.2-beta.1.tgz#bc52e795b650a3fae27d64b18e54c6b53473a689"
+  integrity sha512-Z4xWu4RoWYaH5gpB/u+od3ICbDmEhbHkp5wm5uQvpEDqKfzTmyMRJ38t4ho6U6WL33X1AiHQrXKcZo5SMPyPJA==
 
 "@brightlayer-ui/react-native-components@^6.0.3":
   version "6.0.3"
