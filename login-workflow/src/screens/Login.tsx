@@ -440,6 +440,7 @@ export const Login: React.FC<LoginProps> = (props) => {
                         />
                         <TextInputSecure
                             testID={'password-text-field'}
+                            accessibilityLabel={'password-text-field'}
                             ref={confirmPasswordRef}
                             label={t('blui:LABELS.PASSWORD')}
                             value={passwordInput}
@@ -485,6 +486,8 @@ export const Login: React.FC<LoginProps> = (props) => {
                                                 : !emailInput || !passwordInput
                                         }
                                         onPress={loginTapped}
+                                        testID={'login-button'}
+                                        accessibilityLabel={'login-button'}
                                     />
                                 </View>
                             </View>
