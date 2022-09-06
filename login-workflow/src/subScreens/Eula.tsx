@@ -38,9 +38,10 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
             height: 72,
             justifyContent: 'center',
             marginRight: 16,
-            marginLeft: -10,
+            marginLeft: -2,
+            width: '100%',
             maxWidth: 600,
-            alignSelf: 'stretch',
+            alignSelf: 'center',
         },
         scrollContainer: {
             flex: 1,
@@ -132,13 +133,19 @@ export const Eula: React.FC<EulaProps> = (props) => {
                         <Body1>{eulaContentInternals}</Body1>
                     </ScrollView>
                 )}
-                <View style={[containerStyles.checkboxContainer]}>
-                    <Checkbox
-                        label={t('blui:REGISTRATION.EULA.AGREE_TERMS')}
-                        disabled={disableCheckBox}
-                        checked={eulaIsChecked}
-                        onPress={checkedBox}
-                    />
+                <View
+                    style={{
+                        alignItems: 'center',
+                    }}
+                >
+                    <View style={[containerStyles.checkboxContainer]}>
+                        <Checkbox
+                            label={t('blui:REGISTRATION.EULA.AGREE_TERMS')}
+                            disabled={disableCheckBox}
+                            checked={eulaIsChecked}
+                            onPress={checkedBox}
+                        />
+                    </View>
                 </View>
             </View>
         </SafeAreaView>
