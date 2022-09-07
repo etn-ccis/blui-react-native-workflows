@@ -57,7 +57,7 @@
         "tag-package": "npx -p @brightlayer-ui/tag blui-tag"
     },
     "dependencies": {
-        "@brightlayer-ui/react-auth-shared": "^3.7.2-beta.1",
+        "@brightlayer-ui/react-auth-shared": "^3.7.2",
         "lodash.clonedeep": "^4.5.0",
         "react-native-status-bar-height": "^2.5.0"
     },
