@@ -42,6 +42,11 @@ void i18n
                 blui: translations.chinese.translation,
                 app: {},
             },
+            // Portuguese
+            pt: {
+                blui: translations.portuguese.translation,
+                app: {},
+            },
         },
         lng: deviceLocale.substr(0, 2),
         fallbackLng: 'en',

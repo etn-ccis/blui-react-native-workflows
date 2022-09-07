@@ -3,11 +3,11 @@
  * @module Screens
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 
 // Components
 import { Platform, View, StyleSheet, SafeAreaView, StatusBar, TextInput as ReactTextInput } from 'react-native';
-import { useTheme } from 'react-native-paper';
+import { IconButton, useTheme } from 'react-native-paper';
 import { ThemedButton as Button } from '@brightlayer-ui/react-native-components/themed';
 
 import { TextInput } from '../components/TextInput';
@@ -23,7 +23,7 @@ import { ToggleButton } from '../components/ToggleButton';
 
 // Styles
 import * as Colors from '@brightlayer-ui/colors';
-import { Body1, H6 } from '@brightlayer-ui/react-native-components';
+import { Body1, Body2, H6 } from '@brightlayer-ui/react-native-components';
 
 // Hooks
 import { useNavigation } from '@react-navigation/native';
@@ -32,6 +32,7 @@ import { useNavigation } from '@react-navigation/native';
 import {
     // Constants
     EMAIL_REGEX,
+    USERNAME_REGEX,
     // Hooks
     useLanguageLocale,
     useAccountUIActions,
@@ -39,8 +40,10 @@ import {
     useInjectedUIContext,
     useSecurityState,
     AccountActions,
+    LoginErrorDisplayConfig,
 } from '@brightlayer-ui/react-auth-shared';
 import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { Theme } from 'react-native-paper/lib/typescript/types';
 
 /**
  * @ignore
@@ -87,7 +90,7 @@ const makeContainerStyles = (insets: EdgeInsets): Record<string, any> =>
 /**
  * @ignore
  */
-const makeStyles = (): Record<string, any> =>
+const makeStyles = (theme: Theme, config: LoginErrorDisplayConfig): Record<string, any> =>
     StyleSheet.create({
         signUpText: {
             alignSelf: 'center',
@@ -99,6 +102,26 @@ const makeStyles = (): Record<string, any> =>
         securityBadge: {
             height: 60,
             marginBottom: 16,
+        },
+        errorMessageBox: {
+            flex: 1,
+            flexDirection: 'row',
+            backgroundColor: config.backgroundColor || theme.colors.error,
+            borderRadius: 4,
+            padding: 16,
+            color: config.fontColor || Colors.white['50'],
+            marginHorizontal: config.position !== 'bottom' ? 16 : 0,
+            marginTop: config.position !== 'bottom' ? 8 : 16,
+            marginBottom: config.position !== 'bottom' ? 0 : -8,
+        },
+        errorMessageBoxText: {
+            color: config.fontColor || Colors.white['50'],
+            flex: 1,
+        },
+        errorBoxDismissIcon: {
+            marginTop: -8,
+            marginRight: -8,
+            marginBottom: -8,
         },
     });
 
@@ -120,6 +143,7 @@ type LoginProps = {
 
 export const Login: React.FC<LoginProps> = (props) => {
     const securityState = useSecurityState();
+    const { loginErrorDisplayConfig = { mode: 'dialog' }, ...otherUIContext } = useInjectedUIContext();
     const {
         showSelfRegistration = true,
         allowDebugMode = false,
@@ -128,10 +152,11 @@ export const Login: React.FC<LoginProps> = (props) => {
         showContactSupport = true,
         showRememberMe = true,
         enableResetPassword = true,
+        loginType = 'email',
         loginActions,
         loginFooter,
         loginHeader,
-    } = useInjectedUIContext();
+    } = otherUIContext;
     const navigation = useNavigation();
     const { t } = useLanguageLocale();
     const authUIActions = useAccountUIActions();
@@ -141,7 +166,7 @@ export const Login: React.FC<LoginProps> = (props) => {
     const theme = useTheme(props.theme);
     const insets = useSafeAreaInsets();
     const containerStyles = makeContainerStyles(insets);
-    const styles = makeStyles();
+    const styles = makeStyles(theme, loginErrorDisplayConfig);
 
     // Local State
     const [rememberPassword, setRememberPassword] = React.useState(
@@ -151,9 +176,11 @@ export const Login: React.FC<LoginProps> = (props) => {
         showRememberMe ? securityState.rememberMeDetails.email ?? '' : ''
     );
     const [hasEmailFormatError, setHasEmailFormatError] = React.useState(false);
+    const [hasUsernameFormatError, setHasUsernameFormatError] = React.useState(false);
     const [passwordInput, setPasswordInput] = React.useState('');
     const [hasAcknowledgedError, setHasAcknowledgedError] = React.useState(false);
     const [debugMode, setDebugMode] = React.useState(false);
+    const [showErrorMessageBox, setShowErrorMessageBox] = React.useState(false);
 
     const loginTapped = (): void => {
         setHasAcknowledgedError(false);
@@ -178,6 +205,31 @@ export const Login: React.FC<LoginProps> = (props) => {
             }}
         />
     );
+
+    useEffect(() => {
+        if (hasTransitError) {
+            setShowErrorMessageBox(true);
+        }
+    }, [hasTransitError]);
+
+    const errorMessageBox: JSX.Element =
+        !isInvalidCredentials && hasTransitError && transitErrorMessage && showErrorMessageBox ? (
+            <View style={styles.errorMessageBox}>
+                <Body2 style={styles.errorMessageBoxText}>{t(transitErrorMessage)}</Body2>
+                {loginErrorDisplayConfig.dismissible !== false && (
+                    <IconButton
+                        icon="close"
+                        style={styles.errorBoxDismissIcon}
+                        onPress={(): void => {
+                            setShowErrorMessageBox(false);
+                        }}
+                        color={loginErrorDisplayConfig.fontColor || Colors.white['50']}
+                    />
+                )}
+            </View>
+        ) : (
+            <></>
+        );
 
     // Construct the optional elements
     let contactEatonRepresentative: JSX.Element = showContactSupport ? (
@@ -319,7 +371,10 @@ export const Login: React.FC<LoginProps> = (props) => {
         <>
             {statusBar}
             {spinner}
-            {errorDialog}
+            {!isInvalidCredentials &&
+                (loginErrorDisplayConfig.mode === 'dialog' || loginErrorDisplayConfig.mode === 'both') &&
+                transitErrorMessage &&
+                errorDialog}
             <ScrollViewWithBackground
                 bounces={false}
                 contentContainerStyle={[{ flexGrow: 1, backgroundColor: theme.colors.surface }]}
@@ -329,6 +384,9 @@ export const Login: React.FC<LoginProps> = (props) => {
                 {debugButton}
                 {debugMessage}
                 {debugLinks}
+                {(loginErrorDisplayConfig.mode === 'message-box' || loginErrorDisplayConfig.mode === 'both') &&
+                    loginErrorDisplayConfig.position !== 'bottom' &&
+                    errorMessageBox}
                 <SafeAreaView
                     style={[
                         containerStyles.mainContainer,
@@ -343,14 +401,14 @@ export const Login: React.FC<LoginProps> = (props) => {
                     <View style={[{ flexGrow: 1, maxWidth: 600 }]}>
                         <TextInput
                             testID={'email-text-field'}
-                            accessibilityLabel={'email-text-field'}
-                            label={t('blui:LABELS.EMAIL')}
+                            label={loginType === 'email' ? t('blui:LABELS.EMAIL') : t('blui:LABELS.USERNAME')}
                             value={emailInput}
-                            keyboardType={'email-address'}
+                            keyboardType={loginType === 'email' ? 'email-address' : 'default'}
                             style={{ marginTop: 48 }}
                             onChangeText={(text: string): void => {
                                 setEmailInput(text);
                                 setHasEmailFormatError(false);
+                                setHasUsernameFormatError(false);
                                 if (authUIState.login.transitErrorMessage !== null)
                                     authUIActions.dispatch(AccountActions.resetLogin());
                             }}
@@ -359,17 +417,25 @@ export const Login: React.FC<LoginProps> = (props) => {
                             }}
                             blurOnSubmit={false}
                             returnKeyType={'next'}
-                            error={isInvalidCredentials || hasEmailFormatError}
+                            error={isInvalidCredentials || hasEmailFormatError || hasUsernameFormatError}
                             errorText={
                                 isInvalidCredentials
                                     ? t('blui:LOGIN.INCORRECT_CREDENTIALS')
                                     : hasEmailFormatError
                                     ? t('blui:MESSAGES.EMAIL_ENTRY_ERROR')
+                                    : hasUsernameFormatError
+                                    ? t('blui:MESSAGES.USERNAME_ENTRY_ERROR')
                                     : ''
                             }
                             onBlur={(): void => {
-                                if (emailInput.length > 0 && !EMAIL_REGEX.test(emailInput))
+                                if (loginType === 'email' && emailInput.length > 0 && !EMAIL_REGEX.test(emailInput)) {
                                     setHasEmailFormatError(true);
+                                } else if (
+                                    loginType === 'username' &&
+                                    emailInput.length > 0 &&
+                                    !USERNAME_REGEX.test(emailInput)
+                                )
+                                    setHasUsernameFormatError(true);
                             }}
                         />
                         <TextInputSecure
@@ -388,8 +454,16 @@ export const Login: React.FC<LoginProps> = (props) => {
                             style={{ marginTop: 44 }}
                             error={isInvalidCredentials}
                             errorText={t('blui:LOGIN.INCORRECT_CREDENTIALS')}
-                            onSubmitEditing={!EMAIL_REGEX.test(emailInput) || !passwordInput ? undefined : loginTapped}
+                            onSubmitEditing={
+                                !EMAIL_REGEX.test(emailInput) || !USERNAME_REGEX.test(emailInput) || !passwordInput
+                                    ? undefined
+                                    : loginTapped
+                            }
                         />
+
+                        {(loginErrorDisplayConfig.mode === 'message-box' || loginErrorDisplayConfig.mode === 'both') &&
+                            loginErrorDisplayConfig.position === 'bottom' &&
+                            errorMessageBox}
 
                         <View style={[containerStyles.loginControls]}>
                             <View style={[containerStyles.checkboxAndButton]}>
@@ -404,7 +478,13 @@ export const Login: React.FC<LoginProps> = (props) => {
                                 <View style={[containerStyles.loginButtonContainer]}>
                                     <ToggleButton
                                         text={t('blui:ACTIONS.LOG_IN')}
-                                        disabled={!EMAIL_REGEX.test(emailInput) || !passwordInput}
+                                        disabled={
+                                            loginType === 'email'
+                                                ? !EMAIL_REGEX.test(emailInput) || !passwordInput
+                                                : loginType === 'username'
+                                                ? !USERNAME_REGEX.test(emailInput) || !passwordInput
+                                                : !emailInput || !passwordInput
+                                        }
                                         onPress={loginTapped}
                                         testID={'login-button'}
                                         accessibilityLabel={'login-button'}

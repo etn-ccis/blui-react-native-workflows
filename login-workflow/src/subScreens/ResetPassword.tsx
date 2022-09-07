@@ -34,7 +34,6 @@ import {
 const makeContainerStyles = (theme: ReactNativePaper.Theme, insets: any): Record<string, any> =>
     StyleSheet.create({
         safeContainer: {
-            // height: '100%',
             flexGrow: 1,
             backgroundColor: theme.colors.surface,
             marginBottom: insets.bottom,

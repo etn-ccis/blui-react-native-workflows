@@ -5,9 +5,29 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v4.2.0 (Unreleased)
+
+### Fixed
+
+-   Fixed Eula checkbox alignment ([#76](https://github.com/brightlayer-ui/react-native-workflows/issues/76) & [#178](https://github.com/brightlayer-ui/react-native-workflows/issues/178)).
+-   Fixed `<MobileStepper>` and `<RequirementCheck>` active/valid state color in dark theme ([#161](https://github.com/brightlayer-ui/react-native-workflows/issues/161)).
+-   Fixed issue with scroll containers not filling the screen ([#75](https://github.com/brightlayer-ui/react-native-workflows/issues/75)).
+-   Fixed issue with Eula text not being centered ([#164](https://github.com/brightlayer-ui/react-native-workflows/issues/164)).
+-   Fixed keyboard dismissal on initial click of input fields ([#130](https://github.com/brightlayer-ui/react-native-workflows/issues/130)).
+
+### Added
+
+-   Added support for Portuguese translations ([#110](https://github.com/brightlayer-ui/react-native-workflows/issues/110)).
+-   Ability to customize how error messages are displayed on the login screen via the `loginErrorDisplayConfig` prop on the `AuthUIContextProvider` ([#124](https://github.com/brightlayer-ui/react-native-workflows/issues/124)).
+
+### Changed
+
+-   Changed the verification code styles for the self registration workflow ([#77](https://github.com/brightlayer-ui/react-native-workflows/issues/157)).
+-   Updated styles for EULA loading screen ([#77](https://github.com/brightlayer-ui/react-native-workflows/issues/157)).
+
 ## v4.1.0 (April 28, 2022)
 
-### Fixes
+### Fixed
 
 -   Issue with horizontal scrolling when using HTML EULA on Android ([#113](https://github.com/brightlayer-ui/react-native-workflows/issues/113)).
 -   Issue with background colors when using HTML EULA with the dark theme.

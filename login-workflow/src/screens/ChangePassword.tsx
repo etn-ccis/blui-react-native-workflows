@@ -56,6 +56,14 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
             flex: 1,
             justifyContent: 'space-between',
         },
+        scrollContainer: {
+            flex: 1,
+            alignContent: 'center',
+        },
+        scrollContentContainer: {
+            alignSelf: 'center',
+            maxWidth: 600,
+        },
         mainContainer: {
             marginTop: 8,
             flex: 1,
@@ -213,7 +221,10 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
             <SafeAreaView style={[containerStyles.safeContainer, { flexGrow: 1 }]}>
                 {statusBar}
                 <View style={[containerStyles.mainContainer]}>
-                    <ScrollView style={{ maxWidth: 600 }}>
+                    <ScrollView
+                        style={containerStyles.scrollContainer}
+                        contentContainerStyle={containerStyles.scrollContentContainer}
+                    >
                         <MatIcon
                             name={'check'}
                             color={theme.colors.placeholder}

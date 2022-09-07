@@ -3,7 +3,7 @@
  * @module Screens
  */
 
-import React, { useEffect, useCallback, useState, ComponentType } from 'react';
+import React, { useEffect, useCallback, useState, ComponentType, useRef } from 'react';
 
 // Nav
 import { useNavigation, useRoute } from '@react-navigation/native';
@@ -25,7 +25,7 @@ import { RegistrationComplete as RegistrationCompleteScreen } from '../subScreen
 import { ExistingAccountComplete } from '../subScreens/ExistingAccountComplete';
 
 // Components
-import { View, StyleSheet, SafeAreaView, BackHandler } from 'react-native';
+import { View, StyleSheet, SafeAreaView, BackHandler, TextInput } from 'react-native';
 import ViewPager from 'react-native-pager-view';
 import { CloseHeader } from '../components/CloseHeader';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -64,9 +64,6 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
         safeContainer: {
             height: '100%',
             backgroundColor: theme.colors.surface,
-        },
-        mainContainer: {
-            flex: 1,
         },
         containerMargins: {
             marginHorizontal: 16,
@@ -135,6 +132,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
     const registrationState = useRegistrationUIState();
     const injectedUIContext = useInjectedUIContext();
     const theme = useTheme(props.theme);
+    const customRegistrationFormRef = useRef<TextInput>();
 
     // Styling
     const containerStyles = makeContainerStyles(theme);
@@ -248,18 +246,15 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
             name: 'Eula',
             pageTitle: t('blui:REGISTRATION.STEPS.LICENSE'),
             pageBody: (
-                // This View wrapper is necessary to avoid an issue with the pager-view where the EULA screen
-                // doesn't load. It only works if we put it here (doesn't work if added to the Eula component).
-                <View key={'EulaPage'} style={{ width: '100%', maxWidth: 600 }}>
-                    <EulaScreen
-                        eulaAccepted={eulaAccepted}
-                        onEulaChanged={setEulaAccepted}
-                        loadEula={loadAndCacheEula}
-                        htmlEula={injectedUIContext.htmlEula ?? false}
-                        eulaError={loadEulaTransitErrorMessage}
-                        eulaContent={eulaContent}
-                    />
-                </View>
+                <EulaScreen
+                    key={'EulaPage'}
+                    eulaAccepted={eulaAccepted}
+                    onEulaChanged={setEulaAccepted}
+                    loadEula={loadAndCacheEula}
+                    htmlEula={injectedUIContext.htmlEula ?? false}
+                    eulaError={loadEulaTransitErrorMessage}
+                    eulaContent={eulaContent}
+                />
             ),
             canGoForward: eulaAccepted,
             canGoBack: true,
@@ -268,14 +263,13 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
             name: 'CreateAccount',
             pageTitle: t('blui:REGISTRATION.STEPS.CREATE_ACCOUNT'),
             pageBody: (
-                <View key={'CreateAccountPage'} style={{ width: '100%', maxWidth: 600 }}>
-                    <CreateAccountScreen
-                        onEmailChanged={onEmailChanged}
-                        /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
-                        onSubmit={(): void => advancePage(1)}
-                        initialEmail={email}
-                    />
-                </View>
+                <CreateAccountScreen
+                    key={'CreateAccountPage'}
+                    onEmailChanged={onEmailChanged}
+                    /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
+                    onSubmit={(): void => advancePage(1)}
+                    initialEmail={email}
+                />
             ),
             canGoForward: email.length > 0,
             canGoBack: true,
@@ -284,17 +278,16 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
             name: 'VerifyEmail',
             pageTitle: t('blui:REGISTRATION.STEPS.VERIFY_EMAIL'),
             pageBody: (
-                <View key={'VerifyEmailPage'} style={{ width: '100%', maxWidth: 600 }}>
-                    <VerifyEmailScreen
-                        initialCode={verificationCode}
-                        onVerifyCodeChanged={setVerificationCode}
-                        onResendVerificationEmail={(): void => {
-                            void requestCode();
-                        }}
-                        /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
-                        onSubmit={(): void => advancePage(1)}
-                    />
-                </View>
+                <VerifyEmailScreen
+                    key={'VerifyEmailPage'}
+                    initialCode={verificationCode}
+                    onVerifyCodeChanged={setVerificationCode}
+                    onResendVerificationEmail={(): void => {
+                        void requestCode();
+                    }}
+                    /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
+                    onSubmit={(): void => advancePage(1)}
+                />
             ),
             canGoForward: verificationCode.length > 0,
             canGoBack: true,
@@ -303,15 +296,13 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
             name: 'CreatePassword',
             pageTitle: t('blui:REGISTRATION.STEPS.PASSWORD'),
             pageBody: (
-                <View key={'CreatePasswordPage'} style={{ width: '100%', maxWidth: 600 }}>
-                    <KeyboardAwareScrollView contentContainerStyle={[containerStyles.fullFlex]}>
-                        <CreatePasswordScreen
-                            onPasswordChanged={setPassword}
-                            /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
-                            onSubmit={(): void => advancePage(1)}
-                        />
-                    </KeyboardAwareScrollView>
-                </View>
+                <KeyboardAwareScrollView key={'CreatePasswordPage'} contentContainerStyle={[containerStyles.fullFlex]}>
+                    <CreatePasswordScreen
+                        onPasswordChanged={setPassword}
+                        /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
+                        onSubmit={(): void => advancePage(1)}
+                    />
+                </KeyboardAwareScrollView>
             ),
             canGoForward: password.length > 0,
             canGoBack: true,
@@ -326,7 +317,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                         onSubmit={
                             FirstCustomPage
                                 ? (): void => {
-                                      /* TODO Focus first field in custom page */
+                                      customRegistrationFormRef?.current?.focus();
                                   }
                                 : accountDetails !== null // && accountDetails.valid
                                 ? /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
@@ -345,6 +336,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                                 initialDetails={customAccountDetails?.[0]?.values}
                                 /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
                                 onSubmit={customAccountDetails?.[0]?.valid ? (): void => advancePage(1) : undefined}
+                                ref={customRegistrationFormRef}
                             />
                         )}
                     </AccountDetailsScreen>
@@ -394,6 +386,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                                                           (): void => advancePage(1)
                                                         : undefined
                                                 }
+                                                ref={customRegistrationFormRef}
                                             />
                                         </View>
                                     </KeyboardAwareScrollView>
@@ -475,8 +468,15 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [validationSuccess]);
 
-    // Spinner - shows if either of registration of code validation are in progress
-    const spinner = registrationIsInTransit || isValidationInTransit || codeRequestIsInTransit ? <Spinner /> : <></>;
+    // Spinner - shows if registration, code validation, or EULA loading is in progress
+    const spinner =
+        registrationIsInTransit || isValidationInTransit || codeRequestIsInTransit ? (
+            <Spinner />
+        ) : !eulaContent && !loadEulaTransitErrorMessage ? (
+            <Spinner loadingText={t('blui:REGISTRATION.EULA.LOADING')} />
+        ) : (
+            <></>
+        );
 
     // View pager
     useEffect(() => {
@@ -645,9 +645,6 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                     styles={{ root: [{ flex: 0 }] }}
                     steps={RegistrationPages.length}
                     activeStep={currentPage}
-                    activeColor={
-                        (theme.dark ? theme.colors.actionPalette.active : theme.colors.primary) || theme.colors.primary
-                    }
                     leftButton={
                         isFirstStep ? (
                             <Spacer flex={0} width={100} />
