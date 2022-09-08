@@ -311,36 +311,35 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
             name: 'AccountDetails',
             pageTitle: t('blui:REGISTRATION.STEPS.ACCOUNT_DETAILS'),
             pageBody: (
-                <View key={'AccountDetailsPage'} style={{ width: '100%', maxWidth: 600 }}>
-                    <AccountDetailsScreen
-                        onDetailsChanged={setAccountDetails}
-                        onSubmit={
-                            FirstCustomPage
-                                ? (): void => {
-                                      customRegistrationFormRef?.current?.focus();
-                                  }
-                                : accountDetails !== null // && accountDetails.valid
-                                ? /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
-                                  (): void => advancePage(1)
-                                : undefined
-                        }
-                    >
-                        {FirstCustomPage && (
-                            <FirstCustomPage
-                                onDetailsChanged={(details: CustomAccountDetails | null, valid: boolean): void => {
-                                    setCustomAccountDetails({
-                                        ...(customAccountDetails || {}),
-                                        0: { values: details || {}, valid },
-                                    });
-                                }}
-                                initialDetails={customAccountDetails?.[0]?.values}
-                                /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
-                                onSubmit={customAccountDetails?.[0]?.valid ? (): void => advancePage(1) : undefined}
-                                ref={customRegistrationFormRef}
-                            />
-                        )}
-                    </AccountDetailsScreen>
-                </View>
+                <AccountDetailsScreen
+                    key={'AccountDetailsPage'}
+                    onDetailsChanged={setAccountDetails}
+                    onSubmit={
+                        FirstCustomPage
+                            ? (): void => {
+                                  customRegistrationFormRef?.current?.focus();
+                              }
+                            : accountDetails !== null // && accountDetails.valid
+                            ? /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
+                              (): void => advancePage(1)
+                            : undefined
+                    }
+                >
+                    {FirstCustomPage && (
+                        <FirstCustomPage
+                            onDetailsChanged={(details: CustomAccountDetails | null, valid: boolean): void => {
+                                setCustomAccountDetails({
+                                    ...(customAccountDetails || {}),
+                                    0: { values: details || {}, valid },
+                                });
+                            }}
+                            initialDetails={customAccountDetails?.[0]?.values}
+                            /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
+                            onSubmit={customAccountDetails?.[0]?.valid ? (): void => advancePage(1) : undefined}
+                            ref={customRegistrationFormRef}
+                        />
+                    )}
+                </AccountDetailsScreen>
             ),
             canGoForward: accountDetails !== null, // &&
             // accountDetails.valid,

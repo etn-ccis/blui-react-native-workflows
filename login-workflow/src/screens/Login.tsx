@@ -105,7 +105,10 @@ const makeStyles = (theme: Theme, config: LoginErrorDisplayConfig): Record<strin
         },
         errorMessageBox: {
             flex: 1,
+            flexGrow: 0,
             flexDirection: 'row',
+            alignSelf: 'center',
+            maxWidth: 600,
             backgroundColor: config.backgroundColor || theme.colors.error,
             borderRadius: 4,
             padding: 16,
