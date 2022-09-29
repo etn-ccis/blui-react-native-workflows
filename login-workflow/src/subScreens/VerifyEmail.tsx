@@ -6,11 +6,11 @@
 import React, { useEffect } from 'react';
 
 // Components
-import { View, StyleSheet, SafeAreaView } from 'react-native';
+import { View, StyleSheet, SafeAreaView, TouchableOpacity } from 'react-native';
 import { TextInput } from '../components/TextInput';
 import { Instruction } from '../components/Instruction';
 import { useTheme } from 'react-native-paper';
-import { ThemedButton as Button } from '@brightlayer-ui/react-native-components/themed';
+import { Body1 } from '@brightlayer-ui/react-native-components';
 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
@@ -122,15 +122,11 @@ export const VerifyEmail: React.FC<VerifyEmailProps> = (props) => {
                         onChangeText={setVerifyCode}
                         onSubmitEditing={verifyCode.length ? props.onSubmit : undefined}
                     />
-                    <View style={{ flex: 1 }}>
-                        <Button
-                            uppercase={false}
-                            mode={'contained'}
-                            onPress={(): void => onResendVerificationEmail()}
-                            style={styles.inputMargin}
-                        >
-                            {t('blui:SELF_REGISTRATION.VERIFY_EMAIL.RESEND')}
-                        </Button>
+                    <View style={{ flex: 1, flexDirection: 'row', marginTop: 24, alignItems: 'center' }}>
+                        <Body1>{t('blui:SELF_REGISTRATION.VERIFY_EMAIL.VERIFICATION_CODE_PROMPT')}</Body1>
+                        <TouchableOpacity onPress={(): void => onResendVerificationEmail()}>
+                            <Body1 color="primary">&nbsp;{t('blui:ACTIONS.RESEND')}</Body1>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </KeyboardAwareScrollView>

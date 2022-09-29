@@ -3,7 +3,7 @@
  * @module Screens
  */
 
-import React, { useState, useEffect, useCallback, ComponentType } from 'react';
+import React, { useState, useEffect, useCallback, ComponentType, useRef } from 'react';
 
 // Nav
 import { useNavigation, useRoute } from '@react-navigation/native';
@@ -20,7 +20,7 @@ import { RegistrationComplete } from '../subScreens/RegistrationComplete';
 import { ExistingAccountComplete } from '../subScreens/ExistingAccountComplete';
 
 // Components
-import { View, StyleSheet, SafeAreaView, BackHandler } from 'react-native';
+import { View, StyleSheet, SafeAreaView, BackHandler, TextInput } from 'react-native';
 import { useTheme } from 'react-native-paper';
 import ViewPager from 'react-native-pager-view';
 import { CloseHeader } from '../components/CloseHeader';
@@ -59,7 +59,7 @@ import Color from 'color';
 const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any> =>
     StyleSheet.create({
         safeContainer: {
-            height: '100%',
+            flexGrow: 1,
             backgroundColor: theme.colors.surface,
         },
         mainContainer: {
@@ -72,9 +72,16 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
             flex: 1,
             height: '100%',
         },
+        scrollContainer: {
+            flex: 1,
+            alignContent: 'center',
+        },
+        scrollContentContainer: {
+            alignSelf: 'center',
+            maxWidth: 600,
+        },
         divider: {
             height: 1,
-            // marginTop: 16,
             backgroundColor: theme.dark
                 ? Color(Colors.black[200]).alpha(0.36).toString()
                 : Color(Colors.black[500]).alpha(0.12).toString(),
@@ -132,6 +139,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
     const registrationActions = useRegistrationUIActions();
     const injectedUIContext = useInjectedUIContext();
     const theme = useTheme(props.theme);
+    const customRegistrationFormRef = useRef<TextInput>();
 
     // Styling
     const containerStyles = makeContainerStyles(theme);
@@ -241,7 +249,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
                     onSubmit={
                         FirstCustomPage
                             ? (): void => {
-                                  /* TODO Focus first field in custom page */
+                                  customRegistrationFormRef?.current?.focus();
                               }
                             : accountDetails !== null // && accountDetails.valid
                             ? /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
@@ -260,6 +268,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
                             initialDetails={customAccountDetails?.[0]?.values}
                             /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
                             onSubmit={customAccountDetails?.[0]?.valid ? (): void => advancePage(1) : undefined}
+                            ref={customRegistrationFormRef}
                         />
                     )}
                 </AccountDetailsScreen>
@@ -308,6 +317,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
                                                           (): void => advancePage(1)
                                                         : undefined
                                                 }
+                                                ref={customRegistrationFormRef}
                                             />
                                         </View>
                                     </KeyboardAwareScrollView>
@@ -371,8 +381,15 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
         }
     }, [registrationState.inviteRegistration.validationTransit, validationCode, validateCode, validationEmail]); // eslint-disable-line react-hooks/exhaustive-deps
 
-    // Spinner - shows if either of registration of code validation are in progress
-    const spinner = registrationIsInTransit || isValidationInTransit ? <Spinner /> : <></>;
+    // Spinner - shows if registration, code validation, or EULA loading is in progress
+    const spinner =
+        registrationIsInTransit || isValidationInTransit ? (
+            <Spinner />
+        ) : !eulaContent && !loadEulaTransitErrorMessage ? (
+            <Spinner loadingText={t('blui:REGISTRATION.EULA.LOADING')} />
+        ) : (
+            <></>
+        );
 
     // View pager
     useEffect(() => {
@@ -521,9 +538,6 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
                     styles={{ root: [containerStyles.topBorder, { flex: 0 }] }}
                     steps={RegistrationPages.length}
                     activeStep={currentPage}
-                    activeColor={
-                        (theme.dark ? theme.colors.actionPalette.active : theme.colors.primary) || theme.colors.primary
-                    }
                     leftButton={
                         isFirstStep ? (
                             <Spacer flex={0} width={100} />

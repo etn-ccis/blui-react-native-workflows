@@ -35,7 +35,7 @@ export const SimpleDialog: React.FC<SimpleDialogProps> = (props) => {
     const { t } = useLanguageLocale();
     return (
         <Portal>
-            <Dialog visible={visible} dismissable={false}>
+            <Dialog visible={visible} dismissable={false} style={{ minWidth: 250, maxWidth: 600, alignSelf: 'center' }}>
                 {/* @ts-ignore */}
                 <Dialog.Title>{title}</Dialog.Title>
                 <Dialog.Content>

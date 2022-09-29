@@ -32,6 +32,14 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
             flexDirection: 'row',
             justifyContent: 'center',
         },
+        scrollContainer: {
+            flex: 1,
+            alignContent: 'center',
+        },
+        scrollContentContainer: {
+            alignSelf: 'center',
+            maxWidth: 600,
+        },
         mainContainer: {
             flex: 1,
             marginTop: 8,
@@ -87,39 +95,36 @@ export const CreateAccount: React.FC<CreateAccountProps> = (props) => {
 
     return (
         <SafeAreaView style={containerStyles.safeContainer}>
-            <View style={{ width: '100%', maxWidth: 600 }}>
-                <KeyboardAwareScrollView>
-                    <Instruction
-                        style={containerStyles.containerMargins}
-                        text={t('blui:SELF_REGISTRATION.INSTRUCTIONS')}
-                    />
+            <KeyboardAwareScrollView
+                style={containerStyles.scrollContainer}
+                contentContainerStyle={containerStyles.scrollContentContainer}
+            >
+                <Instruction style={containerStyles.containerMargins} text={t('blui:SELF_REGISTRATION.INSTRUCTIONS')} />
 
-                    <View style={[containerStyles.containerMargins, containerStyles.mainContainer]}>
-                        <TextInput
-                            label={t('blui:LABELS.EMAIL')}
-                            value={emailInput}
-                            style={styles.inputMargin}
-                            keyboardType={'email-address'}
-                            autoCapitalize={'none'}
-                            error={hasEmailFormatError}
-                            errorText={hasEmailFormatError ? t('blui:MESSAGES.EMAIL_ENTRY_ERROR') : ''}
-                            onChangeText={(text: string): void => {
-                                setEmailInput(text);
-                                setHasEmailFormatError(false);
-                                const validEmailOrEmpty = EMAIL_REGEX.test(text) ? text : '';
-                                props.onEmailChanged(validEmailOrEmpty);
-                            }}
-                            onBlur={(): void => {
-                                if (emailInput.length > 0 && !EMAIL_REGEX.test(emailInput))
-                                    setHasEmailFormatError(true);
-                            }}
-                            onSubmitEditing={
-                                emailInput.length > 0 && EMAIL_REGEX.test(emailInput) ? props.onSubmit : undefined
-                            }
-                        />
-                    </View>
-                </KeyboardAwareScrollView>
-            </View>
+                <View style={[containerStyles.containerMargins, containerStyles.mainContainer]}>
+                    <TextInput
+                        label={t('blui:LABELS.EMAIL')}
+                        value={emailInput}
+                        style={styles.inputMargin}
+                        keyboardType={'email-address'}
+                        autoCapitalize={'none'}
+                        error={hasEmailFormatError}
+                        errorText={hasEmailFormatError ? t('blui:MESSAGES.EMAIL_ENTRY_ERROR') : ''}
+                        onChangeText={(text: string): void => {
+                            setEmailInput(text);
+                            setHasEmailFormatError(false);
+                            const validEmailOrEmpty = EMAIL_REGEX.test(text) ? text : '';
+                            props.onEmailChanged(validEmailOrEmpty);
+                        }}
+                        onBlur={(): void => {
+                            if (emailInput.length > 0 && !EMAIL_REGEX.test(emailInput)) setHasEmailFormatError(true);
+                        }}
+                        onSubmitEditing={
+                            emailInput.length > 0 && EMAIL_REGEX.test(emailInput) ? props.onSubmit : undefined
+                        }
+                    />
+                </View>
+            </KeyboardAwareScrollView>
         </SafeAreaView>
     );
 };
