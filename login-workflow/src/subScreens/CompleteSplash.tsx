@@ -117,9 +117,7 @@ export const CompleteSplashScreen: React.FC<CompleteSplashScreenProps> = (props)
                         <View style={containerStyles.textContainer}>
                             <View style={{ width: '100%', maxWidth: 600 }}>
                                 <H6 style={[styles.headerText, styles.textSpacing]}>{props.boldTitle}</H6>
-                                <Body1 style={[styles.bodyText, styles.textSpacing]}>
-                                    <FormattedText parseableText={props.bodyText} />
-                                </Body1>
+                                <Body1 style={[styles.bodyText, styles.textSpacing]}>{props.bodyText}</Body1>
                             </View>
                         </View>
                     </View>

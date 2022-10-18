@@ -59,9 +59,7 @@ export const Instruction: React.FC<InstructionProps> = (props) => {
     return (
         <>
             <View style={[styles.padding]}>
-                <Body1 style={[styles.mainText, style]}>
-                    <FormattedText parseableText={text} />
-                </Body1>
+                <Body1 style={[styles.mainText, style]}>{text}</Body1>
             </View>
             {hasBottomBorder && <Divider style={styles.divider} />}
         </>
