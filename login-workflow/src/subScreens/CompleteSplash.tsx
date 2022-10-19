@@ -8,7 +8,6 @@ import React from 'react';
 // Components
 import { View, StyleSheet, SafeAreaView, Image, ScrollView } from 'react-native';
 import { IconSplash } from '../components/IconSplash';
-import { FormattedText } from '../components/FormattedText';
 import { useTheme } from 'react-native-paper';
 
 // Styles
