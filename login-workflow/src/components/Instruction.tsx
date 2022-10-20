@@ -2,13 +2,13 @@
  * @packageDocumentation
  * @module Components
  */
-
 import React from 'react';
 
 // Components
 import { View, StyleSheet, StyleProp, ViewStyle } from 'react-native';
 import { Body1 } from '@brightlayer-ui/react-native-components';
 import { ThemedDivider as Divider } from '@brightlayer-ui/react-native-components/themed';
+import { FormattedText } from './FormattedText';
 
 // Styles
 import * as Colors from '@brightlayer-ui/colors';
@@ -58,7 +58,9 @@ export const Instruction: React.FC<InstructionProps> = (props) => {
     return (
         <>
             <View style={[styles.padding]}>
-                <Body1 style={[styles.mainText, style]}>{text}</Body1>
+                <Body1 style={[styles.mainText, style]}>
+                    <FormattedText parseableText={text} />
+                </Body1>
             </View>
             {hasBottomBorder && <Divider style={styles.divider} />}
         </>
