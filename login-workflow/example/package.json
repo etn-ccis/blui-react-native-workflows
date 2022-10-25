@@ -5,12 +5,14 @@
     "scripts": {
         "android": "react-native run-android",
         "ios": "react-native run-ios",
+        "ipad": "react-native run-ios --simulator='iPad Pro (12.9-inch) (5th generation)'",
         "start": "react-native start",
         "test": "jest",
         "lint": "eslint \"**/**.{ts,tsx}\"",
         "lint:fix": "eslint \"**/**.{ts,tsx}\" --fix",
         "prettier": "prettier \"**/**.{ts,tsx,js,jsx,json,css,scss,html}\" --write",
-        "prettier:check": "prettier \"**/**.{ts,tsx,js,jsx,json,css,scss,html}\" --check"
+        "prettier:check": "prettier \"**/**.{ts,tsx,js,jsx,json,css,scss,html}\" --check",
+        "rnlink": "npm_config_yes=true npx react-native link"
     },
     "dependencies": {
         "@brightlayer-ui/colors": "^3.0.1",
