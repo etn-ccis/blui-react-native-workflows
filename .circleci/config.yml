@@ -7,7 +7,7 @@ jobs:
     working_directory: ~/login-workflow
     docker:
       - image: cimg/node:16.18.0-browsers
-    resource_class: xlarge
+    resource_class: large
     steps:
       - checkout
       - restore_cache:
