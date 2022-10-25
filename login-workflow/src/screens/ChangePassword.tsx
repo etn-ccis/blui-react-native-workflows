@@ -336,7 +336,11 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
                             <ToggleButton
                                 text={t('blui:CHANGE_PASSWORD.UPDATE')}
                                 disabled={currentPasswordInput === '' || !areValidMatchingPasswords()}
-                                onPress={changePassword}
+                                onPress={(): void => {
+                                    void (async (): Promise<void> => {
+                                        await changePassword();
+                                    })();
+                                }}
                             />
                         </View>
                     </View>

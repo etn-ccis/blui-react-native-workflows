@@ -124,10 +124,13 @@ export const ContactSupport: React.FC<ContactSupportProps> = (props) => {
                         </H6>
                         <Body1 style={[styles.bodyText, styles.textSpacing]}>
                             {t('blui:CONTACT_SUPPORT.SUPPORT_MESSAGE')}
-                            {/* @ts-ignore @TODO: update with appropriate Typography component*/}
                             <Text
                                 style={{ color: theme.colors.accent }}
-                                onPress={(): Promise<void> => Linking.openURL(`mailto:${contactEmail}`)}
+                                onPress={(): void => {
+                                    void (async (): Promise<void> => {
+                                        await Linking.openURL(`mailto:${contactEmail}`);
+                                    })();
+                                }}
                             >
                                 {contactEmail}
                             </Text>
@@ -140,10 +143,13 @@ export const ContactSupport: React.FC<ContactSupportProps> = (props) => {
                         </H6>
                         <Body1 style={[styles.bodyText, styles.textSpacing]}>
                             {t('blui:CONTACT_SUPPORT.TECHNICAL_ASSISTANCE')}
-                            {/* @ts-ignore @TODO: update with appropriate Typography component*/}
                             <Text
                                 style={{ color: theme.colors.accent }}
-                                onPress={(): Promise<void> => Linking.openURL(`tel:${contactPhoneLink}`)}
+                                onPress={(): void => {
+                                    void (async (): Promise<void> => {
+                                        await Linking.openURL(`tel:${contactPhoneLink}`);
+                                    })();
+                                }}
                             >
                                 {contactPhone}
                             </Text>
