@@ -9,18 +9,10 @@ import {
     View,
     Animated,
     Easing,
-    StatusBar,
-    Platform,
 } from 'react-native';
-import { useTheme } from 'react-native-paper';
-import {
-    ThemedAvatar as Avatar,
-    ThemedButton as Button,
-    ThemedDivider as Divider,
-} from '@brightlayer-ui/react-native-components/themed';
-import { Body1, H4, Header, InfoListItemProps, UserMenu, IconFamily } from '@brightlayer-ui/react-native-components';
+import { Avatar, Button, Divider, useTheme } from 'react-native-paper';
+import { Body1, H4, Header, IconFamily, InfoListItemProps, UserMenu } from '@brightlayer-ui/react-native-components';
 import { Theme } from 'react-native-paper/lib/typescript/types';
-// @ts-ignore
 import Logo from '../../assets/images/Logo.svg';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../navigation';
@@ -87,6 +79,7 @@ const OpenURLButton = (props: any): JSX.Element => {
 
     return (
         <Button
+            // eslint-disable-next-line @typescript-eslint/no-misused-promises
             onPress={(): Promise<void> => handlePress()}
             labelStyle={defaultStyles.openURLButtonText}
             uppercase={false}
@@ -105,20 +98,6 @@ const Home: React.FC<AppProps> = ({ navigation }): JSX.Element => {
     const defaultStyles = styles(theme);
     const spinValue = new Animated.Value(0);
     const securityHelper = useSecurityActions();
-    let statusBar: JSX.Element = <></>;
-
-    statusBar =
-        Platform.OS === 'ios' ? (
-            <StatusBar
-                backgroundColor={theme.colors?.primaryPalette?.main || theme.colors.primary}
-                barStyle={theme.dark ? 'light-content' : 'dark-content'}
-            />
-        ) : (
-            <StatusBar
-                backgroundColor={theme.colors?.primaryPalette?.dark || theme.colors.primary}
-                barStyle={theme.dark ? 'light-content' : 'dark-content'}
-            />
-        );
 
     Animated.loop(
         Animated.timing(spinValue, {
@@ -150,20 +129,16 @@ const Home: React.FC<AppProps> = ({ navigation }): JSX.Element => {
 
     return (
         <>
-            {statusBar}
             <Header
                 title={'Home Page'}
-                backgroundColor={theme.dark ? Colors.black[800] : theme.colors.primary}
                 icon={MenuIcon}
                 onIconPress={(): void => {
-                    // @ts-ignore
                     navigation.openDrawer();
                 }}
                 actionItems={[
                     {
                         component: (
                             <UserMenu
-                                iconColor={theme.dark ? Colors.black[200] : Colors.gray[500]}
                                 menuItems={menuItems}
                                 avatar={
                                     <Avatar.Text
@@ -185,9 +160,11 @@ const Home: React.FC<AppProps> = ({ navigation }): JSX.Element => {
                             <Logo height={100} width={100} fill={'#007bc1'} />
                         </Animated.View>
                     </View>
-                    <H4 style={defaultStyles.title}>Welcome to Brightlayer UI</H4>
+                    <H4 style={defaultStyles.title}>
+                        Welcome to Brightlayer <H4 color={'primary'}>UI</H4>.
+                    </H4>
                     <Body1 style={defaultStyles.subtitle}>
-                        Edit <Body1 style={defaultStyles.bold}>pages/home.tsx</Body1> and save to reload.
+                        Edit <Body1 style={defaultStyles.bold}>screens/home.tsx</Body1> and save to reload.
                     </Body1>
                     <Divider style={defaultStyles.divider} />
                     <OpenURLButton title={'Brightlayer UI Documentation'} url={'https://brightlayer-ui.github.io/'} />
@@ -200,7 +177,7 @@ const Home: React.FC<AppProps> = ({ navigation }): JSX.Element => {
                         url={'https://brightlayer-ui.github.io/patterns'}
                     />
                     <OpenURLButton
-                        title={'Brightlayer UI React Native Component Library'}
+                        title={'React Native Component Library'}
                         url={'https://brightlayer-ui-components.github.io/react-native/'}
                     />
                     <OpenURLButton title={'Visit Us on GitHub'} url={'https://github.com/brightlayer-ui'} />
