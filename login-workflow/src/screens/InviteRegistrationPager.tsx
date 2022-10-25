@@ -215,11 +215,8 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
                     key={'EulaPage'}
                     eulaAccepted={eulaAccepted}
                     onEulaChanged={setEulaAccepted}
-                    loadEula={(): void => {
-                        void (async (): Promise<void> => {
-                            await loadAndCacheEula();
-                        })();
-                    }}
+                    // eslint-disable-next-line @typescript-eslint/no-misused-promises
+                    loadEula={loadAndCacheEula}
                     htmlEula={injectedUIContext.htmlEula ?? false}
                     eulaError={loadEulaTransitErrorMessage}
                     eulaContent={eulaContent}

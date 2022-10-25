@@ -126,11 +126,8 @@ export const ContactSupport: React.FC<ContactSupportProps> = (props) => {
                             {t('blui:CONTACT_SUPPORT.SUPPORT_MESSAGE')}
                             <Text
                                 style={{ color: theme.colors.accent }}
-                                onPress={(): void => {
-                                    void (async (): Promise<void> => {
-                                        await Linking.openURL(`mailto:${contactEmail}`);
-                                    })();
-                                }}
+                                // eslint-disable-next-line @typescript-eslint/no-misused-promises
+                                onPress={(): Promise<void> => Linking.openURL(`mailto:${contactEmail}`)}
                             >
                                 {contactEmail}
                             </Text>
@@ -145,11 +142,8 @@ export const ContactSupport: React.FC<ContactSupportProps> = (props) => {
                             {t('blui:CONTACT_SUPPORT.TECHNICAL_ASSISTANCE')}
                             <Text
                                 style={{ color: theme.colors.accent }}
-                                onPress={(): void => {
-                                    void (async (): Promise<void> => {
-                                        await Linking.openURL(`tel:${contactPhoneLink}`);
-                                    })();
-                                }}
+                                // eslint-disable-next-line @typescript-eslint/no-misused-promises
+                                onPress={(): Promise<void> => Linking.openURL(`tel:${contactPhoneLink}`)}
                             >
                                 {contactPhone}
                             </Text>
