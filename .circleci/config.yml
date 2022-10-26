@@ -32,7 +32,7 @@ jobs:
           name: Lint
           command: |
             cd login-workflow
-            yarn lint --max-old-space-size=1024
+            yarn lint --max_old_space_size=1024
       - run:
           name: Tests
           command: |
