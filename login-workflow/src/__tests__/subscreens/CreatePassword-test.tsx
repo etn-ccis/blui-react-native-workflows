@@ -25,7 +25,7 @@ jest.mock('@brightlayer-ui/react-auth-shared', () => ({
 
 describe('CreatePassword subScreen tested with enzyme', () => {
     afterEach(cleanup);
-    const act = renderer.act;
+    // const act = renderer.act;
 
     function baseXML(
         onPasswordChanged = (): void => {

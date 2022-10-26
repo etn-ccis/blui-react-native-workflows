@@ -19,7 +19,7 @@ jest.mock('react-native-keyboard-aware-scroll-view', () => {
 
 describe('CreateAccount subScreen tested with enzyme', () => {
     afterEach(cleanup);
-    const act = renderer.act;
+    // const act = renderer.act;
 
     function baseXML(
         onEmailChanged = (): void => {

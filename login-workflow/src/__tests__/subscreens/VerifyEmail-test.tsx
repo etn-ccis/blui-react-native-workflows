@@ -19,7 +19,7 @@ jest.mock('react-native-keyboard-aware-scroll-view', () => {
 
 describe('VerifyEmail subScreen tested with enzyme', () => {
     afterEach(cleanup);
-    const act = renderer.act;
+    // const act = renderer.act;
 
     function baseXML(
         onVerifyCodeChanged = (): void => {
