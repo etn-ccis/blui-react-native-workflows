@@ -88,11 +88,7 @@ export const ProjectAuthUIActions: AuthUIActionsWithSecurity = (securityHelper) 
         await sleep(1000);
 
         if (isRandomFailure()) {
-            /* Throwing an error will pop up a dialog showing the text of the error (you  can also
-                use a i18next translation key and the value for that key will be displayed). If you
-                throw the specific error code below, the invalid credentials error message will also
-                be shown below the email and password fields and they will be highlighted in red.
-            */
+            // reject(new Error('LOGIN.GENERIC_ERROR'));
             throw new Error('LOGIN.INVALID_CREDENTIALS');
         }
 

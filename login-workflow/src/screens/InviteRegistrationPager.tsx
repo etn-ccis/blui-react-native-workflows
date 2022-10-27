@@ -215,6 +215,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
                     key={'EulaPage'}
                     eulaAccepted={eulaAccepted}
                     onEulaChanged={setEulaAccepted}
+                    // eslint-disable-next-line @typescript-eslint/no-misused-promises
                     loadEula={loadAndCacheEula}
                     htmlEula={injectedUIContext.htmlEula ?? false}
                     eulaError={loadEulaTransitErrorMessage}
@@ -472,6 +473,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
                 ) {
                     void attemptRegistration();
                 } else {
+                    // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
                     setCurrentPage(currentPage + (delta as number));
                 }
             }

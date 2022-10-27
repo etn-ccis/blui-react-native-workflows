@@ -250,6 +250,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                     key={'EulaPage'}
                     eulaAccepted={eulaAccepted}
                     onEulaChanged={setEulaAccepted}
+                    // eslint-disable-next-line @typescript-eslint/no-misused-promises
                     loadEula={loadAndCacheEula}
                     htmlEula={injectedUIContext.htmlEula ?? false}
                     eulaError={loadEulaTransitErrorMessage}
@@ -568,6 +569,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                     currentPage === CreateAccountPage &&
                     !codeRequestIsInTransit &&
                     canProgress() &&
+                    // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
                     (delta as number) > 0
                 ) {
                     void requestCode();
@@ -575,10 +577,12 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                     currentPage === VerifyEmailPage &&
                     !isValidationInTransit &&
                     canProgress() &&
+                    // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
                     (delta as number) > 0
                 ) {
                     void validateCode();
                 } else {
+                    // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
                     setCurrentPage(currentPage + (delta as number));
                 }
             }

@@ -1,15 +1,14 @@
 import React from 'react';
-import { Platform, SafeAreaView, ScrollView, StatusBar, StyleSheet, ViewStyle } from 'react-native';
+import { SafeAreaView, ScrollView, StyleSheet, ViewStyle } from 'react-native';
 import { EmptyState, Header, IconFamily, InfoListItemProps, UserMenu } from '@brightlayer-ui/react-native-components';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../navigation';
 import { useSecurityActions } from '@brightlayer-ui/react-native-auth-workflow';
 import { LocalStorage } from '../store/local-storage';
-import { useTheme } from 'react-native-paper';
-import { ThemedAvatar as Avatar } from '@brightlayer-ui/react-native-components/themed';
+import { Avatar } from 'react-native-paper';
 import * as Colors from '@brightlayer-ui/colors';
 
-const Event: IconFamily = { name: 'event', direction: 'ltr' };
+const Event: IconFamily = { name: 'event', direction: 'rtl' };
 const MenuIcon: IconFamily = { name: 'menu', direction: 'ltr' };
 const LockIcon: IconFamily = { name: 'lock', direction: 'ltr' };
 const ExitToAppIcon: IconFamily = { name: 'exit-to-app', direction: 'ltr' };
@@ -34,23 +33,8 @@ type AppProps = {
 };
 
 const PageTwo: React.FC<AppProps> = ({ navigation }): JSX.Element => {
-    const theme = useTheme();
     const defaultStyles = styles();
     const securityHelper = useSecurityActions();
-    let statusBar: JSX.Element = <></>;
-
-    statusBar =
-        Platform.OS === 'ios' ? (
-            <StatusBar
-                backgroundColor={theme.colors?.primaryPalette?.main || theme.colors.primary}
-                barStyle={theme.dark ? 'light-content' : 'dark-content'}
-            />
-        ) : (
-            <StatusBar
-                backgroundColor={theme.colors?.primaryPalette?.dark || theme.colors.primary}
-                barStyle={theme.dark ? 'light-content' : 'dark-content'}
-            />
-        );
 
     const changePassword = (): void => {
         securityHelper.showChangePassword();
@@ -68,13 +52,10 @@ const PageTwo: React.FC<AppProps> = ({ navigation }): JSX.Element => {
 
     return (
         <>
-            {statusBar}
             <Header
                 title={'Page Two'}
-                backgroundColor={theme.dark ? Colors.black[800] : theme.colors.primary}
                 icon={MenuIcon}
                 onIconPress={(): void => {
-                    // @ts-ignore
                     navigation.openDrawer();
                 }}
                 actionItems={[
@@ -82,7 +63,6 @@ const PageTwo: React.FC<AppProps> = ({ navigation }): JSX.Element => {
                         component: (
                             <UserMenu
                                 menuItems={menuItems}
-                                iconColor={theme.dark ? Colors.black[200] : Colors.gray[500]}
                                 avatar={
                                     <Avatar.Text
                                         label="UN"

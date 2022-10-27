@@ -5,8 +5,10 @@ import Adapter from 'enzyme-adapter-react-16';
 import Enzyme from 'enzyme';
 
 // https://github.com/ProminentEdge/mobile-boilerplate/blob/master
+const url = 'http://localhost';
+
 const { JSDOM } = require('jsdom');
-const jsdom = new JSDOM('<!doctype html><html><body></body></html>');
+const jsdom = new JSDOM('<!doctype html><html><body></body></html>', { url });
 const { window } = jsdom;
 
 function copyProps(src, target) {

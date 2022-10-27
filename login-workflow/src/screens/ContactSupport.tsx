@@ -124,9 +124,9 @@ export const ContactSupport: React.FC<ContactSupportProps> = (props) => {
                         </H6>
                         <Body1 style={[styles.bodyText, styles.textSpacing]}>
                             {t('blui:CONTACT_SUPPORT.SUPPORT_MESSAGE')}
-                            {/* @ts-ignore @TODO: update with appropriate Typography component*/}
                             <Text
                                 style={{ color: theme.colors.accent }}
+                                // eslint-disable-next-line @typescript-eslint/no-misused-promises
                                 onPress={(): Promise<void> => Linking.openURL(`mailto:${contactEmail}`)}
                             >
                                 {contactEmail}
@@ -140,9 +140,9 @@ export const ContactSupport: React.FC<ContactSupportProps> = (props) => {
                         </H6>
                         <Body1 style={[styles.bodyText, styles.textSpacing]}>
                             {t('blui:CONTACT_SUPPORT.TECHNICAL_ASSISTANCE')}
-                            {/* @ts-ignore @TODO: update with appropriate Typography component*/}
                             <Text
                                 style={{ color: theme.colors.accent }}
+                                // eslint-disable-next-line @typescript-eslint/no-misused-promises
                                 onPress={(): Promise<void> => Linking.openURL(`tel:${contactPhoneLink}`)}
                             >
                                 {contactPhone}
