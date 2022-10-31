@@ -4,13 +4,13 @@
  */
 
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow /*, mount*/ } from 'enzyme';
 import { CreatePassword } from '../../subScreens/CreatePassword';
 import { cleanup } from '@testing-library/react-native';
 import 'react-native';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
-import { TextInputHTMLAttributes } from '@brightlayer-ui/react-auth-shared';
+// import { TextInputHTMLAttributes } from '@brightlayer-ui/react-auth-shared';
 
 jest.mock('react-native-keyboard-aware-scroll-view', () => {
     const KeyboardAwareScrollView = ({ children }: any): any => children;
@@ -25,7 +25,7 @@ jest.mock('@brightlayer-ui/react-auth-shared', () => ({
 
 describe('CreatePassword subScreen tested with enzyme', () => {
     afterEach(cleanup);
-    const act = renderer.act;
+    // const act = renderer.act;
 
     function baseXML(
         onPasswordChanged = (): void => {
@@ -55,80 +55,80 @@ describe('CreatePassword subScreen tested with enzyme', () => {
         expect(wrapper.find('PasswordRequirements')).toHaveLength(1);
     });
 
-    it('should update password field on input', () => {
-        const container = mount(baseXML());
+    // it('should update password field on input', () => {
+    //     const container = mount(baseXML());
 
-        (container.find('TextInputSecure').first().props() as TextInputHTMLAttributes).onChangeText!('somenewpassword');
-        container.update();
+    //     (container.find('TextInputSecure').first().props() as TextInputHTMLAttributes).onChangeText!('somenewpassword');
+    //     container.update();
 
-        expect(container.find('TextInputSecure').first().prop('value')).toEqual('somenewpassword');
-    });
+    //     expect(container.find('TextInputSecure').first().prop('value')).toEqual('somenewpassword');
+    // });
 
-    it('should update confirm field on input', () => {
-        const container = mount(baseXML());
+    // it('should update confirm field on input', () => {
+    //     const container = mount(baseXML());
 
-        (container.find('TextInputSecure').at(1).props() as TextInputHTMLAttributes).onChangeText!('somenewpassword');
-        container.update();
+    //     (container.find('TextInputSecure').at(1).props() as TextInputHTMLAttributes).onChangeText!('somenewpassword');
+    //     container.update();
 
-        expect(container.find('TextInputSecure').at(1).prop('value')).toEqual('somenewpassword');
-    });
+    //     expect(container.find('TextInputSecure').at(1).prop('value')).toEqual('somenewpassword');
+    // });
 
-    it('test async useEffect update of onPasswordChanged returns non empty password for matching strong passwords', async () => {
-        const mockCallback = jest.fn();
-        const component = mount(baseXML(mockCallback));
+    // it('test async useEffect update of onPasswordChanged returns non empty password for matching strong passwords', async () => {
+    //     const mockCallback = jest.fn();
+    //     const component = mount(baseXML(mockCallback));
 
-        await act(async () => {
-            await Promise.resolve(component);
-            await new Promise((resolve) => setImmediate(resolve));
-            (component.find('TextInputSecure').at(0).props() as TextInputHTMLAttributes).onChangeText!('qwQW12!@');
-            (component.find('TextInputSecure').at(1).props() as TextInputHTMLAttributes).onChangeText!('qwQW12!@');
-            component.update();
-        });
+    //     await act(async () => {
+    //         await Promise.resolve(component);
+    //         await new Promise((resolve) => setImmediate(resolve));
+    //         (component.find('TextInputSecure').at(0).props() as TextInputHTMLAttributes).onChangeText!('qwQW12!@');
+    //         (component.find('TextInputSecure').at(1).props() as TextInputHTMLAttributes).onChangeText!('qwQW12!@');
+    //         component.update();
+    //     });
 
-        expect(component.find('TextInputSecure').at(0).prop('value')).toEqual('qwQW12!@');
-        expect(component.find('TextInputSecure').at(1).prop('value')).toEqual('qwQW12!@');
-        expect(mockCallback).toHaveBeenCalledTimes(3);
-        expect(mockCallback).toHaveBeenCalledWith('qwQW12!@');
-        expect(mockCallback.mock.calls[2][0]).toBe('qwQW12!@'); // The final call is the final state from the useEffect hook
-    });
+    //     expect(component.find('TextInputSecure').at(0).prop('value')).toEqual('qwQW12!@');
+    //     expect(component.find('TextInputSecure').at(1).prop('value')).toEqual('qwQW12!@');
+    //     expect(mockCallback).toHaveBeenCalledTimes(3);
+    //     expect(mockCallback).toHaveBeenCalledWith('qwQW12!@');
+    //     expect(mockCallback.mock.calls[2][0]).toBe('qwQW12!@'); // The final call is the final state from the useEffect hook
+    // });
 
-    it('test async useEffect update of onPasswordChanged returns empty string for matching weak passwords', async () => {
-        const mockCallback = jest.fn();
-        const component = mount(baseXML(mockCallback));
+    // it('test async useEffect update of onPasswordChanged returns empty string for matching weak passwords', async () => {
+    //     const mockCallback = jest.fn();
+    //     const component = mount(baseXML(mockCallback));
 
-        await act(async () => {
-            await Promise.resolve(component);
-            await new Promise((resolve) => setImmediate(resolve));
-            (component.find('TextInputSecure').at(0).props() as TextInputHTMLAttributes).onChangeText!('weakpass');
-            (component.find('TextInputSecure').at(1).props() as TextInputHTMLAttributes).onChangeText!('weakpass');
-            component.update();
-        });
+    //     await act(async () => {
+    //         await Promise.resolve(component);
+    //         await new Promise((resolve) => setImmediate(resolve));
+    //         (component.find('TextInputSecure').at(0).props() as TextInputHTMLAttributes).onChangeText!('weakpass');
+    //         (component.find('TextInputSecure').at(1).props() as TextInputHTMLAttributes).onChangeText!('weakpass');
+    //         component.update();
+    //     });
 
-        expect(component.find('TextInputSecure').at(0).prop('value')).toEqual('weakpass');
-        expect(component.find('TextInputSecure').at(1).prop('value')).toEqual('weakpass');
-        expect(mockCallback).toHaveBeenCalledTimes(3);
-        expect(mockCallback).toHaveBeenLastCalledWith('');
-        expect(mockCallback.mock.calls[2][0]).toBe(''); // The final call is the final state from the useEffect hook
-    });
+    //     expect(component.find('TextInputSecure').at(0).prop('value')).toEqual('weakpass');
+    //     expect(component.find('TextInputSecure').at(1).prop('value')).toEqual('weakpass');
+    //     expect(mockCallback).toHaveBeenCalledTimes(3);
+    //     expect(mockCallback).toHaveBeenLastCalledWith('');
+    //     expect(mockCallback.mock.calls[2][0]).toBe(''); // The final call is the final state from the useEffect hook
+    // });
 
-    it('test async useEffect update of onPasswordChanged returns empty string for non-matching strong passwords', async () => {
-        const mockCallback = jest.fn();
-        const component = mount(baseXML(mockCallback));
+    // it('test async useEffect update of onPasswordChanged returns empty string for non-matching strong passwords', async () => {
+    //     const mockCallback = jest.fn();
+    //     const component = mount(baseXML(mockCallback));
 
-        await act(async () => {
-            await Promise.resolve(component);
-            await new Promise((resolve) => setImmediate(resolve));
-            (component.find('TextInputSecure').at(0).props() as TextInputHTMLAttributes).onChangeText!('qwQW12!@');
-            (component.find('TextInputSecure').at(1).props() as TextInputHTMLAttributes).onChangeText!('weWE23@#');
-            component.update();
-        });
+    //     await act(async () => {
+    //         await Promise.resolve(component);
+    //         await new Promise((resolve) => setImmediate(resolve));
+    //         (component.find('TextInputSecure').at(0).props() as TextInputHTMLAttributes).onChangeText!('qwQW12!@');
+    //         (component.find('TextInputSecure').at(1).props() as TextInputHTMLAttributes).onChangeText!('weWE23@#');
+    //         component.update();
+    //     });
 
-        expect(component.find('TextInputSecure').at(0).prop('value')).toEqual('qwQW12!@');
-        expect(component.find('TextInputSecure').at(1).prop('value')).toEqual('weWE23@#');
-        expect(mockCallback).toHaveBeenCalledTimes(3);
-        expect(mockCallback).toHaveBeenLastCalledWith('');
-        expect(mockCallback.mock.calls[2][0]).toBe(''); // The final call is the final state from the useEffect hook
-    });
+    //     expect(component.find('TextInputSecure').at(0).prop('value')).toEqual('qwQW12!@');
+    //     expect(component.find('TextInputSecure').at(1).prop('value')).toEqual('weWE23@#');
+    //     expect(mockCallback).toHaveBeenCalledTimes(3);
+    //     expect(mockCallback).toHaveBeenLastCalledWith('');
+    //     expect(mockCallback.mock.calls[2][0]).toBe(''); // The final call is the final state from the useEffect hook
+    // });
 
     // it('strong password entry snapshot', async () => {
     //     const component = mount(baseXML());

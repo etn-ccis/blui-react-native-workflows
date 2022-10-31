@@ -38,6 +38,7 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
         },
         scrollContentContainer: {
             alignSelf: 'center',
+            width: '100%',
             maxWidth: 600,
         },
         mainContainer: {

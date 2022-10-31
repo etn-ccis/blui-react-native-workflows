@@ -2,14 +2,13 @@
  * @packageDocumentation
  * @module Components
  */
-
 import React from 'react';
 
 // Components
 import { View, StyleSheet, StyleProp, ViewStyle } from 'react-native';
-import { FormattedText } from './FormattedText';
 import { Body1 } from '@brightlayer-ui/react-native-components';
 import { ThemedDivider as Divider } from '@brightlayer-ui/react-native-components/themed';
+import { FormattedText } from './FormattedText';
 
 // Styles
 import * as Colors from '@brightlayer-ui/colors';

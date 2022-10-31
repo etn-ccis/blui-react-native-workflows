@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import { View } from 'react-native';
+// import { View } from 'react-native';
 import { Checkbox } from '../../components/Checkbox';
 import { CloseHeader } from '../../components/CloseHeader';
 import { CybersecurityBadge } from '../../components/CybersecurityBadge';
@@ -15,8 +15,8 @@ import { PasswordRequirements } from '../../components/PasswordRequirements';
 import { RequirementCheck } from '../../components/RequirementCheck';
 import { ResizingClearButton } from '../../components/ResizingClearButton';
 import { ScrollViewWithBackground } from '../../components/ScrollViewWithBackground';
-import { SimpleDialog } from '../../components/SimpleDialog';
-import { Spinner } from '../../components/Spinner';
+// import { SimpleDialog } from '../../components/SimpleDialog';
+// import { Spinner } from '../../components/Spinner';
 import { TextInput } from '../../components/TextInput';
 import { TextInputSecure } from '../../components/TextInputSecure';
 import { ToggleButton } from '../../components/ToggleButton';
@@ -130,34 +130,34 @@ describe('All components tested with enzyme', () => {
         expect(rendered).toBeTruthy();
     });
 
-    it('SimpleDialog renders correctly', () => {
-        const rendered = renderer
-            .create(
-                <View>
-                    <SimpleDialog
-                        title={'title'}
-                        bodyText={'bodyText'}
-                        visible={true}
-                        onDismiss={(): void => {
-                            /* do nothing */
-                        }}
-                    />
-                </View>
-            )
-            .toJSON();
-        expect(rendered).toBeTruthy();
-    });
+    // it('SimpleDialog renders correctly', () => {
+    //     const rendered = renderer
+    //         .create(
+    //             <View>
+    //                 <SimpleDialog
+    //                     title={'title'}
+    //                     bodyText={'bodyText'}
+    //                     visible={true}
+    //                     onDismiss={(): void => {
+    //                         /* do nothing */
+    //                     }}
+    //                 />
+    //             </View>
+    //         )
+    //         .toJSON();
+    //     expect(rendered).toBeTruthy();
+    // });
 
-    it('Spinner renders correctly', () => {
-        const rendered = renderer
-            .create(
-                <View>
-                    <Spinner></Spinner>
-                </View>
-            )
-            .toJSON();
-        expect(rendered).toBeTruthy();
-    });
+    // it('Spinner renders correctly', () => {
+    //     const rendered = renderer
+    //         .create(
+    //             <View>
+    //                 <Spinner></Spinner>
+    //             </View>
+    //         )
+    //         .toJSON();
+    //     expect(rendered).toBeTruthy();
+    // });
 
     it('TextInput renders correctly', () => {
         const rendered = renderer

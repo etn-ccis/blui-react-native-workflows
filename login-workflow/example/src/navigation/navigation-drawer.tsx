@@ -1,36 +1,24 @@
-import {
-    Drawer,
-    DrawerBody,
-    DrawerHeader,
-    DrawerNavGroup,
-    IconFamily,
-    NavItem,
-} from '@brightlayer-ui/react-native-components';
+import { Drawer, DrawerBody, DrawerHeader, DrawerNavGroup, NavItem } from '@brightlayer-ui/react-native-components';
 import React, { useState, useCallback } from 'react';
 import * as Colors from '@brightlayer-ui/colors';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from './index';
 
-const Menu: IconFamily = { name: 'menu', direction: 'ltr' };
-const Home: IconFamily = { name: 'home', direction: 'ltr' };
-const LooksOne: IconFamily = { name: 'looks-one', direction: 'ltr' };
-const LooksTwo: IconFamily = { name: 'looks-two', direction: 'ltr' };
-
 export const navGroupItems: NavItem[] = [
     {
         title: 'Home Page',
         itemID: 'Home',
-        icon: Home,
+        icon: { name: 'home' },
     },
     {
         title: 'Page One',
         itemID: 'PageOne',
-        icon: LooksOne,
+        icon: { name: 'looks-one' },
     },
     {
         title: 'Page Two',
         itemID: 'PageTwo',
-        icon: LooksTwo,
+        icon: { name: 'looks-two' },
     },
 ];
 
@@ -54,9 +42,8 @@ export const NavigationDrawer: React.FC<NavDrawerProps> = ({ navigation }) => {
                 title={'Brightlayer UI'}
                 subtitle={'React Native Project'}
                 fontColor={Colors.white[50]}
-                icon={Menu}
+                icon={{ name: 'menu' }}
                 onIconPress={(): void => {
-                    // @ts-ignore
                     navigation.closeDrawer();
                 }}
             />

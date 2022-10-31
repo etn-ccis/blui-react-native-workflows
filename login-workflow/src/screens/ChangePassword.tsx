@@ -336,6 +336,7 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
                             <ToggleButton
                                 text={t('blui:CHANGE_PASSWORD.UPDATE')}
                                 disabled={currentPasswordInput === '' || !areValidMatchingPasswords()}
+                                // eslint-disable-next-line @typescript-eslint/no-misused-promises
                                 onPress={changePassword}
                             />
                         </View>

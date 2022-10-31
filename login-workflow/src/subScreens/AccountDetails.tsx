@@ -30,16 +30,17 @@ const makeContainerStyles = (theme: ReactNativePaper.Theme): Record<string, any>
             marginTop: 8,
             flex: 1,
         },
-        containerMargins: {
-            marginHorizontal: 16,
-        },
         scrollContainer: {
             flex: 1,
             alignContent: 'center',
         },
         scrollContentContainer: {
             alignSelf: 'center',
+            width: '100%',
             maxWidth: 600,
+        },
+        containerMargins: {
+            marginHorizontal: 16,
         },
     });
 
@@ -126,7 +127,7 @@ export const AccountDetails: React.FC<AccountDetailsProps> = (props) => {
                     style={containerStyles.containerMargins}
                 />
 
-                <View style={[containerStyles.containerMargins, containerStyles.mainContainer]}>
+                <View style={[containerStyles.mainContainer, containerStyles.containerMargins]}>
                     <TextInput
                         label={t('blui:FORMS.FIRST_NAME')}
                         value={firstNameInput}

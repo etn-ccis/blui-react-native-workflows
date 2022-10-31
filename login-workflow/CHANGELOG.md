@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v5.0.0 (October 31, 2022)
+
+### Changed
+
+-   Update to build with react-native 0.70.0.
+-   Forced dark mode for the EULA's webview when using dark theme.
+
 ## v4.2.0 (September 29, 2022)
 
 ### Fixed
