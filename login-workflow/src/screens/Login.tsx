@@ -404,6 +404,7 @@ export const Login: React.FC<LoginProps> = (props) => {
                     <View style={[{ flexGrow: 1, maxWidth: 600 }]}>
                         <TextInput
                             testID={'email-text-field'}
+                            accessibilityLabel={'email-text-field'}
                             label={loginType === 'email' ? t('blui:LABELS.EMAIL') : t('blui:LABELS.USERNAME')}
                             value={emailInput}
                             keyboardType={loginType === 'email' ? 'email-address' : 'default'}
