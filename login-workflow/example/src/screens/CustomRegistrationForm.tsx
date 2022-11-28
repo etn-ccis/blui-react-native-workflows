@@ -5,7 +5,7 @@ import { View, StyleSheet, TextInput as ReactTextInput } from 'react-native';
 import { TextInput } from '../components/TextInput';
 
 // Hooks
-import { AccountDetailsFormProps } from '@brightlayer-ui/react-auth-shared';
+import { AccountDetailsFormMobileProps } from '@brightlayer-ui/react-auth-shared';
 
 /**
  * @ignore
@@ -33,7 +33,7 @@ const makeStyles = (): Record<string, any> =>
  *
  * @category Component
  */
-export const CustomAccountDetails: React.FC<AccountDetailsFormProps> = forwardRef((props, ref) => {
+export const CustomAccountDetails: React.FC<AccountDetailsFormMobileProps> = forwardRef((props, ref) => {
     const styles = makeStyles();
     const containerStyles = makeContainerStyles();
 
@@ -83,7 +83,7 @@ export const CustomAccountDetails: React.FC<AccountDetailsFormProps> = forwardRe
     );
 });
 
-export const CustomAccountDetailsTwo: React.FC<AccountDetailsFormProps> = (props) => {
+export const CustomAccountDetailsTwo: React.FC<AccountDetailsFormMobileProps> = (props) => {
     const styles = makeStyles();
     const containerStyles = makeContainerStyles();
 

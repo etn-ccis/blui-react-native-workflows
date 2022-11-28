@@ -44,7 +44,7 @@ import {
     // Hooks
     useLanguageLocale,
     useInjectedUIContext,
-    AccountDetailsFormProps,
+    AccountDetailsFormMobileProps,
     CustomAccountDetails,
     CustomRegistrationForm,
 } from '@brightlayer-ui/react-auth-shared';
@@ -204,7 +204,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
 
     // Page Definitions
     const customDetails = injectedUIContext.customAccountDetails || [];
-    const FirstCustomPage: ComponentType<AccountDetailsFormProps> | null =
+    const FirstCustomPage: ComponentType<AccountDetailsFormMobileProps> | null =
         customDetails.length > 0 && customDetails[0] ? customDetails[0].component : null;
     const RegistrationPages: RegistrationPage[] = [
         {

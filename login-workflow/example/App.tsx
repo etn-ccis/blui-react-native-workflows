@@ -20,7 +20,7 @@ import { authLinkMapping, resolveInitialState } from './src/navigation/DeepLinki
 // import { Image, ScrollView, View } from 'react-native';
 // import { Body1, H5, Header, Hero /*, wrapIcon*/, Spacer } from '@brightlayer-ui/react-native-components';
 // import MatIcon from 'react-native-vector-icons/MaterialIcons';
-// import { CustomAccountDetails, CustomAccountDetailsTwo } from './src/screens/CustomRegistrationForm';
+import { CustomAccountDetails, CustomAccountDetailsTwo } from './src/screens/CustomRegistrationForm';
 // import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 // import { Terms } from './src/screens/Terms';
 
@@ -75,14 +75,14 @@ export const AuthUIConfiguration: React.FC = (props) => {
             contactPhone={'1-800-123-4567'}
             contactPhoneLink={'1-800-123-4567'}
             // loginErrorDisplayConfig={{ mode: 'message-box', position: 'top' }}
-            // customAccountDetails={[
-            //     { component: CustomAccountDetails },
-            //     {
-            //         title: 'Job Info',
-            //         instructions: 'Enter your employment information below.',
-            //         component: CustomAccountDetailsTwo,
-            //     },
-            // ]}
+            customAccountDetails={[
+                { component: CustomAccountDetails },
+                {
+                    title: 'Job Info',
+                    instructions: 'Enter your employment information below.',
+                    component: CustomAccountDetailsTwo,
+                },
+            ]}
             // loginType={'username'}
             // disablePagerAnimation={true}
             // registrationConfig={{

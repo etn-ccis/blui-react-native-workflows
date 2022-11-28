@@ -50,7 +50,7 @@ import {
     useRegistrationUIState,
     CustomAccountDetails,
     CustomRegistrationForm,
-    AccountDetailsFormProps,
+    AccountDetailsFormMobileProps,
 } from '@brightlayer-ui/react-auth-shared';
 import { CustomRegistrationDetailsGroup, RegistrationPage } from '../types';
 import { Instruction } from '../components/Instruction';
@@ -239,7 +239,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
 
     // Page Definitions
     const customDetails = injectedUIContext.customAccountDetails || [];
-    const FirstCustomPage: ComponentType<AccountDetailsFormProps> | null =
+    const FirstCustomPage: ComponentType<AccountDetailsFormMobileProps> | null =
         customDetails.length > 0 && customDetails[0] ? customDetails[0].component : null;
     const RegistrationPages: RegistrationPage[] = [
         {
