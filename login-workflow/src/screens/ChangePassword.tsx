@@ -254,7 +254,7 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
         </View>
     ) : (
         // if the password hasn't been changed yet
-        <>
+        <View style={{ position: 'absolute', top: 0 }}>
             <CloseHeader title={'Change Password'} backAction={props.onCancel} />
             <KeyboardAwareScrollView
                 contentContainerStyle={{ flex: 1, height: '100%', backgroundColor: theme.colors.surface }}
@@ -343,6 +343,6 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
                     </View>
                 </View>
             </KeyboardAwareScrollView>
-        </>
+        </View>
     );
 };

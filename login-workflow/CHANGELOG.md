@@ -5,12 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v5.1.0 (Unreleased)
+
+### Fixed
+
+-   Fixed issue with change password closing screen ([#121](https://github.com/brightlayer-ui/react-native-workflows/issues/121)).
+
 ## v5.0.0 (October 31, 2022)
 
 ### Changed
 
 -   Update to build with react-native 0.70.0.
--   Forced dark mode for the EULA's webview when using dark theme.
+-   Forced dark mode for the EULA's webview when using dark theme.\
 
 ## v4.2.0 (September 29, 2022)
 
