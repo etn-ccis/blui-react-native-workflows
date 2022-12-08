@@ -97,7 +97,7 @@ const AuthNavigationContainerRender: React.ForwardRefRenderFunction<
         />
     );
 
-    const appShouldBeVisible = securityState.isAuthenticatedUser && !securityState.isShowingChangePassword;
+    const appShouldBeVisible = securityState.isAuthenticatedUser;
 
     // Show the change password screen regardless of state if true
     // Show PreAuthContainer unless the user is authenticated
@@ -106,14 +106,13 @@ const AuthNavigationContainerRender: React.ForwardRefRenderFunction<
         <SafeAreaProvider style={{ backgroundColor: theme.colors.background }}>
             <NavigationContainer ref={ref} {...other}>
                 {appShouldBeVisible ? (
-                    <>{children}</>
+                    <>
+                        {children}
+                        {securityState.isShowingChangePassword && ChangePasswordScreen}
+                    </>
                 ) : (
                     <AuthUIInternalStore>
-                        {securityState.isShowingChangePassword ? (
-                            ChangePasswordScreen
-                        ) : (
-                            <PreAuthContainer extraRoutes={extraRoutes} initialRouteName={initialRouteName} />
-                        )}
+                        <PreAuthContainer extraRoutes={extraRoutes} initialRouteName={initialRouteName} />
                     </AuthUIInternalStore>
                 )}
             </NavigationContainer>
