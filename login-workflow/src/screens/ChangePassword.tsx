@@ -216,7 +216,16 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
     );
 
     return transitState.transitSuccess ? ( // if the password was changed
-        <View style={{ flex: 1, height: '100%', backgroundColor: theme.colors.surface }}>
+        <View
+            style={{
+                flex: 1,
+                height: '100%',
+                backgroundColor: theme.colors.surface,
+                position: 'absolute',
+                top: 0,
+                width: '100%',
+            }}
+        >
             <CloseHeader title={'Change Password'} backAction={props.onChangeComplete} />
             <SafeAreaView style={[containerStyles.safeContainer, { flexGrow: 1 }]}>
                 {statusBar}
