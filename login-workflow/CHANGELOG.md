@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
--   Fixed issue with change password closing screen ([#121](https://github.com/brightlayer-ui/react-native-workflows/issues/121)).
+-   Fixed issue with change password closing screen ([#121](https://github.com/etn-ccis/blui-react-native-workflows/issues/121)).
 
 ## v5.0.0 (October 31, 2022)
 
@@ -22,29 +22,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
--   Fixed Eula checkbox alignment ([#76](https://github.com/brightlayer-ui/react-native-workflows/issues/76) & [#178](https://github.com/brightlayer-ui/react-native-workflows/issues/178)).
--   Fixed `<MobileStepper>` and `<RequirementCheck>` active/valid state color in dark theme ([#161](https://github.com/brightlayer-ui/react-native-workflows/issues/161)).
--   Fixed issue with scroll containers not filling the screen ([#75](https://github.com/brightlayer-ui/react-native-workflows/issues/75)).
--   Fixed issue with Eula text not being centered ([#164](https://github.com/brightlayer-ui/react-native-workflows/issues/164)).
--   Fixed keyboard dismissal on initial click of input fields ([#130](https://github.com/brightlayer-ui/react-native-workflows/issues/130)).
+-   Fixed Eula checkbox alignment ([#76](https://github.com/etn-ccis/blui-react-native-workflows/issues/76) & [#178](https://github.com/etn-ccis/blui-react-native-workflows/issues/178)).
+-   Fixed `<MobileStepper>` and `<RequirementCheck>` active/valid state color in dark theme ([#161](https://github.com/etn-ccis/blui-react-native-workflows/issues/161)).
+-   Fixed issue with scroll containers not filling the screen ([#75](https://github.com/etn-ccis/blui-react-native-workflows/issues/75)).
+-   Fixed issue with Eula text not being centered ([#164](https://github.com/etn-ccis/blui-react-native-workflows/issues/164)).
+-   Fixed keyboard dismissal on initial click of input fields ([#130](https://github.com/etn-ccis/blui-react-native-workflows/issues/130)).
 
 ### Added
 
--   Added support for Portuguese translations ([#110](https://github.com/brightlayer-ui/react-native-workflows/issues/110)).
--   Ability to customize how error messages are displayed on the login screen via the `loginErrorDisplayConfig` prop on the `AuthUIContextProvider` ([#124](https://github.com/brightlayer-ui/react-native-workflows/issues/124)).
+-   Added support for Portuguese translations ([#110](https://github.com/etn-ccis/blui-react-native-workflows/issues/110)).
+-   Ability to customize how error messages are displayed on the login screen via the `loginErrorDisplayConfig` prop on the `AuthUIContextProvider` ([#124](https://github.com/etn-ccis/blui-react-native-workflows/issues/124)).
 
 ### Changed
 
--   Changed the verification code styles for the self registration workflow ([#77](https://github.com/brightlayer-ui/react-native-workflows/issues/157)).
--   Updated styles for EULA loading screen ([#77](https://github.com/brightlayer-ui/react-native-workflows/issues/157)).
+-   Changed the verification code styles for the self registration workflow ([#77](https://github.com/etn-ccis/blui-react-native-workflows/issues/157)).
+-   Updated styles for EULA loading screen ([#77](https://github.com/etn-ccis/blui-react-native-workflows/issues/157)).
 
 ## v4.1.0 (April 28, 2022)
 
 ### Fixed
 
--   Issue with horizontal scrolling when using HTML EULA on Android ([#113](https://github.com/brightlayer-ui/react-native-workflows/issues/113)).
+-   Issue with horizontal scrolling when using HTML EULA on Android ([#113](https://github.com/etn-ccis/blui-react-native-workflows/issues/113)).
 -   Issue with background colors when using HTML EULA with the dark theme.
--   Fixed missing header on Change Password screen ([#122](https://github.com/brightlayer-ui/react-native-workflows/issues/122)).
+-   Fixed missing header on Change Password screen ([#122](https://github.com/etn-ccis/blui-react-native-workflows/issues/122)).
 -   Fixed Verify Email and Account Created page not being wrapped with a View.
 -   Fixed email not being populated when navigating back while creating an account via deeplink.
 
@@ -85,24 +85,24 @@ Previous versions listed after this indicator refer to our deprecated `@pxblue` 
 ### Changed
 
 -   EULA screen now appears first in the self registration workflow.
--   Allow users to go back at all steps of the registration flow ([#83](https://github.com/brightlayer-ui/react-native-workflows/issues/83)).
+-   Allow users to go back at all steps of the registration flow ([#83](https://github.com/etn-ccis/blui-react-native-workflows/issues/83)).
 
 ### Added
 
--   Ability to customize the character limits for first and last name text fields in the registration workflow via the `registrationConfig` prop on the `AuthUIContextProvider` ([#90](https://github.com/brightlayer-ui/react-native-workflows/issues/90)).
+-   Ability to customize the character limits for first and last name text fields in the registration workflow via the `registrationConfig` prop on the `AuthUIContextProvider` ([#90](https://github.com/etn-ccis/blui-react-native-workflows/issues/90)).
 
 ## v3.2.2 (July 15, 2021)
 
 ### Fixed
 
--   Issue with html EULA screen not appearing ([#86](https://github.com/brightlayer-ui/react-native-workflows/issues/86)).
--   Issue with soft keyboard blocking input field ([#84](https://github.com/brightlayer-ui/react-native-workflows/issues/84)).
+-   Issue with html EULA screen not appearing ([#86](https://github.com/etn-ccis/blui-react-native-workflows/issues/86)).
+-   Issue with soft keyboard blocking input field ([#84](https://github.com/etn-ccis/blui-react-native-workflows/issues/84)).
 
 ## v3.2.1 (June 30, 2021)
 
 ### Fixed
 
--   Issue with EULA screen not loading in self-registration flow ([#81](https://github.com/brightlayer-ui/react-native-workflows/issues/81)).
+-   Issue with EULA screen not loading in self-registration flow ([#81](https://github.com/etn-ccis/blui-react-native-workflows/issues/81)).
 
 ## v3.2.0 (June 8, 2021)
 
@@ -121,13 +121,13 @@ Previous versions listed after this indicator refer to our deprecated `@pxblue` 
 
 ### Fixed
 
--   Issue where Remember Me checkbox is cleared after changing password ([#56](https://github.com/brightlayer-ui/react-native-workflows/issues/56)).
+-   Issue where Remember Me checkbox is cleared after changing password ([#56](https://github.com/etn-ccis/blui-react-native-workflows/issues/56)).
 
 ## v3.0.1 (April 8, 2021)
 
 ### Fixed
 
--   Issue causing application to crash when existing user completes self-registration flow ([#50](https://github.com/brightlayer-ui/react-native-workflows/issues/50)).
+-   Issue causing application to crash when existing user completes self-registration flow ([#50](https://github.com/etn-ccis/blui-react-native-workflows/issues/50)).
 
 ## v3.0.0 (March 31, 2021)
 

@@ -7,10 +7,10 @@
         "name": "Brightlayer UI",
         "email": "brightlayer-ui@eaton.com"
     },
-    "homepage": "https://github.com/brightlayer-ui/react-native-workflows/tree/master/login-workflow",
+    "homepage": "https://github.com/etn-ccis/blui-react-native-workflows/tree/master/login-workflow",
     "repository": {
         "type": "git",
-        "url": "https://github.com/brightlayer-ui/react-native-workflows/tree/master/login-workflow"
+        "url": "https://github.com/etn-ccis/blui-react-native-workflows/tree/master/login-workflow"
     },
     "keywords": [
         "Brightlayer UI",
