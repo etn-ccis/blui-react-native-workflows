@@ -334,14 +334,7 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
                         </View>
                     </ScrollView>
                     <View style={[styles.sideBySideButtons, containerStyles.containerMargins]}>
-                        <View style={{ flex: 1, paddingRight: 8 }}>
-                            <ToggleButton
-                                text={t('blui:CHANGE_PASSWORD.CANCEL')}
-                                outlined={true}
-                                onPress={props.onCancel}
-                            />
-                        </View>
-                        <View style={{ flex: 1, paddingLeft: 8 }}>
+                        <View style={{ flex: 1 }}>
                             <ToggleButton
                                 text={t('blui:CHANGE_PASSWORD.UPDATE')}
                                 disabled={currentPasswordInput === '' || !areValidMatchingPasswords()}
