@@ -10,11 +10,11 @@ Integrating the user interface into your application is as easy as providing the
 
 **iOS**
 
-![Login iOS](https://raw.githubusercontent.com/brightlayer-ui/react-native-workflows/master/login-workflow/media/ios-login.png) ![Home iOS](https://raw.githubusercontent.com/brightlayer-ui/react-native-workflows/master/login-workflow/media/ios-home.png) ![Password iOS](https://raw.githubusercontent.com/brightlayer-ui/react-native-workflows/master/login-workflow/media/ios-password.png)
+![Login iOS](https://raw.githubusercontent.com/etn-ccis/blui-react-native-workflows/master/login-workflow/media/ios-login.png) ![Home iOS](https://raw.githubusercontent.com/etn-ccis/blui-react-native-workflows/master/login-workflow/media/ios-home.png) ![Password iOS](https://raw.githubusercontent.com/etn-ccis/blui-react-native-workflows/master/login-workflow/media/ios-password.png)
 
 **Android**
 
-![Login Android](https://raw.githubusercontent.com/brightlayer-ui/react-native-workflows/master/login-workflow/media/android-login.png) ![Home Android](https://raw.githubusercontent.com/brightlayer-ui/react-native-workflows/master/login-workflow/media/android-home.png) ![Password Android](https://raw.githubusercontent.com/brightlayer-ui/react-native-workflows/master/login-workflow/media/android-password.png)
+![Login Android](https://raw.githubusercontent.com/etn-ccis/blui-react-native-workflows/master/login-workflow/media/android-login.png) ![Home Android](https://raw.githubusercontent.com/etn-ccis/blui-react-native-workflows/master/login-workflow/media/android-home.png) ![Password Android](https://raw.githubusercontent.com/etn-ccis/blui-react-native-workflows/master/login-workflow/media/android-password.png)
 
 # Compatibility
 
