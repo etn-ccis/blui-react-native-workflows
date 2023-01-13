@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 -   Fixed issue with change password closing screen ([#121](https://github.com/etn-ccis/blui-react-native-workflows/issues/121)).
 
+### Removed
+
+-   Cancel button in the change password screen ([#210](https://github.com/etn-ccis/blui-react-native-workflows/issues/210)).
+
 ## v5.0.0 (October 31, 2022)
 
 ### Changed
