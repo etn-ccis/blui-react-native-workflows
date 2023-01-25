@@ -1,16 +1,16 @@
 {
     "name": "@brightlayer-ui/react-native-auth-workflow",
     "description": "Re-usable workflow components for Authentication and Registration within Eaton applications.",
-    "version": "5.0.0",
+    "version": "5.1.0",
     "license": "BSD-3-Clause",
     "author": {
         "name": "Brightlayer UI",
         "email": "brightlayer-ui@eaton.com"
     },
-    "homepage": "https://github.com/brightlayer-ui/react-native-workflows/tree/master/login-workflow",
+    "homepage": "https://github.com/etn-ccis/blui-react-native-workflows/tree/master/login-workflow",
     "repository": {
         "type": "git",
-        "url": "https://github.com/brightlayer-ui/react-native-workflows/tree/master/login-workflow"
+        "url": "https://github.com/etn-ccis/blui-react-native-workflows/tree/master/login-workflow"
     },
     "keywords": [
         "Brightlayer UI",
@@ -54,7 +54,7 @@
         "typescript": "tsc --noEmit",
         "publish:package": "set npm_config_yes=true && npx -p @brightlayer-ui/publish blui-publish",
         "coverage": "yarn test --coverage --watchAll=false",
-        "tag-package": "npx -p @brightlayer-ui/tag blui-tag"
+        "tag:package": "npx -p @brightlayer-ui/tag blui-tag -s -blui-react-native-auth-workflow"
     },
     "dependencies": {
         "@brightlayer-ui/react-auth-shared": "^3.7.3",
@@ -92,7 +92,7 @@
         "@react-native-community/masked-view": "^0.1.7",
         "@react-navigation/native": "^5.1.1",
         "@react-navigation/stack": "^5.2.3",
-        "@testing-library/react-native": "^7.2.0",
+        "@testing-library/react-native": "^11.5.0",
         "@types/color": "^3.0.3",
         "@types/enzyme": "^3.10.5",
         "@types/enzyme-adapter-react-16": "^1.0.6",
@@ -105,7 +105,6 @@
         "@typescript-eslint/eslint-plugin": "^5.36.2",
         "@typescript-eslint/parser": "^5.36.2",
         "babel-jest": "^25.0.0",
-        "codecov": "^3.8.2",
         "date-fns": "^2.11.1",
         "enzyme": "^3.11.0",
         "enzyme-adapter-react-16": "^1.15.2",

@@ -1,6 +1,6 @@
 # Theme Support
 
-This package will support a variety of React Native Paper compatible themes, but we recommend using a theme from the [@brightlayer-ui/react-native-themes](https://www.npmjs.com/package/@brightlayer-ui/react-native-themes) package.
+This package will support a variety of React Native Paper compatible themes, but we recommend using a theme from the [@brightlayer-ui/react-native-themes](https://github.com/etn-ccis/blui-react-native-themes/tree/master#dark-theme) package.
 
 # Using Brightlayer UI Themes
 
@@ -37,7 +37,7 @@ import * as BLUIThemes from '@brightlayer-ui/react-native-themes';
 
 ### Dark Component Wrappers
 
-When using the Brightlayer UI dark themes, you will need to create wrappers around some of the default React Native Paper components so that they have the correct styles in your application content. You can read more about this in the [themes documentation](https://github.com/brightlayer-ui/themes/tree/master/react-native#dark-theme). A future update to Brightlayer UI will provide these wrapper elements in a shared library.
+When using the Brightlayer UI dark themes, you will need to create wrappers around some of the default React Native Paper components so that they have the correct styles in your application content. You can read more about this in the [themes documentation](https://github.com/etn-ccis/blui-react-native-themes/tree/master#dark-theme). A future update to Brightlayer UI will provide these wrapper elements in a shared library.
 
 For now, these are available from the auth workflow package for TextInput, ActivityIndicator, and Button:
 

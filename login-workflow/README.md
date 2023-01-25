@@ -1,6 +1,6 @@
 # React Native Auth Workflow
 
-![npm (scoped)](https://img.shields.io/npm/v/@brightlayer-ui/react-native-auth-workflow) [![codecov](https://codecov.io/gh/brightlayer-ui/react-native-workflows/branch/master/graph/badge.svg?token=U4OI0D5UVP)](https://codecov.io/gh/brightlayer-ui/react-native-workflows)
+![npm (scoped)](https://img.shields.io/npm/v/@brightlayer-ui/react-native-auth-workflow) [![codecov](https://codecov.io/gh/etn-ccis/blui-react-native-workflows/branch/master/graph/badge.svg?token=U4OI0D5UVP)](https://codecov.io/gh/etn-ccis/blui-react-native-workflows)
 
 The React Native Auth Workflow package provides a consistent authentication and registration experience across Eaton mobile applications using React Native.
 
@@ -10,11 +10,11 @@ Integrating the user interface into your application is as easy as providing the
 
 **iOS**
 
-![Login iOS](https://raw.githubusercontent.com/pxblue/react-native-workflows/master/login-workflow/media/ios-login.png) ![Home iOS](https://raw.githubusercontent.com/pxblue/react-native-workflows/master/login-workflow/media/ios-home.png) ![Password iOS](https://raw.githubusercontent.com/pxblue/react-native-workflows/master/login-workflow/media/ios-password.png)
+![Login iOS](https://raw.githubusercontent.com/etn-ccis/blui-react-native-workflows/master/login-workflow/media/ios-login.png) ![Home iOS](https://raw.githubusercontent.com/etn-ccis/blui-react-native-workflows/master/login-workflow/media/ios-home.png) ![Password iOS](https://raw.githubusercontent.com/etn-ccis/blui-react-native-workflows/master/login-workflow/media/ios-password.png)
 
 **Android**
 
-![Login Android](https://raw.githubusercontent.com/pxblue/react-native-workflows/master/login-workflow/media/android-login.png) ![Home Android](https://raw.githubusercontent.com/pxblue/react-native-workflows/master/login-workflow/media/android-home.png) ![Password Android](https://raw.githubusercontent.com/pxblue/react-native-workflows/master/login-workflow/media/android-password.png)
+![Login Android](https://raw.githubusercontent.com/etn-ccis/blui-react-native-workflows/master/login-workflow/media/android-login.png) ![Home Android](https://raw.githubusercontent.com/etn-ccis/blui-react-native-workflows/master/login-workflow/media/android-home.png) ![Password Android](https://raw.githubusercontent.com/etn-ccis/blui-react-native-workflows/master/login-workflow/media/android-password.png)
 
 # Compatibility
 
@@ -37,9 +37,9 @@ yarn add @brightlayer-ui/react-native-auth-workflow
 
 You have two options for using this package in your application. You can manually integrate the package into an existing project, or you can start a project using the `/example` project provided in the package.
 
-To integrate the package into an existing project, read our [Existing Project Integration ](https://github.com/brightlayer-ui/react-native-workflows/tree/master/login-workflow/docs/existing-project-integration.md) instructions. Even if you are starting from scratch, it may be useful for you to refer to the example project while getting started.
+To integrate the package into an existing project, read our [Existing Project Integration ](https://github.com/etn-ccis/blui-react-native-workflows/tree/master/login-workflow/docs/existing-project-integration.md) instructions. Even if you are starting from scratch, it may be useful for you to refer to the example project while getting started.
 
-To use the example project as a starting point, read our [Sample Project Integration ](https://github.com/brightlayer-ui/react-native-workflows/tree/master/login-workflow/docs/sample-project-integration.md) instructions.
+To use the example project as a starting point, read our [Sample Project Integration ](https://github.com/etn-ccis/blui-react-native-workflows/tree/master/login-workflow/docs/sample-project-integration.md) instructions.
 
 # Usage (Security State)
 
@@ -56,7 +56,7 @@ The `securityActions` allows you to access actions related to user authenticatio
 
 The `securityState` allows you to access state related to security, such as the currently authenticated user's email (`securityState.email`).
 
-More information about React Native Auth Workflow's exported objects can found in the [API](https://github.com/brightlayer-ui/react-native-workflows/tree/master/login-workflow/docs/API.md) documentation.
+More information about React Native Auth Workflow's exported objects can found in the [API](https://github.com/etn-ccis/blui-react-native-workflows/tree/master/login-workflow/docs/API.md) documentation.
 
 # Deep Linking
 
@@ -79,22 +79,22 @@ Note that the `authui://` prefix is set by your application, as in the file at `
 
 # APIs
 
-More information about React Native Auth Workflow's exported objects and functions can found in the [API](https://github.com/brightlayer-ui/react-native-workflows/tree/master/login-workflow/docs/API.md) documentation.
+More information about React Native Auth Workflow's exported objects and functions can found in the [API](https://github.com/etn-ccis/blui-react-native-workflows/tree/master/login-workflow/docs/API.md) documentation.
 
 # Language Support
 
-For information about supporting multiple languages, refer to our [Language Support](https://github.com/brightlayer-ui/react-native-workflows/tree/master/login-workflow/docs/language-support.md) guidelines.
+For information about supporting multiple languages, refer to our [Language Support](https://github.com/etn-ccis/blui-react-native-workflows/tree/master/login-workflow/docs/language-support.md) guidelines.
 
 # Theming
 
-For information about supporting different themes, refer to our [Theme Support](https://github.com/brightlayer-ui/react-native-workflows/tree/master/login-workflow/docs/theme-support.md) guidelines.
+For information about supporting different themes, refer to our [Theme Support](https://github.com/etn-ccis/blui-react-native-workflows/tree/master/login-workflow/docs/theme-support.md) guidelines.
 
 # Contributors
 
 To work on this package as a contributor, first clone down the repository:
 
 ```shell
-git clone https://github.com/brightlayer-ui/react-native-workflows
+git clone https://github.com/etn-ccis/blui-react-native-workflows
 cd react-native-workflows/login-workflow
 ```
 

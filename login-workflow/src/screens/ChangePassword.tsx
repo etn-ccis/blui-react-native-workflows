@@ -216,7 +216,16 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
     );
 
     return transitState.transitSuccess ? ( // if the password was changed
-        <View style={{ flex: 1, height: '100%', backgroundColor: theme.colors.surface }}>
+        <View
+            style={{
+                flex: 1,
+                height: '100%',
+                backgroundColor: theme.colors.surface,
+                position: 'absolute',
+                top: 0,
+                width: '100%',
+            }}
+        >
             <CloseHeader title={'Change Password'} backAction={props.onChangeComplete} />
             <SafeAreaView style={[containerStyles.safeContainer, { flexGrow: 1 }]}>
                 {statusBar}
@@ -254,12 +263,12 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
         </View>
     ) : (
         // if the password hasn't been changed yet
-        <>
+        <View style={{ position: 'absolute', top: 0, bottom: 0 }}>
             <CloseHeader title={'Change Password'} backAction={props.onCancel} />
             <KeyboardAwareScrollView
                 contentContainerStyle={{ flex: 1, height: '100%', backgroundColor: theme.colors.surface }}
             >
-                <View style={[containerStyles.safeContainer, { flexGrow: 1 }]}>
+                <SafeAreaView style={[containerStyles.safeContainer, { flexGrow: 1 }]}>
                     {statusBar}
                     {spinner}
                     {errorDialog}
@@ -325,14 +334,7 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
                         </View>
                     </ScrollView>
                     <View style={[styles.sideBySideButtons, containerStyles.containerMargins]}>
-                        <View style={{ flex: 1, paddingRight: 8 }}>
-                            <ToggleButton
-                                text={t('blui:CHANGE_PASSWORD.CANCEL')}
-                                outlined={true}
-                                onPress={props.onCancel}
-                            />
-                        </View>
-                        <View style={{ flex: 1, paddingLeft: 8 }}>
+                        <View style={{ flex: 1 }}>
                             <ToggleButton
                                 text={t('blui:CHANGE_PASSWORD.UPDATE')}
                                 disabled={currentPasswordInput === '' || !areValidMatchingPasswords()}
@@ -341,8 +343,8 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
                             />
                         </View>
                     </View>
-                </View>
+                </SafeAreaView>
             </KeyboardAwareScrollView>
-        </>
+        </View>
     );
 };

@@ -5,7 +5,7 @@ If you don't have an existing React Native project and would like an example as 
 
 #### Setup
 
-Clone or download the package [repository](https://github.com/brightlayer-ui/react-native-workflows) and then copy the `/example` folder to a new location. Navigate into this folder and run `yarn` to install the required dependencies.
+Clone or download the package [repository](https://github.com/etn-ccis/blui-react-native-workflows) and then copy the `/example` folder to a new location. Navigate into this folder and run `yarn` to install the required dependencies.
 
 > If you are using npm as your package manager, you can delete the yarn.lock file and run `npm install` instead. This will generate a new lock file.
 
@@ -17,9 +17,9 @@ You will probably want to call your project something other than 'example'. Rena
 
 #### Configure AuthUIContextProvider
 
-Open the root app file (`App.tsx`) and adjust the configuration options of the `AuthUIContextProvider` as necessary for your project (refer to the [Readme](https://github.com/brightlayer-ui/react-native-workflows/tree/master/login-workflow/README.md)). As a suggestion, you may want to swap out the example image with a product logo for your project.
+Open the root app file (`App.tsx`) and adjust the configuration options of the `AuthUIContextProvider` as necessary for your project (refer to the [Readme](https://github.com/etn-ccis/blui-react-native-workflows/tree/master/login-workflow/README.md)). As a suggestion, you may want to swap out the example image with a product logo for your project.
 
-You can read more about customizing the `AuthUIContextProvider` in the [Customization Guide](https://github.com/brightlayer-ui/react-native-workflows/tree/master/login-workflow/docs/customization.md) 
+You can read more about customizing the `AuthUIContextProvider` in the [Customization Guide](https://github.com/etn-ccis/blui-react-native-workflows/tree/master/login-workflow/docs/customization.md) 
 
 
 #### Implement AuthUIActions and RegistrationUIActions

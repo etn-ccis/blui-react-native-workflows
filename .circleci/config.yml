@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  codecov: codecov/codecov@1.1.3
+  codecov: codecov/codecov@3.2.2
   gh: circleci/github-cli@1.0
 jobs:
   build_login_workflow:
@@ -58,7 +58,7 @@ jobs:
           at: .
       - codecov/upload:
           file: "./login-workflow/coverage/clover.xml"
-          token: 6bd0adf7-ec9c-43ad-b1e9-dd71013923f2
+          token: CODECOV_TOKEN
 
   publish_login_workflow:
     docker:
@@ -77,18 +77,6 @@ jobs:
           command: |
             cd login-workflow && yarn publish:package -b $CIRCLE_BRANCH
 
-  gh_tag_login_workflow:
-    docker:
-      - image: cimg/node:16.18.0-browsers
-    steps:
-      - checkout
-      - gh/setup
-      - run:
-          name: Tag @brightlayer-ui/react-native-auth-workflow
-          command: |
-            cd login-workflow
-            yarn tag-package -b $CIRCLE_BRANCH -s -blui-react-native-auth-workflow
-
 workflows:
   version: 2
   react_native_workflows:
@@ -102,13 +90,6 @@ workflows:
               only:
                 - master
                 - dev
-      - gh_tag_login_workflow:
-          requires:
-            - publish_login_workflow
-          filters:
-            branches:
-              only:
-                - master
       - coverage_report:
           requires:
             - build_login_workflow
