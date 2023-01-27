@@ -1,6 +1,6 @@
 # React Native Auth Workflow
 
-![npm (scoped)](https://img.shields.io/npm/v/@brightlayer-ui/react-native-auth-workflow) [![codecov](https://codecov.io/gh/etn-ccis/blui-react-native-workflows/branch/master/graph/badge.svg?token=U4OI0D5UVP)](https://codecov.io/gh/etn-ccis/blui-react-native-workflows)
+[![](https://img.shields.io/circleci/project/github/etn-ccis/blui-react-native-workflows/master.svg?style=flat)](https://circleci.com/gh/etn-ccis/blui-react-native-workflows/tree/master) ![npm (scoped)](https://img.shields.io/npm/v/@brightlayer-ui/react-native-auth-workflow) [![codecov](https://codecov.io/gh/etn-ccis/blui-react-native-workflows/branch/master/graph/badge.svg?token=U4OI0D5UVP)](https://codecov.io/gh/etn-ccis/blui-react-native-workflows)
 
 The React Native Auth Workflow package provides a consistent authentication and registration experience across Eaton mobile applications using React Native.
 
