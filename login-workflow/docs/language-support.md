@@ -4,7 +4,7 @@ This package supports translations to different languages using [i18next](https:
 
 -   English
 -   French
--
+-   Portuguese
 -   Spanish
 -   Simplified Chinese
 
