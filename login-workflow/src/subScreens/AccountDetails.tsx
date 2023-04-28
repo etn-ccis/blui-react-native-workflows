@@ -80,11 +80,11 @@ export const emptyAccountDetailInformation = {
  * @param onSubmit callback called when user submits on the last form field to advance the screen
  * @param theme (Optional) react-native-paper theme partial for custom styling.
  */
-export type AccountDetailsProps = {
+export type AccountDetailsProps = React.PropsWithChildren<{
     onDetailsChanged(details: AccountDetailInformation | null): void;
     onSubmit?: () => void;
     theme?: ReactNativePaper.Theme;
-};
+}>;
 
 /**
  * Renders the content of the Account Details screen entry
