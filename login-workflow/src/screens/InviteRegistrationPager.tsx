@@ -349,7 +349,12 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
                 canGoForward: true,
                 canGoBack: false,
             },
-        ]);
+        ])
+        // Remove the CreatePassword screen if so configured
+        .filter((page) => {
+            if (page.name === 'CreatePassword' && !(injectedUIContext.enableCreatePassword ?? true)) return false;
+            return true;
+        });
     const isLastStep = currentPage === RegistrationPages.length - 1;
     const isFirstStep = currentPage === 0;
     const CompletePage = RegistrationPages.length - 1;
