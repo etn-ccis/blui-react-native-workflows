@@ -127,7 +127,7 @@
         "react-dom": "^18.0.0",
         "react-i18next": "^11.18.6",
         "react-native": "^0.70.0",
-        "react-native-gesture-handler": "^1.6.1",
+        "react-native-gesture-handler": "^2.12.0",
         "react-native-keyboard-aware-scroll-view": "^0.9.1",
         "react-native-pager-view": "^5.0.0",
         "react-native-paper": "^4.7.2",
