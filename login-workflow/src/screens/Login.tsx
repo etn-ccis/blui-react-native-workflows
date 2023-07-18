@@ -159,6 +159,7 @@ export const Login: React.FC<LoginProps> = (props) => {
         loginActions,
         loginFooter,
         loginHeader,
+        showLoginForm = true,
     } = otherUIContext;
     const navigation = useNavigation();
     const { t } = useLanguageLocale();
@@ -370,6 +371,108 @@ export const Login: React.FC<LoginProps> = (props) => {
             />
         );
 
+    let loginForm = <></>;
+    if (showLoginForm) {
+        loginForm = (
+            <>
+                <TextInput
+                    testID={'email-text-field'}
+                    accessibilityLabel={'email-text-field'}
+                    label={loginType === 'email' ? t('blui:LABELS.EMAIL') : t('blui:LABELS.USERNAME')}
+                    value={emailInput}
+                    keyboardType={loginType === 'email' ? 'email-address' : 'default'}
+                    style={{ marginTop: 48 }}
+                    onChangeText={(text: string): void => {
+                        setEmailInput(text);
+                        setHasEmailFormatError(false);
+                        setHasUsernameFormatError(false);
+                        if (authUIState.login.transitErrorMessage !== null)
+                            authUIActions.dispatch(AccountActions.resetLogin());
+                    }}
+                    onSubmitEditing={(): void => {
+                        goToNextInput();
+                    }}
+                    blurOnSubmit={false}
+                    returnKeyType={'next'}
+                    error={isInvalidCredentials || hasEmailFormatError || hasUsernameFormatError}
+                    errorText={
+                        isInvalidCredentials
+                            ? t('blui:LOGIN.INCORRECT_CREDENTIALS')
+                            : hasEmailFormatError
+                            ? t('blui:MESSAGES.EMAIL_ENTRY_ERROR')
+                            : hasUsernameFormatError
+                            ? t('blui:MESSAGES.USERNAME_ENTRY_ERROR')
+                            : ''
+                    }
+                    onBlur={(): void => {
+                        if (loginType === 'email' && emailInput.length > 0 && !EMAIL_REGEX.test(emailInput)) {
+                            setHasEmailFormatError(true);
+                        } else if (
+                            loginType === 'username' &&
+                            emailInput.length > 0 &&
+                            !USERNAME_REGEX.test(emailInput)
+                        )
+                            setHasUsernameFormatError(true);
+                    }}
+                />
+                <TextInputSecure
+                    testID={'password-text-field'}
+                    accessibilityLabel={'password-text-field'}
+                    ref={confirmPasswordRef}
+                    label={t('blui:LABELS.PASSWORD')}
+                    value={passwordInput}
+                    autoCapitalize={'none'}
+                    onChangeText={(text: string): void => {
+                        setPasswordInput(text);
+                        if (authUIState.login.transitErrorMessage !== null)
+                            authUIActions.dispatch(AccountActions.resetLogin());
+                    }}
+                    returnKeyType={'done'}
+                    style={{ marginTop: 44 }}
+                    error={isInvalidCredentials}
+                    errorText={t('blui:LOGIN.INCORRECT_CREDENTIALS')}
+                    onSubmitEditing={
+                        !EMAIL_REGEX.test(emailInput) || !USERNAME_REGEX.test(emailInput) || !passwordInput
+                            ? undefined
+                            : loginTapped
+                    }
+                />
+
+                {(loginErrorDisplayConfig.mode === 'message-box' || loginErrorDisplayConfig.mode === 'both') &&
+                    loginErrorDisplayConfig.position === 'bottom' &&
+                    errorMessageBox}
+
+                <View style={[containerStyles.loginControls]}>
+                    <View style={[containerStyles.checkboxAndButton]}>
+                        {showRememberMe && (
+                            <Checkbox
+                                label={t('blui:ACTIONS.REMEMBER')}
+                                checked={rememberPassword}
+                                style={[containerStyles.checkbox]}
+                                onPress={(): void => setRememberPassword(!rememberPassword)}
+                            />
+                        )}
+                        <View style={[containerStyles.loginButtonContainer]}>
+                            <ToggleButton
+                                text={t('blui:ACTIONS.LOG_IN')}
+                                disabled={
+                                    loginType === 'email'
+                                        ? !EMAIL_REGEX.test(emailInput) || !passwordInput
+                                        : loginType === 'username'
+                                        ? !USERNAME_REGEX.test(emailInput) || !passwordInput
+                                        : !emailInput || !passwordInput
+                                }
+                                onPress={loginTapped}
+                                testID={'login-button'}
+                                accessibilityLabel={'login-button'}
+                            />
+                        </View>
+                    </View>
+                </View>
+            </>
+        );
+    }
+
     return (
         <>
             {statusBar}
@@ -403,105 +506,7 @@ export const Login: React.FC<LoginProps> = (props) => {
                         ]}
                     >
                         <View style={[{ flexGrow: 1, maxWidth: 600 }]}>
-                            <TextInput
-                                testID={'email-text-field'}
-                                accessibilityLabel={'email-text-field'}
-                                label={loginType === 'email' ? t('blui:LABELS.EMAIL') : t('blui:LABELS.USERNAME')}
-                                value={emailInput}
-                                keyboardType={loginType === 'email' ? 'email-address' : 'default'}
-                                style={{ marginTop: 48 }}
-                                onChangeText={(text: string): void => {
-                                    setEmailInput(text);
-                                    setHasEmailFormatError(false);
-                                    setHasUsernameFormatError(false);
-                                    if (authUIState.login.transitErrorMessage !== null)
-                                        authUIActions.dispatch(AccountActions.resetLogin());
-                                }}
-                                onSubmitEditing={(): void => {
-                                    goToNextInput();
-                                }}
-                                blurOnSubmit={false}
-                                returnKeyType={'next'}
-                                error={isInvalidCredentials || hasEmailFormatError || hasUsernameFormatError}
-                                errorText={
-                                    isInvalidCredentials
-                                        ? t('blui:LOGIN.INCORRECT_CREDENTIALS')
-                                        : hasEmailFormatError
-                                        ? t('blui:MESSAGES.EMAIL_ENTRY_ERROR')
-                                        : hasUsernameFormatError
-                                        ? t('blui:MESSAGES.USERNAME_ENTRY_ERROR')
-                                        : ''
-                                }
-                                onBlur={(): void => {
-                                    if (
-                                        loginType === 'email' &&
-                                        emailInput.length > 0 &&
-                                        !EMAIL_REGEX.test(emailInput)
-                                    ) {
-                                        setHasEmailFormatError(true);
-                                    } else if (
-                                        loginType === 'username' &&
-                                        emailInput.length > 0 &&
-                                        !USERNAME_REGEX.test(emailInput)
-                                    )
-                                        setHasUsernameFormatError(true);
-                                }}
-                            />
-                            <TextInputSecure
-                                testID={'password-text-field'}
-                                accessibilityLabel={'password-text-field'}
-                                ref={confirmPasswordRef}
-                                label={t('blui:LABELS.PASSWORD')}
-                                value={passwordInput}
-                                autoCapitalize={'none'}
-                                onChangeText={(text: string): void => {
-                                    setPasswordInput(text);
-                                    if (authUIState.login.transitErrorMessage !== null)
-                                        authUIActions.dispatch(AccountActions.resetLogin());
-                                }}
-                                returnKeyType={'done'}
-                                style={{ marginTop: 44 }}
-                                error={isInvalidCredentials}
-                                errorText={t('blui:LOGIN.INCORRECT_CREDENTIALS')}
-                                onSubmitEditing={
-                                    !EMAIL_REGEX.test(emailInput) || !USERNAME_REGEX.test(emailInput) || !passwordInput
-                                        ? undefined
-                                        : loginTapped
-                                }
-                            />
-
-                            {(loginErrorDisplayConfig.mode === 'message-box' ||
-                                loginErrorDisplayConfig.mode === 'both') &&
-                                loginErrorDisplayConfig.position === 'bottom' &&
-                                errorMessageBox}
-
-                            <View style={[containerStyles.loginControls]}>
-                                <View style={[containerStyles.checkboxAndButton]}>
-                                    {showRememberMe && (
-                                        <Checkbox
-                                            label={t('blui:ACTIONS.REMEMBER')}
-                                            checked={rememberPassword}
-                                            style={[containerStyles.checkbox]}
-                                            onPress={(): void => setRememberPassword(!rememberPassword)}
-                                        />
-                                    )}
-                                    <View style={[containerStyles.loginButtonContainer]}>
-                                        <ToggleButton
-                                            text={t('blui:ACTIONS.LOG_IN')}
-                                            disabled={
-                                                loginType === 'email'
-                                                    ? !EMAIL_REGEX.test(emailInput) || !passwordInput
-                                                    : loginType === 'username'
-                                                    ? !USERNAME_REGEX.test(emailInput) || !passwordInput
-                                                    : !emailInput || !passwordInput
-                                            }
-                                            onPress={loginTapped}
-                                            testID={'login-button'}
-                                            accessibilityLabel={'login-button'}
-                                        />
-                                    </View>
-                                </View>
-                            </View>
+                            {loginForm}
                             {loginActions && typeof loginActions === 'function' && loginActions(navigation)}
                             {loginActions && typeof loginActions !== 'function' && loginActions}
                             <View>
