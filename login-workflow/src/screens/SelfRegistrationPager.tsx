@@ -342,7 +342,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                     )}
                 </AccountDetailsScreen>
             ),
-            canGoForward: accountDetails !== null, // &&
+            canGoForward: accountDetails !== null && customAccountDetails ? customAccountDetails?.[0]?.valid : false,
             // accountDetails.valid,
             canGoBack: true,
         },
