@@ -203,13 +203,14 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
             if (hasRegistrationTransitError) registrationActions.dispatch(RegistrationActions.registerUserReset());
             setHasAcknowledgedError(false);
         }
-        return (): void => {
-            registrationActions.dispatch(RegistrationActions.requestRegistrationCodeReset());
-            registrationActions.dispatch(RegistrationActions.validateUserRegistrationReset());
-            registrationActions.dispatch(RegistrationActions.registerUserReset());
-        };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [hasAcknowledgedError]);
+
+    useEffect((): void => {
+        registrationActions.dispatch(RegistrationActions.requestRegistrationCodeReset());
+        registrationActions.dispatch(RegistrationActions.validateUserRegistrationReset());
+        registrationActions.dispatch(RegistrationActions.registerUserReset());
+    }, [registrationActions]);
 
     const loadAndCacheEula = async (): Promise<void> => {
         if (!eulaContent) {
