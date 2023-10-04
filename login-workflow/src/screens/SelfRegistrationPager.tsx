@@ -206,11 +206,12 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [hasAcknowledgedError]);
 
-    useEffect((): void => {
+    useEffect(() => {
         registrationActions.dispatch(RegistrationActions.requestRegistrationCodeReset());
         registrationActions.dispatch(RegistrationActions.validateUserRegistrationReset());
         registrationActions.dispatch(RegistrationActions.registerUserReset());
-    }, [registrationActions]);
+        /* eslint-disable-next-line */
+    }, []);
 
     const loadAndCacheEula = async (): Promise<void> => {
         if (!eulaContent) {
