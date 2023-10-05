@@ -227,6 +227,14 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
         setVerificationCode('');
     }, []);
 
+    const validateAccountDetails = useCallback(() => {
+        if (customAccountDetails?.[0]?.values) {
+            return customAccountDetails?.[0]?.valid && accountDetails !== null;
+        }
+
+        return accountDetails !== null;
+    }, [customAccountDetails, accountDetails]);
+
     const requestCode = useCallback(async (): Promise<void> => {
         registrationActions.dispatch(RegistrationActions.requestRegistrationCodeReset());
         setHasAcknowledgedError(false);
@@ -342,7 +350,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                     )}
                 </AccountDetailsScreen>
             ),
-            canGoForward: accountDetails !== null, // &&
+            canGoForward: validateAccountDetails(),
             // accountDetails.valid,
             canGoBack: true,
         },
