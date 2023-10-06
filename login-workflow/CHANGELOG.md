@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 -   Disable Next button when valid prop of Account Details form is false ([#276](https://github.com/etn-ccis/blui-react-native-workflows/issues/276)).
+-   Verification code prefilled value issue on Verify Email screen on resend, next and back button pressed ([#280](https://github.com/etn-ccis/blui-react-native-workflows/issues/280)).
 
 ## v5.1.0 (January 25, 2023)
 
