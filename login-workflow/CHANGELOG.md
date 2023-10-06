@@ -16,6 +16,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 -   Verification code prefilled value issue on Verify Email screen on resend, next and back button pressed ([#280](https://github.com/etn-ccis/blui-react-native-workflows/issues/280)).
 
+-   Incorrect navigation on dismissal of error occurred in Account Details screen ([#275](https://github.com/etn-ccis/blui-react-native-workflows/issues/275)).
+
 ## v5.1.0 (January 25, 2023)
 
 ### Fixed
