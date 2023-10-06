@@ -103,7 +103,7 @@ export const ProjectRegistrationUIActions: () => RegistrationUIActions = () => (
         const userInfo = { email, organizationName };
 
         await sleep(1000);
-        if (true) {
+        if (isRandomFailure()) {
             throw new Error('Sorry, there was a problem sending your request.');
         }
         return userInfo;
