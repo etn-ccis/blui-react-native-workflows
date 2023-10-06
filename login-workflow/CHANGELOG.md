@@ -12,6 +12,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -   Ability to hide the CreatePassword screen.
 -   Ability to hide the login form in the Login screen.
 
+### Fixed
+
+-   Verification code prefilled value issue on Verify Email screen on resend, next and back button pressed ([#280](https://github.com/etn-ccis/blui-react-native-workflows/issues/280)).
+
 ## v5.1.0 (January 25, 2023)
 
 ### Fixed
