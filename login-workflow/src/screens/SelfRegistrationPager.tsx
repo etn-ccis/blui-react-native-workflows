@@ -286,6 +286,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                     initialCode={verificationCode}
                     onVerifyCodeChanged={setVerificationCode}
                     onResendVerificationEmail={(): void => {
+                        setVerificationCode('');
                         void requestCode();
                     }}
                     /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
@@ -466,6 +467,8 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
             }
         } catch {
             // do nothing
+        } finally {
+            setVerificationCode('');
         }
     }, [setHasAcknowledgedError, registrationActions, verificationCode, email, setAccountAlreadyExists]);
 
@@ -593,6 +596,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                 } else {
                     // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
                     setCurrentPage(currentPage + (delta as number));
+                    setVerificationCode('');
                 }
             }
         },
