@@ -207,9 +207,11 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
     }, [hasAcknowledgedError]);
 
     useEffect(() => {
-        registrationActions.dispatch(RegistrationActions.requestRegistrationCodeReset());
-        registrationActions.dispatch(RegistrationActions.validateUserRegistrationReset());
-        registrationActions.dispatch(RegistrationActions.registerUserReset());
+        return (): void => {
+            registrationActions.dispatch(RegistrationActions.requestRegistrationCodeReset());
+            registrationActions.dispatch(RegistrationActions.validateUserRegistrationReset());
+            registrationActions.dispatch(RegistrationActions.registerUserReset());
+        };
         /* eslint-disable-next-line */
     }, []);
 
