@@ -206,6 +206,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [hasAcknowledgedError]);
 
+    /* eslint-disable-next-line */
     useEffect(() => {
         return (): void => {
             registrationActions.dispatch(RegistrationActions.requestRegistrationCodeReset());
