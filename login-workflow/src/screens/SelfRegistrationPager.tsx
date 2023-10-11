@@ -403,7 +403,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                                 </View>
                             </SafeAreaView>
                         ),
-                        canGoForward: customAccountDetails ? customAccountDetails?.[i + 1]?.valid : true,
+                        canGoForward: customAccountDetails ? customAccountDetails?.[i + 1]?.valid : false,
                         canGoBack: true,
                     };
                 })
