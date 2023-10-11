@@ -145,6 +145,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
     const [password, setPassword] = useState('');
     const [accountDetails, setAccountDetails] = useState<AccountDetailInformationScreen | null>(null);
     const [customAccountDetails, setCustomAccountDetails] = useState<CustomRegistrationDetailsGroup | null>({});
+    const [customAccountDetailsValid, setCustomAccountDetailsValid] = useState<boolean>(true);
     const [eulaContent, setEulaContent] = useState<string>();
     const [accountAlreadyExists, setAccountAlreadyExists] = useState<boolean>(false);
     const [hasAcknowledgedError, setHasAcknowledgedError] = useState(false);
@@ -335,6 +336,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                     {FirstCustomPage && (
                         <FirstCustomPage
                             onDetailsChanged={(details: CustomAccountDetails | null, valid: boolean): void => {
+                                setCustomAccountDetailsValid(valid);
                                 setCustomAccountDetails({
                                     ...(customAccountDetails || {}),
                                     0: { values: details || {}, valid },
@@ -348,8 +350,10 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                     )}
                 </AccountDetailsScreen>
             ),
-            canGoForward: accountDetails !== null, // &&
-            // accountDetails.valid,
+            canGoForward:
+                customDetails.length > 0
+                    ? accountDetails !== null && customAccountDetailsValid
+                    : accountDetails !== null,
             canGoBack: true,
         },
     ]
