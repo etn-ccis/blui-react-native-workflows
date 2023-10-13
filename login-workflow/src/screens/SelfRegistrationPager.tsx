@@ -150,6 +150,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
     const [accountAlreadyExists, setAccountAlreadyExists] = useState<boolean>(false);
     const [hasAcknowledgedError, setHasAcknowledgedError] = useState(false);
     const [currentPage, setCurrentPage] = useState(0);
+    const [resetInputField, setResetInputField] = useState(false);
 
     const viewPager = React.createRef<ViewPager>();
 
@@ -287,10 +288,9 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
             pageBody: (
                 <VerifyEmailScreen
                     key={'VerifyEmailPage'}
-                    initialCode={verificationCode}
+                    initialCode={!resetInputField ? '' : verificationCode}
                     onVerifyCodeChanged={setVerificationCode}
                     onResendVerificationEmail={(): void => {
-                        setVerificationCode('');
                         void requestCode();
                     }}
                     /* eslint-disable-next-line @typescript-eslint/no-use-before-define */
@@ -474,8 +474,6 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
             }
         } catch {
             // do nothing
-        } finally {
-            setVerificationCode('');
         }
     }, [setHasAcknowledgedError, registrationActions, verificationCode, email, setAccountAlreadyExists]);
 
@@ -591,6 +589,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                     // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
                     (delta as number) > 0
                 ) {
+                    setResetInputField(false);
                     void requestCode();
                 } else if (
                     currentPage === VerifyEmailPage &&
@@ -599,11 +598,13 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                     // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
                     (delta as number) > 0
                 ) {
+                    setResetInputField(true);
                     void validateCode();
                 } else {
+                    if (currentPage === VerifyEmailPage && delta < 0) setResetInputField(true);
+                    if (currentPage === CreatePasswordPage && delta < 0) setResetInputField(false);
                     // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
                     setCurrentPage(currentPage + (delta as number));
-                    setVerificationCode('');
                 }
             }
         },
