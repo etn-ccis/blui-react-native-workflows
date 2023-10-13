@@ -150,7 +150,6 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
     const [accountAlreadyExists, setAccountAlreadyExists] = useState<boolean>(false);
     const [hasAcknowledgedError, setHasAcknowledgedError] = useState(false);
     const [currentPage, setCurrentPage] = useState(0);
-    const [resetInputField, setResetInputField] = useState(false);
 
     const viewPager = React.createRef<ViewPager>();
 
@@ -288,7 +287,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
             pageBody: (
                 <VerifyEmailScreen
                     key={'VerifyEmailPage'}
-                    initialCode={!resetInputField ? '' : verificationCode}
+                    initialCode={verificationCode}
                     onVerifyCodeChanged={setVerificationCode}
                     onResendVerificationEmail={(): void => {
                         void requestCode();
@@ -441,6 +440,12 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
     const CreatePasswordPage = RegistrationPages.findIndex((item) => item.name === 'CreatePassword');
     const AccountDetailsPage = RegistrationPages.findIndex((item) => item.name === 'AccountDetails');
 
+    useEffect(() => {
+        if (currentPage === VerifyEmailPage) {
+            setVerificationCode('');
+        }
+    }, [currentPage, VerifyEmailPage]);
+
     // If there is a code and it is not confirmed, go to the verify screen
     useEffect((): void => {
         if (verificationCode && !codeRequestSuccess) {
@@ -589,7 +594,6 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                     // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
                     (delta as number) > 0
                 ) {
-                    setResetInputField(false);
                     void requestCode();
                 } else if (
                     currentPage === VerifyEmailPage &&
@@ -598,11 +602,8 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                     // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
                     (delta as number) > 0
                 ) {
-                    setResetInputField(true);
                     void validateCode();
                 } else {
-                    if (currentPage === VerifyEmailPage && delta < 0) setResetInputField(true);
-                    if (currentPage === CreatePasswordPage && delta < 0) setResetInputField(false);
                     // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
                     setCurrentPage(currentPage + (delta as number));
                 }
