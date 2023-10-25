@@ -124,7 +124,12 @@ export const VerifyEmail: React.FC<VerifyEmailProps> = (props) => {
                     />
                     <View style={{ flex: 1, flexDirection: 'row', marginTop: 24, alignItems: 'center' }}>
                         <Body1>{t('blui:SELF_REGISTRATION.VERIFY_EMAIL.VERIFICATION_CODE_PROMPT')}</Body1>
-                        <TouchableOpacity onPress={(): void => onResendVerificationEmail()}>
+                        <TouchableOpacity
+                            onPress={(): void => {
+                                setVerifyCode('');
+                                onResendVerificationEmail();
+                            }}
+                        >
                             <Body1 color="primary">&nbsp;{t('blui:ACTIONS.RESEND')}</Body1>
                         </TouchableOpacity>
                     </View>
