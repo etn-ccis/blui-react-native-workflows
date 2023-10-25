@@ -1,7 +1,7 @@
 {
     "name": "@brightlayer-ui/react-native-auth-workflow",
     "description": "Re-usable workflow components for Authentication and Registration within Eaton applications.",
-    "version": "6.0.0-alpha.1",
+    "version": "5.2.0-alpha.0",
     "license": "BSD-3-Clause",
     "author": {
         "name": "Brightlayer UI",
