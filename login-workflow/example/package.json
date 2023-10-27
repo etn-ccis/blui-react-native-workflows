@@ -31,7 +31,7 @@
         "react": "18.1.0",
         "react-i18next": "^11.8.7",
         "react-native": "0.70.9",
-        "react-native-gesture-handler": "^2.12.0",
+        "react-native-gesture-handler": "^2.13.4",
         "react-native-keyboard-aware-scroll-view": "^0.9.3",
         "react-native-modal": "^12.0.2",
         "react-native-pager-view": "^5.0.0",
