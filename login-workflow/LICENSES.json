@@ -1,5 +1,5 @@
 {
-    "@brightlayer-ui/react-auth-shared@3.7.0": {
+    "@brightlayer-ui/react-auth-shared@4.0.0-alpha.2": {
         "licenses": "BSD-3-Clause",
         "repository": "https://github.com/etn-ccis/blui-react-auth-shared/tree/master",
         "licenseUrl": "https://github.com/etn-ccis/blui-react-auth-shared/tree/master",

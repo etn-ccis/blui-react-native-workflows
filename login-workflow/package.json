@@ -1,7 +1,7 @@
 {
     "name": "@brightlayer-ui/react-native-auth-workflow",
     "description": "Re-usable workflow components for Authentication and Registration within Eaton applications.",
-    "version": "5.1.0",
+    "version": "5.2.0",
     "license": "BSD-3-Clause",
     "author": {
         "name": "Brightlayer UI",
@@ -57,7 +57,7 @@
         "tag:package": "npx -p @brightlayer-ui/tag blui-tag -s -blui-react-native-auth-workflow"
     },
     "dependencies": {
-        "@brightlayer-ui/react-auth-shared": "^3.7.3",
+        "@brightlayer-ui/react-auth-shared": "^3.8.0",
         "lodash.clonedeep": "^4.5.0",
         "react-native-status-bar-height": "^2.5.0"
     },
@@ -76,7 +76,9 @@
         "react-native-pager-view": "^5.0.0",
         "react-native-paper": "^4.0.0",
         "react-native-vector-icons": "^9.0.0",
-        "react-native-webview": "^11.23.1"
+        "react-native-webview": "^11.23.1",
+        "react-native-safe-area-context": "^3.0.0",
+        "react-native-gesture-handler": "^1.6.1"
     },
     "devDependencies": {
         "@babel/core": "^7.9.0",

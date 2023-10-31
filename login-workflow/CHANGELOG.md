@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v5.2.0 (October 31, 2023)
+
+### Fixed
+
+-   Disable Next button when valid prop of Account Details form is false ([#276](https://github.com/etn-ccis/blui-react-native-workflows/issues/276)).
+-   Verification code prefilled value issue on Verify Email screen on resend, next and back button pressed ([#280](https://github.com/etn-ccis/blui-react-native-workflows/issues/280)).
+
+-   Incorrect navigation on dismissal of error occurred in Account Details screen ([#275](https://github.com/etn-ccis/blui-react-native-workflows/issues/275)).
+
+### Added
+
+-   Ability to hide the CreatePassword screen.
+-   Ability to hide the login form in the Login screen.
+
 ## v5.1.0 (January 25, 2023)
 
 ### Fixed
