@@ -353,6 +353,14 @@ export const Login: React.FC<LoginProps> = (props) => {
                 >
                     [Test Contact Support]
                 </Button>
+                <Button
+                    mode={'text'}
+                    labelStyle={styles.clearButton}
+                    uppercase={false}
+                    onPress={(): void => navigation.navigate('DemoScreen')}
+                >
+                    [Test Demo Screen]
+                </Button>
             </View>
         </View>
     );

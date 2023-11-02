@@ -20,6 +20,8 @@ import { SelfRegistrationPager } from './SelfRegistrationPager';
 import { ContactSupport } from './ContactSupport';
 import { useInjectedUIContext } from '@brightlayer-ui/react-auth-shared';
 import { useTheme } from 'react-native-paper';
+import { DemoScreen } from '..';
+import { RegistrationWorflow } from '..';
 
 /**
  * @ignore
@@ -112,6 +114,7 @@ export const PreAuthContainer: React.FC<PreAuthContainerProps> = (props) => {
                         options={{ headerShown: false }}
                     />
                 )}
+                <Stack.Screen name="DemoScreen" component={DemoScreen} />
                 {props.extraRoutes}
             </Stack.Navigator>
         </SafeAreaProvider>

@@ -69,3 +69,5 @@ declare global {
         }
     }
 }
+
+export * from './new-architecture';
