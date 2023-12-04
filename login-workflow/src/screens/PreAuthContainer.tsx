@@ -21,7 +21,7 @@ import { ContactSupport } from './ContactSupport';
 import { useInjectedUIContext } from '@brightlayer-ui/react-auth-shared';
 import { useTheme } from 'react-native-paper';
 import { DemoScreen } from '..';
-import { RegistrationWorflow } from '..';
+import { RegistrationWorkflow } from '../new-architecture/components/RegistrationWorkflow';
 
 /**
  * @ignore

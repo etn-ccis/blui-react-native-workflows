@@ -17,7 +17,7 @@ import { useNavigation } from '@react-navigation/native';
  *
  * @category Component
  */
-export const DemoScreen: React.FC<React.PropsWithChildren<any>> = (props) => {
+export const RegistrationWorkflow: React.FC<React.PropsWithChildren<any>> = (props) => {
     const navigation = useNavigation();
     const {
         children = [<TextInput value="" label={'first input'} />, <Text>Hello 2</Text>, <TextInput>Hello 3</TextInput>],

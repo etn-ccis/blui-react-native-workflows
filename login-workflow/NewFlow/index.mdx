@@ -1,0 +1,35 @@
+We need to provide:
+
+- AuthContextProvider
+    -   Accepts 
+        -   action definitions 
+        -   route configuration: lets us know what routes will be used for each of the auth-related screens
+        -   navigate function to allow us to navigate to new routes (i.e., when clicking links from login page)
+        -   language for translations
+    - Exposes
+        - Provider/hooks for fetching the security state, auth actions, routeconfig, and navigate function
+        - Built-in i18n provider/instance (exposed) for handling internal translations
+
+- RegistrationContextProvider
+    -   Accepts 
+        -   action definitions
+            -   we should provide actions for each page to allow for additional steps not tied to BLC
+        -   language for translations
+    - Exposes   
+        - Provider/hooks for fetching the state and actions
+        - Built-in i18n provider/instance (exposed) for handling internal translations
+
+- GuestGuard/AuthGuard components
+
+- Screen components for each screen (dumb and smart versions)
+
+- RegistrationWorkflow components
+    - Manages the data for all of the screens
+    - Includes a contextprovider to make the data available downstream and expose functions for updating the data
+    - Manages the current step and pogressing from screen to screen
+
+
+    - Accepts 
+        -   initial screen index and a array of children screens for each step
+    
+- WorkflowCard and subcomponents for defining own screens
