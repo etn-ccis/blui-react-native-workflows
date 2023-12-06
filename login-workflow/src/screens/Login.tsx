@@ -361,6 +361,14 @@ export const Login: React.FC<LoginProps> = (props) => {
                 >
                     [Test Demo Screen]
                 </Button>
+                <Button
+                    mode={'text'}
+                    labelStyle={styles.clearButton}
+                    uppercase={false}
+                    onPress={(): void => navigation.navigate('DemoRegistrationScreen')}
+                >
+                    [Test Demo Registration Screen]
+                </Button>
             </View>
         </View>
     );

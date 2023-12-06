@@ -20,8 +20,10 @@ import { SelfRegistrationPager } from './SelfRegistrationPager';
 import { ContactSupport } from './ContactSupport';
 import { useInjectedUIContext } from '@brightlayer-ui/react-auth-shared';
 import { useTheme } from 'react-native-paper';
-import { DemoScreen } from '..';
-import { RegistrationWorkflow } from '../new-architecture/components/RegistrationWorkflow';
+import { DemoScreen, DemoRegistrationScreen } from '..';
+// import { DemoScreen } from '..';
+import { Screen1 } from '..';
+import { Screen2 } from '..';
 
 /**
  * @ignore
@@ -70,7 +72,7 @@ export const PreAuthContainer: React.FC<PreAuthContainerProps> = (props) => {
                 }}
             >
                 <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
-                {enableResetPassword && (
+                {/* {enableResetPassword && ( */}
                     <Stack.Screen
                         name="PasswordResetInitiation"
                         component={ResetPasswordNav}
@@ -80,7 +82,7 @@ export const PreAuthContainer: React.FC<PreAuthContainerProps> = (props) => {
                             contactPhone,
                         }}
                     />
-                )}
+                {/* )} */}
                 {enableResetPassword && (
                     <Stack.Screen
                         name="PasswordResetCompletion"
@@ -115,6 +117,7 @@ export const PreAuthContainer: React.FC<PreAuthContainerProps> = (props) => {
                     />
                 )}
                 <Stack.Screen name="DemoScreen" component={DemoScreen} />
+                <Stack.Screen name="DemoRegistrationScreen" component={DemoRegistrationScreen} />
                 {props.extraRoutes}
             </Stack.Navigator>
         </SafeAreaProvider>
