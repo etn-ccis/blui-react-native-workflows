@@ -27,7 +27,7 @@ export const Screen1: React.FC<React.PropsWithChildren<any>> = (props) => {
     const {
         children = [<TextInput value="" label={'first input'} />, <Text>Hello 2</Text>, <TextInput>Hello 3</TextInput>],
     } = props;
-    
+
     // Navigate appropriately with the hardware back button on android
     React.useEffect(() => {
         const onBackPress = (): boolean => {
@@ -41,8 +41,10 @@ export const Screen1: React.FC<React.PropsWithChildren<any>> = (props) => {
 
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Screen 1</Text>
-        <Button mode="text" onPress={() => navigation.navigate('Screen2')}>Next</Button>
-      </View>
+            <Text>Screen 1</Text>
+            <Button mode="text" onPress={() => navigation.navigate('Screen2')}>
+                Next
+            </Button>
+        </View>
     );
 };

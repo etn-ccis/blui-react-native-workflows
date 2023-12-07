@@ -3,14 +3,14 @@
  * @module Sub-Screens
  */
 
-import React, { useCallback } from 'react';
+import React from 'react';
 
 // Components
 import { View, StyleSheet, SafeAreaView } from 'react-native';
 import { TextInput } from '../../../components/TextInput';
 import { Instruction } from '../../../components/Instruction';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { useTheme } from 'react-native-paper';
+import { Button, useTheme } from 'react-native-paper';
 
 // Shared Auth Logic
 import {
@@ -19,7 +19,8 @@ import {
     // Hooks
     useLanguageLocale,
 } from '@brightlayer-ui/react-auth-shared';
-import { useNavigation, useRoute } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
+import { useRegistration } from '../../contexts/RegistrationContextProvider';
 
 /**
  * @ignore
@@ -88,18 +89,13 @@ type CreateAccountProps = {
  */
 export const DemoCreateAccountScreen: React.FC<CreateAccountProps> = (props) => {
     const theme = useTheme(props.theme);
-    const route = useRoute();
-    const { eulaAccepted } = route.params as any;
     const [emailInput, setEmailInput] = React.useState(props.initialEmail ?? '');
     const [hasEmailFormatError, setHasEmailFormatError] = React.useState(false);
     const { t } = useLanguageLocale();
-const navigation = useNavigation();
+    const navigation = useNavigation();
     const containerStyles = makeContainerStyles(theme);
     const styles = makeStyles();
-
-    // const onEmailChanged = useCallback((changedEmail: string) => {
-    //     setEmailInput(changedEmail);
-    // }, []);
+    const { createAccountScreen, setcreateAccountScreen } = useRegistration();
 
     return (
         <SafeAreaView style={containerStyles.safeContainer}>
@@ -111,8 +107,8 @@ const navigation = useNavigation();
 
                 <View style={[containerStyles.containerMargins, containerStyles.mainContainer]}>
                     <TextInput
-                        label={eulaAccepted}
-                        value={emailInput}
+                        label={'email'}
+                        value={createAccountScreen.email}
                         style={styles.inputMargin}
                         keyboardType={'email-address'}
                         autoCapitalize={'none'}
@@ -120,18 +116,28 @@ const navigation = useNavigation();
                         errorText={hasEmailFormatError ? t('blui:MESSAGES.EMAIL_ENTRY_ERROR') : ''}
                         onChangeText={(text: string): void => {
                             setEmailInput(text);
+                            setcreateAccountScreen({ email: text });
                             setHasEmailFormatError(false);
-                            const validEmailOrEmpty = EMAIL_REGEX.test(text) ? text : '';
+                            // const validEmailOrEmpty = EMAIL_REGEX.test(text) ? text : '';
                             // onEmailChanged(validEmailOrEmpty);
                         }}
                         onBlur={(): void => {
                             if (emailInput.length > 0 && !EMAIL_REGEX.test(emailInput)) setHasEmailFormatError(true);
                         }}
-                        onSubmitEditing={
-                            emailInput.length > 0 && EMAIL_REGEX.test(emailInput) ? navigation.navigate('Screen2', {email: emailInput}) : undefined
-                        }
                     />
                 </View>
+                <View style={{ display: 'flex' }}>
+                    <Button onPress={() => navigation.navigate('Login')}>Back</Button>
+                    <Button
+                        onPress={() => {
+                            /* 1. Navigate to the Details route with params */
+                            navigation.navigate('Screen2');
+                        }}
+                    >
+                        Next
+                    </Button>
+                </View>
+                {/* </View> */}
             </KeyboardAwareScrollView>
         </SafeAreaView>
     );

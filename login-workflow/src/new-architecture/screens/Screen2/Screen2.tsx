@@ -3,16 +3,14 @@
  * @module Screens
  */
 
-import React, { useState } from 'react';
+import React from 'react';
 
 // Components
-import { View, SafeAreaView, BackHandler } from 'react-native';
+import { View, BackHandler } from 'react-native';
 import { Button, Text, TextInput } from 'react-native-paper';
-import { createStackNavigator } from '@react-navigation/stack';
 // Hooks
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { Eula } from 'src/subScreens/Eula';
-import { CreateAccount } from 'src/subScreens/CreateAccount';
+import { useRegistration } from '../../contexts/RegistrationContextProvider';
 /**
  * @ignore
  */
@@ -24,10 +22,8 @@ import { CreateAccount } from 'src/subScreens/CreateAccount';
  */
 export const Screen2: React.FC<React.PropsWithChildren<any>> = (props) => {
     const navigation = useNavigation();
-    const route = useRoute();
-    const { email } = route.params as any;
-    console.log('email', email);
     // Navigate appropriately with the hardware back button on android
+    const { createAccountScreen } = useRegistration();
     React.useEffect(() => {
         const onBackPress = (): boolean => {
             navigation.navigate('Login');
@@ -40,8 +36,10 @@ export const Screen2: React.FC<React.PropsWithChildren<any>> = (props) => {
 
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Screen 2: {email}</Text>
-        <Button mode="text" onPress={() => navigation.goBack()}>Back</Button>
-      </View>
+            <Text>Screen 2: {createAccountScreen.email}</Text>
+            <Button mode="text" onPress={() => navigation.goBack()}>
+                Back
+            </Button>
+        </View>
     );
 };

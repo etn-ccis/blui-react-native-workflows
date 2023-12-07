@@ -73,15 +73,15 @@ export const PreAuthContainer: React.FC<PreAuthContainerProps> = (props) => {
             >
                 <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
                 {/* {enableResetPassword && ( */}
-                    <Stack.Screen
-                        name="PasswordResetInitiation"
-                        component={ResetPasswordNav}
-                        options={{ headerShown: false }}
-                        initialParams={{
-                            contactEmail,
-                            contactPhone,
-                        }}
-                    />
+                <Stack.Screen
+                    name="PasswordResetInitiation"
+                    component={ResetPasswordNav}
+                    options={{ headerShown: false }}
+                    initialParams={{
+                        contactEmail,
+                        contactPhone,
+                    }}
+                />
                 {/* )} */}
                 {enableResetPassword && (
                     <Stack.Screen
