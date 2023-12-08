@@ -1,4 +1,3 @@
-
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 
@@ -34,54 +33,34 @@ export const NewAppWithBoth: React.FC<React.PropsWithChildren> = () => (
          * to route to them.
          **/}
 
- {/* * Expected usage for someone who wants only the Authentication workflow */}
+        {/* * Expected usage for someone who wants only the Authentication workflow */}
         <AuthContextProvider actions={{}} routeConfig={{}} navigate={navigate} language={'en'} i18n={i18nAppInstance}>
-                <Stack.Navigator initialRouteName='Login'>
-                    {/* Include the LOGIN workflow — the defaults for use
+            <Stack.Navigator initialRouteName="Login">
+                {/* Include the LOGIN workflow — the defaults for use
                     can be imported as an array, or you can customize what 
                     to include at the individual route level. The screens 
                     in this flow all live on different routes */}
 
-                    {/* Import the default array exported by BLUI */}
-                    {LOGIN_WORKFLOW_ROUTES}
+                {/* Import the default array exported by BLUI */}
+                {LOGIN_WORKFLOW_ROUTES}
 
-                    {/* Customize the flow yourself — 4 possible routes */}
-                    <Stack.Screen
-                        name={'login'}
-                        component={LoginScreen}
-                    />
-                    <Stack.Screen
-                        name={'forgot-password'}
-                        component={ForgotPasswordScreen}
-                    />
-                    <Stack.Screen
-                        name={'reset-password'}
-                        component={ResetPasswordScreen}
-                    />
-                    <Stack.Screen
-                        name={'contact-support'}
-                        component={ContactSupportScreen}
-                    />
+                {/* Customize the flow yourself — 4 possible routes */}
+                <Stack.Screen name={'login'} component={LoginScreen} />
+                <Stack.Screen name={'forgot-password'} component={ForgotPasswordScreen} />
+                <Stack.Screen name={'reset-password'} component={ResetPasswordScreen} />
+                <Stack.Screen name={'contact-support'} component={ContactSupportScreen} />
 
-                    {/* Include the REGISTRATION workflow and customize to
+                {/* Include the REGISTRATION workflow and customize to
                     your heart's content. */}
-                    <Stack.Screen
-                        name={'self-register'}
-                        component={RegistrationWorkflow}
-                    />
-                </Stack.Navigator>
+                <Stack.Screen name={'self-register'} component={RegistrationWorkflow} />
+            </Stack.Navigator>
         </AuthContextProvider>
 
-
- {/* * Expected usage for someone who wants only the Registration workflow */}
+        {/* * Expected usage for someone who wants only the Registration workflow */}
         <RegistrationContextProvider registrationActions={{}}>
             <Stack.Navigator>
-                <Stack.Screen
-                    name={'register'}
-                    component={RegistrationWorkflow}
-                />
+                <Stack.Screen name={'register'} component={RegistrationWorkflow} />
             </Stack.Navigator>
         </RegistrationContextProvider>
     </NavigationContainer>
 );
-

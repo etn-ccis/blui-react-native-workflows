@@ -148,7 +148,7 @@ export const Login: React.FC<LoginProps> = (props) => {
     const securityState = useSecurityState();
     const { loginErrorDisplayConfig = { mode: 'dialog' }, ...otherUIContext } = useInjectedUIContext();
     const {
-        showSelfRegistration = true,
+        showSelfRegistration = false,
         allowDebugMode = false,
         projectImage,
         showCybersecurityBadge = true,
@@ -360,6 +360,14 @@ export const Login: React.FC<LoginProps> = (props) => {
                     onPress={(): void => navigation.navigate('DemoScreen')}
                 >
                     [Test Demo Screen]
+                </Button>
+                <Button
+                    mode={'text'}
+                    labelStyle={styles.clearButton}
+                    uppercase={false}
+                    onPress={(): void => navigation.navigate('DemoWorkflow')}
+                >
+                    [Test Demo Workflow]
                 </Button>
             </View>
         </View>
