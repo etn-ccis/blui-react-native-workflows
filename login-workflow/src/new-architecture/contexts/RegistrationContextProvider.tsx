@@ -1,7 +1,7 @@
 import { createContext, useContext } from 'react';
 
 export type eula = {
-    eulaAccpted: boolean;
+    name: string;
 };
 
 export type createAccount = {

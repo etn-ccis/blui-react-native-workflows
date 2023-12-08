@@ -23,7 +23,7 @@ import { useRegistration } from '../../contexts/RegistrationContextProvider';
 export const Screen2: React.FC<React.PropsWithChildren<any>> = (props) => {
     const navigation = useNavigation();
     // Navigate appropriately with the hardware back button on android
-    const { createAccountScreen } = useRegistration();
+    const { eulaData,createAccountScreen } = useRegistration();
     React.useEffect(() => {
         const onBackPress = (): boolean => {
             navigation.navigate('Login');
@@ -36,7 +36,8 @@ export const Screen2: React.FC<React.PropsWithChildren<any>> = (props) => {
 
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>Screen 2: {createAccountScreen.email}</Text>
+            <Text>Name: {eulaData.name}</Text>
+            <Text>Email: {createAccountScreen.email}</Text>
             <Button mode="text" onPress={() => navigation.goBack()}>
                 Back
             </Button>

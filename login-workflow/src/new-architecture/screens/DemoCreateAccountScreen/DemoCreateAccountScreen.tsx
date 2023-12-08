@@ -127,7 +127,7 @@ export const DemoCreateAccountScreen: React.FC<CreateAccountProps> = (props) => 
                     />
                 </View>
                 <View style={{ display: 'flex' }}>
-                    <Button onPress={() => navigation.navigate('Login')}>Back</Button>
+                    <Button onPress={() => navigation.navigate('EulaScreen')}>Back</Button>
                     <Button
                         onPress={() => {
                             /* 1. Navigate to the Details route with params */
