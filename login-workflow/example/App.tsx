@@ -61,12 +61,15 @@ function SimpleSignInScreen() {
                     setIsAutheisAuthenticated(!isAuthenticated);
                 }}
             />
-
             <Button
                 title="Sign In"
                 onPress={() => {
-                    navigation.navigate('Profile', { username: 'johndoe' });
-                }}
+                    navigation.navigate('Profile', {username: 'john'});
+                    // navigation.reset({
+                    //         index: 1,
+                    //         routes: [{name: 'Profile'}],
+                    //     });
+                  }}
             />
         </View>
     );
@@ -74,6 +77,7 @@ function SimpleSignInScreen() {
 
 function FallbackScreen(){
     const { setIsAutheisAuthenticated, isAuthenticated } = useApp();
+    const navigation = useNavigation();
 
     return <View>
         <Text>Fallback Screen</Text>
@@ -81,6 +85,13 @@ function FallbackScreen(){
                 title="Toggle authentication"
                 onPress={() => {
                     setIsAutheisAuthenticated(!isAuthenticated);
+                }}
+            />
+
+            <Button
+                title="Profile"
+                onPress={() => {
+                    navigation.navigate('Profile');
                 }}
             />
 
@@ -92,7 +103,6 @@ export default function App() {
     const [isAuthenticated, setIsAutheisAuthenticated] = React.useState(false);
     const navigationRef = useNavigationContainerRef();
 const [fallbackScreen, setFallbackScreen] = React.useState('');
-// const navigation = useNavigation();
 
 React.useEffect(() => {
     const handleDeepLink = ({ url }: { url: string }) => {
@@ -112,19 +122,74 @@ React.useEffect(() => {
     //   Linking.removeEventListener('url', handleDeepLink);
     // };
   }, []);
+//   console.log('navigationRef', navigationRef.getCurrentRoute()?.name)
+
+//   React.useEffect(()=> {
+//   console.log('navigationRef', navigationRef.getCurrentRoute()?.name)
+
+// // const routes: any = appRoutes.map((route)=>{route.name});
+// // CommonActions.reset({index: 0, routes})
+
+//   }, [])
+
+const appRoutes = [
+    {
+        name: 'HomePage',
+        component: HomeScreen
+    },
+    {
+        name: 'Profile',
+        component: () => (
+            <AuthGuard fallbackUrl={'FallbackScreen'} isAuthenticated={isAuthenticated} setFallbackScreen={setFallbackScreen} >
+                <View />
+            </AuthGuard>
+        )
+    },
+    {
+        name: 'SignIn',
+        component: SimpleSignInScreen
+    },
+    {
+        name: 'FallbackScreen',
+        component: FallbackScreen
+    },
+]
+
+const routeNames: any = appRoutes.map((route)=>({'name': route.name}));
     
     return (
         <AppContext.Provider value={{ isAuthenticated, setIsAutheisAuthenticated }}>
-            <NavigationContainer ref={navigationRef}>
-                <Stack.Navigator initialRouteName="SignIn">
-                    <Stack.Screen
+
+            <NavigationContainer ref={navigationRef}
+            onStateChange={()=> {
+                // const routes: any = routeNames.map((route)=>{route.name});
+                console.log('Console', routeNames)
+
+                if(navigationRef.getCurrentRoute()?.name === 'Profile')
+                {
+                    navigationRef.reset({index: 0, routes: routeNames})
+                }
+            }}
+            >
+                <Stack.Navigator initialRouteName="SignIn"
+                screenOptions={{
+                    headerShown: false,
+                  }}
+                  
+                >
+                    {
+                        appRoutes.map((route)=> {
+                            console.log('route::', route)
+                            return<Stack.Screen key={route.name} name={route.name} component={route.component} />})
+                    }
+                    {/* <Stack.Screen
                             name="HomePage"
                             component={HomeScreen}
                         />
                         <Stack.Screen
                             name={"Profile"}
                             component={() => (
-                                <AuthGuard fallbackUrl={'FallbackScreen'} isAuthenticated={isAuthenticated} setFallbackScreen={setFallbackScreen} >
+                                <AuthGuard fallbackUrl={'SignIn'} isAuthenticated={isAuthenticated} setFallbackScreen={setFallbackScreen} >
                                     <View />
                                 </AuthGuard>
                             )}
@@ -137,9 +202,10 @@ React.useEffect(() => {
                         <Stack.Screen
                             name="FallbackScreen"
                             component={FallbackScreen}
-                        />
+                        /> */}
                 </Stack.Navigator>
             </NavigationContainer>
+
         </AppContext.Provider>
     );
 }

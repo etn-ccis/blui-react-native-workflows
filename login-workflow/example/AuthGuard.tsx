@@ -1,6 +1,5 @@
 import React from 'react'
-import { useNavigation, StackActions } from '@react-navigation/native';
-import { useApp } from './Guard/GuardContextProvider';
+import { useNavigation } from '@react-navigation/native';
 
 type AuthGuardProps = {
     fallbackUrl?: any;
@@ -10,16 +9,11 @@ type AuthGuardProps = {
 };
 
 export const AuthGuard: React.FC<AuthGuardProps> = (props) => {
-    const {fallbackUrl, isAuthenticated, children = null, setFallbackScreen} = props;
-    const popAction = StackActions.pop(1);
+    const {fallbackUrl, isAuthenticated, children = null} = props;
 const navigation = useNavigation();
 
   if(!isAuthenticated) {
-    // setFallbackScreen(fallbackUrl)
     navigation.navigate(fallbackUrl)
-  }
-  else {
-    navigation.dispatch(popAction)
   }
 
   return children;
