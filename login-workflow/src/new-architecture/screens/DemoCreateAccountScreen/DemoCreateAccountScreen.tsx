@@ -19,7 +19,7 @@ import {
     // Hooks
     useLanguageLocale,
 } from '@brightlayer-ui/react-auth-shared';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { useRegistration } from '../../contexts/RegistrationContextProvider';
 
 /**
@@ -76,9 +76,9 @@ const makeStyles = (): Record<string, any> =>
  * @param theme (Optional) react-native-paper theme partial for custom styling.
  */
 type CreateAccountProps = {
-    initialEmail: string;
-    onEmailChanged(email: string): void;
-    onSubmit?: () => void;
+    initialEmail?: string;
+    // onEmailChanged(email: string): void;
+    // onSubmit?: () => void;
     theme?: ReactNativePaper.Theme;
 };
 
@@ -89,14 +89,17 @@ type CreateAccountProps = {
  */
 export const DemoCreateAccountScreen: React.FC<CreateAccountProps> = (props) => {
     const theme = useTheme(props.theme);
-    const [emailInput, setEmailInput] = React.useState(props.initialEmail ?? '');
+    const route = useRoute();
+    // const [emailInput, setEmailInput] = React.useState(props.initialEmail ?? '');
     const [hasEmailFormatError, setHasEmailFormatError] = React.useState(false);
     const { t } = useLanguageLocale();
     const navigation = useNavigation();
     const containerStyles = makeContainerStyles(theme);
     const styles = makeStyles();
     const { createAccountScreen, setcreateAccountScreen } = useRegistration();
-
+    const [emailInput, setEmailInput] = React.useState(createAccountScreen.email ?? props.initialEmail);
+    const routeParams = route.params as any;
+    console.log(routeParams, 'routes DemoCreateAccountScreen');
     return (
         <SafeAreaView style={containerStyles.safeContainer}>
             <KeyboardAwareScrollView
@@ -127,11 +130,11 @@ export const DemoCreateAccountScreen: React.FC<CreateAccountProps> = (props) => 
                     />
                 </View>
                 <View style={{ display: 'flex' }}>
-                    <Button onPress={() => navigation.navigate('EulaScreen')}>Back</Button>
+                    <Button onPress={() => navigation.navigate(routeParams.previousScreen)}>Back</Button>
                     <Button
                         onPress={() => {
                             /* 1. Navigate to the Details route with params */
-                            navigation.navigate('Screen2');
+                            navigation.navigate(routeParams.nextScreen);
                         }}
                     >
                         Next

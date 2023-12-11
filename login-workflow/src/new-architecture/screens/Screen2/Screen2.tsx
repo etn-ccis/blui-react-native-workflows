@@ -22,8 +22,11 @@ import { useRegistration } from '../../contexts/RegistrationContextProvider';
  */
 export const Screen2: React.FC<React.PropsWithChildren<any>> = (props) => {
     const navigation = useNavigation();
+    const route = useRoute();
     // Navigate appropriately with the hardware back button on android
     const { eulaData,createAccountScreen } = useRegistration();
+    const routeParams = route.params as any;
+    console.log(routeParams, 'routeParamsEula');
     React.useEffect(() => {
         const onBackPress = (): boolean => {
             navigation.navigate('Login');

@@ -6,8 +6,8 @@
 import React, { useState } from 'react';
 
 // Components
-import { BackHandler } from 'react-native';
-import { Text, TextInput } from 'react-native-paper';
+import { BackHandler, View } from 'react-native';
+import { Button, Text, TextInput } from 'react-native-paper';
 import { createStackNavigator } from '@react-navigation/stack';
 // Hooks
 import { useNavigation } from '@react-navigation/native';
@@ -29,11 +29,13 @@ const SAMPLE_EULA = `THIS EULA IS ONLY BETWEEN EATON CORPORATION (“EATON”) A
 export const DemoRegistrationScreen: React.FC<React.PropsWithChildren<any>> = (props) => {
     const navigation = useNavigation();
     const {
-        children = [<TextInput value="" label={'first input'} />, <Text>Hello 2</Text>, <TextInput>Hello 3</TextInput>],
+        children,
     } = props;
     const screens = [...(Array.isArray(children) ? children : [children])];
+
+    console.log('screens', screens);
     const [eulaData, setEulaData] = useState<RegistrationContextType['eulaData']>({
-        eulaAccpted: false,
+        name: '',
     });
     const [createAccountScreen, setcreateAccountScreen] = useState<RegistrationContextType['createAccountScreen']>({
         email: '',
@@ -71,12 +73,12 @@ export const DemoRegistrationScreen: React.FC<React.PropsWithChildren<any>> = (p
             }}
         >
             <DemoRegistrationStack.Navigator
-                initialRouteName="EulaScreen"
+                initialRouteName={screens[0].name}
                 screenOptions={{
                     gestureDirection: 'vertical',
                 }}
             >
-                <DemoRegistrationStack.Screen
+                {/* <DemoRegistrationStack.Screen
                     name="EulaScreen"
                     component={EulaScreen}
                     options={{
@@ -96,7 +98,22 @@ export const DemoRegistrationScreen: React.FC<React.PropsWithChildren<any>> = (p
                     options={{
                         gestureDirection: 'vertical',
                     }}
-                />
+                /> */}
+                {
+                screens.map((route,index, screenArray) => {
+                        return (
+                            <DemoRegistrationStack.Screen 
+                                key={route.type.name}
+                                name={route.type.name}
+                                component={route.type}
+                                options={{
+                                    gestureDirection: 'vertical',
+                                }}
+                                initialParams={{ nextScreen: index === (screens.length-1) ? 'Login' : screenArray[index+1].type.name  , previousScreen: index === 0 ? 'Login' : screenArray[index-1].type.name }}
+                            />
+                        )
+                })
+            }
             </DemoRegistrationStack.Navigator>
         </RegistrationContext.Provider>
     );

@@ -20,7 +20,7 @@ import { SelfRegistrationPager } from './SelfRegistrationPager';
 import { ContactSupport } from './ContactSupport';
 import { useInjectedUIContext } from '@brightlayer-ui/react-auth-shared';
 import { useTheme } from 'react-native-paper';
-import { DemoScreen, DemoRegistrationScreen } from '..';
+import { DemoScreen, DemoRegistrationScreen, EulaScreen, DemoCreateAccountScreen } from '..';
 // import { DemoScreen } from '..';
 import { Screen1 } from '..';
 import { Screen2 } from '..';
@@ -117,7 +117,19 @@ export const PreAuthContainer: React.FC<PreAuthContainerProps> = (props) => {
                     />
                 )}
                 <Stack.Screen name="DemoScreen" component={DemoScreen} />
-                <Stack.Screen name="DemoRegistrationScreen" component={DemoRegistrationScreen} />
+                {/* <Stack.Screen name="DemoRegistrationScreen">
+                    {props => <DemoRegistrationScreen {...props} children={[<EulaScreen />, <DemoCreateAccountScreen />, <Screen2 />]} />}
+                </Stack.Screen> */}
+
+                <Stack.Screen name="DemoRegistrationScreen">
+                    {props => <DemoRegistrationScreen {...props}>
+                        <EulaScreen /> 
+                        <DemoCreateAccountScreen /> 
+                        <Screen2 />
+                    </DemoRegistrationScreen>}
+                </Stack.Screen>
+
+                {/* <Stack.Screen name="DemoRegistrationScreen" component={()=><DemoRegistrationScreen children={[<EulaScreen name='Ekta'/>,<DemoCreateAccountScreen initialEmail='ekta@cc.cc'/>, <Screen2/>]} />} /> */}
                 {props.extraRoutes}
             </Stack.Navigator>
         </SafeAreaProvider>

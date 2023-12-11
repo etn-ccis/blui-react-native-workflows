@@ -15,7 +15,7 @@ import { Button, useTheme } from 'react-native-paper';
 import {
     useLanguageLocale,
 } from '@brightlayer-ui/react-auth-shared';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { useRegistration } from '../../contexts/RegistrationContextProvider';
 
 /**
@@ -71,11 +71,8 @@ const makeStyles = (): Record<string, any> =>
  * @param onSubmit callback called when user submits on the last form field to advance the screen
  * @param theme (Optional) react-native-paper theme partial for custom styling.
  */
-type CreateAccountProps = {
-    initialEmail: string;
-    onEmailChanged(email: string): void;
-    onSubmit?: () => void;
-    theme?: ReactNativePaper.Theme;
+type EulaScreenProps = {
+    name?: string;
 };
 
 /**
@@ -83,16 +80,18 @@ type CreateAccountProps = {
  *
  * @category Component
  */
-export const EulaScreen: React.FC<CreateAccountProps> = (props) => {
+export const EulaScreen: React.FC<EulaScreenProps> = (props) => {
     const theme = useTheme(props.theme);
-    const [nameInput, setNameInput] = React.useState(props.initialEmail ?? '');
-    const [hasEmailFormatError, setHasEmailFormatError] = React.useState(false);
+    const route = useRoute();
+    // const [hasEmailFormatError, setHasEmailFormatError] = React.useState(false);
     const { t } = useLanguageLocale();
     const navigation = useNavigation();
     const containerStyles = makeContainerStyles(theme);
     const styles = makeStyles();
     const { eulaData, setEulaData } = useRegistration();
-
+    const [nameInput, setNameInput] = React.useState(eulaData.name ?? props.name);
+    const routeParams = route.params as any;
+    console.log(routeParams, 'routeParamsEula');
     return (
         <SafeAreaView style={containerStyles.safeContainer}>
             <KeyboardAwareScrollView
@@ -104,12 +103,12 @@ export const EulaScreen: React.FC<CreateAccountProps> = (props) => {
                 <View style={[containerStyles.containerMargins, containerStyles.mainContainer]}>
                     <TextInput
                         label={'Name'}
-                        value={eulaData.name}
+                        value={nameInput}
                         style={styles.inputMargin}
                         keyboardType={'email-address'}
                         autoCapitalize={'none'}
-                        error={hasEmailFormatError}
-                        errorText={hasEmailFormatError ? t('blui:MESSAGES.EMAIL_ENTRY_ERROR') : ''}
+                        // error={hasEmailFormatError}
+                        // errorText={hasEmailFormatError ? t('blui:MESSAGES.EMAIL_ENTRY_ERROR') : ''}
                         onChangeText={(name: string): void => {
                             setNameInput(name);
                             setEulaData({ name: name });
@@ -121,17 +120,16 @@ export const EulaScreen: React.FC<CreateAccountProps> = (props) => {
                     />
                 </View>
                 <View style={{ display: 'flex' }}>
-                    <Button onPress={() => navigation.navigate('Login')}>Back</Button>
+                    <Button onPress={() => navigation.navigate(routeParams.previousScreen)}>Back</Button>
                     <Button
                         onPress={() => {
                             /* 1. Navigate to the Details route with params */
-                            navigation.navigate('DemoCreateAccountScreen');
+                            navigation.navigate(routeParams.nextScreen);
                         }}
                     >
                         Next
                     </Button>
                 </View>
-                {/* </View> */}
             </KeyboardAwareScrollView>
         </SafeAreaView>
     );
