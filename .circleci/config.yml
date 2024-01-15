@@ -92,9 +92,8 @@ jobs:
           root: .
           paths:
             - login-workflow/lib
-            - login-workflow/coverage
   coverage_report:
-    working_directory: ~/react-native-workflows
+    working_directory: ~/login-workflow
     docker:
       - image: cimg/node:18.19.0-browsers
     steps:
@@ -102,7 +101,7 @@ jobs:
       - attach_workspace:
           at: .
       - codecov/upload:
-          file: "./login-workflow/coverage/clover.xml"
+          file: './login-workflow/coverage/clover.xml'
           token: CODECOV_TOKEN
 
   publish_login_workflow:
