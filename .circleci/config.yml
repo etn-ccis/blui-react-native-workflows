@@ -126,7 +126,7 @@ workflows:
   react_native_workflows:
     jobs:
       - prettier_lint
-      - test
+      - store_test_results
       - build_login_workflow
       - publish_login_workflow:
           requires:
