@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  codecov: codecov/codecov@3.2.2
+  codecov: codecov/codecov@3.3.0
   gh: circleci/github-cli@1.0
 jobs:
   prettier_lint:
@@ -33,11 +33,11 @@ jobs:
           command: |
             cd login-workflow
             yarn lint
-  test:
-    working_directory: ~/login-workflow
+  store_test_results:
     docker:
       - image: cimg/node:18.19.0-browsers
     parallelism: 4
+    working_directory: ~/login-workflow
     resource_class: large
     steps:
       - checkout
@@ -139,6 +139,7 @@ workflows:
       - coverage_report:
           requires:
             - build_login_workflow
+            - store_test_results
           # filters:
           #   branches:
           #     only:
