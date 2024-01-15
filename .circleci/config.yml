@@ -1,7 +1,7 @@
 version: 2.1
 orbs:
   codecov: codecov/codecov@3.3.0
-  gh: circleci/github-cli@1.0
+  gh: circleci/github-cli@2.2.0
 jobs:
   prettier_lint:
     working_directory: ~/login-workflow
@@ -138,7 +138,6 @@ workflows:
                 - dev
       - coverage_report:
           requires:
-            - build_login_workflow
             - store_test_results
           # filters:
           #   branches:
