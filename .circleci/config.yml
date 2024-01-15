@@ -37,6 +37,7 @@ jobs:
     working_directory: ~/login-workflow
     docker:
       - image: cimg/node:18.19.0-browsers
+    parallelism: 4
     resource_class: large
     steps:
       - checkout
@@ -58,10 +59,10 @@ jobs:
           command: |
             cd login-workflow
             yarn test --maxWorkers=2 --coverage --watchAll=false
-      - persist_to_workspace:
-          root: .
-          paths:
-            - login-workflow/coverage
+      # - persist_to_workspace:
+      #     root: .
+      #     paths:
+      #       - login-workflow/coverage
   build_login_workflow:
     working_directory: ~/login-workflow
     docker:
@@ -91,6 +92,7 @@ jobs:
           root: .
           paths:
             - login-workflow/lib
+            - login-workflow/coverage
   coverage_report:
     working_directory: ~/react-native-workflows
     docker:
