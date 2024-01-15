@@ -3,10 +3,10 @@ orbs:
   codecov: codecov/codecov@3.2.2
   gh: circleci/github-cli@1.0
 jobs:
-  build_login_workflow:
+  prettier_lint:
     working_directory: ~/login-workflow
     docker:
-      - image: cimg/node:16.18.0-browsers
+      - image: cimg/node:18.19.0-browsers
     resource_class: large
     steps:
       - checkout
@@ -33,11 +33,55 @@ jobs:
           command: |
             cd login-workflow
             yarn lint
+  test:
+    working_directory: ~/login-workflow
+    docker:
+      - image: cimg/node:18.19.0-browsers
+    resource_class: large
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v2-dependencies-{{ checksum "login-workflow/yarn.lock" }}
+      - run:
+          name: Install Dependencies
+          command: |
+            cd login-workflow
+            yarn install --frozen-lockfile
+      - save_cache:
+          name: Save Cache
+          paths:
+            - node_modules
+          key: v2-dependencies-{{ checksum "login-workflow/yarn.lock" }}
       - run:
           name: Tests
           command: |
             cd login-workflow
             yarn test --maxWorkers=2 --coverage --watchAll=false
+      - persist_to_workspace:
+          root: .
+          paths:
+            - login-workflow/coverage
+  build_login_workflow:
+    working_directory: ~/login-workflow
+    docker:
+      - image: cimg/node:18.19.0-browsers
+    resource_class: large
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v2-dependencies-{{ checksum "login-workflow/yarn.lock" }}
+      - run:
+          name: Install Dependencies
+          command: |
+            cd login-workflow
+            yarn install --frozen-lockfile
+      - save_cache:
+          name: Save Cache
+          paths:
+            - node_modules
+          key: v2-dependencies-{{ checksum "login-workflow/yarn.lock" }}
       - run:
           name: Build
           command: |
@@ -47,11 +91,10 @@ jobs:
           root: .
           paths:
             - login-workflow/lib
-            - login-workflow/coverage
   coverage_report:
     working_directory: ~/react-native-workflows
     docker:
-      - image: cimg/node:16.18.0-browsers
+      - image: cimg/node:18.19.0-browsers
     steps:
       - checkout
       - attach_workspace:
@@ -62,7 +105,7 @@ jobs:
 
   publish_login_workflow:
     docker:
-      - image: cimg/node:16.18.0-browsers
+      - image: cimg/node:18.19.0-browsers
     steps:
       - checkout
       - attach_workspace:
@@ -81,6 +124,8 @@ workflows:
   version: 2
   react_native_workflows:
     jobs:
+      - prettier_lint
+      - test
       - build_login_workflow
       - publish_login_workflow:
           requires:
