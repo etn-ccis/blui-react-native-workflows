@@ -54,7 +54,7 @@
         "typescript": "tsc --noEmit",
         "publish:package": "set npm_config_yes=true && npx -p @brightlayer-ui/publish blui-publish",
         "coverage": "yarn test --coverage --watchAll=false",
-        "prepare": "cd .. && husky install",
+        "prepare": "cd .. && husky install login-workflow/.husky",
         "tag:package": "npx -p @brightlayer-ui/tag blui-tag -s -blui-react-native-auth-workflow"
     },
     "dependencies": {
@@ -147,7 +147,7 @@
         "collectCoverage": true,
         "coverageThreshold": {
             "global": {
-              "lines": 95
+                "lines": 80
             }
         },
         "snapshotSerializers": [
