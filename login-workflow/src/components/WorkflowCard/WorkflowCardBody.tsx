@@ -5,8 +5,8 @@ import { Card, CardContentProps } from 'react-native-paper';
 
 const makeStyles = (): StyleSheet.NamedStyles<{
     workflowBodyStyle: ViewStyle;
-}> => {
-    return StyleSheet.create({
+}> =>
+    StyleSheet.create({
         workflowBodyStyle: {
             flex: 1,
             marginVertical: 32,
@@ -14,7 +14,6 @@ const makeStyles = (): StyleSheet.NamedStyles<{
             paddingHorizontal: 0,
         },
     });
-};
 
 /**
  * Component that renders the body content for the workflow card.
