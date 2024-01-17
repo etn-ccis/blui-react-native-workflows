@@ -20,6 +20,11 @@ export const navGroupItems: NavItem[] = [
         itemID: 'PageTwo',
         icon: { name: 'looks-two' },
     },
+    {
+        title: 'Page Three',
+        itemID: 'PageThree',
+        icon: { name: 'looks-three' },
+    },
 ];
 
 export type NavDrawerProps = {

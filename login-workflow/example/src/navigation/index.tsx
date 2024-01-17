@@ -6,6 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Home from '../screens/home';
 import PageOne from '../screens/pageOne';
 import PageTwo from '../screens/pageTwo';
+import PageThree from '../screens/pageThree';
 
 const Drawer = createDrawerNavigator();
 
@@ -14,6 +15,7 @@ export type RootStackParamList = {
     PageOne: undefined;
     PageTwo: undefined;
     NavigationDrawer: undefined;
+    PageThree: undefined;
 };
 
 const RootStack = createStackNavigator<RootStackParamList>();
@@ -33,5 +35,6 @@ export const MainRouter = (): any => (
         <RootStack.Screen name="Home" component={Home} />
         <RootStack.Screen name="PageOne" component={PageOne} />
         <RootStack.Screen name="PageTwo" component={PageTwo} />
+        <RootStack.Screen name="PageThree" component={PageThree} />
     </Drawer.Navigator>
 );

@@ -16,6 +16,7 @@ export { AuthNavigationContainer } from './screens/AuthNavigationContainer';
 export type { AccountDetailInformation } from './subScreens/AccountDetails';
 /** @ignore */
 export { ChangePassword } from './screens/ChangePassword';
+export { WorkflowCardBody } from './components/WorkflowCard/WorkflowCardBody';
 export { LoginHeaderSplash } from './components/LoginHeaderSplash';
 
 export { DismissKeyboardView } from './components/DismissKeyboardView';
