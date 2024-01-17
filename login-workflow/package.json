@@ -1,7 +1,7 @@
 {
     "name": "@brightlayer-ui/react-native-auth-workflow",
     "description": "Re-usable workflow components for Authentication and Registration within Eaton applications.",
-    "version": "5.2.0",
+    "version": "6.0.0",
     "license": "BSD-3-Clause",
     "author": {
         "name": "Brightlayer UI",
@@ -32,12 +32,10 @@
         "package.json"
     ],
     "scripts": {
-        "initialize": "bash scripts/initializeSubmodule.sh",
         "install:dependencies": "yarn install:dependencies-ios",
-        "install:dependencies-ios": "yarn && cd example && yarn && cd ios && pod install && cd ../../shared-auth && yarn && cd .. && yarn link:shared",
-        "install:dependencies-android": "yarn && cd example && yarn && cd ../shared-auth && yarn && cd .. && yarn link:shared",
+        "install:dependencies-ios": "yarn && cd example && yarn && cd ios && pod install",
+        "install:dependencies-android": "yarn && cd example && yarn",
         "link:workflows": "bash ./scripts/linkWorkflow.sh",
-        "link:shared": "bash ./scripts/linkShared.sh",
         "start:example": "yarn start:example-ios",
         "start:example-ios": "yarn initialize && yarn install:dependencies-ios && yarn build && yarn link:workflows && cd example && yarn ios",
         "start:example-ipad": "yarn initialize && yarn install:dependencies-ios && yarn build && yarn link:workflows && cd example && yarn ipad",
@@ -47,7 +45,7 @@
         "prettier": "prettier \"**/**.{tsx,ts,js,json}\" --write",
         "prettier:check": "prettier \"**/**.{tsx,ts,js,json}\" --check",
         "build": "bob build",
-        "generate:licenses": "npm-license-crawler -onlyDirectDependencies --exclude ./shared-auth --exclude ./example -json LICENSES.json",
+        "generate:licenses": "npm-license-crawler -onlyDirectDependencies --exclude ./example -json LICENSES.json",
         "validate": "yarn prettier && yarn lint && yarn typescript && yarn test",
         "precommit": "yarn validate && yarn generate:licenses",
         "update:submodule": "git submodule update --remote",
@@ -57,7 +55,6 @@
         "tag:package": "npx -p @brightlayer-ui/tag blui-tag -s -blui-react-native-auth-workflow"
     },
     "dependencies": {
-        "@brightlayer-ui/react-auth-shared": "^3.8.0",
         "lodash.clonedeep": "^4.5.0",
         "react-native-status-bar-height": "^2.5.0"
     },
@@ -72,16 +69,18 @@
         "react": "^17.0.0 || ^18.0.0",
         "react-i18next": "^11.18.6",
         "react-native": "0.68.0 || 0.69.0 || ^0.70.0",
+        "react-native-gesture-handler": "^1.6.1",
         "react-native-keyboard-aware-scroll-view": "~0.9.1",
         "react-native-pager-view": "^6.2.3",
         "react-native-paper": "^4.0.0",
-        "react-native-vector-icons": "^9.0.0",
-        "react-native-webview": "^11.23.1",
         "react-native-safe-area-context": "^3.0.0",
-        "react-native-gesture-handler": "^1.6.1"
+        "react-native-vector-icons": "^9.0.0",
+        "react-native-webview": "^11.23.1"
     },
     "devDependencies": {
         "@babel/core": "^7.9.0",
+        "@babel/preset-env": "^7.23.8",
+        "@babel/preset-react": "^7.23.3",
         "@babel/runtime": "^7.9.2",
         "@brightlayer-ui/colors": "^3.0.0",
         "@brightlayer-ui/eslint-config": "^3.0.1",
