@@ -9,11 +9,10 @@ const makeStyles = (): StyleSheet.NamedStyles<{
 }> => {
     return StyleSheet.create({
         workflowBodyStyle: {
-            backgroundColor: 'red',
             flex: 1,
-            marginTop: 8,
-            paddingBottom: 16,
-            marginHorizontal: 16,
+            marginVertical: 32,
+            marginHorizontal: 24,
+            paddingHorizontal: 0,
         }
     });
 };
