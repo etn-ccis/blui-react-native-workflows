@@ -3,7 +3,6 @@ import React from 'react';
 import { StyleSheet, ViewStyle } from 'react-native';
 import { Card, CardContentProps } from 'react-native-paper';
 
-
 const makeStyles = (): StyleSheet.NamedStyles<{
     workflowBodyStyle: ViewStyle;
 }> => {
@@ -13,7 +12,7 @@ const makeStyles = (): StyleSheet.NamedStyles<{
             marginVertical: 32,
             marginHorizontal: 24,
             paddingHorizontal: 0,
-        }
+        },
     });
 };
 
@@ -29,10 +28,7 @@ export const WorkflowCardBody: React.FC<CardContentProps> = (props) => {
     const { children, style, ...otherCardContentProps } = props;
     const defaultStyles = makeStyles();
     return (
-        <Card.Content
-            style={[defaultStyles.workflowBodyStyle, style]}
-            {...otherCardContentProps}
-        >
+        <Card.Content style={[defaultStyles.workflowBodyStyle, style]} {...otherCardContentProps}>
             {children}
         </Card.Content>
     );

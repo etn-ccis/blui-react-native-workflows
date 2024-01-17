@@ -43,7 +43,6 @@ import {
     useInjectedUIContext,
 } from '@brightlayer-ui/react-auth-shared';
 import { CloseHeader } from '../components/CloseHeader';
-import { WorkflowCardBody } from '..';
 
 /**
  * @ignore
@@ -285,7 +284,7 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
                         </View>
                     </View>
                     <ScrollView>
-                        <WorkflowCardBody style={[containerStyles.containerMargins, containerStyles.mainContainer]}>
+                        <View style={[containerStyles.containerMargins, containerStyles.mainContainer]}>
                             <View style={{ width: '100%', maxWidth: 600 }}>
                                 <TextInputSecure
                                     label={t('blui:LABELS.CURRENT_PASSWORD')}
@@ -332,7 +331,7 @@ export const ChangePassword: React.FC<ChangePasswordProps> = (props) => {
                                     }
                                 />
                             </View>
-                        </WorkflowCardBody>
+                        </View>
                     </ScrollView>
                     <View style={[styles.sideBySideButtons, containerStyles.containerMargins]}>
                         <View style={{ flex: 1 }}>

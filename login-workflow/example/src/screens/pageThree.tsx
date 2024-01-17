@@ -8,7 +8,6 @@ import { LocalStorage } from '../store/local-storage';
 import { Avatar, HelperText, Text, TextInput, useTheme } from 'react-native-paper';
 import * as Colors from '@brightlayer-ui/colors';
 
-
 const Event: IconFamily = { name: 'event', direction: 'rtl' };
 const MenuIcon: IconFamily = { name: 'menu', direction: 'ltr' };
 const LockIcon: IconFamily = { name: 'lock', direction: 'ltr' };
@@ -86,7 +85,7 @@ const PageThree: React.FC<AppProps> = ({ navigation }): JSX.Element => {
                 ]}
             />
             <SafeAreaView>
-                <ScrollView >
+                <ScrollView>
                     <WorkflowCardBody>
                         <TextInput
                             label="TextInput"

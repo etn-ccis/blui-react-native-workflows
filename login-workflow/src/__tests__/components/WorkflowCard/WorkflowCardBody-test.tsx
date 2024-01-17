@@ -15,12 +15,10 @@ describe('WorkflowCardBody Test', () => {
         const rendered = renderer
             .create(
                 <WorkflowCardBody>
-                    <Text>
-                        This is workflow Card Body content
-                    </Text>
+                    <Text>This is workflow Card Body content.</Text>
                 </WorkflowCardBody>
             )
             .toJSON();
         expect(rendered).toBeTruthy();
-    })
+    });
 });
