@@ -9,8 +9,8 @@ const makeStyles = (): StyleSheet.NamedStyles<{
     StyleSheet.create({
         workflowBodyStyle: {
             flex: 1,
-            marginVertical: 32,
-            marginHorizontal: 24,
+            marginTop: 32,
+            marginBottom: 24,
             paddingHorizontal: 0,
         },
     });
