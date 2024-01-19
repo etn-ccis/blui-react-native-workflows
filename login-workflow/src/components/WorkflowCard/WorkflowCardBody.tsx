@@ -2,16 +2,20 @@ import React from 'react';
 
 import { StyleSheet, ViewStyle } from 'react-native';
 import { Card, CardContentProps } from 'react-native-paper';
+import { useScreenWidth } from '../../hooks/useScreenWidth';
 
-const makeStyles = (): StyleSheet.NamedStyles<{
+const makeStyles = (
+    isTablet: boolean
+): StyleSheet.NamedStyles<{
     workflowBodyStyle: ViewStyle;
 }> =>
     StyleSheet.create({
         workflowBodyStyle: {
             flex: 1,
-            marginHorizontal: 16,
+            // TODO: move this to common style
+            marginHorizontal: isTablet ? 24 : 16,
             marginTop: 32,
-            marginBottom: 24,
+            marginBottom: isTablet ? 32 : 24,
             paddingHorizontal: 0,
         },
     });
@@ -26,7 +30,8 @@ const makeStyles = (): StyleSheet.NamedStyles<{
 
 export const WorkflowCardBody: React.FC<CardContentProps> = (props) => {
     const { children, style, ...otherCardContentProps } = props;
-    const defaultStyles = makeStyles();
+    const isTablet = useScreenWidth();
+    const defaultStyles = makeStyles(isTablet);
     return (
         <Card.Content style={[defaultStyles.workflowBodyStyle, style]} {...otherCardContentProps}>
             {children}
