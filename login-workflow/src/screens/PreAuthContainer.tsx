@@ -20,6 +20,7 @@ import { SelfRegistrationPager } from './SelfRegistrationPager';
 import { ContactSupport } from './ContactSupport';
 import { useInjectedUIContext } from '@brightlayer-ui/react-auth-shared';
 import { useTheme } from 'react-native-paper';
+import { WorkflowCardInstructions } from '..';
 
 /**
  * @ignore
@@ -36,6 +37,10 @@ type PreAuthContainerProps = {
     extraRoutes?: JSX.Element;
     initialRouteName?: string;
 };
+
+const WorkflowCardInstructionsComponent: React.FC = () => (
+    <WorkflowCardInstructions style={{ marginTop: 80 }} instructions={'Test Instructions'} />
+);
 
 /**
  * Container wrapping status bar and theming customizations to a top-level Stack Navigator which governs access
@@ -104,6 +109,9 @@ export const PreAuthContainer: React.FC<PreAuthContainerProps> = (props) => {
                             contactPhoneLink,
                         }}
                     />
+                )}
+                {showContactSupport && (
+                    <Stack.Screen name="WorkflowCardInstructions" component={WorkflowCardInstructionsComponent} />
                 )}
                 {showSelfRegistration && (
                     <Stack.Screen

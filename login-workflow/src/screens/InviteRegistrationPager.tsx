@@ -25,12 +25,12 @@ import { useTheme } from 'react-native-paper';
 import ViewPager from 'react-native-pager-view';
 import { CloseHeader } from '../components/CloseHeader';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { Spinner } from '../components/Spinner';
-import { SimpleDialog } from '../components/SimpleDialog';
-import { ErrorState } from '../components/ErrorState';
-import { ToggleButton } from '../components/ToggleButton';
+// import { Spinner } from '../components/Spinner';
+// import { SimpleDialog } from '../components/SimpleDialog';
+// import { ErrorState } from '../components/ErrorState';
+// import { ToggleButton } from '../components/ToggleButton';
 import i18n from '../translations/i18n';
-import { ThemedDivider as Divider } from '@brightlayer-ui/react-native-components/themed';
+// import { ThemedDivider as Divider } from '@brightlayer-ui/react-native-components/themed';
 
 // Styles
 import * as Colors from '@brightlayer-ui/colors';
@@ -49,8 +49,8 @@ import {
     CustomRegistrationForm,
 } from '@brightlayer-ui/react-auth-shared';
 import { CustomRegistrationDetailsGroup, RegistrationPage } from '../types';
-import { Instruction } from '../components/Instruction';
-import { MobileStepper, Spacer } from '@brightlayer-ui/react-native-components';
+// import { Instruction } from '../components/Instruction';
+import { MobileStepper } from '@brightlayer-ui/react-native-components';
 import Color from 'color';
 
 /**
@@ -145,7 +145,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
     const containerStyles = makeContainerStyles(theme);
     const styles = makeStyles();
 
-    const [hasAcknowledgedError, setHasAcknowledgedError] = useState(false);
+    const [, setHasAcknowledgedError] = useState(false);
 
     const [eulaAccepted, setEulaAccepted] = useState(false);
     const [password, setPassword] = useState('');
@@ -173,10 +173,10 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
     );
 
     // Network state (registration)
-    const registrationTransit = registrationState.inviteRegistration.registrationTransit;
-    const registrationIsInTransit = registrationTransit.transitInProgress;
-    const hasRegistrationTransitError = registrationTransit.transitErrorMessage !== null;
-    const registrationTransitErrorMessage = registrationTransit.transitErrorMessage ?? t('blui:MESSAGES.REQUEST_ERROR');
+    // const registrationTransit = registrationState.inviteRegistration.registrationTransit;
+    // const registrationIsInTransit = registrationTransit.transitInProgress;
+    // const hasRegistrationTransitError = registrationTransit.transitErrorMessage !== null;
+    // const registrationTransitErrorMessage = registrationTransit.transitErrorMessage ?? t('blui:MESSAGES.REQUEST_ERROR');
     const registrationSuccess = registrationState.inviteRegistration.registrationTransit.transitSuccess;
 
     // Network state (invite code validation)
@@ -297,9 +297,9 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
                             >
                                 <View style={{ width: '100%', maxWidth: 600 }}>
                                     <KeyboardAwareScrollView>
-                                        {page.instructions && (
+                                        {/* {page.instructions && (
                                             <Instruction text={page.instructions} style={{ marginHorizontal: 16 }} />
-                                        )}
+                                        )} */}
                                         <View style={{ flex: 1, marginHorizontal: 16 }}>
                                             <PageComponent
                                                 onDetailsChanged={(
@@ -388,14 +388,14 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
     }, [registrationState.inviteRegistration.validationTransit, validationCode, validateCode, validationEmail]); // eslint-disable-line react-hooks/exhaustive-deps
 
     // Spinner - shows if registration, code validation, or EULA loading is in progress
-    const spinner =
-        registrationIsInTransit || isValidationInTransit ? (
-            <Spinner />
-        ) : !eulaContent && !loadEulaTransitErrorMessage ? (
-            <Spinner loadingText={t('blui:REGISTRATION.EULA.LOADING')} />
-        ) : (
-            <></>
-        );
+    // const spinner =
+    //     registrationIsInTransit || isValidationInTransit ? (
+    //         <Spinner />
+    //     ) : !eulaContent && !loadEulaTransitErrorMessage ? (
+    //         <Spinner loadingText={t('blui:REGISTRATION.EULA.LOADING')} />
+    //     ) : (
+    //         <></>
+    //     );
 
     // View pager
     useEffect(() => {
@@ -408,16 +408,16 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
         }
     }, [currentPage, viewPager, CompletePage, disablePagerAnimations]);
 
-    const errorDialog = (
-        <SimpleDialog
-            title={t('blui:MESSAGES.ERROR')}
-            bodyText={t(registrationTransitErrorMessage)}
-            visible={hasRegistrationTransitError && !hasAcknowledgedError}
-            onDismiss={(): void => {
-                setHasAcknowledgedError(true);
-            }}
-        />
-    );
+    // const errorDialog = (
+    //     <SimpleDialog
+    //         title={t('blui:MESSAGES.ERROR')}
+    //         bodyText={t(registrationTransitErrorMessage)}
+    //         visible={hasRegistrationTransitError && !hasAcknowledgedError}
+    //         onDismiss={(): void => {
+    //             setHasAcknowledgedError(true);
+    //         }}
+    //     />
+    // );
 
     const attemptRegistration = useCallback(async (): Promise<void> => {
         setHasAcknowledgedError(false);
@@ -530,50 +530,50 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
     if (isLastStep) {
         buttonArea = (
             <View style={[styles.sideBySideButtons, containerStyles.containerMargins]}>
-                <ToggleButton
+                {/* <ToggleButton
                     text={t('blui:ACTIONS.CONTINUE')}
                     style={{ width: '100%', alignSelf: 'flex-end' }}
                     onPress={(): void => advancePage(1)}
-                />
+                /> */}
             </View>
         );
     } else {
         buttonArea = (
             <>
-                <Divider style={containerStyles.divider} />
+                {/* <Divider style={containerStyles.divider} /> */}
                 <MobileStepper
                     styles={{ root: [containerStyles.topBorder, { flex: 0 }] }}
                     steps={RegistrationPages.length}
                     activeStep={currentPage}
-                    leftButton={
-                        isFirstStep ? (
-                            <Spacer flex={0} width={100} />
-                        ) : (
-                            <ToggleButton
-                                text={t('blui:ACTIONS.BACK')}
-                                style={{ width: 100, alignSelf: 'flex-start' }}
-                                outlined={true}
-                                disabled={!canGoBackProgress()}
-                                onPress={(): void => advancePage(-1)}
-                            />
-                        )
-                    }
-                    rightButton={
-                        <ToggleButton
-                            text={t('blui:ACTIONS.NEXT')}
-                            style={{ width: 100, alignSelf: 'flex-end' }}
-                            disabled={!canProgress()}
-                            onPress={(): void => advancePage(1)}
-                        />
-                    }
+                    // leftButton={
+                    //     isFirstStep ? (
+                    //         <Spacer flex={0} width={100} />
+                    //     ) : (
+                    //         // <ToggleButton
+                    //         //     text={t('blui:ACTIONS.BACK')}
+                    //         //     style={{ width: 100, alignSelf: 'flex-start' }}
+                    //         //     outlined={true}
+                    //         //     disabled={!canGoBackProgress()}
+                    //         //     onPress={(): void => advancePage(-1)}
+                    //         // />
+                    //     )
+                    // }
+                    // rightButton={
+                    //     <ToggleButton
+                    //         text={t('blui:ACTIONS.NEXT')}
+                    //         style={{ width: 100, alignSelf: 'flex-end' }}
+                    //         disabled={!canProgress()}
+                    //         onPress={(): void => advancePage(1)}
+                    //     />
+                    // }
                 />
             </>
         );
     }
     return !accountAlreadyExists && validationSuccess && !isValidationInTransit ? (
         <View style={{ flex: 1 }}>
-            {spinner}
-            {errorDialog}
+            {/* {spinner} */}
+            {/* {errorDialog} */}
             {(!customSuccess || !isLastStep) && (
                 <>
                     <CloseHeader
@@ -626,11 +626,11 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
                             <ExistingAccountComplete />
                         </View>
                         <View style={[styles.sideBySideButtons, containerStyles.containerMargins]}>
-                            <ToggleButton
+                            {/* <ToggleButton
                                 text={t('blui:ACTIONS.CONTINUE')}
                                 style={{ width: '100%', alignSelf: 'flex-end' }}
                                 onPress={(): void => navigation.navigate('Login')}
-                            />
+                            /> */}
                         </View>
                     </SafeAreaView>
                 </>
@@ -645,18 +645,18 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
     ) : !validationComplete ? (
         <View style={{ flex: 1 }}>
             <CloseHeader title={pageTitle()} backAction={(): void => navigation.navigate('Login')} />
-            <Spinner />
+            {/* <Spinner /> */}
         </View>
     ) : (
         <View style={{ flex: 1 }}>
             <CloseHeader title={pageTitle()} backAction={(): void => navigation.navigate('Login')} />
-            <ErrorState
+            {/* <ErrorState
                 title={t('blui:MESSAGES.FAILURE')}
                 bodyText={validationTransitErrorMessage}
                 onPress={(): void => {
                     navigation.navigate('Login');
                 }}
-            />
+            /> */}
         </View>
     );
 };

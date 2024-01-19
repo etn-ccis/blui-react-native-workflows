@@ -24,9 +24,10 @@ const makeStyles = (): StyleSheet.NamedStyles<{
     });
 
 /**
- * Component that renders the body content for the workflow card.
+ * Component that renders the instructions content for the workflow card.
  *
- * @param children content to render in the WorkflowCardBody
+ * @param instructions text to display as instructions
+ * @param divider whether or not to show a divider below the instructions
  *
  * @category Component
  */

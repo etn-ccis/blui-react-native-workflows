@@ -23,6 +23,8 @@ export { default as i18n } from './translations/i18n';
 
 export * from '@brightlayer-ui/react-auth-shared';
 
+export * from './components';
+
 declare global {
     // eslint-disable-next-line @typescript-eslint/no-namespace
     namespace ReactNativePaper {
@@ -69,5 +71,3 @@ declare global {
         }
     }
 }
-
-export * from './new_architecture';
