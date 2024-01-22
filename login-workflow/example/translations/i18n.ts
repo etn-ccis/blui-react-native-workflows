@@ -47,8 +47,9 @@ void i18next
             },
         },
         // We must provide a function as second parameter, otherwise i18next errors
-
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         (err, _t) => {
+            // eslint-disable-next-line no-console
             if (err) return console.log(err);
         }
     );

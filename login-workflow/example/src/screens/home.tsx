@@ -76,11 +76,7 @@ const OpenURLButton = (props: any): JSX.Element => {
     }, [url]);
 
     return (
-        <Button
-            onPress={(): Promise<void> => handlePress()}
-            labelStyle={defaultStyles.openURLButtonText}
-            uppercase={false}
-        >
+        <Button onPress={(): void => handlePress()} labelStyle={defaultStyles.openURLButtonText} uppercase={false}>
             {title}
         </Button>
     );
@@ -130,7 +126,7 @@ const Home: React.FC<AppProps> = ({ navigation }): JSX.Element => {
                 actionItems={[
                     {
                         icon: { name: 'more' },
-                        onPress: () => {},
+                        onPress: (): void => {},
                         component: (
                             <UserMenuExample
                                 onToggleRTL={toggleRTL}
