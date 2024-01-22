@@ -150,6 +150,9 @@ const Home: React.FC<AppProps> = ({ navigation }): JSX.Element => {
                         Edit <Text style={defaultStyles.bold}>screens/home.tsx</Text> and save to reload
                     </Text>
                     <Divider style={defaultStyles.divider} />
+                    <Button onPress={() => navigation.navigate('WorkflowCardInstructions')}>
+                        Workflow Card Instructions
+                    </Button>
                     <OpenURLButton title={'Brightlayer UI Documentation'} url={'https://brightlayer-ui.github.io/'} />
                     <OpenURLButton
                         title={'React Native Getting Started Guide'}
