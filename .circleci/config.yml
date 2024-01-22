@@ -138,7 +138,7 @@ workflows:
                 - dev
       - coverage_report:
           requires:
-            - store_test_results
+            # - store_test_results
           filters:
             branches:
               only:
