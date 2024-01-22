@@ -9,23 +9,20 @@ import {
     View,
     Animated,
     Easing,
+    I18nManager,
 } from 'react-native';
-import { Avatar, Button, Divider, useTheme } from 'react-native-paper';
-import { Body1, H4, Header, IconFamily, InfoListItemProps, UserMenu } from '@brightlayer-ui/react-native-components';
-import { Theme } from 'react-native-paper/lib/typescript/types';
-import Logo from '../../assets/images/Logo.svg';
+import { Button, Divider, Text } from 'react-native-paper';
+import { Header } from '@brightlayer-ui/react-native-components';
+import RNRestart from 'react-native-restart';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../navigation';
-import { useSecurityActions } from '@brightlayer-ui/react-native-auth-workflow';
-import { LocalStorage } from '../store/local-storage';
-import * as Colors from '@brightlayer-ui/colors';
-
-const MenuIcon: IconFamily = { name: 'menu', direction: 'ltr' };
-const LockIcon: IconFamily = { name: 'lock', direction: 'ltr' };
-const ExitToAppIcon: IconFamily = { name: 'exit-to-app', direction: 'ltr' };
+import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
+import { UserMenuExample } from '../components/UserMenuExample';
+import { useThemeContext } from '../context/ThemeContext';
+import { useTranslation } from 'react-i18next';
 
 const styles = (
-    theme: Theme
+    theme: ExtendedTheme
 ): StyleSheet.NamedStyles<{
     content: ViewStyle;
     pxbLogoWrapper: ViewStyle;
@@ -39,6 +36,7 @@ const styles = (
     StyleSheet.create({
         content: {
             flex: 1,
+            backgroundColor: theme.colors.background,
         },
         pxbLogoWrapper: {
             justifyContent: 'center',
@@ -63,14 +61,14 @@ const styles = (
             marginVertical: 24,
         },
         openURLButtonText: {
-            color: theme.colors.text,
+            color: theme.colors.primary,
             padding: 8,
         },
     });
 
 const OpenURLButton = (props: any): JSX.Element => {
     const { url, title } = props;
-    const theme = useTheme();
+    const theme = useExtendedTheme();
     const defaultStyles = styles(theme);
 
     const handlePress = useCallback(async () => {
@@ -78,12 +76,7 @@ const OpenURLButton = (props: any): JSX.Element => {
     }, [url]);
 
     return (
-        <Button
-            // eslint-disable-next-line @typescript-eslint/no-misused-promises
-            onPress={(): Promise<void> => handlePress()}
-            labelStyle={defaultStyles.openURLButtonText}
-            uppercase={false}
-        >
+        <Button onPress={(): void => handlePress()} labelStyle={defaultStyles.openURLButtonText} uppercase={false}>
             {title}
         </Button>
     );
@@ -93,12 +86,21 @@ type AppProps = {
     navigation: StackNavigationProp<RootStackParamList, 'Home'>;
 };
 
+export const toggleRTL = (): void => {
+    if (I18nManager.isRTL) {
+        I18nManager.forceRTL(false);
+    } else {
+        I18nManager.forceRTL(true);
+    }
+    RNRestart.Restart();
+};
 const Home: React.FC<AppProps> = ({ navigation }): JSX.Element => {
-    const theme = useTheme();
+    const theme = useExtendedTheme();
+    const { t } = useTranslation();
+    const { theme: themeType, setTheme } = useThemeContext();
+
     const defaultStyles = styles(theme);
     const spinValue = new Animated.Value(0);
-    const securityHelper = useSecurityActions();
-
     Animated.loop(
         Animated.timing(spinValue, {
             toValue: 1,
@@ -113,41 +115,22 @@ const Home: React.FC<AppProps> = ({ navigation }): JSX.Element => {
         outputRange: ['0deg', '360deg'],
     });
 
-    const changePassword = (): void => {
-        securityHelper.showChangePassword();
-    };
-
-    const logOut = (): void => {
-        LocalStorage.clearAuthCredentials();
-        securityHelper.onUserNotAuthenticated();
-    };
-
-    const menuItems: InfoListItemProps[] = [
-        { title: 'Change Password', icon: LockIcon, onPress: (): void => changePassword() },
-        { title: 'Log Out', icon: ExitToAppIcon, onPress: (): void => logOut() },
-    ];
-
     return (
         <>
             <Header
-                title={'Home Page'}
-                icon={MenuIcon}
+                title={`${t('TOOLBAR_MENU.HOME_PAGE')}`}
+                icon={{ name: 'menu' }}
                 onIconPress={(): void => {
                     navigation.openDrawer();
                 }}
                 actionItems={[
                     {
+                        icon: { name: 'more' },
+                        onPress: (): void => {},
                         component: (
-                            <UserMenu
-                                menuItems={menuItems}
-                                avatar={
-                                    <Avatar.Text
-                                        label="UN"
-                                        size={40}
-                                        color={Colors.blue[500]}
-                                        style={{ backgroundColor: Colors.blue[50] }}
-                                    />
-                                }
+                            <UserMenuExample
+                                onToggleRTL={toggleRTL}
+                                onToggleTheme={(): void => setTheme(themeType === 'light' ? 'dark' : 'light')}
                             />
                         ),
                     },
@@ -157,15 +140,15 @@ const Home: React.FC<AppProps> = ({ navigation }): JSX.Element => {
                 <ScrollView>
                     <View style={defaultStyles.pxbLogoWrapper}>
                         <Animated.View style={[defaultStyles.pxbLogo, { transform: [{ rotate: spin }] }]}>
-                            <Logo height={100} width={100} fill={'#007bc1'} />
+                            {/* <Logo height={100} width={100} fill={'#007bc1'} /> */}
                         </Animated.View>
                     </View>
-                    <H4 style={defaultStyles.title}>
-                        Welcome to Brightlayer <H4 color={'primary'}>UI</H4>.
-                    </H4>
-                    <Body1 style={defaultStyles.subtitle}>
-                        Edit <Body1 style={defaultStyles.bold}>screens/home.tsx</Body1> and save to reload.
-                    </Body1>
+                    <Text style={defaultStyles.title} variant="headlineSmall">
+                        Welcome to Brightlayer UI
+                    </Text>
+                    <Text style={defaultStyles.subtitle} variant="titleLarge">
+                        Edit <Text style={defaultStyles.bold}>screens/home.tsx</Text> and save to reload
+                    </Text>
                     <Divider style={defaultStyles.divider} />
                     <OpenURLButton title={'Brightlayer UI Documentation'} url={'https://brightlayer-ui.github.io/'} />
                     <OpenURLButton
@@ -180,7 +163,7 @@ const Home: React.FC<AppProps> = ({ navigation }): JSX.Element => {
                         title={'React Native Component Library'}
                         url={'https://brightlayer-ui-components.github.io/react-native/'}
                     />
-                    <OpenURLButton title={'Visit Us on GitHub'} url={'https://github.com/brightlayer-ui'} />
+                    <OpenURLButton title={'Visit Us on GitHub'} url={'https://github.com/etn-ccis?q=blui'} />
                     <OpenURLButton
                         title={'Design Pattern Source on GitHub'}
                         url={'https://github.com/etn-ccis/blui-react-native-design-patterns'}

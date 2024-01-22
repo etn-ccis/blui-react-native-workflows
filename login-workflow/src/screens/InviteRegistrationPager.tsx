@@ -260,6 +260,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
                 >
                     {FirstCustomPage && (
                         <FirstCustomPage
+                            // eslint-disable-next-line
                             onDetailsChanged={(details: CustomAccountDetails | null, valid: boolean): void => {
                                 setCustomAccountDetails({
                                     ...(customAccountDetails || {}),
@@ -283,6 +284,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
             // Custom injected pages
             customDetails
                 .slice(1)
+                // eslint-disable-next-line
                 .filter((item: CustomRegistrationForm | null) => item !== null)
                 // @ts-ignore there won't be any nulls after we filter them
                 .map((page: CustomRegistrationForm, i: number) => {
@@ -303,6 +305,7 @@ export const InviteRegistrationPager: React.FC<InviteRegistrationPagerProps> = (
                                         <View style={{ flex: 1, marginHorizontal: 16 }}>
                                             <PageComponent
                                                 onDetailsChanged={(
+                                                    // eslint-disable-next-line
                                                     details: CustomAccountDetails | null,
                                                     valid: boolean
                                                 ): void => {
