@@ -18,7 +18,7 @@ export const App = (): JSX.Element => {
     const [theme, setTheme] = useState<ThemeType>('light');
 
     return (
-        <ThemeContext.Provider value={{ theme, setTheme }}>
+        <ThemeContext.Provider value={{ theme,  setTheme }}>
             <I18nextProvider i18n={i18nAppInstance}>
                 <ThemeProvider theme={theme === 'light' ? blue : blueDark}>
                     <SafeAreaProvider>
