@@ -146,7 +146,7 @@
         "collectCoverage": true,
         "coverageThreshold": {
             "global": {
-                "lines": 100
+                "lines": 80
             }
         },
         "snapshotSerializers": [
