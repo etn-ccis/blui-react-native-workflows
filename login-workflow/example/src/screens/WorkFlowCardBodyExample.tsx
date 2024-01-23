@@ -7,7 +7,7 @@ import { WorkflowCardBody } from '@brightlayer-ui/react-native-auth-workflow';
 import { HelperText, TextInput } from 'react-native-paper';
 import { useThemeContext } from '../context/ThemeContext';
 import { useExtendedTheme } from '@brightlayer-ui/react-native-themes';
-import { UserMenuExample } from 'src/components/UserMenuExample';
+import { UserMenuExample } from '../components/UserMenuExample';
 import { toggleRTL } from './home';
 
 type AppProps = {
@@ -23,7 +23,7 @@ const WorkFlowCardBodyExample: React.FC<AppProps> = ({ navigation }): JSX.Elemen
     return (
         <>
             <Header
-                title={'Page Two'}
+                title={'Workflow Card Body Example'}
                 icon={{ name: 'menu' }}
                 onIconPress={(): void => {
                     navigation.openDrawer();
@@ -41,7 +41,7 @@ const WorkFlowCardBodyExample: React.FC<AppProps> = ({ navigation }): JSX.Elemen
                     },
                 ]}
             />
-            <SafeAreaView>
+            <SafeAreaView  style={{backgroundColor: theme.colors.background, flex: 1}}>
                 <ScrollView>
                     <WorkflowCardBody>
                         <TextInput
