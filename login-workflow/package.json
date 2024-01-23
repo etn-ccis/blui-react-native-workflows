@@ -203,6 +203,11 @@
         "node_modules/",
         "lib/"
     ],
+    "husky": {
+        "hooks": {
+            "pre-push": "yarn lint && yarn typescript && yarn test"
+        }
+    },
     "jest-junit": {
         "reporters": [
             "jest-junit"
