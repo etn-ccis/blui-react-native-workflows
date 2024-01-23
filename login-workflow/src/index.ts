@@ -22,8 +22,6 @@ export { LoginHeaderSplash } from './components/LoginHeaderSplash';
 export { DismissKeyboardView } from './components/DismissKeyboardView';
 export { default as i18n } from './translations/i18n';
 
-export * from '@brightlayer-ui/react-auth-shared';
-
 declare global {
     // eslint-disable-next-line @typescript-eslint/no-namespace
     namespace ReactNativePaper {

@@ -1,17 +1,11 @@
 import React from 'react';
 import { SafeAreaView, ScrollView, StyleSheet, ViewStyle } from 'react-native';
-import { EmptyState, Header, IconFamily, InfoListItemProps, UserMenu } from '@brightlayer-ui/react-native-components';
+import { EmptyState, Header, IconFamily } from '@brightlayer-ui/react-native-components';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../navigation';
-import { Avatar } from 'react-native-paper';
-import { LocalStorage } from '../store/local-storage';
-import { useSecurityActions } from '@brightlayer-ui/react-native-auth-workflow';
-import * as Colors from '@brightlayer-ui/colors';
-
 const Event: IconFamily = { name: 'event', direction: 'rtl' };
 const MenuIcon: IconFamily = { name: 'menu', direction: 'ltr' };
-const LockIcon: IconFamily = { name: 'lock', direction: 'ltr' };
-const ExitToAppIcon: IconFamily = { name: 'exit-to-app', direction: 'ltr' };
+
 const styles = (): StyleSheet.NamedStyles<{
     content: ViewStyle;
     scrollViewContent: ViewStyle;
@@ -33,21 +27,6 @@ type AppProps = {
 
 const PageOne: React.FC<AppProps> = ({ navigation }): JSX.Element => {
     const defaultStyles = styles();
-    const securityHelper = useSecurityActions();
-
-    const changePassword = (): void => {
-        securityHelper.showChangePassword();
-    };
-
-    const logOut = (): void => {
-        LocalStorage.clearAuthCredentials();
-        securityHelper.onUserNotAuthenticated();
-    };
-
-    const menuItems: InfoListItemProps[] = [
-        { title: 'Change Password', icon: LockIcon, onPress: (): void => changePassword() },
-        { title: 'Log Out', icon: ExitToAppIcon, onPress: (): void => logOut() },
-    ];
 
     return (
         <>
@@ -57,23 +36,6 @@ const PageOne: React.FC<AppProps> = ({ navigation }): JSX.Element => {
                 onIconPress={(): void => {
                     navigation.openDrawer();
                 }}
-                actionItems={[
-                    {
-                        component: (
-                            <UserMenu
-                                menuItems={menuItems}
-                                avatar={
-                                    <Avatar.Text
-                                        label="UN"
-                                        size={40}
-                                        color={Colors.blue[500]}
-                                        style={{ backgroundColor: Colors.blue[50] }}
-                                    />
-                                }
-                            />
-                        ),
-                    },
-                ]}
             />
             <SafeAreaView style={defaultStyles.content}>
                 <ScrollView contentContainerStyle={defaultStyles.scrollViewContent}>

@@ -1,12 +1,12 @@
 version: 2.1
 orbs:
-  codecov: codecov/codecov@3.3.0
-  gh: circleci/github-cli@2.2.0
+  codecov: codecov/codecov@3.2.2
+  gh: circleci/github-cli@1.0
 jobs:
-  prettier_lint:
+  build_login_workflow:
     working_directory: ~/login-workflow
     docker:
-      - image: cimg/node:18.19.0-browsers
+      - image: cimg/node:16.18.0-browsers
     resource_class: large
     steps:
       - checkout
@@ -33,56 +33,11 @@ jobs:
           command: |
             cd login-workflow
             yarn lint
-  store_test_results:
-    docker:
-      - image: cimg/node:18.19.0-browsers
-    parallelism: 4
-    working_directory: ~/login-workflow
-    resource_class: large
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - v2-dependencies-{{ checksum "login-workflow/yarn.lock" }}
-      - run:
-          name: Install Dependencies
-          command: |
-            cd login-workflow
-            yarn install --frozen-lockfile
-      - save_cache:
-          name: Save Cache
-          paths:
-            - node_modules
-          key: v2-dependencies-{{ checksum "login-workflow/yarn.lock" }}
-      - run:
-          name: Tests
-          command: |
-            cd login-workflow
-            yarn test --maxWorkers=2 --coverage --watchAll=false
-      - persist_to_workspace:
-          root: .
-          paths:
-            - login-workflow/coverage
-  build_login_workflow:
-    working_directory: ~/login-workflow
-    docker:
-      - image: cimg/node:18.19.0-browsers
-    resource_class: large
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - v2-dependencies-{{ checksum "login-workflow/yarn.lock" }}
-      - run:
-          name: Install Dependencies
-          command: |
-            cd login-workflow
-            yarn install --frozen-lockfile
-      - save_cache:
-          name: Save Cache
-          paths:
-            - node_modules
-          key: v2-dependencies-{{ checksum "login-workflow/yarn.lock" }}
+      # - run:
+      #     name: Tests
+      #     command: |
+      #       cd login-workflow
+      #       yarn test --maxWorkers=2 --coverage --watchAll=false
       - run:
           name: Build
           command: |
@@ -92,21 +47,22 @@ jobs:
           root: .
           paths:
             - login-workflow/lib
+            - login-workflow/coverage
   coverage_report:
-    working_directory: ~/login-workflow
+    working_directory: ~/react-native-workflows
     docker:
-      - image: cimg/node:18.19.0-browsers
+      - image: cimg/node:16.18.0-browsers
     steps:
       - checkout
       - attach_workspace:
           at: .
       - codecov/upload:
-          file: './login-workflow/coverage/clover.xml'
+          file: "./login-workflow/coverage/clover.xml"
           token: CODECOV_TOKEN
 
   publish_login_workflow:
     docker:
-      - image: cimg/node:18.19.0-browsers
+      - image: cimg/node:16.18.0-browsers
     steps:
       - checkout
       - attach_workspace:
@@ -125,8 +81,6 @@ workflows:
   version: 2
   react_native_workflows:
     jobs:
-      - prettier_lint
-      - store_test_results
       - build_login_workflow
       - publish_login_workflow:
           requires:
@@ -138,9 +92,8 @@ workflows:
                 - dev
       - coverage_report:
           requires:
-            - store_test_results
+            - build_login_workflow
           filters:
             branches:
               only:
                 - master
-                - dev

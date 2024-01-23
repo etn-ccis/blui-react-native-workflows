@@ -1,7 +1,8 @@
 import React, { ReactNode } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { View } from 'react-native';
-import { NavDrawerProps, NavigationDrawer } from './navigation-drawer';
+import { NavigationDrawer } from './navigation-drawer';
 import { createStackNavigator } from '@react-navigation/stack';
 import Home from '../screens/home';
 import PageOne from '../screens/pageOne';
@@ -27,14 +28,17 @@ const CustomDrawerContent = (props: any): any => (
 );
 
 export const MainRouter = (): any => (
-    <Drawer.Navigator
-        initialRouteName="Home"
-        drawerStyle={{ backgroundColor: 'transparent', width: 300, maxWidth: '80%' }}
-        drawerContent={(props: NavDrawerProps): ReactNode => <CustomDrawerContent {...props} />}
-    >
-        <RootStack.Screen name="Home" component={Home} />
-        <RootStack.Screen name="PageOne" component={PageOne} />
-        <RootStack.Screen name="PageTwo" component={PageTwo} />
-        <RootStack.Screen name="PageThree" component={PageThree} />
-    </Drawer.Navigator>
+    <NavigationContainer>
+        <Drawer.Navigator
+            initialRouteName="Home"
+            screenOptions={{
+                headerShown: false,
+            }}
+            drawerContent={(props: any): ReactNode => <CustomDrawerContent {...props} />}
+        >
+            <RootStack.Screen name="Home" component={Home} />
+            <RootStack.Screen name="PageOne" component={PageOne} />
+            <RootStack.Screen name="PageTwo" component={PageTwo} />
+        </Drawer.Navigator>
+    </NavigationContainer>
 );

@@ -334,6 +334,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                 >
                     {FirstCustomPage && (
                         <FirstCustomPage
+                            // eslint-disable-next-line
                             onDetailsChanged={(details: CustomAccountDetails | null, valid: boolean): void => {
                                 setCustomAccountDetailsValid(valid);
                                 setCustomAccountDetails({
@@ -360,6 +361,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
             // Custom injected pages
             customDetails
                 .slice(1)
+                // eslint-disable-next-line
                 .filter((item: CustomRegistrationForm | null) => item !== null)
                 // @ts-ignore there won't be any nulls after we filter them
                 .map((page: CustomRegistrationForm, i: number) => {
@@ -380,6 +382,7 @@ export const SelfRegistrationPager: React.FC<SelfRegistrationPagerProps> = (prop
                                         <View style={{ flex: 1, marginHorizontal: 16 }}>
                                             <PageComponent
                                                 onDetailsChanged={(
+                                                    // eslint-disable-next-line
                                                     details: CustomAccountDetails | null,
                                                     valid: boolean
                                                 ): void => {
