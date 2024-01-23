@@ -52,7 +52,8 @@
         "typescript": "tsc --noEmit",
         "publish:package": "set npm_config_yes=true && npx -p @brightlayer-ui/publish blui-publish",
         "coverage": "yarn test --coverage --watchAll=false",
-        "tag:package": "npx -p @brightlayer-ui/tag blui-tag -s -blui-react-native-auth-workflow"
+        "tag:package": "npx -p @brightlayer-ui/tag blui-tag -s -blui-react-native-auth-workflow",
+        "prepare": "cd .. && yarn husky install login-workflow/.husky"
     },
     "dependencies": {
         "lodash.clonedeep": "^4.5.0",
@@ -114,6 +115,7 @@
         "eslint-config-prettier": "^9.0.0",
         "eslint-plugin-react": "^7.31.0",
         "eslint-plugin-react-hooks": "^4.0.0",
+        "husky": "^8.0.3",
         "i18next": "^20.0.0",
         "identity-obj-proxy": "^3.0.0",
         "jest": "^29.0.3",
@@ -142,6 +144,11 @@
     "jest": {
         "coverageDirectory": "./coverage/",
         "collectCoverage": true,
+        "coverageThreshold": {
+            "global": {
+                "lines": 100
+            }
+        },
         "snapshotSerializers": [
             "enzyme-to-json/serializer"
         ],
