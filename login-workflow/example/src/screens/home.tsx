@@ -118,6 +118,8 @@ const Home: React.FC<AppProps> = ({ navigation }): JSX.Element => {
                     <Button onPress={() => navigation.navigate('WorkflowCardInstructions')}>
                         Workflow Card Instructions
                     </Button>
+
+                    <Button onPress={() => navigation.navigate('WorkflowCardActions')}>Workflow Card Actions</Button>
                 </ScrollView>
             </SafeAreaView>
         </>

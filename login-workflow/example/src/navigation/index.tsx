@@ -7,7 +7,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Home from '../screens/home';
 import PageOne from '../screens/pageOne';
 import PageTwo from '../screens/pageTwo';
-import { WorkflowCardInstructions } from '@brightlayer-ui/react-native-auth-workflow';
+import { WorkflowCardInstructions, WorkflowCardActions } from '@brightlayer-ui/react-native-auth-workflow';
 import { useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 
 const Drawer = createDrawerNavigator();
@@ -17,6 +17,7 @@ export type RootStackParamList = {
     PageOne: undefined;
     PageTwo: undefined;
     WorkflowCardInstructions: undefined;
+    WorkflowCardActions: undefined;
     NavigationDrawer: undefined;
 };
 
@@ -38,6 +39,10 @@ const WorkflowCardInstructionsRenderer = (): JSX.Element => {
     );
 };
 
+const WorkflowCardActionsRenderer = (): JSX.Element => {
+    return <WorkflowCardActions nextLabel="Next" previousLabel="Previous" currentStep={4} totalSteps={8} />;
+};
+
 export const MainRouter = (): any => (
     <NavigationContainer>
         <Drawer.Navigator
@@ -51,6 +56,7 @@ export const MainRouter = (): any => (
             <RootStack.Screen name="PageOne" component={PageOne} />
             <RootStack.Screen name="PageTwo" component={PageTwo} />
             <RootStack.Screen name="WorkflowCardInstructions" component={WorkflowCardInstructionsRenderer} />
+            <RootStack.Screen name="WorkflowCardActions" component={WorkflowCardActionsRenderer} />
         </Drawer.Navigator>
     </NavigationContainer>
 );

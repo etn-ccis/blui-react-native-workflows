@@ -1202,17 +1202,17 @@
   resolved "https://registry.yarnpkg.com/@brightlayer-ui/prettier-config/-/prettier-config-1.0.3.tgz#e40a7ae7435c6fd5118acbf249080e0aa81e93af"
   integrity sha512-EYm3+V7Qd+oYEF+8FadsXAZqXryEHHbGnrV1BMp9selhABjceqUqXPVE4Sn3SKWQdBNJ3En2A3EzgrzRbvRTaw==
 
-"@brightlayer-ui/react-auth-shared@^4.0.0-alpha.2":
+"@brightlayer-ui/react-auth-shared@^4.0.0-alpha.0":
   version "4.0.0-alpha.2"
   resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-auth-shared/-/react-auth-shared-4.0.0-alpha.2.tgz#d6b691d56dfc037103c51cc4df636984b8bab085"
   integrity sha512-tDQ73nFi5HNAGn0IuiFxlMAIKNj7lIpBTej7FLEU6XTOCJePILuWjhuNbsBn3rQd5oQfAaFh5Yd1lOxz/JE6MA==
 
 "@brightlayer-ui/react-native-auth-workflow@^6.0.0":
-  version "6.0.0-alpha.1"
-  resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-native-auth-workflow/-/react-native-auth-workflow-6.0.0-alpha.1.tgz#633ad944d1a8649079c3a7895a3d4e3fd1edd68f"
-  integrity sha512-l1n5f2SCTW4bN7IgxXsD5khi+JXKo5kQm0cnL+8bOotePSv9nxVCryFHmuGHT01bGCRLzaBZL3h+Fp4Sm7M1Mw==
+  version "6.0.0-alpha.0"
+  resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-native-auth-workflow/-/react-native-auth-workflow-6.0.0-alpha.0.tgz#e0a5d8b8d4db8e83485aa5a4e9bd3312195d72c9"
+  integrity sha512-55L1IrsVdpYxqhUnHJsgR+WgaZnjiXJH9tZpQGnJZrEbg+xqbUYXY8YHWJbtXKb3GERH30XdRRKD8Pa5okB0rw==
   dependencies:
-    "@brightlayer-ui/react-auth-shared" "^4.0.0-alpha.2"
+    "@brightlayer-ui/react-auth-shared" "^4.0.0-alpha.0"
     lodash.clonedeep "^4.5.0"
     react-native-status-bar-height "^2.5.0"
 
