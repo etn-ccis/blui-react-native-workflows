@@ -41,7 +41,7 @@ const WorkFlowCardBodyExample: React.FC<AppProps> = ({ navigation }): JSX.Elemen
                     },
                 ]}
             />
-            <SafeAreaView  style={{backgroundColor: theme.colors.background, flex: 1}}>
+            <SafeAreaView style={{ backgroundColor: theme.colors.background, flex: 1 }}>
                 <ScrollView>
                     <WorkflowCardBody>
                         <TextInput
