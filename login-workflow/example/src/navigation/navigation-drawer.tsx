@@ -12,7 +12,7 @@ export const navGroupItems: NavItem[] = [
     },
     {
         title: 'Workflow Card',
-        itemID: 'WorkFlowCardBodyExample',
+        itemID: 'WorkFlowCardExample',
         icon: { name: 'looks-two' },
     },
 ];

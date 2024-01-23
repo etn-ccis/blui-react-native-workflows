@@ -115,11 +115,7 @@ const Home: React.FC<AppProps> = ({ navigation }): JSX.Element => {
             />
             <SafeAreaView style={defaultStyles.content}>
                 <ScrollView>
-                    <Button onPress={() => navigation.navigate('WorkflowCardInstructions')}>
-                        Workflow Card Instructions Example
-                    </Button>
-
-                    <Button onPress={() => navigation.navigate('WorkFlowCardBodyExample')}>
+                    <Button onPress={() => navigation.navigate('WorkFlowCardExample')}>
                         Workflow Card Body Exmaple
                     </Button>
                 </ScrollView>

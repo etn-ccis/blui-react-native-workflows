@@ -3,7 +3,7 @@ import { SafeAreaView, ScrollView } from 'react-native';
 import { Header } from '@brightlayer-ui/react-native-components';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../navigation';
-import { WorkflowCardBody } from '@brightlayer-ui/react-native-auth-workflow';
+import { WorkflowCardBody, WorkflowCardInstructions } from '@brightlayer-ui/react-native-auth-workflow';
 import { HelperText, TextInput } from 'react-native-paper';
 import { useThemeContext } from '../context/ThemeContext';
 import { useExtendedTheme } from '@brightlayer-ui/react-native-themes';
@@ -11,10 +11,10 @@ import { UserMenuExample } from '../components/UserMenuExample';
 import { toggleRTL } from './home';
 
 type AppProps = {
-    navigation: StackNavigationProp<RootStackParamList, 'WorkFlowCardBodyExample'>;
+    navigation: StackNavigationProp<RootStackParamList, 'WorkFlowCardExample'>;
 };
 
-const WorkFlowCardBodyExample: React.FC<AppProps> = ({ navigation }): JSX.Element => {
+const WorkFlowCardExample: React.FC<AppProps> = ({ navigation }): JSX.Element => {
     const theme = useExtendedTheme();
     const { theme: themeType, setTheme } = useThemeContext();
     const [errorFilledText, setErrorFilledText] = React.useState('Hello');
@@ -23,7 +23,7 @@ const WorkFlowCardBodyExample: React.FC<AppProps> = ({ navigation }): JSX.Elemen
     return (
         <>
             <Header
-                title={'Workflow Card Body Example'}
+                title={'Workflow Card Example'}
                 icon={{ name: 'menu' }}
                 onIconPress={(): void => {
                     navigation.openDrawer();
@@ -43,6 +43,7 @@ const WorkFlowCardBodyExample: React.FC<AppProps> = ({ navigation }): JSX.Elemen
             />
             <SafeAreaView style={{ backgroundColor: theme.colors.background, flex: 1 }}>
                 <ScrollView>
+                    <WorkflowCardInstructions instructions={'Test Instructions'} />
                     <WorkflowCardBody>
                         <TextInput
                             label="TextInput"
@@ -67,4 +68,4 @@ const WorkFlowCardBodyExample: React.FC<AppProps> = ({ navigation }): JSX.Elemen
     );
 };
 
-export default WorkFlowCardBodyExample;
+export default WorkFlowCardExample;

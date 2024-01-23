@@ -1,2 +1,2 @@
 export * from './home';
-export * from './WorkFlowCardBodyExample';
+export * from './WorkFlowCardExample';
