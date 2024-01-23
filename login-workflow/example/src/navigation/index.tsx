@@ -8,6 +8,7 @@ import Home from '../screens/home';
 import PageOne from '../screens/pageOne';
 import PageTwo from '../screens/pageTwo';
 import { WorkflowCardInstructions } from '@brightlayer-ui/react-native-auth-workflow';
+import { useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 
 const Drawer = createDrawerNavigator();
 
@@ -27,9 +28,15 @@ const CustomDrawerContent = (props: any): any => (
     </View>
 );
 
-const WorkflowCardInstructionsRenderer = (): JSX.Element => (
-    <WorkflowCardInstructions style={{ marginTop: 80 }} instructions={'Test Instructions'} />
-);
+const WorkflowCardInstructionsRenderer = (): JSX.Element => {
+    const theme = useExtendedTheme();
+    // marginTop has been added as instructions was going about the safe area view
+    return (
+        <View style={{ backgroundColor: theme.colors.background, flex: 1 }}>
+            <WorkflowCardInstructions style={{ marginTop: 80 }} instructions={'Test Instructions'} />
+        </View>
+    );
+};
 
 export const MainRouter = (): any => (
     <NavigationContainer>

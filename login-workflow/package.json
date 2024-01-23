@@ -86,7 +86,7 @@
         "@brightlayer-ui/eslint-config": "^3.0.1",
         "@brightlayer-ui/prettier-config": "^1.0.3",
         "@brightlayer-ui/react-native-components": "^8.0.0",
-        "@brightlayer-ui/react-native-themes": "7.0.0-alpha.4",
+        "@brightlayer-ui/react-native-themes": "7.0.0",
         "@brightlayer-ui/react-native-vector-icons": "^2.0.0",
         "@react-native-async-storage/async-storage": "^1.14.1",
         "@react-native-community/bob": "^0.10.0",
