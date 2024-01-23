@@ -53,7 +53,7 @@
         "publish:package": "set npm_config_yes=true && npx -p @brightlayer-ui/publish blui-publish",
         "coverage": "yarn test --coverage --watchAll=false",
         "tag:package": "npx -p @brightlayer-ui/tag blui-tag -s -blui-react-native-auth-workflow",
-        "prepare": "cd .. && yarn husky install login-workflow/.husky"
+        "prepare": "cd .. && husky install login-workflow/.husky"
     },
     "dependencies": {
         "lodash.clonedeep": "^4.5.0",
