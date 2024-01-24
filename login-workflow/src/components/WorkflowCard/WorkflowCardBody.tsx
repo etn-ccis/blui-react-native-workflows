@@ -12,10 +12,9 @@ const makeStyles = (
     StyleSheet.create({
         workflowBodyStyle: {
             flex: 1,
-            // TODO: move this to common style
             marginHorizontal: isTablet ? 24 : 16,
-            marginTop: 32,
-            marginBottom: isTablet ? 32 : 24,
+            paddingTop: 32,
+            paddingBottom: isTablet ? 32 : 24,
             paddingHorizontal: 0,
         },
     });
