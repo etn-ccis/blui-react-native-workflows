@@ -1202,20 +1202,6 @@
   resolved "https://registry.yarnpkg.com/@brightlayer-ui/prettier-config/-/prettier-config-1.0.3.tgz#e40a7ae7435c6fd5118acbf249080e0aa81e93af"
   integrity sha512-EYm3+V7Qd+oYEF+8FadsXAZqXryEHHbGnrV1BMp9selhABjceqUqXPVE4Sn3SKWQdBNJ3En2A3EzgrzRbvRTaw==
 
-"@brightlayer-ui/react-auth-shared@^4.0.0-alpha.0":
-  version "4.0.0-alpha.2"
-  resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-auth-shared/-/react-auth-shared-4.0.0-alpha.2.tgz#d6b691d56dfc037103c51cc4df636984b8bab085"
-  integrity sha512-tDQ73nFi5HNAGn0IuiFxlMAIKNj7lIpBTej7FLEU6XTOCJePILuWjhuNbsBn3rQd5oQfAaFh5Yd1lOxz/JE6MA==
-
-"@brightlayer-ui/react-native-auth-workflow@^6.0.0":
-  version "6.0.0-alpha.0"
-  resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-native-auth-workflow/-/react-native-auth-workflow-6.0.0-alpha.0.tgz#e0a5d8b8d4db8e83485aa5a4e9bd3312195d72c9"
-  integrity sha512-55L1IrsVdpYxqhUnHJsgR+WgaZnjiXJH9tZpQGnJZrEbg+xqbUYXY8YHWJbtXKb3GERH30XdRRKD8Pa5okB0rw==
-  dependencies:
-    "@brightlayer-ui/react-auth-shared" "^4.0.0-alpha.0"
-    lodash.clonedeep "^4.5.0"
-    react-native-status-bar-height "^2.5.0"
-
 "@brightlayer-ui/react-native-components@^8.0.0":
   version "8.0.0"
   resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-native-components/-/react-native-components-8.0.0.tgz#518382c081b5bde308c95adea80b0adeecd323f6"
@@ -5400,11 +5386,6 @@ locate-path@^6.0.0:
   dependencies:
     p-locate "^5.0.0"
 
-lodash.clonedeep@^4.5.0:
-  version "4.5.0"
-  resolved "https://registry.yarnpkg.com/lodash.clonedeep/-/lodash.clonedeep-4.5.0.tgz#e23f3f9c4f8fbdde872529c1071857a086e5ccef"
-  integrity sha512-H5ZhCF25riFd9uB5UCkVKo61m3S/xZk1x4wA6yp/L3RFP6Z/eHH1ymQcGLo7J3GMPfm0V/7m1tryHuGVxpqEBQ==
-
 lodash.debounce@^4.0.8:
   version "4.0.8"
   resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
@@ -6604,11 +6585,6 @@ react-native-select-dropdown@^3.4.0:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/react-native-select-dropdown/-/react-native-select-dropdown-3.4.0.tgz#3ce31dc2e5ffa1abf4c47e3297bf0da7144f1ea3"
   integrity sha512-9xK1z4tYpwMxp3hsM0y1+xfqq/JoMh+l7sBsJ81b2eikFwT6ZbndFBqupQXrsQ1akce9hgC/10Nkzj0LjVjeXQ==
-
-react-native-status-bar-height@^2.5.0:
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/react-native-status-bar-height/-/react-native-status-bar-height-2.6.0.tgz#b6afd25b6e3d533c43d0fcdcfd5cafd775592cea"
-  integrity sha512-z3SGLF0mHT+OlJDq7B7h/jXPjWcdBT3V14Le5L2PjntjjWM3+EJzq2BcXDwV+v67KFNJic5pgA26cCmseYek6w==
 
 react-native-svg-transformer@^0.14.3:
   version "0.14.3"

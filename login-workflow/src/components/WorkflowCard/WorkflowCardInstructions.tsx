@@ -2,19 +2,22 @@ import React from 'react';
 
 import { StyleSheet, ViewStyle, View } from 'react-native';
 import { Divider, Text, TextProps } from 'react-native-paper';
+import { useScreenWidth } from '../../hooks/useScreenWidth';
 
 export type WorkflowCardInstructionProps = Omit<TextProps<'bodyLarge'>, 'children' | 'theme' | 'variant'> & {
     instructions?: string | JSX.Element;
     divider?: boolean;
 };
 
-const makeStyles = (): StyleSheet.NamedStyles<{
+const makeStyles = (
+    isTablet: boolean
+): StyleSheet.NamedStyles<{
     container: ViewStyle;
     workflowCardInstructions: ViewStyle;
 }> =>
     StyleSheet.create({
         container: {
-            marginHorizontal: 16,
+            marginHorizontal: isTablet ? 24 : 16,
             paddingTop: 32,
             paddingBottom: 40,
         },
@@ -34,8 +37,8 @@ const makeStyles = (): StyleSheet.NamedStyles<{
 
 export const WorkflowCardInstructions: React.FC<WorkflowCardInstructionProps> = (props) => {
     const { instructions, divider = true, style, ...otherProps } = props;
-    const styles = makeStyles();
-
+    const isTablet = useScreenWidth();
+    const styles = makeStyles(isTablet);
     return (
         <>
             <View style={[styles.container]}>

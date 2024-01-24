@@ -1,2 +1,2 @@
 export * from './WorkflowCardInstructions';
-export * from './WorkflowCardActions';
+export * from './WorkflowCardBody';
