@@ -9,10 +9,7 @@ import { WorkflowCardInstructions } from 'src/components/WorkflowCard';
 describe('WorkflowCardInstructions Test', () => {
     afterEach(cleanup);
     it('WorkflowCardInstructions renders correctly', () => {
-        render(
-            <WorkflowCardInstructions instructions={'Test Instructions'}/>
-        )
-            .toJSON();
+        render(<WorkflowCardInstructions instructions={'Test Instructions'} />).toJSON();
         expect(render).toBeTruthy();
         expect(screen.getByText('Test Instructions')).toBeTruthy();
     });

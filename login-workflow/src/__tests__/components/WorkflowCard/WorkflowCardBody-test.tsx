@@ -11,11 +11,10 @@ describe('WorkflowCardBody Test', () => {
     afterEach(cleanup);
     it('WorkflowCardBody renders correctly', () => {
         render(
-                <WorkflowCardBody>
-                    <Text>This is workflow card body content.</Text>
-                </WorkflowCardBody>
-        )
-            .toJSON();
+            <WorkflowCardBody>
+                <Text>This is workflow card body content.</Text>
+            </WorkflowCardBody>
+        ).toJSON();
         expect(render).toBeTruthy();
         expect(screen.getByText('This is workflow card body content.')).toBeTruthy();
     });
