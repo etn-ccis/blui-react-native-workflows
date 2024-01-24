@@ -5,18 +5,13 @@ import { View } from 'react-native';
 import { NavigationDrawer } from './navigation-drawer';
 import { createStackNavigator } from '@react-navigation/stack';
 import Home from '../screens/home';
-import PageOne from '../screens/pageOne';
-import PageTwo from '../screens/pageTwo';
-import { WorkflowCardInstructions } from '@brightlayer-ui/react-native-auth-workflow';
-import { useExtendedTheme } from '@brightlayer-ui/react-native-themes';
+import WorkFlowCardExample from '../screens/WorkFlowCardExample';
 
 const Drawer = createDrawerNavigator();
 
 export type RootStackParamList = {
     Home: undefined;
-    PageOne: undefined;
-    PageTwo: undefined;
-    WorkflowCardInstructions: undefined;
+    WorkFlowCardExample: undefined;
     NavigationDrawer: undefined;
 };
 
@@ -28,16 +23,6 @@ const CustomDrawerContent = (props: any): any => (
     </View>
 );
 
-const WorkflowCardInstructionsRenderer = (): JSX.Element => {
-    const theme = useExtendedTheme();
-    // marginTop has been added as instructions was going about the safe area view
-    return (
-        <View style={{ backgroundColor: theme.colors.background, flex: 1 }}>
-            <WorkflowCardInstructions style={{ marginTop: 80 }} instructions={'Test Instructions'} />
-        </View>
-    );
-};
-
 export const MainRouter = (): any => (
     <NavigationContainer>
         <Drawer.Navigator
@@ -48,9 +33,7 @@ export const MainRouter = (): any => (
             drawerContent={(props: any): ReactNode => <CustomDrawerContent {...props} />}
         >
             <RootStack.Screen name="Home" component={Home} />
-            <RootStack.Screen name="PageOne" component={PageOne} />
-            <RootStack.Screen name="PageTwo" component={PageTwo} />
-            <RootStack.Screen name="WorkflowCardInstructions" component={WorkflowCardInstructionsRenderer} />
+            <RootStack.Screen name="WorkFlowCardExample" component={WorkFlowCardExample} />
         </Drawer.Navigator>
     </NavigationContainer>
 );

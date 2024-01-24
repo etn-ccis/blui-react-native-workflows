@@ -11,13 +11,8 @@ export const navGroupItems: NavItem[] = [
         icon: { name: 'home' },
     },
     {
-        title: 'Page One',
-        itemID: 'PageOne',
-        icon: { name: 'looks-one' },
-    },
-    {
-        title: 'Page Two',
-        itemID: 'PageTwo',
+        title: 'Workflow Card',
+        itemID: 'WorkFlowCardExample',
         icon: { name: 'looks-two' },
     },
 ];
