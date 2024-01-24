@@ -4,12 +4,6 @@
  * @internal
  */
 
-/**
- * @packageDocumentation
- * @module Hooks
- * @internal
- */
-
 import { useState, useEffect } from 'react';
 import { Dimensions } from 'react-native';
 
