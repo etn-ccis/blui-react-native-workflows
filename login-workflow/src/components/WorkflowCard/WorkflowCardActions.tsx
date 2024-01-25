@@ -1,10 +1,9 @@
 import React from 'react';
 
 import { Button, Card, Divider } from 'react-native-paper';
-import { StyleSheet, ViewStyle } from 'react-native'
+import { StyleSheet, ViewStyle, View } from 'react-native';
 import { WorkflowCardActionsProps } from './WorkflowCard.types';
 import { MobileStepper } from '@brightlayer-ui/react-native-components';
-import { View } from 'react-native';
 
 const makeStyles = (): StyleSheet.NamedStyles<{
     previousButtonStyle: ViewStyle;
@@ -18,7 +17,7 @@ const makeStyles = (): StyleSheet.NamedStyles<{
         nextButtonStyle: {
             alignSelf: 'flex-end',
             width: 100,
-        }
+        },
     });
 
 /**
@@ -59,10 +58,10 @@ export const WorkflowCardActions: React.FC<WorkflowCardActionsProps> = (props) =
     } = props;
     const defaultStyles = makeStyles();
     return (
-        <>
+        <Card.Actions {...otherCardActionsProps}>
             {divider ? <Divider /> : null}
             <MobileStepper
-                style={[{flex: 0},style]}
+                style={[{ flex: 0 }, style]}
                 activeStep={currentStep}
                 steps={totalSteps}
                 leftButton={
@@ -97,6 +96,6 @@ export const WorkflowCardActions: React.FC<WorkflowCardActionsProps> = (props) =
                 }
                 variant={'dots'}
             />
-        </>
+        </Card.Actions>
     );
 };
