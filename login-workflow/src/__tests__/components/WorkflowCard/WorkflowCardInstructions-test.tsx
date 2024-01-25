@@ -4,7 +4,7 @@
 
 import React from 'react';
 import { cleanup, render, screen } from '@testing-library/react-native';
-import { WorkflowCardInstructions } from 'src/components/WorkflowCard';
+import { WorkflowCardInstructions } from 'src/components/WorkflowCard/WorkflowCardInstructions';
 
 describe('WorkflowCardInstructions Test', () => {
     afterEach(cleanup);
