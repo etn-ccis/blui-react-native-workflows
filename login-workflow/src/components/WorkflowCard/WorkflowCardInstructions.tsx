@@ -5,7 +5,14 @@ import { Divider, Text, TextProps } from 'react-native-paper';
 import { useScreenWidth } from '../../hooks/useScreenWidth';
 
 export type WorkflowCardInstructionProps = Omit<TextProps<'bodyLarge'>, 'children' | 'theme' | 'variant'> & {
+    /**
+     * The text to display as instructions
+     */
     instructions?: string | JSX.Element;
+    /**
+     * Whether or not to show a divider below the instructions
+     * @default true
+     */
     divider?: boolean;
 };
 
