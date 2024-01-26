@@ -1,5 +1,4 @@
 import React from 'react';
-import { SafeAreaView, ScrollView } from 'react-native';
 import { Header } from '@brightlayer-ui/react-native-components';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../navigation';
@@ -41,31 +40,27 @@ const WorkFlowCardExample: React.FC<AppProps> = ({ navigation }): JSX.Element =>
                     },
                 ]}
             />
-            <SafeAreaView style={{ backgroundColor: theme.colors.background, flex: 1 }}>
-                <ScrollView>
-                    <WorkflowCard>
-                        <WorkflowCardInstructions instructions={'Test Instructions'} />
-                        <WorkflowCardBody>
-                            <TextInput
-                                label="TextInput"
-                                mode="flat"
-                                left={<TextInput.Icon icon="email" />}
-                                right={<TextInput.Icon icon="menu-down" />}
-                                value={errorFilledText}
-                                underlineColor={theme.colors.surface}
-                                onChangeText={(value: string): void => {
-                                    setErrorFilledText(value);
-                                    setHasError(value.length > 4);
-                                }}
-                                error={hasError}
-                            />
-                            <HelperText type="error" visible={hasError} style={{ marginBottom: 8 }}>
-                                Error Message
-                            </HelperText>
-                        </WorkflowCardBody>
-                    </WorkflowCard>
-                </ScrollView>
-            </SafeAreaView>
+            <WorkflowCard>
+                <WorkflowCardInstructions instructions={'Test Instructions'} />
+                <WorkflowCardBody>
+                    <TextInput
+                        label="TextInput"
+                        mode="flat"
+                        left={<TextInput.Icon icon="email" />}
+                        right={<TextInput.Icon icon="menu-down" />}
+                        value={errorFilledText}
+                        underlineColor={theme.colors.surface}
+                        onChangeText={(value: string): void => {
+                            setErrorFilledText(value);
+                            setHasError(value.length > 4);
+                        }}
+                        error={hasError}
+                    />
+                    <HelperText type="error" visible={hasError} style={{ marginBottom: 8 }}>
+                        Error Message
+                    </HelperText>
+                </WorkflowCardBody>
+            </WorkflowCard>
         </>
     );
 };

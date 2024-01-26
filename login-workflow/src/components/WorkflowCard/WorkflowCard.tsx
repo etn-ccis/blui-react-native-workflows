@@ -1,12 +1,27 @@
 import React from 'react';
-import { View, ViewProps } from 'react-native';
+import { ImageBackground, SafeAreaView, ViewProps } from 'react-native';
 import { Card, CardActionsProps, CardTitleProps } from 'react-native-paper';
 import { WorkflowCardInstructionProps } from './WorkflowCardInstructions';
-// import { useScreenWidth } from '../../hooks/useScreenWidth';
+import { useScreenWidth } from '../../hooks/useScreenWidth';
 import { useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 
+/**
+ * Component that renders the workflow card that is used for all screen components.
+ *
+ * @param loading boolean value for isLoading
+ * @param backgroundImage to display card background
+ *
+ * @category Component
+ */
+
 type WorkflowCardBaseProps = ViewProps & {
+    /**
+     * If true, a blocking progress spinner will be displayed over the card
+     */
     loading?: boolean;
+    /**
+     * A custom background to render behind the card
+     */
     backgroundImage?: string;
 };
 
@@ -24,33 +39,38 @@ export type WorkflowCardProps = {
 export const WorkflowCard: React.FC<WorkflowCardBaseProps> = (props) => {
     const { children, ...otherViewProps } = props;
     const theme = useExtendedTheme();
-    // const isTablet = useScreenWidth();
+    const isTablet = useScreenWidth();
+
+    const image = { uri: 'https://legacy.reactjs.org/logo-og.png' };
 
     return (
-        <View
+        <SafeAreaView
             style={{
                 height: '100%',
                 width: '100%',
                 backgroundColor: theme.colors.background,
-                // backgroundImage: backgroundImage ? `url(${backgroundImage})` : `url(${defaultBackgroundImage})`,
                 display: 'flex',
                 flex: 1,
-                alignItems: 'center',
-                justifyContent: 'center',
             }}
             {...otherViewProps}
         >
-            <Card
-                style={{
-                    height: '100%',
-                    width: '100%',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    position: 'relative',
-                }}
+            <ImageBackground
+                source={image}
+                resizeMode="cover"
+                style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
             >
-                {children}
-            </Card>
-        </View>
+                <Card
+                    style={{
+                        height: isTablet ? 730 : '100%',
+                        width: isTablet ? 450 : '100%',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        position: 'relative',
+                    }}
+                >
+                    {children}
+                </Card>
+            </ImageBackground>
+        </SafeAreaView>
     );
 };
