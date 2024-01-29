@@ -14,7 +14,7 @@ import { useExtendedTheme } from '@brightlayer-ui/react-native-themes';
  * @category Component
  */
 
-type WorkflowCardBaseProps = ViewProps & {
+export type WorkflowCardBaseProps = ViewProps & {
     /**
      * If true, a blocking progress spinner will be displayed over the card
      */
@@ -25,9 +25,9 @@ type WorkflowCardBaseProps = ViewProps & {
     backgroundImage?: string;
 };
 
-type WorkflowCardHeaderProps = CardTitleProps;
+export type WorkflowCardHeaderProps = CardTitleProps;
 
-type WorkflowCardActionsProps = CardActionsProps;
+export type WorkflowCardActionsProps = CardActionsProps;
 
 export type WorkflowCardProps = {
     WorkflowCardBaseProps?: WorkflowCardBaseProps;
@@ -65,7 +65,7 @@ export const WorkflowCard: React.FC<WorkflowCardBaseProps> = (props) => {
                         width: isTablet ? 450 : '100%',
                         display: 'flex',
                         flexDirection: 'column',
-                        position: 'relative',
+                        borderRadius: isTablet ? 4 : 0,
                     }}
                 >
                     {children}
