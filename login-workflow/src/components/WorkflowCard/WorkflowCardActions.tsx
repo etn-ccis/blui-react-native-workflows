@@ -1,22 +1,26 @@
 import React from 'react';
 
-import { Button, Card, Divider } from 'react-native-paper';
+import { Button, Divider } from 'react-native-paper';
 import { StyleSheet, ViewStyle, View } from 'react-native';
 import { WorkflowCardActionsProps } from './WorkflowCard.types';
 import { MobileStepper } from '@brightlayer-ui/react-native-components';
 
-const makeStyles = (): StyleSheet.NamedStyles<{
+const makeStyles = (
+    fullWidthButton: boolean | undefined
+): StyleSheet.NamedStyles<{
+    buttonStyles: ViewStyle;
     previousButtonStyle: ViewStyle;
     nextButtonStyle: ViewStyle;
 }> =>
     StyleSheet.create({
+        buttonStyles: {
+            width: fullWidthButton ? '100%' : 100,
+        },
         previousButtonStyle: {
             alignSelf: 'flex-start',
-            width: 100,
         },
         nextButtonStyle: {
             alignSelf: 'flex-end',
-            width: 100,
         },
     });
 
@@ -54,14 +58,24 @@ export const WorkflowCardActions: React.FC<WorkflowCardActionsProps> = (props) =
         totalSteps = 5,
         fullWidthButton,
         style,
-        ...otherCardActionsProps
+        ...otherProps
     } = props;
-    const defaultStyles = makeStyles();
+
+    const defaultStyles = makeStyles(fullWidthButton);
+
+    const showStepperDots = currentStep !== undefined && totalSteps !== undefined && !fullWidthButton;
     return (
-        <Card.Actions {...otherCardActionsProps}>
+        <View {...otherProps} style={style}>
             {divider ? <Divider /> : null}
             <MobileStepper
-                style={[{ flex: 0 }, style]}
+                styles={{
+                    root: [{ flex: 0, justifyContent: 'space-between' }],
+                    stepperContainer: !showStepperDots
+                        ? {
+                              display: 'none',
+                          }
+                        : { display: 'flex' },
+                }}
                 activeStep={currentStep}
                 steps={totalSteps}
                 leftButton={
@@ -71,7 +85,7 @@ export const WorkflowCardActions: React.FC<WorkflowCardActionsProps> = (props) =
                             disabled={
                                 canGoPrevious === false || (typeof canGoPrevious === 'function' && !canGoPrevious())
                             }
-                            style={defaultStyles.previousButtonStyle}
+                            style={[defaultStyles.previousButtonStyle, defaultStyles.buttonStyles]}
                             onPress={onPrevious}
                         >
                             {previousLabel}
@@ -86,7 +100,7 @@ export const WorkflowCardActions: React.FC<WorkflowCardActionsProps> = (props) =
                             mode="contained"
                             disabled={canGoNext === false || (typeof canGoNext === 'function' && !canGoNext())}
                             onPress={onNext}
-                            style={defaultStyles.nextButtonStyle}
+                            style={[defaultStyles.nextButtonStyle, defaultStyles.buttonStyles]}
                         >
                             {nextLabel}
                         </Button>
@@ -96,6 +110,6 @@ export const WorkflowCardActions: React.FC<WorkflowCardActionsProps> = (props) =
                 }
                 variant={'dots'}
             />
-        </Card.Actions>
+        </View>
     );
 };

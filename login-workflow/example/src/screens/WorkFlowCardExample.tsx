@@ -68,13 +68,13 @@ const WorkFlowCardExample: React.FC<AppProps> = ({ navigation }): JSX.Element =>
                     </WorkflowCardBody>
                 </ScrollView>
                 <WorkflowCardActions
-                    showNext
                     showPrevious
-                    previousLabel="Previous"
+                    showNext
+                    previousLabel="Back"
                     nextLabel="Next"
-                    style={{
-                        padding: 0,
-                    }}
+                    currentStep={2}
+                    totalSteps={8}
+                    fullWidthButton={true}
                 />
             </SafeAreaView>
         </>
