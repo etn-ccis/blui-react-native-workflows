@@ -1,8 +1,7 @@
 import React from 'react';
 import 'react-native';
-import 'jest-enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-import Enzyme from 'enzyme';
+import '@testing-library/react-native';
+import 'jest';
 
 // https://github.com/ProminentEdge/mobile-boilerplate/blob/master
 const url = 'http://localhost';
@@ -25,12 +24,8 @@ global.navigator = {
 };
 copyProps(window, global);
 
-Enzyme.configure({ adapter: new Adapter() });
-
 const originalConsoleError = console.error;
 console.error = (message) => {
-    // see: https://jestjs.io/docs/en/tutorial-react.html#snapshot-testing-with-mocks-enzyme-and-react-16
-    // see https://github.com/Root-App/react-native-mock-render/issues/6
     if (message.startsWith('Warning:')) {
         return;
     }
