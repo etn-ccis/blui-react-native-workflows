@@ -57,7 +57,9 @@
     },
     "dependencies": {
         "lodash.clonedeep": "^4.5.0",
-        "react-native-status-bar-height": "^2.5.0"
+        "react-native-status-bar-height": "^2.5.0",
+        "react-native-svg": "^14.1.0",
+        "react-native-svg-transformer": "^1.3.0"
     },
     "peerDependencies": {
         "@brightlayer-ui/colors": "^3.0.1",
@@ -184,7 +186,7 @@
             "<rootDir>/lib/"
         ],
         "transformIgnorePatterns": [
-            "node_modules/(?!(|react-native|@react-native/*|react-native-vector-icons|react-native-animatable|react-native-iphone-x-helper|react-native-modal|react-native-collapsible|@react-native/polyfills|react-native-status-bar-height|react-native-webview|react-native-webview/*)/)"
+            "node_modules/(?!(|react-native|@react-native/*|react-native-vector-icons|react-native-animatable|react-native-iphone-x-helper|react-native-modal|react-native-safe-area-context|react-native-collapsible|@react-native/polyfills|react-native-status-bar-height|react-native-webview|react-native-webview/*)/)"
         ]
     },
     "@react-native-community/bob": {

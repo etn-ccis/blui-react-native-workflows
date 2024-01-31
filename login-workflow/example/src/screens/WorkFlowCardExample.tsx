@@ -1,9 +1,10 @@
 import React from 'react';
+import { View } from 'react-native';
 import { Header } from '@brightlayer-ui/react-native-components';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../navigation';
 import { WorkflowCard, WorkflowCardBody, WorkflowCardInstructions } from '@brightlayer-ui/react-native-auth-workflow';
-import { HelperText, TextInput } from 'react-native-paper';
+import { HelperText, Text, TextInput } from 'react-native-paper';
 import { useThemeContext } from '../context/ThemeContext';
 import { useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 import { UserMenuExample } from '../components/UserMenuExample';
@@ -41,6 +42,10 @@ const WorkFlowCardExample: React.FC<AppProps> = ({ navigation }): JSX.Element =>
                 ]}
             />
             <WorkflowCard>
+                {/* @todo replace WorkflowCardHeader component once created */}
+                <View>
+                    <Text>Workflow Card Header</Text>
+                </View>
                 <WorkflowCardInstructions instructions={'Test Instructions'} />
                 <WorkflowCardBody>
                     <TextInput
