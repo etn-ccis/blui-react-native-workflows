@@ -8,8 +8,9 @@ import {
     Animated,
     Easing,
     I18nManager,
+    View,
 } from 'react-native';
-import { Button } from 'react-native-paper';
+import { Button, Text } from 'react-native-paper';
 import { Header } from '@brightlayer-ui/react-native-components';
 import RNRestart from 'react-native-restart';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -116,8 +117,17 @@ const Home: React.FC<AppProps> = ({ navigation }): JSX.Element => {
             <SafeAreaView style={defaultStyles.content}>
                 <ScrollView>
                     <Button onPress={() => navigation.navigate('WorkFlowCardExample')}>
-                        Workflow Card Body Exmaple
+                        {'Workflow Card Example'}
                     </Button>
+                    <View
+                        style={{
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                        }}
+                    >
+                        <Text>{`${t('bluiRegistration:REGISTRATION.INSTRUCTIONS.ACCOUNT_DETAILS')}`}</Text>
+                        <Text>{`${t('bluiCommon:ACTIONS.OKAY')}`}</Text>
+                    </View>
                 </ScrollView>
             </SafeAreaView>
         </>
