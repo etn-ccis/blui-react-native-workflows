@@ -28,11 +28,11 @@ The WorkflowCardActions is used to configure the buttons that appear at the bott
 | showPrevious | `boolean` | Indicates whether the previous button should be displayed | `true` |
 | canGoPrevious | `boolean \| (() => boolean)` | A boolean or function that indicates whether the previous button should be enabled. | `true` |
 | previousLabel | `string` | The label on the previous button |  |
-| onPrevious |  `() => void` | A function that is called when the previous button is clicked. |  |
+| onPrevious |  `(data?: { [key: string]: any }) => void` | A function that is called when the previous button is clicked. |  |
 | showNext | `boolean` | Indicates whether the next button should be displayed | `true` |
 | canGoNext | `boolean \| (() => boolean)` | A boolean or function that indicates whether the next button should be enabled. | `true` |
 | nextLabel | `string` | The label on the next button |  |
-| onNext |  `() => void` | A function that is called when the next button is clicked. |  |
+| onNext |  `(data?: { [key: string]: any }) => void` | A function that is called when the next button is clicked. |  |
 | currentStep | `number` | Indicates the current step in a multi-step workflow | `0` |
 | totalSteps | `number` | Indicates the total number of steps in the multi-step workflow | `0` |
 | fullWidthButton | `boolean` | If true, buttons will expand to the full width of the panel (useful if you only have one button configured) | `false` |
