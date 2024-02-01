@@ -34,7 +34,7 @@ The WorkflowCardActions is used to configure the buttons that appear at the bott
 | nextLabel | `string` | The label on the next button |  |
 | onNext |  `(data?: { [key: string]: any }) => void` | A function that is called when the next button is clicked. |  |
 | currentStep | `number` | Indicates the current step in a multi-step workflow | `0` |
-| totalSteps | `number` | Indicates the total number of steps in the multi-step workflow | `0` |
+| totalSteps | `number` | Indicates the total number of steps in the multi-step workflow | `5` |
 | fullWidthButton | `boolean` | If true, buttons will expand to the full width of the panel (useful if you only have one button configured) | `false` |
 
 Any other props will be provided to the root element ([**View**](https://reactnative.dev/docs/view)).

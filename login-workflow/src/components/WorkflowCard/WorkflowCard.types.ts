@@ -3,6 +3,7 @@ import { CardActionsProps } from 'react-native-paper';
 export type WorkflowCardActionsProps = Omit<CardActionsProps, 'children'> & {
     /**
      * True to display a divider above workflow card action buttons
+     * @default true
      */
     divider?: boolean;
 
@@ -52,11 +53,13 @@ export type WorkflowCardActionsProps = Omit<CardActionsProps, 'children'> & {
 
     /**
      * The current step in the registration workflow
+     * @default 0
      */
     currentStep?: number;
 
     /**
      * The total number of steps in the registration workflow
+     * @default 5
      */
     totalSteps?: number;
 
