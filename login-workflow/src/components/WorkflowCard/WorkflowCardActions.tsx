@@ -61,7 +61,6 @@ export const WorkflowCardActions: React.FC<WorkflowCardActionsProps> = (props) =
         ...otherProps
     } = props;
 
-    console.log('next', nextLabel);
     const defaultStyles = makeStyles(fullWidthButton);
 
     const showStepperDots = currentStep !== undefined && totalSteps !== undefined && !fullWidthButton;

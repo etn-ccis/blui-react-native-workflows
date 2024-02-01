@@ -1,7 +1,6 @@
 import React from 'react';
 import { render, fireEvent, cleanup } from '@testing-library/react-native';
 import renderer from 'react-test-renderer';
-import { SafeAreaProvider } from 'react-native-safe-area-context'; // Or the appropriate library
 import { WorkflowCardActions } from 'src/components/WorkflowCard/WorkflowCardActions';
 
 describe('WorkflowCardActions Test', () => {
