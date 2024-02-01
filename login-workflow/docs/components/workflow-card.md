@@ -8,8 +8,8 @@ The WorkflowCard is a set of components that can be used to define custom screen
 | Prop Name         | Type         | Description | Required | Default |
 |---|---|---|---|---|
 | title             | `string`     | text to display as title in header | Yes |  |
-| backgroundColor   | `string`     | background color of header  | No | primary |
-| textColor         | `string`     | text color and icon color of header  | No | onPrimary |
+| backgroundColor   | `string`     | background color of header  | No | theme.colors.primary |
+| textColor         | `string`     | text color and icon color of header  | No | theme.colors.onPrimary |
 | icon              | `IconSource` | icon to be shown on left side of header | No | close |
 | onIconPress       | `function`   | on press functionality for the icon | Yes |  |
 

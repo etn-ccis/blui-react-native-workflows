@@ -18,12 +18,12 @@ export type WorkflowCardHeaderProps = Omit<ViewProps, 'children'> & {
     onIconPress: () => void;
     /**
      * The background color of Header
-     * @default primary
+     * @default theme.colors.primary
      */
     backgroundColor?: string;
     /**
      * The text and icon color of Header
-     * @default onPrimary
+     * @default theme.colors.onPrimary
      */
     textColor?: string;
     /**
@@ -54,8 +54,8 @@ const makeStyles = (): StyleSheet.NamedStyles<{
  * Component that renders the Header for the workflow card.
  *
  * @param {string} [title] - text to display as title in header
- * @param {string} [backgroundColor] - background color of header Default: primary
- * @param {string} [textColor] - text color and icon color of header Default: onPrimary
+ * @param {string} [backgroundColor] - background color of header Default: theme.colors.primary
+ * @param {string} [textColor] - text color and icon color of header Default: theme.colors.onPrimary
  * @param {IconSource} [icon] - icon to be shown on left side of header Default:close
  * @param {() => void} [onIconPress] - on press functionality for the icon
  *
