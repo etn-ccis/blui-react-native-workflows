@@ -61,6 +61,7 @@ export const WorkflowCardActions: React.FC<WorkflowCardActionsProps> = (props) =
         ...otherProps
     } = props;
 
+    console.log('next', nextLabel);
     const defaultStyles = makeStyles(fullWidthButton);
 
     const showStepperDots = currentStep !== undefined && totalSteps !== undefined && !fullWidthButton;
@@ -85,7 +86,7 @@ export const WorkflowCardActions: React.FC<WorkflowCardActionsProps> = (props) =
                             disabled={
                                 canGoPrevious === false || (typeof canGoPrevious === 'function' && !canGoPrevious())
                             }
-                            testID={'workflow-card-left-button'}
+                            testID={'workflow-card-previous-button'}
                             style={[defaultStyles.previousButton, defaultStyles.button]}
                             onPress={onPrevious}
                         >
@@ -101,7 +102,7 @@ export const WorkflowCardActions: React.FC<WorkflowCardActionsProps> = (props) =
                             mode="contained"
                             disabled={canGoNext === false || (typeof canGoNext === 'function' && !canGoNext())}
                             onPress={onNext}
-                            testID={'workflow-card-right-button'}
+                            testID={'workflow-card-next-button'}
                             style={[defaultStyles.nextButton, defaultStyles.button]}
                         >
                             {nextLabel}
