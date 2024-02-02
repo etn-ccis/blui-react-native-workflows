@@ -64,6 +64,7 @@ const WorkFlowCardExample: React.FC<AppProps> = ({ navigation }): JSX.Element =>
                         </HelperText>
                         <SetPassword
                             onSubmit={() => {
+                                // eslint-disable-next-line
                                 console.log('submitted');
                             }}
                             confirmRef={confirmRef}

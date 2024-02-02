@@ -12,7 +12,7 @@ import { TextInput, TextInputProps } from 'react-native-paper';
 
 export const PasswordTextField: React.FC<React.PropsWithChildren<TextInputProps> & { icon?: React.ReactNode }> =
     forwardRef((props, ref) => {
-        const { icon, ...otherProps } = props;
+        const { ...otherProps } = props;
         const [showPassword, setShowPassword] = useState(false);
 
         return (
@@ -32,4 +32,3 @@ export const PasswordTextField: React.FC<React.PropsWithChildren<TextInputProps>
             />
         );
     });
-

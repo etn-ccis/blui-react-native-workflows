@@ -17,4 +17,3 @@ export const PasswordRequirementsCheck: React.FC<PasswordRequirementsCheckProps>
         </View>
     );
 };
-

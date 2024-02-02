@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { defaultPasswordRequirements } from '../../constants';
 import { useTranslation } from 'react-i18next';
 import { View } from 'react-native';

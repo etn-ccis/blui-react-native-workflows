@@ -1,15 +1,12 @@
-import React, { useState, useCallback, useRef } from 'react';
+import React, { useState, useCallback } from 'react';
 import PasswordRequirements from './PasswordRequirements';
 import { SetPasswordProps } from './types';
 import { HelperText } from 'react-native-paper';
 import { useScreenWidth } from '../../hooks/useScreenWidth';
 import { ViewStyle, StyleSheet } from 'react-native';
-import { is } from 'date-fns/locale';
 import { defaultPasswordRequirements } from '../../constants';
 import { useTranslation } from 'react-i18next';
 import { PasswordTextField } from './PasswordTextField';
-
-
 
 const makeStyles = (
     isTablet: boolean
@@ -23,7 +20,7 @@ const makeStyles = (
         },
     });
 
-    /**
+/**
  * Component that renders a change password form with a new password and confirm password inputs.
  * It includes callbacks so you can respond to changes in the inputs.
  *
@@ -52,7 +49,7 @@ export const SetPassword: React.FC<React.PropsWithChildren<SetPasswordProps>> = 
         onPasswordChange,
         children,
         passwordRef,
-        confirmRef = useRef(null),
+        confirmRef,
         passwordNotMatchError,
         onSubmit,
         passwordTextFieldProps,
@@ -89,14 +86,14 @@ export const SetPassword: React.FC<React.PropsWithChildren<SetPasswordProps>> = 
 
     const isValidPassword = useCallback((): boolean => {
         const requirementsToCheck = passwordRequirements?.length
-          ? passwordRequirements
-          : defaultPasswordRequirements(t);
+            ? passwordRequirements
+            : defaultPasswordRequirements(t);
         for (let i = 0; i < requirementsToCheck.length; i++) {
-          if (!new RegExp(requirementsToCheck[i].regex).test(passwordInput)) return false;
+            if (!new RegExp(requirementsToCheck[i].regex).test(passwordInput)) return false;
         }
-      
+
         return true;
-      }, [passwordRequirements, passwordInput]);
+    }, [passwordRequirements, passwordInput]);
     // const isValidPassword = useCallback((): boolean => {
     //     if (passwordRequirements?.length)
     //         for (let i = 0; i < passwordRequirements.length; i++) {
@@ -115,6 +112,7 @@ export const SetPassword: React.FC<React.PropsWithChildren<SetPasswordProps>> = 
                 error={passwordInput !== '' && !isValidPassword()}
                 {...passwordTextFieldProps}
                 onChangeText={(text: string) => {
+                    // eslint-disable-next-line no-unused-expressions
                     passwordTextFieldProps?.onChangeText && passwordTextFieldProps.onChangeText(text);
                     onPassChange(text);
                 }}
@@ -134,13 +132,12 @@ export const SetPassword: React.FC<React.PropsWithChildren<SetPasswordProps>> = 
                 error={hasConfirmPasswordError()}
                 {...confirmPasswordTextFieldProps}
                 onChangeText={(text: string) => {
-                    // Call confirmPasswordTextFieldProps.onChange if provided
+                    // eslint-disable-next-line no-unused-expressions
                     confirmPasswordTextFieldProps?.onChangeText && confirmPasswordTextFieldProps.onChangeText(text);
                     onConfirmChange(text);
                 }}
                 returnKeyType="done" // Show "next" button on keyboard
                 onSubmitEditing={() => {
-                    console.log(!hasConfirmPasswordError(), isValidPassword());
                     if (!hasConfirmPasswordError() && isValidPassword() && onSubmit) onSubmit();
                 }}
             />
