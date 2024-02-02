@@ -3,7 +3,12 @@ import { SafeAreaView, ScrollView } from 'react-native';
 import { Header } from '@brightlayer-ui/react-native-components';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../navigation';
-import { WorkflowCardBody, WorkflowCardInstructions, SetPassword } from '@brightlayer-ui/react-native-auth-workflow';
+import {
+    WorkflowCardBody,
+    WorkflowCardInstructions,
+    WorkflowCardActions,
+    SetPassword
+} from '@brightlayer-ui/react-native-auth-workflow';
 import { HelperText, TextInput } from 'react-native-paper';
 import { useThemeContext } from '../context/ThemeContext';
 import { useExtendedTheme } from '@brightlayer-ui/react-native-themes';
@@ -72,6 +77,15 @@ const WorkFlowCardExample: React.FC<AppProps> = ({ navigation }): JSX.Element =>
                         />
                     </WorkflowCardBody>
                 </ScrollView>
+                <WorkflowCardActions
+                    showPrevious
+                    showNext
+                    previousLabel="Back"
+                    nextLabel="Next"
+                    currentStep={2}
+                    totalSteps={8}
+                    fullWidthButton={true}
+                />
             </SafeAreaView>
         </>
     );
