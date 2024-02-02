@@ -116,20 +116,7 @@ const Home: React.FC<AppProps> = ({ navigation }): JSX.Element => {
             />
             <SafeAreaView style={defaultStyles.content}>
                 <ScrollView>
-                    <Button onPress={() => navigation.navigate('WorkFlowCardExample')}>
-                        {'Workflow Card Example'}
-                    </Button>
-                    <View
-                        style={{
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                        }}
-                    >
-                        <Text>{`Registration Translations: ${t(
-                            'bluiRegistration:REGISTRATION.STEPS.CREATE_ACCOUNT'
-                        )} \n`}</Text>
-                        <Text>{`Common Translations: ${t('bluiCommon:ACTIONS.OKAY')}`}</Text>
-                    </View>
+                    <Button onPress={() => navigation.navigate('WorkFlowCardExample')}>Workflow Card Example</Button>
                 </ScrollView>
             </SafeAreaView>
         </>
