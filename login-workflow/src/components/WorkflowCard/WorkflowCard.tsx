@@ -1,5 +1,5 @@
 import React from 'react';
-import { ImageBackground, ImageBackgroundProps, StyleSheet } from 'react-native';
+import { ImageBackground, ImageBackgroundProps, ImageSourcePropType, StyleSheet } from 'react-native';
 import { Card, CardActionsProps, CardProps, CardTitleProps } from 'react-native-paper';
 import { WorkflowCardInstructionProps } from './WorkflowCardInstructions';
 import { useScreenDimensions } from '../../hooks/useScreenDimensions';
@@ -9,8 +9,8 @@ import { Spinner } from '../Spinner';
 import defaultImage from '../../assets/images/background.png';
 import { WorkflowCardHeader } from './WorkflowCardHeader';
 
-// const MAX_CARD_HEIGHT = 730;
-// const MAX_CARD_WIDTH = 450;
+const MAX_CARD_HEIGHT = 730;
+const MAX_CARD_WIDTH = 450;
 /**
  * Component that renders the workflow card that is used for all screen components.
  *
@@ -27,7 +27,7 @@ export type WorkflowCardBaseProps = ImageBackgroundProps & {
     /**
      * A custom background to render behind the card
      */
-    backgroundImage?: string;
+    backgroundImage?: ImageSourcePropType;
 };
 
 const makeStyles = (
@@ -44,8 +44,8 @@ const makeStyles = (
             borderRadius: 0,
         },
         tablet: {
-            height: 730,
-            width: 450,
+            height: MAX_CARD_HEIGHT,
+            width: MAX_CARD_WIDTH,
         },
     });
 
@@ -61,22 +61,13 @@ export type WorkflowCardProps = {
 };
 
 function hasWorkflowCardHeaderRecursive(children: any): boolean {
-    return React.Children.toArray(children).some((child) => {
-        // @todo replace with WorkflowCardHeader once it's created
-        if (child.type === WorkflowCardHeader) {
-            return true; // Found it!
-        } else if (React.isValidElement(child)) {
-            // Recursively check children of this element
-            return hasWorkflowCardHeaderRecursive(child.props.children);
-        }
-        return false;
-    });
+    return React.Children.toArray(children).some((child) => (child as JSX.Element).type === WorkflowCardHeader);
 }
 
 export const WorkflowCard: React.FC<WorkflowCardBaseProps> = (props) => {
     const { loading, backgroundImage, children, style, ...otherImageProps } = props;
     const theme = useExtendedTheme();
-    const { isTablet } = useScreenDimensions();
+    const { isTablet, width, height } = useScreenDimensions();
 
     const hasWorkflowCardHeader = hasWorkflowCardHeaderRecursive(children);
     const insets = useSafeAreaInsets();
@@ -89,12 +80,10 @@ export const WorkflowCard: React.FC<WorkflowCardBaseProps> = (props) => {
             style={[
                 {
                     flex: 1,
-                    // height: '100%',
-                    // width: '100%',
+                    height: '100%',
+                    width: '100%',
                     justifyContent: 'center',
                     alignItems: isTablet ? 'center' : 'stretch',
-                    paddingTop: !isTablet && !hasWorkflowCardHeader ? insets.top : 0,
-                    // paddingBottom: isTablet ? 0 : insets.bottom,
                     backgroundColor: theme.colors.primary,
                 },
                 ...(Array.isArray(style) ? style : [style]),
@@ -102,28 +91,15 @@ export const WorkflowCard: React.FC<WorkflowCardBaseProps> = (props) => {
             {...otherImageProps}
         >
             <Card
-                style={
-                    {
-                        // maxHeight: '100%',
-                        // maxWidth: '100%',
-                        // flex: 1,
-                        // maxHeight: isTablet ? 730 : 'none',
-                        // maxWidth: isTablet ? 450 : 'none',
-                        // display: 'flex',
-                    }
-                }
+                style={{
+                    maxHeight: height,
+                    maxWidth: width,
+                }}
                 contentStyle={[
                     isTablet ? styles.tablet : styles.mobile,
                     {
-                        backgroundColor: 'pink',
-                        // height: height - insets.top -insets.bottom > 730 ? 730 : '100%',//isTablet ? 730 : '100%',
-                        // width: width > 450 ? 450 : '100%',//isTablet ? 450 : '100%',
-                        // maxHeight: '100%',//isTablet ? 730 : 'none',
-                        // maxWidth: '100%',//isTablet ? 450 : 'none',
-                        // display: 'flex',
-                        // borderRadius: isTablet ? theme.roundness : 0,
-                        // paddingBottom: isTablet ? 0 : insets.bottom,
-                        // backgroundColor: 'pink'
+                        backgroundColor: theme.colors.surface,
+                        paddingTop: !isTablet && !hasWorkflowCardHeader ? insets.top : 0,
                     },
                 ]}
             >
