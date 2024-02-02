@@ -3,7 +3,7 @@ import { ImageBackground, ImageBackgroundProps, ImageSourcePropType, StyleSheet 
 import { Card, CardActionsProps, CardProps, CardTitleProps } from 'react-native-paper';
 import { WorkflowCardInstructionProps } from './WorkflowCardInstructions';
 import { useScreenDimensions } from '../../hooks/useScreenDimensions';
-import { useExtendedTheme } from '@brightlayer-ui/react-native-themes';
+import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Spinner } from '../Spinner';
 import defaultImage from '../../assets/images/background.png';
@@ -30,9 +30,13 @@ export type WorkflowCardBaseProps = ImageBackgroundProps & {
     backgroundImage?: ImageSourcePropType;
 };
 
-const makeStyles = (
-    insets: EdgeInsets
-): StyleSheet.NamedStyles<{
+const makeStyles = ({
+    insets,
+    theme,
+}: {
+    insets: EdgeInsets;
+    theme: ExtendedTheme;
+}): StyleSheet.NamedStyles<{
     mobile: CardProps['style'];
     tablet: CardProps['style'];
 }> =>
@@ -46,6 +50,8 @@ const makeStyles = (
         tablet: {
             height: MAX_CARD_HEIGHT,
             width: MAX_CARD_WIDTH,
+            borderRadius: theme.roundness * 2,
+            overflow: 'hidden',
         },
     });
 
@@ -71,7 +77,7 @@ export const WorkflowCard: React.FC<WorkflowCardBaseProps> = (props) => {
 
     const hasWorkflowCardHeader = hasWorkflowCardHeaderRecursive(children);
     const insets = useSafeAreaInsets();
-    const styles = makeStyles(insets);
+    const styles = makeStyles({ insets, theme });
 
     return (
         <ImageBackground
