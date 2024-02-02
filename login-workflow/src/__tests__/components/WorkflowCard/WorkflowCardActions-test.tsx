@@ -49,4 +49,36 @@ describe('WorkflowCardActions Test', () => {
         fireEvent.press(previousButton);
         expect(onPrevious).toHaveBeenCalledTimes(1);
     });
+
+    it('does not calls onPrevious when button is disabled', () => {
+        const onPrevious = jest.fn();
+        const { getByTestId } = render(
+            <WorkflowCardActions
+                previousLabel={'Back'}
+                nextLabel="Next"
+                showPrevious
+                showNext
+                canGoPrevious={() => false}
+            />
+        );
+        const previousButton = getByTestId('workflow-card-previous-button');
+        fireEvent.press(previousButton);
+        expect(onPrevious).toHaveBeenCalledTimes(0);
+    });
+
+    it('does not calls onNext when button is disabled', () => {
+        const onNext = jest.fn();
+        const { getByTestId } = render(
+            <WorkflowCardActions
+                previousLabel={'Back'}
+                nextLabel="Next"
+                showPrevious
+                showNext
+                canGoNext={() => false}
+            />
+        );
+        const nextButton = getByTestId('workflow-card-next-button');
+        fireEvent.press(nextButton);
+        expect(onNext).toHaveBeenCalledTimes(0);
+    });
 });

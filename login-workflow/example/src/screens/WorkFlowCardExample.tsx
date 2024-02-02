@@ -67,15 +67,7 @@ const WorkFlowCardExample: React.FC<AppProps> = ({ navigation }): JSX.Element =>
                         </HelperText>
                     </WorkflowCardBody>
                 </ScrollView>
-                <WorkflowCardActions
-                    showPrevious
-                    showNext
-                    previousLabel="Back"
-                    nextLabel="Next"
-                    currentStep={2}
-                    totalSteps={8}
-                    fullWidthButton={true}
-                />
+                <WorkflowCardActions showPrevious showNext previousLabel="Back" nextLabel="Next" />
             </SafeAreaView>
         </>
     );
