@@ -5,6 +5,12 @@
         "licenseUrl": "https://github.com/lodash/lodash/raw/master/LICENSE",
         "parents": "@brightlayer-ui/react-native-auth-workflow"
     },
+    "react-native-reanimated@3.6.1": {
+        "licenses": "MIT",
+        "repository": "https://github.com/software-mansion/react-native-reanimated",
+        "licenseUrl": "https://github.com/software-mansion/react-native-reanimated/raw/master/LICENSE",
+        "parents": "@brightlayer-ui/react-native-auth-workflow"
+    },
     "react-native-status-bar-height@2.6.0": {
         "licenses": "MIT",
         "repository": "https://github.com/ovr/react-native-status-bar-height",

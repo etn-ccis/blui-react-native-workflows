@@ -97,8 +97,6 @@
         "@react-navigation/stack": "^5.2.3",
         "@testing-library/react-native": "^11.5.0",
         "@types/color": "^3.0.3",
-        "@types/enzyme": "^3.10.5",
-        "@types/enzyme-adapter-react-16": "^1.0.6",
         "@types/jest": "^29.0.3",
         "@types/lodash.clonedeep": "^4.5.6",
         "@types/node": "^18.7.16",
@@ -109,9 +107,6 @@
         "@typescript-eslint/parser": "^6.19.0",
         "babel-jest": "^25.0.0",
         "date-fns": "^2.11.1",
-        "enzyme": "^3.11.0",
-        "enzyme-adapter-react-16": "^1.15.2",
-        "enzyme-to-json": "^3.4.4",
         "eslint": "^8.23.1",
         "eslint-config-prettier": "^9.0.0",
         "eslint-plugin-react": "^7.31.0",
@@ -121,7 +116,6 @@
         "identity-obj-proxy": "^3.0.0",
         "jest": "^29.0.3",
         "jest-environment-jsdom": "^29.1.2",
-        "jest-enzyme": "^7.1.2",
         "jest-junit": "^10.0.0",
         "jsdom": "^16.2.2",
         "metro-react-native-babel-preset": "^0.56.0",
@@ -150,9 +144,6 @@
                 "lines": 80
             }
         },
-        "snapshotSerializers": [
-            "enzyme-to-json/serializer"
-        ],
         "testEnvironment": "node",
         "preset": "react-native",
         "verbose": true,
