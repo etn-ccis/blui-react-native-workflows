@@ -1,5 +1,6 @@
 import React from 'react';
 import { Paragraph, Dialog, Portal, Button, DialogProps } from 'react-native-paper';
+import { StyleSheet, ViewStyle } from 'react-native';
 
 /**
  * Component that renders a basic dialog with a title, body description, and a close button.
@@ -12,6 +13,21 @@ import { Paragraph, Dialog, Portal, Button, DialogProps } from 'react-native-pap
  *
  * @category Component
  */
+
+const makeStyles = (): StyleSheet.NamedStyles<{
+    basicDialog: ViewStyle;
+    actions: ViewStyle;
+}> =>
+    StyleSheet.create({
+        basicDialog: {
+            minWidth: 300,
+            maxWidth: 600,
+            alignSelf: 'center',
+        },
+        actions: {
+            flexGrow: 0,
+        },
+    });
 
 export type BasicDialogProps = Omit<DialogProps, 'visible' | 'children'> & {
     /**
@@ -43,24 +59,17 @@ export type BasicDialogProps = Omit<DialogProps, 'visible' | 'children'> & {
 };
 
 export const BasicDialog: React.FC<BasicDialogProps> = (props) => {
-    const { title, body, dismissButtonText, open = false, onDismiss, ...otherDialogProps } = props;
+    const { title, body, dismissButtonText, open = false, onDismiss, style, ...otherDialogProps } = props;
+    const defaultStyles = makeStyles();
+
     return (
         <Portal>
-            <Dialog
-                visible={open}
-                dismissable={false}
-                style={{ minWidth: 250, maxWidth: 600, alignSelf: 'center' }}
-                {...otherDialogProps}
-            >
+            <Dialog visible={open} dismissable={false} style={[defaultStyles.basicDialog, style]} {...otherDialogProps}>
                 <Dialog.Title>{title}</Dialog.Title>
                 <Dialog.Content>
                     <Paragraph>{body}</Paragraph>
                 </Dialog.Content>
-                <Dialog.Actions
-                    style={{
-                        flexGrow: 0,
-                    }}
-                >
+                <Dialog.Actions style={[defaultStyles.actions]}>
                     <Button
                         onPress={(): void => {
                             onDismiss?.();
