@@ -1,9 +1,7 @@
 import React from 'react';
-// import { View } from 'react-native';
-// import { Header } from '@brightlayer-ui/react-native-components';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../navigation';
-import { HelperText, TextInput, Text } from 'react-native-paper';
+import { HelperText, TextInput } from 'react-native-paper';
 import {
     WorkflowCard,
     WorkflowCardHeader,
@@ -11,11 +9,7 @@ import {
     WorkflowCardInstructions,
     WorkflowCardActions,
 } from '@brightlayer-ui/react-native-auth-workflow';
-// import { useThemeContext } from '../context/ThemeContext';
 import { useExtendedTheme } from '@brightlayer-ui/react-native-themes';
-import { useWindowDimensions } from 'react-native';
-// import { UserMenuExample } from '../components/UserMenuExample';
-// import { toggleRTL } from './home';
 
 type AppProps = {
     navigation: StackNavigationProp<RootStackParamList, 'WorkFlowCardExample'>;
@@ -23,10 +17,9 @@ type AppProps = {
 
 const WorkFlowCardExample: React.FC<AppProps> = ({ navigation }): JSX.Element => {
     const theme = useExtendedTheme();
-    // const { theme: themeType, setTheme } = useThemeContext();
     const [errorFilledText, setErrorFilledText] = React.useState('Hello');
     const [hasError, setHasError] = React.useState(true);
-    const { height, width } = useWindowDimensions();
+
     return (
         <>
             <WorkflowCard>
@@ -49,7 +42,6 @@ const WorkFlowCardExample: React.FC<AppProps> = ({ navigation }): JSX.Element =>
                     <HelperText type="error" visible={hasError} style={{ marginBottom: 8 }}>
                         Error Message
                     </HelperText>
-                    <Text>{`height: ${height}, width: ${width}`}</Text>
                 </WorkflowCardBody>
                 <WorkflowCardActions
                     showPrevious
