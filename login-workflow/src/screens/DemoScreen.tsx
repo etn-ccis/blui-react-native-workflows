@@ -11,11 +11,13 @@ export const DemoScreen: React.FC = () => {
             style={{
                 justifyContent: 'center',
                 alignItems: 'center',
-                paddingTop: 50,
             }}
         >
-            <Text>{`Registration Translations: ${t('bluiRegistration:REGISTRATION.STEPS.CREATE_ACCOUNT')}`}</Text>
-            <Text>{`Common Translations: ${t('bluiCommon:ACTIONS.OKAY')}`}</Text>
+            <Text variant="headlineSmall">App Level Translation</Text>
+            <Text variant="bodyMedium">{`Registration Translations: ${t(
+                'bluiRegistration:REGISTRATION.STEPS.CREATE_ACCOUNT'
+            )}`}</Text>
+            <Text variant="bodyMedium">{`Common Translations: ${t('bluiCommon:ACTIONS.OKAY')}`}</Text>
         </View>
     );
 };

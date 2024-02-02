@@ -8,9 +8,8 @@ import {
     Animated,
     Easing,
     I18nManager,
-    View,
 } from 'react-native';
-import { Button, Text } from 'react-native-paper';
+import { Button } from 'react-native-paper';
 import { Header } from '@brightlayer-ui/react-native-components';
 import RNRestart from 'react-native-restart';
 import { StackNavigationProp } from '@react-navigation/stack';
