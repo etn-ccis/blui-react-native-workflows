@@ -15,5 +15,5 @@ export const useScreenWidth = (): boolean => {
         });
         return () => subscription?.remove();
     }, []);
-    return windowWidth >= 600 ? true : false;
+    return windowWidth >= 768 ? true : false;
 };

@@ -76,8 +76,8 @@ const WorkFlowCardExample: React.FC<AppProps> = ({ navigation }): JSX.Element =>
                     previousLabel="Back"
                     nextLabel="Next"
                     currentStep={2}
-                    totalSteps={8}
-                    fullWidthButton={true}
+                    totalSteps={7}
+                    fullWidthButton={false}
                 />
             </WorkflowCard>
         </>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ImageBackground, View, ViewProps } from 'react-native';
+import { ImageBackground, ImageSourcePropType, View, ViewProps } from 'react-native';
 import { Card, CardActionsProps, CardTitleProps } from 'react-native-paper';
 import { WorkflowCardInstructionProps } from './WorkflowCardInstructions';
 import { useScreenWidth } from '../../hooks/useScreenWidth';
@@ -25,7 +25,7 @@ export type WorkflowCardBaseProps = ViewProps & {
     /**
      * A custom background to render behind the card
      */
-    backgroundImage?: string;
+    backgroundImage?: ImageSourcePropType;
 };
 
 export type WorkflowCardHeaderProps = CardTitleProps;
@@ -70,8 +70,6 @@ export const WorkflowCard: React.FC<WorkflowCardBaseProps> = (props) => {
                 display: 'flex',
                 flex: 1,
                 backgroundColor: theme.colors.background,
-                paddingTop: statusBarHeight,
-                paddingBottom: isTablet ? insets.bottom : 0,
             }}
             {...otherViewProps}
         >
@@ -82,15 +80,19 @@ export const WorkflowCard: React.FC<WorkflowCardBaseProps> = (props) => {
                     flex: 1,
                     justifyContent: 'center',
                     alignItems: 'center',
+                    paddingTop: statusBarHeight,
+                    paddingBottom: isTablet ? insets.bottom : 0,
                 }}
             >
                 <Card
-                    style={{
-                        height: isTablet ? 730 : '100%',
-                        width: isTablet ? 450 : '100%',
+                    contentStyle={{
+                        height: '100%',
+                        width: '100%',
+                        display: 'flex',
                         maxHeight: isTablet ? 730 : 'none',
                         maxWidth: isTablet ? 450 : 'none',
-                        display: 'flex',
+                    }}
+                    style={{
                         borderRadius: isTablet ? 4 : 0,
                         paddingBottom: isTablet ? 0 : insets.bottom,
                     }}
