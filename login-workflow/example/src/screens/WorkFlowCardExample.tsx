@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { SafeAreaView, ScrollView } from 'react-native';
 import { Header } from '@brightlayer-ui/react-native-components';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../navigation';
-import { WorkflowCardBody, WorkflowCardInstructions } from '@brightlayer-ui/react-native-auth-workflow';
+import { WorkflowCardBody, WorkflowCardInstructions, SetPassword } from '@brightlayer-ui/react-native-auth-workflow';
 import { HelperText, TextInput } from 'react-native-paper';
 import { useThemeContext } from '../context/ThemeContext';
 import { useExtendedTheme } from '@brightlayer-ui/react-native-themes';
@@ -19,6 +19,7 @@ const WorkFlowCardExample: React.FC<AppProps> = ({ navigation }): JSX.Element =>
     const { theme: themeType, setTheme } = useThemeContext();
     const [errorFilledText, setErrorFilledText] = React.useState('Hello');
     const [hasError, setHasError] = React.useState(true);
+    const confirmRef = useRef(null);
 
     return (
         <>
@@ -61,6 +62,13 @@ const WorkFlowCardExample: React.FC<AppProps> = ({ navigation }): JSX.Element =>
                         <HelperText type="error" visible={hasError} style={{ marginBottom: 8 }}>
                             Error Message
                         </HelperText>
+                        <SetPassword
+                            onSubmit={() => {
+                                console.log('submitted');
+                            }}
+                            confirmRef={confirmRef}
+                            passwordNotMatchError="error"
+                        />
                     </WorkflowCardBody>
                 </ScrollView>
             </SafeAreaView>
