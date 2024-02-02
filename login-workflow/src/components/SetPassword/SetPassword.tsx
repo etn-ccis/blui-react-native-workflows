@@ -105,7 +105,7 @@ export const SetPassword: React.FC<React.PropsWithChildren<SetPasswordProps>> = 
         <>
             {children}
             <PasswordTextField
-                data-testid="password"
+                testID="password"
                 label={newPasswordLabel}
                 value={passwordInput}
                 ref={passwordRef}
@@ -125,7 +125,7 @@ export const SetPassword: React.FC<React.PropsWithChildren<SetPasswordProps>> = 
                 style={defaultStyle.passwordRequirementContainer}
             />
             <PasswordTextField
-                data-testid="confirm"
+                testID="confirm"
                 label={confirmPasswordLabel}
                 value={confirmInput}
                 ref={confirmRef}

@@ -18,12 +18,14 @@ export const PasswordTextField: React.FC<React.PropsWithChildren<TextInputProps>
         return (
             <TextInput
                 ref={ref}
+                testID="textfield"
                 style={{ flex: 1 }}
                 secureTextEntry={!showPassword}
                 mode="flat"
                 label="Password"
                 right={
                     <TextInput.Icon
+                        testID="toggle-button"
                         icon={showPassword ? 'eye' : 'eye-off'}
                         onPress={() => setShowPassword(!showPassword)}
                     />
