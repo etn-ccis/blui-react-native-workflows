@@ -58,9 +58,7 @@ describe('WorkflowCardActions Test', () => {
                 nextLabel="Next"
                 showPrevious
                 showNext
-                canGoPrevious={() => {
-                    return false;
-                }}
+                canGoPrevious={() => false}
             />
         );
         const previousButton = getByTestId('workflow-card-previous-button');
@@ -76,9 +74,7 @@ describe('WorkflowCardActions Test', () => {
                 nextLabel="Next"
                 showPrevious
                 showNext
-                canGoNext={() => {
-                    return false;
-                }}
+                canGoNext={() => false}
             />
         );
         const nextButton = getByTestId('workflow-card-next-button');
