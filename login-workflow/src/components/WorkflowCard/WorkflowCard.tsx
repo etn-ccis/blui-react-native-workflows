@@ -67,11 +67,11 @@ export const WorkflowCard: React.FC<WorkflowCardBaseProps> = (props) => {
             style={{
                 height: '100%',
                 width: '100%',
-                backgroundColor: theme.colors.background,
                 display: 'flex',
                 flex: 1,
+                backgroundColor: theme.colors.background,
                 paddingTop: statusBarHeight,
-                paddingBottom: insets.bottom,
+                paddingBottom: isTablet ? insets.bottom : 0,
             }}
             {...otherViewProps}
         >
@@ -86,13 +86,13 @@ export const WorkflowCard: React.FC<WorkflowCardBaseProps> = (props) => {
             >
                 <Card
                     style={{
-                        height: '100%',
-                        width: '100%',
+                        height: isTablet ? 730 : '100%',
+                        width: isTablet ? 450 : '100%',
                         maxHeight: isTablet ? 730 : 'none',
                         maxWidth: isTablet ? 450 : 'none',
                         display: 'flex',
-                        flexDirection: 'column',
                         borderRadius: isTablet ? 4 : 0,
+                        paddingBottom: isTablet ? 0 : insets.bottom,
                     }}
                 >
                     {loading ? <Spinner visible={loading} /> : children}

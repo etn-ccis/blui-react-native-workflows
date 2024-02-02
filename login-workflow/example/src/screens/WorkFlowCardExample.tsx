@@ -70,7 +70,7 @@ const WorkFlowCardExample: React.FC<AppProps> = ({ navigation }): JSX.Element =>
                         Error Message
                     </HelperText>
                 </WorkflowCardBody>
-          <WorkflowCardActions
+                <WorkflowCardActions
                     showPrevious
                     showNext
                     previousLabel="Back"

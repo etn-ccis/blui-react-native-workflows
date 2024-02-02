@@ -1,6 +1,5 @@
 import React from 'react';
-
-import { StyleSheet, ViewStyle } from 'react-native';
+import { ScrollView, StyleSheet, ViewStyle } from 'react-native';
 import { Card, CardContentProps } from 'react-native-paper';
 import { useScreenWidth } from '../../hooks/useScreenWidth';
 
@@ -11,7 +10,6 @@ const makeStyles = (
 }> =>
     StyleSheet.create({
         workflowBody: {
-            flex: 1,
             marginHorizontal: isTablet ? 24 : 16,
             paddingTop: 32,
             paddingBottom: isTablet ? 32 : 24,
@@ -26,14 +24,16 @@ const makeStyles = (
  *
  * @category Component
  */
-
 export const WorkflowCardBody: React.FC<CardContentProps> = (props) => {
     const { children, style, ...otherCardContentProps } = props;
     const isTablet = useScreenWidth();
     const defaultStyles = makeStyles(isTablet);
+
     return (
-        <Card.Content style={[defaultStyles.workflowBody, style]} {...otherCardContentProps}>
-            {children}
-        </Card.Content>
+        <ScrollView>
+            <Card.Content style={[defaultStyles.workflowBody, style]} {...otherCardContentProps}>
+                {children}
+            </Card.Content>
+        </ScrollView>
     );
 };
