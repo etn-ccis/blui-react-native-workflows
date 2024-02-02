@@ -3,8 +3,13 @@ import { View } from 'react-native';
 import { Header } from '@brightlayer-ui/react-native-components';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../navigation';
-import { WorkflowCard, WorkflowCardBody, WorkflowCardInstructions } from '@brightlayer-ui/react-native-auth-workflow';
 import { HelperText, Text, TextInput } from 'react-native-paper';
+import {
+    WorkflowCard,
+    WorkflowCardBody,
+    WorkflowCardInstructions,
+    WorkflowCardActions,
+} from '@brightlayer-ui/react-native-auth-workflow';
 import { useThemeContext } from '../context/ThemeContext';
 import { useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 import { UserMenuExample } from '../components/UserMenuExample';
@@ -65,6 +70,15 @@ const WorkFlowCardExample: React.FC<AppProps> = ({ navigation }): JSX.Element =>
                         Error Message
                     </HelperText>
                 </WorkflowCardBody>
+          <WorkflowCardActions
+                    showPrevious
+                    showNext
+                    previousLabel="Back"
+                    nextLabel="Next"
+                    currentStep={2}
+                    totalSteps={8}
+                    fullWidthButton={true}
+                />
             </WorkflowCard>
         </>
     );

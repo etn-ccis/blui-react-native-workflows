@@ -7,10 +7,10 @@ import { useScreenWidth } from '../../hooks/useScreenWidth';
 const makeStyles = (
     isTablet: boolean
 ): StyleSheet.NamedStyles<{
-    workflowBodyStyle: ViewStyle;
+    workflowBody: ViewStyle;
 }> =>
     StyleSheet.create({
-        workflowBodyStyle: {
+        workflowBody: {
             flex: 1,
             marginHorizontal: isTablet ? 24 : 16,
             paddingTop: 32,
@@ -32,7 +32,7 @@ export const WorkflowCardBody: React.FC<CardContentProps> = (props) => {
     const isTablet = useScreenWidth();
     const defaultStyles = makeStyles(isTablet);
     return (
-        <Card.Content style={[defaultStyles.workflowBodyStyle, style]} {...otherCardContentProps}>
+        <Card.Content style={[defaultStyles.workflowBody, style]} {...otherCardContentProps}>
             {children}
         </Card.Content>
     );
