@@ -18,7 +18,6 @@ const WorkFlowCardExample: React.FC<AppProps> = ({ navigation }): JSX.Element =>
     const theme = useExtendedTheme();
     const [errorFilledText, setErrorFilledText] = React.useState('Hello');
     const [hasError, setHasError] = React.useState(true);
-
     return (
         <>
             <View style={{ flex: 1, backgroundColor: theme.colors.background }}>
@@ -26,7 +25,7 @@ const WorkFlowCardExample: React.FC<AppProps> = ({ navigation }): JSX.Element =>
                     <WorkflowCardHeader
                         title="Workflow Example"
                         onIconPress={(): void => {
-                            navigation.openDrawer();
+                            navigation.navigate('Home');
                         }}
                     />
                     <WorkflowCardInstructions instructions={'Test Instructions'} />

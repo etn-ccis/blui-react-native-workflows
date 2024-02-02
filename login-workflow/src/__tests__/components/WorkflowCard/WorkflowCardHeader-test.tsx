@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent, cleanup } from '@testing-library/react-native';
-import { WorkflowCardHeader, isLightColor } from 'src/components/WorkflowCard';
+import { WorkflowCardHeader } from 'src/components/WorkflowCard';
 import renderer from 'react-test-renderer';
 import { SafeAreaProvider } from 'react-native-safe-area-context'; // Or the appropriate library
 
@@ -48,19 +48,5 @@ describe('WorkflowCardHeader', () => {
         const icon = getByTestId('workflow-card-icon');
         fireEvent.press(icon);
         expect(onIconPress).toHaveBeenCalledTimes(1);
-    });
-});
-describe('isLightColor function', () => {
-    it('correctly identifies light colors', () => {
-        const lightColor = '#B1DAFF';
-        const isLight = isLightColor(lightColor);
-        expect(isLight).toBe(true);
-    });
-
-    it('correctly identifies dark colors', () => {
-        const darkColor = '#005EB8';
-        const isLight = isLightColor(darkColor);
-
-        expect(isLight).toBe(false);
     });
 });

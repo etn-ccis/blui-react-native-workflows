@@ -6,6 +6,7 @@ import { useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 import { Text } from 'react-native-paper';
 import { useScreenWidth } from '../../hooks/useScreenWidth';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import Color from 'color';
 
 export type WorkflowCardHeaderProps = Omit<ViewProps, 'children'> & {
     /**
@@ -60,17 +61,6 @@ const makeStyles = (): StyleSheet.NamedStyles<{
  * @param {() => void} [onIconPress] - on press functionality for the icon
  *
  */
-export const isLightColor = (color: string): boolean => {
-    // Convert color to RGB
-    const rgb = parseInt(color.replace('#', ''), 16);
-    const r = (rgb >> 16) & 0xff;
-    const g = (rgb >> 8) & 0xff;
-    const b = (rgb >> 0) & 0xff;
-
-    // Calculate luminance
-    const luminance = 0.2126 * r + 0.7152 * g + 0.0722 * b;
-    return luminance > 128;
-};
 export const WorkflowCardHeader: React.FC<WorkflowCardHeaderProps> = (props) => {
     const { title, backgroundColor, textColor, icon, style, onIconPress, ...otherprops } = props;
     const theme = useExtendedTheme();
@@ -87,8 +77,12 @@ export const WorkflowCardHeader: React.FC<WorkflowCardHeaderProps> = (props) => 
     return (
         <View>
             {!isTablet && (
-                <View style={{ backgroundColor: theme.colors.primary, height: statusBarHeight }}>
-                    <StatusBar barStyle={isLightColor(theme.colors.primary) ? 'dark-content' : 'light-content'} />
+                <View style={{ backgroundColor: backgroundColor || theme.colors.primary, height: statusBarHeight }}>
+                    <StatusBar
+                        barStyle={
+                            Color(backgroundColor || theme.colors.primary).isDark() ? 'light-content' : 'dark-content'
+                        }
+                    />
                 </View>
             )}
             <View
