@@ -125,8 +125,10 @@ const Home: React.FC<AppProps> = ({ navigation }): JSX.Element => {
                             alignItems: 'center',
                         }}
                     >
-                        <Text>{`${t('bluiRegistration:REGISTRATION.INSTRUCTIONS.ACCOUNT_DETAILS')}`}</Text>
-                        <Text>{`${t('bluiCommon:ACTIONS.OKAY')}`}</Text>
+                        <Text>{`Registration Translations: ${t(
+                            'bluiRegistration:REGISTRATION.STEPS.CREATE_ACCOUNT'
+                        )} \n`}</Text>
+                        <Text>{`Common Translations: ${t('bluiCommon:ACTIONS.OKAY')}`}</Text>
                     </View>
                 </ScrollView>
             </SafeAreaView>
