@@ -2,7 +2,7 @@ import React from 'react';
 
 import { StyleSheet, ViewStyle, View } from 'react-native';
 import { Divider, Text, TextProps } from 'react-native-paper';
-import { useScreenWidth } from '../../hooks/useScreenWidth';
+import { useScreenDimensions } from '../../hooks/useScreenDimensions';
 
 export type WorkflowCardInstructionProps = Omit<TextProps<'bodyLarge'>, 'children' | 'theme' | 'variant'> & {
     /**
@@ -44,7 +44,7 @@ const makeStyles = (
 
 export const WorkflowCardInstructions: React.FC<WorkflowCardInstructionProps> = (props) => {
     const { instructions, divider = true, style, ...otherProps } = props;
-    const isTablet = useScreenWidth();
+    const { isTablet } = useScreenDimensions();
     const styles = makeStyles(isTablet);
     return (
         <>
