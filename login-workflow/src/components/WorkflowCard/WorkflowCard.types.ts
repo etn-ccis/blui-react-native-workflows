@@ -1,3 +1,4 @@
+import { DotStepperVariant } from '@brightlayer-ui/react-native-components';
 import { CardActionsProps } from 'react-native-paper';
 
 export type WorkflowCardActionsProps = Omit<CardActionsProps, 'children'> & {
@@ -67,4 +68,12 @@ export type WorkflowCardActionsProps = Omit<CardActionsProps, 'children'> & {
      * Boolean that indicates whether a button should be full width
      */
     fullWidthButton?: boolean;
+    /** Which type of step indicator to use:
+     * - dots: circles
+     * - progress: progress bar
+     * - text: text
+     *
+     * @default: 'dots'
+     */
+    stepperVariant?: DotStepperVariant;
 };
