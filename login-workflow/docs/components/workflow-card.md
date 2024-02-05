@@ -72,5 +72,6 @@ The WorkflowCardActions is used to configure the buttons that appear at the bott
 | currentStep | `number` | Indicates the current step in a multi-step workflow | `0` |
 | totalSteps | `number` | Indicates the total number of steps in the multi-step workflow | `5` |
 | fullWidthButton | `boolean` | If true, buttons will expand to the full width of the panel (useful if you only have one button configured) | `false` |
+| stepperVariant | `string` | indicates which type of stepper indicator to use | `dots` |
 
 Any other props will be provided to the root element ([**View**](https://reactnative.dev/docs/view)).
