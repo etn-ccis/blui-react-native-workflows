@@ -6,6 +6,7 @@ import {
     WorkflowCard,
     WorkflowCardBody,
     WorkflowCardInstructions,
+    WorkflowCardHeader,
     WorkflowCardActions,
 } from '@brightlayer-ui/react-native-auth-workflow';
 import { useExtendedTheme } from '@brightlayer-ui/react-native-themes';
@@ -18,10 +19,15 @@ const WorkFlowCardExample: React.FC<AppProps> = ({ navigation }): JSX.Element =>
     const theme = useExtendedTheme();
     const [errorFilledText, setErrorFilledText] = React.useState('Hello');
     const [hasError, setHasError] = React.useState(true);
-
     return (
         <>
             <WorkflowCard>
+                <WorkflowCardHeader
+                    title="Workflow Example"
+                    onIconPress={(): void => {
+                        navigation.navigate('Home');
+                    }}
+                />
                 <WorkflowCardInstructions instructions={'Test Instructions'} />
                 <WorkflowCardBody>
                     <TextInput

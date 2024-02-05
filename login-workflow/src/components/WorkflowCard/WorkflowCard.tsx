@@ -5,8 +5,8 @@ import { useScreenDimensions } from '../../hooks/useScreenDimensions';
 import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Spinner } from '../Spinner';
-import { WorkflowCardBody } from './WorkflowCardBody';
 import { WorkflowCardBaseProps } from './WorkflowCard.types';
+import { WorkflowCardHeader } from './WorkflowCardHeader';
 
 const defaultImage = require('../../assets/images/background.png');
 
@@ -39,8 +39,7 @@ const makeStyles = ({
     });
 
 function hasWorkflowCardHeaderRecursive(children: any): boolean {
-    // @todo replace WorkflowCardBody with WorkflowCardHeader component
-    return React.Children.toArray(children).some((child) => (child as JSX.Element).type === WorkflowCardBody);
+    return React.Children.toArray(children).some((child) => (child as JSX.Element).type === WorkflowCardHeader);
 }
 
 /**
