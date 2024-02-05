@@ -6,7 +6,7 @@ import PasswordRequirements from 'src/components/SetPassword/PasswordRequirement
 import { PasswordRequirementsCheck } from 'src/components/SetPassword/PasswordRequirementsCheck';
 import { PasswordTextField } from 'src/components/SetPassword/PasswordTextField';
 
-describe('WorkflowCardBody Test', () => {
+describe('Set Password Test', () => {
     it('renders with initial props', () => {
         render(<SetPassword />);
         expect(render).toBeTruthy();
@@ -32,10 +32,6 @@ describe('WorkflowCardBody Test', () => {
         fireEvent.changeText(passwordInput, 'Password@123');
         fireEvent.changeText(confirmInput, 'Password@123');
         expect(render).toBeTruthy();
-
-        //   confirmInput.current.dispatchEvent(new Event('submit'));
-
-        //   expect(onSubmitMock).toHaveBeenCalledWith(true);
     });
     it('renders with custom props and failing passwordCondition', () => {
         const onSubmitMock = jest.fn();
@@ -58,10 +54,6 @@ describe('WorkflowCardBody Test', () => {
         fireEvent.changeText(passwordInput, 'Pass');
         fireEvent.changeText(confirmInput, 'Pass');
         expect(render).toBeTruthy();
-
-        //   confirmInput.current.dispatchEvent(new Event('submit'));
-
-        //   expect(onSubmitMock).toHaveBeenCalledWith(true);
     });
     it('PasswordRequirements renders correctly', () => {
         const rendered = render(<PasswordRequirements passwordText={'PasswordText'} />).toJSON();

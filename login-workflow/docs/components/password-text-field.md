@@ -6,7 +6,7 @@ Component that renders a text field with a visibility toggle.
 ## Usage
 
 ```tsx
-import { PasswordTextField } from '@brightlayer-ui/react-auth-workflow';
+import { PasswordTextField } from '@brightlayer-ui/react-native-auth-workflow';
 
 ...
 

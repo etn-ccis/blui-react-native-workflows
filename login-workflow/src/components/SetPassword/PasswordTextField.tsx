@@ -1,4 +1,5 @@
 import React, { forwardRef, useState } from 'react';
+import { TextStyle, StyleSheet } from 'react-native';
 import { TextInput, TextInputProps } from 'react-native-paper';
 
 /**
@@ -9,28 +10,34 @@ import { TextInput, TextInputProps } from 'react-native-paper';
  *
  * @category Component
  */
-
-export const PasswordTextField: React.FC<React.PropsWithChildren<TextInputProps> & { icon?: React.ReactNode }> =
-    forwardRef((props, ref) => {
-        const { ...otherProps } = props;
-        const [showPassword, setShowPassword] = useState(false);
-
-        return (
-            <TextInput
-                ref={ref}
-                testID="textfield"
-                style={{ flex: 1 }}
-                secureTextEntry={!showPassword}
-                mode="flat"
-                label="Password"
-                right={
-                    <TextInput.Icon
-                        testID="toggle-button"
-                        icon={showPassword ? 'eye' : 'eye-off'}
-                        onPress={() => setShowPassword(!showPassword)}
-                    />
-                }
-                {...otherProps}
-            />
-        );
+const makeStyles = (): StyleSheet.NamedStyles<{
+    textinput: TextStyle;
+}> =>
+    StyleSheet.create({
+        textinput: {
+            marginLeft: 8,
+        },
     });
+export const PasswordTextField: React.FC<TextInputProps> = forwardRef((props, ref) => {
+    const { ...otherProps } = props;
+    const [showPassword, setShowPassword] = useState(false);
+    const defaultStyle = makeStyles();
+    return (
+        <TextInput
+            ref={ref}
+            testID="textfield"
+            style={defaultStyle.textinput}
+            secureTextEntry={!showPassword}
+            mode="flat"
+            label="Password"
+            right={
+                <TextInput.Icon
+                    testID="toggle-button"
+                    icon={showPassword ? 'eye' : 'eye-off'}
+                    onPress={() => setShowPassword(!showPassword)}
+                />
+            }
+            {...otherProps}
+        />
+    );
+});

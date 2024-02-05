@@ -3,21 +3,27 @@ import PasswordRequirements from './PasswordRequirements';
 import { SetPasswordProps } from './types';
 import { HelperText } from 'react-native-paper';
 import { useScreenWidth } from '../../hooks/useScreenWidth';
-import { ViewStyle, StyleSheet } from 'react-native';
+import { ViewStyle, StyleSheet, TextStyle } from 'react-native';
 import { defaultPasswordRequirements } from '../../constants';
 import { useTranslation } from 'react-i18next';
 import { PasswordTextField } from './PasswordTextField';
+import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 
 const makeStyles = (
-    isTablet: boolean
+    isTablet: boolean,
+    theme: ExtendedTheme
 ): StyleSheet.NamedStyles<{
     passwordRequirementContainer: ViewStyle;
+    errorHelperText: TextStyle;
+    successHelperText: TextStyle;
 }> =>
     StyleSheet.create({
         passwordRequirementContainer: {
             marginTop: 8,
             marginBottom: isTablet ? 32 : 24,
         },
+        errorHelperText: { marginBottom: 8 },
+        successHelperText: { marginBottom: 8, color: theme.colors.success },
     });
 
 /**
@@ -61,7 +67,8 @@ export const SetPassword: React.FC<React.PropsWithChildren<SetPasswordProps>> = 
     const [passwordInput, setPasswordInput] = useState(initialNewPasswordValue);
     const [confirmInput, setConfirmInput] = useState(initialConfirmPasswordValue);
     const isTablet = useScreenWidth();
-    const defaultStyle = makeStyles(isTablet);
+    const theme = useExtendedTheme();
+    const defaultStyle = makeStyles(isTablet, theme);
     const onPassChange = useCallback(
         (newPassword: any) => {
             setPasswordInput(newPassword);
@@ -94,13 +101,6 @@ export const SetPassword: React.FC<React.PropsWithChildren<SetPasswordProps>> = 
 
         return true;
     }, [passwordRequirements, passwordInput]);
-    // const isValidPassword = useCallback((): boolean => {
-    //     if (passwordRequirements?.length)
-    //         for (let i = 0; i < passwordRequirements.length; i++) {
-    //             if (!new RegExp(passwordRequirements[i].regex).test(passwordInput)) return false;
-    //         }
-    //     return true;
-    // }, [passwordRequirements, passwordInput]);
     return (
         <>
             {children}
@@ -141,9 +141,20 @@ export const SetPassword: React.FC<React.PropsWithChildren<SetPasswordProps>> = 
                     if (!hasConfirmPasswordError() && isValidPassword() && onSubmit) onSubmit();
                 }}
             />
-            <HelperText type="error" visible={hasConfirmPasswordError()} style={{ marginBottom: 8 }}>
-                {passwordNotMatchError}
-            </HelperText>
+            {hasConfirmPasswordError() && (
+                <HelperText type="error" visible={hasConfirmPasswordError()} style={defaultStyle.errorHelperText}>
+                    {passwordNotMatchError}
+                </HelperText>
+            )}
+            {!hasConfirmPasswordError() && confirmInput !== '' && (
+                <HelperText
+                    type="info"
+                    visible={!hasConfirmPasswordError() && confirmInput !== ''}
+                    style={defaultStyle.successHelperText}
+                >
+                    Password Matches
+                </HelperText>
+            )}
         </>
     );
 };
