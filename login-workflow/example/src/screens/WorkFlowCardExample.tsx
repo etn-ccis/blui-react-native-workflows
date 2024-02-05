@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { ScrollView, View } from 'react-native';
+import { SafeAreaView, ScrollView} from 'react-native';
 import { Header } from '@brightlayer-ui/react-native-components';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../navigation';
@@ -47,7 +47,7 @@ const WorkFlowCardExample: React.FC<AppProps> = ({ navigation }): JSX.Element =>
                     },
                 ]}
             />
-            <View style={{ backgroundColor: theme.colors.background, flex: 1 }}>
+            <SafeAreaView style={{ backgroundColor: theme.colors.background, flex: 1 }}>
                 <ScrollView>
                     <WorkflowCardInstructions instructions={'Test Instructions'} />
                     <WorkflowCardBody>
@@ -77,16 +77,8 @@ const WorkFlowCardExample: React.FC<AppProps> = ({ navigation }): JSX.Element =>
                         />
                     </WorkflowCardBody>
                 </ScrollView>
-                <WorkflowCardActions
-                    showPrevious
-                    showNext
-                    previousLabel="Back"
-                    nextLabel="Next"
-                    currentStep={2}
-                    totalSteps={8}
-                    fullWidthButton={true}
-                />
-            </View>
+                <WorkflowCardActions showPrevious showNext previousLabel="Back" nextLabel="Next" />
+            </SafeAreaView>
         </>
     );
 };

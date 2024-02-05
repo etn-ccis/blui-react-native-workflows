@@ -15,7 +15,7 @@ const makeStyles = (): StyleSheet.NamedStyles<{
 }> =>
     StyleSheet.create({
         textinput: {
-            marginLeft: 8,
+            flex: 1,
         },
     });
 export const PasswordTextField: React.FC<TextInputProps> = forwardRef((props, ref) => {
