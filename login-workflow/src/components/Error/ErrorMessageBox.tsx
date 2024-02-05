@@ -58,7 +58,8 @@ export type ErrorMessageBoxProps = {
 
 const makeStyles = (
     theme: ExtendedTheme,
-    props: ErrorMessageBoxProps
+    props: ErrorMessageBoxProps,
+    dismissible: boolean
 ): StyleSheet.NamedStyles<{
     errorMessageBox: ViewStyle;
     title: TextStyle;
@@ -73,7 +74,7 @@ const makeStyles = (
             padding: 16,
             marginVertical: 8,
             display: 'flex',
-            flexDirection: 'row-reverse',
+            flexDirection: dismissible ? 'row-reverse' : undefined,
             justifyContent: 'space-between',
         },
         title: {
@@ -90,7 +91,7 @@ const makeStyles = (
 export const ErrorMessageBox = (props: ErrorMessageBoxProps): JSX.Element => {
     const { title, errorMessage, dismissible = true, onClose = (): void => {}, style } = props;
     const theme = useExtendedTheme();
-    const defaultStyles = makeStyles(theme, props);
+    const defaultStyles = makeStyles(theme, props, dismissible);
 
     return (
         <View style={[defaultStyles.errorMessageBox, style]}>
@@ -106,10 +107,10 @@ export const ErrorMessageBox = (props: ErrorMessageBoxProps): JSX.Element => {
                 />
             )}
             <View>
-                <Text style={[defaultStyles.title]} variant="titleSmall">
+                <Text style={[defaultStyles.title]} variant="titleMedium">
                     {title}
                 </Text>
-                <Text style={[defaultStyles.message]} variant="bodySmall">
+                <Text style={[defaultStyles.message]} variant="bodyMedium">
                     {errorMessage}
                 </Text>
             </View>
