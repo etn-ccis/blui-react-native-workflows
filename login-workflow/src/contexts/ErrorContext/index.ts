@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { ErrorContext } from './context';
 import { ErrorContextProvider } from './provider';
 import { ErrorContextProviderProps } from './types';
-
+import { useErrorManager } from './useErrorManager';
 /**
  * Hook to get top level error data
  *
@@ -20,4 +20,4 @@ export const useErrorContext = (): ErrorContextProviderProps => {
 
 export type { ErrorContextProviderProps };
 
-export { ErrorContext, ErrorContextProvider };
+export { ErrorContext, ErrorContextProvider, useErrorManager };

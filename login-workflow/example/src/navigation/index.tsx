@@ -5,7 +5,7 @@ import { View } from 'react-native';
 import { NavigationDrawer } from './navigation-drawer';
 import { createStackNavigator } from '@react-navigation/stack';
 import Home from '../screens/home';
-import WorkFlowCardExample from '../screens/WorkFlowCardExample';
+import { WorkflowCardWrapper } from '../screens/WorkflowCardWrapper';
 
 const Drawer = createDrawerNavigator();
 
@@ -33,7 +33,7 @@ export const MainRouter = (): any => (
             drawerContent={(props: any): ReactNode => <CustomDrawerContent {...props} />}
         >
             <RootStack.Screen name="Home" component={Home} />
-            <RootStack.Screen name="WorkFlowCardExample" component={WorkFlowCardExample} />
+            <RootStack.Screen name="WorkFlowCardExample" component={WorkflowCardWrapper} />
         </Drawer.Navigator>
     </NavigationContainer>
 );
