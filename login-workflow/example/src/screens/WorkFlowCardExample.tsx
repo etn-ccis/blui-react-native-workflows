@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { SafeAreaView, ScrollView} from 'react-native';
+import { SafeAreaView, ScrollView } from 'react-native';
 import { Header } from '@brightlayer-ui/react-native-components';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../navigation';
