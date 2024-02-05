@@ -45,6 +45,21 @@ This component is a simple wrapper that is used for layout. Your main screen con
 
 The properties of the underlying React Native Paper [Card.Content](https://callstack.github.io/react-native-paper/docs/components/Card/CardContent) component are also available.
 
+## WorkflowCardHeader
+
+
+| Prop Name         | Type         | Description | Required | Default |
+|---|---|---|---|---|
+| title             | `string`     | text to display as title in header | Yes |  |
+| backgroundColor   | `string`     | background color of header  | No | theme.colors.primary |
+| textColor         | `string`     | text color of header  | No | theme.colors.onPrimary |
+| iconColor         | `string`     | icon color of header  | No | theme.colors.onPrimary |
+| icon              | `IconSource` | icon to be shown on left side of header | No | close |
+| onIconPress       | `function`   | on press functionality for the icon | Yes |  |
+
+
+The properties of the underlying React Native [View](https://reactnative.dev/docs/view) component are also available.
+
 ## WorkflowCardInstructions
 
 | Prop Name    | Type                    | Description                                                           | Default |
