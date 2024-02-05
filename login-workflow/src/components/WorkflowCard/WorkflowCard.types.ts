@@ -1,6 +1,33 @@
-import { CardActionsProps } from 'react-native-paper';
+import { DotStepperVariant } from '@brightlayer-ui/react-native-components';
+import { ImageBackgroundProps, ImageSourcePropType, ViewProps } from 'react-native';
+import { CardTitleProps, TextProps } from 'react-native-paper';
 
-export type WorkflowCardActionsProps = Omit<CardActionsProps, 'children'> & {
+export type WorkflowCardBaseProps = ImageBackgroundProps & {
+    /**
+     * If true, a blocking progress spinner will be displayed over the card
+     */
+    loading?: boolean;
+    /**
+     * A custom background to render behind the card
+     */
+    backgroundImage?: ImageSourcePropType;
+};
+
+export type WorkflowCardHeaderProps = CardTitleProps;
+
+export type WorkflowCardInstructionProps = Omit<TextProps<'bodyLarge'>, 'children' | 'theme' | 'variant'> & {
+    /**
+     * The text to display as instructions
+     */
+    instructions?: string | JSX.Element;
+    /**
+     * Whether or not to show a divider below the instructions
+     * @default true
+     */
+    divider?: boolean;
+};
+
+export type WorkflowCardActionsProps = ViewProps & {
     /**
      * True to display a divider above workflow card action buttons
      * @default true
@@ -67,4 +94,19 @@ export type WorkflowCardActionsProps = Omit<CardActionsProps, 'children'> & {
      * Boolean that indicates whether a button should be full width
      */
     fullWidthButton?: boolean;
+    /** Which type of step indicator to use:
+     * - dots: circles
+     * - progress: progress bar
+     * - text: text
+     *
+     * @default: 'dots'
+     */
+    stepperVariant?: DotStepperVariant;
+};
+
+export type WorkflowCardProps = {
+    WorkflowCardBaseProps?: WorkflowCardBaseProps;
+    WorkflowCardHeaderProps?: WorkflowCardHeaderProps;
+    WorkflowCardInstructionProps?: WorkflowCardInstructionProps;
+    WorkflowCardActionsProps?: WorkflowCardActionsProps;
 };
