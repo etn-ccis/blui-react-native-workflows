@@ -48,25 +48,25 @@ const WorkFlowCardExample: React.FC = () => {
                 />
                 <WorkflowCardInstructions instructions={'Test Instructions'} />
                 <WorkflowCardBody>
-                <ErrorManager {...errorDisplayConfig}>
-                    <TextInput
-                        label="TextInput"
-                        mode="flat"
-                        left={<TextInput.Icon icon="email" />}
-                        right={<TextInput.Icon icon="menu-down" />}
-                        value={errorFilledText}
-                        underlineColor={theme.colors.surface}
-                        onChangeText={(value: string): void => {
-                            setErrorFilledText(value);
-                            setHasError(value.length > 4);
-                        }}
-                        error={hasError}
-                    />
-                    <HelperText type="error" visible={hasError} style={{ marginBottom: 8 }}>
-                        Error Message
-                    </HelperText>
-                    <Button onPress={(): void => void onNext()}>Click for error</Button>
-                        </ErrorManager>
+                    <ErrorManager {...errorDisplayConfig}>
+                        <TextInput
+                            label="TextInput"
+                            mode="flat"
+                            left={<TextInput.Icon icon="email" />}
+                            right={<TextInput.Icon icon="menu-down" />}
+                            value={errorFilledText}
+                            underlineColor={theme.colors.surface}
+                            onChangeText={(value: string): void => {
+                                setErrorFilledText(value);
+                                setHasError(value.length > 4);
+                            }}
+                            error={hasError}
+                        />
+                        <HelperText type="error" visible={hasError} style={{ marginBottom: 8 }}>
+                            Error Message
+                        </HelperText>
+                        <Button onPress={(): void => void onNext()}>Click for error</Button>
+                    </ErrorManager>
                 </WorkflowCardBody>
                 <WorkflowCardActions
                     showPrevious
