@@ -4,7 +4,6 @@ import { RootStackParamList } from '../navigation';
 import { HelperText, TextInput } from 'react-native-paper';
 import {
     WorkflowCard,
-    WorkflowCardHeader,
     WorkflowCardBody,
     WorkflowCardInstructions,
     WorkflowCardActions,
@@ -23,7 +22,6 @@ const WorkFlowCardExample: React.FC<AppProps> = ({ navigation }): JSX.Element =>
     return (
         <>
             <WorkflowCard>
-                <WorkflowCardHeader />
                 <WorkflowCardInstructions instructions={'Test Instructions'} />
                 <WorkflowCardBody>
                     <TextInput

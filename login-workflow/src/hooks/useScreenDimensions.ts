@@ -5,12 +5,18 @@
  */
 import { useWindowDimensions } from 'react-native';
 
-type ScreenWidthProps = {
+type ScreenDimensionsProps = {
     width: number;
     height: number;
     isTablet: boolean;
 };
-export const useScreenDimensions = (): ScreenWidthProps => {
+
+/**
+ * Hook used to identify whether an app is run on a tablet and to get the app window's width and height.
+ *
+ * @category Hook
+ */
+export const useScreenDimensions = (): ScreenDimensionsProps => {
     const { height, width } = useWindowDimensions();
     return {
         isTablet: width >= 768,
