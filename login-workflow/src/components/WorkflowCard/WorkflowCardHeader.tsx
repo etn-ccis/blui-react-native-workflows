@@ -4,9 +4,9 @@ import { IconSource } from '@brightlayer-ui/react-native-components/core/__types
 import { Icon } from '@brightlayer-ui/react-native-components';
 import { useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 import { Text } from 'react-native-paper';
-import { useScreenWidth } from '../../hooks/useScreenWidth';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Color from 'color';
+import { useScreenDimensions } from '../../hooks/useScreenDimensions';
 
 export type WorkflowCardHeaderProps = Omit<ViewProps, 'children'> & {
     /**
@@ -23,10 +23,15 @@ export type WorkflowCardHeaderProps = Omit<ViewProps, 'children'> & {
      */
     backgroundColor?: string;
     /**
-     * The text and icon color of Header
+     * The text color of Header
      * @default theme.colors.onPrimary
      */
     textColor?: string;
+    /**
+     * The icon color of Header
+     * @default theme.colors.onPrimary
+     */
+    iconColor?: string;
     /**
      * Icon to be shown on left side of Header
      * @default close
@@ -56,23 +61,24 @@ const makeStyles = (): StyleSheet.NamedStyles<{
  *
  * @param {string} [title] - text to display as title in header
  * @param {string} [backgroundColor] - background color of header Default: theme.colors.primary
- * @param {string} [textColor] - text color and icon color of header Default: theme.colors.onPrimary
+ * @param {string} [textColor] - text color of header Default: theme.colors.onPrimary
+ * @param {string} [iconColor] - icon color of header Default: theme.colors.onPrimary
  * @param {IconSource} [icon] - icon to be shown on left side of header Default:close
  * @param {() => void} [onIconPress] - on press functionality for the icon
  *
  */
 export const WorkflowCardHeader: React.FC<WorkflowCardHeaderProps> = (props) => {
-    const { title, backgroundColor, textColor, icon, style, onIconPress, ...otherprops } = props;
+    const { title, backgroundColor, textColor, iconColor, icon, style, onIconPress, ...otherprops } = props;
     const theme = useExtendedTheme();
     const defaultStyles = makeStyles();
-    const isTablet = useScreenWidth();
+    const { isTablet } = useScreenDimensions();
     const insets = useSafeAreaInsets();
     const statusBarHeight = insets.top;
     const getIcon = (): JSX.Element | undefined => {
         if (icon) {
-            return <Icon source={icon} color={textColor || theme.colors.onPrimary} size={18} />;
+            return <Icon source={icon} color={iconColor || theme.colors.onPrimary} size={18} />;
         }
-        return <Icon source={{ name: 'close' }} color={textColor || theme.colors.onPrimary} size={24} />;
+        return <Icon source={{ name: 'close' }} color={iconColor || theme.colors.onPrimary} size={24} />;
     };
     return (
         <View>
