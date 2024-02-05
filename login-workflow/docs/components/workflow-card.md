@@ -35,9 +35,9 @@ import {
 | Prop Name       | Type      | Description                                                               | Default |
 | --------------- | --------- | ------------------------------------------------------------------------- | ------- |
 | loading         | `boolean` | A boolean that indicates whether the loading spinner should be displayed. | `false` |
-| backgroundImage | `string`  | The background image to display behind the card.                          |         |
+| backgroundImage | [`ImageSourcePropType`](https://reactnative.dev/docs/image#imagesource)  | The background image to display behind the card.                          |         |
 
-The properties of the underlying React Native [View](https://reactnative.dev/docs/view#props) component are also available.
+The properties of the underlying React Native [ImageBackground](https://reactnative.dev/docs/imagebackground#props) component are also available.
 
 ## WorkflowCardBody
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { ScrollView, StyleSheet, ViewStyle } from 'react-native';
 import { Card, CardContentProps } from 'react-native-paper';
-import { useScreenWidth } from '../../hooks/useScreenWidth';
+import { useScreenDimensions } from '../../hooks/useScreenDimensions';
 
 const makeStyles = (
     isTablet: boolean
@@ -26,7 +26,7 @@ const makeStyles = (
  */
 export const WorkflowCardBody: React.FC<CardContentProps> = (props) => {
     const { children, style, ...otherCardContentProps } = props;
-    const isTablet = useScreenWidth();
+    const { isTablet } = useScreenDimensions();
     const defaultStyles = makeStyles(isTablet);
 
     return (
