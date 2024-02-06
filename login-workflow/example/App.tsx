@@ -17,6 +17,7 @@ import { RegistrationDictionaries, SharedDictionaries } from '@brightlayer-ui/re
 import { I18nextProvider } from 'react-i18next';
 export const App = (): JSX.Element => {
     const [theme, setTheme] = useState<ThemeType>('light');
+    // TODO: Remove after demo
     i18nAppInstance.addResourceBundle(
         'zh',
         'bluiRegistration',
