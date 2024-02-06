@@ -5,72 +5,61 @@ import { TextInput } from 'react-native-paper';
 
 type AccountDetailsProps = {
     /**
-     * Used to pre-populate the checked/unchecked checkbox when the screen loads
-     * 
+     * Used to pre-populate the data when the screen loads
+     *
      */
-    code?: string;
+    firstName?: any;
+    lastName?: any;
 };
 
 export const AccountDetails: React.FC<AccountDetailsProps> = (props) => {
     const regWorkflow = useRegistrationWorkflowContext();
-    const {
-        nextScreen,
-        previousScreen,
-        screenData,
-        currentScreen,
-        totalScreens,
-        isInviteRegistration,
-        updateScreenData,
-    } = regWorkflow;
-    const { code } = props;
+    const { nextScreen, previousScreen, screenData, currentScreen, totalScreens } = regWorkflow;
+    const { firstName, lastName } = props;
 
-    const [verifyCode, setVerifyCode] = useState(
-        code ? code : screenData.VerifyCode.code
-    );
+    const [firstNameInput, setFirstNameInput] = useState(firstName ? firstName : screenData.AccountDetails.firstName);
 
-    const onNext = useCallback(async () => {
-        if(isInviteRegistration) {
-            updateScreenData({
-                screenId: 'VerifyCode',
-                values: { code: screenData.VerifyCode.code },
-                isAccountExist: true,
-            });
-        } else {
-            void nextScreen({
-                screenId: 'VerifyCode',
-                values: { code: verifyCode },
-                isAccountExist: false,
-            });
-        }
-    }, [verifyCode, nextScreen, isInviteRegistration]);
+    const [lastNameInput, setLastNameInput] = useState(lastName ? lastName : screenData.AccountDetails.lastName);
 
-    const onPrevious = useCallback(async () => {
-        void previousScreen({
-            screenId: 'VerifyCode',
-            values: { code: verifyCode },
-            isAccountExist: false,
+    const onNext = useCallback(() => {
+        void nextScreen({
+            screenId: 'AccountDetails',
+            values: { firstName: firstName, lastName: lastName },
         });
-    }, [verifyCode, previousScreen]);
+    }, [firstName, lastName, nextScreen]);
 
+    const onPrevious = useCallback(() => {
+        void previousScreen({
+            screenId: 'AccountDetails',
+            values: { firstName: firstName, lastName: lastName },
+        });
+    }, [lastName, firstName, previousScreen]);
 
     return (
         <WorkflowCard>
             <WorkflowCardHeader
-                title="Workflow Example"
+                title="Account Details"
                 onIconPress={(): void => {
-                    // navigation.navigate('Home');
+                    // eslint-disable-next-line
                     console.log('close');
                 }}
             />
 
             <WorkflowCardBody>
                 <TextInput
-                    label="TextInput"
+                    label="First Name"
                     mode="flat"
-                    left={<TextInput.Icon icon="email" />}
-                    right={<TextInput.Icon icon="menu-down" />}
-                    value={verifyCode}
-                    onChangeText={(value) => setVerifyCode(value)}
+                    value={firstNameInput}
+                    onChangeText={(value) => setFirstNameInput(value)}
+                    style={{
+                        marginBottom: 16,
+                    }}
+                />
+                <TextInput
+                    label="Last Name"
+                    mode="flat"
+                    value={lastNameInput}
+                    onChangeText={(value) => setLastNameInput(value)}
                 />
             </WorkflowCardBody>
             <WorkflowCardActions
@@ -84,5 +73,5 @@ export const AccountDetails: React.FC<AccountDetailsProps> = (props) => {
                 onPrevious={onPrevious}
             />
         </WorkflowCard>
-    )
+    );
 };

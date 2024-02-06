@@ -5,8 +5,8 @@ import { TextInput } from 'react-native-paper';
 
 type VerifyCodeProps = {
     /**
-     * Used to pre-populate the checked/unchecked checkbox when the screen loads
-     * 
+     * Used to pre-populate the data when the screen loads
+     *
      */
     code?: string;
 };
@@ -24,12 +24,10 @@ export const VerifyCode: React.FC<VerifyCodeProps> = (props) => {
     } = regWorkflow;
     const { code } = props;
 
-    const [verifyCode, setVerifyCode] = useState(
-        code ? code : screenData.VerifyCode.code
-    );
+    const [verifyCode, setVerifyCode] = useState(code ? code : screenData.VerifyCode.code);
 
-    const onNext = useCallback(async () => {
-        if(isInviteRegistration) {
+    const onNext = useCallback(() => {
+        if (isInviteRegistration) {
             updateScreenData({
                 screenId: 'VerifyCode',
                 values: { code: screenData.VerifyCode.code },
@@ -42,9 +40,9 @@ export const VerifyCode: React.FC<VerifyCodeProps> = (props) => {
                 isAccountExist: false,
             });
         }
-    }, [verifyCode, nextScreen, isInviteRegistration]);
+    }, [verifyCode, nextScreen, isInviteRegistration, updateScreenData, screenData]);
 
-    const onPrevious = useCallback(async () => {
+    const onPrevious = useCallback(() => {
         void previousScreen({
             screenId: 'VerifyCode',
             values: { code: verifyCode },
@@ -52,13 +50,12 @@ export const VerifyCode: React.FC<VerifyCodeProps> = (props) => {
         });
     }, [verifyCode, previousScreen]);
 
-
     return (
         <WorkflowCard>
             <WorkflowCardHeader
-                title="Workflow Example"
+                title="Verify Code Screen"
                 onIconPress={(): void => {
-                    // navigation.navigate('Home');
+                    // eslint-disable-next-line
                     console.log('close');
                 }}
             />
@@ -84,5 +81,5 @@ export const VerifyCode: React.FC<VerifyCodeProps> = (props) => {
                 onPrevious={onPrevious}
             />
         </WorkflowCard>
-    )
+    );
 };

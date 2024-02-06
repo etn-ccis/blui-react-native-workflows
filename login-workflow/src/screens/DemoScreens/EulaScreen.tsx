@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react';
 import { useRegistrationWorkflowContext } from '../../contexts';
 import { WorkflowCard, WorkflowCardActions, WorkflowCardBody, WorkflowCardHeader } from '../../components';
 import { Checkbox, Text } from 'react-native-paper';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Platform } from 'react-native';
 
 type EulaScreenProps = {
     /**
@@ -30,18 +30,18 @@ export const EulaScreen: React.FC<EulaScreenProps> = (props) => {
         isInviteRegistration,
         updateScreenData,
     } = regWorkflow;
+
     const { initialCheckboxValue } = props;
 
     const [eulaAccepted, setEulaAccepted] = useState(
         initialCheckboxValue ? initialCheckboxValue : screenData.Eula.accepted
     );
-    
 
-    const onNext = useCallback(async () => {
-        if(isInviteRegistration) {
+    const onNext = useCallback(() => {
+        if (isInviteRegistration) {
             updateScreenData({
                 screenId: 'Eula',
-                values: { accepted: screenData.Eula.accepted },
+                values: { accepted: eulaAccepted },
                 isAccountExist: true,
             });
         } else {
@@ -51,9 +51,9 @@ export const EulaScreen: React.FC<EulaScreenProps> = (props) => {
                 isAccountExist: false,
             });
         }
-    }, [eulaAccepted, nextScreen, isInviteRegistration]);
+    }, [eulaAccepted, nextScreen, isInviteRegistration, updateScreenData]);
 
-    const onPrevious = useCallback(async () => {
+    const onPrevious = useCallback(() => {
         void previousScreen({
             screenId: 'Eula',
             values: { accepted: eulaAccepted },
@@ -61,28 +61,38 @@ export const EulaScreen: React.FC<EulaScreenProps> = (props) => {
         });
     }, [eulaAccepted, previousScreen]);
 
-
     return (
         <WorkflowCard>
             <WorkflowCardHeader
-                title="Workflow Example"
+                title="Eula Screen"
                 onIconPress={(): void => {
-                    // navigation.navigate('Home');
+                    // eslint-disable-next-line
                     console.log('close');
                 }}
             />
 
             <WorkflowCardBody>
                 <View style={styles.row}>
+                    {Platform.OS === 'ios' ? (
+                        <Checkbox.IOS
+                            status={eulaAccepted ? 'checked' : 'unchecked'}
+                            onPress={(): void => {
+                                setEulaAccepted(!eulaAccepted);
+                            }}
+                            color="red"
+                            background="blue"
+                        />
+                    ) : (
+                        <Checkbox.Android
+                            status={eulaAccepted ? 'checked' : 'unchecked'}
+                            onPress={(): void => {
+                                setEulaAccepted(!eulaAccepted);
+                            }}
+                            color="red"
+                            background="blue"
+                        />
+                    )}
                     <Text style={{ flex: 1 }}>I have read and agree to the Terms & Conditions</Text>
-                    <Checkbox
-                        status={eulaAccepted ? 'checked' : 'unchecked'}
-                        onPress={(): void =>
-                            eulaAccepted === true
-                                ? setEulaAccepted(true)
-                                : setEulaAccepted(false)
-                        }
-                    />
                 </View>
             </WorkflowCardBody>
             <WorkflowCardActions
@@ -96,5 +106,5 @@ export const EulaScreen: React.FC<EulaScreenProps> = (props) => {
                 onPrevious={onPrevious}
             />
         </WorkflowCard>
-    )
+    );
 };

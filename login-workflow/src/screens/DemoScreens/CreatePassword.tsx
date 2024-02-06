@@ -5,72 +5,66 @@ import { TextInput } from 'react-native-paper';
 
 type CreatePasswordProps = {
     /**
-     * Used to pre-populate the checked/unchecked checkbox when the screen loads
-     * 
+     * Used to pre-populate the data when the screen loads
+     *
      */
-    code?: string;
+    password?: any;
+    confirmPassword?: any;
 };
 
 export const CreatePassword: React.FC<CreatePasswordProps> = (props) => {
     const regWorkflow = useRegistrationWorkflowContext();
-    const {
-        nextScreen,
-        previousScreen,
-        screenData,
-        currentScreen,
-        totalScreens,
-        isInviteRegistration,
-        updateScreenData,
-    } = regWorkflow;
-    const { code } = props;
+    const { nextScreen, previousScreen, screenData, currentScreen, totalScreens } = regWorkflow;
+    const { password, confirmPassword } = props;
 
-    const [verifyCode, setVerifyCode] = useState(
-        code ? code : screenData.VerifyCode.code
+    const [passwordInput, setPasswordInput] = useState(
+        password !== '' ? password : screenData.CreatePassword.password ?? ''
+    );
+    const [confirmInput, setConfirmInput] = useState(
+        confirmPassword !== '' ? confirmPassword : screenData.CreatePassword.confirmPassword ?? ''
     );
 
-    const onNext = useCallback(async () => {
-        if(isInviteRegistration) {
-            updateScreenData({
-                screenId: 'VerifyCode',
-                values: { code: screenData.VerifyCode.code },
-                isAccountExist: true,
-            });
-        } else {
-            void nextScreen({
-                screenId: 'VerifyCode',
-                values: { code: verifyCode },
-                isAccountExist: false,
-            });
-        }
-    }, [verifyCode, nextScreen, isInviteRegistration]);
-
-    const onPrevious = useCallback(async () => {
-        void previousScreen({
-            screenId: 'VerifyCode',
-            values: { code: verifyCode },
-            isAccountExist: false,
+    const onNext = useCallback(() => {
+        void nextScreen({
+            screenId: 'CreatePassword',
+            values: { password: passwordInput, confirmPassword: confirmInput },
         });
-    }, [verifyCode, previousScreen]);
+    }, [passwordInput, confirmInput, nextScreen]);
 
+    const onPrevious = useCallback(() => {
+        void previousScreen({
+            screenId: 'CreatePassword',
+            values: { password: passwordInput, confirmPassword: confirmInput },
+        });
+    }, [passwordInput, confirmInput, previousScreen]);
 
     return (
         <WorkflowCard>
             <WorkflowCardHeader
-                title="Workflow Example"
+                title="Create Password"
                 onIconPress={(): void => {
-                    // navigation.navigate('Home');
+                    // eslint-disable-next-line
                     console.log('close');
                 }}
             />
 
             <WorkflowCardBody>
                 <TextInput
-                    label="TextInput"
+                    label="Password"
                     mode="flat"
-                    left={<TextInput.Icon icon="email" />}
-                    right={<TextInput.Icon icon="menu-down" />}
-                    value={verifyCode}
-                    onChangeText={(value) => setVerifyCode(value)}
+                    value={passwordInput}
+                    onChangeText={(value) => setPasswordInput(value)}
+                    secureTextEntry
+                    style={{
+                        marginBottom: 16,
+                    }}
+                />
+                <TextInput
+                    label="Comfirm Password"
+                    mode="flat"
+                    value={confirmInput}
+                    onChangeText={(value) => setConfirmInput(value)}
+                    secureTextEntry
                 />
             </WorkflowCardBody>
             <WorkflowCardActions
@@ -84,5 +78,5 @@ export const CreatePassword: React.FC<CreatePasswordProps> = (props) => {
                 onPrevious={onPrevious}
             />
         </WorkflowCard>
-    )
+    );
 };
