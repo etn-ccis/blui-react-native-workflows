@@ -1,20 +1,9 @@
 import React from 'react';
 
 import { StyleSheet, ViewStyle, View } from 'react-native';
-import { Divider, Text, TextProps } from 'react-native-paper';
-import { useScreenWidth } from '../../hooks/useScreenWidth';
-
-export type WorkflowCardInstructionProps = Omit<TextProps<'bodyLarge'>, 'children' | 'theme' | 'variant'> & {
-    /**
-     * The text to display as instructions
-     */
-    instructions?: string | JSX.Element;
-    /**
-     * Whether or not to show a divider below the instructions
-     * @default true
-     */
-    divider?: boolean;
-};
+import { Divider, Text } from 'react-native-paper';
+import { useScreenDimensions } from '../../hooks/useScreenDimensions';
+import { WorkflowCardInstructionProps } from './WorkflowCard.types';
 
 const makeStyles = (
     isTablet: boolean
@@ -41,10 +30,9 @@ const makeStyles = (
  *
  * @category Component
  */
-
 export const WorkflowCardInstructions: React.FC<WorkflowCardInstructionProps> = (props) => {
     const { instructions, divider = true, style, ...otherProps } = props;
-    const isTablet = useScreenWidth();
+    const { isTablet } = useScreenDimensions();
     const styles = makeStyles(isTablet);
     return (
         <>

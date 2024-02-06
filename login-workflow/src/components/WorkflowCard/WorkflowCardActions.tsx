@@ -39,6 +39,7 @@ const makeStyles = (
  * @param currentStep current step in the registration workflow
  * @param totalSteps total number of steps in the registration workflow
  * @param fullWidthButton boolean that indicates whether a button should be full width
+ * @param stepperVariant indicates which type of stepper indicator to use
  *
  * @category Component
  */
@@ -57,6 +58,7 @@ export const WorkflowCardActions: React.FC<WorkflowCardActionsProps> = (props) =
         currentStep = 0,
         totalSteps = 5,
         fullWidthButton,
+        stepperVariant = 'dots',
         style,
         ...otherProps
     } = props;
@@ -110,7 +112,7 @@ export const WorkflowCardActions: React.FC<WorkflowCardActionsProps> = (props) =
                         <View style={{ width: fullWidthButton ? 0 : 100 }} />
                     )
                 }
-                variant={'dots'}
+                variant={stepperVariant}
                 data-testid={'workflow-card-stepper'}
             />
         </View>
