@@ -1,5 +1,8 @@
-import { useCallback, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useRegistrationWorkflowContext } from '../../contexts';
+import { WorkflowCard, WorkflowCardActions, WorkflowCardBody, WorkflowCardHeader } from '../../components';
+import { Checkbox, Text } from 'react-native-paper';
+import { View, StyleSheet } from 'react-native';
 
 type EulaScreenProps = {
     /**
@@ -9,6 +12,13 @@ type EulaScreenProps = {
     initialCheckboxValue?: boolean;
 };
 
+const styles = StyleSheet.create({
+    row: {
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+    },
+});
 export const EulaScreen: React.FC<EulaScreenProps> = (props) => {
     const regWorkflow = useRegistrationWorkflowContext();
     const {
@@ -20,95 +30,71 @@ export const EulaScreen: React.FC<EulaScreenProps> = (props) => {
         isInviteRegistration,
         updateScreenData,
     } = regWorkflow;
-    const { initialCheckboxValue, ...otherEulaScreenProps } = props;
+    const { initialCheckboxValue } = props;
 
-    // const eulaAccepted = initialCheckboxValue ? initialCheckboxValue : screenData.Eula.accepted;
     const [eulaAccepted, setEulaAccepted] = useState(
         initialCheckboxValue ? initialCheckboxValue : screenData.Eula.accepted
     );
-    // const [isLoading, setIsLoading] = useState(true);
-    // const [eulaData, setEulaData] = useState<string | JSX.Element>();
-    // const [eulaFetchError, setEulaFetchError] = useState(false);
+    
 
-    // const loadAndCacheEula = useCallback(async (): Promise<void> => {
-    //     setIsLoading(true);
-    //     if (!eulaContent) {
-    //         setEulaData(t('bluiRegistration:REGISTRATION.EULA.LOADING'));
-    //         try {
-    //             const eulaText = await actions?.loadEula?.(language);
-    //             setEulaData(eulaText);
-    //             setIsLoading(false);
-    //         } catch (_error) {
-    //             triggerError(_error as Error);
-    //             setEulaFetchError(true);
-    //             setIsLoading(false);
-    //         } finally {
-    //             setIsLoading(false);
-    //         }
-    //     } else {
-    //         setIsLoading(false);
-    //         setEulaData(eulaContent);
-    //     }
-    //     // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, [eulaContent, t, actions, language]);
+    const onNext = useCallback(async () => {
+        if(isInviteRegistration) {
+            updateScreenData({
+                screenId: 'Eula',
+                values: { accepted: screenData.Eula.accepted },
+                isAccountExist: true,
+            });
+        } else {
+            void nextScreen({
+                screenId: 'Eula',
+                values: { accepted: eulaAccepted },
+                isAccountExist: false,
+            });
+        }
+    }, [eulaAccepted, nextScreen, isInviteRegistration]);
 
-    const onNext = useCallback(async (): Promise<void> => {
-        void nextScreen({
-            screenId: 'Eula',
-            values: { accepted: screenData.Eula.accepted },
-            isAccountExist: false,
-        });
-    }, [nextScreen, isInviteRegistration, screenData, updateScreenData]);
-
-    const onPrevious = useCallback((): void => {
-        previousScreen({
+    const onPrevious = useCallback(async () => {
+        void previousScreen({
             screenId: 'Eula',
             values: { accepted: eulaAccepted },
+            isAccountExist: false,
         });
-    }, [previousScreen, eulaAccepted]);
+    }, [eulaAccepted, previousScreen]);
 
-    const updateEulaAcceptedStatus = useCallback(
-        (accepted: boolean): void => {
-            screenData.Eula = { ...screenData, accepted };
-            // props?.onEulaAcceptedChange?.(accepted);
-            setEulaAccepted(accepted);
-        },
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        [screenData]
-    );
 
-    // const {
-    //     checkboxProps = { ...props.checkboxProps, disabled: eulaFetchError },
-    //     onRefetch = (): void => {
-    //         setEulaFetchError(false);
-    //         void loadAndCacheEula();
-    //     },
-    // } = props;
+    return (
+        <WorkflowCard>
+            <WorkflowCardHeader
+                title="Workflow Example"
+                onIconPress={(): void => {
+                    // navigation.navigate('Home');
+                    console.log('close');
+                }}
+            />
 
-    // const workflowCardHeaderProps = {
-    //     title: t('bluiRegistration:REGISTRATION.STEPS.LICENSE'),
-    //     ...WorkflowCardHeaderProps,
-    // };
-
-    // const workflowCardActionsProps = {
-    //     showNext: true,
-    //     nextLabel: t('bluiCommon:ACTIONS.NEXT'),
-    //     canGoNext: true,
-    //     showPrevious: true,
-    //     previousLabel: t('bluiCommon:ACTIONS.BACK'),
-    //     canGoPrevious: true,
-    //     currentStep: currentScreen,
-    //     totalSteps: totalScreens,
-    //     ...WorkflowCardActionsProps,
-    //     onNext: (): void => {
-    //         void onNext();
-    //         WorkflowCardActionsProps?.onNext?.();
-    //     },
-    //     onPrevious: (): void => {
-    //         void onPrevious();
-    //         WorkflowCardActionsProps?.onPrevious?.();
-    //     },
-    // };
-
-    return <Text>Eula Screen</Text>;
+            <WorkflowCardBody>
+                <View style={styles.row}>
+                    <Text style={{ flex: 1 }}>I have read and agree to the Terms & Conditions</Text>
+                    <Checkbox
+                        status={eulaAccepted ? 'checked' : 'unchecked'}
+                        onPress={(): void =>
+                            eulaAccepted === true
+                                ? setEulaAccepted(true)
+                                : setEulaAccepted(false)
+                        }
+                    />
+                </View>
+            </WorkflowCardBody>
+            <WorkflowCardActions
+                showPrevious
+                showNext
+                previousLabel="Back"
+                nextLabel="Next"
+                currentStep={currentScreen}
+                totalSteps={totalScreens}
+                onNext={onNext}
+                onPrevious={onPrevious}
+            />
+        </WorkflowCard>
+    )
 };
