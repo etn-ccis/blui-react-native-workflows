@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 import PasswordRequirements from './PasswordRequirements';
 import { SetPasswordProps } from './types';
 import { HelperText } from 'react-native-paper';
-import { useScreenWidth } from '../../hooks/useScreenWidth';
+import { useScreenDimensions } from '../../hooks/useScreenDimensions';
 import { ViewStyle, StyleSheet, TextStyle } from 'react-native';
 import { defaultPasswordRequirements } from '../../constants';
 import { useTranslation } from 'react-i18next';
@@ -66,7 +66,7 @@ export const SetPassword: React.FC<React.PropsWithChildren<SetPasswordProps>> = 
     // Local State
     const [passwordInput, setPasswordInput] = useState(initialNewPasswordValue);
     const [confirmInput, setConfirmInput] = useState(initialConfirmPasswordValue);
-    const isTablet = useScreenWidth();
+    const { isTablet } = useScreenDimensions();
     const theme = useExtendedTheme();
     const defaultStyle = makeStyles(isTablet, theme);
     const onPassChange = useCallback(
@@ -143,7 +143,7 @@ export const SetPassword: React.FC<React.PropsWithChildren<SetPasswordProps>> = 
             />
             {hasConfirmPasswordError() && (
                 <HelperText type="error" visible={hasConfirmPasswordError()} style={defaultStyle.errorHelperText}>
-                    {passwordNotMatchError}
+                    {passwordNotMatchError || t('bluiCommon:FORMS.PASS_MATCH_ERROR')}
                 </HelperText>
             )}
             {!hasConfirmPasswordError() && confirmInput !== '' && (
@@ -152,7 +152,7 @@ export const SetPassword: React.FC<React.PropsWithChildren<SetPasswordProps>> = 
                     visible={!hasConfirmPasswordError() && confirmInput !== ''}
                     style={defaultStyle.successHelperText}
                 >
-                    Password Matches
+                    {t('bluiCommon:FORMS.PASS_MATCH')}
                 </HelperText>
             )}
         </>

@@ -15,6 +15,11 @@ export const navGroupItems: NavItem[] = [
         itemID: 'WorkFlowCardExample',
         icon: { name: 'looks-two' },
     },
+    {
+        title: 'I18n',
+        itemID: 'I18nExample',
+        icon: { name: 'translate' },
+    },
 ];
 
 export type NavDrawerProps = {
