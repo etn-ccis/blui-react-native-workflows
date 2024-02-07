@@ -117,7 +117,7 @@ export const SetPassword: React.FC<React.PropsWithChildren<SetPasswordProps>> = 
                     onPassChange(text);
                 }}
                 returnKeyType="next" // Show "next" button on keyboard
-                onSubmitEditing={() => confirmRef.current?.focus()} // Focus on confirm field when "next" is pressed
+                onSubmitEditing={() => confirmRef?.current?.focus()} // Focus on confirm field when "next" is pressed
             />
             <PasswordRequirements
                 passwordText={passwordInput}

@@ -2,6 +2,7 @@
 
 Component that renders a text field with a visibility toggle.
 
+<img width="400" alt="passwordTextField" src="../../media/passwordTextField.png">
 
 ## Usage
 

@@ -2,6 +2,7 @@
 
 Component that renders a change password form with a new password and confirm password inputs. It includes callbacks so you can respond to changes in the inputs.
 
+<img width="400" alt="setPassword" src="../../media/setPassword.png">
 
 ## Usage
 
