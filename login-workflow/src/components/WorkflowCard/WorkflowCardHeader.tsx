@@ -43,7 +43,9 @@ export type WorkflowCardHeaderProps = Omit<ViewProps, 'children'> & {
     icon?: IconSource;
 };
 
-const makeStyles = (theme: ExtendedTheme): StyleSheet.NamedStyles<{
+const makeStyles = (
+    theme: ExtendedTheme
+): StyleSheet.NamedStyles<{
     Header: ViewStyle;
     title: ViewStyle;
     headerContent: ViewStyle;
@@ -57,11 +59,11 @@ const makeStyles = (theme: ExtendedTheme): StyleSheet.NamedStyles<{
             flexDirection: 'row',
         },
         title: {
-            fontFamily: theme.fonts.labelLarge.fontFamily
+            fontFamily: theme.fonts.labelLarge.fontFamily,
         },
         headerContent: {
             marginLeft: 30,
-            justifyContent:'center'
+            justifyContent: 'center',
         },
     });
 /**
@@ -77,7 +79,7 @@ const makeStyles = (theme: ExtendedTheme): StyleSheet.NamedStyles<{
  *
  */
 export const WorkflowCardHeader: React.FC<WorkflowCardHeaderProps> = (props) => {
-    const { title,subTitle, backgroundColor, textColor, iconColor, icon, style, onIconPress, ...otherprops } = props;
+    const { title, subTitle, backgroundColor, textColor, iconColor, icon, style, onIconPress, ...otherprops } = props;
     const theme = useExtendedTheme();
     const defaultStyles = makeStyles(theme);
     const { isTablet } = useScreenDimensions();
@@ -114,12 +116,11 @@ export const WorkflowCardHeader: React.FC<WorkflowCardHeaderProps> = (props) => 
                     >
                         {title}
                     </Text>
-                    {subTitle && <Text
-                        variant="bodyLarge"
-                        style={[{ color: textColor || theme.colors.onPrimary }]}
-                    >
-                        {subTitle}
-                    </Text>}
+                    {subTitle && (
+                        <Text variant="bodyLarge" style={[{ color: textColor || theme.colors.onPrimary }]}>
+                            {subTitle}
+                        </Text>
+                    )}
                 </View>
             </View>
         </View>
