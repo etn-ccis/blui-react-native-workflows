@@ -6,6 +6,7 @@ import { IconFamily } from '@brightlayer-ui/react-native-components/core/__types
 import SelectDropdown from 'react-native-select-dropdown';
 import { useTranslation } from 'react-i18next';
 import { useExtendedTheme } from '@brightlayer-ui/react-native-themes';
+import { useApp } from '../context/AppContextProvider';
 
 const SwapIcon: IconFamily = {
     family: 'material',
@@ -43,6 +44,7 @@ export const UserMenuExample: React.FC<UserMenuExampleProps> = (props) => {
         { label: 'Portuguese', value: 'pt' },
     ];
 
+    const app = useApp();
     const menuItems: InfoListItemProps[] = [
         { title: 'Toggle RTL', icon: SwapIcon, onPress: (): void => onToggleRTL() },
         {
