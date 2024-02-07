@@ -104,3 +104,7 @@ In the case when a user already has an existing account, a separate success scre
 ```tsx
 accountAlreadyExistsScreen={(navigation) => <MyAccountAlreadyExistsScreen navigation={navigation} />
 ```
+
+### Customizing the Language Support
+
+For information about supporting multiple languages and customizing the translations, refer to our [Language Support](./language-support.md) guidelines.

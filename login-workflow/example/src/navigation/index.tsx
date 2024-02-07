@@ -7,11 +7,13 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Home from '../screens/home';
 import WorkFlowCardExample from '../screens/WorkFlowCardExample';
 import RegistrationProviderExample from '../screens/RegistrationProviderExample';
+import I18nExample from '../screens/I18nExample';
 
 const Drawer = createDrawerNavigator();
 
 export type RootStackParamList = {
     Home: undefined;
+    I18nExample: undefined;
     WorkFlowCardExample: undefined;
     RegistrationProviderExample: undefined;
     NavigationDrawer: undefined;
@@ -37,6 +39,7 @@ export const MainRouter = (): any => (
             <RootStack.Screen name="Home" component={Home} />
             <RootStack.Screen name="WorkFlowCardExample" component={WorkFlowCardExample} />
             <RootStack.Screen name="RegistrationProviderExample" component={RegistrationProviderExample} />
+            <RootStack.Screen name="I18nExample" component={I18nExample} />
         </Drawer.Navigator>
     </NavigationContainer>
 );
