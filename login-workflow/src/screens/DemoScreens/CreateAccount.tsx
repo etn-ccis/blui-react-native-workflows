@@ -34,13 +34,7 @@ export const CreateAccount: React.FC<CreateAccountProps> = (props) => {
 
     return (
         <WorkflowCard>
-            <WorkflowCardHeader
-                title="Create Account Screen"
-                onIconPress={(): void => {
-                    // eslint-disable-next-line
-                    console.log('close');
-                }}
-            />
+            <WorkflowCardHeader title="Create Account Screen" onIconPress={onPrevious} icon={{ name: 'arrow-back' }} />
 
             <WorkflowCardBody>
                 <TextInput

@@ -12,6 +12,7 @@ import { CreateAccount } from './CreateAccount';
 import { VerifyCode } from './VerifyCode';
 import { CreatePassword } from './CreatePassword';
 import { AccountDetails } from './AccountDetails';
+import { useNavigation } from '@react-navigation/native';
 
 const styles = StyleSheet.create({
     pagerView: {
@@ -20,6 +21,7 @@ const styles = StyleSheet.create({
 });
 
 export const DemoRegistrationWorkflowScreen: React.FC<React.PropsWithChildren<any>> = (props) => {
+    const navigation = useNavigation();
     const {
         initialScreenIndex = 0,
         isInviteRegistration = false,
@@ -103,8 +105,7 @@ export const DemoRegistrationWorkflowScreen: React.FC<React.PropsWithChildren<an
             previousScreen={(data): void => {
                 updateScreenData(data);
                 if (currentScreen === 0) {
-                    // eslint-disable-next-line
-                    console.log('navigate to home');
+                    navigation.navigate('Home');
                 }
                 setCurrentScreen((i: number) => i - 1);
                 viewPagerRef.current?.setPage(currentScreen - 1);

@@ -3,6 +3,7 @@ import { useRegistrationWorkflowContext } from '../../contexts';
 import { WorkflowCard, WorkflowCardActions, WorkflowCardBody, WorkflowCardHeader } from '../../components';
 import { Checkbox, Text } from 'react-native-paper';
 import { View, StyleSheet, Platform } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 type EulaScreenProps = {
     /**
@@ -21,6 +22,7 @@ const styles = StyleSheet.create({
 });
 export const EulaScreen: React.FC<EulaScreenProps> = (props) => {
     const regWorkflow = useRegistrationWorkflowContext();
+    const navigation = useNavigation();
     const {
         nextScreen,
         previousScreen,
@@ -59,15 +61,15 @@ export const EulaScreen: React.FC<EulaScreenProps> = (props) => {
             values: { accepted: eulaAccepted },
             isAccountExist: false,
         });
-    }, [eulaAccepted, previousScreen]);
+        navigation.navigate('Home');
+    }, [eulaAccepted, previousScreen, navigation]);
 
     return (
         <WorkflowCard>
             <WorkflowCardHeader
                 title="Eula Screen"
                 onIconPress={(): void => {
-                    // eslint-disable-next-line
-                    console.log('close');
+                    navigation.navigate('Home');
                 }}
             />
 

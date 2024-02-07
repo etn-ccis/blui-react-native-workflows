@@ -2,6 +2,7 @@ import React, { useCallback, useState } from 'react';
 import { useRegistrationWorkflowContext } from '../../contexts';
 import { WorkflowCard, WorkflowCardActions, WorkflowCardBody, WorkflowCardHeader } from '../../components';
 import { TextInput } from 'react-native-paper';
+import { useNavigation } from '@react-navigation/native';
 
 type AccountDetailsProps = {
     /**
@@ -14,6 +15,7 @@ type AccountDetailsProps = {
 
 export const AccountDetails: React.FC<AccountDetailsProps> = (props) => {
     const regWorkflow = useRegistrationWorkflowContext();
+    const navigation = useNavigation();
     const { nextScreen, previousScreen, screenData, currentScreen, totalScreens } = regWorkflow;
     const { firstName, lastName } = props;
 
@@ -26,7 +28,8 @@ export const AccountDetails: React.FC<AccountDetailsProps> = (props) => {
             screenId: 'AccountDetails',
             values: { firstName: firstName, lastName: lastName },
         });
-    }, [firstName, lastName, nextScreen]);
+        navigation.navigate('Home');
+    }, [firstName, lastName, nextScreen, navigation]);
 
     const onPrevious = useCallback(() => {
         void previousScreen({
@@ -37,13 +40,7 @@ export const AccountDetails: React.FC<AccountDetailsProps> = (props) => {
 
     return (
         <WorkflowCard>
-            <WorkflowCardHeader
-                title="Account Details"
-                onIconPress={(): void => {
-                    // eslint-disable-next-line
-                    console.log('close');
-                }}
-            />
+            <WorkflowCardHeader title="Account Details" onIconPress={onPrevious} icon={{ name: 'arrow-back' }} />
 
             <WorkflowCardBody>
                 <TextInput

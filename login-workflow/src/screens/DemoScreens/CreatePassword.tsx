@@ -40,13 +40,7 @@ export const CreatePassword: React.FC<CreatePasswordProps> = (props) => {
 
     return (
         <WorkflowCard>
-            <WorkflowCardHeader
-                title="Create Password"
-                onIconPress={(): void => {
-                    // eslint-disable-next-line
-                    console.log('close');
-                }}
-            />
+            <WorkflowCardHeader title="Create Password" onIconPress={onPrevious} icon={{ name: 'arrow-back' }} />
 
             <WorkflowCardBody>
                 <TextInput

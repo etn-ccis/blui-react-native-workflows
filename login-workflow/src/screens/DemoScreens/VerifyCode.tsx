@@ -52,13 +52,7 @@ export const VerifyCode: React.FC<VerifyCodeProps> = (props) => {
 
     return (
         <WorkflowCard>
-            <WorkflowCardHeader
-                title="Verify Code Screen"
-                onIconPress={(): void => {
-                    // eslint-disable-next-line
-                    console.log('close');
-                }}
-            />
+            <WorkflowCardHeader title="Verify Code Screen" onIconPress={onPrevious} icon={{ name: 'arrow-back' }} />
 
             <WorkflowCardBody>
                 <TextInput
