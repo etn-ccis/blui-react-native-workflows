@@ -2,7 +2,7 @@ import React from 'react';
 import { StatusBar, StyleSheet, TouchableOpacity, View, ViewProps, ViewStyle } from 'react-native';
 import { IconSource } from '@brightlayer-ui/react-native-components/core/__types__';
 import { Icon } from '@brightlayer-ui/react-native-components';
-import { useExtendedTheme } from '@brightlayer-ui/react-native-themes';
+import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 import { Text } from 'react-native-paper';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Color from 'color';
@@ -13,6 +13,10 @@ export type WorkflowCardHeaderProps = Omit<ViewProps, 'children'> & {
      * Text to display as title in Header
      */
     title: string;
+    /**
+     * Text to display as subtitle in Header
+     */
+    subTitle?: string;
     /**
      * On press functionality for the icon
      */
@@ -39,27 +43,32 @@ export type WorkflowCardHeaderProps = Omit<ViewProps, 'children'> & {
     icon?: IconSource;
 };
 
-const makeStyles = (): StyleSheet.NamedStyles<{
+const makeStyles = (theme: ExtendedTheme): StyleSheet.NamedStyles<{
     Header: ViewStyle;
     title: ViewStyle;
+    headerContent: ViewStyle;
 }> =>
     StyleSheet.create({
         Header: {
-            height: 56,
+            height: 60,
             paddingHorizontal: 16,
             paddingVertical: 12,
             alignItems: 'center',
             flexDirection: 'row',
         },
         title: {
+            fontFamily: theme.fonts.labelLarge.fontFamily
+        },
+        headerContent: {
             marginLeft: 30,
-            fontSize: 20,
+            justifyContent:'center'
         },
     });
 /**
  * Component that renders the Header for the workflow card.
  *
  * @param {string} [title] - text to display as title in header
+ * @param {string} [subTitle] - text to display as subtitle in header
  * @param {string} [backgroundColor] - background color of header Default: theme.colors.primary
  * @param {string} [textColor] - text color of header Default: theme.colors.onPrimary
  * @param {string} [iconColor] - icon color of header Default: theme.colors.onPrimary
@@ -68,9 +77,9 @@ const makeStyles = (): StyleSheet.NamedStyles<{
  *
  */
 export const WorkflowCardHeader: React.FC<WorkflowCardHeaderProps> = (props) => {
-    const { title, backgroundColor, textColor, iconColor, icon, style, onIconPress, ...otherprops } = props;
+    const { title,subTitle, backgroundColor, textColor, iconColor, icon, style, onIconPress, ...otherprops } = props;
     const theme = useExtendedTheme();
-    const defaultStyles = makeStyles();
+    const defaultStyles = makeStyles(theme);
     const { isTablet } = useScreenDimensions();
     const insets = useSafeAreaInsets();
     const statusBarHeight = insets.top;
@@ -98,13 +107,19 @@ export const WorkflowCardHeader: React.FC<WorkflowCardHeaderProps> = (props) => 
                 <TouchableOpacity testID="workflow-card-icon" onPress={onIconPress}>
                     {getIcon()}
                 </TouchableOpacity>
-                <View>
+                <View style={defaultStyles.headerContent}>
                     <Text
-                        variant="headlineSmall"
+                        variant="titleLarge"
                         style={[{ color: textColor || theme.colors.onPrimary }, defaultStyles.title]}
                     >
                         {title}
                     </Text>
+                    {subTitle && <Text
+                        variant="bodyLarge"
+                        style={[{ color: textColor || theme.colors.onPrimary }]}
+                    >
+                        {subTitle}
+                    </Text>}
                 </View>
             </View>
         </View>

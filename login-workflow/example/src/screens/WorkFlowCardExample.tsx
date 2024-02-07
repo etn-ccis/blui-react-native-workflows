@@ -24,6 +24,7 @@ const WorkFlowCardExample: React.FC<AppProps> = ({ navigation }): JSX.Element =>
             <WorkflowCard>
                 <WorkflowCardHeader
                     title="Workflow Example"
+                    subTitle='subtitle'
                     onIconPress={(): void => {
                         navigation.navigate('Home');
                     }}
