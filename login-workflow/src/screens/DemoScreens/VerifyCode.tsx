@@ -55,14 +55,7 @@ export const VerifyCode: React.FC<VerifyCodeProps> = (props) => {
             <WorkflowCardHeader title="Verify Code Screen" onIconPress={onPrevious} icon={{ name: 'arrow-back' }} />
 
             <WorkflowCardBody>
-                <TextInput
-                    label="TextInput"
-                    mode="flat"
-                    left={<TextInput.Icon icon="email" />}
-                    right={<TextInput.Icon icon="menu-down" />}
-                    value={verifyCode}
-                    onChangeText={(value) => setVerifyCode(value)}
-                />
+                <TextInput label="Code" mode="flat" value={verifyCode} onChangeText={(value) => setVerifyCode(value)} />
             </WorkflowCardBody>
             <WorkflowCardActions
                 showPrevious

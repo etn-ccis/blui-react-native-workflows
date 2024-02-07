@@ -24,7 +24,7 @@ export const navGroupItems: NavItem[] = [
         title: 'Registration Provider',
         itemID: 'RegistrationProviderExample',
         icon: { name: 'app-registration' },
-    }
+    },
 ];
 
 export type NavDrawerProps = {
