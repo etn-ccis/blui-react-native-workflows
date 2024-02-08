@@ -54,6 +54,7 @@ export type CommonTranslations = {
         PASSWORD: string;
         CONFIRM_PASSWORD: string;
         PASS_MATCH_ERROR: string;
+        PASS_MATCH: string;
         TOGGLE_PASSWORD_VISIBILITY: string;
         RESET_PASSWORD: string;
         FIRST_NAME_LENGTH_ERROR: string;

@@ -57,6 +57,7 @@ const resources: CommonTranslationsFile = {
             PASSWORD: 'Password',
             CONFIRM_PASSWORD: 'Confirm Password',
             PASS_MATCH_ERROR: 'Passwords do not match',
+            PASS_MATCH: 'Password Matches',
             TOGGLE_PASSWORD_VISIBILITY: 'Toggle password visibility',
             RESET_PASSWORD: 'Reset Password',
             FIRST_NAME_LENGTH_ERROR: 'First name must be at least 1 characters',

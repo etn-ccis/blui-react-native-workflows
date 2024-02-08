@@ -98,6 +98,7 @@
         "@react-native-community/masked-view": "^0.1.7",
         "@react-navigation/native": "^5.1.1",
         "@react-navigation/stack": "^5.2.3",
+        "@testing-library/jest-dom": "^6.4.1",
         "@testing-library/react-native": "^12.4.3",
         "@types/color": "^3.0.3",
         "@types/jest": "^29.0.3",
