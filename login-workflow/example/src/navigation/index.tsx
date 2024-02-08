@@ -5,7 +5,7 @@ import { View } from 'react-native';
 import { NavigationDrawer } from './navigation-drawer';
 import { createStackNavigator } from '@react-navigation/stack';
 import Home from '../screens/home';
-import WorkFlowCardExample from '../screens/WorkFlowCardExample';
+import { WorkflowCardWrapper } from '../screens/WorkflowCardWrapper';
 import RegistrationProviderExample from '../screens/RegistrationProviderExample';
 import I18nExample from '../screens/I18nExample';
 
@@ -33,13 +33,15 @@ export const MainRouter = (): any => (
             initialRouteName="Home"
             screenOptions={{
                 headerShown: false,
+                drawerType: 'front',
+                drawerStyle: { backgroundColor: 'transparent' },
             }}
             drawerContent={(props: any): ReactNode => <CustomDrawerContent {...props} />}
         >
             <RootStack.Screen name="Home" component={Home} />
-            <RootStack.Screen name="WorkFlowCardExample" component={WorkFlowCardExample} />
-            <RootStack.Screen name="RegistrationProviderExample" component={RegistrationProviderExample} />
+            <RootStack.Screen name="WorkFlowCardExample" component={WorkflowCardWrapper} />
             <RootStack.Screen name="I18nExample" component={I18nExample} />
+            <RootStack.Screen name="RegistrationProviderExample" component={RegistrationProviderExample} />
         </Drawer.Navigator>
     </NavigationContainer>
 );
