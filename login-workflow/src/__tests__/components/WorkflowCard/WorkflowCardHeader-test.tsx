@@ -20,22 +20,24 @@ describe('WorkflowCardHeader', () => {
         const rendered = renderer
             .create(
                 <SafeAreaProvider>
-                    <WorkflowCardHeader title={'title'} onIconPress={jest.fn()} icon={{ name: 'close' }} />
+                    <WorkflowCardHeader title={'title'} backgroundColor='#fff' onIconPress={jest.fn()} icon={{ name: 'close' }} />
                 </SafeAreaProvider>
             )
             .toJSON();
         expect(rendered).toBeTruthy();
     });
 
-    it('renders the title correctly', () => {
+    it('renders the title ans subtitle correctly', () => {
         const title = 'Test Title';
+        const subtitle= 'subtitle';
         const { getByText } = render(
             <SafeAreaProvider>
                 {' '}
-                <WorkflowCardHeader title={title} onIconPress={jest.fn()} />
+                <WorkflowCardHeader title={title} subTitle={subtitle} onIconPress={jest.fn()} />
             </SafeAreaProvider>
         );
         expect(getByText(title)).toBeTruthy();
+        expect(getByText(subtitle)).toBeTruthy();
     });
 
     it('calls onIconPress when the icon is pressed', () => {
