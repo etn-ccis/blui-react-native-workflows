@@ -57,6 +57,7 @@ const resources: CommonTranslationsFile = {
             PASSWORD: '密码',
             CONFIRM_PASSWORD: '确认密码',
             PASS_MATCH_ERROR: '密码不匹配',
+            PASS_MATCH: '密码匹配',
             TOGGLE_PASSWORD_VISIBILITY: '显示密码',
             RESET_PASSWORD: '重置密码',
             FIRST_NAME_LENGTH_ERROR: '名字必须至少包含1个字符',

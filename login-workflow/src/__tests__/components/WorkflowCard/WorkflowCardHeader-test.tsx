@@ -32,7 +32,7 @@ describe('WorkflowCardHeader', () => {
         expect(rendered).toBeTruthy();
     });
 
-    it('renders the title ans subtitle correctly', () => {
+    it('renders the title and subtitle correctly', () => {
         const title = 'Test Title';
         const subtitle = 'subtitle';
         const { getByText } = render(

@@ -1,10 +1,11 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useRef } from 'react';
 import {
     WorkflowCard,
     WorkflowCardBody,
     WorkflowCardInstructions,
     WorkflowCardHeader,
     WorkflowCardActions,
+    SetPassword,
     ErrorManager,
     useErrorManager,
 } from '@brightlayer-ui/react-native-auth-workflow';
@@ -20,6 +21,7 @@ const WorkFlowCardExample: React.FC = () => {
     const theme = useExtendedTheme();
     const [errorFilledText, setErrorFilledText] = React.useState('Hello');
     const [hasError, setHasError] = React.useState(true);
+    const confirmRef = useRef(null);
     const { triggerError, errorManagerConfig } = useErrorManager();
     const navigation = useNavigation();
     const errorDisplayConfig = {
@@ -43,6 +45,7 @@ const WorkFlowCardExample: React.FC = () => {
                 <WorkflowCardHeader
                     title="Workflow Example"
                     subTitle="subtitle"
+                    icon={{ name: 'arrow-back' }}
                     onIconPress={(): void => {
                         navigation.navigate('Home');
                     }}
@@ -68,6 +71,13 @@ const WorkFlowCardExample: React.FC = () => {
                         </HelperText>
                         <Button onPress={(): void => void onNext()}>Click for error</Button>
                     </ErrorManager>
+                    <SetPassword
+                        onSubmit={() => {
+                            // eslint-disable-next-line
+                            console.log('submitted');
+                        }}
+                        confirmRef={confirmRef}
+                    />
                 </WorkflowCardBody>
                 <WorkflowCardActions
                     showPrevious
