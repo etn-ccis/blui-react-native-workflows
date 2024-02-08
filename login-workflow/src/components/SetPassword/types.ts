@@ -100,13 +100,13 @@ export type SetPasswordProps = {
 
     /**
      * The props to pass to the password field.
-     * See React Native Paper [TextFieldProps API](https://callstack.github.io/react-native-paper/docs/components/TextInput/) for more details.
+     * See React Native Paper [TextInputProps API](https://callstack.github.io/react-native-paper/docs/components/TextInput/) for more details.
      */
     passwordTextFieldProps?: TextInputProps;
 
     /**
      * The props to pass to the confirm password field.
-     * See React Native Paper [TextFieldProps API](https://callstack.github.io/react-native-paper/docs/components/TextInput/) for more details.
+     * See React Native Paper [TextInputProps API](https://callstack.github.io/react-native-paper/docs/components/TextInput/) for more details.
      */
     confirmPasswordTextFieldProps?: TextInputProps;
 };

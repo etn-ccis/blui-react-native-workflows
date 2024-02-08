@@ -28,7 +28,7 @@ import { SetPassword } from '@brightlayer-ui/react-native-auth-workflow';
 | confirmRef                    | `MutableRefObject<any>`                                      | Optional ref to forward to the confirm password input.                                                                          |         |
 | passwordNotMatchError         | `string`                                                     | Optional text for showing message when passwords not match.                                                                     |         |
 | onSubmit                      | `() => void`                                                 | Callback function to fire when the Enter key is pressed in the confirm field.                                                   |         |
-| passwordTextFieldProps        | `TextFieldProps`                                             | Props to pass to the password input field. See React Native Paper [TextFieldProps](https://callstack.github.io/react-native-paper/docs/components/TextInput/).         |         |
+| passwordTextFieldProps        | `TextInputProps`                                             | Props to pass to the password input field. See React Native Paper [TextInputProps](https://callstack.github.io/react-native-paper/docs/components/TextInput/).         |         |
 | confirmPasswordTextFieldProps | `TextInputProps`                                             | Props to pass to the confirm password input field. See React Native Paper [TextInputProps](https://callstack.github.io/react-native-paper/docs/components/TextInput/). |         |
 
 ### PasswordRequirements
