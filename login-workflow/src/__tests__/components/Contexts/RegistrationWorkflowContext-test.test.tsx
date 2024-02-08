@@ -1,9 +1,12 @@
 import React from 'react';
 import { cleanup, render, screen, renderHook } from '@testing-library/react-native';
-import { RegistrationWorkflowContextProps, useRegistrationWorkflowContext } from '.';
-import { RegistrationWorkflowContextProvider } from './provider';
+import {
+    RegistrationWorkflowContextProps,
+    useRegistrationWorkflowContext,
+} from '../../../contexts/RegistrationWorkflowContext';
+import { RegistrationWorkflowContextProvider } from '../../../contexts/RegistrationWorkflowContext/provider';
 import { Text } from 'react-native-paper';
-import { registrationWorkflowContextProps } from '../../testUtils';
+import { registrationWorkflowContextProps } from '../../../testUtils';
 
 afterEach(cleanup);
 
