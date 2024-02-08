@@ -44,6 +44,7 @@ const WorkFlowCardExample: React.FC = () => {
             <WorkflowCard>
                 <WorkflowCardHeader
                     title="Workflow Example"
+                    subTitle="subtitle"
                     icon={{ name: 'arrow-back' }}
                     onIconPress={(): void => {
                         navigation.navigate('Home');
