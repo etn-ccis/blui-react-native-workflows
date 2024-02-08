@@ -6,7 +6,6 @@ import { NavigationDrawer } from './navigation-drawer';
 import { createStackNavigator } from '@react-navigation/stack';
 import Home from '../screens/home';
 import { WorkflowCardWrapper } from '../screens/WorkflowCardWrapper';
-import WorkFlowCardExample from '../screens/WorkFlowCardExample';
 import I18nExample from '../screens/I18nExample';
 
 const Drawer = createDrawerNavigator();
