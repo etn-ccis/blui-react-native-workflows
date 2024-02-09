@@ -20,7 +20,7 @@ type AppProps = {
 const RegistratonContextExample: React.FC<AppProps> = ({ navigation }): JSX.Element => {
     const { theme: themeType, setTheme } = useThemeContext();
     const theme = useExtendedTheme();
-    // const app = useApp();
+    const app = useApp();
 
     return (
         <>
@@ -47,11 +47,11 @@ const RegistratonContextExample: React.FC<AppProps> = ({ navigation }): JSX.Elem
                 <View>
                     <Text>Hello</Text>
                     <RegistrationContextProvider
-                        language={'en'}
+                        language={app.language}
                         actions={ProjectRegistrationUIActions()}
                         i18n={i18nAppInstance}
                         navigate={function (destination: string | number): void {
-                            throw new Error('Function not implemented.');
+                            throw new Error(`Function not implemented.${destination}`);
                         }}
                         routeConfig={{
                             LOGIN: undefined,

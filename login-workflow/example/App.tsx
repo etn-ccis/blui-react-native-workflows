@@ -13,9 +13,8 @@ import { MainRouter } from './src/navigation';
 import { ThemeContext, ThemeType } from './src/context/ThemeContext';
 import { blue, blueDark } from '@brightlayer-ui/react-native-themes';
 import i18nAppInstance from './translations/i18n';
-import { RegistrationDictionaries, SharedDictionaries } from '@brightlayer-ui/react-native-auth-workflow';
 import { I18nextProvider } from 'react-i18next';
-import { AppContext } from 'src/context/AppContextProvider';
+import { AppContext } from '../example/src/context/AppContextProvider';
 
 export const App = (): JSX.Element => {
     const [theme, setTheme] = useState<ThemeType>('light');

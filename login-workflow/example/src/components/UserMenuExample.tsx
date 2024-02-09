@@ -33,7 +33,9 @@ export const UserMenuExample: React.FC<UserMenuExampleProps> = (props) => {
     const { onToggleRTL, onToggleTheme } = props;
     const theme = useExtendedTheme();
     const { i18n } = useTranslation();
+    const app = useApp();
     const handleLanguageChange = (newLanguage: string): void => {
+        app.setLanguage(newLanguage);
         void i18n.changeLanguage(newLanguage);
     };
     const languageOptions = [
@@ -44,7 +46,6 @@ export const UserMenuExample: React.FC<UserMenuExampleProps> = (props) => {
         { label: 'Portuguese', value: 'pt' },
     ];
 
-    const app = useApp();
     const menuItems: InfoListItemProps[] = [
         { title: 'Toggle RTL', icon: SwapIcon, onPress: (): void => onToggleRTL() },
         {

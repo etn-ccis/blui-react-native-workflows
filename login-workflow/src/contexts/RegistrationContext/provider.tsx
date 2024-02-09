@@ -25,7 +25,6 @@ export const RegistrationContextProvider: React.FC<React.PropsWithChildren<Regis
     } = props;
 
     if (props.i18n) {
-        console.log('lang changed in IF');
         i18n.addResourceBundle('zh', 'bluiRegistration', RegistrationDictionaries.chinese.translation, true, false);
         i18n.addResourceBundle('zh', 'bluiCommon', SharedDictionaries.chinese.translation, true, false);
         i18n.addResourceBundle('en', 'bluiRegistration', RegistrationDictionaries.english.translation, true, false);
@@ -40,7 +39,6 @@ export const RegistrationContextProvider: React.FC<React.PropsWithChildren<Regis
 
     useEffect(() => {
         void i18n.changeLanguage(language);
-        console.log('lang changed');
     }, [i18n, language]);
 
     return (
