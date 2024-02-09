@@ -1,5 +1,5 @@
 import { i18n } from 'i18next';
-// import { ErrorContextProviderProps } from '../ErrorContext';
+import { ErrorContextProviderProps } from '../ErrorContext';
 import { RouteConfig } from '../../types';
 
 export type AccountDetails = {
@@ -94,6 +94,5 @@ export type RegistrationContextProviderProps = {
     /**
      * An object that is used to configure error handling within the workflow.
      */
-    // @todo add this type once
-    // errorConfig?: ErrorContextProviderProps;
+    errorConfig?: ErrorContextProviderProps;
 };

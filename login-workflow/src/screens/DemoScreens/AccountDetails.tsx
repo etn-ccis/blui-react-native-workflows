@@ -4,7 +4,7 @@ import { WorkflowCard, WorkflowCardActions, WorkflowCardBody, WorkflowCardHeader
 import { TextInput } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 
-type AccountDetailsProps = {
+type DemoAccountDetailsProps = {
     /**
      * Used to pre-populate the data when the screen loads
      *
@@ -13,7 +13,7 @@ type AccountDetailsProps = {
     lastName?: any;
 };
 
-export const AccountDetails: React.FC<AccountDetailsProps> = (props) => {
+export const AccountDetails: React.FC<DemoAccountDetailsProps> = (props) => {
     const regWorkflow = useRegistrationWorkflowContext();
     const navigation = useNavigation();
     const { nextScreen, previousScreen, screenData, currentScreen, totalScreens } = regWorkflow;

@@ -7,7 +7,7 @@ import React, { useEffect } from 'react';
 import { RegistrationContextProviderProps } from './types';
 import { RegistrationContext } from './context';
 import { i18nRegistrationInstance } from './i18nRegistrationInstance';
-// import { ErrorContext } from '../ErrorContext';
+import { ErrorContext } from '../ErrorContext';
 import { SharedDictionaries } from '../SharedDictionaries';
 import { RegistrationDictionaries } from './RegistrationDictionaries';
 import { I18nextProvider } from 'react-i18next';
@@ -17,12 +17,7 @@ export const RegistrationContextProvider: React.FC<React.PropsWithChildren<Regis
 ) => {
     const i18nInstance = props.i18n ?? i18nRegistrationInstance;
     const { children, ...registrationContextProps } = props;
-    const {
-        language,
-        i18n = i18nInstance,
-        //  @todo add this prop once errorContext is created
-        // errorConfig,
-    } = props;
+    const { language, i18n = i18nInstance, errorConfig } = props;
 
     if (props.i18n) {
         i18n.addResourceBundle('zh', 'bluiRegistration', RegistrationDictionaries.chinese.translation, true, false);
@@ -44,8 +39,7 @@ export const RegistrationContextProvider: React.FC<React.PropsWithChildren<Regis
     return (
         <I18nextProvider i18n={i18n}>
             <RegistrationContext.Provider value={registrationContextProps}>
-                {children}
-                {/* <ErrorContext.Provider value={errorConfig!}>{children}</ErrorContext.Provider> */}
+                <ErrorContext.Provider value={errorConfig!}>{children}</ErrorContext.Provider>
             </RegistrationContext.Provider>
         </I18nextProvider>
     );

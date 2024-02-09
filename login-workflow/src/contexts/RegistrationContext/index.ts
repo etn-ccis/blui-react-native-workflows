@@ -1,6 +1,13 @@
+import { RegistrationContext, useRegistrationContext } from './context';
 import i18nRegistrationInstance from './i18nRegistrationInstance';
-import { RegistrationDictionaries } from './RegistrationDictionaries';
-import { SharedDictionaries } from '../SharedDictionaries';
+import { RegistrationContextProviderProps, RegistrationUIActions, AccountDetails } from './types';
 import { RegistrationContextProvider } from './provider';
-
-export { i18nRegistrationInstance, RegistrationDictionaries, SharedDictionaries, RegistrationContextProvider };
+import { RegistrationDictionaries } from './RegistrationDictionaries';
+export type { RegistrationContextProviderProps, RegistrationUIActions, AccountDetails };
+export {
+    RegistrationContext,
+    RegistrationContextProvider,
+    i18nRegistrationInstance,
+    useRegistrationContext,
+    RegistrationDictionaries,
+};
