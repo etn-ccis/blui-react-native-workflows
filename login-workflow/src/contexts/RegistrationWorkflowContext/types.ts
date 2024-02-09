@@ -10,7 +10,7 @@ export type ScreenData = {
      */
     Eula: { accepted: boolean };
     /**
-     * @param {object} CreateAccount - Stores email address of Create Account Screen .
+     * @param {object} CreateAccount - Stores email address of Create Account Screen.
      *
      */
     CreateAccount: { emailAddress: string };
