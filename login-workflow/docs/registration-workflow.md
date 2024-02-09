@@ -95,3 +95,20 @@ The RouteConfig is an object that specifies the paths you are using for the rout
 | REGISTER_INVITE | `string` | The URL path for the invitation-based registration workflow |  |
 | REGISTER_SELF | `string` | The URL path for the self-registration workflow |  |
 | SUPPORT | `string` | The URL path for the Contact/Support screen |  |
+
+## RegistrationWorkflowContext
+The RegistrationWorkflowContext is responsible for managing the state of the individual screens/steps along with their collected data/inputs throughout the Registration Workflow.
+
+## API
+
+### RegistrationWorkflowContextProps
+
+| Prop Name | Type | Description | Default |
+|---|---|---|---|
+| currentScreen | `number` | The current screen in the registration workflow |  |
+| totalScreens | `number` | The language code specifying which language to use for the UI | `'en'` |
+| nextScreen | `(data: IndividualScreenData) => void` | Update the data of the current screen while navigating to the next screen in the Registration Workflow Context. |  |
+| previousScreen | `(data: IndividualScreenData) => void` | Update the data of the current screen while navigating to the previous screen in the Registration Workflow Context. |  |
+| screenData | `ScreenData` | An object of data of all screens available in the Registration Workflow Context |  |
+| updateScreenData | `(data: IndividualScreenData) => void` | Updates collected data/inputs throughout the Registration Workflow. |  |
+| isInviteRegistration | `boolean` | Indicates whether this workflow is for invitation-based registration. |  |
