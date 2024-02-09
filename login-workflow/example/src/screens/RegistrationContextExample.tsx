@@ -12,6 +12,9 @@ import { RegistrationContextProvider } from '@brightlayer-ui/react-native-auth-w
 import { useApp } from '../context/AppContextProvider';
 import { ProjectRegistrationUIActions } from '../actions/RegistrationUIActions';
 import i18nAppInstance from '../../translations/i18n';
+import RegistrationProviderExample from './RegistrationProviderExample';
+import { EulaScreen, VerifyCode, DemoRegistrationWorkflowScreen } from '@brightlayer-ui/react-native-auth-workflow';
+import { CustomScreen } from '../components/CustomScreen';
 
 type AppProps = {
     navigation: StackNavigationProp<RootStackParamList, 'RegistratonContextExample'>;
@@ -45,7 +48,6 @@ const RegistratonContextExample: React.FC<AppProps> = ({ navigation }): JSX.Elem
             />
             <SafeAreaView style={{ backgroundColor: theme.colors.background, flex: 1 }}>
                 <View>
-                    <Text>Hello</Text>
                     <RegistrationContextProvider
                         language={app.language}
                         actions={ProjectRegistrationUIActions()}
@@ -62,7 +64,11 @@ const RegistratonContextExample: React.FC<AppProps> = ({ navigation }): JSX.Elem
                             SUPPORT: undefined,
                         }}
                     >
-                        <Text>Test</Text>
+                        <DemoRegistrationWorkflowScreen />
+                        {/* <EulaScreen />
+                            <CustomScreen />
+                            <VerifyCode />
+                        </DemoRegistrationWorkflowScreen> */}
                     </RegistrationContextProvider>
                 </View>
             </SafeAreaView>

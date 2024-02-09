@@ -18,6 +18,9 @@ const resources: AppTranslationsFile = {
             CHANGE_PASSWORD: '更改密碼',
             MY_ACCOUNT: '我的賬戶',
         },
+        ORGANAIZATION_DETAILS: {
+            NAME: '机构名称',
+        },
     },
 };
 export default resources;
