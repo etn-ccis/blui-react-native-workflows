@@ -16,7 +16,7 @@ type AppProps = {
     navigation: StackNavigationProp<RootStackParamList, 'RegistratonContextExample'>;
 };
 
-const RegistratonContextExample: React.FC<AppProps> = (): JSX.Element => {
+const RegistrationContextExample: React.FC<AppProps> = (): JSX.Element => {
     const app = useApp();
 
     return (
@@ -44,4 +44,4 @@ const RegistratonContextExample: React.FC<AppProps> = (): JSX.Element => {
         </RegistrationContextProvider>
     );
 };
-export default RegistratonContextExample;
+export default RegistrationContextExample;
