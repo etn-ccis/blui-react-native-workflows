@@ -13,7 +13,7 @@ type DemoAccountDetailsProps = {
     lastName?: any;
 };
 
-export const AccountDetails: React.FC<DemoAccountDetailsProps> = (props) => {
+export const DemoAccountDetails: React.FC<DemoAccountDetailsProps> = (props) => {
     const regWorkflow = useRegistrationWorkflowContext();
     const navigation = useNavigation();
     const { nextScreen, previousScreen, screenData, currentScreen, totalScreens } = regWorkflow;
