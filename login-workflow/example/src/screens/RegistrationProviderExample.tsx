@@ -8,14 +8,12 @@ type AppProps = {
     navigation: StackNavigationProp<RootStackParamList, 'RegistrationProviderExample'>;
 };
 
-const RegistrationProviderExample: React.FC<AppProps> = (): JSX.Element => {
-    return (
-        <DemoRegistrationWorkflowScreen>
-            <EulaScreen />
-            <CustomScreen />
-            <VerifyCode />
-        </DemoRegistrationWorkflowScreen>
-    );
-};
+const RegistrationProviderExample: React.FC<AppProps> = (): JSX.Element => (
+    <DemoRegistrationWorkflowScreen>
+        <EulaScreen />
+        <CustomScreen />
+        <VerifyCode />
+    </DemoRegistrationWorkflowScreen>
+);
 
 export default RegistrationProviderExample;

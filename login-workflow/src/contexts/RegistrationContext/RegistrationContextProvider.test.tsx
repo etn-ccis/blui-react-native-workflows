@@ -1,27 +1,11 @@
 import React from 'react';
+import '@testing-library/jest-dom';
 import { RegistrationContextProvider } from './provider';
-import { useRegistrationContext } from './context';
 import { cleanup, render, renderHook } from '@testing-library/react-native';
 import { View } from 'react-native';
-import { RegistrationContextProviderProps } from './types';
-import { i18nRegistrationInstance } from './i18nRegistrationInstance';
 import { Text } from 'react-native-paper';
-
-export const registrationContextProviderProps: RegistrationContextProviderProps = {
-    language: 'en',
-    i18n: i18nRegistrationInstance,
-    navigate: (): void => {},
-    routeConfig: {},
-    actions: {
-        loadEula: jest.fn(),
-        acceptEula: jest.fn(),
-        requestRegistrationCode: jest.fn(),
-        validateUserRegistrationRequest: jest.fn(),
-        createPassword: jest.fn(),
-        setAccountDetails: jest.fn(),
-        completeRegistration: jest.fn().mockImplementation(() => Promise.resolve()),
-    },
-};
+import { useRegistrationContext } from './index';
+import { registrationContextProviderProps } from '../../testUtils';
 
 afterEach(cleanup);
 
