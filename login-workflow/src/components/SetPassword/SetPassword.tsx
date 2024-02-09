@@ -92,9 +92,7 @@ export const SetPassword: React.FC<React.PropsWithChildren<SetPasswordProps>> = 
     );
 
     const isValidPassword = useCallback((): boolean => {
-        const requirementsToCheck = passwordRequirements?.length
-            ? passwordRequirements
-            : defaultPasswordRequirements(t);
+        const requirementsToCheck = passwordRequirements ? passwordRequirements : defaultPasswordRequirements(t);
         for (let i = 0; i < requirementsToCheck.length; i++) {
             if (!new RegExp(requirementsToCheck[i].regex).test(passwordInput)) return false;
         }
