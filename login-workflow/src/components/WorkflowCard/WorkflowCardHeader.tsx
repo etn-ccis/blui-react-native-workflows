@@ -52,7 +52,7 @@ const makeStyles = (
 }> =>
     StyleSheet.create({
         Header: {
-            height: 60,
+            height: 64,
             paddingHorizontal: 16,
             paddingVertical: 12,
             alignItems: 'center',
@@ -87,23 +87,34 @@ export const WorkflowCardHeader: React.FC<WorkflowCardHeaderProps> = (props) => 
     const statusBarHeight = insets.top;
     const getIcon = (): JSX.Element | undefined => {
         if (icon) {
-            return <Icon source={icon} color={iconColor || theme.colors.onPrimary} size={18} />;
+            return <Icon source={icon} color={iconColor || theme.colors.onSurface} size={18} />;
         }
-        return <Icon source={{ name: 'close' }} color={iconColor || theme.colors.onPrimary} size={24} />;
+        return <Icon source={{ name: 'close' }} color={iconColor || theme.colors.onSurface} size={24} />;
     };
     return (
         <View>
             {!isTablet && (
-                <View style={{ backgroundColor: backgroundColor || theme.colors.primary, height: statusBarHeight }}>
+                <View
+                    style={{
+                        backgroundColor: backgroundColor || theme.colors.primaryContainer,
+                        height: statusBarHeight,
+                    }}
+                >
                     <StatusBar
                         barStyle={
-                            Color(backgroundColor || theme.colors.primary).isDark() ? 'light-content' : 'dark-content'
+                            Color(backgroundColor || theme.colors.primaryContainer).isDark()
+                                ? 'light-content'
+                                : 'dark-content'
                         }
                     />
                 </View>
             )}
             <View
-                style={[{ backgroundColor: backgroundColor || theme.colors.primary }, defaultStyles.Header, style]}
+                style={[
+                    { backgroundColor: backgroundColor || theme.colors.primaryContainer },
+                    defaultStyles.Header,
+                    style,
+                ]}
                 {...otherprops}
             >
                 <TouchableOpacity testID="workflow-card-icon" onPress={onIconPress}>
@@ -112,12 +123,12 @@ export const WorkflowCardHeader: React.FC<WorkflowCardHeaderProps> = (props) => 
                 <View style={defaultStyles.headerContent}>
                     <Text
                         variant="titleLarge"
-                        style={[{ color: textColor || theme.colors.onPrimary }, defaultStyles.title]}
+                        style={[{ color: textColor || theme.colors.onPrimaryContainer }, defaultStyles.title]}
                     >
                         {title}
                     </Text>
                     {subTitle && (
-                        <Text variant="bodyLarge" style={[{ color: textColor || theme.colors.onPrimary }]}>
+                        <Text variant="bodyMedium" style={[{ color: textColor || theme.colors.onPrimaryContainer }]}>
                             {subTitle}
                         </Text>
                     )}
