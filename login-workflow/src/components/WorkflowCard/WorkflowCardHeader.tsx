@@ -44,26 +44,38 @@ export type WorkflowCardHeaderProps = Omit<ViewProps, 'children'> & {
 };
 
 const makeStyles = (
-    theme: ExtendedTheme
+    theme: ExtendedTheme,
+    isTablet: boolean,
+    backgroundColor?: string,
+    textColor?: string
 ): StyleSheet.NamedStyles<{
-    Header: ViewStyle;
-    title: ViewStyle;
+    header: ViewStyle;
+    mobileHeader: ViewStyle;
+    tabletHeader: ViewStyle;
     headerContent: ViewStyle;
+    headerText: ViewStyle;
 }> =>
     StyleSheet.create({
-        Header: {
-            height: 60,
+        header: {
+            height: 64,
             paddingHorizontal: 16,
             paddingVertical: 12,
             alignItems: 'center',
             flexDirection: 'row',
         },
-        title: {
-            fontFamily: theme.fonts.labelLarge.fontFamily,
+        mobileHeader: {
+            backgroundColor: backgroundColor || theme.colors.primaryContainer,
+        },
+        tabletHeader: {
+            backgroundColor: backgroundColor || 'transparent',
         },
         headerContent: {
             marginLeft: 30,
             justifyContent: 'center',
+            color: textColor || isTablet ? theme.colors.onSurface : theme.colors.onPrimaryContainer,
+        },
+        headerText: {
+            color: textColor || isTablet ? theme.colors.onSurface : theme.colors.onPrimaryContainer,
         },
     });
 /**
@@ -81,43 +93,51 @@ const makeStyles = (
 export const WorkflowCardHeader: React.FC<WorkflowCardHeaderProps> = (props) => {
     const { title, subTitle, backgroundColor, textColor, iconColor, icon, style, onIconPress, ...otherprops } = props;
     const theme = useExtendedTheme();
-    const defaultStyles = makeStyles(theme);
     const { isTablet } = useScreenDimensions();
+    const defaultStyles = makeStyles(theme, isTablet, backgroundColor, textColor);
     const insets = useSafeAreaInsets();
     const statusBarHeight = insets.top;
     const getIcon = (): JSX.Element | undefined => {
         if (icon) {
-            return <Icon source={icon} color={iconColor || theme.colors.onPrimary} size={18} />;
+            return <Icon source={icon} color={iconColor || theme.colors.onSurface} size={18} />;
         }
-        return <Icon source={{ name: 'close' }} color={iconColor || theme.colors.onPrimary} size={24} />;
+        return <Icon source={{ name: 'close' }} color={iconColor || theme.colors.onSurface} size={24} />;
     };
     return (
         <View>
             {!isTablet && (
-                <View style={{ backgroundColor: backgroundColor || theme.colors.primary, height: statusBarHeight }}>
+                <View
+                    style={{
+                        backgroundColor: backgroundColor || theme.colors.primaryContainer,
+                        height: statusBarHeight,
+                    }}
+                >
                     <StatusBar
                         barStyle={
-                            Color(backgroundColor || theme.colors.primary).isDark() ? 'light-content' : 'dark-content'
+                            Color(backgroundColor || theme.colors.primaryContainer).isDark()
+                                ? 'light-content'
+                                : 'dark-content'
                         }
                     />
                 </View>
             )}
             <View
-                style={[{ backgroundColor: backgroundColor || theme.colors.primary }, defaultStyles.Header, style]}
+                style={[
+                    isTablet ? defaultStyles.tabletHeader : defaultStyles.mobileHeader,
+                    defaultStyles.header,
+                    style,
+                ]}
                 {...otherprops}
             >
                 <TouchableOpacity testID="workflow-card-icon" onPress={onIconPress}>
                     {getIcon()}
                 </TouchableOpacity>
                 <View style={defaultStyles.headerContent}>
-                    <Text
-                        variant="titleLarge"
-                        style={[{ color: textColor || theme.colors.onPrimary }, defaultStyles.title]}
-                    >
+                    <Text variant="titleLarge" style={[defaultStyles.headerText]}>
                         {title}
                     </Text>
                     {subTitle && (
-                        <Text variant="bodyLarge" style={[{ color: textColor || theme.colors.onPrimary }]}>
+                        <Text variant="bodyMedium" style={[defaultStyles.headerText]}>
                             {subTitle}
                         </Text>
                     )}
