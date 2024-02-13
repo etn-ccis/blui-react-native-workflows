@@ -44,26 +44,38 @@ export type WorkflowCardHeaderProps = Omit<ViewProps, 'children'> & {
 };
 
 const makeStyles = (
-    theme: ExtendedTheme
+    theme: ExtendedTheme,
+    isTablet: boolean,
+    backgroundColor?: string,
+    textColor?: string
 ): StyleSheet.NamedStyles<{
-    Header: ViewStyle;
-    title: ViewStyle;
+    header: ViewStyle;
+    mobileHeader: ViewStyle;
+    tabletHeader: ViewStyle;
     headerContent: ViewStyle;
+    headerText: ViewStyle;
 }> =>
     StyleSheet.create({
-        Header: {
+        header: {
             height: 64,
             paddingHorizontal: 16,
             paddingVertical: 12,
             alignItems: 'center',
             flexDirection: 'row',
         },
-        title: {
-            fontFamily: theme.fonts.labelLarge.fontFamily,
+        mobileHeader: {
+            backgroundColor: backgroundColor || theme.colors.primaryContainer,
+        },
+        tabletHeader: {
+            backgroundColor: backgroundColor || 'transparent',
         },
         headerContent: {
             marginLeft: 30,
             justifyContent: 'center',
+            color: textColor || isTablet ? theme.colors.onSurface : theme.colors.onPrimaryContainer,
+        },
+        headerText: {
+            color: textColor || isTablet ? theme.colors.onSurface : theme.colors.onPrimaryContainer,
         },
     });
 /**
@@ -81,8 +93,8 @@ const makeStyles = (
 export const WorkflowCardHeader: React.FC<WorkflowCardHeaderProps> = (props) => {
     const { title, subTitle, backgroundColor, textColor, iconColor, icon, style, onIconPress, ...otherprops } = props;
     const theme = useExtendedTheme();
-    const defaultStyles = makeStyles(theme);
     const { isTablet } = useScreenDimensions();
+    const defaultStyles = makeStyles(theme, isTablet, backgroundColor, textColor);
     const insets = useSafeAreaInsets();
     const statusBarHeight = insets.top;
     const getIcon = (): JSX.Element | undefined => {
@@ -111,8 +123,8 @@ export const WorkflowCardHeader: React.FC<WorkflowCardHeaderProps> = (props) => 
             )}
             <View
                 style={[
-                    { backgroundColor: backgroundColor || theme.colors.primaryContainer },
-                    defaultStyles.Header,
+                    isTablet ? defaultStyles.tabletHeader : defaultStyles.mobileHeader,
+                    defaultStyles.header,
                     style,
                 ]}
                 {...otherprops}
@@ -121,14 +133,11 @@ export const WorkflowCardHeader: React.FC<WorkflowCardHeaderProps> = (props) => 
                     {getIcon()}
                 </TouchableOpacity>
                 <View style={defaultStyles.headerContent}>
-                    <Text
-                        variant="titleLarge"
-                        style={[{ color: textColor || theme.colors.onPrimaryContainer }, defaultStyles.title]}
-                    >
+                    <Text variant="titleLarge" style={[defaultStyles.headerText]}>
                         {title}
                     </Text>
                     {subTitle && (
-                        <Text variant="bodyMedium" style={[{ color: textColor || theme.colors.onPrimaryContainer }]}>
+                        <Text variant="bodyMedium" style={[defaultStyles.headerText]}>
                             {subTitle}
                         </Text>
                     )}
