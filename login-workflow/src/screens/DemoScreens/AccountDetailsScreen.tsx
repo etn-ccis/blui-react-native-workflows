@@ -2,63 +2,61 @@ import React, { useCallback, useState } from 'react';
 import { useRegistrationWorkflowContext } from '../../contexts';
 import { WorkflowCard, WorkflowCardActions, WorkflowCardBody, WorkflowCardHeader } from '../../components';
 import { TextInput } from 'react-native-paper';
+import { useNavigation } from '@react-navigation/native';
 
-type CreatePasswordProps = {
+type DemoAccountDetailsProps = {
     /**
      * Used to pre-populate the data when the screen loads
      *
      */
-    password?: any;
-    confirmPassword?: any;
+    firstName?: any;
+    lastName?: any;
 };
 
-export const CreatePassword: React.FC<CreatePasswordProps> = (props) => {
+export const AccountDetailsScreen: React.FC<DemoAccountDetailsProps> = (props) => {
     const regWorkflow = useRegistrationWorkflowContext();
+    const navigation = useNavigation();
     const { nextScreen, previousScreen, screenData, currentScreen, totalScreens } = regWorkflow;
-    const { password, confirmPassword } = props;
+    const { firstName, lastName } = props;
 
-    const [passwordInput, setPasswordInput] = useState(
-        password !== '' ? password : screenData.CreatePassword.password ?? ''
-    );
-    const [confirmInput, setConfirmInput] = useState(
-        confirmPassword !== '' ? confirmPassword : screenData.CreatePassword.confirmPassword ?? ''
-    );
+    const [firstNameInput, setFirstNameInput] = useState(firstName ? firstName : screenData.AccountDetails.firstName);
+
+    const [lastNameInput, setLastNameInput] = useState(lastName ? lastName : screenData.AccountDetails.lastName);
 
     const onNext = useCallback(() => {
         void nextScreen({
-            screenId: 'CreatePassword',
-            values: { password: passwordInput, confirmPassword: confirmInput },
+            screenId: 'AccountDetails',
+            values: { firstName: firstName, lastName: lastName },
         });
-    }, [passwordInput, confirmInput, nextScreen]);
+        navigation.navigate('Home');
+    }, [firstName, lastName, nextScreen, navigation]);
 
     const onPrevious = useCallback(() => {
         void previousScreen({
-            screenId: 'CreatePassword',
-            values: { password: passwordInput, confirmPassword: confirmInput },
+            screenId: 'AccountDetails',
+            values: { firstName: firstName, lastName: lastName },
         });
-    }, [passwordInput, confirmInput, previousScreen]);
+    }, [lastName, firstName, previousScreen]);
 
     return (
         <WorkflowCard>
-            <WorkflowCardHeader title="Create Password" onIconPress={onPrevious} icon={{ name: 'arrow-back' }} />
+            <WorkflowCardHeader title="Account Details" onIconPress={onPrevious} icon={{ name: 'arrow-back' }} />
 
             <WorkflowCardBody>
                 <TextInput
-                    label="Password"
+                    label="First Name"
                     mode="flat"
-                    value={passwordInput}
-                    onChangeText={(value) => setPasswordInput(value)}
-                    secureTextEntry
+                    value={firstNameInput}
+                    onChangeText={(value) => setFirstNameInput(value)}
                     style={{
                         marginBottom: 16,
                     }}
                 />
                 <TextInput
-                    label="Comfirm Password"
+                    label="Last Name"
                     mode="flat"
-                    value={confirmInput}
-                    onChangeText={(value) => setConfirmInput(value)}
-                    secureTextEntry
+                    value={lastNameInput}
+                    onChangeText={(value) => setLastNameInput(value)}
                 />
             </WorkflowCardBody>
             <WorkflowCardActions

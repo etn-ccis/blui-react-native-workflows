@@ -11,7 +11,7 @@ type CreateAccountProps = {
     email?: any;
 };
 
-export const CreateAccount: React.FC<CreateAccountProps> = (props) => {
+export const CreateAccountScreen: React.FC<CreateAccountProps> = (props) => {
     const regWorkflow = useRegistrationWorkflowContext();
     const { nextScreen, previousScreen, screenData, currentScreen, totalScreens } = regWorkflow;
     const { email } = props;

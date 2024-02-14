@@ -11,7 +11,7 @@ type VerifyCodeProps = {
     code?: string;
 };
 
-export const VerifyCode: React.FC<VerifyCodeProps> = (props) => {
+export const VerifyCodeScreen: React.FC<VerifyCodeProps> = (props) => {
     const regWorkflow = useRegistrationWorkflowContext();
     const {
         nextScreen,
