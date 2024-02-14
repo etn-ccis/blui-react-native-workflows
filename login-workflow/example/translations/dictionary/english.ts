@@ -18,6 +18,9 @@ const resources: AppTranslationsFile = {
             CHANGE_PASSWORD: 'Change Password',
             MY_ACCOUNT: 'My Account',
         },
+        ORGANAIZATION_DETAILS: {
+            NAME: 'Organisation Name',
+        },
     },
 };
 export default resources;

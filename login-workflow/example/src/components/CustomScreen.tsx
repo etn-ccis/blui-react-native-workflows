@@ -8,6 +8,7 @@ import {
     useRegistrationWorkflowContext,
 } from '@brightlayer-ui/react-native-auth-workflow';
 import { TextInput } from 'react-native-paper';
+import { useTranslation } from 'react-i18next';
 
 type CustomScreenProps = {
     /**
@@ -21,6 +22,7 @@ export const CustomScreen: React.FC<CustomScreenProps> = (props) => {
     const regWorkflow = useRegistrationWorkflowContext();
     const { nextScreen, previousScreen, screenData, currentScreen, totalScreens } = regWorkflow;
     const { organisationName } = props;
+    const { t } = useTranslation();
 
     const [organisationNameInput, setOrganisationNameInput] = useState(
         organisationName ? organisationName : screenData.Other?.organisationName
@@ -43,10 +45,9 @@ export const CustomScreen: React.FC<CustomScreenProps> = (props) => {
     return (
         <WorkflowCard>
             <WorkflowCardHeader title="Custom Screen" onIconPress={onPrevious} icon={{ name: 'arrow-back' }} />
-
             <WorkflowCardBody>
                 <TextInput
-                    label="Organisation Name"
+                    label={t('app:ORGANAIZATION_DETAILS.NAME')}
                     mode="flat"
                     value={organisationNameInput}
                     onChangeText={(value) => setOrganisationNameInput(value)}
@@ -55,8 +56,8 @@ export const CustomScreen: React.FC<CustomScreenProps> = (props) => {
             <WorkflowCardActions
                 showPrevious
                 showNext
-                previousLabel="Back"
-                nextLabel="Next"
+                previousLabel={t('bluiCommon:ACTIONS.BACK')}
+                nextLabel={t('bluiCommon:ACTIONS.OKAY')}
                 currentStep={currentScreen}
                 totalSteps={totalScreens}
                 onNext={onNext}
