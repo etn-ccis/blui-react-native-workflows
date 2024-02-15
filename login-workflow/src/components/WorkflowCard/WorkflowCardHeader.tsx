@@ -12,7 +12,7 @@ export type WorkflowCardHeaderProps = Omit<ViewProps, 'children'> & {
     /**
      * Text to display as title in Header
      */
-    title: string;
+    title?: string;
     /**
      * Text to display as subtitle in Header
      */
@@ -20,7 +20,7 @@ export type WorkflowCardHeaderProps = Omit<ViewProps, 'children'> & {
     /**
      * On press functionality for the icon
      */
-    onIconPress: () => void;
+    onIconPress?: () => void;
     /**
      * The background color of Header
      * @default theme.colors.primary
