@@ -15,6 +15,9 @@ export type AppTranslations = {
         CHANGE_PASSWORD: string;
         MY_ACCOUNT: string;
     };
+    ORGANAIZATION_DETAILS: {
+        NAME: string;
+    };
 };
 export type AppTranslationsFile = {
     translation: AppTranslations;

@@ -9,6 +9,7 @@ import { WorkflowCardWrapper } from '../screens/WorkflowCardWrapper';
 import RegistrationProviderExample from '../screens/RegistrationProviderExample';
 import I18nExample from '../screens/I18nExample';
 import { RegistrationSuccessScreen } from '../screens/RegistrationSuccessScreen';
+import RegistrationContextExample from '../screens/RegistrationContextExample';
 
 const Drawer = createDrawerNavigator();
 
@@ -19,6 +20,7 @@ export type RootStackParamList = {
     RegistrationSuccessScreen: undefined;
     RegistrationProviderExample: undefined;
     NavigationDrawer: undefined;
+    RegistratonContextExample: undefined;
 };
 
 const RootStack = createStackNavigator<RootStackParamList>();
@@ -44,6 +46,7 @@ export const MainRouter = (): any => (
             <RootStack.Screen name="WorkFlowCardExample" component={WorkflowCardWrapper} />
             <RootStack.Screen name="RegistrationSuccessScreen" component={RegistrationSuccessScreen} />
             <RootStack.Screen name="I18nExample" component={I18nExample} />
+            <RootStack.Screen name="RegistratonContextExample" component={RegistrationContextExample} />
             <RootStack.Screen name="RegistrationProviderExample" component={RegistrationProviderExample} />
         </Drawer.Navigator>
     </NavigationContainer>

@@ -11,7 +11,7 @@ import { EulaScreen } from './EulaScreen';
 import { CreateAccount } from './CreateAccount';
 import { VerifyCode } from './VerifyCode';
 import { CreatePassword } from './CreatePassword';
-import { AccountDetails } from './AccountDetails';
+import { DemoAccountDetails } from './DemoAccountDetails';
 import { useNavigation } from '@react-navigation/native';
 
 const styles = StyleSheet.create({
@@ -30,7 +30,7 @@ export const DemoRegistrationWorkflowScreen: React.FC<React.PropsWithChildren<an
             <CreateAccount key="CreateAccount" />,
             <VerifyCode key="VerifyCode" />,
             <CreatePassword key="CreatePassword" />,
-            <AccountDetails key="AccountDetails" />,
+            <DemoAccountDetails key="AccountDetails" />,
         ],
     } = props;
 

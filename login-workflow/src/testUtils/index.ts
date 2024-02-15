@@ -1,4 +1,8 @@
-import { RegistrationWorkflowContextProps } from '../contexts';
+import {
+    RegistrationContextProviderProps,
+    RegistrationWorkflowContextProps,
+    i18nRegistrationInstance,
+} from '../contexts';
 
 export const registrationWorkflowContextProps: RegistrationWorkflowContextProps = {
     currentScreen: 0,
@@ -16,5 +20,21 @@ export const registrationWorkflowContextProps: RegistrationWorkflowContextProps 
     },
     updateScreenData: function (): void {
         throw new Error('Function not implemented.');
+    },
+};
+
+export const registrationContextProviderProps: RegistrationContextProviderProps = {
+    language: 'en',
+    i18n: i18nRegistrationInstance,
+    navigate: (): void => {},
+    routeConfig: {},
+    actions: {
+        loadEula: jest.fn(),
+        acceptEula: jest.fn(),
+        requestRegistrationCode: jest.fn(),
+        validateUserRegistrationRequest: jest.fn(),
+        createPassword: jest.fn(),
+        setAccountDetails: jest.fn(),
+        completeRegistration: jest.fn().mockImplementation(() => Promise.resolve()),
     },
 };

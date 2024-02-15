@@ -1,5 +1,5 @@
 export * from './DemoRegistrationWorkflowScreen';
-export * from './AccountDetails';
+export * from './DemoAccountDetails';
 export * from './CreateAccount';
 export * from './CreatePassword';
 export * from './EulaScreen';
