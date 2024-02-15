@@ -30,7 +30,7 @@ const makeStyles = (
  * Component that renders a change password form with a new password and confirm password inputs.
  * It includes callbacks so you can respond to changes in the inputs.
  *
- * @param props - props of SetPassword component
+ * @param {SetPasswordProps} props - props of SetPassword component
  *
  * @category Component
  */
