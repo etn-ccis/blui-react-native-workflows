@@ -99,7 +99,7 @@ export const WorkflowCardHeader: React.FC<WorkflowCardHeaderProps> = (props) => 
     const statusBarHeight = insets.top;
     const getIcon = (): JSX.Element | undefined => {
         if (icon) {
-            return <Icon source={icon} color={iconColor || theme.colors.onSurface} size={18} />;
+            return <Icon source={icon} color={iconColor || theme.colors.onSurface} size={24} />;
         }
         return <Icon source={{ name: 'close' }} color={iconColor || theme.colors.onSurface} size={24} />;
     };

@@ -1,5 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { IndividualScreenData, RegistrationWorkflowContextProvider, useRegistrationContext } from '../../contexts';
+//TODO: Update demo screen with original workflow screens
 import {
     AccountDetailsScreen,
     CreateAccountScreen,
@@ -11,16 +12,10 @@ import {
 } from '../../screens/DemoScreens';
 import PagerView from 'react-native-pager-view';
 import { View, StyleSheet } from 'react-native';
-// import { parseQueryString } from '../../utils';
 
 import { useErrorManager } from '../../contexts/ErrorContext/useErrorManager';
 import { ErrorManager, ErrorManagerProps } from '../Error/ErrorManager';
-import { useRoute } from '@react-navigation/native';
 
-type SelfRegistrationPagerParams = {
-    code?: string;
-    emailAddress?: string;
-};
 const styles = StyleSheet.create({
     pagerView: {
         flex: 1,
@@ -71,7 +66,6 @@ export const RegistrationWorkflow: React.FC<React.PropsWithChildren<Registration
     const [isAccountExist, setIsAccountExist] = useState(false);
     const { triggerError, errorManagerConfig } = useErrorManager();
     const { actions, navigate } = useRegistrationContext();
-    const route = useRoute();
     const viewPagerRef = useRef<PagerView>(null);
 
     const errorDisplayConfig = {
@@ -188,16 +182,6 @@ export const RegistrationWorkflow: React.FC<React.PropsWithChildren<Registration
             console.error(err);
         }
     };
-
-    useEffect(() => {
-        if (isInviteRegistration) {
-            const params = route.params as SelfRegistrationPagerParams;
-
-            updateScreenData({ screenId: 'CreateAccount', values: { emailAddress: params?.emailAddress ?? '' } });
-            updateScreenData({ screenId: 'VerifyCode', values: { code: params?.code ?? '' } });
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
 
     return (
         <RegistrationWorkflowContextProvider

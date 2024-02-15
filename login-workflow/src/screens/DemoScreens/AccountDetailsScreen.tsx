@@ -27,8 +27,9 @@ export const AccountDetailsScreen: React.FC<DemoAccountDetailsProps> = (props) =
         void nextScreen({
             screenId: 'AccountDetails',
             values: { firstName: firstName, lastName: lastName },
+            isAccountExist: true
         });
-        navigation.navigate('Home');
+        
     }, [firstName, lastName, nextScreen, navigation]);
 
     const onPrevious = useCallback(() => {
