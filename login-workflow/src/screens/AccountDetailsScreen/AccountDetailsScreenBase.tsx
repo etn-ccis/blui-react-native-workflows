@@ -146,7 +146,7 @@ export const AccountDetailsScreenBase: React.FC<AccountDetailsScreenProps> = (pr
                 <ErrorManager {...errorDisplayConfig}>
                     <TextInput
                         testID="firstName"
-                        mode="outlined"
+                        mode="flat"
                         ref={firstNameRef}
                         label={firstNameLabel}
                         value={firstNameInput}
@@ -166,7 +166,7 @@ export const AccountDetailsScreenBase: React.FC<AccountDetailsScreenProps> = (pr
                     {shouldValidateFirstName && <ErrorText errorText={firstNameError} />}
                     <TextInput
                         testID="lastName"
-                        mode="outlined"
+                        mode="flat"
                         ref={lastNameRef}
                         label={lastNameLabel}
                         value={lastNameInput}
