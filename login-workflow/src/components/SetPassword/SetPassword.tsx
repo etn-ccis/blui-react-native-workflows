@@ -98,7 +98,7 @@ export const SetPassword: React.FC<React.PropsWithChildren<SetPasswordProps>> = 
         }
 
         return true;
-    }, [passwordRequirements, passwordInput]);
+    }, [passwordRequirements, passwordInput, t]);
     return (
         <>
             {children}
