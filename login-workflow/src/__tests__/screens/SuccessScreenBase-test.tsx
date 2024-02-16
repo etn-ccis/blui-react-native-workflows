@@ -1,7 +1,7 @@
 import React from 'react';
 import { cleanup, fireEvent, render, screen } from '@testing-library/react-native';
 import '@testing-library/react-native/extend-expect';
-import { SuccessScreenBase } from 'src/screens';
+import { SuccessScreenBase } from '../../screens/SuccessScreen/SuccessScreenBase';
 import { Provider as PaperProvider } from 'react-native-paper';
 
 describe('SuccessScreenBase Test', () => {
