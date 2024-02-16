@@ -53,13 +53,13 @@ export type WorkflowCardActionsProps = ViewProps & {
 
     /**
      *
-     * @param {boolean} [showPrevious=true] - Boolean that indicates whether the previous button should be displayed
+     * @param {boolean} [showPrevious] - Boolean that indicates whether the previous button should be displayed
      */
     showPrevious?: boolean;
 
     /**
      *
-     * @param {boolean} [showNext=true] - Boolean that indicates whether the next button should be displayed
+     * @param {boolean} [showNext] - Boolean that indicates whether the next button should be displayed
      */
     showNext?: boolean;
 
