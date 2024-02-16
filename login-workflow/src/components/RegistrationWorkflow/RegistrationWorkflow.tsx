@@ -14,7 +14,8 @@ import PagerView from 'react-native-pager-view';
 import { View, StyleSheet } from 'react-native';
 
 import { useErrorManager } from '../../contexts/ErrorContext/useErrorManager';
-import { ErrorManager, ErrorManagerProps } from '../Error/ErrorManager';
+import { ErrorManager } from '../Error/ErrorManager';
+import { RegistrationWorkflowProps } from './types';
 
 const styles = StyleSheet.create({
     pagerView: {
@@ -25,42 +26,10 @@ const styles = StyleSheet.create({
 /**
  * Component that contain the registration workflow and index of screens.
  *
- * @param initialScreenIndex initial screen index to start the registration workflow from
- * @param successScreen success screen to display upon successful registration
- * @param isInviteRegistration boolean when true verifies validateUserRegistrationRequest for verifyCode
- * @param existingAccountSuccessScreen component that displays the success screen
+ * @param {RegistrationWorkflowProps} props - props of RegistrationWorkflow component
  *
  * @category Component
  */
-
-export type RegistrationWorkflowProps = {
-    /**
-     * The initial screen index to start the registration workflow from
-     */
-    initialScreenIndex?: number;
-
-    /**
-     * The success screen to display upon successful registration
-     */
-    successScreen?: JSX.Element;
-
-    /**
-     * When true verifies validateUserRegistrationRequest for verifyCode and several of the default screens will be skipped
-     * not requiring user input for email and the validation code will be pulled from the url
-     * @default false
-     */
-    isInviteRegistration?: boolean;
-
-    /**
-     * Component to display for the success screen if the account already exists.
-     */
-    existingAccountSuccessScreen?: JSX.Element;
-
-    /**
-     * The configuration for customizing how errors are displayed
-     */
-    errorDisplayConfig?: ErrorManagerProps;
-};
 
 export const RegistrationWorkflow: React.FC<React.PropsWithChildren<RegistrationWorkflowProps>> = (props) => {
     const [isAccountExist, setIsAccountExist] = useState(false);

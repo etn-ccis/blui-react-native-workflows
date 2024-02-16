@@ -1,15 +1,13 @@
 import React from 'react';
 import '@testing-library/jest-dom';
 import { cleanup, fireEvent, render, screen, renderHook, act, RenderResult } from '@testing-library/react-native';
-import {
-    RegistrationWorkflow,
-    RegistrationWorkflowProps,
-} from '../../../components/RegistrationWorkflow/RegistrationWorkflow';
+import { RegistrationWorkflow } from '../../../components/RegistrationWorkflow/RegistrationWorkflow';
 import { RegistrationContextProvider, useRegistrationWorkflowContext } from '../../../contexts';
 import { CreateAccountScreen } from '../../../screens';
 import { registrationContextProviderProps } from '../../../testUtils';
 import { Button, Text, Provider as PaperProvider } from 'react-native-paper';
 import { View } from 'react-native';
+import { RegistrationWorkflowProps } from 'src/components/RegistrationWorkflow/types';
 afterEach(cleanup);
 
 const defaultProps: RegistrationWorkflowProps = {
