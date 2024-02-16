@@ -30,6 +30,11 @@ export const navGroupItems: NavItem[] = [
         itemID: 'RegistrationProviderExample',
         icon: { name: 'app-registration' },
     },
+    {
+        title: 'VerifyCodeScreenBase',
+        itemID: 'VerifyCodeScreenBaseExample',
+        icon: { name: 'check' },
+    },
 ];
 
 export type NavDrawerProps = {
