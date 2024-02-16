@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { EulaScreenProps } from './types';
 import {
     ErrorManager,
@@ -8,7 +8,7 @@ import {
     WorkflowCardHeader,
     WorkflowCardInstructions,
 } from '../../components';
-import { ScrollView, TouchableOpacity, View } from 'react-native';
+import { LayoutChangeEvent, ScrollView, TouchableOpacity, View } from 'react-native';
 import { Checkbox, Text } from 'react-native-paper';
 import { Icon } from '@brightlayer-ui/react-native-components';
 import { WebView } from 'react-native-webview';
@@ -33,6 +33,8 @@ export const EulaScreenBase: React.FC<EulaScreenProps> = (props) => {
     const actionsProps = props.WorkflowCardActionsProps || {};
     const theme = useExtendedTheme();
     // const { t } = useTranslation();
+    const scrollViewRef = useRef<ScrollView>(null);
+    const contentSizeRef = useRef<{ width: number; height: number }>({ width: 0, height: 0 });
 
     const [eulaAccepted, setEulaAccepted] = useState(initialCheckboxValue ?? false);
     const [checkboxEnable, setCheckboxEnable] = useState(false);
@@ -55,6 +57,12 @@ export const EulaScreenBase: React.FC<EulaScreenProps> = (props) => {
     }): boolean => {
         const paddingToBottom = 30;
         return layoutMeasurement.height + contentOffset.y >= contentSize.height - paddingToBottom;
+    };
+
+    const handleLayout = (event: LayoutChangeEvent): void => {
+        const { width, height } = event.nativeEvent.layout;
+        contentSizeRef.current = { width, height };
+        setCheckboxEnable(height >= contentSizeRef.current.height);
     };
 
     return (
@@ -91,6 +99,7 @@ export const EulaScreenBase: React.FC<EulaScreenProps> = (props) => {
                             {html ? (
                                 <WebView
                                     originWhitelist={['*']}
+                                    testID="eulaBase-webview"
                                     source={{ html: eulaContent as string, baseUrl: '' }}
                                     scalesPageToFit={false}
                                     nestedScrollEnabled={true}
@@ -100,6 +109,7 @@ export const EulaScreenBase: React.FC<EulaScreenProps> = (props) => {
                                         }
                                     }}
                                     scrollEventThrottle={10}
+                                    onLayout={handleLayout}
                                     forceDarkOn={theme.dark ? true : false}
                                     style={{
                                         flex: 1,
@@ -113,8 +123,14 @@ export const EulaScreenBase: React.FC<EulaScreenProps> = (props) => {
                                             setCheckboxEnable(true);
                                         }
                                     }}
+                                    testID="eulaBase-scrollview"
+                                    ref={scrollViewRef}
                                     scrollEventThrottle={10}
                                     nestedScrollEnabled={true}
+                                    onContentSizeChange={(w, height) => {
+                                        setCheckboxEnable(height <= contentSizeRef.current.height);
+                                    }}
+                                    onLayout={handleLayout}
                                 >
                                     <Text variant={'titleSmall'} style={{ letterSpacing: 0 }}>
                                         {eulaContent}
@@ -123,6 +139,7 @@ export const EulaScreenBase: React.FC<EulaScreenProps> = (props) => {
                             )}
                             <ErrorManager {...errorDisplayConfig}>
                                 <Checkbox.Item
+                                    testID="eulaBase-checkbox"
                                     color={theme.colors.primary}
                                     disabled={!checkboxEnable}
                                     status={eulaAccepted ? 'checked' : 'unchecked'}
