@@ -1,15 +1,15 @@
 import React from 'react';
 import '@testing-library/jest-dom';
 import { cleanup, fireEvent, render, screen, renderHook, act, RenderResult } from '@testing-library/react-native';
-import { RegistrationWorkflow, RegistrationWorkflowProps } from '../../../components/RegistrationWorkflow/RegistrationWorkflow';
-import { RegistrationContextProvider, RegistrationWorkflowContextProvider, useRegistrationWorkflowContext } from '../../../contexts';
+import {
+    RegistrationWorkflow,
+    RegistrationWorkflowProps,
+} from '../../../components/RegistrationWorkflow/RegistrationWorkflow';
+import { RegistrationContextProvider, useRegistrationWorkflowContext } from '../../../contexts';
 import { CreateAccountScreen } from '../../../screens';
 import { registrationContextProviderProps } from '../../../testUtils';
-import { Button, Text } from 'react-native-paper';
+import { Button, Text, Provider as PaperProvider } from 'react-native-paper';
 import { View } from 'react-native';
-// import { WorkflowCard, WorkflowCardBody, WorkflowCardHeader } from 'src/components';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { Provider as PaperProvider } from 'react-native-paper';
 afterEach(cleanup);
 
 const defaultProps: RegistrationWorkflowProps = {
@@ -27,7 +27,6 @@ const renderer = (props = defaultProps): RenderResult =>
     );
 
 describe('RegistrationWorkflow', () => {
-
     it('should render RegistrationWorkflowContextProvider without crashing', () => {
         renderer().toJSON();
         expect(render).toBeTruthy();
@@ -79,19 +78,21 @@ describe('RegistrationWorkflow', () => {
 
     it('should set screen data for default registration workflow in the context', () => {
         const wrapper = ({ children }: any): JSX.Element => (
-            <PaperProvider><RegistrationContextProvider {...registrationContextProviderProps}>
-                <RegistrationWorkflow {...defaultProps}>{children}</RegistrationWorkflow>
-            </RegistrationContextProvider></PaperProvider>
+            <PaperProvider>
+                <RegistrationContextProvider {...registrationContextProviderProps}>
+                    <RegistrationWorkflow {...defaultProps}>{children}</RegistrationWorkflow>
+                </RegistrationContextProvider>
+            </PaperProvider>
         );
         const { result } = renderHook(() => useRegistrationWorkflowContext(), { wrapper });
 
         expect(result.current.screenData['Eula'].accepted).toBeFalsy();
         expect(result.current.screenData['CreateAccount'].emailAddress).toBe('');
 
-        act(() => {
+        void act(() => {
             void result.current.nextScreen({ screenId: 'Eula', values: { accepted: true } });
         });
-        act(() => {
+        void act(() => {
             result.current.previousScreen({
                 screenId: 'CreateAccount',
                 values: { emailAddress: 'emailAddress@emailAddress.com' },
@@ -102,5 +103,94 @@ describe('RegistrationWorkflow', () => {
 
         void ((): void =>
             expect(result.current.screenData['CreateAccount'].emailAddress).toBe('emailAddress@emailAddress.com'));
+    });
+
+    it('should render custom success screen', () => {
+        const props = defaultProps;
+        defaultProps.successScreen = (
+            <View>
+                <Text>Success</Text>
+            </View>
+        );
+        const { getByTestId, getByText } = render(
+            <PaperProvider>
+                <RegistrationContextProvider {...registrationContextProviderProps}>
+                    <RegistrationWorkflow {...props}>
+                        <CreateAccountScreen />
+                    </RegistrationWorkflow>
+                </RegistrationContextProvider>
+            </PaperProvider>
+        );
+        const verifyEmailInput = getByTestId('email');
+        fireEvent.changeText(verifyEmailInput, { target: { value: 'test@test.net' } });
+        const nextButton = getByText('Next');
+        fireEvent.press(nextButton);
+        void ((): void => expect(screen.getByText('Success')).toBeInTheDocument());
+    });
+
+    it('should render existing account screen', () => {
+        defaultProps.existingAccountSuccessScreen = (
+            <View>
+                <Text>Account Exists!!!</Text>
+            </View>
+        );
+        const wrapper = ({ children }: any): JSX.Element => (
+            <PaperProvider>
+                <RegistrationContextProvider {...registrationContextProviderProps}>
+                    <RegistrationWorkflow {...defaultProps}>{children}</RegistrationWorkflow>
+                </RegistrationContextProvider>
+            </PaperProvider>
+        );
+        const { result } = renderHook(() => useRegistrationWorkflowContext(), { wrapper });
+
+        expect(result.current.screenData['Eula'].accepted).toBeFalsy();
+        expect(result.current.screenData['CreateAccount'].emailAddress).toBe('');
+
+        void act(() => {
+            void result.current.nextScreen({ screenId: 'Eula', values: { accepted: true } });
+        });
+        void act(() => {
+            result.current.previousScreen({
+                screenId: 'CreateAccount',
+                values: { emailAddress: 'emailAddress@emailAddress.com' },
+                isAccountExist: true,
+            });
+        });
+
+        expect(result.current.screenData['Eula'].accepted).toBeTruthy();
+        void ((): void => expect(screen.getByText('Account Exists!!!')).toBeInTheDocument());
+    });
+
+    it('should render existing account screen', () => {
+        defaultProps.existingAccountSuccessScreen = (
+            <View>
+                <Text>Account Exists!!!</Text>
+            </View>
+        );
+        const wrapper = ({ children }: any): JSX.Element => (
+            <PaperProvider>
+                <RegistrationContextProvider {...registrationContextProviderProps}>
+                    <RegistrationWorkflow {...defaultProps}>{children}</RegistrationWorkflow>
+                </RegistrationContextProvider>
+            </PaperProvider>
+        );
+        const { result } = renderHook(() => useRegistrationWorkflowContext(), { wrapper });
+
+        expect(result.current.screenData['Eula'].accepted).toBeFalsy();
+        expect(result.current.screenData['CreateAccount'].emailAddress).toBe('');
+
+        void act(() => {
+            void result.current.nextScreen({ screenId: 'Eula', values: { accepted: true } });
+        });
+        void act(() => {
+            void result.current.nextScreen({
+                screenId: 'CreateAccount',
+                values: { emailAddress: 'emailAddress@emailAddress.com' },
+                isAccountExist: true,
+            });
+        });
+
+        expect(result.current.screenData['Eula'].accepted).toBeTruthy();
+        void ((): void => expect(screen.getByText('Account Exists!!!')).toBeInTheDocument());
     });
 });

@@ -21,16 +21,16 @@ export const CreateAccountScreen: React.FC<CreateAccountProps> = (props) => {
     const onNext = useCallback(() => {
         void nextScreen({
             screenId: 'CreateAccount',
-            values: { emailAddress: email },
+            values: { emailAddress: emailInput },
         });
-    }, [email, nextScreen]);
+    }, [emailInput, nextScreen]);
 
     const onPrevious = useCallback(() => {
         void previousScreen({
             screenId: 'CreateAccount',
-            values: { emailAddress: email },
+            values: { emailAddress: emailInput },
         });
-    }, [email, previousScreen]);
+    }, [emailInput, previousScreen]);
 
     return (
         <WorkflowCard>
@@ -38,6 +38,7 @@ export const CreateAccountScreen: React.FC<CreateAccountProps> = (props) => {
             <WorkflowCardBody>
                 <TextInput
                     label="Email Address"
+                    testID="email"
                     mode="flat"
                     left={<TextInput.Icon icon="email" />}
                     value={emailInput}

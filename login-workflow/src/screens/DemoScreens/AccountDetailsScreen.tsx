@@ -2,7 +2,6 @@ import React, { useCallback, useState } from 'react';
 import { useRegistrationWorkflowContext } from '../../contexts';
 import { WorkflowCard, WorkflowCardActions, WorkflowCardBody, WorkflowCardHeader } from '../../components';
 import { TextInput } from 'react-native-paper';
-import { useNavigation } from '@react-navigation/native';
 
 type DemoAccountDetailsProps = {
     /**
@@ -15,7 +14,6 @@ type DemoAccountDetailsProps = {
 
 export const AccountDetailsScreen: React.FC<DemoAccountDetailsProps> = (props) => {
     const regWorkflow = useRegistrationWorkflowContext();
-    const navigation = useNavigation();
     const { nextScreen, previousScreen, screenData, currentScreen, totalScreens } = regWorkflow;
     const { firstName, lastName } = props;
 
@@ -26,18 +24,16 @@ export const AccountDetailsScreen: React.FC<DemoAccountDetailsProps> = (props) =
     const onNext = useCallback(() => {
         void nextScreen({
             screenId: 'AccountDetails',
-            values: { firstName: firstName, lastName: lastName },
-            isAccountExist: true
+            values: { firstName: firstNameInput, lastName: lastNameInput },
         });
-        
-    }, [firstName, lastName, nextScreen, navigation]);
+    }, [firstNameInput, lastNameInput, nextScreen]);
 
     const onPrevious = useCallback(() => {
         void previousScreen({
             screenId: 'AccountDetails',
-            values: { firstName: firstName, lastName: lastName },
+            values: { firstName: firstNameInput, lastName: lastNameInput },
         });
-    }, [lastName, firstName, previousScreen]);
+    }, [lastNameInput, firstNameInput, previousScreen]);
 
     return (
         <WorkflowCard>

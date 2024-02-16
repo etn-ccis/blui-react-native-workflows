@@ -7,9 +7,19 @@ import i18nAppInstance from '../../translations/i18n';
 import {
     RegistrationContextProvider,
     ErrorContextProvider,
-    RegistrationWorkflow
+    RegistrationWorkflow,
+    // Uncomment screens as per example
+    // EulaScreen,
+    // AccountDetailsScreen,
+    // WorkflowCard,
+    // WorkflowCardHeader,
+    // WorkflowCardBody,
+    // WorkflowCardActions,
 } from '@brightlayer-ui/react-native-auth-workflow';
-// import { CustomScreen } from '../components/CustomScreen';
+// Uncomment below lines as per example
+// import { CustomScreen } from './../components/CustomScreen';
+// import { Text } from 'react-native-paper';
+// import { View } from 'react-native';
 
 type AppProps = {
     navigation: StackNavigationProp<RootStackParamList, 'RegistrationProviderExample'>;
@@ -35,7 +45,41 @@ const RegistrationProviderExample: React.FC<AppProps> = (): JSX.Element => {
                 SUPPORT: undefined,
             }}
         >
-            <ErrorContextProvider><RegistrationWorkflow/></ErrorContextProvider>
+            <ErrorContextProvider>
+                {/* Default Implementation */}
+                <RegistrationWorkflow />
+
+                {/* implementation with custom screens. This custom screen is using app and workflow level translations  */}
+                {/* <RegistrationWorkflow>
+                    <EulaScreen/>
+                    <CustomScreen/>
+                    <AccountDetailsScreen/>
+                </RegistrationWorkflow> */}
+
+                {/* Show default success screen */}
+                {/* <RegistrationWorkflow successScreen={
+                    <WorkflowCard>
+                        <WorkflowCardHeader title='Test Success Screen' onIconPress={()=>{
+                            console.log('close icon pressed')
+                        }}></WorkflowCardHeader>
+                        <WorkflowCardBody>
+                            <View><Text>Success</Text></View>
+                        </WorkflowCardBody>
+                        <WorkflowCardActions
+                            showNext
+                            nextLabel="Okay"
+                            fullWidthButton
+                        />
+                    </WorkflowCard>
+                }>
+                    <EulaScreen/>
+                    <CustomScreen/>
+                    <AccountDetailsScreen/>
+                </RegistrationWorkflow> */}
+
+                {/* Invite Registration Mode */}
+                {/* <RegistrationWorkflow isInviteRegistration/> */}
+            </ErrorContextProvider>
         </RegistrationContextProvider>
     );
 };

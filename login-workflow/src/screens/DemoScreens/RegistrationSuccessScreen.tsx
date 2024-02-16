@@ -3,11 +3,9 @@ import { useRegistrationWorkflowContext } from '../../contexts';
 import { useTranslation } from 'react-i18next';
 import { Text } from 'react-native';
 import { WorkflowCard, WorkflowCardActions, WorkflowCardBody } from '../../components/WorkflowCard';
-import { useNavigation } from '@react-navigation/native';
 
 export const RegistrationSuccessScreen: React.FC = () => {
     const { t } = useTranslation();
-    const navigation = useNavigation();
     const {
         screenData: {
             AccountDetails: { firstName, lastName },
@@ -19,8 +17,8 @@ export const RegistrationSuccessScreen: React.FC = () => {
         },
     } = useRegistrationWorkflowContext();
     const messageTitle = `${t('bluiCommon:MESSAGES.WELCOME')}, ${firstName} ${lastName}!`;
-    const message1 = `Your account has successfully been created with the email <b>{email}</b> belonging to the <b>${email}</b> org.`;
-    const message2 = `Your account has successfully been created with the email <b>{email}</b> belonging to the <b>${organization}</b> org`;
+    const message1 = `Your account has successfully been created with the email ${email} belonging to the ${email} org.`;
+    const message2 = `Your account has successfully been created with the email ${email} belonging to the ${organization} org`;
 
     return (
         <WorkflowCard>
@@ -31,9 +29,7 @@ export const RegistrationSuccessScreen: React.FC = () => {
                     <Text>{message2}</Text>
                 </>
             </WorkflowCardBody>
-            <WorkflowCardActions showNext nextLabel='Okay' fullWidthButton onNext={()=>{
-                navigation.navigate('Home');
-            }}/>
+            <WorkflowCardActions showNext nextLabel="Okay" fullWidthButton />
         </WorkflowCard>
     );
 };

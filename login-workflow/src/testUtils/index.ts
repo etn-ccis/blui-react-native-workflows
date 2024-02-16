@@ -18,20 +18,6 @@ export const registrationContextProviderProps: RegistrationContextProviderProps 
         setAccountDetails: jest.fn(),
         completeRegistration: jest.fn().mockImplementation(() => Promise.resolve()),
     },
-    errorConfig: {
-        mode: 'message-box',
-        messageBoxConfig: {
-            dismissible: true,
-            position: 'bottom'
-        }
-    }
-    // errorConfig:{{
-    //     mode: 'message-box',
-    //     messageBoxConfig: {
-    //         dismissible: true,
-    //         position: 'top',
-    //     },
-    // }}
 };
 
 export const registrationWorkflowContextProps: RegistrationWorkflowContextProps = {
