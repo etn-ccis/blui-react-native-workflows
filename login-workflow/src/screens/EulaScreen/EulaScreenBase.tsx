@@ -8,13 +8,50 @@ import {
     WorkflowCardHeader,
     WorkflowCardInstructions,
 } from '../../components';
-import { LayoutChangeEvent, ScrollView, TouchableOpacity, View } from 'react-native';
+import { LayoutChangeEvent, ScrollView, TouchableOpacity, View, StyleSheet, ViewStyle, TextStyle } from 'react-native';
 import { Checkbox, Text } from 'react-native-paper';
 import { Icon } from '@brightlayer-ui/react-native-components';
 import { WebView } from 'react-native-webview';
-import { useExtendedTheme } from '@brightlayer-ui/react-native-themes';
+import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 // import { useTranslation } from 'react-i18next';
-
+const makeStyles = (
+    theme: ExtendedTheme
+): StyleSheet.NamedStyles<{
+    container: ViewStyle;
+    retryContainer: ViewStyle;
+    retryBody: ViewStyle;
+    text: TextStyle;
+    webview: ViewStyle;
+    checkbox: ViewStyle;
+    checkboxLabel: TextStyle;
+}> =>
+    StyleSheet.create({
+        container: {
+            flex: 1,
+        },
+        retryContainer: {
+            display: 'flex',
+            flex: 1,
+            alignItems: 'center',
+            justifyContent: 'center',
+        },
+        retryBody: {
+            alignItems: 'center',
+            justifyContent: 'center',
+        },
+        text: { letterSpacing: 0 },
+        webview: {
+            flex: 1,
+            backgroundColor: theme.colors.background,
+        },
+        checkbox: {
+            paddingLeft: 0,
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'flex-start',
+        },
+        checkboxLabel: { flexGrow: 0 },
+    });
 export const EulaScreenBase: React.FC<EulaScreenProps> = (props) => {
     const {
         onEulaAcceptedChange,
@@ -35,6 +72,7 @@ export const EulaScreenBase: React.FC<EulaScreenProps> = (props) => {
     // const { t } = useTranslation();
     const scrollViewRef = useRef<ScrollView>(null);
     const contentSizeRef = useRef<{ width: number; height: number }>({ width: 0, height: 0 });
+    const defaultStyles = makeStyles(theme);
 
     const [eulaAccepted, setEulaAccepted] = useState(initialCheckboxValue ?? false);
     const [checkboxEnable, setCheckboxEnable] = useState(false);
@@ -70,32 +108,18 @@ export const EulaScreenBase: React.FC<EulaScreenProps> = (props) => {
             <WorkflowCardHeader {...headerProps} />
             {Object.keys(instructionsProps).length !== 0 && <WorkflowCardInstructions {...instructionsProps} />}
             <WorkflowCardBody scrollable={false}>
-                <View style={{ flex: 1 }}>
+                <View style={defaultStyles.container}>
                     {checkboxProps?.disabled ? (
-                        <View
-                            style={{
-                                display: 'flex',
-                                flex: 1,
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                // height: height * 0.68, maxHeight: 520,
-                            }}
-                        >
-                            <TouchableOpacity
-                                style={{
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                }}
-                                onPress={onRefetch}
-                            >
+                        <View style={defaultStyles.retryContainer}>
+                            <TouchableOpacity style={defaultStyles.retryBody} onPress={onRefetch}>
                                 <Icon source={{ name: 'refresh' }} />
-                                <Text variant={'titleSmall'} style={{ letterSpacing: 0 }}>
+                                <Text variant={'titleSmall'} style={defaultStyles.text}>
                                     Retry
                                 </Text>
                             </TouchableOpacity>
                         </View>
                     ) : (
-                        <View style={{ flex: 1 }}>
+                        <View style={defaultStyles.container}>
                             {html ? (
                                 <WebView
                                     originWhitelist={['*']}
@@ -111,10 +135,7 @@ export const EulaScreenBase: React.FC<EulaScreenProps> = (props) => {
                                     scrollEventThrottle={10}
                                     onLayout={handleLayout}
                                     forceDarkOn={theme.dark ? true : false}
-                                    style={{
-                                        flex: 1,
-                                        backgroundColor: theme.colors.background,
-                                    }}
+                                    style={defaultStyles.webview}
                                 />
                             ) : (
                                 <ScrollView
@@ -132,7 +153,7 @@ export const EulaScreenBase: React.FC<EulaScreenProps> = (props) => {
                                     }}
                                     onLayout={handleLayout}
                                 >
-                                    <Text variant={'titleSmall'} style={{ letterSpacing: 0 }}>
+                                    <Text variant={'titleSmall'} style={defaultStyles.text}>
                                         {eulaContent}
                                     </Text>
                                 </ScrollView>
@@ -140,20 +161,15 @@ export const EulaScreenBase: React.FC<EulaScreenProps> = (props) => {
                             <ErrorManager {...errorDisplayConfig}>
                                 <Checkbox.Item
                                     testID="eulaBase-checkbox"
-                                    color={theme.colors.primary}
+                                    color={checkboxProps?.color || theme.colors.primary}
                                     disabled={!checkboxEnable}
                                     status={eulaAccepted ? 'checked' : 'unchecked'}
                                     label={checkboxLabel as string}
                                     onPress={() => {
                                         handleEulaAcceptedChecked(!eulaAccepted);
                                     }}
-                                    style={{
-                                        paddingLeft: 0,
-                                        flexDirection: 'row',
-                                        alignItems: 'center',
-                                        justifyContent: 'flex-start',
-                                    }}
-                                    labelStyle={{ flexGrow: 0 }}
+                                    style={[defaultStyles.checkbox, checkboxProps?.style]}
+                                    labelStyle={[defaultStyles.checkboxLabel, checkboxProps?.labelStyle]}
                                     position="leading"
                                     mode="android"
                                     {...checkboxProps}

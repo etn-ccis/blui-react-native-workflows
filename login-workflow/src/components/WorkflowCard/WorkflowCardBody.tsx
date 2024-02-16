@@ -22,7 +22,7 @@ const makeStyles = (
 /**
  * Component that renders the body content for the workflow card.
  *
- * @param children content to render in the WorkflowCardBody
+ * @param {CardContentProps} props - Props of CardContentProps component
  *
  * @category Component
  */

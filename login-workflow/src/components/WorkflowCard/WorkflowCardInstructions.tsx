@@ -25,12 +25,13 @@ const makeStyles = (
 /**
  * Component that renders the instructions content for the workflow card.
  *
- * @param instructions text to display as instructions
- * @param divider whether or not to show a divider below the instructions
+ * @param {WorkflowCardInstructionProps} props - Props of WorkflowCardInstruction component
  *
  * @category Component
  */
-export const WorkflowCardInstructions: React.FC<WorkflowCardInstructionProps> = (props) => {
+export const WorkflowCardInstructions: React.FC<WorkflowCardInstructionProps> = (
+    props: WorkflowCardInstructionProps
+) => {
     const { instructions, divider = true, style, ...otherProps } = props;
     const { isTablet } = useScreenDimensions();
     const styles = makeStyles(isTablet);
