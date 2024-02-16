@@ -20,11 +20,11 @@ const makeStyles = (
 /**
  * Component that renders the body content for the workflow card.
  *
- * @param children content to render in the WorkflowCardBody
+ * @param {CardContentProps} props - Props of CardContentProps component
  *
  * @category Component
  */
-export const WorkflowCardBody: React.FC<CardContentProps> = (props) => {
+export const WorkflowCardBody: React.FC<CardContentProps> = (props: CardContentProps) => {
     const { children, style, ...otherCardContentProps } = props;
     const { isTablet } = useScreenDimensions();
     const defaultStyles = makeStyles(isTablet);
