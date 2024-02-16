@@ -1,6 +1,6 @@
 import React from 'react';
 import { cleanup, render, RenderResult, screen } from '@testing-library/react-native';
-import { AccountDetailsScreenBase, AccountDetailsScreenProps } from '../../screens';
+import { AccountDetailsScreenBase, AccountDetailsScreenProps } from '../../screens/AccountDetailsScreen';
 import { Provider as PaperProvider } from 'react-native-paper';
 import '@testing-library/react-native/extend-expect';
 
