@@ -1,15 +1,12 @@
 import React from 'react';
-import { Paragraph, Dialog, Portal, Button, DialogProps } from 'react-native-paper';
+import { Paragraph, Dialog, Portal, Button } from 'react-native-paper';
 import { StyleSheet, ViewStyle } from 'react-native';
+import { BasicDialogProps } from './types';
 
 /**
  * Component that renders a basic dialog with a title, body description, and a close button.
  *
- * @param title to show text in the title
- * @param body text to show in the body
- * @param onClose function to call when the close button is clicked
- * @param props all other props will be spread to the underlying Dialog component
- * @param dismissButtonText text to show in the close button
+ * @param {BasicDialogProps} props - Basic props of Dialog
  *
  * @category Component
  */
@@ -28,35 +25,6 @@ const makeStyles = (): StyleSheet.NamedStyles<{
             flexGrow: 0,
         },
     });
-
-export type BasicDialogProps = Omit<DialogProps, 'visible' | 'children'> & {
-    /**
-     * The title for the screen
-     */
-    title?: string;
-
-    /**
-     * The text to show in the main dialog body
-     */
-    body?: string;
-
-    /**
-     * The function to call when the close button is clicked
-     * @returns void
-     */
-    onDismiss?: () => void;
-
-    /**
-     * The text to show in the close button
-     */
-    dismissButtonText?: string;
-
-    /**
-     * Set the open / closed state of the dialog
-     * @default false
-     */
-    open?: boolean;
-};
 
 export const BasicDialog: React.FC<BasicDialogProps> = (props) => {
     const { title, body, dismissButtonText, open = false, onDismiss, style, ...otherDialogProps } = props;

@@ -26,24 +26,9 @@ const makeStyles = (
 
 /**
  * Component that renders the workflow card action elements used for all screen components.
- *
- * @param divider boolean value to display a divider above workflow card action buttons
- * @param canGoNext boolean or function that indicates whether the next button should be enabled
- * @param canGoPrevious boolean or function that indicates whether the previous button should be enabled
- * @param showPrevious boolean that indicates whether the previous button should be displayed
- * @param showNext boolean that indicates whether the next button should be displayed
- * @param previousLabel label to display for the previous button
- * @param nextLabel label to display for the next button
- * @param onPrevious function called when the previous button is clicked
- * @param onNext function that is called when the next button is clicked
- * @param currentStep current step in the registration workflow
- * @param totalSteps total number of steps in the registration workflow
- * @param fullWidthButton boolean that indicates whether a button should be full width
- * @param stepperVariant indicates which type of stepper indicator to use
- *
+ * @param {WorkflowCardActionsProps} props - props of WorkflowCardActions component
  * @category Component
  */
-
 export const WorkflowCardActions: React.FC<WorkflowCardActionsProps> = (props) => {
     const {
         divider = true,

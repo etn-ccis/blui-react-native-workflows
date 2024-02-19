@@ -1,19 +1,13 @@
 import React from 'react';
-import { View, ViewProps } from 'react-native';
+import { View } from 'react-native';
 import { ActivityIndicator } from 'react-native-paper';
 import { useExtendedTheme } from '@brightlayer-ui/react-native-themes';
-
-export type SpinnerProps = ViewProps & {
-    /**
-     * True if the spinner should be displayed, false to render nothing
-     */
-    visible?: boolean;
-};
+import { SpinnerProps } from './types';
 
 /**
  * Component that renders a indeterminate circular progress spinner atop a semi-transparent white background.
  *
- * @param visible True if the spinner should be displayed, false to render nothing
+ * @param {SpinnerProps} props - Props of Spinner component
  *
  * @category Component
  */

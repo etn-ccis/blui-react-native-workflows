@@ -81,16 +81,10 @@ const makeStyles = (
 /**
  * Component that renders the Header for the workflow card.
  *
- * @param {string} [title] - text to display as title in header
- * @param {string} [subTitle] - text to display as subtitle in header
- * @param {string} [backgroundColor] - background color of header Default: theme.colors.primary
- * @param {string} [textColor] - text color of header Default: theme.colors.onPrimary
- * @param {string} [iconColor] - icon color of header Default: theme.colors.onPrimary
- * @param {IconSource} [icon] - icon to be shown on left side of header Default:close
- * @param {() => void} [onIconPress] - on press functionality for the icon
+ * @param {WorkflowCardHeaderProps} props - Props of WorkflowCardHeader component
  *
  */
-export const WorkflowCardHeader: React.FC<WorkflowCardHeaderProps> = (props) => {
+export const WorkflowCardHeader: React.FC<WorkflowCardHeaderProps> = (props: WorkflowCardHeaderProps) => {
     const { title, subTitle, backgroundColor, textColor, iconColor, icon, style, onIconPress, ...otherprops } = props;
     const theme = useExtendedTheme();
     const { isTablet } = useScreenDimensions();
