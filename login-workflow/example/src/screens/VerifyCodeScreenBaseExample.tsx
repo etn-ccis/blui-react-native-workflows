@@ -18,7 +18,7 @@ const VerifyCodeScreenBaseExample: React.FC<VerifyCodeScreenProps> = () => {
                 loading: loading,
             }}
             WorkflowCardHeaderProps={{
-                title: 'Verify Code Screen Base',
+                title: 'Verify Email',
             }}
             WorkflowCardInstructionProps={{
                 instructions:
