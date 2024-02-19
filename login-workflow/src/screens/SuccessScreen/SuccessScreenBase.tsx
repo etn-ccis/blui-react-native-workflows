@@ -44,7 +44,7 @@ export const SuccessScreenBase: React.FC<SuccessScreenProps> = (props) => {
             <WorkflowCardActions
                 {...actionsProps}
                 nextLabel={dismissButtonLabel || actionsProps.nextLabel}
-                canGoNext={canDismiss}
+                canGoNext={canDismiss || actionsProps.canGoNext}
                 onNext={(): void => {
                     if (onDismiss) onDismiss();
                     if (actionsProps.onNext) actionsProps.onNext();
