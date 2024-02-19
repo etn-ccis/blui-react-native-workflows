@@ -3,29 +3,46 @@ import {
     AccountDetailsScreenBase,
     AccountDetailsScreenProps,
     useRegistrationWorkflowContext,
+    useErrorManager,
 } from '@brightlayer-ui/react-native-auth-workflow';
 import { useNavigation } from '@react-navigation/native';
+
+// const submit = (): Promise<void> => {
+//     throw new Error('My Custom Error');
+// };
 
 export const AccountDetailsScreen: React.FC<AccountDetailsScreenProps> = (props) => {
     const regWorkflow = useRegistrationWorkflowContext();
     const navigation = useNavigation();
+    const { triggerError, errorManagerConfig } = useErrorManager();
+    const errorDisplayConfig = {
+        ...errorManagerConfig,
+        onClose: (): void => {
+            if (errorManagerConfig.onClose) errorManagerConfig?.onClose();
+        },
+    };
     const { nextScreen, previousScreen, screenData, currentScreen, totalScreens } = regWorkflow;
 
-    const [firstName, setFirstName] = useState('firstName');
-    const [lastName, setLastName] = useState('lastName');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
 
-    const onNext = useCallback(() => {
-        void nextScreen({
-            screenId: 'AccountDetails',
-            values: { firstName: firstName, lastName: lastName },
-        });
-        navigation.navigate('Home');
-    }, [firstName, lastName, nextScreen, navigation]);
+    const onNext = useCallback(async (): Promise<void> => {
+        try {
+            void nextScreen({
+                screenId: 'AccountDetails',
+                values: { firstName, lastName },
+            });
+            navigation.navigate('Home');
+            // await submit();
+        } catch (_error) {
+            triggerError(_error as Error);
+        }
+    }, [triggerError]);
 
     const onPrevious = useCallback(() => {
         void previousScreen({
             screenId: 'AccountDetails',
-            values: { firstName: firstName, lastName: lastName },
+            values: { firstName, lastName },
         });
     }, [firstName, lastName, previousScreen]);
 
@@ -102,6 +119,7 @@ export const AccountDetailsScreen: React.FC<AccountDetailsScreenProps> = (props)
             lastNameTextInputProps={{ ...lastNameTextInputProps, onChangeText: onLastNameInputChange }}
             lastNameValidator={lastNameValidator}
             WorkflowCardActionsProps={workflowCardActionsProps}
+            errorDisplayConfig={errorDisplayConfig}
         />
     );
 };

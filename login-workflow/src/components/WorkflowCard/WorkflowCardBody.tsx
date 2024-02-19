@@ -30,7 +30,7 @@ export const WorkflowCardBody: React.FC<CardContentProps> = (props) => {
     const defaultStyles = makeStyles(isTablet);
 
     return (
-        <ScrollView>
+        <ScrollView bounces={false}>
             <Card.Content style={[defaultStyles.workflowBody, style]} {...otherCardContentProps}>
                 {children}
             </Card.Content>
