@@ -31,7 +31,7 @@ const makeStyles = (
 /**
  * Component renders error text below the input field.
  *
- * @param errorText  The text of the error.
+ * @param {string} errorText - The text of the error.
  **/
 type ErrorTextProps = {
     errorText: string | undefined;
