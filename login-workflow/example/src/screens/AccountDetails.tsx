@@ -7,9 +7,9 @@ import {
 } from '@brightlayer-ui/react-native-auth-workflow';
 import { useNavigation } from '@react-navigation/native';
 
-// const submit = (): Promise<void> => {
-//     throw new Error('My Custom Error');
-// };
+const submit = (): void => {
+    throw new Error('My Custom Error');
+};
 
 export const AccountDetailsScreen: React.FC<AccountDetailsScreenProps> = (props) => {
     const regWorkflow = useRegistrationWorkflowContext();
@@ -26,18 +26,18 @@ export const AccountDetailsScreen: React.FC<AccountDetailsScreenProps> = (props)
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
 
-    const onNext = useCallback(async (): Promise<void> => {
+    const onNext = useCallback((): void => {
         try {
             void nextScreen({
                 screenId: 'AccountDetails',
                 values: { firstName, lastName },
             });
             navigation.navigate('Home');
-            // await submit();
+            submit();
         } catch (_error) {
             triggerError(_error as Error);
         }
-    }, [triggerError]);
+    }, [firstName, lastName, triggerError, navigation, nextScreen]);
 
     const onPrevious = useCallback(() => {
         void previousScreen({
