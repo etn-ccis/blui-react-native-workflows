@@ -52,6 +52,7 @@ export const VerifyCodeScreenBase: React.FC<React.PropsWithChildren<VerifyCodeSc
     const [shouldValidateCode, setShouldValidateCode] = React.useState(false);
     const [isCodeValid, setIsCodeValid] = React.useState(codeValidator ? codeValidator(initialValue ?? '') : false);
     const [codeError, setCodeError] = React.useState('');
+
     const theme = useExtendedTheme();
 
     const handleVerifyCodeInputChange = useCallback(
@@ -96,6 +97,8 @@ export const VerifyCodeScreenBase: React.FC<React.PropsWithChildren<VerifyCodeSc
                         value={verifyCode}
                         onChangeText={handleVerifyCodeInputChange}
                         error={shouldValidateCode && !isCodeValid}
+                        maxLength={6}
+                        {...verifyCodeTextInputProps}
                         onBlur={(e): void => {
                             // eslint-disable-next-line no-unused-expressions
                             verifyCodeTextInputProps?.onBlur && verifyCodeTextInputProps.onBlur(e);
@@ -105,7 +108,7 @@ export const VerifyCodeScreenBase: React.FC<React.PropsWithChildren<VerifyCodeSc
                     <HelperText type="error" visible={shouldValidateCode}>
                         {codeError}
                     </HelperText>
-                    <View style={{ marginTop: 16 }}>
+                    <View>
                         <Text>
                             {resendInstructions}{' '}
                             <Text style={{ color: theme.colors.primary }} onPress={onResend}>
@@ -117,7 +120,7 @@ export const VerifyCodeScreenBase: React.FC<React.PropsWithChildren<VerifyCodeSc
             </WorkflowCardBody>
             <WorkflowCardActions
                 {...actionsProps}
-                canGoNext={(verifyCode.length > 0 && isCodeValid && actionsProps.canGoNext) as any}
+                canGoNext={(verifyCode.length > 5 && isCodeValid && actionsProps.canGoNext) as any}
                 onNext={handleOnNext}
                 onPrevious={handleOnPrevious}
             />

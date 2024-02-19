@@ -40,7 +40,7 @@
         "start:example-ios": "yarn install:dependencies-ios && yarn build && yarn link:workflows && cd example && yarn ios",
         "start:example-ipad": "yarn install:dependencies-ios && yarn build && yarn link:workflows && cd example && yarn ipad",
         "start:example-android": "yarn install:dependencies-android && yarn build && yarn link:workflows && cd example && yarn android",
-        "test": "jest src --maxWorkers=2",
+        "test": "jest src --maxWorkers=5",
         "lint": "eslint \"**/**/*.{tsx,ts}\" && cd example && yarn lint",
         "prettier": "prettier \"**/**.{tsx,ts,js,json}\" --write",
         "prettier:check": "prettier \"**/**.{tsx,ts,js,json}\" --check",

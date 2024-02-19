@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { VerifyCodeScreenProps, VerifyCodeScreenBase } from '@brightlayer-ui/react-native-auth-workflow';
+import { useNavigation } from '@react-navigation/native';
 
 const VerifyCodeScreenBaseExample: React.FC<VerifyCodeScreenProps> = () => {
     const [loading, setLoading] = useState(false);
+    const navigation = useNavigation();
 
     const resendFun = (): void => {
         setLoading(true);
@@ -31,6 +33,7 @@ const VerifyCodeScreenBaseExample: React.FC<VerifyCodeScreenProps> = () => {
                 nextLabel: 'Next',
                 canGoNext: true,
                 canGoPrevious: true,
+                onPrevious: (): void => navigation.navigate('Home'),
             }}
             resendInstructions={"Didn't receive an email?"}
             onResend={resendFun}
