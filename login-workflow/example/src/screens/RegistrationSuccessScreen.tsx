@@ -1,6 +1,7 @@
 import React from 'react';
 import { SuccessScreenBase, SuccessScreenProps } from '@brightlayer-ui/react-native-auth-workflow';
 import MatIcon from 'react-native-vector-icons/MaterialIcons';
+import { useNavigation } from '@react-navigation/native';
 /**
  * Component that renders a success screen for when registration completes.
  *
@@ -24,6 +25,8 @@ export const RegistrationSuccessScreen: React.FC<SuccessScreenProps> = (props) =
         ...otherRegistrationSuccessScreenProps
     } = props;
 
+    const navigation = useNavigation();
+
     const workflowCardHeaderProps = {
         title: 'Success',
         ...WorkflowCardHeaderProps,
@@ -34,6 +37,7 @@ export const RegistrationSuccessScreen: React.FC<SuccessScreenProps> = (props) =
         showNext: true,
         canGoNext: canDismiss,
         fullWidthButton: true,
+
         ...WorkflowCardActionsProps,
     };
 
@@ -44,6 +48,9 @@ export const RegistrationSuccessScreen: React.FC<SuccessScreenProps> = (props) =
             icon={icon}
             messageTitle={messageTitle}
             message={message}
+            onDismiss={(): void => {
+                navigation.navigate('Home');
+            }}
             {...otherRegistrationSuccessScreenProps}
         />
     );
