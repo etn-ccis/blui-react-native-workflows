@@ -85,10 +85,11 @@ export const EulaScreen: React.FC<EulaScreenProps> = (props) => {
             //     }
             // html={true}
             // checkboxProps={{ disabled: true }}
-            checkboxLabel="checkbox"
+            checkboxLabel="I have read and agree to the Terms & Conditions"
             onEulaAcceptedChange={(res: boolean) => {
                 setEulaAccepted(res);
             }}
+            WorkflowCardHeaderProps={{title:'License Agreement'}}
             WorkflowCardActionsProps={{
                 showNext: true,
                 showPrevious: true,

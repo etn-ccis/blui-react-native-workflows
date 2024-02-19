@@ -50,8 +50,15 @@ const makeStyles = (
             alignItems: 'center',
             justifyContent: 'flex-start',
         },
-        checkboxLabel: { flexGrow: 0 },
+        checkboxLabel: { flexGrow: 0, flexShrink:0, textAlign:'left' },
     });
+    /**
+
+Component that contains the eula screen....
+@param {EulaScreenProps} props - props of screen component....
+@category Component
+*/
+
 export const EulaScreenBase: React.FC<EulaScreenProps> = (props) => {
     const {
         onEulaAcceptedChange,
