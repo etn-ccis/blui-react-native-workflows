@@ -89,7 +89,7 @@ export const EulaScreen: React.FC<EulaScreenProps> = (props) => {
             onEulaAcceptedChange={(res: boolean) => {
                 setEulaAccepted(res);
             }}
-            WorkflowCardHeaderProps={{title:'License Agreement'}}
+            WorkflowCardHeaderProps={{ title: 'License Agreement' }}
             WorkflowCardActionsProps={{
                 showNext: true,
                 showPrevious: true,
