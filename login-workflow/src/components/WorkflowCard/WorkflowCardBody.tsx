@@ -16,7 +16,7 @@ const makeStyles = (
             height: '100%',
         },
         viewContainer: {
-            flex:1,
+            flex: 1,
         },
         workflowBody: {
             marginHorizontal: isTablet ? 24 : 16,
@@ -41,9 +41,13 @@ export const WorkflowCardBody: React.FC<WorkflowCardBodyProps> = (props) => {
 
     return (
         <Card.Content style={[defaultStyles.workflowBody, style]} {...otherCardContentProps}>
-            {scrollable ? <ScrollView bounces={false} contentContainerStyle={[defaultStyles.container]}>
-                {children}
-                </ScrollView> : <View style={defaultStyles.viewContainer}>{children}</View>}
+            {scrollable ? (
+                <ScrollView bounces={false} contentContainerStyle={[defaultStyles.container]}>
+                    {children}
+                </ScrollView>
+            ) : (
+                <View style={defaultStyles.viewContainer}>{children}</View>
+            )}
         </Card.Content>
     );
 };
