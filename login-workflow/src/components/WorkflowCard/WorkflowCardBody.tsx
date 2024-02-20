@@ -7,9 +7,17 @@ import { WorkflowCardBodyProps } from './WorkflowCard.types';
 const makeStyles = (
     isTablet: boolean
 ): StyleSheet.NamedStyles<{
+    container: ViewStyle;
+    viewContainer: ViewStyle;
     workflowBody: ViewStyle;
 }> =>
     StyleSheet.create({
+        container: {
+            height: '100%',
+        },
+        viewContainer: {
+            flex:1,
+        },
         workflowBody: {
             marginHorizontal: isTablet ? 24 : 16,
             paddingTop: 32,
@@ -33,7 +41,9 @@ export const WorkflowCardBody: React.FC<WorkflowCardBodyProps> = (props) => {
 
     return (
         <Card.Content style={[defaultStyles.workflowBody, style]} {...otherCardContentProps}>
-            {scrollable ? <ScrollView>{children}</ScrollView> : <View style={{ flex: 1 }}>{children}</View>}
+            {scrollable ? <ScrollView bounces={false} contentContainerStyle={[defaultStyles.container]}>
+                {children}
+                </ScrollView> : <View style={defaultStyles.viewContainer}>{children}</View>}
         </Card.Content>
     );
 };

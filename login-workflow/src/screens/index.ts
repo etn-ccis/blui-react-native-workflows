@@ -2,3 +2,5 @@ export * from './DemoScreens';
 export * from './DemoScreen';
 
 export * from './EulaScreen';
+export * from './SuccessScreen';
+export * from './AccountDetailsScreen';
