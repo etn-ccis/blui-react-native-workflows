@@ -90,3 +90,12 @@ The WorkflowCardActions is used to configure the buttons that appear at the bott
 | stepperVariant | `DotStepperVariant` | indicates which type of stepper indicator to use | `dots` |
 
 Any other props will be provided to the root element ([**View**](https://reactnative.dev/docs/view)).
+
+### WorkflowCardFinishState
+
+The WorkflowCardFinishState component is used to render an [EmptyState](https://brightlayer-ui-components.github.io/react-native/?path=/info/components-documentation--empty-state) component indicating completion of a user flow.
+
+The WorkflowCardFinishState has the same props as an [EmptyState](https://brightlayer-ui-components.github.io/react-native/?path=/info/components-documentation--empty-state) component.
+
+All props will be passed to the `<EmptyState>` component, except for style
+which is applied to the root element
