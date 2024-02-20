@@ -1,7 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { useRegistrationWorkflowContext } from '../../contexts';
-import { WorkflowCard, WorkflowCardActions, WorkflowCardBody, WorkflowCardHeader } from '../../components';
-import { TextInput } from 'react-native-paper';
+import { CreateAccountScreenBase } from '../CreateAccountScreen';
 
 type CreateAccountProps = {
     /**
@@ -31,30 +30,55 @@ export const CreateAccount: React.FC<CreateAccountProps> = (props) => {
             values: { emailAddress: email },
         });
     }, [email, previousScreen]);
-
+    const EMAIL_REGEX = /^[A-Z0-9._%+'-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+    const emailValidator = (emailinput: string): boolean | string => {
+        if (!EMAIL_REGEX.test(emailinput)) {
+            return 'fill a valid email';
+        }
+        return true;
+    };
+    const onEmailInputValueChange = (e: any): void => {
+        setEmailInput(e);
+    };
     return (
-        <WorkflowCard>
-            <WorkflowCardHeader title="Create Account Screen" onIconPress={onPrevious} icon={{ name: 'arrow-back' }} />
-
-            <WorkflowCardBody>
-                <TextInput
-                    label="Email Address"
-                    mode="flat"
-                    left={<TextInput.Icon icon="email" />}
-                    value={emailInput}
-                    onChangeText={(value) => setEmailInput(value)}
-                />
-            </WorkflowCardBody>
-            <WorkflowCardActions
-                showPrevious
-                showNext
-                previousLabel="Back"
-                nextLabel="Next"
-                currentStep={currentScreen}
-                totalSteps={totalScreens}
-                onNext={onNext}
-                onPrevious={onPrevious}
-            />
-        </WorkflowCard>
+        <CreateAccountScreenBase
+            emailLabel="Email Address"
+            emailTextFieldProps={{ onChange: onEmailInputValueChange }}
+            emailValidator={emailValidator}
+            initialValue={emailInput}
+            WorkflowCardHeaderProps={{ title: 'Create Account Screen' }}
+            WorkflowCardActionsProps={{
+                showPrevious: true,
+                showNext: true,
+                previousLabel: 'Back',
+                nextLabel: 'Next',
+                currentStep: currentScreen,
+                totalSteps: totalScreens,
+                onNext: onNext,
+                onPrevious: onPrevious,
+            }}
+        />
+        // <WorkflowCard>
+        //     <WorkflowCardHeader title="Create Account Screen" onIconPress={onPrevious} icon={{ name: 'arrow-back' }} />
+        //     <WorkflowCardBody>
+        //         <TextInput
+        //             label="Email Address"
+        //             mode="flat"
+        //             left={<TextInput.Icon icon="email" />}
+        //             value={emailInput}
+        //             onChangeText={(value) => setEmailInput(value)}
+        //         />
+        //     </WorkflowCardBody>
+        //     <WorkflowCardActions
+        //         showPrevious
+        //         showNext
+        //         previousLabel="Back"
+        //         nextLabel="Next"
+        //         currentStep={currentScreen}
+        //         totalSteps={totalScreens}
+        //         onNext={onNext}
+        //         onPrevious={onPrevious}
+        //     />
+        // </WorkflowCard>
     );
 };
