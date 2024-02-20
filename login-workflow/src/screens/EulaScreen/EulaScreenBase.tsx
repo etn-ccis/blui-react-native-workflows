@@ -13,7 +13,7 @@ import { Checkbox, Text } from 'react-native-paper';
 import { Icon } from '@brightlayer-ui/react-native-components';
 import { WebView } from 'react-native-webview';
 import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
-// import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 const makeStyles = (
     theme: ExtendedTheme
 ): StyleSheet.NamedStyles<{
@@ -88,7 +88,7 @@ export const EulaScreenBase: React.FC<EulaScreenProps> = (props) => {
     const instructionsProps = props.WorkflowCardInstructionProps || {};
     const actionsProps = props.WorkflowCardActionsProps || {};
     const theme = useExtendedTheme();
-    // const { t } = useTranslation();
+    const { t } = useTranslation();
     const scrollViewRef = useRef<ScrollView>(null);
     const contentSizeRef = useRef<{ width: number; height: number }>({ width: 0, height: 0 });
     const defaultStyles = makeStyles(theme);
@@ -133,7 +133,7 @@ export const EulaScreenBase: React.FC<EulaScreenProps> = (props) => {
                             <TouchableOpacity style={defaultStyles.retryBody} onPress={onRefetch}>
                                 <Icon source={{ name: 'refresh' }} />
                                 <Text variant={'titleSmall'} style={defaultStyles.text}>
-                                    Retry
+                                    {t('bluiCommon:MESSAGES.RETRY')}
                                 </Text>
                             </TouchableOpacity>
                         </View>
