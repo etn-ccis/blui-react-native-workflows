@@ -87,7 +87,7 @@ export const VerifyCodeScreenBase: React.FC<React.PropsWithChildren<VerifyCodeSc
 
     return (
         <WorkflowCard {...cardBaseProps}>
-            <WorkflowCardHeader title={''} onIconPress={handleOnPrevious} {...headerProps} />
+            <WorkflowCardHeader onIconPress={handleOnPrevious} {...headerProps} />
             <WorkflowCardInstructions {...instructionsProps} />
             <WorkflowCardBody>
                 <ErrorManager {...errorDisplayConfig}>

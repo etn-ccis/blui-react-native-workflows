@@ -34,6 +34,7 @@ const VerifyCodeScreenBaseExample: React.FC<VerifyCodeScreenProps> = () => {
                 canGoNext: true,
                 canGoPrevious: true,
                 onPrevious: (): void => navigation.navigate('Home'),
+                onNext: (code: any) => code,
             }}
             resendInstructions={"Didn't receive an email?"}
             onResend={resendFun}
