@@ -11,6 +11,7 @@ import I18nExample from '../screens/I18nExample';
 import { RegistrationSuccessScreen } from '../screens/RegistrationSuccessScreen';
 import RegistrationContextExample from '../screens/RegistrationContextExample';
 import DemoAccountDetails from '../screens/DemoAccountDetails';
+import { CreateAccountScreen } from '../screens/CreateAccountScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -23,6 +24,7 @@ export type RootStackParamList = {
     NavigationDrawer: undefined;
     RegistratonContextExample: undefined;
     AccountDetailsBaseExample: undefined;
+    CreateAccountBaseExample: undefined;
 };
 
 const RootStack = createStackNavigator<RootStackParamList>();
@@ -51,6 +53,7 @@ export const MainRouter = (): any => (
             <RootStack.Screen name="RegistratonContextExample" component={RegistrationContextExample} />
             <RootStack.Screen name="RegistrationProviderExample" component={RegistrationProviderExample} />
             <RootStack.Screen name="AccountDetailsBaseExample" component={DemoAccountDetails} />
+            <RootStack.Screen name="CreateAccountBaseExample" component={CreateAccountScreen} />
         </Drawer.Navigator>
     </NavigationContainer>
 );

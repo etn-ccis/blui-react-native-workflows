@@ -10,6 +10,24 @@ import {
 } from '../../components';
 import { HelperText, TextInput } from 'react-native-paper';
 
+
+/**
+ * Component that renders a screen for the user to enter their email address to start the
+ * account creation process.
+ *
+ * @param emailLabel label for the email field
+ * @param initialValue initial value for the email text field
+ * @param emailValidator function used to test the input for valid formatting
+ * @param emailTextFieldProps props to pass to the email text field
+ * @param WorkflowCardBaseProps props that will be passed to the WorkflowCard component
+ * @param WorkflowCardHeaderProps props that will be passed to the WorkflowCardHeader component
+ * @param WorkflowCardInstructionProps props that will be passed to the WorkflowCardInstructions component
+ * @param WorkflowCardActionsProps props that will be passed to the WorkflowCardActions component
+ * @param errorDisplayConfig configuration for customizing how errors are displayed
+ *
+ * @category Component
+ */
+
 export const CreateAccountScreenBase: React.FC<CreateAccountScreenProps & { inputRef?: any }> = (props) => {
     const {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
