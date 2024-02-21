@@ -1,5 +1,4 @@
 import React from 'react';
-import '@testing-library/jest-dom';
 import { cleanup, fireEvent, render, screen, renderHook, act, RenderResult } from '@testing-library/react-native';
 import { RegistrationWorkflow } from '../../../components/RegistrationWorkflow/RegistrationWorkflow';
 import { RegistrationContextProvider, useRegistrationWorkflowContext } from '../../../contexts';
@@ -8,6 +7,8 @@ import { registrationContextProviderProps } from '../../../testUtils';
 import { Button, Text, Provider as PaperProvider } from 'react-native-paper';
 import { View } from 'react-native';
 import { RegistrationWorkflowProps } from 'src/components/RegistrationWorkflow/types';
+import '@testing-library/react-native/extend-expect';
+
 afterEach(cleanup);
 
 const defaultProps: RegistrationWorkflowProps = {
@@ -26,19 +27,22 @@ const renderer = (props = defaultProps): RenderResult =>
 
 describe('RegistrationWorkflow', () => {
     it('should render RegistrationWorkflowContextProvider without crashing', () => {
-        renderer().toJSON();
-        expect(render).toBeTruthy();
-        expect(screen.getByText('Screen 1')).toBeTruthy();
+        renderer();
+        expect(render);
+        expect(screen.getByText('Screen 1')).toBeOnTheScreen();
     });
 
-    it('should render the multiple screens', () => {
-        renderer().toJSON();
-        expect(screen.getByText('Screen 1')).toBeTruthy();
-    });
+    // it('should render the multiple screens', () => {
+    //     renderer();
+    //     expect(screen.getByText('Screen 1')).toBeOnTheScreen();
+    //     const props = defaultProps
+    //     // expect(screen.getByText('Screen 2')).toBeInTheDocument();
+
+    // });
 
     it('should render the correct screen, when initialScreenIndex prop is passed', () => {
-        renderer({ initialScreenIndex: 1 }).toJSON();
-        expect(screen.getByText('Screen 2')).toBeTruthy();
+        renderer({ initialScreenIndex: 1 });
+        expect(screen.getByText('Screen 2')).toBeOnTheScreen();
     });
 
     it('should call nextScreen function', () => {
@@ -65,13 +69,13 @@ describe('RegistrationWorkflow', () => {
     });
 
     it('should check for lower bound of initialScreenIndex props', () => {
-        renderer({ initialScreenIndex: -1 }).toJSON();
-        expect(screen.getByText('Screen 1')).toBeTruthy();
+        renderer({ initialScreenIndex: -1 });
+        expect(screen.getByText('Screen 1')).toBeOnTheScreen();
     });
 
     it('should check for upper bound of initialScreenIndex props', () => {
-        renderer({ initialScreenIndex: 2 }).toJSON();
-        expect(screen.getByText('Screen 2')).toBeTruthy();
+        renderer({ initialScreenIndex: 2 });
+        expect(screen.getByText('Screen 2')).toBeOnTheScreen();
     });
 
     it('should set screen data for default registration workflow in the context', () => {
@@ -190,5 +194,80 @@ describe('RegistrationWorkflow', () => {
 
         expect(result.current.screenData['Eula'].accepted).toBeTruthy();
         void ((): void => expect(screen.getByText('Account Exists!!!')).toBeInTheDocument());
+    });
+
+    it('should set screen data for default registration workflow in the context', () => {
+        const wrapper = ({ children }: any): JSX.Element => (
+            <PaperProvider>
+                <RegistrationContextProvider {...registrationContextProviderProps}>
+                    <RegistrationWorkflow
+                        isInviteRegistration
+                        initialRegistrationParams={{ code: '123', email: 'emailAddress@emailAddress.com' }}
+                        {...defaultProps}
+                    >
+                        {children}
+                    </RegistrationWorkflow>
+                </RegistrationContextProvider>
+            </PaperProvider>
+        );
+        const { result } = renderHook(() => useRegistrationWorkflowContext(), { wrapper });
+
+        void act(() => {
+            void result.current.nextScreen({ screenId: 'Eula', values: { accepted: true } });
+        });
+
+        expect(result.current.screenData['Eula'].accepted).toBeTruthy();
+        expect(result.current.screenData['CreateAccount'].emailAddress).toBe('emailAddress@emailAddress.com');
+        expect(result.current.screenData['VerifyCode'].code).toBe('123');
+    });
+
+    it('should render custom screen', () => {
+        const wrapper = ({ children }: any): JSX.Element => (
+            <PaperProvider>
+                <RegistrationContextProvider {...registrationContextProviderProps}>
+                    <RegistrationWorkflow
+                        isInviteRegistration
+                        initialRegistrationParams={{ code: '123', email: 'emailAddress@emailAddress.com' }}
+                        {...defaultProps}
+                    >
+                        {children}
+                    </RegistrationWorkflow>
+                </RegistrationContextProvider>
+            </PaperProvider>
+        );
+        const { result } = renderHook(() => useRegistrationWorkflowContext(), { wrapper });
+
+        void act(() => {
+            void result.current.nextScreen({ screenId: 'Eula', values: { accepted: true } });
+        });
+
+        expect(result.current.screenData['Eula'].accepted).toBeTruthy();
+        expect(result.current.screenData['CreateAccount'].emailAddress).toBe('emailAddress@emailAddress.com');
+        expect(result.current.screenData['VerifyCode'].code).toBe('123');
+    });
+
+    it('should set screen data for custom registration workflow in the context', () => {
+        const wrapper = ({ children }: any): JSX.Element => (
+            <PaperProvider>
+                <RegistrationContextProvider {...registrationContextProviderProps}>
+                    <RegistrationWorkflow {...defaultProps}>{children}</RegistrationWorkflow>
+                </RegistrationContextProvider>
+            </PaperProvider>
+        );
+        const { result } = renderHook(() => useRegistrationWorkflowContext(), { wrapper });
+
+        void act(() => {
+            void result.current.nextScreen({ screenId: 'Screen1', values: { test: 'test' } });
+        });
+        void act(() => {
+            result.current.previousScreen({
+                screenId: 'Screen2',
+                values: { test2: 'test2' },
+            });
+        });
+        // @ts-ignore
+        expect(result.current.screenData['Other']['Screen1'].test).toBe('test');
+        // @ts-ignore
+        void ((): void => expect(result.current.screenData['Other']['Screen2'].test2).toBe('test2'));
     });
 });

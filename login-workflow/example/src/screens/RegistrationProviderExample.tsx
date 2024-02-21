@@ -78,7 +78,10 @@ const RegistrationProviderExample: React.FC<AppProps> = (): JSX.Element => {
                 </RegistrationWorkflow> */}
 
                 {/* Invite Registration Mode */}
-                {/* <RegistrationWorkflow isInviteRegistration/> */}
+                {/* <RegistrationWorkflow
+                    isInviteRegistration
+                    initialRegistrationParams={{ code: '123', email: 'aa@aa.aa' }}
+                /> */}
             </ErrorContextProvider>
         </RegistrationContextProvider>
     );

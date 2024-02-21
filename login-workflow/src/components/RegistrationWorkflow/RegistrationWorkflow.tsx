@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { IndividualScreenData, RegistrationWorkflowContextProvider, useRegistrationContext } from '../../contexts';
 //TODO: Update demo screen with original workflow screens
 import {
@@ -50,6 +50,7 @@ export const RegistrationWorkflow: React.FC<React.PropsWithChildren<Registration
         successScreen = <RegistrationSuccessScreen />,
         existingAccountSuccessScreen = <ExistingAccountSuccessScreen />,
         isInviteRegistration = false,
+        initialRegistrationParams,
         children = isInviteRegistration
             ? [
                   <EulaScreen key="EulaScreen" />,
@@ -151,6 +152,14 @@ export const RegistrationWorkflow: React.FC<React.PropsWithChildren<Registration
             console.error(err);
         }
     };
+
+    useEffect(() => {
+        if (isInviteRegistration && initialRegistrationParams?.email && initialRegistrationParams?.code) {
+            updateScreenData({ screenId: 'CreateAccount', values: { emailAddress: initialRegistrationParams?.email } });
+            updateScreenData({ screenId: 'VerifyCode', values: { code: initialRegistrationParams?.code } });
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
         <RegistrationWorkflowContextProvider
