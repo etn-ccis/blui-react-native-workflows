@@ -45,6 +45,11 @@ export const navGroupItems: NavItem[] = [
         itemID: 'AccountDetailsBaseExample',
         icon: { name: 'person' },
     },
+    {
+        title: 'Create Account Base Screen',
+        itemID: 'CreateAccountBaseExample',
+        icon: { name: 'person' },
+    },
 ];
 
 export type NavDrawerProps = {
