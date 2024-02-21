@@ -55,18 +55,7 @@ const makeStyles = (
 /**
  * Component that renders a screen displaying the EULA and requests acceptance via a checkbox.
  *
- * @param eulaContent the content to render for the EULA. Can be a plain string or HTML
- * @param html true if the EULA should be rendered as HTML
- * @param checkboxLabel label for the EULA checkbox
- * @param initialCheckboxValue used to pre-populate the checked/unchecked checkbox when the screen loads
- * @param checkboxProps used to set checkbox props
- * @param onEulaAcceptedChange called when the checkbox clicked
- * @param WorkflowCardBaseProps props that will be passed to the WorkflowCard component
- * @param WorkflowCardHeaderProps props that will be passed to the WorkflowCardHeader component
- * @param WorkflowCardInstructionProps props that will be passed to the WorkflowCardInstructions component
- * @param WorkflowCardActionsProps props that will be passed to the WorkflowCardActions component
- * @param errorDisplayConfig configuration for customizing how errors are displayed
- * @param onRefetch used to refetch Eula content.
+ * @param {EulaScreenProps} props - Basic props of EULA Screen Base
  *
  * @category Component
  */
