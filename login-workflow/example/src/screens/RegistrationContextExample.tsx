@@ -9,6 +9,7 @@ import {
     EulaScreen,
     VerifyCode,
     DemoRegistrationWorkflowScreen,
+    VerifyCodeScreenBase,
 } from '@brightlayer-ui/react-native-auth-workflow';
 import { CustomScreen } from '../components/CustomScreen';
 
@@ -40,6 +41,19 @@ const RegistrationContextExample: React.FC<AppProps> = (): JSX.Element => {
                 <EulaScreen />
                 <CustomScreen />
                 <VerifyCode />
+                <VerifyCodeScreenBase
+                    WorkflowCardHeaderProps={{ title: 'Verify Code Screen' }}
+                    WorkflowCardInstructionProps={{
+                        instructions:
+                            'A verification code has been sent to the email address you provided. Click the link or enter the code below to continue. This code is valid for 30 minutes.',
+                    }}
+                    WorkflowCardActionsProps={{
+                        showNext: true,
+                        showPrevious: true,
+                        previousLabel: 'Back',
+                        nextLabel: 'Next',
+                    }}
+                />
             </DemoRegistrationWorkflowScreen>
         </RegistrationContextProvider>
     );
