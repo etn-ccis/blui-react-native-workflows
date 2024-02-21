@@ -45,12 +45,11 @@ function hasWorkflowCardHeaderRecursive(children: any): boolean {
 /**
  * Component that renders the workflow card that is used for all screen components.
  *
- * @param loading boolean value for isLoading
- * @param backgroundImage to display card background
+ * @param {WorkflowCardBaseProps} props - Props of WorkflowCardBase component
  *
  * @category Component
  */
-export const WorkflowCard: React.FC<WorkflowCardBaseProps> = (props) => {
+export const WorkflowCard: React.FC<WorkflowCardBaseProps> = (props: WorkflowCardBaseProps) => {
     const { loading, backgroundImage, children, style, ...otherImageProps } = props;
     const theme = useExtendedTheme();
     const { isTablet, width, height } = useScreenDimensions();

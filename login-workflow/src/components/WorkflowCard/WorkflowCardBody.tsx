@@ -6,9 +6,13 @@ import { useScreenDimensions } from '../../hooks/useScreenDimensions';
 const makeStyles = (
     isTablet: boolean
 ): StyleSheet.NamedStyles<{
+    container: ViewStyle;
     workflowBody: ViewStyle;
 }> =>
     StyleSheet.create({
+        container: {
+            height: '100%',
+        },
         workflowBody: {
             marginHorizontal: isTablet ? 24 : 16,
             paddingTop: 32,
@@ -20,17 +24,17 @@ const makeStyles = (
 /**
  * Component that renders the body content for the workflow card.
  *
- * @param children content to render in the WorkflowCardBody
+ * @param {CardContentProps} props - Props of CardContentProps component
  *
  * @category Component
  */
-export const WorkflowCardBody: React.FC<CardContentProps> = (props) => {
+export const WorkflowCardBody: React.FC<CardContentProps> = (props: CardContentProps) => {
     const { children, style, ...otherCardContentProps } = props;
     const { isTablet } = useScreenDimensions();
     const defaultStyles = makeStyles(isTablet);
 
     return (
-        <ScrollView>
+        <ScrollView bounces={false} contentContainerStyle={[defaultStyles.container]}>
             <Card.Content style={[defaultStyles.workflowBody, style]} {...otherCardContentProps}>
                 {children}
             </Card.Content>
