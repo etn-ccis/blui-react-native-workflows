@@ -10,7 +10,6 @@ import {
 } from '../../components';
 import { HelperText, TextInput } from 'react-native-paper';
 
-
 /**
  * Component that renders a screen for the user to enter their email address to start the
  * account creation process.

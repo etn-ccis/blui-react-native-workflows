@@ -12,16 +12,7 @@ import { useNavigation } from '@react-navigation/native';
 const submit = (): void => {
     throw new Error('My Custom Error');
 };
-
-export const CreateAccountScreen: React.FC = (): JSX.Element => (
-    <DemoRegistrationWorkflowScreen>
-        <ErrorContextProvider>
-            <DemoCreateAccountScreen/>
-        </ErrorContextProvider>
-    </DemoRegistrationWorkflowScreen>
-)
-
- const DemoCreateAccountScreen: React.FC<CreateAccountScreenProps> = (props) => {
+const DemoCreateAccountScreen: React.FC<CreateAccountScreenProps> = (props) => {
     const regWorkflow = useRegistrationWorkflowContext();
     const navigation = useNavigation();
     const { triggerError, errorManagerConfig } = useErrorManager();
@@ -36,6 +27,26 @@ export const CreateAccountScreen: React.FC = (): JSX.Element => (
     const [emailInput, setEmailInput] = useState(screenData?.CreateAccount?.emailAddress || '');
 
     const { WorkflowCardHeaderProps, WorkflowCardInstructionProps, WorkflowCardActionsProps } = props;
+
+    const onNext = useCallback(() => {
+        try {
+            void nextScreen({
+                screenId: 'AccountDetails',
+                values: { emailAddress: emailInput },
+            });
+            navigation.navigate('Home');
+            submit();
+        } catch (_error) {
+            triggerError(_error as Error);
+        }
+    }, [emailInput, nextScreen, triggerError, navigation]);
+
+    const onPrevious = useCallback(() => {
+        void previousScreen({
+            screenId: 'CreateAccount',
+            values: { emailAddress: emailInput },
+        });
+    }, [emailInput, previousScreen]);
 
     const workflowCardHeaderProps = {
         title: 'Create Account',
@@ -66,19 +77,6 @@ export const CreateAccountScreen: React.FC = (): JSX.Element => (
         },
     };
 
-    const onNext = useCallback(() => {
-        void nextScreen({
-            screenId: 'CreateAccount',
-            values: { emailAddress: emailInput },
-        });
-    }, [emailInput, nextScreen]);
-
-    const onPrevious = useCallback(() => {
-        void previousScreen({
-            screenId: 'CreateAccount',
-            values: { emailAddress: emailInput },
-        });
-    }, [emailInput, previousScreen]);
     const EMAIL_REGEX = /^[A-Z0-9._%+'-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
     const emailValidator = (emailinput: string): boolean | string => {
         if (!EMAIL_REGEX.test(emailinput)) {
@@ -91,14 +89,23 @@ export const CreateAccountScreen: React.FC = (): JSX.Element => (
     };
 
     return (
-                <CreateAccountScreenBase
-                    WorkflowCardHeaderProps={workflowCardHeaderProps}
-                    WorkflowCardInstructionProps={workflowCardInstructionProps}
-                    emailLabel="Email Address"
-                    emailTextFieldProps={{ onChange: onEmailInputValueChange }}
-                    emailValidator={emailValidator}
-                    initialValue={emailInput}
-                    WorkflowCardActionsProps={workflowCardActionsProps}
-                />
+        <CreateAccountScreenBase
+            WorkflowCardHeaderProps={workflowCardHeaderProps}
+            WorkflowCardInstructionProps={workflowCardInstructionProps}
+            emailLabel="Email Address"
+            emailTextFieldProps={{ onChange: onEmailInputValueChange }}
+            emailValidator={emailValidator}
+            initialValue={emailInput}
+            WorkflowCardActionsProps={workflowCardActionsProps}
+            errorDisplayConfig={errorDisplayConfig}
+        />
     );
 };
+
+export const CreateAccountScreen: React.FC = (): JSX.Element => (
+    <DemoRegistrationWorkflowScreen>
+        <ErrorContextProvider>
+            <DemoCreateAccountScreen />
+        </ErrorContextProvider>
+    </DemoRegistrationWorkflowScreen>
+);
