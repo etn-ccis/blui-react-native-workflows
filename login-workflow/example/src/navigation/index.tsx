@@ -41,7 +41,11 @@ export const MainRouter = (): any => (
             <RootStack.Screen name="Home" component={Home} />
             <RootStack.Screen name="WorkFlowCardExample" component={WorkflowCardWrapper} />
             <RootStack.Screen name="I18nExample" component={I18nExample} />
-            <RootStack.Screen name="RegistrationProviderExample" component={RegistrationProviderExample} />
+            <RootStack.Screen
+                name="RegistrationProviderExample"
+                component={RegistrationProviderExample}
+                options={{ gestureEnabled: false }}
+            />
         </Drawer.Navigator>
     </NavigationContainer>
 );
