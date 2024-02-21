@@ -12,7 +12,6 @@ import {
 } from '../../screens/DemoScreens';
 import PagerView from 'react-native-pager-view';
 import { View, StyleSheet } from 'react-native';
-
 import { useErrorManager } from '../../contexts/ErrorContext/useErrorManager';
 import { ErrorManager } from '../Error/ErrorManager';
 import { RegistrationWorkflowProps } from './types';
