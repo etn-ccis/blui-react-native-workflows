@@ -1,5 +1,5 @@
 import React from 'react';
-import { KeyboardAvoidingView, StyleSheet, ViewStyle } from 'react-native';
+import { ScrollView, StyleSheet, View, ViewStyle } from 'react-native';
 import { useScreenDimensions } from '../../hooks/useScreenDimensions';
 import { WorkflowCardBodyProps } from './WorkflowCard.types';
 import { Card } from 'react-native-paper';
@@ -13,6 +13,7 @@ const makeStyles = (
 }> =>
     StyleSheet.create({
         container: {
+            minHeight: '100%',
             flex: 1,
         },
         viewContainer: {
@@ -23,7 +24,6 @@ const makeStyles = (
             paddingTop: 32,
             paddingBottom: isTablet ? 32 : 24,
             paddingHorizontal: 0,
-            // minHeight: '100%',
         },
     });
 
@@ -35,23 +35,23 @@ const makeStyles = (
  * @category Component
  */
 export const WorkflowCardBody: React.FC<WorkflowCardBodyProps> = (props) => {
-    const { children, style, ...otherCardContentProps } = props;
+    const { children, style, scrollable = true, ...otherCardContentProps } = props;
     const { isTablet } = useScreenDimensions();
     const defaultStyles = makeStyles(isTablet);
 
     return (
         <>
-            {/* <Card.Content style={[defaultStyles.workflowBody, style]} {...otherCardContentProps}>
+            {scrollable ? (
                 <ScrollView bounces={false} contentContainerStyle={[defaultStyles.container]}>
-                    {children}
-                    <View style={{ height: 1000, backgroundColor: 'red' }}></View>
+                    <Card.Content style={[defaultStyles.workflowBody, style]} {...otherCardContentProps}>
+                        {children}
+                    </Card.Content>
                 </ScrollView>
-            </Card.Content> */}
-            <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
+            ) : (
                 <Card.Content style={[defaultStyles.workflowBody, style]} {...otherCardContentProps}>
-                    {children}
+                    <View style={defaultStyles.viewContainer}>{children}</View>
                 </Card.Content>
-            </KeyboardAvoidingView>
+            )}
         </>
     );
 };
