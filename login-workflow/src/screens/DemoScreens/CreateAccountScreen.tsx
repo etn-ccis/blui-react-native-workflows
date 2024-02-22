@@ -34,7 +34,7 @@ export const CreateAccountScreen: React.FC<CreateAccountProps> = (props) => {
 
     return (
         <WorkflowCard>
-            <WorkflowCardHeader title="Create Account Screen" onIconPress={onPrevious} icon={{ name: 'arrow-back' }} />
+            <WorkflowCardHeader title="Create Account" onIconPress={onPrevious} icon={{ name: 'arrow-back' }} />
             <WorkflowCardBody>
                 <TextInput
                     label="Email Address"
