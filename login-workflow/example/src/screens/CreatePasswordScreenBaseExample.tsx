@@ -75,7 +75,7 @@ const CreatePasswordScreenBaseExample: React.FC<React.PropsWithChildren> = () =>
                 canGoNext: passwordInput !== '' && confirmInput !== '' && areValidMatchingPasswords(),
                 previousLabel: 'Back',
                 nextLabel: 'Next',
-                onNext: (): void => navigation.navigate('Home'),
+                onPrevious: (): void => navigation.navigate('Home'),
             }}
             PasswordProps={passwordProps}
         />
