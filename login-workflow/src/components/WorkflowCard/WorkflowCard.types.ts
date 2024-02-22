@@ -1,6 +1,7 @@
 import { DotStepperVariant } from '@brightlayer-ui/react-native-components';
+import { IconSource } from '@brightlayer-ui/react-native-components/core/__types__';
 import { ImageBackgroundProps, ImageSourcePropType, ViewProps } from 'react-native';
-import { CardTitleProps, TextProps } from 'react-native-paper';
+import { CardContentProps, TextProps } from 'react-native-paper';
 
 export type WorkflowCardBaseProps = ImageBackgroundProps & {
     /**
@@ -16,7 +17,40 @@ export type WorkflowCardBaseProps = ImageBackgroundProps & {
     backgroundImage?: ImageSourcePropType;
 };
 
-export type WorkflowCardHeaderProps = CardTitleProps;
+export type WorkflowCardHeaderProps = Omit<ViewProps, 'children'> & {
+    /**
+     * Text to display as title in Header
+     */
+    title?: string;
+    /**
+     * Text to display as subtitle in Header
+     */
+    subTitle?: string;
+    /**
+     * On press functionality for the icon
+     */
+    onIconPress?: () => void;
+    /**
+     * The background color of Header
+     * @default theme.colors.primary
+     */
+    backgroundColor?: string;
+    /**
+     * The text color of Header
+     * @default theme.colors.onPrimary
+     */
+    textColor?: string;
+    /**
+     * The icon color of Header
+     * @default theme.colors.onPrimary
+     */
+    iconColor?: string;
+    /**
+     * Icon to be shown on left side of Header
+     * @default close
+     */
+    icon?: IconSource;
+};
 
 export type WorkflowCardInstructionProps = Omit<TextProps<'bodyLarge'>, 'children' | 'theme' | 'variant'> & {
     /**
@@ -30,7 +64,13 @@ export type WorkflowCardInstructionProps = Omit<TextProps<'bodyLarge'>, 'childre
      */
     divider?: boolean;
 };
-
+export type WorkflowCardBodyProps = CardContentProps & {
+    /**
+     * If true, the scroll view will be enabled otherwise view will be enabled
+     * @default true
+     */
+    scrollable?: boolean;
+};
 export type WorkflowCardActionsProps = ViewProps & {
     /**
      *
@@ -117,5 +157,6 @@ export type WorkflowCardProps = {
     WorkflowCardBaseProps?: WorkflowCardBaseProps;
     WorkflowCardHeaderProps?: WorkflowCardHeaderProps;
     WorkflowCardInstructionProps?: WorkflowCardInstructionProps;
+    WorkflowCardBodyProps?: WorkflowCardBodyProps;
     WorkflowCardActionsProps?: WorkflowCardActionsProps;
 };

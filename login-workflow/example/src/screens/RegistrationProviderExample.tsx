@@ -1,6 +1,5 @@
 import React from 'react';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { RootStackParamList } from 'src/navigation';
 import { useApp } from '../context/AppContextProvider';
 import { ProjectRegistrationUIActions } from '../actions/RegistrationUIActions';
 import i18nAppInstance from '../../translations/i18n';
@@ -20,6 +19,8 @@ import {
 // import { CustomScreen } from './../components/CustomScreen';
 // import { Text } from 'react-native-paper';
 // import { View } from 'react-native';
+import { RootStackParamList } from '../navigation';
+// import { CustomScreen } from '../components/CustomScreen';
 
 type AppProps = {
     navigation: StackNavigationProp<RootStackParamList, 'RegistrationProviderExample'>;
