@@ -13,6 +13,7 @@ import RegistrationContextExample from '../screens/RegistrationContextExample';
 import VerifyCodeScreenBaseExample from '../screens/VerifyCodeScreenBaseExample';
 import DemoAccountDetails from '../screens/DemoAccountDetails';
 import CreatePasswordScreenBaseExample from '../screens/CreatePasswordScreenBaseExample';
+import { CreateAccountScreen } from '../screens/CreateAccountScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -27,6 +28,7 @@ export type RootStackParamList = {
     VerifyCodeScreenBaseExample: undefined;
     AccountDetailsBaseExample: undefined;
     CreatePasswordScreenBaseExample: undefined;
+    CreateAccountBaseExample: undefined;
 };
 
 const RootStack = createStackNavigator<RootStackParamList>();
@@ -57,6 +59,7 @@ export const MainRouter = (): any => (
             <RootStack.Screen name="VerifyCodeScreenBaseExample" component={VerifyCodeScreenBaseExample} />
             <RootStack.Screen name="AccountDetailsBaseExample" component={DemoAccountDetails} />
             <RootStack.Screen name="CreatePasswordScreenBaseExample" component={CreatePasswordScreenBaseExample} />
+            <RootStack.Screen name="CreateAccountBaseExample" component={CreateAccountScreen} />
         </Drawer.Navigator>
     </NavigationContainer>
 );

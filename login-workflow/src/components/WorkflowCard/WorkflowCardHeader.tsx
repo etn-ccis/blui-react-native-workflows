@@ -1,47 +1,12 @@
 import React from 'react';
-import { StatusBar, StyleSheet, TouchableOpacity, View, ViewProps, ViewStyle } from 'react-native';
-import { IconSource } from '@brightlayer-ui/react-native-components/core/__types__';
+import { StatusBar, StyleSheet, TouchableOpacity, View, ViewStyle } from 'react-native';
 import { Icon } from '@brightlayer-ui/react-native-components';
 import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 import { Text } from 'react-native-paper';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Color from 'color';
 import { useScreenDimensions } from '../../hooks/useScreenDimensions';
-
-export type WorkflowCardHeaderProps = Omit<ViewProps, 'children'> & {
-    /**
-     * Text to display as title in Header
-     */
-    title?: string;
-    /**
-     * Text to display as subtitle in Header
-     */
-    subTitle?: string;
-    /**
-     * On press functionality for the icon
-     */
-    onIconPress?: () => void;
-    /**
-     * The background color of Header
-     * @default theme.colors.primary
-     */
-    backgroundColor?: string;
-    /**
-     * The text color of Header
-     * @default theme.colors.onPrimary
-     */
-    textColor?: string;
-    /**
-     * The icon color of Header
-     * @default theme.colors.onPrimary
-     */
-    iconColor?: string;
-    /**
-     * Icon to be shown on left side of Header
-     * @default close
-     */
-    icon?: IconSource;
-};
+import { WorkflowCardHeaderProps } from './WorkflowCard.types';
 
 const makeStyles = (
     theme: ExtendedTheme,
