@@ -11,23 +11,17 @@ type VerifyCodeProps = {
     code?: string;
 };
 
-export const VerifyCode: React.FC<VerifyCodeProps> = (props) => {
+export const VerifyCodeScreen: React.FC<VerifyCodeProps> = (props) => {
     const regWorkflow = useRegistrationWorkflowContext();
-    const {
-        nextScreen,
-        previousScreen,
-        screenData,
-        currentScreen,
-        totalScreens,
-        isInviteRegistration,
-        updateScreenData,
-    } = regWorkflow;
+    const { nextScreen, previousScreen, screenData, currentScreen, totalScreens, updateScreenData } = regWorkflow;
     const { code } = props;
 
     const [verifyCode, setVerifyCode] = useState(code ? code : screenData.VerifyCode.code);
 
     const onNext = useCallback(() => {
-        if (isInviteRegistration) {
+        // change it to true, if account already exists in self registration flow
+        const isAccountExist = false;
+        if (isAccountExist) {
             updateScreenData({
                 screenId: 'VerifyCode',
                 values: { code: screenData.VerifyCode.code },
@@ -40,7 +34,7 @@ export const VerifyCode: React.FC<VerifyCodeProps> = (props) => {
                 isAccountExist: false,
             });
         }
-    }, [verifyCode, nextScreen, isInviteRegistration, updateScreenData, screenData]);
+    }, [verifyCode, nextScreen, updateScreenData, screenData]);
 
     const onPrevious = useCallback(() => {
         void previousScreen({

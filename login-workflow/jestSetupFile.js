@@ -8,6 +8,7 @@ jest.mock('react-i18next', () => ({
 }));
 jest.mock('react-native-reanimated', () => require('react-native-reanimated/mock'));
 jest.mock('react-native-safe-area-context', () => mockSafeAreaContext);
+jest.mock('@react-navigation/native');
 jest.mock('react-native-webview', () => {
     const { View } = require('react-native');
     return {

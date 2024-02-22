@@ -11,7 +11,7 @@ type CreateAccountProps = {
     email?: any;
 };
 
-export const CreateAccount: React.FC<CreateAccountProps> = (props) => {
+export const CreateAccountScreen: React.FC<CreateAccountProps> = (props) => {
     const regWorkflow = useRegistrationWorkflowContext();
     const { nextScreen, previousScreen, screenData, currentScreen, totalScreens } = regWorkflow;
     const { email } = props;
@@ -21,24 +21,24 @@ export const CreateAccount: React.FC<CreateAccountProps> = (props) => {
     const onNext = useCallback(() => {
         void nextScreen({
             screenId: 'CreateAccount',
-            values: { emailAddress: email },
+            values: { emailAddress: emailInput },
         });
-    }, [email, nextScreen]);
+    }, [emailInput, nextScreen]);
 
     const onPrevious = useCallback(() => {
         void previousScreen({
             screenId: 'CreateAccount',
-            values: { emailAddress: email },
+            values: { emailAddress: emailInput },
         });
-    }, [email, previousScreen]);
+    }, [emailInput, previousScreen]);
 
     return (
         <WorkflowCard>
-            <WorkflowCardHeader title="Create Account Screen" onIconPress={onPrevious} icon={{ name: 'arrow-back' }} />
-
+            <WorkflowCardHeader title="Create Account" onIconPress={onPrevious} icon={{ name: 'arrow-back' }} />
             <WorkflowCardBody>
                 <TextInput
                     label="Email Address"
+                    testID="email"
                     mode="flat"
                     left={<TextInput.Icon icon="email" />}
                     value={emailInput}
