@@ -131,7 +131,7 @@
         "react-i18next": "^14.0.1",
         "react-native": "^0.70.0",
         "react-native-gesture-handler": "^1.6.1",
-        "react-native-keyboard-aware-scroll-view": "^0.9.1",
+        "react-native-keyboard-aware-scroll-view": "^0.9.5",
         "react-native-pager-view": "^6.2.3",
         "react-native-paper": "^5.0.0",
         "react-native-safe-area-context": "^3.0.0",

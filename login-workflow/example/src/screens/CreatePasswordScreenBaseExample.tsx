@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { CreatePasswordScreenBase } from '@brightlayer-ui/react-native-auth-workflow';
+import { useNavigation } from '@react-navigation/native';
 
 export const SPECIAL_CHAR_REGEX = /[!"#$%&'()*+,-./:;<=>?@[\]^`{|}~]+/;
 export const LENGTH_REGEX = /^.{8,16}$/;
@@ -32,6 +33,7 @@ export const passwordRequirements = [
 const CreatePasswordScreenBaseExample: React.FC<React.PropsWithChildren> = () => {
     const [passwordInput, setPasswordInput] = useState('');
     const [confirmInput, setConfirmInput] = useState('');
+    const navigation = useNavigation();
 
     const updateFields = useCallback(
         (fields: { password: string; confirm: string }) => {
@@ -73,6 +75,7 @@ const CreatePasswordScreenBaseExample: React.FC<React.PropsWithChildren> = () =>
                 canGoNext: passwordInput !== '' && confirmInput !== '' && areValidMatchingPasswords(),
                 previousLabel: 'Back',
                 nextLabel: 'Next',
+                onNext: (): void => navigation.navigate('Home'),
             }}
             PasswordProps={passwordProps}
         />

@@ -1,8 +1,8 @@
 import React from 'react';
-import { ScrollView, StyleSheet, View, ViewStyle } from 'react-native';
-import { Card } from 'react-native-paper';
+import { KeyboardAvoidingView, StyleSheet, ViewStyle } from 'react-native';
 import { useScreenDimensions } from '../../hooks/useScreenDimensions';
 import { WorkflowCardBodyProps } from './WorkflowCard.types';
+import { Card } from 'react-native-paper';
 
 const makeStyles = (
     isTablet: boolean
@@ -13,7 +13,7 @@ const makeStyles = (
 }> =>
     StyleSheet.create({
         container: {
-            height: '100%',
+            flex: 1,
         },
         viewContainer: {
             flex: 1,
@@ -23,7 +23,7 @@ const makeStyles = (
             paddingTop: 32,
             paddingBottom: isTablet ? 32 : 24,
             paddingHorizontal: 0,
-            flex: 1,
+            // minHeight: '100%',
         },
     });
 
@@ -35,19 +35,23 @@ const makeStyles = (
  * @category Component
  */
 export const WorkflowCardBody: React.FC<WorkflowCardBodyProps> = (props) => {
-    const { children, style, scrollable = true, ...otherCardContentProps } = props;
+    const { children, style, ...otherCardContentProps } = props;
     const { isTablet } = useScreenDimensions();
     const defaultStyles = makeStyles(isTablet);
 
     return (
-        <Card.Content style={[defaultStyles.workflowBody, style]} {...otherCardContentProps}>
-            {scrollable ? (
+        <>
+            {/* <Card.Content style={[defaultStyles.workflowBody, style]} {...otherCardContentProps}>
                 <ScrollView bounces={false} contentContainerStyle={[defaultStyles.container]}>
                     {children}
+                    <View style={{ height: 1000, backgroundColor: 'red' }}></View>
                 </ScrollView>
-            ) : (
-                <View style={defaultStyles.viewContainer}>{children}</View>
-            )}
-        </Card.Content>
+            </Card.Content> */}
+            <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
+                <Card.Content style={[defaultStyles.workflowBody, style]} {...otherCardContentProps}>
+                    {children}
+                </Card.Content>
+            </KeyboardAvoidingView>
+        </>
     );
 };
