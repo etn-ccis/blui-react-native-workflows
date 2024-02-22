@@ -1,6 +1,5 @@
 import React from 'react';
 import { SuccessScreenBase, SuccessScreenProps } from '@brightlayer-ui/react-native-auth-workflow';
-import MatIcon from 'react-native-vector-icons/MaterialIcons';
 import { useNavigation } from '@react-navigation/native';
 /**
  * Component that renders a success screen for when registration completes.
@@ -16,7 +15,7 @@ import { useNavigation } from '@react-navigation/native';
 
 export const RegistrationSuccessScreen: React.FC<SuccessScreenProps> = (props) => {
     const {
-        icon = <MatIcon size={80} name="check-circle" />,
+        icon = { family: 'material', name: 'check-circle' },
         messageTitle = 'Welcome John Doe',
         message = 'Your account has been successfully created with the email example@example.com.\n\nYour account has already been added to the Acme Co. organization.',
         canDismiss = true,
