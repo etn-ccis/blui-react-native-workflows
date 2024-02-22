@@ -8,6 +8,7 @@ import {
     RegistrationContextProvider,
     EulaScreen,
     VerifyCode,
+    CreateAccount,
     DemoRegistrationWorkflowScreen,
     VerifyCodeScreenBase,
 } from '@brightlayer-ui/react-native-auth-workflow';
@@ -39,6 +40,7 @@ const RegistrationContextExample: React.FC<AppProps> = (): JSX.Element => {
         >
             <DemoRegistrationWorkflowScreen>
                 <EulaScreen />
+                <CreateAccount />
                 <CustomScreen />
                 <VerifyCode />
                 <VerifyCodeScreenBase
