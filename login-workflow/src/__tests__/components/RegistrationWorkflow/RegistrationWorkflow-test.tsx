@@ -159,8 +159,8 @@ describe('RegistrationWorkflow', () => {
                 </RegistrationContextProvider>
             </PaperProvider>
         );
-        const verifyEmailInput = getByTestId('email');
-        fireEvent.changeText(verifyEmailInput, { target: { value: 'test@test.net' } });
+        const verifyEmailInput = getByTestId('email-textinput');
+        fireEvent.changeText(verifyEmailInput, 'test@test.net');
         const nextButton = getByText('Next');
         fireEvent.press(nextButton);
         void ((): void => expect(screen.getByText('Custom Success')).toBeInTheDocument());
@@ -242,7 +242,7 @@ describe('RegistrationWorkflow', () => {
         );
 
         fireEvent.press(screen.getAllByText('Next')[0]);
-        expect(screen.getByText('Create Account')).toBeOnTheScreen();
+        expect(screen.getByText('Create an Account')).toBeOnTheScreen();
         expect(screen.getAllByText('Next').length).toBe(5);
     });
 
