@@ -1,11 +1,6 @@
 import React, { useState } from 'react';
-import {
-    CreateAccountScreenBase,
-    CreateAccountScreenProps,
-    
-} from '@brightlayer-ui/react-native-auth-workflow';
+import { CreateAccountScreenBase, CreateAccountScreenProps } from '@brightlayer-ui/react-native-auth-workflow';
 import { useNavigation } from '@react-navigation/native';
-
 
 export const CreateAccountScreen: React.FC<CreateAccountScreenProps> = (props) => {
     const navigation = useNavigation();
@@ -33,7 +28,7 @@ export const CreateAccountScreen: React.FC<CreateAccountScreenProps> = (props) =
         ...WorkflowCardActionsProps,
         onNext: (): void => {},
         onPrevious: (): void => {
-            navigation.navigate('Home')
+            navigation.navigate('Home');
         },
     };
 
@@ -53,14 +48,10 @@ export const CreateAccountScreen: React.FC<CreateAccountScreenProps> = (props) =
             WorkflowCardHeaderProps={workflowCardHeaderProps}
             WorkflowCardInstructionProps={workflowCardInstructionProps}
             emailLabel="Email"
-            emailTextFieldProps={{ onChange: onEmailInputValueChange, mode:'outlined' }}
+            emailTextFieldProps={{ onChange: onEmailInputValueChange, mode: 'outlined' }}
             emailValidator={emailValidator}
             initialValue={emailInput}
             WorkflowCardActionsProps={workflowCardActionsProps}
         />
-
     );
 };
-
-
-

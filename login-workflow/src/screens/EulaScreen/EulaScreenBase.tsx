@@ -8,15 +8,7 @@ import {
     WorkflowCardHeader,
     WorkflowCardInstructions,
 } from '../../components';
-import {
-    LayoutChangeEvent,
-    ScrollView,
-    TouchableOpacity,
-    View,
-    StyleSheet,
-    ViewStyle,
-    TextStyle,
-} from 'react-native';
+import { LayoutChangeEvent, ScrollView, TouchableOpacity, View, StyleSheet, ViewStyle, TextStyle } from 'react-native';
 import { Checkbox, Text } from 'react-native-paper';
 import { Icon } from '@brightlayer-ui/react-native-components';
 import { WebView } from 'react-native-webview';
