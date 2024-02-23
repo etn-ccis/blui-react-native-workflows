@@ -7,15 +7,10 @@ import { Card } from 'react-native-paper';
 const makeStyles = (
     isTablet: boolean
 ): StyleSheet.NamedStyles<{
-    container: ViewStyle;
     viewContainer: ViewStyle;
     workflowBody: ViewStyle;
 }> =>
     StyleSheet.create({
-        container: {
-            minHeight: '100%',
-            flex: 1,
-        },
         viewContainer: {
             flex: 1,
         },
@@ -42,7 +37,7 @@ export const WorkflowCardBody: React.FC<WorkflowCardBodyProps> = (props) => {
     return (
         <>
             {scrollable ? (
-                <ScrollView bounces={false} contentContainerStyle={[defaultStyles.container]}>
+                <ScrollView contentInsetAdjustmentBehavior="automatic" bounces={false}>
                     <Card.Content style={[defaultStyles.workflowBody, style]} {...otherCardContentProps}>
                         {children}
                     </Card.Content>
