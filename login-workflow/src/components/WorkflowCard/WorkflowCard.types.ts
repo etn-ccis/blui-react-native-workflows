@@ -13,6 +13,7 @@ export type WorkflowCardBaseProps = ImageBackgroundProps & {
     /**
      *
      * @param {ImageSourcePropType} [backgroundImage] - A custom background to render behind the card
+     * The supported formats are png, jpg, jpeg, bmp, gif, webp, psd (iOS only).
      */
     backgroundImage?: ImageSourcePropType;
 };

@@ -86,7 +86,6 @@ export const VerifyCodeScreenBase: React.FC<React.PropsWithChildren<VerifyCodeSc
                         value={verifyCode}
                         onChangeText={handleVerifyCodeInputChange}
                         error={shouldValidateCode && !isCodeValid}
-                        maxLength={6}
                         {...verifyCodeTextInputProps}
                         onBlur={(e): void => {
                             // eslint-disable-next-line no-unused-expressions
