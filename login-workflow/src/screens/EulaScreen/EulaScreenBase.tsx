@@ -84,6 +84,7 @@ export const EulaScreenBase: React.FC<EulaScreenProps> = (props) => {
 
     const [eulaAccepted, setEulaAccepted] = useState(initialCheckboxValue ?? false);
     const [checkboxEnable, setCheckboxEnable] = useState(false);
+
     const handleEulaAcceptedChecked = useCallback(
         (accepted: boolean) => {
             setEulaAccepted(accepted);
@@ -140,8 +141,13 @@ export const EulaScreenBase: React.FC<EulaScreenProps> = (props) => {
                                             setCheckboxEnable(true);
                                         }
                                     }}
+                                    injectedJavaScript={`
+                                        function updateScroll() {
+                                            window.scrollTo(1, 0);
+                                        }
+                                        updateScroll();
+                                    `}
                                     scrollEventThrottle={10}
-                                    onLayout={handleLayout}
                                     forceDarkOn={theme.dark ? true : false}
                                     style={defaultStyles.webview}
                                 />
