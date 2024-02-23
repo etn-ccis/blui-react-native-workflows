@@ -1,5 +1,4 @@
 import React, { forwardRef, useState } from 'react';
-import { TextStyle, StyleSheet } from 'react-native';
 import { TextInput, TextInputProps } from 'react-native-paper';
 
 /**
@@ -10,23 +9,14 @@ import { TextInput, TextInputProps } from 'react-native-paper';
  *
  * @category Component
  */
-const makeStyles = (): StyleSheet.NamedStyles<{
-    textinput: TextStyle;
-}> =>
-    StyleSheet.create({
-        textinput: {
-            flex: 1,
-        },
-    });
 export const PasswordTextField: React.FC<TextInputProps> = forwardRef((props, ref) => {
     const { ...otherProps } = props;
     const [showPassword, setShowPassword] = useState(false);
-    const defaultStyle = makeStyles();
+
     return (
         <TextInput
             ref={ref}
             testID="textfield"
-            style={defaultStyle.textinput}
             secureTextEntry={!showPassword}
             mode="flat"
             label="Password"
