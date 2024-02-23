@@ -8,7 +8,15 @@ import {
     WorkflowCardHeader,
     WorkflowCardInstructions,
 } from '../../components';
-import { LayoutChangeEvent, ScrollView, TouchableOpacity, View, StyleSheet, ViewStyle, TextStyle } from 'react-native';
+import {
+    LayoutChangeEvent,
+    ScrollView,
+    TouchableOpacity,
+    View,
+    StyleSheet,
+    ViewStyle,
+    TextStyle,
+} from 'react-native';
 import { Checkbox, Text } from 'react-native-paper';
 import { Icon } from '@brightlayer-ui/react-native-components';
 import { WebView } from 'react-native-webview';
@@ -84,6 +92,7 @@ export const EulaScreenBase: React.FC<EulaScreenProps> = (props) => {
 
     const [eulaAccepted, setEulaAccepted] = useState(initialCheckboxValue ?? false);
     const [checkboxEnable, setCheckboxEnable] = useState(false);
+
     const handleEulaAcceptedChecked = useCallback(
         (accepted: boolean) => {
             setEulaAccepted(accepted);
@@ -140,8 +149,13 @@ export const EulaScreenBase: React.FC<EulaScreenProps> = (props) => {
                                             setCheckboxEnable(true);
                                         }
                                     }}
+                                    injectedJavaScript={`
+                                        function updateScroll() {
+                                            window.scrollTo(1, 0);
+                                        }
+                                        updateScroll();
+                                    `}
                                     scrollEventThrottle={10}
-                                    onLayout={handleLayout}
                                     forceDarkOn={theme.dark ? true : false}
                                     style={defaultStyles.webview}
                                 />
