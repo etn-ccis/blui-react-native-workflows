@@ -64,6 +64,7 @@ export type WorkflowCardInstructionProps = Omit<TextProps<'bodyLarge'>, 'childre
      */
     divider?: boolean;
 };
+
 export type WorkflowCardBodyProps = CardContentProps & {
     /**
      * If true, the scroll view will be enabled otherwise view will be enabled
@@ -71,6 +72,7 @@ export type WorkflowCardBodyProps = CardContentProps & {
      */
     scrollable?: boolean;
 };
+
 export type WorkflowCardActionsProps = ViewProps & {
     /**
      *

@@ -1,20 +1,16 @@
 import React from 'react';
 import { ScrollView, StyleSheet, View, ViewStyle } from 'react-native';
-import { Card } from 'react-native-paper';
 import { useScreenDimensions } from '../../hooks/useScreenDimensions';
 import { WorkflowCardBodyProps } from './WorkflowCard.types';
+import { Card } from 'react-native-paper';
 
 const makeStyles = (
     isTablet: boolean
 ): StyleSheet.NamedStyles<{
-    container: ViewStyle;
     viewContainer: ViewStyle;
     workflowBody: ViewStyle;
 }> =>
     StyleSheet.create({
-        container: {
-            height: '100%',
-        },
         viewContainer: {
             flex: 1,
         },
@@ -23,7 +19,6 @@ const makeStyles = (
             paddingTop: 32,
             paddingBottom: isTablet ? 32 : 24,
             paddingHorizontal: 0,
-            flex: 1,
         },
     });
 
@@ -40,14 +35,18 @@ export const WorkflowCardBody: React.FC<WorkflowCardBodyProps> = (props) => {
     const defaultStyles = makeStyles(isTablet);
 
     return (
-        <Card.Content style={[defaultStyles.workflowBody, style]} {...otherCardContentProps}>
+        <>
             {scrollable ? (
-                <ScrollView bounces={false} contentContainerStyle={[defaultStyles.container]}>
-                    {children}
+                <ScrollView contentInsetAdjustmentBehavior="automatic" bounces={false}>
+                    <Card.Content style={[defaultStyles.workflowBody, style]} {...otherCardContentProps}>
+                        {children}
+                    </Card.Content>
                 </ScrollView>
             ) : (
-                <View style={defaultStyles.viewContainer}>{children}</View>
+                <Card.Content style={[defaultStyles.workflowBody, style]} {...otherCardContentProps}>
+                    <View style={defaultStyles.viewContainer}>{children}</View>
+                </Card.Content>
             )}
-        </Card.Content>
+        </>
     );
 };
