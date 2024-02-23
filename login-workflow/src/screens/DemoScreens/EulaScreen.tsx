@@ -14,15 +14,7 @@ type EulaScreenProps = {
 export const EulaScreen: React.FC<EulaScreenProps> = (props) => {
     const regWorkflow = useRegistrationWorkflowContext();
     const navigation = useNavigation();
-    const {
-        nextScreen,
-        previousScreen,
-        screenData,
-        currentScreen,
-        totalScreens,
-        isInviteRegistration,
-        updateScreenData,
-    } = regWorkflow;
+    const { nextScreen, previousScreen, screenData, currentScreen, totalScreens, isInviteRegistration } = regWorkflow;
 
     const { initialCheckboxValue } = props;
 
@@ -32,10 +24,16 @@ export const EulaScreen: React.FC<EulaScreenProps> = (props) => {
 
     const onNext = useCallback(() => {
         if (isInviteRegistration) {
-            updateScreenData({
+            //uncomment for account already exists screen
+            // updateScreenData({
+            //     screenId: 'Eula',
+            //     values: { accepted: eulaAccepted },
+            //     isAccountExist: true,
+            // });
+            void nextScreen({
                 screenId: 'Eula',
                 values: { accepted: eulaAccepted },
-                isAccountExist: true,
+                isAccountExist: false,
             });
         } else {
             void nextScreen({
@@ -44,7 +42,7 @@ export const EulaScreen: React.FC<EulaScreenProps> = (props) => {
                 isAccountExist: false,
             });
         }
-    }, [eulaAccepted, nextScreen, isInviteRegistration, updateScreenData]);
+    }, [eulaAccepted, nextScreen, isInviteRegistration]);
 
     const onPrevious = useCallback(() => {
         void previousScreen({

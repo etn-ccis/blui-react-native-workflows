@@ -54,8 +54,12 @@ export const MainRouter = (): any => (
             <RootStack.Screen name="WorkFlowCardExample" component={WorkflowCardWrapper} />
             <RootStack.Screen name="RegistrationSuccessScreen" component={RegistrationSuccessScreen} />
             <RootStack.Screen name="I18nExample" component={I18nExample} />
+            <RootStack.Screen
+                name="RegistrationProviderExample"
+                component={RegistrationProviderExample}
+                options={{ gestureEnabled: false }}
+            />
             <RootStack.Screen name="RegistratonContextExample" component={RegistrationContextExample} />
-            <RootStack.Screen name="RegistrationProviderExample" component={RegistrationProviderExample} />
             <RootStack.Screen name="VerifyCodeScreenBaseExample" component={VerifyCodeScreenBaseExample} />
             <RootStack.Screen name="AccountDetailsBaseExample" component={DemoAccountDetails} />
             <RootStack.Screen name="CreatePasswordScreenBaseExample" component={CreatePasswordScreenBaseExample} />
