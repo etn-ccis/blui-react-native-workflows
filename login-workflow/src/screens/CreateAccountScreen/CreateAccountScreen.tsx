@@ -114,7 +114,7 @@ export const CreateAccountScreen: React.FC<CreateAccountScreenProps> = (props) =
     };
 
     const onEmailInputValueChange = (e: any): void => {
-        setEmailInputValue(e.target.value);
+        setEmailInputValue(e);
     };
 
     return (
@@ -126,7 +126,7 @@ export const CreateAccountScreen: React.FC<CreateAccountScreenProps> = (props) =
             initialValue={
                 screenData.CreateAccount.emailAddress.length > 0 ? screenData.CreateAccount.emailAddress : initialValue
             }
-            emailTextFieldProps={{ ...emailTextFieldProps, onChange: onEmailInputValueChange }}
+            emailTextFieldProps={{ ...emailTextFieldProps, onChangeText: onEmailInputValueChange }}
             emailValidator={emailValidator}
             WorkflowCardActionsProps={workflowCardActionsProps}
             errorDisplayConfig={errorDisplayConfig}
