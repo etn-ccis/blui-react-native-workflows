@@ -2,26 +2,19 @@ import React from 'react';
 import { useRegistrationContext } from '../../contexts';
 import { SuccessScreenBase, SuccessScreenProps } from '../SuccessScreen';
 import { useTranslation } from 'react-i18next';
-import MatIcon from 'react-native-vector-icons/MaterialIcons';
 /**
- * Full Screen component that renders a Success Screen for the accounts which are already exists in the records
+ * Full screen component that renders a Success Screen for the accounts that already exists in the records
  *
- * @param icon the icon to be displayed on the screen
- * @param messageTitle title of the success message
- * @param message success message to be displayed on the screen
- * @param dismissButtonLabel to display label for the button
- * @param canDismiss boolean flag prop to dismiss the success screen or not
- * @param onDismiss function to call when the dismiss button is clicked
+ * @param {SuccessScreenProps} props - Props of SuccessScreen component
  *
  * @category Component
  */
 
-export const ExistingAccountSuccessScreen: React.FC<SuccessScreenProps> = (props) => {
+export const ExistingAccountSuccessScreen: React.FC<SuccessScreenProps> = (props: SuccessScreenProps) => {
     const { t } = useTranslation();
     const { navigate, routeConfig } = useRegistrationContext();
-
     const {
-        icon = <MatIcon name="person" size={100} />,
+        icon = { family: 'material', name: 'person' },
         messageTitle = t('bluiCommon:MESSAGES.WELCOME'),
         message = t('bluiRegistration:REGISTRATION.SUCCESS_EXISTING'),
         canDismiss = true,

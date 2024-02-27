@@ -38,7 +38,7 @@ export const SuccessScreenBase: React.FC<SuccessScreenProps> = (props) => {
         <WorkflowCard {...cardBaseProps}>
             <WorkflowCardHeader {...headerProps} />
             {Object.keys(instructionsProps).length !== 0 && <WorkflowCardInstructions {...instructionsProps} />}
-            <WorkflowCardBody>
+            <WorkflowCardBody scrollable={false} style={{ flex: 1 }}>
                 <WorkflowCardFinishState icon={icon} title={messageTitle} description={message} />
             </WorkflowCardBody>
             <WorkflowCardActions

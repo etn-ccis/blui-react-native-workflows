@@ -81,7 +81,7 @@ export const RegistrationWorkflow: React.FC<React.PropsWithChildren<Registration
         },
         VerifyCode: {
             code: '',
-            isAccountExist: true,
+            isAccountExist: false,
         },
         CreatePassword: {
             password: '',
