@@ -27,6 +27,10 @@ export const ExistingAccountSuccessScreen: React.FC<SuccessScreenProps> = (props
     const workflowCardHeaderProps = {
         title: t('bluiRegistration:REGISTRATION.STEPS.COMPLETE'),
         ...WorkflowCardHeaderProps,
+        onIconPress: (): void => {
+            navigate(routeConfig.LOGIN as string);
+            workflowCardHeaderProps?.onIconPress?.();
+        },
     };
 
     const workflowCardActionsProps = {
