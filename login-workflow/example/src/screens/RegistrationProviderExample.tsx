@@ -14,6 +14,7 @@ import {
     // WorkflowCardHeader,
     // WorkflowCardBody,
     // WorkflowCardActions,
+    VerifyCodeScreen,
 } from '@brightlayer-ui/react-native-auth-workflow';
 // Uncomment below lines as per example
 // import { CustomScreen } from './../components/CustomScreen';
@@ -48,7 +49,9 @@ const RegistrationProviderExample: React.FC<AppProps> = (): JSX.Element => {
         >
             <ErrorContextProvider>
                 {/* Default Implementation */}
-                <RegistrationWorkflow />
+                <RegistrationWorkflow>
+                    <VerifyCodeScreen />
+                </RegistrationWorkflow>
 
                 {/* implementation with custom screens. This custom screen is using app and workflow level translations  */}
                 {/* <RegistrationWorkflow>

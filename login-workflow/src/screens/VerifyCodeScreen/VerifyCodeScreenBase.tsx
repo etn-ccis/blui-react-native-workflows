@@ -76,7 +76,7 @@ export const VerifyCodeScreenBase: React.FC<React.PropsWithChildren<VerifyCodeSc
 
     return (
         <WorkflowCard {...cardBaseProps}>
-            <WorkflowCardHeader onIconPress={handleOnPrevious} {...headerProps} />
+            <WorkflowCardHeader {...headerProps} />
             <WorkflowCardInstructions {...instructionsProps} />
             <WorkflowCardBody>
                 <ErrorManager {...errorDisplayConfig}>
@@ -108,7 +108,7 @@ export const VerifyCodeScreenBase: React.FC<React.PropsWithChildren<VerifyCodeSc
             </WorkflowCardBody>
             <WorkflowCardActions
                 {...actionsProps}
-                canGoNext={(verifyCode.length > 5 && isCodeValid && actionsProps.canGoNext) as any}
+                canGoNext={(verifyCode.length > 0 && isCodeValid && actionsProps.canGoNext) as any}
                 onNext={handleOnNext}
                 onPrevious={handleOnPrevious}
             />
