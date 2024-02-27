@@ -6,7 +6,6 @@ import {
     CreateAccountScreen,
     CreatePasswordScreen,
     EulaScreen,
-    ExistingAccountSuccessScreen,
     RegistrationSuccessScreen,
     VerifyCodeScreen,
 } from '../../screens/DemoScreens';
@@ -15,6 +14,7 @@ import { View, StyleSheet } from 'react-native';
 import { useErrorManager } from '../../contexts/ErrorContext/useErrorManager';
 import { ErrorManager } from '../Error/ErrorManager';
 import { RegistrationWorkflowProps } from './types';
+import { ExistingAccountSuccessScreen } from '../../screens/ExistingAccountSuccessScreen';
 
 const styles = StyleSheet.create({
     pagerView: {
@@ -81,7 +81,7 @@ export const RegistrationWorkflow: React.FC<React.PropsWithChildren<Registration
         },
         VerifyCode: {
             code: '',
-            isAccountExist: false,
+            isAccountExist: true,
         },
         CreatePassword: {
             password: '',
