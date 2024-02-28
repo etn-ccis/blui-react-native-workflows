@@ -4,25 +4,16 @@ import { CreateAccountScreenBase } from './CreateAccountScreenBase';
 import { useRegistrationWorkflowContext, useRegistrationContext } from '../../contexts';
 import { useErrorManager } from '../../contexts/ErrorContext/useErrorManager';
 import { useTranslation } from 'react-i18next';
+import { EMAIL_REGEX } from '../../constants';
 
 /**
- * Component that renders a screen for the user to enter their email address to start the
- * account creation process.
+ * Component that manages the display of error messages. Can be configured to display a dialog, a message box, or neither.
  *
- * @param emailLabel label for the email field
- * @param initialValue initial value for the email text field
- * @param emailValidator function used to test the input for valid formatting
- * @param emailTextFieldProps props to pass to the email text field
- * @param WorkflowCardBaseProps props that will be passed to the WorkflowCard component
- * @param WorkflowCardHeaderProps props that will be passed to the WorkflowCardHeader component
- * @param WorkflowCardInstructionProps props that will be passed to the WorkflowCardInstructions component
- * @param WorkflowCardActionsProps props that will be passed to the WorkflowCardActions component
- * @param errorDisplayConfig configuration for customizing how errors are displayed
+ * @param {CreateAccountScreenProps} props - Props of Error Manager
  *
  * @category Component
  */
 
-const EMAIL_REGEX = /^[A-Z0-9._%+'-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 
 export const CreateAccountScreen: React.FC<CreateAccountScreenProps> = (props) => {
     const { t } = useTranslation();
@@ -100,6 +91,7 @@ export const CreateAccountScreen: React.FC<CreateAccountScreenProps> = (props) =
         showPrevious: true,
         previousLabel: t('bluiCommon:ACTIONS.BACK'),
         canGoPrevious: true,
+        canGoNext: true,
         currentStep: currentScreen,
         totalSteps: totalScreens,
         ...WorkflowCardActionsProps,
