@@ -35,7 +35,7 @@ const RegistrationProviderExample: React.FC<AppProps> = (): JSX.Element => {
             language={app.language}
             actions={ProjectRegistrationUIActions()}
             i18n={i18nAppInstance}
-            navigate={(destination: string | number) => {
+            navigate={(destination: -1 | string) => {
                 if (typeof destination === 'string') {
                     nav.navigate(destination);
                 } else {
@@ -57,7 +57,6 @@ const RegistrationProviderExample: React.FC<AppProps> = (): JSX.Element => {
 
                 {/* implementation with custom screens. This custom screen is using app and workflow level translations  */}
                 <RegistrationWorkflow>
-                    {/* <EulaScreen/> */}
                     <CustomScreen />
                     <AccountDetailsScreen />
                 </RegistrationWorkflow>
