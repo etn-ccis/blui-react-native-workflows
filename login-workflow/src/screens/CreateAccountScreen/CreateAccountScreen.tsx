@@ -7,8 +7,9 @@ import { useTranslation } from 'react-i18next';
 import { EMAIL_REGEX } from '../../constants';
 
 /**
- * Component that manages the display of error messages. Can be configured to display a dialog, a message box, or neither.
- *
+ * Component that renders a screen for the user to enter their email address to start the
+ * account creation process.
+ * 
  * @param {CreateAccountScreenProps} props - Props of Error Manager
  *
  * @category Component
