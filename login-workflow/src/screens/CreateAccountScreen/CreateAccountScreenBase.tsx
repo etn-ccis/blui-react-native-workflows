@@ -83,9 +83,9 @@ export const CreateAccountScreenBase: React.FC<CreateAccountScreenProps & { inpu
                             setShouldValidateEmail(true);
                         }}
                         onSubmitEditing={(): void => {
-                            if(isEmailValid && actionsProps.canGoNext) actionsProps.onNext?.();
-                            }}
-                        returnKeyType='next'
+                            if (isEmailValid && actionsProps.canGoNext) actionsProps.onNext?.();
+                        }}
+                        returnKeyType="next"
                     />
                     <HelperText type="error">{emailError}</HelperText>
                 </ErrorManager>

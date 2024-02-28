@@ -14,7 +14,6 @@ import { EMAIL_REGEX } from '../../constants';
  * @category Component
  */
 
-
 export const CreateAccountScreen: React.FC<CreateAccountScreenProps> = (props) => {
     const { t } = useTranslation();
     const { actions } = useRegistrationContext();
