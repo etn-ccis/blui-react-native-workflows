@@ -22,6 +22,7 @@ const resources: CommonTranslationsFile = {
             UPDATE: 'Actualizar',
             REMEMBER: 'Recordar contraseña',
             SUBMIT: 'Entregar',
+            CLOSE: 'Cerca',
         },
         LABELS: {
             EMAIL: 'Correo electrónico',

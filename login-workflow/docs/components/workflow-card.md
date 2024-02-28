@@ -26,6 +26,7 @@ import {
 | Prop Name                    | Type                           | Description                                                                 | Default |
 | ---------------------------- | ------------------------------ | --------------------------------------------------------------------------- | ------- |
 | WorkflowCardBaseProps        | `WorkflowCardBaseProps`        | See [WorkflowCardBase](#workflowcardbaseprops) for more details.            |         |
+| WorkflowCardBodyProps        | `WorkflowCardBodyProps`        | See [WorkflowCardBase](#workflowcardbodyprops) for more details.            |         |
 | WorkflowCardHeaderProps      | `WorkflowCardHeaderProps`      | See [WorkflowCardHeader](#workflowcardheader) for more details.             |         |
 | WorkflowCardInstructionProps | `WorkflowCardInstructionProps` | See [WorkflowCardInstructions](#workflowcardinstructions) for more details. |         |
 | WorkflowCardActionsProps     | `WorkflowCardActionsProps`     | See [WorkflowCardActions](#workflowcardactions) for more details.           |         |
@@ -39,9 +40,13 @@ import {
 
 The properties of the underlying React Native [ImageBackground](https://reactnative.dev/docs/imagebackground#props) component are also available.
 
-## WorkflowCardBody
+## WorkflowCardBodyProps
 
 This component is a simple wrapper that is used for layout. Your main screen contents should be children of this component.
+
+| Prop Name       | Type      | Description                                                               | Default |
+| --------------- | --------- | ------------------------------------------------------------------------- | ------- |
+| scrollable      | `boolean` | A boolean that indicates whether the body should be scrollable.           | `true`  |
 
 The properties of the underlying React Native Paper [Card.Content](https://callstack.github.io/react-native-paper/docs/components/Card/CardContent) component are also available.
 
