@@ -55,6 +55,10 @@ const RegistrationProviderExample: React.FC<AppProps> = (): JSX.Element => {
                 {/* Default Implementation */}
                 {/* <RegistrationWorkflow /> */}
 
+                {/* <RegistrationWorkflow>
+                    <AccountDetailsScreen />
+                </RegistrationWorkflow> */}
+
                 {/* implementation with custom screens. This custom screen is using app and workflow level translations  */}
                 <RegistrationWorkflow>
                     <CustomScreen />
