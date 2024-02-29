@@ -5,14 +5,6 @@ import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-th
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { ErrorMessageBoxProps } from './types';
 
-/**
- * Component that renders a basic message box with an error message and a configurable dismiss button.
- *
- * @param {ErrorMessageBoxProps} props - Props of Error Message Box
- *
- * @category Component
- */
-
 const makeStyles = (
     theme: ExtendedTheme,
     props: ErrorMessageBoxProps,
@@ -45,6 +37,13 @@ const makeStyles = (
         },
     });
 
+/**
+ * Component that renders a basic message box with an error message and a configurable dismiss button
+ *
+ * @param { ErrorMessageBoxProps } props - Props of Error Message Box
+ *
+ * @category Component
+ */
 export const ErrorMessageBox = (props: ErrorMessageBoxProps): JSX.Element => {
     const { title, errorMessage, dismissible = true, onClose = (): void => {}, style } = props;
     const theme = useExtendedTheme();

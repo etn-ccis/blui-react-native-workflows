@@ -43,11 +43,13 @@ const makeStyles = (
             color: textColor || isTablet ? theme.colors.onSurface : theme.colors.onPrimaryContainer,
         },
     });
+
 /**
  * Component that renders the Header for the workflow card.
  *
  * @param {WorkflowCardHeaderProps} props - Props of WorkflowCardHeader component
  *
+ * @category Component
  */
 export const WorkflowCardHeader: React.FC<WorkflowCardHeaderProps> = (props: WorkflowCardHeaderProps) => {
     const { title, subTitle, backgroundColor, textColor, iconColor, icon, style, onIconPress, ...otherprops } = props;

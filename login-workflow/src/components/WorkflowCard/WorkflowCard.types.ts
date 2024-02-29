@@ -3,21 +3,28 @@ import { IconSource } from '@brightlayer-ui/react-native-components/core/__types
 import { ImageBackgroundProps, ImageSourcePropType, ViewProps } from 'react-native';
 import { CardContentProps, TextProps } from 'react-native-paper';
 
+/**
+ * Props for WorkflowCardBase component
+ */
 export type WorkflowCardBaseProps = ImageBackgroundProps & {
     /**
      *
-     * @param {boolean} [loading=false] - If true, a blocking progress spinner will be displayed over the card
+     * If true, a blocking progress spinner will be displayed over the card
+     * @default false
      *
      */
     loading?: boolean;
     /**
      *
-     * @param {ImageSourcePropType} [backgroundImage] - A custom background to render behind the card
+     * A custom background to render behind the card
      * The supported formats are png, jpg, jpeg, bmp, gif, webp, psd (iOS only).
      */
     backgroundImage?: ImageSourcePropType;
 };
 
+/**
+ * Props for WorkflowCardHeader component
+ */
 export type WorkflowCardHeaderProps = Omit<ViewProps, 'children'> & {
     /**
      * Text to display as title in Header
@@ -53,19 +60,25 @@ export type WorkflowCardHeaderProps = Omit<ViewProps, 'children'> & {
     icon?: IconSource;
 };
 
+/**
+ * Props for WorkflowCardInstruction component
+ */
 export type WorkflowCardInstructionProps = Omit<TextProps<'bodyLarge'>, 'children' | 'theme' | 'variant'> & {
     /**
      *
-     * @param {string | JSX.Element} [instructions] - The text to display as instructions
+     * The text to display as instructions
      */
     instructions?: string | JSX.Element;
     /**
-     *
-     * @param {boolean} [divider=true] - Whether or not to show a divider below the instructions
+     * Whether or not to show a divider below the instructions
+     * @default true
      */
     divider?: boolean;
 };
 
+/**
+ * Props for WorkflowCardBody component
+ */
 export type WorkflowCardBodyProps = CardContentProps & {
     /**
      * If true, the scroll view will be enabled otherwise view will be enabled
@@ -74,47 +87,50 @@ export type WorkflowCardBodyProps = CardContentProps & {
     scrollable?: boolean;
 };
 
+/**
+ * Props for WorkflowCardActions component
+ */
 export type WorkflowCardActionsProps = ViewProps & {
     /**
      *
-     * @param {boolean} [divider=true] - True to display a divider above workflow card action buttons
-     *
+     * True to display a divider above workflow card action buttons
+     * @default true
      */
     divider?: boolean;
 
     /**
      *
-     * @param {boolean | (() => boolean)} [canGoNext] - Boolean or function that indicates whether the next button should be enabled
+     * Boolean or function that indicates whether the next button should be enabled
      */
     canGoNext?: boolean | (() => boolean);
 
     /**
      *
-     * @param {boolean | (() => boolean)} [canGoPrevious] - Boolean or function that indicates whether the previous button should be enabled
+     * Boolean or function that indicates whether the previous button should be enabled
      */
     canGoPrevious?: boolean | (() => boolean);
 
     /**
      *
-     * @param {boolean} [showPrevious] - Boolean that indicates whether the previous button should be displayed
+     * Boolean that indicates whether the previous button should be displayed
      */
     showPrevious?: boolean;
 
     /**
      *
-     * @param {boolean} [showNext] - Boolean that indicates whether the next button should be displayed
+     * Boolean that indicates whether the next button should be displayed
      */
     showNext?: boolean;
 
     /**
      *
-     * @param {string} [previousLabel] - The label to display for the previous button
+     * The label to display for the previous button
      */
     previousLabel?: string;
 
     /**
      *
-     * @param {string} [nextLabel] - The label to display for the next button
+     * The label to display for the next button
      */
     nextLabel?: string;
 
@@ -133,29 +149,33 @@ export type WorkflowCardActionsProps = ViewProps & {
     onNext?: (data?: { [key: string]: any }) => void;
 
     /**
-     *
-     * @param {number} [currentStep=0] - The current step in the registration workflow
+     * The current step in the registration workflow
+     * @default 0
      */
     currentStep?: number;
 
     /**
-     *
-     * @param {number} [totalSteps=5] - The total number of steps in the registration workflow
+     * The total number of steps in the registration workflow
+     * @default 5
      */
     totalSteps?: number;
 
     /**
-     *
-     * @param {boolean} [fullWidthButton=false] - Boolean that indicates whether a button should be full width
+     * Boolean that indicates whether a button should be full width
+     * @default false
      */
     fullWidthButton?: boolean;
+
     /**
-     *
-     * @param {DotStepperVariant} [stepperVariant='dots'] - Which type of step indicator to use: dots: circles, progress: progress bar and text: text
+     * Which type of step indicator to use: dots: circles, progress: progress bar and text: text
+     * @default 'dots'
      */
     stepperVariant?: DotStepperVariant;
 };
 
+/**
+ * Props for WorkflowCard component
+ */
 export type WorkflowCardProps = {
     WorkflowCardBaseProps?: WorkflowCardBaseProps;
     WorkflowCardHeaderProps?: WorkflowCardHeaderProps;

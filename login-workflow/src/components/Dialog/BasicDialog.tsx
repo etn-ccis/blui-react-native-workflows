@@ -3,14 +3,6 @@ import { Paragraph, Dialog, Portal, Button } from 'react-native-paper';
 import { StyleSheet, ViewStyle } from 'react-native';
 import { BasicDialogProps } from './types';
 
-/**
- * Component that renders a basic dialog with a title, body description, and a close button.
- *
- * @param {BasicDialogProps} props - Basic props of Dialog
- *
- * @category Component
- */
-
 const makeStyles = (): StyleSheet.NamedStyles<{
     basicDialog: ViewStyle;
     actions: ViewStyle;
@@ -25,6 +17,14 @@ const makeStyles = (): StyleSheet.NamedStyles<{
             flexGrow: 0,
         },
     });
+
+/**
+ * Component that renders a basic dialog with a title, body description, and a close button.
+ *
+ * @param { BasicDialogProps } props - Basic props of Dialog
+ *
+ * @category Component
+ */
 
 export const BasicDialog: React.FC<BasicDialogProps> = (props) => {
     const { title, body, dismissButtonText, open = false, onDismiss, style, ...otherDialogProps } = props;
