@@ -29,14 +29,19 @@ const makeStyles = (
     });
 
 /**
- * Component renders error text below the input field.
- *
- * @param {string} errorText - The text of the error.
+ * Props for ErrorText component which is used to display error text below the input field
  **/
 type ErrorTextProps = {
+    /**
+     *  The text of the error.
+     **/
     errorText: string | undefined;
 };
 
+/**
+ * Component renders error text below the input field.
+ * @param {ErrorTextProps} props - props for ErrorText component.
+ */
 const ErrorText: React.FC<ErrorTextProps> = (props) => {
     const { errorText } = props;
     const theme = useExtendedTheme();
@@ -53,19 +58,7 @@ const ErrorText: React.FC<ErrorTextProps> = (props) => {
  * Component renders a screen with account details information for support with the application.
  * Contact information is pulled from the context passed into the workflow.
  *
- * @param firstNameLabel label for the first name text field
- * @param initialFirstName initial value for the first name text field
- * @param firstNameValidator function that validates the first name text field
- * @param firstNameTextInputProps props to pass to the first name field
- * @param lastNameLabel label for the last name text field
- * @param initialLastName initial value for the last name text field
- * @param lastNameValidator function that validates the last name text field
- * @param lastNameTextInputProps props to pass to the last name field
- * @param WorkflowCardBaseProps props that will be passed to the WorkflowCard component
- * @param WorkflowCardHeaderProps props that will be passed to the WorkflowCardHeader component
- * @param WorkflowCardInstructionProps props that will be passed to the WorkflowCardInstructions component
- * @param WorkflowCardActionsProps props that will be passed to the WorkflowCardActions component
- * @param errorDisplayConfig configuration for customizing how errors are displayed
+ * @param {AccountDetailsScreenProps} props - props for AccountDetails Screen Base component.
  *
  * @category Component
  */

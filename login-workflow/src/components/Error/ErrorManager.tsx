@@ -7,7 +7,7 @@ import { ErrorManagerProps } from './types';
 /**
  * Component that manages the display of error messages. Can be configured to display a dialog, a message box, or neither
  *
- * @param { ErrorManagerProps } props - Props of Error Manager
+ * @param {ErrorManagerProps} props - Props of Error Manager
  *
  * @category Component
  */

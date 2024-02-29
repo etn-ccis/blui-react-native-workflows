@@ -21,7 +21,7 @@ const makeStyles = (): StyleSheet.NamedStyles<{
 /**
  * Component that renders a basic dialog with a title, body description, and a close button.
  *
- * @param { BasicDialogProps } props - Basic props of Dialog
+ * @param {BasicDialogProps} props - Basic props of Dialog
  *
  * @category Component
  */

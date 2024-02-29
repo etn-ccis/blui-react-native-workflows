@@ -10,38 +10,38 @@ export type VerifyCodeScreenProps = WorkflowCardProps & {
     codeValidator?: (code: string) => boolean | string;
 
     /**
-     * @param {() => void} - The function that is called when the resend link/button is clicked
+     * The function that is called when the resend link/button is clicked
      * @returns void
      */
     onResend?: () => void;
 
     /**
-     * @param {string} resendInstructions - The text to display ahead of the resend link/button
+     * The text to display ahead of the resend link/button
      */
     resendInstructions?: string;
 
     /**
-     * @param {string} resendLabel - The text to display for the resend link/button
+     * The text to display for the resend link/button
      */
     resendLabel?: string;
 
     /**
-     * @param {string} initialValue - The initial value for the code text field
+     * The initial value for the code text field
      */
     initialValue?: string;
 
     /**
-     * @param {string} verifyCodeInputLabel - The label for the code text field
+     * The label for the code text field
      */
     verifyCodeInputLabel?: string;
 
     /**
-     * @param {ErrorManagerProps} errorDisplayConfig - The configuration for customizing how errors are displayed
+     * The configuration for customizing how errors are displayed
      */
     errorDisplayConfig?: ErrorManagerProps;
 
     /**
-     * @param {TextInputProps} verifyCodeTextInputProps - The props to pass to the verify code field.
+     * The props to pass to the verify code field.
      * See [MUI's TextFieldProps API](https://mui.com/material-ui/api/text-field/) for more details.
      */
     verifyCodeTextInputProps?: TextInputProps;

@@ -40,7 +40,7 @@ const makeStyles = (
 /**
  * Component that renders a basic message box with an error message and a configurable dismiss button
  *
- * @param { ErrorMessageBoxProps } props - Props of Error Message Box
+ * @param {ErrorMessageBoxProps} props - Props of Error Message Box
  *
  * @category Component
  */
