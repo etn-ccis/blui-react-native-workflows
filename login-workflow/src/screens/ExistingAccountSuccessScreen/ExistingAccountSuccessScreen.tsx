@@ -30,7 +30,6 @@ export const ExistingAccountSuccessScreen: React.FC<SuccessScreenProps> = (props
         ...WorkflowCardHeaderProps,
         onIconPress: (): void => {
             navigate(routeConfig.LOGIN as string);
-            workflowCardHeaderProps?.onIconPress?.();
         },
     };
 
