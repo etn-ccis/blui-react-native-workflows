@@ -66,7 +66,7 @@ Your custom implementation, removing the EulaScreen and VerifyCodeScreen, and ad
 You may provide a custom success screen to be shown upon successful completion of the [Registration Workflow](./components/registration-workflow.md). The [Success Screen](./screens/success.md) is used by default, but may be customized via props. If you wish to build your own success screen it may look something like this:
 
 ```jsx
-import { SuccessScreenBase } from '@brightlayer-ui/react-auth-workflow';
+import { SuccessScreenBase } from '@brightlayer-ui/react-native-auth-workflow';
 
 const MyCustomSuccessScreen = () => {
   return (
