@@ -12,15 +12,15 @@ yarn upgrade @brightlayer-ui/react-native-auth-workflow@^6.0.0
 
 ## Managing Auth State
 
-In order to be more flexible / customizable, the workflow no longer manages the authentication status of the user internally. You will need to establish your own mechanism (such as using a ContextProvider or Redux) to track whether or not a user is authenticated to your application. For reference, you can look at how we set up the [AppContext](https://github.com/etn-ccis/blui-react-workflows/blob/master/login-workflow/example/src/contexts/AppContextProvider.tsx) in the example project.
+In order to be more flexible / customizable, the workflow no longer manages the authentication status of the user internally. You will need to establish your own mechanism (such as using a ContextProvider or Redux) to track whether or not a user is authenticated to your application. For reference, you can look at how we set up the [AppContext](https://github.com/etn-ccis/blui-react-native-workflows/blob/master/login-workflow/example/src/contexts/AppContextProvider.tsx) in the example project.
 
 ## Managing Routing
 
-In order to be more flexible / customizable, the workflow no longer manages routing. The `AuthNavigationContainer` has been removed and will need to be replaced by your own routing solution (we recommend React Router). Please follow our [Routing Guide](./routing.md) for detailed information on setup.
+In order to be more flexible / customizable, the workflow no longer manages routing. The `AuthNavigationContainer` has been removed and will need to be replaced by your own routing solution (we recommend React Navigation). Please follow our [Routing Guide](./routing.md) for detailed information on setup.
 
 ## Managing Workflow Providers
 
-We previously provided a `AuthUIContextProvider` component that was used to configure / wrap both the Authentication workflow and the Registration workflow. In version 4, we have split the management of the workflows so that they can be used independently. You will need to implement the [`AuthContextProvider`](authentication-workflow.md) and [`RegistrationContextProvider`](./registration-workflow.md) instead.
+We previously provided a `AuthUIContextProvider` component that was used to configure / wrap both the Authentication workflow and the Registration workflow. In version 6, we have split the management of the workflows so that they can be used independently. You will need to implement the [`AuthContextProvider`](./authentication-workflow.md) and [`RegistrationContextProvider`](./registration-workflow.md) instead.
 
 ## Managing Translations / Internationalization
 
@@ -38,9 +38,9 @@ The `SecurityContextActions` no longer exist in the newest version and so they w
 
 ```tsx
 // before
-import { RegistrationUIActions, AccountDetailInformation } from '@brightlayer-ui/react-auth-workflow';
+import { RegistrationUIActions, AccountDetailInformation } from '@brightlayer-ui/react-native-auth-workflow';
 // after
-import { RegistrationUIActions, AccountDetails } from '@brightlayer-ui/react-auth-workflow';
+import { RegistrationUIActions, AccountDetails } from '@brightlayer-ui/react-native-auth-workflow';
 ```
 
 2. LoadEULA renamed to loadEula
@@ -117,10 +117,10 @@ Your new app architecture will look something like this once you have made all o
         }}
     >
         {/* Your implementation of a routing solution */}
-        <BrowserRouter basename={'/'}>
+        <NavigationContainer>
             <AuthContextProvider>{/* Auth Routes */}</AuthContextProvider>
             <RegistrationContextProvider>{/* Registration Routes */}</RegistrationContextProvider>
-        </BrowserRouter>
+        </NavigationContainer>
     </AppContext.Provider>
 </I18nextProvider>
 ```
