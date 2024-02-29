@@ -8,6 +8,44 @@ This package supports translations to different languages using [i18next](https:
 -   Spanish
 -   Simplified Chinese
 
+If you wish to support additional languages, refer to the [Add Custom Language](#add-custom-language) section below.
+
+The translation dictionary used by the workflows is independent of any translations / dictionaries used in your main application. This eliminates the possibility of your translations unintentionally overriding values that are used by the workflows screens. When setting up internationalization for your application, you can follow the instructions for [react-i18next](https://github.com/i18next/react-i18next) without worrying about the workflow screens.
+
+## Changing the Language
+
+The language used by the workflow screens is exclusively driven by the `language` prop passed to the `RegistrationContextProvider`.
+
+You can change the language used in your application in a number of different ways using react-i18next — just make sure to update the value passed into the workflows so they remain in sync.
+
+## Using Your Translations in Workflow Screens
+
+By default, the translations inside the workflow screens are isolated from the translations used for your application. If you want to override a string used for a text element on one of the screens, this can be configured by passing the appropriate prop.
+
+However, because the translation providers are separate for the workflow and for the app, if you want to use one of your translation keys inside a workflow screen, you will need to pass your i18n instance to the `i18n` prop of the `RegistrationContextProvider` so we can access your dictionary. If you do not do this, the workflow will attempt to find your application key in the workflow dictionary and it will not be found.
+
+```tsx
+// your i18n instance
+import { i18nAppInstance } from './i18n';
+import { useTranslation } from 'react-i18next';
+
+...
+
+const { t } = useTranslation();
+
+// WRONG
+<RegistrationContextProvider>
+    {/* YOUR_KEY won't be found */}
+    <CreateAccountScreen emailLabel={`${t('YOUR_KEY')}`} />
+</RegistrationContextProvider>
+
+// RIGHT
+<RegistrationContextProvider i18n={i18nAppInstance}>
+    {/* YOUR_KEY will be found since you passed your i18n instance through props */}
+    <CreateAccountScreen emailLabel={`${t('YOUR_KEY')}`} />
+</RegistrationContextProvider>
+```
+
 ## Add Custom Language
 
 If you would like to support a language other than the ones supported by the workflow, you can, but you will need to provide the translations for all of the strings that are needed by the workflow screens. If you do not, the workflow screens will default to showing English.
@@ -45,6 +83,7 @@ export const i18nAppInstance = i18next.createInstance(
                 app: {
                     ...AppDictionaries.korean.translation,
                 },
+                // provide the custom workflow translations to the workflow namespaces
                 bluiRegistration: {
                     ...registrationWorkflowKorean.translation,
                 },
@@ -57,7 +96,7 @@ export const i18nAppInstance = i18next.createInstance(
 );
 ```
 
-You will then need to pass this i18n instance through the `i18n` prop on the `AuthContextProvider` and / or `RegistrationContextProvider` wrappers.
+You will then need to pass this i18n instance through the `i18n` prop on the `RegistrationContextProvider` wrappers.
 
 > For a complete list of resource IDs available, refer to the documentation for
 [Registration Workflow](../src/contexts/RegistrationContext/RegistrationDictionaries/english.ts).
