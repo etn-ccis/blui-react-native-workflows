@@ -8,7 +8,7 @@ This package supports translations to different languages using [i18next](https:
 -   Spanish
 -   Simplified Chinese
 
-If you wish to support additional languages, refer to the [Add Custom Language](#add-custom-languages) section below.
+If you wish to support additional languages, refer to the [Add Custom Language](#add-custom-language) section below.
 
 The translation dictionary used by the workflows is independent of any translations / dictionaries used in your main application. This eliminates the possibility of your translations unintentionally overriding values that are used by the workflows screens. When setting up internationalization for your application, you can follow the instructions for [react-i18next](https://github.com/i18next/react-i18next) without worrying about the workflow screens.
 
