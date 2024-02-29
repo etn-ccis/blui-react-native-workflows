@@ -1,4 +1,3 @@
-export * from './CreateAccountScreen';
 export * from './CreatePasswordScreen';
 export * from './EulaScreen';
 export * from './VerifyCodeScreen';

@@ -19,6 +19,7 @@ const makeStyles = (
             paddingTop: 32,
             paddingBottom: isTablet ? 32 : 24,
             paddingHorizontal: 0,
+            flex: 1,
         },
     });
 
