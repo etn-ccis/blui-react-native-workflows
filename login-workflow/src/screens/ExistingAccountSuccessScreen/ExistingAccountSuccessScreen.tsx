@@ -10,7 +10,7 @@ import { useTranslation } from 'react-i18next';
  * @category Component
  */
 
-export const ExistingAccountSuccessScreen: React.FC<SuccessScreenProps> = (props: SuccessScreenProps) => {
+export const ExistingAccountSuccessScreen: React.FC<SuccessScreenProps> = (props) => {
     const { t } = useTranslation();
     const { navigate, routeConfig } = useRegistrationContext();
     const {
