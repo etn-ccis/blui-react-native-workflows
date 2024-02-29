@@ -3,12 +3,12 @@ import { IndividualScreenData, RegistrationWorkflowContextProvider, useRegistrat
 //TODO: Update demo screen with original workflow screens
 import {
     AccountDetailsScreen,
-    CreateAccountScreen,
     CreatePasswordScreen,
     EulaScreen,
     RegistrationSuccessScreen,
     VerifyCodeScreen,
 } from '../../screens/DemoScreens';
+import { CreateAccountScreen } from '../../screens/CreateAccountScreen';
 import PagerView from 'react-native-pager-view';
 import { View, StyleSheet } from 'react-native';
 import { useErrorManager } from '../../contexts/ErrorContext/useErrorManager';
