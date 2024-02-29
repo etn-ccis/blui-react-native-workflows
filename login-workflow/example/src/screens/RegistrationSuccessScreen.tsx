@@ -43,7 +43,6 @@ export const RegistrationSuccessScreen: React.FC<SuccessScreenProps> = (props) =
     return (
         <SuccessScreenBase
             WorkflowCardHeaderProps={workflowCardHeaderProps}
-            WorkflowCardInstructionProps={{ instructions: 'instructions' }}
             WorkflowCardActionsProps={workflowCardActionsProps}
             icon={icon}
             messageTitle={messageTitle}
