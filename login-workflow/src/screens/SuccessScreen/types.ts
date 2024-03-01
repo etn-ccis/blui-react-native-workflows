@@ -38,4 +38,10 @@ export type SuccessScreenProps = WorkflowCardProps & {
      * The configuration for customizing how errors are displayed
      */
     errorDisplayConfig?: ErrorManagerProps;
+
+    /**
+     * If true, the scroll view will be enabled for main content or else view will be enabled
+     * @default false
+     */
+    scrollMainContent?: boolean;
 };

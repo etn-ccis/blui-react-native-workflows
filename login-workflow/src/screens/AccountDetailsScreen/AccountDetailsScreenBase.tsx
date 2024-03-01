@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef } from 'react';
-import { TextInput, Text } from 'react-native-paper';
+import { TextInput, HelperText } from 'react-native-paper';
 import {
     WorkflowCard,
     WorkflowCardActions,
@@ -10,55 +10,21 @@ import {
 import { AccountDetailsScreenProps } from './types';
 import { ErrorManager } from '../../components';
 import { StyleSheet, TextStyle } from 'react-native';
-import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 
-const makeStyles = (
-    theme?: ExtendedTheme
-): StyleSheet.NamedStyles<{
+const makeStyles = (): StyleSheet.NamedStyles<{
     textInput: TextStyle;
-    errorText: TextStyle;
 }> =>
     StyleSheet.create({
         textInput: {
             marginTop: 24,
         },
-        errorText: {
-            color: theme?.colors.error,
-            letterSpacing: 0,
-        },
     });
-
-/**
- * Props for ErrorText component which is used to display error text below the input field
- **/
-type ErrorTextProps = {
-    /**
-     *  The text of the error.
-     **/
-    errorText: string | undefined;
-};
-
-/**
- * Component renders error text below the input field.
- * @param {ErrorTextProps} props - props for ErrorText component.
- */
-const ErrorText: React.FC<ErrorTextProps> = (props) => {
-    const { errorText } = props;
-    const theme = useExtendedTheme();
-    const styles = makeStyles(theme);
-
-    return (
-        <Text variant={'titleSmall'} style={[styles.errorText]}>
-            {errorText}
-        </Text>
-    );
-};
 
 /**
  * Component renders a screen with account details information for support with the application.
  * Contact information is pulled from the context passed into the workflow.
  *
- * @param {AccountDetailsScreenProps} props - props for AccountDetails Screen Base component.
+ * @param {AccountDetailsScreenProps} props - Props of Create Account Screen
  *
  * @category Component
  */
@@ -144,7 +110,6 @@ export const AccountDetailsScreenBase: React.FC<AccountDetailsScreenProps> = (pr
                         label={firstNameLabel}
                         value={firstNameInput}
                         error={shouldValidateFirstName && !isFirstNameValid}
-                        style={[styles.textInput]}
                         {...firstNameTextInputProps}
                         onChangeText={(text: string): void => {
                             // eslint-disable-next-line no-unused-expressions
@@ -156,7 +121,7 @@ export const AccountDetailsScreenBase: React.FC<AccountDetailsScreenProps> = (pr
                         }}
                         onBlur={(): void => setShouldValidateFirstName(true)}
                     />
-                    {shouldValidateFirstName && <ErrorText errorText={firstNameError} />}
+                    {shouldValidateFirstName && <HelperText type="error">{firstNameError}</HelperText>}
                     <TextInput
                         testID="lastName"
                         mode="flat"
@@ -176,7 +141,7 @@ export const AccountDetailsScreenBase: React.FC<AccountDetailsScreenProps> = (pr
                         }}
                         onBlur={(): void => setShouldValidateLastName(true)}
                     />
-                    {shouldValidateLastName && <ErrorText errorText={lastNameError} />}
+                    {shouldValidateLastName && <HelperText type="error">{lastNameError}</HelperText>}
                 </ErrorManager>
             </WorkflowCardBody>
             <WorkflowCardActions
