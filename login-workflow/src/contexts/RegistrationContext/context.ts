@@ -1,4 +1,5 @@
 /**
+ * Registration Context is used to access context in the registration workflow.
  * @packageDocumentation
  * @module RegistrationContext
  */

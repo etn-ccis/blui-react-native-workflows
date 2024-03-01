@@ -1,12 +1,12 @@
-/**
- * @packageDocumentation
- * @module RegistrationWorkflowContextProvider
- */
-
 import React, { useMemo } from 'react';
 import { RegistrationWorkflowContextProps } from './types';
 import { RegistrationWorkflowContext } from './context';
 
+/**
+ * RegistrationWorkflowContextProvider allows you to access data such as the current screen, the total number of screens and all screens data throughout registration..
+ * @packageDocumentation
+ * @module RegistrationWorkflowContextProvider
+ */
 export const RegistrationWorkflowContextProvider: React.FC<
     React.PropsWithChildren<RegistrationWorkflowContextProps>
 > = (props) => {

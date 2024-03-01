@@ -1,8 +1,3 @@
-/**
- * @packageDocumentation
- * @module RegistrationWorkflowContextProvider
- */
-
 import React, { useEffect } from 'react';
 import { RegistrationContextProviderProps } from './types';
 import { RegistrationContext } from './context';
@@ -12,6 +7,12 @@ import { SharedDictionaries } from '../SharedDictionaries';
 import { RegistrationDictionaries } from './RegistrationDictionaries';
 import { I18nextProvider } from 'react-i18next';
 
+/**
+ * @packageDocumentation
+ * RegistrationContextProvider allow you to access shared data / configuration / API definition for registration workflow.
+ * @param {RegistrationContextProviderProps} props - props for Registration Context Provider.
+ * @module RegistrationWorkflowContextProvider
+ */
 export const RegistrationContextProvider: React.FC<React.PropsWithChildren<RegistrationContextProviderProps>> = (
     props
 ) => {
