@@ -43,7 +43,7 @@ import { RegistrationUIActions, AccountDetailInformation } from '@brightlayer-ui
 import { RegistrationUIActions, AccountDetails } from '@brightlayer-ui/react-native-auth-workflow';
 ```
 
-2. LoadEULA renamed to loadEula
+2. loadEULA renamed to loadEula
 
 ```tsx
 // before
@@ -80,7 +80,7 @@ completeRegistration: async (
 
 // after
 completeRegistration: async (
-    userData: any, // TODO: this should be properly typed
+    userData: object,
     validationCode: string | number,
     validationEmail?: string
 ): Promise<{ email: string; organizationName: string }> => {

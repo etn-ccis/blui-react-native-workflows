@@ -104,7 +104,7 @@ Some notable changes include:
 -   Greater customization of screens through props (and moving customization properties to the screens they affect instead of handling all customizations through a monolithic wrapper component)
 -   Improved error management mechanism (customizable)
 
-Learn more about upgrading your existing application by reading our [Migrating Guide](https://github.com/etn-ccis/blui-react-workflows/tree/master/login-workflow/docs/migration-guide-5-6.md)
+Learn more about upgrading your existing application by reading our [Migrating Guide](https://github.com/etn-ccis/blui-react-native-workflows/tree/master/login-workflow/docs/migration-guide-5-6.md)
 
 
 # Contributors
