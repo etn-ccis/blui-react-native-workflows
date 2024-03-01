@@ -4,12 +4,11 @@ import { IndividualScreenData, RegistrationWorkflowContextProvider, useRegistrat
 import {
     AccountDetailsScreen,
     CreatePasswordScreen,
-    EulaScreen,
     ExistingAccountSuccessScreen,
     RegistrationSuccessScreen,
     VerifyCodeScreen,
 } from '../../screens/DemoScreens';
-import { CreateAccountScreen } from '../../screens/CreateAccountScreen';
+import { CreateAccountScreen, EulaScreen } from '../../screens';
 import PagerView from 'react-native-pager-view';
 import { View, StyleSheet } from 'react-native';
 import { useErrorManager } from '../../contexts/ErrorContext/useErrorManager';
@@ -198,7 +197,12 @@ export const RegistrationWorkflow: React.FC<React.PropsWithChildren<Registration
                         successScreen
                     )
                 ) : (
-                    <PagerView style={styles.pagerView} initialPage={initialScreenIndex} ref={viewPagerRef}>
+                    <PagerView
+                        style={styles.pagerView}
+                        initialPage={initialScreenIndex}
+                        ref={viewPagerRef}
+                        scrollEnabled={false}
+                    >
                         {screens.map((screen, index) => (
                             <View key={index + 1}>{screen}</View>
                         ))}
