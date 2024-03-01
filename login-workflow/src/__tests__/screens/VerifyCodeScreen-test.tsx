@@ -1,18 +1,16 @@
 import React from 'react';
-import { fireEvent, render, screen } from '@testing-library/react-native';
+import { RenderResult, fireEvent, render, screen } from '@testing-library/react-native';
 import { RegistrationWorkflow } from 'src/components';
 import { RegistrationContextProvider } from 'src/contexts';
-import { VerifyCodeScreen } from 'src/screens';
+import { VerifyCodeScreen, VerifyCodeScreenProps } from 'src/screens';
 import { registrationContextProviderProps } from 'src/testUtils';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { PaperProvider } from 'react-native-paper';
 
 jest.useFakeTimers();
 describe('Verify Code Full Screen Test cases', () => {
-    // let mockOnClose: any;
     let mockOnNext: any;
 
     beforeEach(() => {
-        // mockOnClose = jest.fn();
         mockOnNext = jest.fn();
     });
 
@@ -20,62 +18,42 @@ describe('Verify Code Full Screen Test cases', () => {
         jest.clearAllMocks();
     });
 
-    test('Should render correctly', () => {
+    const renderer = (props?: VerifyCodeScreenProps): RenderResult =>
         render(
-            <SafeAreaProvider>
+            <PaperProvider>
                 <RegistrationContextProvider {...registrationContextProviderProps}>
-                    <RegistrationWorkflow>
-                        <VerifyCodeScreen />
+                    <RegistrationWorkflow initialScreenIndex={0}>
+                        <VerifyCodeScreen {...props} />
                     </RegistrationWorkflow>
                 </RegistrationContextProvider>
-            </SafeAreaProvider>
+            </PaperProvider>
         );
+
+    test('Should render correctly', () => {
+        renderer();
+
+        const closeIcon = screen.getByTestId('workflow-card-icon');
+        fireEvent.press(closeIcon);
     });
 
-    // test('errorDisplayConfig onClose callBack function test', () => {
-    //     render(
-    //         <SafeAreaProvider>
-    //             <RegistrationContextProvider {...registrationContextProviderProps}>
-    //                 <RegistrationWorkflow>
-    //                     <VerifyCodeScreen errorDisplayConfig={} />
-    //                 </RegistrationWorkflow>
-    //             </RegistrationContextProvider>
-    //         </SafeAreaProvider>
-    //     );
-    // });
-
     test('requestResendCode function test', () => {
-        render(
-            <SafeAreaProvider>
-                <RegistrationContextProvider {...registrationContextProviderProps}>
-                    <RegistrationWorkflow>
-                        <VerifyCodeScreen resendLabel="Send Again" />
-                    </RegistrationWorkflow>
-                </RegistrationContextProvider>
-            </SafeAreaProvider>
-        );
+        renderer({
+            resendLabel: 'Send Again',
+        });
 
         const resendLink = screen.getByText('Send Again');
         fireEvent.press(resendLink);
     });
 
     test('onNext function call test', () => {
-        render(
-            <SafeAreaProvider>
-                <RegistrationContextProvider {...registrationContextProviderProps}>
-                    <RegistrationWorkflow>
-                        <VerifyCodeScreen
-                            WorkflowCardActionsProps={{
-                                canGoNext: true,
-                                showNext: true,
-                                nextLabel: 'Next',
-                                onNext: mockOnNext(),
-                            }}
-                        />
-                    </RegistrationWorkflow>
-                </RegistrationContextProvider>
-            </SafeAreaProvider>
-        );
+        renderer({
+            WorkflowCardActionsProps: {
+                canGoNext: true,
+                showNext: true,
+                nextLabel: 'Next',
+                onNext: mockOnNext(),
+            },
+        });
 
         const codeInput = screen.getByTestId('text-input-flat');
         fireEvent.changeText(codeInput, '123');
@@ -84,39 +62,16 @@ describe('Verify Code Full Screen Test cases', () => {
     });
 
     test('onPrevious function call test', () => {
-        render(
-            <SafeAreaProvider>
-                <RegistrationContextProvider {...registrationContextProviderProps}>
-                    <RegistrationWorkflow>
-                        <VerifyCodeScreen
-                            WorkflowCardActionsProps={{
-                                canGoPrevious: true,
-                                showPrevious: true,
-                                previousLabel: 'Back',
-                                onPrevious: mockOnNext(),
-                            }}
-                        />
-                    </RegistrationWorkflow>
-                </RegistrationContextProvider>
-            </SafeAreaProvider>
-        );
+        renderer({
+            WorkflowCardActionsProps: {
+                canGoPrevious: true,
+                showPrevious: true,
+                previousLabel: 'Back',
+                onPrevious: mockOnNext(),
+            },
+        });
 
         const prevButton = screen.getByTestId('workflow-card-previous-button');
         fireEvent.press(prevButton);
-    });
-
-    test('calling close function on header', () => {
-        render(
-            <SafeAreaProvider>
-                <RegistrationContextProvider {...registrationContextProviderProps}>
-                    <RegistrationWorkflow>
-                        <VerifyCodeScreen />
-                    </RegistrationWorkflow>
-                </RegistrationContextProvider>
-            </SafeAreaProvider>
-        );
-
-        const closeIcon = screen.getByTestId('workflow-card-icon');
-        fireEvent.press(closeIcon);
     });
 });

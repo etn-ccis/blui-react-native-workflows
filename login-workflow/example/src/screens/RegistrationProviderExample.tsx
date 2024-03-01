@@ -7,22 +7,11 @@ import {
     RegistrationContextProvider,
     ErrorContextProvider,
     RegistrationWorkflow,
-    // Uncomment screens as per example
-    // EulaScreen,
     AccountDetailsScreen,
-    // WorkflowCard,
-    // WorkflowCardHeader,
-    // WorkflowCardBody,
-    // WorkflowCardActions,
     VerifyCodeScreen,
 } from '@brightlayer-ui/react-native-auth-workflow';
-// Uncomment below lines as per example
-// import { CustomScreen } from './../components/CustomScreen';
-// import { Text } from 'react-native-paper';
-// import { View } from 'react-native';
 import { RootStackParamList } from '../navigation';
 import { useNavigation } from '@react-navigation/native';
-// import { CustomScreen } from 'src/components/CustomScreen';
 import { CustomScreen } from '../components/CustomScreen';
 
 type AppProps = {
