@@ -2,10 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { IndividualScreenData, RegistrationWorkflowContextProvider, useRegistrationContext } from '../../contexts';
 //TODO: Update demo screen with original workflow screens
 import {
-    AccountDetailsScreen,
     CreatePasswordScreen,
     EulaScreen,
-    ExistingAccountSuccessScreen,
     RegistrationSuccessScreen,
 } from '../../screens/DemoScreens';
 import { CreateAccountScreen } from '../../screens/CreateAccountScreen';
@@ -15,6 +13,8 @@ import { useErrorManager } from '../../contexts/ErrorContext/useErrorManager';
 import { ErrorManager } from '../Error/ErrorManager';
 import { RegistrationWorkflowProps } from './types';
 import { VerifyCodeScreen } from '../../screens';
+import { ExistingAccountSuccessScreen } from '../../screens/ExistingAccountSuccessScreen';
+import { AccountDetailsScreen } from '../../screens/AccountDetailsScreen';
 
 const styles = StyleSheet.create({
     pagerView: {

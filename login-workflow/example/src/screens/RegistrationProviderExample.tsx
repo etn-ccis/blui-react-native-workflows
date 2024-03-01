@@ -9,7 +9,7 @@ import {
     RegistrationWorkflow,
     // Uncomment screens as per example
     // EulaScreen,
-    // AccountDetailsScreen,
+    AccountDetailsScreen,
     // WorkflowCard,
     // WorkflowCardHeader,
     // WorkflowCardBody,
@@ -21,7 +21,8 @@ import {
 // import { Text } from 'react-native-paper';
 // import { View } from 'react-native';
 import { RootStackParamList } from '../navigation';
-// import { CustomScreen } from '../components/CustomScreen';
+import { useNavigation } from '@react-navigation/native';
+import { CustomScreen } from '../components/CustomScreen';
 
 type AppProps = {
     navigation: StackNavigationProp<RootStackParamList, 'RegistrationProviderExample'>;
@@ -29,17 +30,21 @@ type AppProps = {
 
 const RegistrationProviderExample: React.FC<AppProps> = (): JSX.Element => {
     const app = useApp();
-
+    const nav = useNavigation();
     return (
         <RegistrationContextProvider
             language={app.language}
             actions={ProjectRegistrationUIActions()}
             i18n={i18nAppInstance}
-            navigate={function (destination: string | number): void {
-                throw new Error(`Function not implemented.${destination}`);
+            navigate={(destination: -1 | string) => {
+                if (typeof destination === 'string') {
+                    nav.navigate(destination);
+                } else {
+                    nav.goBack();
+                }
             }}
             routeConfig={{
-                LOGIN: undefined,
+                LOGIN: 'Home',
                 FORGOT_PASSWORD: undefined,
                 RESET_PASSWORD: undefined,
                 REGISTER_INVITE: undefined,
@@ -49,16 +54,17 @@ const RegistrationProviderExample: React.FC<AppProps> = (): JSX.Element => {
         >
             <ErrorContextProvider>
                 {/* Default Implementation */}
-                <RegistrationWorkflow>
-                    <VerifyCodeScreen />
-                </RegistrationWorkflow>
+
+                {/* <RegistrationWorkflow>
+                    <AccountDetailsScreen />
+                </RegistrationWorkflow> */}
 
                 {/* implementation with custom screens. This custom screen is using app and workflow level translations  */}
-                {/* <RegistrationWorkflow>
-                    <EulaScreen/>
-                    <CustomScreen/>
-                    <AccountDetailsScreen/>
-                </RegistrationWorkflow> */}
+                <RegistrationWorkflow>
+                    <CustomScreen />
+                  <VerifyCodeScreen />
+                    <AccountDetailsScreen />
+                </RegistrationWorkflow>
 
                 {/* Show default success screen */}
                 {/* <RegistrationWorkflow successScreen={
