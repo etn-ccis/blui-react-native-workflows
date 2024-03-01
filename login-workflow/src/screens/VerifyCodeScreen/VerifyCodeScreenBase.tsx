@@ -87,6 +87,9 @@ export const VerifyCodeScreenBase: React.FC<React.PropsWithChildren<VerifyCodeSc
                         onChangeText={handleVerifyCodeInputChange}
                         error={shouldValidateCode && !isCodeValid}
                         {...verifyCodeTextInputProps}
+                        onSubmitEditing={(): void => {
+                            if (verifyCode.length > 0 && isCodeValid && actionsProps.canGoNext) actionsProps.onNext?.();
+                        }}
                         onBlur={(e): void => {
                             // eslint-disable-next-line no-unused-expressions
                             verifyCodeTextInputProps?.onBlur && verifyCodeTextInputProps.onBlur(e);

@@ -22,6 +22,7 @@ import {
 // import { View } from 'react-native';
 import { RootStackParamList } from '../navigation';
 import { useNavigation } from '@react-navigation/native';
+// import { CustomScreen } from 'src/components/CustomScreen';
 import { CustomScreen } from '../components/CustomScreen';
 
 type AppProps = {
@@ -54,17 +55,18 @@ const RegistrationProviderExample: React.FC<AppProps> = (): JSX.Element => {
         >
             <ErrorContextProvider>
                 {/* Default Implementation */}
-
-                {/* <RegistrationWorkflow>
-                    <AccountDetailsScreen />
-                </RegistrationWorkflow> */}
-
-                {/* implementation with custom screens. This custom screen is using app and workflow level translations  */}
                 <RegistrationWorkflow>
+                    <VerifyCodeScreen />
                     <CustomScreen />
-                  <VerifyCodeScreen />
                     <AccountDetailsScreen />
                 </RegistrationWorkflow>
+
+                {/* implementation with custom screens. This custom screen is using app and workflow level translations  */}
+                {/* <RegistrationWorkflow>
+                    <EulaScreen/> 
+                    <CustomScreen/>
+                    <AccountDetailsScreen/>
+                </RegistrationWorkflow> */}
 
                 {/* Show default success screen */}
                 {/* <RegistrationWorkflow successScreen={
