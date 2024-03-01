@@ -7,3 +7,4 @@ export * from './VerifyCodeScreen';
 export * from './SuccessScreen';
 export * from './AccountDetailsScreen';
 export * from './CreatePasswordScreen';
+export * from './ExistingAccountSuccessScreen';

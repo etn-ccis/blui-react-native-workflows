@@ -4,7 +4,6 @@ import { IndividualScreenData, RegistrationWorkflowContextProvider, useRegistrat
 import {
     CreatePasswordScreen,
     EulaScreen,
-    ExistingAccountSuccessScreen,
     RegistrationSuccessScreen,
     VerifyCodeScreen,
 } from '../../screens/DemoScreens';
@@ -14,6 +13,7 @@ import { View, StyleSheet } from 'react-native';
 import { useErrorManager } from '../../contexts/ErrorContext/useErrorManager';
 import { ErrorManager } from '../Error/ErrorManager';
 import { RegistrationWorkflowProps } from './types';
+import { ExistingAccountSuccessScreen } from '../../screens/ExistingAccountSuccessScreen';
 import { AccountDetailsScreen } from '../../screens/AccountDetailsScreen';
 
 const styles = StyleSheet.create({

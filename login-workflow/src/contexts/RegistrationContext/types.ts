@@ -79,7 +79,7 @@ export type RegistrationContextProviderProps = {
     /**
      * A function that is used to navigate to a new URL. This is used to navigate to the various screens of the workflow
      */
-    navigate: (destination: number | string) => void;
+    navigate: (destination: -1 | string) => void;
 
     /**
      * An object that defines the various routes for the workflow
