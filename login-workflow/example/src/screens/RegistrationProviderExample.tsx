@@ -10,6 +10,7 @@ import {
     // Uncomment screens as per example
     // EulaScreen,
     AccountDetailsScreen,
+    CreatePasswordScreen,
     // WorkflowCard,
     // WorkflowCardHeader,
     // WorkflowCardBody,
@@ -61,6 +62,7 @@ const RegistrationProviderExample: React.FC<AppProps> = (): JSX.Element => {
 
                 {/* implementation with custom screens. This custom screen is using app and workflow level translations  */}
                 <RegistrationWorkflow>
+                    <CreatePasswordScreen />
                     <CustomScreen />
                     <AccountDetailsScreen />
                 </RegistrationWorkflow>
