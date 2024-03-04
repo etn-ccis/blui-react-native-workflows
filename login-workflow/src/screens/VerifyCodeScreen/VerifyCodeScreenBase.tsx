@@ -96,7 +96,7 @@ export const VerifyCodeScreenBase: React.FC<React.PropsWithChildren<VerifyCodeSc
                             setShouldValidateCode(true);
                         }}
                     />
-                    <HelperText type="error" visible={shouldValidateCode}>
+                    <HelperText type="error" visible={shouldValidateCode} style={{ height: 30 }}>
                         {codeError}
                     </HelperText>
                     <View>

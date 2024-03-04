@@ -1,17 +1,19 @@
 import React from 'react';
-import { RenderResult, fireEvent, render, screen } from '@testing-library/react-native';
+import { RenderResult, fireEvent, render, screen, waitFor } from '@testing-library/react-native';
 import { RegistrationWorkflow } from 'src/components';
 import { RegistrationContextProvider } from 'src/contexts';
 import { VerifyCodeScreen, VerifyCodeScreenProps } from 'src/screens';
 import { registrationContextProviderProps } from 'src/testUtils';
 import { PaperProvider } from 'react-native-paper';
+import '@testing-library/react-native/extend-expect';
 
-jest.useFakeTimers();
 describe('Verify Code Full Screen Test cases', () => {
-    let mockOnNext: any;
+    let mockOnPrevious: any;
+    let mockOnResend: any;
 
     beforeEach(() => {
-        mockOnNext = jest.fn();
+        mockOnPrevious = jest.fn();
+        mockOnResend = jest.fn();
     });
 
     afterEach(() => {
@@ -29,49 +31,54 @@ describe('Verify Code Full Screen Test cases', () => {
             </PaperProvider>
         );
 
-    test('Should render correctly', () => {
+    it('Should render correctly', () => {
+        renderer();
+
+        expect(screen.getByText('Verify Email')).toBeOnTheScreen();
+    });
+
+    it('clicking on close Icon test', () => {
         renderer();
 
         const closeIcon = screen.getByTestId('workflow-card-icon');
         fireEvent.press(closeIcon);
     });
 
-    test('requestResendCode function test', () => {
+    it('requestResendCode function test', () => {
         renderer({
             resendLabel: 'Send Again',
+            onResend: mockOnResend(),
         });
 
         const resendLink = screen.getByText('Send Again');
         fireEvent.press(resendLink);
+        expect(mockOnResend).toHaveBeenCalled();
     });
 
-    test('onNext function call test', () => {
-        renderer({
-            WorkflowCardActionsProps: {
-                canGoNext: true,
-                showNext: true,
-                nextLabel: 'Next',
-                onNext: mockOnNext(),
-            },
-        });
-
-        const codeInput = screen.getByTestId('text-input-flat');
-        fireEvent.changeText(codeInput, '123');
-        const nextButton = screen.getByTestId('workflow-card-next-button');
-        fireEvent.press(nextButton);
-    });
-
-    test('onPrevious function call test', () => {
+    it('onPrevious function call test', () => {
         renderer({
             WorkflowCardActionsProps: {
                 canGoPrevious: true,
                 showPrevious: true,
                 previousLabel: 'Back',
-                onPrevious: mockOnNext(),
+                onPrevious: mockOnPrevious(),
             },
         });
 
         const prevButton = screen.getByTestId('workflow-card-previous-button');
         fireEvent.press(prevButton);
+        expect(mockOnPrevious).toHaveBeenCalled();
+    });
+
+    it('should display loader, when next button is pressed', async () => {
+        renderer();
+
+        const codeInput = screen.getByTestId('text-input-flat');
+        fireEvent.changeText(codeInput, '123');
+
+        const nextButton = screen.getByText('Next');
+        expect(nextButton).toBeOnTheScreen();
+        fireEvent.press(nextButton);
+        await waitFor(() => expect(screen.getByTestId('spinner')).toBeOnTheScreen());
     });
 });
