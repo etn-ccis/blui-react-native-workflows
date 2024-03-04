@@ -31,7 +31,6 @@ export const RegistrationSuccessScreen: React.FC<SuccessScreenProps> = (props) =
     const {
         icon = { family: 'material', name: 'check-circle' },
         messageTitle = `${t('bluiCommon:MESSAGES.WELCOME')}, ${firstName} ${lastName}!`,
-        // TODO: Fix the type of description prop in EmptyState https://github.com/etn-ccis/blui-react-native-component-library/issues/546 to Pass Trans https://react.i18next.com/latest/trans-component component
         message = email
             ? t('bluiRegistration:REGISTRATION.SUCCESS_MESSAGE', {
                   replace: { email, organization },
