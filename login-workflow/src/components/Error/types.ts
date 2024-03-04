@@ -24,7 +24,7 @@ export type ErrorManagerProps = {
 
     /**
      * Function to call when the close/dismiss button is clicked
-     * @returns void
+     * @returns {void}
      */
     onClose?: () => void;
 

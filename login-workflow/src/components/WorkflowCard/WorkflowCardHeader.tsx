@@ -51,7 +51,7 @@ const makeStyles = (
  *
  * @category Component
  */
-export const WorkflowCardHeader: React.FC<WorkflowCardHeaderProps> = (props: WorkflowCardHeaderProps) => {
+export const WorkflowCardHeader: React.FC<WorkflowCardHeaderProps> = (props) => {
     const { title, subTitle, backgroundColor, textColor, iconColor, icon, style, onIconPress, ...otherprops } = props;
     const theme = useExtendedTheme();
     const { isTablet } = useScreenDimensions();

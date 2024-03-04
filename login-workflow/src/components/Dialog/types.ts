@@ -13,6 +13,7 @@ export type BasicDialogProps = Omit<DialogProps, 'visible' | 'children'> & {
 
     /**
      * The function to call when the close button is clicked
+     * @returns {void}
      */
     onDismiss?: () => void;
 

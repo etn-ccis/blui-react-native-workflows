@@ -11,7 +11,7 @@ export type VerifyCodeScreenProps = WorkflowCardProps & {
 
     /**
      * The function that is called when the resend link/button is clicked
-     * @returns void
+     * @returns {void}
      */
     onResend?: () => void;
 

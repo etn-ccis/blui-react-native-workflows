@@ -30,7 +30,7 @@ export type SuccessScreenProps = WorkflowCardProps & {
 
     /**
      * The function to call when user clicks button
-     * @returns void
+     * @returns {void}
      */
     onDismiss?: () => void;
 

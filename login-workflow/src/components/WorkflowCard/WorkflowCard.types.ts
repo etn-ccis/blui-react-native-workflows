@@ -36,6 +36,7 @@ export type WorkflowCardHeaderProps = Omit<ViewProps, 'children'> & {
     subTitle?: string;
     /**
      * On press functionality for the icon
+     * @returns {void}
      */
     onIconPress?: () => void;
     /**
@@ -137,14 +138,14 @@ export type WorkflowCardActionsProps = ViewProps & {
     /**
      * Function called when the previous button is clicked
      * @param {Object} [data] - data collected from the card / screen
-     * @returns void
+     * @returns {void}
      */
     onPrevious?: (data?: { [key: string]: any }) => void;
 
     /**
      * Function that is called when the next button is clicked
      * @param {Object} [data] - data collected from the card / screen
-     * @returns void
+     * @returns {void}
      */
     onNext?: (data?: { [key: string]: any }) => void;
 
@@ -186,7 +187,7 @@ export type WorkflowCardProps = {
      */
     WorkflowCardHeaderProps?: WorkflowCardHeaderProps;
     /**
-     * Props for WorkflowCardInstruction component
+     * Props for WorkflowCardInstructions component
      */
     WorkflowCardInstructionProps?: WorkflowCardInstructionProps;
     /**

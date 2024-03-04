@@ -57,7 +57,7 @@ export type SetPasswordProps = {
      * Function called when the new password or confirm new password fields value changes
      * @param {string} password - new password value
      * @param {string} confirm - confirm password value
-     * @returns void
+     * @returns {void}
      */
     onPasswordChange?: (passwords: { password: string; confirm: string }) => void;
 
@@ -103,7 +103,7 @@ export type SetPasswordProps = {
 
     /**
      * The function to call when the form is submitted
-     * @returns void
+     * @returns {void}
      */
     onSubmit?: () => void;
 
