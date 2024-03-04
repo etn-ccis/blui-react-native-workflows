@@ -5,7 +5,7 @@ import { Header } from '@brightlayer-ui/react-native-components';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../navigation';
 import { DemoScreen } from '@brightlayer-ui/react-native-auth-workflow';
-import { useThemeContext } from '../context/ThemeContext';
+import { useThemeContext } from '../contexts/ThemeContext';
 import { useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 import { UserMenuExample } from '../components/UserMenuExample';
 import { useTranslation } from 'react-i18next';
