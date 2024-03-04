@@ -1,12 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { IndividualScreenData, RegistrationWorkflowContextProvider, useRegistrationContext } from '../../contexts';
 //TODO: Update demo screen with original workflow screens
-import {
-    CreatePasswordScreen,
-    EulaScreen,
-    RegistrationSuccessScreen,
-    VerifyCodeScreen,
-} from '../../screens/DemoScreens';
+import { CreatePasswordScreen, EulaScreen, VerifyCodeScreen } from '../../screens/DemoScreens';
 import { CreateAccountScreen } from '../../screens/CreateAccountScreen';
 import PagerView from 'react-native-pager-view';
 import { View, StyleSheet } from 'react-native';
@@ -15,6 +10,7 @@ import { ErrorManager } from '../Error/ErrorManager';
 import { RegistrationWorkflowProps } from './types';
 import { ExistingAccountSuccessScreen } from '../../screens/ExistingAccountSuccessScreen';
 import { AccountDetailsScreen } from '../../screens/AccountDetailsScreen';
+import { RegistrationSuccessScreen } from '../../screens';
 
 const styles = StyleSheet.create({
     pagerView: {

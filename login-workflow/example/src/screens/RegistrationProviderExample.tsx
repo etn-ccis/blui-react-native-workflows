@@ -9,7 +9,7 @@ import {
     RegistrationWorkflow,
     // Uncomment screens as per example
     // EulaScreen,
-    AccountDetailsScreen,
+    // AccountDetailsScreen,
     // WorkflowCard,
     // WorkflowCardHeader,
     // WorkflowCardBody,
@@ -21,7 +21,7 @@ import {
 // import { View } from 'react-native';
 import { RootStackParamList } from '../navigation';
 import { useNavigation } from '@react-navigation/native';
-import { CustomScreen } from '../components/CustomScreen';
+// import { CustomScreen } from '../components/CustomScreen';
 
 type AppProps = {
     navigation: StackNavigationProp<RootStackParamList, 'RegistrationProviderExample'>;
@@ -53,17 +53,17 @@ const RegistrationProviderExample: React.FC<AppProps> = (): JSX.Element => {
         >
             <ErrorContextProvider>
                 {/* Default Implementation */}
-                {/* <RegistrationWorkflow /> */}
+                <RegistrationWorkflow />
 
                 {/* <RegistrationWorkflow>
                     <AccountDetailsScreen />
                 </RegistrationWorkflow> */}
 
                 {/* implementation with custom screens. This custom screen is using app and workflow level translations  */}
-                <RegistrationWorkflow>
+                {/* <RegistrationWorkflow>
                     <CustomScreen />
                     <AccountDetailsScreen />
-                </RegistrationWorkflow>
+                </RegistrationWorkflow> */}
 
                 {/* Show default success screen */}
                 {/* <RegistrationWorkflow successScreen={
