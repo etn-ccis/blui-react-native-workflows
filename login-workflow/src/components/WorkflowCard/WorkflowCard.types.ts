@@ -177,9 +177,24 @@ export type WorkflowCardActionsProps = ViewProps & {
  * Props for WorkflowCard component
  */
 export type WorkflowCardProps = {
+    /**
+     * Props for WorkflowCardBase component
+     */
     WorkflowCardBaseProps?: WorkflowCardBaseProps;
+    /**
+     * Props for WorkflowCardHeader component
+     */
     WorkflowCardHeaderProps?: WorkflowCardHeaderProps;
+    /**
+     * Props for WorkflowCardInstruction component
+     */
     WorkflowCardInstructionProps?: WorkflowCardInstructionProps;
+    /**
+     * Props for WorkflowCardBody component
+     */
     WorkflowCardBodyProps?: WorkflowCardBodyProps;
+    /**
+     * Props for WorkflowCardActions component
+     */
     WorkflowCardActionsProps?: WorkflowCardActionsProps;
 };
