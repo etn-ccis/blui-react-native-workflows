@@ -1,5 +1,14 @@
 import React from 'react';
-import { cleanup, fireEvent, render, screen, renderHook, act, RenderResult } from '@testing-library/react-native';
+import {
+    cleanup,
+    fireEvent,
+    render,
+    screen,
+    renderHook,
+    act,
+    RenderResult,
+    waitFor,
+} from '@testing-library/react-native';
 import { RegistrationWorkflow } from '../../../components/RegistrationWorkflow/RegistrationWorkflow';
 import { RegistrationContextProvider, useRegistrationWorkflowContext } from '../../../contexts';
 import { CreateAccountScreen } from '../../../screens';
@@ -232,34 +241,35 @@ describe('RegistrationWorkflow', () => {
         void ((): void => expect(screen.getByText('Account Exists!!!')).toBeInTheDocument());
     });
 
-    // it('should display default registration workflow', () => {
-    //     render(
-    //         <PaperProvider>
-    //             <RegistrationContextProvider {...registrationContextProviderProps}>
-    //                 <RegistrationWorkflow />
-    //             </RegistrationContextProvider>
-    //         </PaperProvider>
-    //     );
-    //     fireEvent.press(screen.getAllByText('Next')[0]);
-    //     expect(screen.getByText('Create an Account')).toBeOnTheScreen();
-    //     expect(screen.getAllByText('Next').length).toBe(5);
-    // });
+    it('should display default registration workflow', async () => {
+        render(
+            <PaperProvider>
+                <RegistrationContextProvider {...registrationContextProviderProps}>
+                    <RegistrationWorkflow />
+                </RegistrationContextProvider>
+            </PaperProvider>
+        );
+        await waitFor(() => expect(screen.queryByText('Loading...')).toBeNull());
+        fireEvent.press(screen.getAllByText('Next')[0]);
+        expect(screen.getByText('Create an Account')).toBeOnTheScreen();
+        expect(screen.getAllByText('Next').length).toBe(5);
+    }, 100000);
 
-    // it('should skip create account screen in invite registration workflow', () => {
-    //     render(
-    //         <PaperProvider>
-    //             <RegistrationContextProvider {...registrationContextProviderProps}>
-    //                 <RegistrationWorkflow
-    //                     isInviteRegistration
-    //                     initialRegistrationParams={{ code: '123', email: 'emailAddress@emailAddress.com' }}
-    //                 />
-    //             </RegistrationContextProvider>
-    //         </PaperProvider>
-    //     );
-
-    //     fireEvent.press(screen.getAllByText('Next')[0]);
-    //     expect(screen.queryByText('Create Account')).not.toBeOnTheScreen();
-    //     expect(screen.getByText('Create Password')).toBeOnTheScreen();
-    //     expect(screen.getAllByText('Next').length).toBe(3);
-    // });
+    it('should skip create account screen in invite registration workflow', async () => {
+        render(
+            <PaperProvider>
+                <RegistrationContextProvider {...registrationContextProviderProps}>
+                    <RegistrationWorkflow
+                        isInviteRegistration
+                        initialRegistrationParams={{ code: '123', email: 'emailAddress@emailAddress.com' }}
+                    />
+                </RegistrationContextProvider>
+            </PaperProvider>
+        );
+        await waitFor(() => expect(screen.queryByText('Loading...')).toBeNull());
+        fireEvent.press(screen.getAllByText('Next')[0]);
+        expect(screen.queryByText('Create Account')).not.toBeOnTheScreen();
+        expect(screen.getByText('Create Password')).toBeOnTheScreen();
+        expect(screen.getAllByText('Next').length).toBe(3);
+    });
 });
