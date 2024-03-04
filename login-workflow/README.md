@@ -89,6 +89,24 @@ For information about supporting multiple languages, refer to our [Language Supp
 
 For information about supporting different themes, refer to our [Theme Support](https://github.com/etn-ccis/blui-react-native-workflows/tree/master/login-workflow/docs/theme-support.md) guidelines.
 
+# Migrating from v5 => v6
+
+We have listened to your feedback and version 5 of this library is a significant rewrite that aims to address many requests for greater flexibility and customization of the workflows.
+
+Some notable changes include:
+
+-   Router independence — you now have full control over your routing library and its configuration
+-   Allowing you to manage the authentication status / mechanism (separating UI from business logic)
+-   Separation of Login and Registration workflows so they can be used independently
+-   Allow for re-ordering or adding/removing screens from workflows (utility components available to help you match our styling in custom screens)
+-   Exporting screens individually so you can build your own custom flows
+-   Simpler approach to translations (separating our internal translations from your application-level translations)
+-   Greater customization of screens through props (and moving customization properties to the screens they affect instead of handling all customizations through a monolithic wrapper component)
+-   Improved error management mechanism (customizable)
+
+Learn more about upgrading your existing application by reading our [Migrating Guide](https://github.com/etn-ccis/blui-react-native-workflows/tree/master/login-workflow/docs/migration-guide-5-6.md)
+
+
 # Contributors
 
 To work on this package as a contributor, first clone down the repository:
