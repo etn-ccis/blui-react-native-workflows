@@ -2,8 +2,6 @@
 
 A screen that displays text fields to create a new user's password. The CreatePasswordScreen must be used within a `RegistrationContextProvider`.
 
-<!-- @todo need to update the image -->
-
 ![Create Password](../../media/screens/create-password.png)
 
 ## Usage

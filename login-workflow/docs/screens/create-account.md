@@ -23,7 +23,7 @@ import { RegistrationContextProvider, CreateAccountScreen } from '@brightlayer-u
 | emailLabel | `string` | Text to display as the label for the email text field. | `Email Address` |
 | initialValue | `string` | The initial value for the email text field. |  |
 | emailValidator | `(email: string) => boolean \| string` | A function that validates the email text field input. | checks against valid email regex |
-| emailTextFieldProps | `TextFieldProps` | Props to pass to the MUI [TextInput](https://callstack.github.io/react-native-paper/docs/components/TextInput/) component. |  |
+| emailTextFieldProps | `TextFieldProps` | Props to pass to the React Native Paper's [TextInputProps API](https://callstack.github.io/react-native-paper/docs/components/TextInput/#props) component. |  |
 | errorDisplayConfig | `ErrorManagerProps` | See [Error Management](../components/error-manager.md) |  |
 
 This screen also extends the `WorkflowCardProps` type for updating the title, instructions, buttons, etc. See [Workflow Card](../components/workflow-card.md) for more details.

@@ -1,15 +1,19 @@
-# EulaScreenBase
+# EulaScreen
 
-A screen that displaysthe UI for an End User License Agreement and a checkbox to confirm that they have read and agree to the terms.
+A screen that displays an End User License Agreement and a checkbox to confirm that they have read and agree to the terms. The EulaScreen must be used within a `RegistrationContextProvider`.
 
+![EULA](../../media/screens/eula.png)
 
 ## Usage
 
 ```tsx
-import {  EulaScreenBase } from '@brightlayer-ui/react-native-auth-workflow';
+import { RegistrationContextProvider, EulaScreen } from '@brightlayer-ui/react-native-auth-workflow';
 
 ...
-    <EulaScreenBase />
+
+<RegistrationContextProvider {...props}>
+    <EulaScreen />
+</RegistrationContextProvider>
 ```
 
 ## API
@@ -18,7 +22,7 @@ import {  EulaScreenBase } from '@brightlayer-ui/react-native-auth-workflow';
 |---|---|---|---|
 | eulaContent | `string \| JSX.Element` | The content to render for the EULA. Can be a plain string or HTML. | |
 | checkboxLabel | `string` | The text to render for the acceptance checkbox. |  |
-| checkboxProps | `CheckboxProps` | Props to spread to the React Native Paper [Checkbox Item](https://callstack.github.io/react-native-paper/docs/components/Checkbox/CheckboxItem) component |  |
+| checkboxProps | `CheckboxProps` | Props to spread to the React Native Paper [CheckboxItem](https://callstack.github.io/react-native-paper/docs/components/Checkbox/CheckboxItem) component |  |
 | html | `boolean` | True if the EULA should be rendered as HTML, false for plain text | `false` |
 | initialCheckboxValue | `boolean` | Used to pre-populate the checked/unchecked checkbox when the screen loads. | `false` |
 | onEulaAcceptedChange | `(accepted: boolean) => void` | Called when the acceptance checkbox clicked. |  |

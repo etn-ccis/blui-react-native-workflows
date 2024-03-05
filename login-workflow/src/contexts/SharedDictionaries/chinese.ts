@@ -22,6 +22,7 @@ const resources: CommonTranslationsFile = {
             UPDATE: '更新',
             REMEMBER: '记住我的登录信息',
             SUBMIT: '提交',
+            CLOSE: '关闭',
         },
         LABELS: {
             EMAIL: '邮箱地址',

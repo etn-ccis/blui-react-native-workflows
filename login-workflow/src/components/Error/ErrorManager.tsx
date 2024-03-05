@@ -34,7 +34,7 @@ export const ErrorManager: React.FC<React.PropsWithChildren<ErrorManagerProps>> 
                 title={dialogConfig?.title ?? title ?? t('bluiCommon:MESSAGES.ERROR')}
                 body={t(error)}
                 onDismiss={onClose}
-                dismissButtonText={dialogConfig?.dismissLabel}
+                dismissButtonText={dialogConfig?.dismissLabel ?? t('bluiCommon:ACTIONS.CLOSE')}
                 style={dialogConfig?.style}
             />
         ),
