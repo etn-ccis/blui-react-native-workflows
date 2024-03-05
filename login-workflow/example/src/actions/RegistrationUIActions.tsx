@@ -101,7 +101,7 @@ export const ProjectRegistrationUIActions: () => RegistrationUIActions = () => (
         if (isRandomFailure()) {
             throw new Error('Sorry, there was a problem sending your request.');
         }
-        return { codeValid: true, accountExists: true };
+        return { codeValid: true, accountExists: false };
     },
 
     completeRegistration: async (userData: object): Promise<{ email: string; organizationName: string }> => {

@@ -2,6 +2,9 @@
 
 The WorkflowCard is a set of components that can be used to define custom screens within the workflows. Using these utility components will ensure that your custom screens match the style of the built-in screens for a seamless experience.
 
+![WorkflowCard](../../media/workflow-card.png)
+
+
 ### Usage
 
 ```tsx
@@ -96,11 +99,3 @@ The WorkflowCardActions is used to configure the buttons that appear at the bott
 
 Any other props will be provided to the root element ([**View**](https://reactnative.dev/docs/view)).
 
-### WorkflowCardFinishState
-
-The WorkflowCardFinishState component is used to render an [EmptyState](https://brightlayer-ui-components.github.io/react-native/?path=/info/components-documentation--empty-state) component indicating completion of a user flow.
-
-The WorkflowCardFinishState has the same props as an [EmptyState](https://brightlayer-ui-components.github.io/react-native/?path=/info/components-documentation--empty-state) component.
-
-All props will be passed to the `<EmptyState>` component, except for style
-which is applied to the root element
