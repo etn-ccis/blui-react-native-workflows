@@ -20,7 +20,7 @@ export const CreatePasswordScreenBase: React.FC<CreatePasswordScreenProps> = (pr
 
     return (
         <WorkflowCard {...cardBaseProps}>
-            <WorkflowCardHeader onIconPress={actionsProps.onPrevious} {...headerProps} />
+            <WorkflowCardHeader {...headerProps} />
             <WorkflowCardInstructions {...instructionsProps} />
             <WorkflowCardBody>
                 <ErrorManager {...errorDisplayConfig}>
