@@ -10,6 +10,7 @@ import { useRegistrationContext, useRegistrationWorkflowContext } from '../../co
  * @param message success message to be displayed on the screen
  * @param onDismiss function to call when user clicks button
  * @param canDismiss function to call when the dismiss button is clicked
+ * @param scrollMainContent whether the main content should be scrollable
  *
  * @category Component
  */
