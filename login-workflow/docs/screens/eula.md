@@ -1,6 +1,6 @@
 # EulaScreen
 
-A screen that displaysthe UI for an End User License Agreement and a checkbox to confirm that they have read and agree to the terms.
+A screen that displays an End User License Agreement and a checkbox to confirm that they have read and agree to the terms. The EulaScreen must be used within a `RegistrationContextProvider`.
 
 ![EULA](../../media/screens/eula.png)
 
@@ -10,7 +10,8 @@ A screen that displaysthe UI for an End User License Agreement and a checkbox to
 import { RegistrationContextProvider, EulaScreen } from '@brightlayer-ui/react-native-auth-workflow';
 
 ...
-    <RegistrationContextProvider {...props}>
+
+<RegistrationContextProvider {...props}>
     <EulaScreen />
 </RegistrationContextProvider>
 ```

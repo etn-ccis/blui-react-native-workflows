@@ -30,17 +30,17 @@ import { ErrorManager } from '@brightlayer-ui/react-native-auth-workflow';
 
 | Prop Name | Type | Description | Default |
 |---|---|---|---|
-| title | `string` | Text to show in the title of the dialog. | `Error!` |
-| dismissLabel | `string` | Label to show in the close button. | `Close` |
+| title | `string` | Text to show in the title of the dialog. | `t('bluiCommon:MESSAGES.ERROR') (Error!)` |
+| dismissLabel | `string` | Label to show in the close button. | `t('bluiCommon:ACTIONS.CLOSE') (Close)` |
 | style | `StyleProp<ViewStyle>` | Style overrides object |  |
 
 ### MessageBoxProps
 
 | Prop Name | Type | Description | Default |
 |---|---|---|---|
-| title | `string` | Text to show in the title of the dialog. | `Error!` |
+| title | `string` | Text to show in the title of the dialog. | `t('bluiCommon:MESSAGES.ERROR') (Error!)` |
 | dismissible | `boolean` | Whether the message box can be dismissed. | `true` |
 | position | `'top' \| 'bottom'` | Determines whether the message box should be displayed before or after children elements. | `'top'` |
-| fontColor | `string` | The font color of the text inside the message box. | `'error.contrastText'` |
-| backgroundColor | `string` | The background color of the message box. | `'error.main` |
+| fontColor | `string` | The font color of the text inside the message box. | `theme.colors.error` |
+| backgroundColor | `string` | The background color of the message box. | `theme.colors.onError` |
 | style | `StyleProp<ViewStyle>` | Style overrides object |  |

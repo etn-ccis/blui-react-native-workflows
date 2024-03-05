@@ -2,6 +2,7 @@
 
 A screen that displays a text field to collect the user's email address. The CreateAccountScreen must be used within a `RegistrationContextProvider`.
 
+![Create Account](../../media/screens/create-account.png)
 
 ## Usage
 

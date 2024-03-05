@@ -2,6 +2,8 @@
 
 A screen that displays text fields to collect the user's basic account details (first name and last name). The AccountDetailsScreen must be used within a `RegistrationContextProvider`.
 
+![Account Detail](../../media/screens/account-details.png)
+
 ## Usage
 
 ```tsx

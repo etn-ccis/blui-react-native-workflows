@@ -2,6 +2,8 @@
 
 A component to use as a simple success screen for mini 1-step workflows (like Forgot Password). It renders a message, an icon, and a dismiss button.
 
+![Success Screen](../../media/screens/success.png)
+
 ## Usage
 
 ```tsx
