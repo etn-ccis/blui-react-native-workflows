@@ -49,7 +49,7 @@ function hasWorkflowCardHeaderRecursive(children: any): boolean {
  *
  * @category Component
  */
-export const WorkflowCard: React.FC<WorkflowCardBaseProps> = (props: WorkflowCardBaseProps) => {
+export const WorkflowCard: React.FC<WorkflowCardBaseProps> = (props) => {
     const { loading, backgroundImage, children, style, ...otherImageProps } = props;
     const theme = useExtendedTheme();
     const { isTablet, width, height } = useScreenDimensions();

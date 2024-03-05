@@ -2,32 +2,29 @@ import { DialogProps } from 'react-native-paper';
 
 export type BasicDialogProps = Omit<DialogProps, 'visible' | 'children'> & {
     /**
-     * @param {string} [title] - The title for the screen
-     *
+     * The title to display in the dialog
      */
     title?: string;
 
     /**
-     * @param {string} [body] - The text to show in the main dialog body
-     *
+     * The content to display in the body of the dialog
      */
     body?: string;
 
     /**
-     * @param {() => void} [onDismiss] - The function to call when the close button is clicked
-     *
+     * The function to call when the close button is clicked
+     * @returns {void}
      */
     onDismiss?: () => void;
 
     /**
-     * @param {string} [dismissButtonText] - The text to show in the close button
+     * The text to display in the close button.
      *
      */
     dismissButtonText?: string;
 
     /**
-     * @param {boolean} [open=false] - Set the open / closed state of the dialog
-     *
+     * Set the open / closed state of the dialog
      */
     open?: boolean;
 };

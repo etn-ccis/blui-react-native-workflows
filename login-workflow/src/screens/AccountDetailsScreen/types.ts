@@ -4,12 +4,12 @@ import { ErrorManagerProps } from '../../components/Error';
 
 export type AccountDetailsScreenProps = WorkflowCardProps & {
     /**
-     * @param {string} firstNameLabel - The label for the first name text field
+     * The label for the first name text field
      */
     firstNameLabel?: string;
 
     /**
-     * @param {string} initialFirstName - The initial value for the first name text field
+     * The initial value for the first name text field
      */
     initialFirstName?: string;
 
@@ -20,18 +20,18 @@ export type AccountDetailsScreenProps = WorkflowCardProps & {
     firstNameValidator?: (firstName: string) => boolean | string;
 
     /**
-     * @param {TextInputProps} firstNameTextInputProps - The props to pass to the first name field.
+     * The props to pass to the first name field.
      * See [React Native Paper's TextInputProps API](https://callstack.github.io/react-native-paper/docs/components/TextInput/#props) for more details.
      */
     firstNameTextInputProps?: TextInputProps;
 
     /**
-     * @param {string} lastNameLabel - The label for the last name text field
+     * The label for the last name text field
      */
     lastNameLabel?: string;
 
     /**
-     * @param {string} initialLastName - The initial value for the last name text field
+     * The initial value for the last name text field
      */
     initialLastName?: string;
 
@@ -42,13 +42,13 @@ export type AccountDetailsScreenProps = WorkflowCardProps & {
     lastNameValidator?: (lastName: string) => boolean | string;
 
     /**
-     * @param {TextInputProps} lastNameTextInputProps - The props to pass to the last name field.
+     * The props to pass to the last name field.
      * See [React Native Paper's TextInputProps API](https://callstack.github.io/react-native-paper/docs/components/TextInput/#props) for more details.
      */
     lastNameTextInputProps?: TextInputProps;
 
     /**
-     * @param {ErrorManagerProps} errorDisplayConfig - The configuration for customizing how errors are displayed
+     * The configuration for customizing how errors are displayed
      */
     errorDisplayConfig?: ErrorManagerProps;
 };

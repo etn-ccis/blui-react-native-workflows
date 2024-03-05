@@ -5,6 +5,13 @@ import { View } from 'react-native';
 import { PasswordRequirementsProps } from './types';
 import { PasswordRequirementsCheck } from './PasswordRequirementsCheck';
 
+/**
+ * Component to update password requirements.
+ *
+ * @param {PasswordRequirementsProps} props - props of PasswordRequirements component
+ *
+ * @category Component
+ */
 export const PasswordRequirements: React.FC<PasswordRequirementsProps> = (props) => {
     const { t } = useTranslation();
     const { passwordText, passwordRequirements = defaultPasswordRequirements(t), style, ...otherProps } = props;
