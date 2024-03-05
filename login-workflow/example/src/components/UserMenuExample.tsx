@@ -6,7 +6,7 @@ import { IconFamily } from '@brightlayer-ui/react-native-components/core/__types
 import SelectDropdown from 'react-native-select-dropdown';
 import { useTranslation } from 'react-i18next';
 import { useExtendedTheme } from '@brightlayer-ui/react-native-themes';
-import { useApp } from '../context/AppContextProvider';
+import { useApp } from '../contexts/AppContextProvider';
 
 const SwapIcon: IconFamily = {
     family: 'material',

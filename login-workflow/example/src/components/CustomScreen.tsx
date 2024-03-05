@@ -31,14 +31,16 @@ export const CustomScreen: React.FC<CustomScreenProps> = (props) => {
     const onNext = useCallback(() => {
         void nextScreen({
             screenId: 'Custom',
-            values: { organisationName: organisationName },
+            values: { organisationName: organisationNameInput },
+            isAccountExist: true,
         });
-    }, [organisationName, nextScreen]);
+    }, [organisationNameInput, nextScreen]);
 
     const onPrevious = useCallback(() => {
         void previousScreen({
             screenId: 'Custom',
             values: { organisationName: organisationName },
+            isAccountExist: true,
         });
     }, [organisationName, previousScreen]);
 

@@ -10,11 +10,11 @@ import React, { useState } from 'react';
 import { Provider as ThemeProvider } from 'react-native-paper';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { MainRouter } from './src/navigation';
-import { ThemeContext, ThemeType } from './src/context/ThemeContext';
+import { ThemeContext, ThemeType } from './src/contexts/ThemeContext';
 import { blue, blueDark } from '@brightlayer-ui/react-native-themes';
 import i18nAppInstance from './translations/i18n';
 import { I18nextProvider } from 'react-i18next';
-import { AppContext } from '../example/src/context/AppContextProvider';
+import { AppContext } from './src/contexts/AppContextProvider';
 
 export const App = (): JSX.Element => {
     const [theme, setTheme] = useState<ThemeType>('light');

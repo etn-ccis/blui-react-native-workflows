@@ -16,7 +16,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../navigation';
 import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 import { UserMenuExample } from '../components/UserMenuExample';
-import { useThemeContext } from '../context/ThemeContext';
+import { useThemeContext } from '../contexts/ThemeContext';
 import { useTranslation } from 'react-i18next';
 
 const styles = (
