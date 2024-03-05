@@ -2,6 +2,9 @@
 
 Component that manages the display of error messages. Can be configured to display a dialog, a message box, or neither. This component must be used within an `AuthContextProvider` or a `RegistrationContextProvider` for default values to work.
 
+![Error Dialog](../../media/error-dialog.png)
+![Error Box](../../media/error-box.png)
+
 ## Usage
 ```tsx
 import { ErrorManager } from '@brightlayer-ui/react-native-auth-workflow';
