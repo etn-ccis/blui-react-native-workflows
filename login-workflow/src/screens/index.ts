@@ -1,5 +1,5 @@
 export * from './DemoScreen';
-
+export * from './RegistrationSuccessScreen';
 export * from './EulaScreen';
 export * from './CreateAccountScreen';
 export * from './VerifyCodeScreen';
