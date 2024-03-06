@@ -2,6 +2,8 @@
 
 A full screen component that renders a success screen after completion of the registration process.
 
+![Registration Success](../../media/screens/registration-success.png)
+
 ## Usage
 
 ```tsx
@@ -13,7 +15,7 @@ import { RegistrationSuccessScreen } from '@brightlayer-ui/react-native-auth-wor
 ```
 
 ## API
-
+<!-- TODO: Update the messageTitle and message type, after publishing @brightlayer-ui/react-native-components@8.0.2 -->
 | Prop Name | Type | Description | Default |
 |---|---|---|---|
 | icon | [`IconSource`](https://github.com/etn-ccis/blui-react-native-component-library/blob/master/docs/Icons.md#icon-object) | The icon to be displayed on the screen. |  |
