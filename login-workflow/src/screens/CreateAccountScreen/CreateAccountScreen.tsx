@@ -10,7 +10,7 @@ import { EMAIL_REGEX } from '../../constants';
  * Component that renders a screen for the user to enter their email address to start the
  * account creation process.
  *
- * @param {CreateAccountScreenProps} props - Props of Create Account Screen
+ * @param {CreateAccountScreenProps} props - Props of Create Account Screen component
  *
  * @category Component
  */

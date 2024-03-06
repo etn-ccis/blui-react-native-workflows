@@ -16,5 +16,5 @@ import { PasswordTextField } from '@brightlayer-ui/react-native-auth-workflow';
 
 ## API
 
-See React Native Paper [TextInputProps](https://callstack.github.io/react-native-paper/docs/components/TextInput/).
+See React Native Paper's [TextInputProps](https://callstack.github.io/react-native-paper/docs/components/TextInput/).
 

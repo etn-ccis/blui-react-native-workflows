@@ -2,6 +2,8 @@
 
 A screen that displays an End User License Agreement and a checkbox to confirm that they have read and agree to the terms. The EulaScreen must be used within a `RegistrationContextProvider`.
 
+![EULA](../../media/screens/eula.png)
+
 ## Usage
 
 ```tsx
@@ -20,14 +22,14 @@ import { RegistrationContextProvider, EulaScreen } from '@brightlayer-ui/react-n
 |---|---|---|---|
 | eulaContent | `string \| JSX.Element` | The content to render for the EULA. Can be a plain string or HTML. | |
 | checkboxLabel | `string` | The text to render for the acceptance checkbox. |  |
-| checkboxProps | `CheckboxProps` | Props to spread to the React Native Paper [Checkbox Item](https://callstack.github.io/react-native-paper/docs/components/Checkbox/CheckboxItem) component |  |
+| checkboxProps | `CheckboxProps` | Props to spread to the React Native Paper [CheckboxItem](https://callstack.github.io/react-native-paper/docs/components/Checkbox/CheckboxItem) component |  |
 | html | `boolean` | True if the EULA should be rendered as HTML, false for plain text | `false` |
 | initialCheckboxValue | `boolean` | Used to pre-populate the checked/unchecked checkbox when the screen loads. | `false` |
 | onEulaAcceptedChange | `(accepted: boolean) => void` | Called when the acceptance checkbox clicked. |  |
 | errorDisplayConfig | `ErrorManagerProps` | See [Error Management](../../components/error-manager.md) |  |
 | refreshConfig | `RefreshConfigProps` | configuration for refresh screen |  |
 
-This screen also extends the `WorkflowCardProps` type for updating the title, instructions, buttons, etc. See [Workflow Card](../../components/workflow-card.md) for more details.
+This screen also extends the `WorkflowCardProps` type for updating the title, instructions, buttons, etc. See [Workflow Card](../components/workflow-card.md) for more details.
 
 ### RefreshConfigProps
 | Prop Name | Type | Description | Default |

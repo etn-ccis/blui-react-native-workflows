@@ -2,6 +2,9 @@
 
 The WorkflowCard is a set of components that can be used to define custom screens within the workflows. Using these utility components will ensure that your custom screens match the style of the built-in screens for a seamless experience.
 
+![WorkflowCard](../../media/workflow-card.png)
+
+
 ### Usage
 
 ```tsx
@@ -26,6 +29,7 @@ import {
 | Prop Name                    | Type                           | Description                                                                 | Default |
 | ---------------------------- | ------------------------------ | --------------------------------------------------------------------------- | ------- |
 | WorkflowCardBaseProps        | `WorkflowCardBaseProps`        | See [WorkflowCardBase](#workflowcardbaseprops) for more details.            |         |
+| WorkflowCardBodyProps        | `WorkflowCardBodyProps`        | See [WorkflowCardBase](#workflowcardbodyprops) for more details.            |         |
 | WorkflowCardHeaderProps      | `WorkflowCardHeaderProps`      | See [WorkflowCardHeader](#workflowcardheader) for more details.             |         |
 | WorkflowCardInstructionProps | `WorkflowCardInstructionProps` | See [WorkflowCardInstructions](#workflowcardinstructions) for more details. |         |
 | WorkflowCardActionsProps     | `WorkflowCardActionsProps`     | See [WorkflowCardActions](#workflowcardactions) for more details.           |         |
@@ -39,9 +43,13 @@ import {
 
 The properties of the underlying React Native [ImageBackground](https://reactnative.dev/docs/imagebackground#props) component are also available.
 
-## WorkflowCardBody
+## WorkflowCardBodyProps
 
 This component is a simple wrapper that is used for layout. Your main screen contents should be children of this component.
+
+| Prop Name       | Type      | Description                                                               | Default |
+| --------------- | --------- | ------------------------------------------------------------------------- | ------- |
+| scrollable      | `boolean` | A boolean that indicates whether the body should be scrollable.           | `true`  |
 
 The properties of the underlying React Native Paper [Card.Content](https://callstack.github.io/react-native-paper/docs/components/Card/CardContent) component are also available.
 
@@ -91,11 +99,3 @@ The WorkflowCardActions is used to configure the buttons that appear at the bott
 
 Any other props will be provided to the root element ([**View**](https://reactnative.dev/docs/view)).
 
-### WorkflowCardFinishState
-
-The WorkflowCardFinishState component is used to render an [EmptyState](https://brightlayer-ui-components.github.io/react-native/?path=/info/components-documentation--empty-state) component indicating completion of a user flow.
-
-The WorkflowCardFinishState has the same props as an [EmptyState](https://brightlayer-ui-components.github.io/react-native/?path=/info/components-documentation--empty-state) component.
-
-All props will be passed to the `<EmptyState>` component, except for style
-which is applied to the root element

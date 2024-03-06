@@ -24,6 +24,7 @@ export const Spinner: React.FC<SpinnerProps> = (props) => {
                 justifyContent: 'center',
                 alignItems: 'center',
             }}
+            testID="spinner"
             {...otherProps}
         >
             <ActivityIndicator animating={visible} size="large" color={theme.colors.primary} />

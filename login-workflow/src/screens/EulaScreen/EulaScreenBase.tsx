@@ -52,10 +52,11 @@ const makeStyles = (
         },
         checkboxLabel: { flexGrow: 0, flexShrink: 0, textAlign: 'left' },
     });
+
 /**
- * Component that renders a screen displaying the EULA and requests acceptance via a checkbox.
+ * Base Component that renders a screen displaying the EULA and requests acceptance via a checkbox.
  *
- * @param {EulaScreenProps} props - Basic props of EULA Screen Base
+ * @param {EulaScreenProps} props - Basic props of EULA Screen Base component
  *
  * @category Component
  */

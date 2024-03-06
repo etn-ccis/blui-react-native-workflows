@@ -5,14 +5,14 @@ import { useTranslation } from 'react-i18next';
 import { ErrorManagerProps } from './types';
 
 /**
- * Component that manages the display of error messages. Can be configured to display a dialog, a message box, or neither.
+ * Component that manages the display of error messages. Can be configured to display a dialog, a message box, or neither
  *
  * @param {ErrorManagerProps} props - Props of Error Manager
  *
  * @category Component
  */
 
-export const ErrorManager: React.FC<React.PropsWithChildren<ErrorManagerProps>> = (props: ErrorManagerProps) => {
+export const ErrorManager: React.FC<React.PropsWithChildren<ErrorManagerProps>> = (props) => {
     const { t } = useTranslation();
     const {
         children,
@@ -34,7 +34,7 @@ export const ErrorManager: React.FC<React.PropsWithChildren<ErrorManagerProps>> 
                 title={dialogConfig?.title ?? title ?? t('bluiCommon:MESSAGES.ERROR')}
                 body={t(error)}
                 onDismiss={onClose}
-                dismissButtonText={dialogConfig?.dismissLabel}
+                dismissButtonText={dialogConfig?.dismissLabel ?? t('bluiCommon:ACTIONS.CLOSE')}
                 style={dialogConfig?.style}
             />
         ),
