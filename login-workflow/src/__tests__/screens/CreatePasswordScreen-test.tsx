@@ -1,10 +1,11 @@
 import React from 'react';
 import '@testing-library/jest-dom';
+import '@testing-library/react-native/extend-expect';
 import { cleanup, render, screen, fireEvent, RenderResult } from '@testing-library/react-native';
 import { CreatePasswordScreen, CreatePasswordScreenProps } from '../../screens';
 import { RegistrationContextProvider } from '../../contexts';
 import { RegistrationWorkflow } from '../../components';
-import { registrationContextProviderProps } from '../../testUtils';
+import { errorRegistrationContextProviderProps, registrationContextProviderProps } from '../../testUtils';
 import { PaperProvider } from 'react-native-paper';
 
 const passwordRequirements = [
@@ -19,7 +20,6 @@ const passwordRequirements = [
 ];
 
 afterEach(cleanup);
-jest.useFakeTimers();
 describe('Create Password Screen', () => {
     let mockOnNext: any;
     let mockOnPrevious: any;
@@ -46,6 +46,8 @@ describe('Create Password Screen', () => {
 
     it('renders without crashing', () => {
         renderer();
+
+        expect(screen.getByText('Create Password')).toBeOnTheScreen();
     });
 
     it('should call onNext, when Next button clicked', () => {
@@ -54,7 +56,6 @@ describe('Create Password Screen', () => {
                 onNext: mockOnNext(),
                 showNext: true,
                 nextLabel: 'Next',
-                canGoNext: true,
             },
             PasswordProps: {
                 newPasswordLabel: 'Password',
@@ -66,11 +67,13 @@ describe('Create Password Screen', () => {
 
         const passwordField = screen.getByTestId('password');
         const confirmPasswordField = screen.getByTestId('confirm');
-
-        fireEvent.changeText(passwordField, { target: { value: 'Abcd@123' } });
-        fireEvent.changeText(confirmPasswordField, { target: { value: 'Abcd@123' } });
-
         const nextButton = screen.getByText('Next');
+        expect(nextButton).toBeDisabled();
+
+        fireEvent.changeText(passwordField, 'ab123');
+        fireEvent.changeText(confirmPasswordField, 'ab123');
+        expect(nextButton).toBeEnabled();
+
         fireEvent.press(nextButton);
         expect(mockOnNext).toHaveBeenCalled();
     });
@@ -80,7 +83,6 @@ describe('Create Password Screen', () => {
             WorkflowCardActionsProps: {
                 onNext: mockOnNext(),
                 showNext: true,
-                canGoNext: true,
                 nextLabel: 'Next',
             },
             PasswordProps: {
@@ -95,8 +97,8 @@ describe('Create Password Screen', () => {
         const passwordField = screen.getByTestId('password');
         const confirmPasswordField = screen.getByTestId('confirm');
 
-        fireEvent.changeText(passwordField, { target: { value: 'A' } });
-        fireEvent.changeText(confirmPasswordField, { target: { value: 'A' } });
+        fireEvent.changeText(passwordField, 'A');
+        fireEvent.changeText(confirmPasswordField, 'A');
     });
 
     it('should call onPrevious, when Back button clicked', () => {
@@ -117,5 +119,44 @@ describe('Create Password Screen', () => {
         const backButton = screen.getByText('Back');
         fireEvent.press(backButton);
         expect(mockOnPrevious).toHaveBeenCalled();
+    });
+
+    it('should trigger error, when Next button clicked', () => {
+        render(
+            <PaperProvider>
+                <RegistrationContextProvider {...errorRegistrationContextProviderProps}>
+                    <RegistrationWorkflow initialScreenIndex={0}>
+                        <CreatePasswordScreen
+                            WorkflowCardActionsProps={{
+                                onNext: mockOnNext(),
+                                showNext: true,
+                                nextLabel: 'Next',
+                            }}
+                            PasswordProps={{
+                                newPasswordLabel: 'Password',
+                                confirmPasswordLabel: 'Confirm Password',
+                                passwordRequirements: passwordRequirements,
+                                onPasswordChange: jest.fn(),
+                            }}
+                            errorDisplayConfig={{
+                                onClose: jest.fn(),
+                            }}
+                        />
+                    </RegistrationWorkflow>
+                </RegistrationContextProvider>
+            </PaperProvider>
+        );
+
+        const passwordField = screen.getByTestId('password');
+        const confirmPasswordField = screen.getByTestId('confirm');
+        const nextButton = screen.getByText('Next');
+        expect(nextButton).toBeDisabled();
+
+        fireEvent.changeText(passwordField, 'ab123');
+        fireEvent.changeText(confirmPasswordField, 'ab123');
+        expect(nextButton).toBeEnabled();
+
+        fireEvent.press(nextButton);
+        expect(mockOnNext).toHaveBeenCalled();
     });
 });
