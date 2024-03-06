@@ -149,7 +149,7 @@ export const EulaScreen: React.FC<EulaScreenProps> = (props) => {
 
     useEffect(() => {
         void loadAndCacheEula();
-    }, [loadAndCacheEula]);
+    }, []);
     const {
         refreshConfig = {
             showRefreshButton: eulaFetchError,
