@@ -20,7 +20,7 @@ import { BasicDialog } from '@brightlayer-ui/react-native-auth-workflow';
 
 | Prop Name | Type | Description | Default |
 |---|---|---|---|
-| open | `boolean`  | Whether the dialog is open. |  |
+| open | `boolean`  | Set the open / closed state of the dialog |  |
 | title | `string` | The title to display in the dialog. |  |
 | body | `string` | The content to display in the body of the dialog |  |
 | onDismiss | `() => void` | A function that is called when the close button is clicked. |  |

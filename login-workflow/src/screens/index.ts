@@ -1,4 +1,3 @@
-export * from './DemoScreens';
 export * from './DemoScreen';
 export * from './RegistrationSuccessScreen';
 export * from './EulaScreen';

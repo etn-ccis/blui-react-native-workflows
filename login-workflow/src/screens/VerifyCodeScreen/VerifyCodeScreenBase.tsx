@@ -16,7 +16,7 @@ import { useExtendedTheme } from '@brightlayer-ui/react-native-themes';
  * Component that renders a screen that prompts a user to enter the confirmation code
  * that was sent to the email address that they used to register.
  *
- * @param {VerifyCodeScreenProps} props - props of VerifyCodeScreenBase component
+ * @param {VerifyCodeScreenProps} props - props of Verify Code Screen Base component
  *
  * @category Component
  */
@@ -76,7 +76,7 @@ export const VerifyCodeScreenBase: React.FC<React.PropsWithChildren<VerifyCodeSc
 
     return (
         <WorkflowCard {...cardBaseProps}>
-            <WorkflowCardHeader onIconPress={handleOnPrevious} {...headerProps} />
+            <WorkflowCardHeader {...headerProps} />
             <WorkflowCardInstructions {...instructionsProps} />
             <WorkflowCardBody>
                 <ErrorManager {...errorDisplayConfig}>
@@ -87,13 +87,16 @@ export const VerifyCodeScreenBase: React.FC<React.PropsWithChildren<VerifyCodeSc
                         onChangeText={handleVerifyCodeInputChange}
                         error={shouldValidateCode && !isCodeValid}
                         {...verifyCodeTextInputProps}
+                        onSubmitEditing={(): void => {
+                            if (verifyCode.length > 0 && isCodeValid && actionsProps.canGoNext) handleOnNext();
+                        }}
                         onBlur={(e): void => {
                             // eslint-disable-next-line no-unused-expressions
                             verifyCodeTextInputProps?.onBlur && verifyCodeTextInputProps.onBlur(e);
                             setShouldValidateCode(true);
                         }}
                     />
-                    <HelperText type="error" visible={shouldValidateCode}>
+                    <HelperText type="error" visible={shouldValidateCode} style={{ height: 30 }}>
                         {codeError}
                     </HelperText>
                     <View>
@@ -108,7 +111,7 @@ export const VerifyCodeScreenBase: React.FC<React.PropsWithChildren<VerifyCodeSc
             </WorkflowCardBody>
             <WorkflowCardActions
                 {...actionsProps}
-                canGoNext={(verifyCode.length > 5 && isCodeValid && actionsProps.canGoNext) as any}
+                canGoNext={(verifyCode.length > 0 && isCodeValid && actionsProps.canGoNext) as any}
                 onNext={handleOnNext}
                 onPrevious={handleOnPrevious}
             />
