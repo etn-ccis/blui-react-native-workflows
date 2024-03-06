@@ -8,7 +8,7 @@ import { View, StyleSheet } from 'react-native';
 import { useErrorManager } from '../../contexts/ErrorContext/useErrorManager';
 import { ErrorManager } from '../Error/ErrorManager';
 import { RegistrationWorkflowProps } from './types';
-import { VerifyCodeScreen,EulaScreen } from '../../screens';
+import { VerifyCodeScreen, EulaScreen } from '../../screens';
 import { ExistingAccountSuccessScreen } from '../../screens/ExistingAccountSuccessScreen';
 import { AccountDetailsScreen } from '../../screens/AccountDetailsScreen';
 

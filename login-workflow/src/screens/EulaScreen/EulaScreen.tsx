@@ -15,7 +15,7 @@ import { useTranslation } from 'react-i18next';
 
 export const EulaScreen: React.FC<EulaScreenProps> = (props) => {
     const { t } = useTranslation();
-    const { actions, language } = useRegistrationContext();
+    const { actions, language, navigate, routeConfig } = useRegistrationContext();
     const { triggerError, errorManagerConfig } = useErrorManager();
     const errorDisplayConfig = {
         ...errorManagerConfig,
@@ -162,6 +162,9 @@ export const EulaScreen: React.FC<EulaScreenProps> = (props) => {
 
     const workflowCardHeaderProps = {
         title: t('bluiRegistration:REGISTRATION.STEPS.LICENSE'),
+        onIconPress: (): void => {
+            navigate(routeConfig.LOGIN as string);
+        },
         ...WorkflowCardHeaderProps,
     };
 
