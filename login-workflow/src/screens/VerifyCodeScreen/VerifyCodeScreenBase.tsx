@@ -16,7 +16,7 @@ import { useExtendedTheme } from '@brightlayer-ui/react-native-themes';
  * Component that renders a screen that prompts a user to enter the confirmation code
  * that was sent to the email address that they used to register.
  *
- * @param {VerifyCodeScreenProps} props - props of VerifyCodeScreenBase component
+ * @param {VerifyCodeScreenProps} props - props of Verify Code Screen Base component
  *
  * @category Component
  */

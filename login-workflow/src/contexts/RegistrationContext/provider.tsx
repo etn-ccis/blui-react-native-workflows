@@ -12,6 +12,10 @@ import { SharedDictionaries } from '../SharedDictionaries';
 import { RegistrationDictionaries } from './RegistrationDictionaries';
 import { I18nextProvider } from 'react-i18next';
 
+/**
+ * RegistrationContextProvider allow you to access shared data / configuration / API definition for registration workflow
+ * @param {RegistrationContextProviderProps} props - props for Registration Context Provider
+ */
 export const RegistrationContextProvider: React.FC<React.PropsWithChildren<RegistrationContextProviderProps>> = (
     props
 ) => {

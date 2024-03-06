@@ -6,7 +6,7 @@ The registration workflow includes screens related to user sign-up / registratio
 
 The screens in this workflow access shared data / configuration / API definitions through a `RegistrationContextProvider` which should wrap all of the relevant routes / screens.
 
-You must supply the `AuthContextProvider` with the following props / data:
+You must supply the `RegistrationContextProvider` with the following props / data:
 
 -   `actions`: defines the API calls / functions to execute when certain actions are performed in the UI (such as submitting the password form)
 -   `language`: configures the language displayed on the screens

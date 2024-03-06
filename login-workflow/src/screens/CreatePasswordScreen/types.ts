@@ -3,12 +3,12 @@ import { WorkflowCardProps } from '../../components/WorkflowCard/WorkflowCard.ty
 
 export type CreatePasswordScreenProps = WorkflowCardProps & {
     /**
-     * @param {SetPasswordProps} PasswordProps - The props passed for SetPassword component
+     * The props passed for SetPassword component
      */
     PasswordProps?: SetPasswordProps;
 
     /**
-     * @param {ErrorManagerProps} errorDisplayConfig - The configuration for customizing how errors are displayed
+     * The configuration for customizing how errors are displayed
      */
     errorDisplayConfig?: ErrorManagerProps;
 };

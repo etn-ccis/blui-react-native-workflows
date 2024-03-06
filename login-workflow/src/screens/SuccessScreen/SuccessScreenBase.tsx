@@ -12,16 +12,7 @@ import { WorkflowCardFinishState } from '../../components';
 /**
  * Component that renders a success screen
  *
- * @param icon the icon to be displayed on the screen
- * @param messageTitle title of the success message
- * @param message success message to be displayed on the screen
- * @param dismissButtonLabel to display label for the button
- * @param canDismiss function to call when the dismiss button is clicked
- * @param onDismiss function to call when user clicks button
- * @param WorkflowCardBaseProps props that will be passed to the WorkflowCard component
- * @param WorkflowCardHeaderProps props that will be passed to the WorkflowCardHeader component
- * @param WorkflowCardInstructionProps props that will be passed to the WorkflowCardInstructions component
- * @param WorkflowCardActionsProps props that will be passed to the WorkflowCardActions component
+ * @param {SuccessScreenProps} props - Basic props of Success Screen component
  *
  * @category Component
  */

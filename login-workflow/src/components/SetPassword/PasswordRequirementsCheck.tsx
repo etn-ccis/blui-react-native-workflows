@@ -12,6 +12,15 @@ const makeStyles = (): StyleSheet.NamedStyles<{
             marginLeft: 8,
         },
     });
+
+/**
+ * Component to update password requirements.
+ *
+ * @param {PasswordRequirementsCheckProps} props - props of PasswordRequirementsCheck component
+ *
+ * @category Component
+ */
+
 export const PasswordRequirementsCheck: React.FC<PasswordRequirementsCheckProps> = ({ isChecked, label }) => {
     const theme = useExtendedTheme();
     const defaultStyle = makeStyles();
