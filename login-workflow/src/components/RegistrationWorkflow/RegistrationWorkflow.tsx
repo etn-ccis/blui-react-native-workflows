@@ -8,10 +8,9 @@ import { View, StyleSheet } from 'react-native';
 import { useErrorManager } from '../../contexts/ErrorContext/useErrorManager';
 import { ErrorManager } from '../Error/ErrorManager';
 import { RegistrationWorkflowProps } from './types';
-import { VerifyCodeScreen } from '../../screens';
+import { VerifyCodeScreen, RegistrationSuccessScreen } from '../../screens';
 import { ExistingAccountSuccessScreen } from '../../screens/ExistingAccountSuccessScreen';
 import { AccountDetailsScreen } from '../../screens/AccountDetailsScreen';
-import { RegistrationSuccessScreen } from '../../screens';
 
 const styles = StyleSheet.create({
     pagerView: {
