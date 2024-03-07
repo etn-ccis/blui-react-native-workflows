@@ -27,6 +27,13 @@ import { RegistrationContextProvider, EulaScreen } from '@brightlayer-ui/react-n
 | initialCheckboxValue | `boolean` | Used to pre-populate the checked/unchecked checkbox when the screen loads. | `false` |
 | onEulaAcceptedChange | `(accepted: boolean) => void` | Called when the acceptance checkbox clicked. |  |
 | errorDisplayConfig | `ErrorManagerProps` | See [Error Management](../../components/error-manager.md) |  |
-| onRefetch | `() => void` | Function to refetch Eula content |  |
+| refreshConfig | `RefreshConfigProps` | configuration for refresh screen |  |
 
-This screen also extends the `WorkflowCardProps` type for updating the title, instructions, buttons, etc. See [Workflow Card](../../components/workflow-card.md) for more details.
+This screen also extends the `WorkflowCardProps` type for updating the title, instructions, buttons, etc. See [Workflow Card](../components/workflow-card.md) for more details.
+
+### RefreshConfigProps
+| Prop Name | Type | Description | Default |
+|---|---|---|---|
+| onRefresh | `() => void` | Function to refresh Eula content |  |
+| showRefreshButton | `boolean` | the refresh button to be rendered |  |
+| refreshButtonLabel | `string` | Label of refresh button | `t('bluiCommon:MESSAGES.RETRY')(Retry)` |

@@ -70,7 +70,7 @@ export const EulaScreenBase: React.FC<EulaScreenProps> = (props) => {
         initialCheckboxValue,
         checkboxProps,
         errorDisplayConfig,
-        onRefetch,
+        refreshConfig,
     } = props;
 
     const cardBaseProps = props.WorkflowCardBaseProps || {};
@@ -119,12 +119,12 @@ export const EulaScreenBase: React.FC<EulaScreenProps> = (props) => {
             {Object.keys(instructionsProps).length !== 0 && <WorkflowCardInstructions {...instructionsProps} />}
             <WorkflowCardBody scrollable={false}>
                 <View style={defaultStyles.container}>
-                    {checkboxProps?.disabled ? (
+                    {refreshConfig?.showRefreshButton ? (
                         <View style={defaultStyles.retryContainer}>
-                            <TouchableOpacity style={defaultStyles.retryBody} onPress={onRefetch}>
+                            <TouchableOpacity style={defaultStyles.retryBody} onPress={refreshConfig?.onRefresh}>
                                 <Icon source={{ name: 'refresh' }} />
                                 <Text variant={'titleSmall'} style={defaultStyles.text}>
-                                    {t('bluiCommon:MESSAGES.RETRY')}
+                                    {refreshConfig?.refreshButtonLabel || t('bluiCommon:MESSAGES.RETRY')}
                                 </Text>
                             </TouchableOpacity>
                         </View>
