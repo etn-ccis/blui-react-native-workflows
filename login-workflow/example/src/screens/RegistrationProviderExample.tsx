@@ -52,7 +52,7 @@ const RegistrationProviderExample: React.FC<AppProps> = (): JSX.Element => {
                 <RegistrationWorkflow>
                     <CreatePasswordScreen />
                     <VerifyCodeScreen />
-                    <CustomScreen />
+                    {/* <CustomScreen /> */}
                     <AccountDetailsScreen />
                 </RegistrationWorkflow>
 
