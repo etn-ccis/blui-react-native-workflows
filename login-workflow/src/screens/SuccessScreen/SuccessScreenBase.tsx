@@ -23,7 +23,6 @@ export const SuccessScreenBase: React.FC<SuccessScreenProps> = (props) => {
         messageTitle = '',
         message = '',
         dismissButtonLabel = '',
-        scrollMainContent = false,
         canDismiss,
         onDismiss,
     } = props;
@@ -32,12 +31,13 @@ export const SuccessScreenBase: React.FC<SuccessScreenProps> = (props) => {
     const headerProps = props.WorkflowCardHeaderProps || {};
     const instructionsProps = props.WorkflowCardInstructionProps || {};
     const actionsProps = props.WorkflowCardActionsProps || {};
+    const bodyProps = props.WorkflowCardBodyProps || {};
 
     return (
         <WorkflowCard {...cardBaseProps}>
             <WorkflowCardHeader {...headerProps} />
             {Object.keys(instructionsProps).length !== 0 && <WorkflowCardInstructions {...instructionsProps} />}
-            <WorkflowCardBody scrollable={scrollMainContent}>
+            <WorkflowCardBody {...bodyProps}>
                 <WorkflowCardFinishState icon={icon} title={messageTitle} description={message} />
             </WorkflowCardBody>
             <WorkflowCardActions

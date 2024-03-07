@@ -80,7 +80,7 @@ export type WorkflowCardInstructionProps = Omit<TextProps<'bodyLarge'>, 'childre
 /**
  * Props for WorkflowCardBody component
  */
-export type WorkflowCardBodyProps = CardContentProps & {
+export type WorkflowCardBodyProps = Partial<CardContentProps> & {
     /**
      * If true, the scroll view will be enabled otherwise view will be enabled
      * @default true
