@@ -3,6 +3,7 @@ import {
     RegistrationWorkflowContextProps,
     i18nRegistrationInstance,
 } from '../contexts';
+import { error } from 'console';
 
 export const registrationContextProviderProps: RegistrationContextProviderProps = {
     language: 'en',
@@ -15,6 +16,24 @@ export const registrationContextProviderProps: RegistrationContextProviderProps 
         requestRegistrationCode: jest.fn(),
         validateUserRegistrationRequest: jest.fn(),
         createPassword: jest.fn(),
+        setAccountDetails: jest.fn(),
+        completeRegistration: jest.fn().mockImplementation(() => Promise.resolve()),
+    },
+};
+
+export const errorRegistrationContextProviderProps: RegistrationContextProviderProps = {
+    language: 'en',
+    i18n: i18nRegistrationInstance,
+    navigate: (): void => {},
+    routeConfig: {},
+    actions: {
+        loadEula: jest.fn(),
+        acceptEula: jest.fn(),
+        requestRegistrationCode: jest.fn(),
+        validateUserRegistrationRequest: jest.fn(),
+        createPassword: () => {
+            throw error('This is the error test');
+        },
         setAccountDetails: jest.fn(),
         completeRegistration: jest.fn().mockImplementation(() => Promise.resolve()),
     },
