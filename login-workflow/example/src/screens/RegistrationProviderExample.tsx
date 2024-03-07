@@ -8,12 +8,12 @@ import {
     ErrorContextProvider,
     RegistrationWorkflow,
     AccountDetailsScreen,
-    CreatePasswordScreen,
+    // CreatePasswordScreen,
     // WorkflowCard,
     // WorkflowCardHeader,
     // WorkflowCardBody,
     // WorkflowCardActions,
-    VerifyCodeScreen,
+    // VerifyCodeScreen,
 } from '@brightlayer-ui/react-native-auth-workflow';
 import { RootStackParamList } from '../navigation';
 import { useNavigation } from '@react-navigation/native';
@@ -50,8 +50,6 @@ const RegistrationProviderExample: React.FC<AppProps> = (): JSX.Element => {
             <ErrorContextProvider>
                 {/* Default Implementation */}
                 <RegistrationWorkflow>
-                    {/* <CreatePasswordScreen />
-                    <VerifyCodeScreen /> */}
                     <CustomScreen />
                     <AccountDetailsScreen />
                 </RegistrationWorkflow>

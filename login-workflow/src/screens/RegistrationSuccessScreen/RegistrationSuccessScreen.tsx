@@ -30,11 +30,11 @@ export const RegistrationSuccessScreen: React.FC<SuccessScreenProps> = (props) =
         messageTitle = `${t('bluiCommon:MESSAGES.WELCOME')}, ${firstName} ${lastName}!`,
         message = email
             ? t('bluiRegistration:REGISTRATION.SUCCESS_MESSAGE', {
-                replace: { email, organization },
-            })
+                  replace: { email, organization },
+              })
             : t('bluiRegistration:REGISTRATION.SUCCESS_MESSAGE_WITHOUT_EMAIL_PROVIDED', {
-                replace: { organization },
-            }),
+                  replace: { organization },
+              }),
         canDismiss = true,
         onDismiss = (): void => navigate(routeConfig.LOGIN as string),
         WorkflowCardHeaderProps,
