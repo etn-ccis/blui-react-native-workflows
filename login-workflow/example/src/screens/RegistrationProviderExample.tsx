@@ -17,7 +17,7 @@ import {
 } from '@brightlayer-ui/react-native-auth-workflow';
 import { RootStackParamList } from '../navigation';
 import { useNavigation } from '@react-navigation/native';
-import { CustomScreen } from '../components/CustomScreen';
+// import { CustomScreen } from '../components/CustomScreen';
 
 type AppProps = {
     navigation: StackNavigationProp<RootStackParamList, 'RegistrationProviderExample'>;
