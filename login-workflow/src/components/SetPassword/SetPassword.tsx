@@ -133,10 +133,10 @@ export const SetPassword: React.FC<React.PropsWithChildren<SetPasswordProps>> = 
                     {passwordNotMatchError || t('bluiCommon:FORMS.PASS_MATCH_ERROR')}
                 </HelperText>
             )}
-            {!hasConfirmPasswordError() && confirmInput !== '' && (
+            {!hasConfirmPasswordError() && confirmInput !== '' && confirmInput === passwordInput && (
                 <HelperText
                     type="info"
-                    visible={!hasConfirmPasswordError() && confirmInput !== ''}
+                    visible={!hasConfirmPasswordError() && confirmInput !== '' && confirmInput === passwordInput}
                     style={defaultStyle.successHelperText}
                 >
                     {t('bluiCommon:FORMS.PASS_MATCH')}
