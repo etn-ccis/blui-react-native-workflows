@@ -149,6 +149,7 @@ export const EulaScreen: React.FC<EulaScreenProps> = (props) => {
 
     useEffect(() => {
         void loadAndCacheEula();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [language]);
 
     const {
