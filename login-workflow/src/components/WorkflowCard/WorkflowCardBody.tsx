@@ -34,7 +34,6 @@ export const WorkflowCardBody: React.FC<WorkflowCardBodyProps> = (props) => {
     const { children, style, scrollable = true, ...otherCardContentProps } = props;
     const { isTablet } = useScreenDimensions();
     const defaultStyles = makeStyles(isTablet);
-
     return (
         <>
             {scrollable ? (

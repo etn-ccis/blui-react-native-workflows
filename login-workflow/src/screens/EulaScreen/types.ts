@@ -47,7 +47,7 @@ export type EulaScreenProps = WorkflowCardProps & {
     refreshConfig?: {
         /**
          * Function to refresh Eula content
-         * @returns void
+         * @returns {void}
          */
         onRefresh?: () => void;
         /**

@@ -18,26 +18,19 @@ import { WorkflowCardFinishState } from '../../components';
  */
 
 export const SuccessScreenBase: React.FC<SuccessScreenProps> = (props) => {
-    const {
-        icon,
-        messageTitle = '',
-        message = '',
-        dismissButtonLabel = '',
-        scrollMainContent = false,
-        canDismiss,
-        onDismiss,
-    } = props;
+    const { icon, messageTitle = '', message = '', dismissButtonLabel = '', canDismiss, onDismiss } = props;
 
     const cardBaseProps = props.WorkflowCardBaseProps || {};
     const headerProps = props.WorkflowCardHeaderProps || {};
     const instructionsProps = props.WorkflowCardInstructionProps || {};
     const actionsProps = props.WorkflowCardActionsProps || {};
+    const bodyProps = props.WorkflowCardBodyProps || {};
 
     return (
         <WorkflowCard {...cardBaseProps}>
             <WorkflowCardHeader {...headerProps} />
             {Object.keys(instructionsProps).length !== 0 && <WorkflowCardInstructions {...instructionsProps} />}
-            <WorkflowCardBody scrollable={scrollMainContent}>
+            <WorkflowCardBody {...bodyProps}>
                 <WorkflowCardFinishState icon={icon} title={messageTitle} description={message} />
             </WorkflowCardBody>
             <WorkflowCardActions

@@ -2,15 +2,11 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { SuccessScreenBase, SuccessScreenProps } from '../SuccessScreen';
 import { useRegistrationContext, useRegistrationWorkflowContext } from '../../contexts';
+
 /**
  * Component that renders a success screen for when registration completes.
  *
- * @param icon the icon to be displayed on the screen
- * @param messageTitle title of the success message
- * @param message success message to be displayed on the screen
- * @param onDismiss function to call when user clicks button
- * @param canDismiss function to call when the dismiss button is clicked
- * @param scrollMainContent whether the main content should be scrollable
+ * @param {SuccessScreenProps} props - Props of SuccessScreen component
  *
  * @category Component
  */
@@ -41,15 +37,20 @@ export const RegistrationSuccessScreen: React.FC<SuccessScreenProps> = (props) =
               }),
         canDismiss = true,
         onDismiss = (): void => navigate(routeConfig.LOGIN as string),
-        scrollMainContent = false,
         WorkflowCardHeaderProps,
         WorkflowCardActionsProps,
+        WorkflowCardBodyProps,
         ...otherRegistrationSuccessScreenProps
     } = props;
 
     const workflowCardHeaderProps = {
         title: t('bluiRegistration:REGISTRATION.STEPS.COMPLETE'),
         ...WorkflowCardHeaderProps,
+    };
+
+    const workflowCardBodyProps = {
+        scrollable: false,
+        ...WorkflowCardBodyProps,
     };
 
     const workflowCardActionsProps = {
@@ -68,10 +69,10 @@ export const RegistrationSuccessScreen: React.FC<SuccessScreenProps> = (props) =
         <SuccessScreenBase
             WorkflowCardHeaderProps={workflowCardHeaderProps}
             WorkflowCardActionsProps={workflowCardActionsProps}
+            WorkflowCardBodyProps={workflowCardBodyProps}
             icon={icon}
             messageTitle={messageTitle}
             message={message}
-            scrollMainContent={scrollMainContent}
             {...otherRegistrationSuccessScreenProps}
         />
     );

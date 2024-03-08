@@ -19,9 +19,9 @@ export const ExistingAccountSuccessScreen: React.FC<SuccessScreenProps> = (props
         message = t('bluiRegistration:REGISTRATION.SUCCESS_EXISTING'),
         canDismiss = true,
         onDismiss = (): void => navigate(routeConfig.LOGIN as string),
-        scrollMainContent = false,
         WorkflowCardHeaderProps,
         WorkflowCardActionsProps,
+        WorkflowCardBodyProps,
         ...otherExistingAccountSuccessScreenProps
     } = props;
 
@@ -31,6 +31,11 @@ export const ExistingAccountSuccessScreen: React.FC<SuccessScreenProps> = (props
         onIconPress: (): void => {
             navigate(routeConfig.LOGIN as string);
         },
+    };
+
+    const workflowCardBodyProps = {
+        scrollable: false,
+        ...WorkflowCardBodyProps,
     };
 
     const workflowCardActionsProps = {
@@ -49,10 +54,10 @@ export const ExistingAccountSuccessScreen: React.FC<SuccessScreenProps> = (props
         <SuccessScreenBase
             WorkflowCardHeaderProps={workflowCardHeaderProps}
             WorkflowCardActionsProps={workflowCardActionsProps}
+            WorkflowCardBodyProps={workflowCardBodyProps}
             icon={icon}
             messageTitle={messageTitle}
             message={message}
-            scrollMainContent={scrollMainContent}
             {...otherExistingAccountSuccessScreenProps}
         />
     );
