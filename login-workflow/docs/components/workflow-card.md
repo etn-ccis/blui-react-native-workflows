@@ -2,7 +2,7 @@
 
 The WorkflowCard is a set of components that can be used to define custom screens within the workflows. Using these utility components will ensure that your custom screens match the style of the built-in screens for a seamless experience.
 
-![WorkflowCard](../../media/workflow-card.png)
+<img width="400" alt="WorkflowCard" src="../../media/workflow-card.png">
 
 
 ### Usage
@@ -28,18 +28,18 @@ import {
 
 | Prop Name                    | Type                           | Description                                                                 | Default |
 | ---------------------------- | ------------------------------ | --------------------------------------------------------------------------- | ------- |
+| WorkflowCardActionsProps     | `WorkflowCardActionsProps`     | See [WorkflowCardActions](#workflowcardactions) for more details.           |         |
 | WorkflowCardBaseProps        | `WorkflowCardBaseProps`        | See [WorkflowCardBase](#workflowcardbaseprops) for more details.            |         |
 | WorkflowCardBodyProps        | `WorkflowCardBodyProps`        | See [WorkflowCardBase](#workflowcardbodyprops) for more details.            |         |
 | WorkflowCardHeaderProps      | `WorkflowCardHeaderProps`      | See [WorkflowCardHeader](#workflowcardheader) for more details.             |         |
 | WorkflowCardInstructionProps | `WorkflowCardInstructionProps` | See [WorkflowCardInstructions](#workflowcardinstructions) for more details. |         |
-| WorkflowCardActionsProps     | `WorkflowCardActionsProps`     | See [WorkflowCardActions](#workflowcardactions) for more details.           |         |
 
 ### WorkflowCardBaseProps
 
 | Prop Name       | Type      | Description                                                               | Default |
 | --------------- | --------- | ------------------------------------------------------------------------- | ------- |
-| loading         | `boolean` | A boolean that indicates whether the loading spinner should be displayed. | `false` |
 | backgroundImage | [`ImageSourcePropType`](https://reactnative.dev/docs/image#imagesource)  | The background image to display behind the card.                          |         |
+| loading         | `boolean` | A boolean that indicates whether the loading spinner should be displayed. | `false` |
 
 The properties of the underlying React Native [ImageBackground](https://reactnative.dev/docs/imagebackground#props) component are also available.
 
@@ -58,11 +58,11 @@ The properties of the underlying React Native Paper [Card.Content](https://calls
 
 | Prop Name         | Type         | Description | Required | Default |
 |---|---|---|---|---|
-| title             | `string`     | text to display as title in header | Yes |  |
 | backgroundColor   | `string`     | background color of header  | No | theme.colors.primary |
-| textColor         | `string`     | text color of header  | No | theme.colors.onPrimary |
-| iconColor         | `string`     | icon color of header  | No | theme.colors.onPrimary |
 | icon              | `IconSource` | icon to be shown on left side of header | No | close |
+| iconColor         | `string`     | icon color of header  | No | theme.colors.onPrimary |
+| textColor         | `string`     | text color of header  | No | theme.colors.onPrimary |
+| title             | `string`     | text to display as title in header | Yes |  |
 | onIconPress       | `function`   | on press functionality for the icon | Yes |  |
 
 
@@ -72,8 +72,8 @@ The properties of the underlying React Native [View](https://reactnative.dev/doc
 
 | Prop Name    | Type                    | Description                                                           | Default |
 | ------------ | ----------------------- | --------------------------------------------------------------------- | ------- |
-| instructions | `string \| JSX.Element` | The instructions to display in the card.                              |         |
 | divider      | `boolean`               | If true, a dividing line will be displayed below the instruction text | `true`  |
+| instructions | `string \| JSX.Element` | The instructions to display in the card.                              |         |
 
 The properties of the underlying React Native Paper's [Text](https://callstack.github.io/react-native-paper/docs/components/Text/) component are also available.
 
@@ -83,19 +83,19 @@ The WorkflowCardActions is used to configure the buttons that appear at the bott
 
 | Prop Name | Type | Description | Default |
 |---|---|---|---|
-| divider | `boolean` | If true, a dividing line will be displayed above the button panel | `true` |
-| showPrevious | `boolean` | Indicates whether the previous button should be displayed | `true` |
-| canGoPrevious | `boolean \| (() => boolean)` | A boolean or function that indicates whether the previous button should be enabled. | `true` |
-| previousLabel | `string` | The label on the previous button |  |
-| onPrevious |  `(data?: { [key: string]: any }) => void` | A function that is called when the previous button is clicked. |  |
-| showNext | `boolean` | Indicates whether the next button should be displayed | `true` |
 | canGoNext | `boolean \| (() => boolean)` | A boolean or function that indicates whether the next button should be enabled. | `true` |
+| canGoPrevious | `boolean \| (() => boolean)` | A boolean or function that indicates whether the previous button should be enabled. | `true` |
+| currentStep | `number` | Indicates the current step in a multi-step workflow | `0` |
+| divider | `boolean` | If true, a dividing line will be displayed above the button panel | `true` |
+| fullWidthButton | `boolean` | If true, buttons will expand to the full width of the panel (useful if you only have one button configured) | `false` |
 | nextLabel | `string` | The label on the next button |  |
 | onNext |  `(data?: { [key: string]: any }) => void` | A function that is called when the next button is clicked. |  |
-| currentStep | `number` | Indicates the current step in a multi-step workflow | `0` |
-| totalSteps | `number` | Indicates the total number of steps in the multi-step workflow | `5` |
-| fullWidthButton | `boolean` | If true, buttons will expand to the full width of the panel (useful if you only have one button configured) | `false` |
+| onPrevious |  `(data?: { [key: string]: any }) => void` | A function that is called when the previous button is clicked. |  |
+| previousLabel | `string` | The label on the previous button |  |
+| showNext | `boolean` | Indicates whether the next button should be displayed | `true` |
+| showPrevious | `boolean` | Indicates whether the previous button should be displayed | `true` |
 | stepperVariant | `DotStepperVariant` | indicates which type of stepper indicator to use | `dots` |
+| totalSteps | `number` | Indicates the total number of steps in the multi-step workflow | `5` |
 
 Any other props will be provided to the root element ([**View**](https://reactnative.dev/docs/view)).
 
