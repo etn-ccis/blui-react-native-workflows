@@ -1,8 +1,22 @@
 import React from 'react';
+import { StyleSheet, TextStyle } from 'react-native';
 import { Text } from 'react-native-paper';
 import { Trans, useTranslation } from 'react-i18next';
+import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 import { SuccessScreenBase, SuccessScreenProps } from '../SuccessScreen';
 import { useRegistrationContext, useRegistrationWorkflowContext } from '../../contexts';
+
+const makeStyles = (
+    theme: ExtendedTheme
+): StyleSheet.NamedStyles<{
+    message: TextStyle;
+}> =>
+    StyleSheet.create({
+        message: {
+            color: theme.colors.onSurfaceVariant,
+            letterSpacing: 0,
+        },
+    });
 
 /**
  * Component that renders a success screen for when registration completes.
@@ -14,6 +28,8 @@ import { useRegistrationContext, useRegistrationWorkflowContext } from '../../co
 
 export const RegistrationSuccessScreen: React.FC<SuccessScreenProps> = (props) => {
     const { t } = useTranslation();
+    const theme = useExtendedTheme();
+    const styles = makeStyles(theme);
     const { navigate, routeConfig } = useRegistrationContext();
     const {
         screenData: {
@@ -30,7 +46,7 @@ export const RegistrationSuccessScreen: React.FC<SuccessScreenProps> = (props) =
         icon = { family: 'material', name: 'check-circle' },
         messageTitle = `${t('bluiCommon:MESSAGES.WELCOME')}, ${firstName} ${lastName}!`,
         message = (
-            <Text variant={'titleSmall'}>
+            <Text variant={'titleSmall'} style={styles.message}>
                 <Trans
                     i18nKey={
                         email
@@ -39,7 +55,7 @@ export const RegistrationSuccessScreen: React.FC<SuccessScreenProps> = (props) =
                     }
                     values={{ email, organization }}
                 >
-                    <Text>
+                    <Text variant={'titleSmall'} style={styles.message}>
                         Your account has successfully been created with the email <b>{email}</b> belonging to the
                         <b>{` ${String(organization)}`}</b> org.
                     </Text>
