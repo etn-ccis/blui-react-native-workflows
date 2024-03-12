@@ -1,5 +1,6 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+import { Text } from 'react-native-paper';
+import { Trans, useTranslation } from 'react-i18next';
 import { SuccessScreenBase, SuccessScreenProps } from '../SuccessScreen';
 import { useRegistrationContext, useRegistrationWorkflowContext } from '../../contexts';
 
@@ -28,13 +29,23 @@ export const RegistrationSuccessScreen: React.FC<SuccessScreenProps> = (props) =
     const {
         icon = { family: 'material', name: 'check-circle' },
         messageTitle = `${t('bluiCommon:MESSAGES.WELCOME')}, ${firstName} ${lastName}!`,
-        message = email
-            ? t('bluiRegistration:REGISTRATION.SUCCESS_MESSAGE', {
-                  replace: { email, organization },
-              })
-            : t('bluiRegistration:REGISTRATION.SUCCESS_MESSAGE_WITHOUT_EMAIL_PROVIDED', {
-                  replace: { organization },
-              }),
+        message = (
+            <Text variant={'titleSmall'}>
+                <Trans
+                    i18nKey={
+                        email
+                            ? 'bluiRegistration:REGISTRATION.SUCCESS_MESSAGE_ALT'
+                            : 'bluiRegistration:REGISTRATION.SUCCESS_MESSAGE_ALT_WITHOUT_EMAIL_PROVIDED'
+                    }
+                    values={{ email, organization }}
+                >
+                    <Text>
+                        Your account has successfully been created with the email <b>{email}</b> belonging to the
+                        <b>{` ${String(organization)}`}</b> org.
+                    </Text>
+                </Trans>
+            </Text>
+        ),
         canDismiss = true,
         onDismiss = (): void => navigate(routeConfig.LOGIN as string),
         WorkflowCardHeaderProps,

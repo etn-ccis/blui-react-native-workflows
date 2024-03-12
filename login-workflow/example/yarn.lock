@@ -1202,10 +1202,10 @@
   resolved "https://registry.yarnpkg.com/@brightlayer-ui/prettier-config/-/prettier-config-1.0.3.tgz#e40a7ae7435c6fd5118acbf249080e0aa81e93af"
   integrity sha512-EYm3+V7Qd+oYEF+8FadsXAZqXryEHHbGnrV1BMp9selhABjceqUqXPVE4Sn3SKWQdBNJ3En2A3EzgrzRbvRTaw==
 
-"@brightlayer-ui/react-native-components@^8.0.1":
-  version "8.0.1"
-  resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-native-components/-/react-native-components-8.0.1.tgz#0c030947252b239dd8148a1f8cfbdf7414b4ddd1"
-  integrity sha512-NlZeecnNah07Dh2BlcujD/kjPgQYoqsq1Ej3MRW0kq88Xi8lGuKz5Hcmx4G2PJw/Mf5ZtUoHUkntuo2BOGYPTw==
+"@brightlayer-ui/react-native-components@^8.0.2":
+  version "8.0.2"
+  resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-native-components/-/react-native-components-8.0.2.tgz#9fa61eef52d743e12e1770c1e4b6e2dc2a76e8bd"
+  integrity sha512-QojULgfseoMNfIzp/KVwKcefU5IHDi+vQcrERuhDG6rmwnbFlxF/FPkh0ETjcQA043jVkolothuXjCtmR/eDMA==
   dependencies:
     "@brightlayer-ui/react-native-themes" "7.0.0"
     color "^4.2.3"

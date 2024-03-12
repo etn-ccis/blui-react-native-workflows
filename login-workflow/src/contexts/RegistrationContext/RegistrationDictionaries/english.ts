@@ -21,13 +21,13 @@ const resources: RegistrationLanguageFile = {
                     'Please select a password. Make sure that your password meets the necessary complexity requirements outlined below.',
             },
             SUCCESS_MESSAGE:
-                'Your account has been successfully created with the email {{email}}.\n\nYour account has already been added to the {{organization}} organization.',
+                'Your account has been successfully created with the email <b>{{email}}</b>.\n\nYour account has already been added to the <b>{{organization}}</b> organization.',
             SUCCESS_MESSAGE_ALT:
-                'Your account has been successfully created with the email {{email}}.\n\nYour account has already been added to the {{organization}} organization.',
+                'Your account has been successfully created with the email <1>{{email}}</1>.\n\nYour account has already been added to the <3>{{organization}}</3> organization.',
             SUCCESS_MESSAGE_WITHOUT_EMAIL_PROVIDED:
-                'Your account has been successfully created.\n\nYour account has already been added to the {{organization}} organization.',
+                'Your account has been successfully created.\n\nYour account has already been added to the <b>{{organization}}</b> organization.',
             SUCCESS_MESSAGE_ALT_WITHOUT_EMAIL_PROVIDED:
-                'Your account has been successfully created.\n\nYour account has already been added to the {{organization}} organization.',
+                'Your account has been successfully created.\n\nYour account has already been added to the <3>{{organization}}</3> organization.',
             SUCCESS_EXISTING:
                 'Your account has been successfully created. Please log in with your Eaton account email and password.',
             FAILURE_MESSAGE: 'We were unable to complete your registration.',
