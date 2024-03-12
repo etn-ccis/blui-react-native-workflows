@@ -46,4 +46,4 @@ import { ErrorManager } from '@brightlayer-ui/react-native-auth-workflow';
 | fontColor | `string` | The font color of the text inside the message box. | `theme.colors.error` |
 | position | `'top' \| 'bottom'` | Determines whether the message box should be displayed before or after children elements. | `'top'` |
 | style | `StyleProp<ViewStyle>` | Style overrides object |  |
-| title | `string` | Text to show in the title of the dialog. | `t('bluiCommon:MESSAGES.ERROR') // "Error!"` |
+| title | `string` | Text to show in the title of the message-box. | `t('bluiCommon:MESSAGES.ERROR') // "Error!"` |

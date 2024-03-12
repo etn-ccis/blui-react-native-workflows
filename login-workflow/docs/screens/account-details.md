@@ -21,12 +21,12 @@ import { RegistrationContextProvider, AccountDetailsScreen } from '@brightlayer-
 | Prop Name | Type | Description | Default |
 |---|---|---|---|
 | errorDisplayConfig | `ErrorManagerProps` | See [Error Management](../error-management.md) |  |
-| firstNameLabel | `string` | Label for the firstName text field | `'First Name'` |
+| firstNameLabel | `string` | Label for the firstName text field | `t('bluiCommon:FORMS.FIRST_NAME') // "First Name"` |
 | firstNameTextInputProps | `TextFieldProps` | Props to pass to the firstName component. See React Native Paper's [TextInputProps API](https://callstack.github.io/react-native-paper/docs/components/TextInput/#props). |  |
 | firstNameValidator | `(firstName: string) => boolean \| string` | A function to validate the first name input value | required to be > 0 characters |
 | initialFirstName | `string` | Initial value to populate in the firstName text field |  |
 | initialLastName | `string` | Initial value to populate in the lastName text field |  |
-| lastNameLabel | `string` | Label for the lastName text field | `'Last Name'` |
+| lastNameLabel | `string` | Label for the lastName text field | `t('bluiCommon:FORMS.LAST_NAME') // "Last Name"` |
 | lastNameTextInputProps | `TextFieldProps` | Props to pass to the lastName component. See React Native Paper's [TextInputProps API](https://callstack.github.io/react-native-paper/docs/components/TextInput/#props). |  |
 | lastNameValidator | `(lastName: string) => boolean \| string` | A function to validate the last name input value | required to be > 0 characters |
 

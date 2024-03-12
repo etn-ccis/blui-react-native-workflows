@@ -20,7 +20,7 @@ import { RegistrationContextProvider, CreateAccountScreen } from '@brightlayer-u
 
 | Prop Name | Type | Description | Default |
 |---|---|---|---|
-| emailLabel | `string` | Text to display as the label for the email text field. | `Email Address` |
+| emailLabel | `string` | Text to display as the label for the email text field. | `t('bluiCommon:LABELS.EMAIL') // "Email Address"` |
 | emailTextFieldProps | `TextFieldProps` | Props to pass to the React Native Paper's [TextInputProps API](https://callstack.github.io/react-native-paper/docs/components/TextInput/#props) component. |  |
 | emailValidator | `(email: string) => boolean \| string` | A function that validates the email text field input. | checks against valid email regex |
 | errorDisplayConfig | `ErrorManagerProps` | See [Error Management](../components/error-manager.md) |  |
