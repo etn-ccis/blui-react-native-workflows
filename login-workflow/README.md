@@ -52,7 +52,7 @@ In short, you will need to:
 -   Configure route guards / protected routes to ensure users only have access to specific routes when appropriate
 -   Define actions files to integrate the workflow screens with your back-end API
 
-> If you are starting a brand new project, the easiest way to get started with the React Auth Workflow is to use the [BLUI CLI](https://www.npmjs.com/package/@brightlayer-ui/cli) and select the Authentication template as your starting point. This will create a brand new project that exactly mirrors the example project from this repository.
+> If you are starting a brand new project, the easiest way to get started with the React Native Auth Workflow is to use the [BLUI CLI](https://www.npmjs.com/package/@brightlayer-ui/cli) and select the Authentication template as your starting point. This will create a brand new project that exactly mirrors the example project from this repository.
 
 ## Learn More
 
