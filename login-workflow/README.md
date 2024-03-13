@@ -82,64 +82,6 @@ Some notable changes include:
 
 Learn more about upgrading your existing application by reading our [Migrating Guide](https://github.com/etn-ccis/blui-react-native-workflows/tree/master/login-workflow/docs/migration-guide-5-6.md)
 
-
-
-TODO....From here down is some original documentation do we want to keep any of this?
-
-# Integration
-
-You have two options for using this package in your application. You can manually integrate the package into an existing project, or you can start a project using the `/example` project provided in the package.
-
-To integrate the package into an existing project, read our [Existing Project Integration ](https://github.com/etn-ccis/blui-react-native-workflows/tree/master/login-workflow/docs/existing-project-integration.md) instructions. Even if you are starting from scratch, it may be useful for you to refer to the example project while getting started.
-
-To use the example project as a starting point, read our [Sample Project Integration ](https://github.com/etn-ccis/blui-react-native-workflows/tree/master/login-workflow/docs/sample-project-integration.md) instructions.
-
-# Usage (Security State)
-
-After setup, you are now able to access various security actions and state from within your application. Importing `useSecurityActions` and `useSecurityState` allows you use these hooks as follows:
-
-```ts
-import { useSecurityActions, useSecurityState } from '@brightlayer-ui/react-native-auth-workflow';
-
-const securityActions = useSecurityActions();
-const securityState = useSecurityState();
-```
-
-The `securityActions` allows you to access actions related to user authentication and de-authentication. You can call `securityActions.onUserNotAuthenticated();` to un-authenticate (i.e. log user out) from the application.
-
-The `securityState` allows you to access state related to security, such as the currently authenticated user's email (`securityState.email`).
-
-More information about React Native Auth Workflow's exported objects can found in the [API](https://github.com/etn-ccis/blui-react-native-workflows/tree/master/login-workflow/docs/API.md) documentation.
-
-# Deep Linking
-
-The following is a list of the screens and their parameters which a deep link may launch to:
-
--   `login`: the login screen.
--   `PasswordResetInitiation`: the first screen of the Password Reset flow.
--   `PasswordResetCompletion`: the later half of the Password Reset flow, takes parameter `code` and `email`.
--   `RegistrationInvite`: the Registration via Invitation flow, takes parameter `code` and `email`.
--   `Registration`: the later half of the Self Registration flow, takes parameter: `code` and `email`.
--   `SupportContact`: the Contact Support screen.
-
-#### Testing Deep Links
-
--   Test iOS simulator with `xcrun simctl openurl booted authui://invite/8k27jshInvite234Code`
--   Test Android with `adb shell am start -W -a android.intent.action.VIEW -d "authui://invite/8k27jshInvite234Code" com.shiverware.eaton.authui`
--   Test on device from browser `authui://invite/8k27jshInvite234Code`
-
-Note that the `authui://` prefix is set by your application, as in the file at `example/src/navigation/DeepLinking.ts`.
-
-
-# Language Support
-
-For information about supporting multiple languages, refer to our [Language Support](https://github.com/etn-ccis/blui-react-native-workflows/tree/master/login-workflow/docs/language-support.md) guidelines.
-
-# Theming
-
-For information about supporting different themes, refer to our [Theme Support](https://github.com/etn-ccis/blui-react-native-workflows/tree/master/login-workflow/docs/theme-support.md) guidelines.
-
-
 # Contributors
 
 To work on this package as a contributor, first clone down the repository:
