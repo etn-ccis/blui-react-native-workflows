@@ -2,26 +2,23 @@
 
 [![](https://img.shields.io/circleci/project/github/etn-ccis/blui-react-native-workflows/master.svg?style=flat)](https://circleci.com/gh/etn-ccis/blui-react-native-workflows/tree/master) ![npm (scoped)](https://img.shields.io/npm/v/@brightlayer-ui/react-native-auth-workflow) [![codecov](https://codecov.io/gh/etn-ccis/blui-react-native-workflows/branch/master/graph/badge.svg?token=U4OI0D5UVP)](https://codecov.io/gh/etn-ccis/blui-react-native-workflows)
 
-The React Native Auth Workflow package provides a consistent authentication and registration experience across Eaton mobile applications using React Native.
+The React Native Auth Workflow package provides a consistent UI implementation of authentication-related capabilities for use in Eaton web applications built with React Native.
 
-This includes pre-build implementations of the screens for Login, Forgot Password, Contact Information, Self-Registration, Registration By Invitation, and Change Password.
+The package is intended to provide a standard, out-of-the-box experience for capabilities such as:
 
-Integrating the user interface into your application is as easy as providing the API calls for the various authentication and registration actions performed by the user. The `AuthNavigationContainer` automatically handles the presentation of the non-secure (pre-authorization) and secure (custom application) portions of a mobile application.
+-   Login
+-   Forgot / Reset Password
+-   Change Password
+-   Contact Support
+-   Self Registration
+-   Invitation-based Registration
 
-**iOS**
+This package is flexible, allowing you to use the Login and Registration flows independently or in combination (or simply use individual screen components), while also providing many opportunities to customize the flows if needed for your particular application.
 
-![Login iOS](https://raw.githubusercontent.com/etn-ccis/blui-react-native-workflows/master/login-workflow/media/ios-login.png) ![Home iOS](https://raw.githubusercontent.com/etn-ccis/blui-react-native-workflows/master/login-workflow/media/ios-home.png) ![Password iOS](https://raw.githubusercontent.com/etn-ccis/blui-react-native-workflows/master/login-workflow/media/ios-password.png)
+These workflows are back-end agnostic, meaning you can use them with any back-end API you wish. You simply need to provide an implementation for several key functions (actions) that are called at various points within the workflows based on user interaction.
 
-**Android**
-
-![Login Android](https://raw.githubusercontent.com/etn-ccis/blui-react-native-workflows/master/login-workflow/media/android-login.png) ![Home Android](https://raw.githubusercontent.com/etn-ccis/blui-react-native-workflows/master/login-workflow/media/android-home.png) ![Password Android](https://raw.githubusercontent.com/etn-ccis/blui-react-native-workflows/master/login-workflow/media/android-password.png)
-
-# Compatibility
-
-This package has a peer dependency on [React Native Paper](https://github.com/callstack/react-native-paper).
-
--   @brightlayer-ui/react-auth-workflow @1.x --> react-native-paper @3.x
--   @brightlayer-ui/react-auth-workflow @2.x --> react-native-paper @4.x
+* TODO add login png
+* TODO add create password png
 
 # Installation
 
@@ -32,6 +29,47 @@ npm install --save @brightlayer-ui/react-native-auth-workflow
 // or
 yarn add @brightlayer-ui/react-native-auth-workflow
 ```
+
+### Peer Dependencies
+
+This package also has a number of peer dependency requirements that you will need to install in your project. To install the latest version of all of these peer dependencies, run the following command in your project root:
+
+```
+npm install --save @brightlayer-ui/react-native-components @brightlayer-ui/react-native-vector-icons date-fns i18next react react-i18next react-native react-native-gesture-handler react-native-keyboard-aware-scroll-view react-native-pager-view react-native-paper react-native-safe-area-context react-native-vector-icons react-native-webview
+// or
+yarn add @brightlayer-ui/react-native-components @brightlayer-ui/react-native-vector-icons date-fns i18next react react-i18next react-native react-native-gesture-handler react-native-keyboard-aware-scroll-view react-native-pager-view react-native-paper react-native-safe-area-context react-native-vector-icons react-native-webview
+```
+
+# Usage
+
+To use the package, read our [Integration](https://github.com/etn-ccis/blui-react-native-workflows/tree/master/login-workflow/docs/integration.md) instructions. Even if you are starting from scratch, it may be useful for you to refer to the [Example](https://github.com/etn-ccis/blui-react-native-workflows/tree/master/login-workflow/example) project while getting started.
+
+In short, you will need to:
+
+-   Add routes for each of the Login Workflow screens you wish to include
+-   Define a mechanism for tracking the authenticated state of the current user
+-   Add a registration route for the registration workflow component
+-   Configure route guards / protected routes to ensure users only have access to specific routes when appropriate
+-   Define actions files to integrate the workflow screens with your back-end API
+
+> If you are starting a brand new project, the easiest way to get started with the React Auth Workflow is to use the [BLUI CLI](https://www.npmjs.com/package/@brightlayer-ui/cli) and select the Authentication template as your starting point. This will create a brand new project that exactly mirrors the example project from this repository.
+
+## Learn More
+
+-   [Setting Up Routing](https://github.com/etn-ccis/blui-react-native-workflows/tree/master/login-workflow/docs/routing.md)
+-   [Language Support](https://github.com/etn-ccis/blui-react-native-workflows/tree/master/login-workflow/docs/language-support.md)
+-   [Adding an Authentication/Login Workflow](https://github.com/etn-ccis/blui-react-native-workflows/tree/master/login-workflow/docs/authentication-workflow.md)
+-   [Adding a Registration Workflow](https://github.com/etn-ccis/blui-react-native-workflows/tree/master/login-workflow/docs/registration-workflow.md)
+-   [Handling Errors](https://github.com/etn-ccis/blui-react-native-workflows/tree/master/login-workflow/docs/error-management.md)
+-   [Customizing Workflows](https://github.com/etn-ccis/blui-react-native-workflows/tree/master/login-workflow/docs/customization.md)
+-   [Components & APIs](https://github.com/etn-ccis/blui-react-native-workflows/tree/master/login-workflow/docs/components/README.md)
+-   [Screens](https://github.com/etn-ccis/blui-react-native-workflows/tree/master/login-workflow/docs/screens/README.md)
+
+
+
+
+
+TODO....From here down is original documentation..........
 
 # Integration
 
@@ -77,9 +115,6 @@ The following is a list of the screens and their parameters which a deep link ma
 
 Note that the `authui://` prefix is set by your application, as in the file at `example/src/navigation/DeepLinking.ts`.
 
-# APIs
-
-More information about React Native Auth Workflow's exported objects and functions can found in the [API](https://github.com/etn-ccis/blui-react-native-workflows/tree/master/login-workflow/docs/API.md) documentation.
 
 # Language Support
 
@@ -89,7 +124,7 @@ For information about supporting multiple languages, refer to our [Language Supp
 
 For information about supporting different themes, refer to our [Theme Support](https://github.com/etn-ccis/blui-react-native-workflows/tree/master/login-workflow/docs/theme-support.md) guidelines.
 
-# Migrating from v5 => v6
+# R31 Migrating from v5 => v6
 
 We have listened to your feedback and version 5 of this library is a significant rewrite that aims to address many requests for greater flexibility and customization of the workflows.
 
