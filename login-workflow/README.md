@@ -35,9 +35,9 @@ yarn add @brightlayer-ui/react-native-auth-workflow
 This package also has a number of peer dependency requirements that you will need to install in your project. To install the latest version of all of these peer dependencies, run the following command in your project root:
 
 ```
-npm install --save @brightlayer-ui/react-native-components @brightlayer-ui/react-native-vector-icons date-fns i18next react react-i18next react-native react-native-gesture-handler react-native-keyboard-aware-scroll-view react-native-pager-view react-native-paper react-native-safe-area-context react-native-vector-icons react-native-webview
+npm install --save @brightlayer-ui/react-native-components @brightlayer-ui/react-native-vector-icons i18next react react-i18next react-native react-native-gesture-handler react-native-keyboard-aware-scroll-view react-native-pager-view react-native-paper react-native-safe-area-context react-native-vector-icons react-native-webview
 // or
-yarn add @brightlayer-ui/react-native-components @brightlayer-ui/react-native-vector-icons date-fns i18next react react-i18next react-native react-native-gesture-handler react-native-keyboard-aware-scroll-view react-native-pager-view react-native-paper react-native-safe-area-context react-native-vector-icons react-native-webview
+yarn add @brightlayer-ui/react-native-components @brightlayer-ui/react-native-vector-icons i18next react react-i18next react-native react-native-gesture-handler react-native-keyboard-aware-scroll-view react-native-pager-view react-native-paper react-native-safe-area-context react-native-vector-icons react-native-webview
 ```
 
 # Usage
