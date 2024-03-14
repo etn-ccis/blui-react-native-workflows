@@ -22,4 +22,6 @@ import { ExistingAccountSuccessScreen } from '@brightlayer-ui/react-native-auth-
 | message | `string` | The success message to be displayed on the screen. |  |
 | messageTitle | `string` | The title of the success message. |  |
 | onDismiss | `() => void` | A function to be called when the screen is dismissed. |  |
+
+Any other props will be provided to the <SuccessScreen> component (SuccessScreen).
   
