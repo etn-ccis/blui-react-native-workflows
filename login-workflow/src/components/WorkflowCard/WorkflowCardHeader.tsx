@@ -82,6 +82,9 @@ export const WorkflowCardHeader: React.FC<WorkflowCardHeaderProps> = (props) => 
                     />
                 </View>
             )}
+            {isTablet && (
+                <StatusBar barStyle={Color(theme.colors.primary).isDark() ? 'light-content' : 'dark-content'} />
+            )}
             <View
                 style={[
                     isTablet ? defaultStyles.tabletHeader : defaultStyles.mobileHeader,
