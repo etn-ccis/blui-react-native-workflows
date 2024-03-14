@@ -9,7 +9,6 @@ import PagerView from 'react-native-pager-view';
 import { View, StyleSheet } from 'react-native';
 import { ErrorManager } from '../Error/ErrorManager';
 import { RegistrationWorkflowProps } from './types';
-//TODO: Update demo screen with original workflow screens
 import {
     EulaScreen,
     CreateAccountScreen,
@@ -52,8 +51,7 @@ export const RegistrationWorkflow: React.FC<React.PropsWithChildren<Registration
         initialScreenIndex = 0,
         successScreen = <RegistrationSuccessScreen />,
         existingAccountSuccessScreen = <ExistingAccountSuccessScreen />,
-        isInviteRegistration = false,
-        initialRegistrationParams,
+        isInviteRegistration,
         children = isInviteRegistration
             ? [
                   <EulaScreen key="EulaScreen" />,
@@ -157,9 +155,12 @@ export const RegistrationWorkflow: React.FC<React.PropsWithChildren<Registration
     };
 
     useEffect(() => {
-        if (isInviteRegistration && initialRegistrationParams?.email && initialRegistrationParams?.code) {
-            updateScreenData({ screenId: 'CreateAccount', values: { emailAddress: initialRegistrationParams?.email } });
-            updateScreenData({ screenId: 'VerifyCode', values: { code: initialRegistrationParams?.code } });
+        if (isInviteRegistration === true) {
+            const {
+                initialRegistrationParams: { email, code },
+            } = props;
+            updateScreenData({ screenId: 'CreateAccount', values: { emailAddress: email } });
+            updateScreenData({ screenId: 'VerifyCode', values: { code } });
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
