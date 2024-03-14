@@ -25,7 +25,7 @@ export const AuthCustomScreen: React.FC = () => {
             <WorkflowCardBody>
                 <Text>Test</Text>
             </WorkflowCardBody>
-            <WorkflowCardActions showNext nextLabel={'Press'} onNext={void handleOnNext()} />
+            <WorkflowCardActions showNext nextLabel={'Press'} onNext={(): void => void handleOnNext()} />
         </WorkflowCard>
     );
 };
