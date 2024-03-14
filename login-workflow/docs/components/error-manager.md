@@ -6,6 +6,7 @@ Component that manages the display of error messages. Can be configured to displ
 ![Error Box](../../media/error-box.png)
 
 ## Usage
+
 ```tsx
 import { ErrorManager } from '@brightlayer-ui/react-native-auth-workflow';
 
@@ -13,37 +14,38 @@ import { ErrorManager } from '@brightlayer-ui/react-native-auth-workflow';
 
 <ErrorManager>
     {/* When configured as a message-box, the box will appear before or after the elements passed as children */}
-    {children} 
+    {children}
 </ErrorManager>
 ```
 
 ## API
 
-| Prop Name | Type | Description | Default |
-|---|---|---|---|
-| error | `string` | Error text to display. If string is empty, the error will not be shown. |  |
-| title | `string` | Title text to display for error dialog and message box. If string is empty, the title will not be shown. | |
-| mode | `'dialog' \| 'message-box' \| 'none'` | Determines whether to display a dialog, a message box, or neither. | `'dialog'` |
-| onClose | `() => void` | Function to call when the close/dismiss button is clicked. |  |
-| dialogConfig | `DialogConfigProps` | Configuration options for the dialog. See [DialogConfig Props](#dialogconfigprops) |  |
-| messageBoxConfig | `MessageBoxProps` | Configuration options for the message box. See [MessageBoxProps](#messageboxprops) |  |
-| children | `ReactNode` | Message box errors will appear before or after content passed as children. |  |
+| Prop Name        | Type                                  | Description                                                                                              | Default    |
+| ---------------- | ------------------------------------- | -------------------------------------------------------------------------------------------------------- | ---------- |
+| error            | `string`                              | Error text to display. If string is empty, the error will not be shown.                                  |            |
+| title            | `string`                              | Title text to display for error dialog and message box. If string is empty, the title will not be shown. |            |
+| mode             | `'dialog' \| 'message-box' \| 'none'` | Determines whether to display a dialog, a message box, or neither.                                       | `'dialog'` |
+| onClose          | `() => void`                          | Function to call when the close/dismiss button is clicked.                                               |            |
+| dialogConfig     | `DialogConfigProps`                   | Configuration options for the dialog. See [DialogConfig Props](#dialogconfigprops)                       |            |
+| messageBoxConfig | `MessageBoxProps`                     | Configuration options for the message box. See [MessageBoxProps](#messageboxprops)                       |            |
+| t                | `TFunction`                           | Translate function to translate error related text.                                                      |            |
+| children         | `ReactNode`                           | Message box errors will appear before or after content passed as children.                               |            |
 
 ### DialogConfigProps
 
-| Prop Name | Type | Description | Default |
-|---|---|---|---|
-| title | `string` | Text to show in the title of the dialog. | `t('bluiCommon:MESSAGES.ERROR') (Error!)` |
-| dismissLabel | `string` | Label to show in the close button. | `t('bluiCommon:ACTIONS.CLOSE') (Close)` |
-| style | `StyleProp<ViewStyle>` | Style overrides object |  |
+| Prop Name    | Type                   | Description                              | Default                                   |
+| ------------ | ---------------------- | ---------------------------------------- | ----------------------------------------- |
+| title        | `string`               | Text to show in the title of the dialog. | `t('bluiCommon:MESSAGES.ERROR') (Error!)` |
+| dismissLabel | `string`               | Label to show in the close button.       | `t('bluiCommon:ACTIONS.CLOSE') (Close)`   |
+| style        | `StyleProp<ViewStyle>` | Style overrides object                   |                                           |
 
 ### MessageBoxProps
 
-| Prop Name | Type | Description | Default |
-|---|---|---|---|
-| title | `string` | Text to show in the title of the dialog. | `t('bluiCommon:MESSAGES.ERROR') (Error!)` |
-| dismissible | `boolean` | Whether the message box can be dismissed. | `true` |
-| position | `'top' \| 'bottom'` | Determines whether the message box should be displayed before or after children elements. | `'top'` |
-| fontColor | `string` | The font color of the text inside the message box. | `theme.colors.error` |
-| backgroundColor | `string` | The background color of the message box. | `theme.colors.onError` |
-| style | `StyleProp<ViewStyle>` | Style overrides object |  |
+| Prop Name       | Type                   | Description                                                                               | Default                                   |
+| --------------- | ---------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------- |
+| title           | `string`               | Text to show in the title of the dialog.                                                  | `t('bluiCommon:MESSAGES.ERROR') (Error!)` |
+| dismissible     | `boolean`              | Whether the message box can be dismissed.                                                 | `true`                                    |
+| position        | `'top' \| 'bottom'`    | Determines whether the message box should be displayed before or after children elements. | `'top'`                                   |
+| fontColor       | `string`               | The font color of the text inside the message box.                                        | `theme.colors.error`                      |
+| backgroundColor | `string`               | The background color of the message box.                                                  | `theme.colors.onError`                    |
+| style           | `StyleProp<ViewStyle>` | Style overrides object                                                                    |                                           |
