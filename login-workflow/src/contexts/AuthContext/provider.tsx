@@ -6,7 +6,7 @@
 import React, { useEffect } from 'react';
 import { AuthContextProviderProps } from './types';
 import { AuthContext } from './context';
-import { I18nextProvider } from 'react-i18next';
+import { I18nextProvider, useTranslation } from 'react-i18next';
 import { i18nAuthInstance } from './i18nAuthInstance';
 import { ErrorContext } from '../ErrorContext';
 import { AuthDictionaries } from './AuthDictionaries';
@@ -16,8 +16,10 @@ import { ErrorManagerProps } from '../../components/Error';
 const AuthContextProviderContent: React.FC<
     React.PropsWithChildren<Omit<AuthContextProviderProps, 'i18n'> & { PasswordDialog?: JSX.Element }>
 > = (props) => {
+    const { t } = useTranslation();
     const { children, errorConfig, ...authContextProps } = props;
     const mergedErrorConfig: ErrorManagerProps = {
+        t: t,
         title: 'bluiCommon:MESSAGES.ERROR',
         error: 'bluiAuth:LOGIN.INVALID_CREDENTIALS',
         ...errorConfig,
