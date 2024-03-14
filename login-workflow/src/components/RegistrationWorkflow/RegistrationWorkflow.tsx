@@ -9,7 +9,6 @@ import PagerView from 'react-native-pager-view';
 import { View, StyleSheet } from 'react-native';
 import { ErrorManager } from '../Error/ErrorManager';
 import { RegistrationWorkflowProps } from './types';
-//TODO: Update demo screen with original workflow screens
 import {
     EulaScreen,
     CreateAccountScreen,

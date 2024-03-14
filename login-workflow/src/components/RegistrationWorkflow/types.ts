@@ -28,23 +28,19 @@ export type SharedRegistrationWorkflowProps = {
 
 export type SelfRegistrationWorkflowProps = SharedRegistrationWorkflowProps & {
     /**
-     *
-     * @param {boolean} [isInviteRegistration=false] - boolean when true verifies validateUserRegistrationRequest for verifyCode
+     * Boolean when true verifies validateUserRegistrationRequest for verifyCode
      */
     isInviteRegistration?: false;
 };
 
 export type InviteRegistrationWorkflowProps = SharedRegistrationWorkflowProps & {
     /**
-     *
-     * @param {true} [isInviteRegistration=false] - boolean when true verifies validateUserRegistrationRequest for verifyCode
+     * Boolean when true verifies validateUserRegistrationRequest for verifyCode
      */
     isInviteRegistration: true;
 
     /**
      * Set initial values for VerifyCode and Create Account Screen
-     * @param {string} initialRegistrationParams.code - code to populate in VerifyCode screen
-     * @param {string} initialRegistrationParams.email - email address to populate in  Create Account Screen
      */
     initialRegistrationParams: {
         /**
