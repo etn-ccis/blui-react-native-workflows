@@ -17,9 +17,10 @@ import VerifyCodeScreenBaseExample from '../screens/VerifyCodeScreenBaseExample'
 import DemoAccountDetails from '../screens/DemoAccountDetails';
 import CreatePasswordScreenBaseExample from '../screens/CreatePasswordScreenBaseExample';
 import { CreateAccountScreen } from '../screens/CreateAccountScreen';
+import { Login } from '../screens/Login';
 
 const getAuthState = (): any => ({
-    isAuthenticated: true,
+    isAuthenticated: false,
 });
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -73,11 +74,11 @@ const AppRouter = (): any => (
 const AuthRouter = (): any => {
     const app = useApp();
     const routes = {
-        LOGIN: 'Home',
+        LOGIN: 'LOGIN',
         FORGOT_PASSWORD: undefined,
         RESET_PASSWORD: undefined,
-        REGISTER_INVITE: undefined,
-        REGISTER_SELF: undefined,
+        REGISTER_INVITE: 'REGISTER_INVITE',
+        REGISTER_SELF: 'REGISTER_SELF',
         SUPPORT: undefined,
     };
     return (
@@ -97,6 +98,7 @@ const AuthRouter = (): any => {
                     {() => <RegistrationWorkflow isInviteRegistration />}
                 </Stack.Screen>
                 <Stack.Screen name="REGISTER_SELF">{() => <RegistrationWorkflow />}</Stack.Screen>
+                <Stack.Screen name="LOGIN" component={Login} />
             </Stack.Navigator>
         </RegistrationContextProvider>
     );
