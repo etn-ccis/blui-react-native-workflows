@@ -35,7 +35,7 @@ const makeStyles = (
             backgroundColor: backgroundColor || 'transparent',
         },
         headerContent: {
-            marginLeft: 30,
+            marginLeft: 16,
             justifyContent: 'center',
             color: textColor || isTablet ? theme.colors.onSurface : theme.colors.onPrimaryContainer,
         },
