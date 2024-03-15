@@ -9,18 +9,12 @@ import { NavigationDrawer } from './navigation-drawer';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
 import { View } from 'react-native';
-import { WorkflowCardWrapper } from '../screens/WorkflowCardWrapper';
 import RegistrationProviderExample from '../screens/RegistrationProviderExample';
-import I18nExample from '../screens/I18nExample';
-import { RegistrationSuccessScreen } from '../screens/RegistrationSuccessScreen';
-import VerifyCodeScreenBaseExample from '../screens/VerifyCodeScreenBaseExample';
-import DemoAccountDetails from '../screens/DemoAccountDetails';
-import CreatePasswordScreenBaseExample from '../screens/CreatePasswordScreenBaseExample';
-import { CreateAccountScreen } from '../screens/CreateAccountScreen';
+
 import { Login } from '../screens/Login';
 
 const getAuthState = (): any => ({
-    isAuthenticated: false,
+    isAuthenticated: true,
 });
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -57,18 +51,11 @@ const AppRouter = (): any => (
         drawerContent={(props: any): ReactNode => <CustomDrawerContent {...props} />}
     >
         <RootStack.Screen name="Home" component={Home} />
-        <RootStack.Screen name="WorkFlowCardExample" component={WorkflowCardWrapper} />
-        <RootStack.Screen name="RegistrationSuccessScreen" component={RegistrationSuccessScreen} />
-        <RootStack.Screen name="I18nExample" component={I18nExample} />
         <RootStack.Screen
             name="RegistrationProviderExample"
             component={RegistrationProviderExample}
             options={{ gestureEnabled: false }}
         />
-        <RootStack.Screen name="VerifyCodeScreenBaseExample" component={VerifyCodeScreenBaseExample} />
-        <RootStack.Screen name="AccountDetailsBaseExample" component={DemoAccountDetails} />
-        <RootStack.Screen name="CreatePasswordScreenBaseExample" component={CreatePasswordScreenBaseExample} />
-        <RootStack.Screen name="CreateAccountBaseExample" component={CreateAccountScreen} />
     </Drawer.Navigator>
 );
 const AuthRouter = (): any => {
