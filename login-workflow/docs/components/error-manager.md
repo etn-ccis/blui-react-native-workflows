@@ -2,8 +2,8 @@
 
 Component that manages the display of error messages. Can be configured to display a dialog, a message box, or neither.
 
-![Error Dialog](../../media/error-dialog.png)
-![Error Box](../../media/error-box.png)
+<img width="400" alt="Error Dialog" src="../../media/error-dialog.png">
+<img width="400" alt="Error Box" src="../../media/error-box.png">
 
 ## Usage
 
