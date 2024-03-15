@@ -35,7 +35,7 @@ const makeStyles = (
             backgroundColor: backgroundColor || 'transparent',
         },
         headerContent: {
-            marginLeft: 30,
+            marginLeft: 16,
             justifyContent: 'center',
             color: textColor || isTablet ? theme.colors.onSurface : theme.colors.onPrimaryContainer,
         },
@@ -81,6 +81,9 @@ export const WorkflowCardHeader: React.FC<WorkflowCardHeaderProps> = (props) => 
                         }
                     />
                 </View>
+            )}
+            {isTablet && (
+                <StatusBar barStyle={Color(theme.colors.primary).isDark() ? 'light-content' : 'dark-content'} />
             )}
             <View
                 style={[

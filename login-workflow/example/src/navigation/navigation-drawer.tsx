@@ -31,6 +31,11 @@ export const navGroupItems: NavItem[] = [
         icon: { name: 'app-registration' },
     },
     {
+        title: 'Auth Provider',
+        itemID: 'AuthProviderExample',
+        icon: { name: 'app-registration' },
+    },
+    {
         title: 'Verify Code Screen Base',
         itemID: 'VerifyCodeScreenBaseExample',
         icon: { name: 'check' },

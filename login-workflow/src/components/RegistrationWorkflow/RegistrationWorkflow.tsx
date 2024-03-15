@@ -9,7 +9,6 @@ import PagerView from 'react-native-pager-view';
 import { View, StyleSheet } from 'react-native';
 import { ErrorManager } from '../Error/ErrorManager';
 import { RegistrationWorkflowProps } from './types';
-//TODO: Update demo screen with original workflow screens
 import {
     EulaScreen,
     CreateAccountScreen,
@@ -19,6 +18,7 @@ import {
     RegistrationSuccessScreen,
     ExistingAccountSuccessScreen,
 } from '../../screens';
+import { ErrorManagerProps } from '../Error';
 
 const styles = StyleSheet.create({
     pagerView: {
@@ -35,25 +35,42 @@ const styles = StyleSheet.create({
  */
 
 export const RegistrationWorkflow: React.FC<React.PropsWithChildren<RegistrationWorkflowProps>> = (props) => {
+    const { errorDisplayConfig: registrationWorkflowErrorConfig } = props;
     const [isAccountExist, setIsAccountExist] = useState(false);
-    const { triggerError, errorManagerConfig } = useErrorManager();
+    const { triggerError, errorManagerConfig: globalErrorManagerConfig } = useErrorManager();
     const { actions, navigate } = useRegistrationContext();
     const viewPagerRef = useRef<PagerView>(null);
 
-    const errorDisplayConfig = {
-        ...errorManagerConfig,
-        ...props.errorDisplayConfig,
+    const {
+        messageBoxConfig: workflowMessageBoxConfig,
+        dialogConfig: workflowDialogConfig,
+        onClose: workflowOnClose,
+        ...otherWorkflowErrorConfig
+    } = registrationWorkflowErrorConfig ?? {};
+    const {
+        messageBoxConfig: globalMessageBoxConfig,
+        dialogConfig: globalDialogConfig,
+        onClose: globalOnClose,
+        ...otherGlobalErrorConfig
+    } = globalErrorManagerConfig;
+
+    const errorDisplayConfig: ErrorManagerProps = {
+        messageBoxConfig: { ...globalMessageBoxConfig, ...workflowMessageBoxConfig },
+        dialogConfig: { ...globalDialogConfig, ...workflowDialogConfig },
         onClose: (): void => {
-            if (props.errorDisplayConfig && props.errorDisplayConfig.onClose) props.errorDisplayConfig.onClose();
-            if (errorManagerConfig.onClose) errorManagerConfig?.onClose();
+            workflowOnClose?.();
+            globalOnClose?.();
         },
+
+        ...otherGlobalErrorConfig,
+        ...otherWorkflowErrorConfig,
     };
+
     const {
         initialScreenIndex = 0,
         successScreen = <RegistrationSuccessScreen />,
         existingAccountSuccessScreen = <ExistingAccountSuccessScreen />,
-        isInviteRegistration = false,
-        initialRegistrationParams,
+        isInviteRegistration,
         children = isInviteRegistration
             ? [
                   <EulaScreen key="EulaScreen" />,
@@ -157,9 +174,12 @@ export const RegistrationWorkflow: React.FC<React.PropsWithChildren<Registration
     };
 
     useEffect(() => {
-        if (isInviteRegistration && initialRegistrationParams?.email && initialRegistrationParams?.code) {
-            updateScreenData({ screenId: 'CreateAccount', values: { emailAddress: initialRegistrationParams?.email } });
-            updateScreenData({ screenId: 'VerifyCode', values: { code: initialRegistrationParams?.code } });
+        if (isInviteRegistration === true) {
+            const {
+                initialRegistrationParams: { email, code },
+            } = props;
+            updateScreenData({ screenId: 'CreateAccount', values: { emailAddress: email } });
+            updateScreenData({ screenId: 'VerifyCode', values: { code } });
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);

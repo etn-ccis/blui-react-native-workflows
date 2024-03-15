@@ -1,7 +1,6 @@
 import React, { useCallback } from 'react';
 import { BasicDialog } from '../Dialog/BasicDialog';
 import { ErrorMessageBox } from './ErrorMessageBox';
-import { useTranslation } from 'react-i18next';
 import { ErrorManagerProps } from './types';
 
 /**
@@ -13,7 +12,6 @@ import { ErrorManagerProps } from './types';
  */
 
 export const ErrorManager: React.FC<React.PropsWithChildren<ErrorManagerProps>> = (props) => {
-    const { t } = useTranslation();
     const {
         children,
         mode = 'dialog',
@@ -24,6 +22,7 @@ export const ErrorManager: React.FC<React.PropsWithChildren<ErrorManagerProps>> 
         messageBoxConfig = {
             position: 'top',
         },
+        t = (key: string): string => key,
     } = props;
 
     const ErrorDialogWithProps = useCallback(
@@ -31,10 +30,10 @@ export const ErrorManager: React.FC<React.PropsWithChildren<ErrorManagerProps>> 
             <BasicDialog
                 testID="basic-dialog"
                 open={error.length > 0}
-                title={dialogConfig?.title ?? title ?? t('bluiCommon:MESSAGES.ERROR')}
+                title={t(dialogConfig?.title ?? title ?? 'Error')}
                 body={t(error)}
                 onDismiss={onClose}
-                dismissButtonText={dialogConfig?.dismissLabel ?? t('bluiCommon:ACTIONS.CLOSE')}
+                dismissButtonText={t(dialogConfig?.dismissLabel ?? 'Okay')}
                 style={dialogConfig?.style}
             />
         ),
@@ -46,7 +45,7 @@ export const ErrorManager: React.FC<React.PropsWithChildren<ErrorManagerProps>> 
 
         return (
             <ErrorMessageBox
-                title={messageBoxConfig?.title ?? title ?? t('bluiCommon:MESSAGES.ERROR')}
+                title={t(messageBoxConfig?.title ?? title ?? 'Error')}
                 errorMessage={t(error)}
                 dismissible={dismissible}
                 style={style}

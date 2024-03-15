@@ -13,6 +13,7 @@ import VerifyCodeScreenBaseExample from '../screens/VerifyCodeScreenBaseExample'
 import DemoAccountDetails from '../screens/DemoAccountDetails';
 import CreatePasswordScreenBaseExample from '../screens/CreatePasswordScreenBaseExample';
 import { CreateAccountScreen } from '../screens/CreateAccountScreen';
+import AuthProviderExample from '../screens/AuthProviderExample';
 
 const Drawer = createDrawerNavigator();
 
@@ -22,6 +23,7 @@ export type RootStackParamList = {
     WorkFlowCardExample: undefined;
     RegistrationSuccessScreen: undefined;
     RegistrationProviderExample: undefined;
+    AuthProviderExample: undefined;
     NavigationDrawer: undefined;
     VerifyCodeScreenBaseExample: undefined;
     AccountDetailsBaseExample: undefined;
@@ -55,6 +57,11 @@ export const MainRouter = (): any => (
             <RootStack.Screen
                 name="RegistrationProviderExample"
                 component={RegistrationProviderExample}
+                options={{ gestureEnabled: false }}
+            />
+            <RootStack.Screen
+                name="AuthProviderExample"
+                component={AuthProviderExample}
                 options={{ gestureEnabled: false }}
             />
             <RootStack.Screen name="VerifyCodeScreenBaseExample" component={VerifyCodeScreenBaseExample} />
