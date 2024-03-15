@@ -1,5 +1,6 @@
 import { TFunction } from 'i18next';
 import { StyleProp, ViewStyle } from 'react-native';
+import { TFunction } from 'i18next';
 
 /**
  * Props of AuthError
