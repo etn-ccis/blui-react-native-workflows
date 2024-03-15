@@ -10,7 +10,7 @@ const makeStyles = (): StyleSheet.NamedStyles<{
 }> =>
     StyleSheet.create({
         boldText: {
-            fontWeight: 'bold'
+            fontWeight: 'bold',
         },
     });
 
@@ -37,7 +37,7 @@ export const RegistrationSuccessScreen: React.FC<SuccessScreenProps> = (props) =
         },
     } = useRegistrationWorkflowContext();
 
-    const Bold = ({ children }: { children: React.ReactNode }) => (
+    const Bold = ({ children }: { children: React.ReactNode }): JSX.Element => (
         <Text style={styles.boldText}>{children}</Text>
     );
 
