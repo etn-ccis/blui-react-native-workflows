@@ -20,13 +20,13 @@ const resources: RegistrationLanguageFile = {
                 PASSWORD_INFO: '请输入您的新密码。请确保您的新密码符合以下列出的密码复杂度要求。',
             },
             SUCCESS_MESSAGE:
-                '您已成功使用<b>{{email}}</b>注册了一个新账号。\n\n您的账号已被加入“<b>{{organization}}</b>”。',
+                '您已成功使用<boldTag>{{email}}</boldTag>注册了一个新账号。\n\n您的账号已被加入“<boldTag>{{organization}}</boldTag>”。',
             SUCCESS_MESSAGE_ALT:
-                '您已成功使用<1>{{email}}</1>注册了一个新账号。\n\n您的账号已被加入“<3>{{organization}}</3>”。',
+                '您已成功使用<boldTag>{{email}}</boldTag>注册了一个新账号。\n\n您的账号已被加入“<boldTag>{{organization}}</boldTag>”。',
             SUCCESS_MESSAGE_WITHOUT_EMAIL_PROVIDED:
-                '您已成功注册了一个新账号。\n\n您的账号已被加入“<b>{{organization}}</b>”。',
+                '您已成功注册了一个新账号。\n\n您的账号已被加入“<boldTag>{{organization}}</boldTag>”。',
             SUCCESS_MESSAGE_ALT_WITHOUT_EMAIL_PROVIDED:
-                '您已成功注册了一个新账号。\n\n您的账号已被加入“<3>{{organization}}</3>”。',
+                '您已成功注册了一个新账号。\n\n您的账号已被加入“<boldTag>{{organization}}</boldTag>”。',
             SUCCESS_EXISTING: '您已成功建立账号。请使用您的伊顿账号邮箱和密码登录。',
             FAILURE_MESSAGE: '无法完成注册。',
             UNKNOWN_EMAIL: '未知邮箱地址',
