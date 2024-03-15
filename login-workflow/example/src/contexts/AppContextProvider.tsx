@@ -6,15 +6,15 @@ export type LoginData = {
 };
 
 export type AppContextType = {
-    // isAuthenticated: boolean;
-    // loginData: LoginData;
-    // onUserAuthenticated: (args: { email: string; userId: string; rememberMe: boolean }) => void;
-    // onUserNotAuthenticated: (clearRememberMe?: boolean, overrideRememberMeEmail?: string) => void;
+    isAuthenticated: boolean;
+    loginData: LoginData;
+    onUserAuthenticated: (args: { email: string; userId: string; rememberMe: boolean }) => void;
+    onUserNotAuthenticated: (clearRememberMe?: boolean, overrideRememberMeEmail?: string) => void;
     language: string;
     setLanguage: (language: string) => void;
-    // setLoginData: (args: LoginData) => void;
-    // showChangePasswordDialog: boolean;
-    // setShowChangePasswordDialog: (arg: boolean) => void;
+    setLoginData: (args: LoginData) => void;
+    showChangePasswordDialog: boolean;
+    setShowChangePasswordDialog: (arg: boolean) => void;
 };
 
 export const AppContext = createContext<AppContextType | null>(null);
