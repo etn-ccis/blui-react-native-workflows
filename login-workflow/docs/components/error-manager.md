@@ -1,6 +1,6 @@
 # ErrorManager
 
-Component that manages the display of error messages. Can be configured to display a dialog, a message box, or neither. This component must be used within an `AuthContextProvider` or a `RegistrationContextProvider` for default values to work.
+Component that manages the display of error messages. Can be configured to display a dialog, a message box, or neither.
 
 ![Error Dialog](../../media/error-dialog.png)
 ![Error Box](../../media/error-box.png)
