@@ -36,6 +36,10 @@ const AuthContextProviderContent: React.FC<
     );
 };
 
+/**
+ * AuthContextProvider allow you to access shared data / configuration / API definition for authentication screens
+ * @param {AuthContextProviderProps} props - props for Auth Context Provider
+ */
 export const AuthContextProvider: React.FC<
     React.PropsWithChildren<AuthContextProviderProps & { PasswordDialog?: JSX.Element }>
 > = (props) => {
