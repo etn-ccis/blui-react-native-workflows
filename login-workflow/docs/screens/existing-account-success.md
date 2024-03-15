@@ -2,6 +2,8 @@
 
 A full screen component that renders a Success Screen for the accounts that already exists in the records
 
+TODO add new image
+
 ## Usage
 
 ```tsx
