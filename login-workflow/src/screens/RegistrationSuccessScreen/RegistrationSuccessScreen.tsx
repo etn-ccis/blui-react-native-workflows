@@ -2,19 +2,15 @@ import React from 'react';
 import { StyleSheet, TextStyle } from 'react-native';
 import { Text } from 'react-native-paper';
 import { Trans, useTranslation } from 'react-i18next';
-import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 import { SuccessScreenBase, SuccessScreenProps } from '../SuccessScreen';
 import { useRegistrationContext, useRegistrationWorkflowContext } from '../../contexts';
 
-const makeStyles = (
-    theme: ExtendedTheme
-): StyleSheet.NamedStyles<{
-    message: TextStyle;
+const makeStyles = (): StyleSheet.NamedStyles<{
+    boldText: TextStyle;
 }> =>
     StyleSheet.create({
-        message: {
-            color: theme.colors.onSurfaceVariant,
-            letterSpacing: 0,
+        boldText: {
+            fontWeight: 'bold'
         },
     });
 
@@ -28,8 +24,7 @@ const makeStyles = (
 
 export const RegistrationSuccessScreen: React.FC<SuccessScreenProps> = (props) => {
     const { t } = useTranslation();
-    const theme = useExtendedTheme();
-    const styles = makeStyles(theme);
+    const styles = makeStyles();
     const { navigate, routeConfig } = useRegistrationContext();
     const {
         screenData: {
@@ -42,11 +37,15 @@ export const RegistrationSuccessScreen: React.FC<SuccessScreenProps> = (props) =
         },
     } = useRegistrationWorkflowContext();
 
+    const Bold = ({ children }: { children: React.ReactNode }) => (
+        <Text style={styles.boldText}>{children}</Text>
+    );
+
     const {
         icon = { family: 'material', name: 'check-circle' },
         messageTitle = `${t('bluiCommon:MESSAGES.WELCOME')}, ${firstName} ${lastName}!`,
         message = (
-            <Text variant={'titleSmall'} style={styles.message}>
+            <Text variant={'bodyMedium'}>
                 <Trans
                     i18nKey={
                         email
@@ -54,10 +53,11 @@ export const RegistrationSuccessScreen: React.FC<SuccessScreenProps> = (props) =
                             : 'bluiRegistration:REGISTRATION.SUCCESS_MESSAGE_ALT_WITHOUT_EMAIL_PROVIDED'
                     }
                     values={{ email, organization }}
+                    components={{ boldTag: <Bold>{email}</Bold> }}
                 >
-                    <Text variant={'titleSmall'} style={styles.message}>
-                        Your account has successfully been created with the email <b>{email}</b> belonging to the
-                        <b>{` ${String(organization)}`}</b> org.
+                    <Text variant={'bodyMedium'}>
+                        Your account has successfully been created with the email {email} belonging to the
+                        {` ${String(organization)}`} org.
                     </Text>
                 </Trans>
             </Text>
