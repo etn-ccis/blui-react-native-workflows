@@ -100,9 +100,9 @@ export const VerifyCodeScreenBase: React.FC<React.PropsWithChildren<VerifyCodeSc
                         {codeError}
                     </HelperText>
                     <View>
-                        <Text>
+                        <Text variant="bodyMedium">
                             {resendInstructions}{' '}
-                            <Text style={{ color: theme.colors.primary }} onPress={onResend}>
+                            <Text variant="titleSmall" style={{ color: theme.colors.primary }} onPress={onResend}>
                                 {resendLabel}
                             </Text>
                         </Text>
