@@ -1,18 +1,20 @@
 import React from 'react';
+import '@testing-library/jest-dom';
+import '@testing-library/react-native/extend-expect';
 import { CreatePasswordScreenBase } from '../../screens';
-import { render } from '@testing-library/react-native';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-
+import { render, screen } from '@testing-library/react-native';
+import { PaperProvider } from 'react-native-paper';
 jest.useFakeTimers();
 
-describe('Create Password Screen Base tests', () => {
+describe('CreatePasswordScreenBase Tests', () => {
     it('should render correctly', () => {
         render(
-            <SafeAreaProvider>
+            <PaperProvider>
                 <CreatePasswordScreenBase />
-            </SafeAreaProvider>
+            </PaperProvider>
         );
 
-        expect(render).toBeTruthy();
+        expect(screen.getByTestId('password')).toBeOnTheScreen();
+        expect(screen.getByTestId('confirm')).toBeOnTheScreen();
     });
 });

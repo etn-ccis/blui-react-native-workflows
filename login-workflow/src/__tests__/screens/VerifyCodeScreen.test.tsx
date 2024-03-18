@@ -33,13 +33,11 @@ describe('Verify Code Full Screen Test cases', () => {
 
     it('Should render correctly', () => {
         renderer();
-
         expect(screen.getByText('Verify Email')).toBeOnTheScreen();
     });
 
     it('clicking on close Icon test', () => {
         renderer();
-
         const closeIcon = screen.getByTestId('workflow-card-icon');
         fireEvent.press(closeIcon);
     });
@@ -49,7 +47,6 @@ describe('Verify Code Full Screen Test cases', () => {
             resendLabel: 'Send Again',
             onResend: mockOnResend(),
         });
-
         const resendLink = screen.getByText('Send Again');
         fireEvent.press(resendLink);
         expect(mockOnResend).toHaveBeenCalled();
@@ -64,7 +61,6 @@ describe('Verify Code Full Screen Test cases', () => {
                 onPrevious: mockOnPrevious(),
             },
         });
-
         const prevButton = screen.getByTestId('workflow-card-previous-button');
         fireEvent.press(prevButton);
         expect(mockOnPrevious).toHaveBeenCalled();
@@ -72,7 +68,6 @@ describe('Verify Code Full Screen Test cases', () => {
 
     it('should display loader, when next button is pressed', async () => {
         renderer();
-
         const codeInput = screen.getByTestId('text-input-flat');
         fireEvent.changeText(codeInput, '123');
 

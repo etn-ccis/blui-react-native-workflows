@@ -1,16 +1,13 @@
 import React from 'react';
 import '@testing-library/jest-dom';
+import '@testing-library/react-native/extend-expect';
 import { cleanup, render, fireEvent, screen, waitFor } from '@testing-library/react-native';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
 import renderer from 'react-test-renderer';
 import { EulaScreen } from '../../screens/EulaScreen';
 import { RegistrationWorkflow } from '../../components';
 import { RegistrationContextProvider, i18nRegistrationInstance } from '../../contexts';
 import { registrationContextProviderProps } from '../../testUtils';
 import { Provider as PaperProvider } from 'react-native-paper';
-import '@testing-library/react-native/extend-expect';
-
-// jest.useFakeTimers();
 
 afterEach(cleanup);
 
@@ -18,17 +15,18 @@ describe('Eula Screen', () => {
     it('Eula Screen renders correctly', () => {
         const rendered = renderer
             .create(
-                <SafeAreaProvider>
+                <PaperProvider>
                     <RegistrationContextProvider {...registrationContextProviderProps}>
                         <RegistrationWorkflow initialScreenIndex={0}>
                             <EulaScreen />
                         </RegistrationWorkflow>
                     </RegistrationContextProvider>
-                </SafeAreaProvider>
+                </PaperProvider>
             )
             .toJSON();
         expect(rendered).toBeTruthy();
     });
+
     it('check if next button is calling onNext function prop', () => {
         const nextfn = jest.fn();
         render(
@@ -51,13 +49,16 @@ describe('Eula Screen', () => {
         );
         const checkbox = screen.getByTestId('eulaBase-checkbox');
         fireEvent.press(checkbox);
-        fireEvent.press(screen.getByText('NextButton'));
+        const nextButton = screen.getByText('NextButton');
+        expect(nextButton).toBeEnabled();
+        fireEvent.press(nextButton);
         expect(nextfn).toHaveBeenCalled();
     });
+
     it('check if previos button is calling onPrevious function prop', () => {
         const prevFn = jest.fn();
         render(
-            <SafeAreaProvider>
+            <PaperProvider>
                 <RegistrationContextProvider {...registrationContextProviderProps}>
                     <RegistrationWorkflow initialScreenIndex={0}>
                         <EulaScreen
@@ -72,11 +73,12 @@ describe('Eula Screen', () => {
                         />
                     </RegistrationWorkflow>
                 </RegistrationContextProvider>
-            </SafeAreaProvider>
+            </PaperProvider>
         );
         fireEvent.press(screen.getByText('Back'));
         expect(prevFn).toHaveBeenCalled();
     });
+
     it('should throw error in eula and clicking refresh button should call loadEula', async () => {
         const loadFn = jest.fn().mockRejectedValue(new Error('qwertyuiop'));
         const { findByText } = render(
@@ -109,6 +111,7 @@ describe('Eula Screen', () => {
         fireEvent.press(await findByText('Retry'));
         expect(loadFn).toHaveBeenCalledTimes(2);
     }, 10000);
+
     it('should throw error in eula and clicking refresh button should call loadEula', async () => {
         const loadFn = jest.fn().mockRejectedValue(new Error('qwertyuiop'));
         const { findByText } = render(
@@ -185,6 +188,7 @@ describe('Eula Screen', () => {
         ).toBeOnTheScreen();
         expect(validateFn).toHaveBeenCalled();
     }, 10000);
+
     it('should be able to trigger error when codeValid is false in validateUserRegistrationRequest on next button pressed in case of invite registration ', async () => {
         const validateFn = jest.fn().mockReturnValue({ codeValid: false, accountExists: false });
         const { getByText, queryByText, getByTestId, findByText } = render(

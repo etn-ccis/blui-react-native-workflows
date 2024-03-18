@@ -1,7 +1,7 @@
 import React from 'react';
 import '@testing-library/jest-dom';
 import '@testing-library/react-native/extend-expect';
-import { cleanup, render, screen, fireEvent, RenderResult } from '@testing-library/react-native';
+import { cleanup, render, screen, fireEvent, RenderResult, waitFor } from '@testing-library/react-native';
 import { CreatePasswordScreen, CreatePasswordScreenProps } from '../../screens';
 import { RegistrationContextProvider } from '../../contexts';
 import { RegistrationWorkflow } from '../../components';
@@ -50,7 +50,7 @@ describe('Create Password Screen', () => {
         expect(screen.getByText('Create Password')).toBeOnTheScreen();
     });
 
-    it('should call onNext, when Next button clicked', () => {
+    it('should call onNext, when Next button clicked', async () => {
         renderer({
             WorkflowCardActionsProps: {
                 onNext: mockOnNext(),
@@ -76,6 +76,7 @@ describe('Create Password Screen', () => {
 
         fireEvent.press(nextButton);
         expect(mockOnNext).toHaveBeenCalled();
+        await waitFor(() => expect(screen.getByTestId('spinner')).toBeOnTheScreen());
     });
 
     it('should enable next button, when passwordRequirements prop is empty', () => {
@@ -99,6 +100,9 @@ describe('Create Password Screen', () => {
 
         fireEvent.changeText(passwordField, 'A');
         fireEvent.changeText(confirmPasswordField, 'A');
+
+        expect(passwordField).toHaveDisplayValue('A');
+        expect(confirmPasswordField).toHaveDisplayValue('A');
     });
 
     it('should call onPrevious, when Back button clicked', () => {
@@ -121,7 +125,7 @@ describe('Create Password Screen', () => {
         expect(mockOnPrevious).toHaveBeenCalled();
     });
 
-    it('should trigger error, when Next button clicked', () => {
+    it('should trigger error, when Next button clicked', async () => {
         render(
             <PaperProvider>
                 <RegistrationContextProvider {...errorRegistrationContextProviderProps}>
@@ -158,5 +162,6 @@ describe('Create Password Screen', () => {
 
         fireEvent.press(nextButton);
         expect(mockOnNext).toHaveBeenCalled();
+        await waitFor(() => expect(screen.getByTestId('spinner')).toBeOnTheScreen());
     });
 });
