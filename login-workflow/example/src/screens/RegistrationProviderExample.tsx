@@ -14,6 +14,7 @@ import {
     // WorkflowCardHeader,
     // WorkflowCardBody,
     // WorkflowCardActions,
+    ChangePasswordDialogBase
 } from '@brightlayer-ui/react-native-auth-workflow';
 import { RootStackParamList } from '../navigation';
 import { useNavigation } from '@react-navigation/native';
@@ -49,6 +50,7 @@ const RegistrationProviderExample: React.FC<AppProps> = (): JSX.Element => {
             <ErrorContextProvider>
                 {/* Default Implementation */}
                 <RegistrationWorkflow />
+                
 
                 {/* implementation with custom screens. This custom screen is using app and workflow level translations  */}
                 {/* <RegistrationWorkflow>

@@ -6,7 +6,7 @@ import { NavigationDrawer } from './navigation-drawer';
 import { createStackNavigator } from '@react-navigation/stack';
 import Home from '../screens/home';
 import { WorkflowCardWrapper } from '../screens/WorkflowCardWrapper';
-import RegistrationProviderExample from '../screens/RegistrationProviderExample';
+// import RegistrationProviderExample from '../screens/RegistrationProviderExample';
 import I18nExample from '../screens/I18nExample';
 import { RegistrationSuccessScreen } from '../screens/RegistrationSuccessScreen';
 import VerifyCodeScreenBaseExample from '../screens/VerifyCodeScreenBaseExample';
@@ -14,6 +14,7 @@ import DemoAccountDetails from '../screens/DemoAccountDetails';
 import CreatePasswordScreenBaseExample from '../screens/CreatePasswordScreenBaseExample';
 import { CreateAccountScreen } from '../screens/CreateAccountScreen';
 import AuthProviderExample from '../screens/AuthProviderExample';
+import { ChangePassword } from '../screens/ChangePassword';
 
 const Drawer = createDrawerNavigator();
 
@@ -56,7 +57,7 @@ export const MainRouter = (): any => (
             <RootStack.Screen name="I18nExample" component={I18nExample} />
             <RootStack.Screen
                 name="RegistrationProviderExample"
-                component={RegistrationProviderExample}
+                component={ChangePassword}
                 options={{ gestureEnabled: false }}
             />
             <RootStack.Screen
