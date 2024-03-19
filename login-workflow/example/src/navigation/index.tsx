@@ -56,7 +56,7 @@ const AppRouter = (): any => (
             />
     </Drawer.Navigator>
 );
-const AuthRouter = (): any => {
+const RegistrationRouter = (): any => {
     const app = useApp();
     const routes = {
         LOGIN: 'LOGIN',
@@ -80,7 +80,7 @@ const AuthRouter = (): any => {
                 }}
             >
                 <Stack.Screen name="REGISTER_INVITE">
-                    {() => <RegistrationWorkflow isInviteRegistration />}
+                    {() => <RegistrationWorkflow isInviteRegistration initialRegistrationParams={{ code: '123', email: 'aa@aa.aa' }} />}
                 </Stack.Screen>
                 <Stack.Screen name="REGISTER_SELF">{() => <RegistrationWorkflow />}</Stack.Screen>
                 <Stack.Screen name="LOGIN" component={Login} />
@@ -94,7 +94,7 @@ export const MainRouter = (): any => {
 
     return (
         <NavigationContainer ref={navigationRef}>
-            {authState.isAuthenticated ? <AppRouter /> : <AuthRouter />}
+            {authState.isAuthenticated ? <AppRouter /> : <RegistrationRouter />}
         </NavigationContainer>
     );
 };
