@@ -49,11 +49,11 @@ const AppRouter = (): any => (
             component={RegistrationProviderExample}
             options={{ gestureEnabled: false }}
         />
-         <RootStack.Screen
-                name="AuthProviderExample"
-                component={AuthProviderExample}
-                options={{ gestureEnabled: false }}
-            />
+        <RootStack.Screen
+            name="AuthProviderExample"
+            component={AuthProviderExample}
+            options={{ gestureEnabled: false }}
+        />
     </Drawer.Navigator>
 );
 const RegistrationRouter = (): any => {
@@ -80,7 +80,12 @@ const RegistrationRouter = (): any => {
                 }}
             >
                 <Stack.Screen name="REGISTER_INVITE">
-                    {() => <RegistrationWorkflow isInviteRegistration initialRegistrationParams={{ code: '123', email: 'aa@aa.aa' }} />}
+                    {() => (
+                        <RegistrationWorkflow
+                            isInviteRegistration
+                            initialRegistrationParams={{ code: '123', email: 'aa@aa.aa' }}
+                        />
+                    )}
                 </Stack.Screen>
                 <Stack.Screen name="REGISTER_SELF">{() => <RegistrationWorkflow />}</Stack.Screen>
                 <Stack.Screen name="LOGIN" component={Login} />
