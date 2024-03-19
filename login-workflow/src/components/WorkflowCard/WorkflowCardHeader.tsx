@@ -37,10 +37,10 @@ const makeStyles = (
         headerContent: {
             marginLeft: 16,
             justifyContent: 'center',
-            color: textColor || isTablet ? theme.colors.onSurface : theme.colors.onPrimaryContainer,
+            color: textColor || (isTablet ? theme.colors.onSurface : theme.colors.onPrimaryContainer),
         },
         headerText: {
-            color: textColor || isTablet ? theme.colors.onSurface : theme.colors.onPrimaryContainer,
+            color: textColor || (isTablet ? theme.colors.onSurface : theme.colors.onPrimaryContainer),
         },
     });
 

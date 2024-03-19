@@ -31,24 +31,9 @@ export const navGroupItems: NavItem[] = [
         icon: { name: 'app-registration' },
     },
     {
-        title: 'Verify Code Screen Base',
-        itemID: 'VerifyCodeScreenBaseExample',
-        icon: { name: 'check' },
-    },
-    {
-        title: 'Account Details Base Screen',
-        itemID: 'AccountDetailsBaseExample',
-        icon: { name: 'person' },
-    },
-    {
-        title: 'Create Password Screen Base',
-        itemID: 'CreatePasswordScreenBaseExample',
-        icon: { name: 'lock' },
-    },
-    {
-        title: 'Create Account Base Screen',
-        itemID: 'CreateAccountBaseExample',
-        icon: { name: 'person' },
+        title: 'Smoke Test Example',
+        itemID: 'SmokeTestExample',
+        icon: { name: 'app-registration' },
     },
 ];
 

@@ -18,16 +18,25 @@ export const Spinner: React.FC<SpinnerProps> = (props) => {
     return (
         <View
             style={{
-                height: '100%',
-                width: '100%',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
+                // height: '100%',
+                // width: '100%',
+                // display: 'flex',
+                // justifyContent: 'center',
+                // alignItems: 'center',
+                // backgroundColor: theme.dark ? 'rgba(0,0,0,0.6)' : 'rgba(255, 255, 255, 0.6)',
+                position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor:'#F5FCFF88',
             }}
             testID="spinner"
             {...otherProps}
         >
-            <ActivityIndicator animating={visible} size="large" color={theme.colors.primary} />
+            <ActivityIndicator animating={visible} size="large" color={theme.colors.primary}/>
         </View>
     );
 };

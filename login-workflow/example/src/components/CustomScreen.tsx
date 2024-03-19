@@ -47,6 +47,7 @@ export const CustomScreen: React.FC<CustomScreenProps> = (props) => {
     return (
         <WorkflowCard>
             <WorkflowCardHeader title="Custom Screen" onIconPress={onPrevious} icon={{ name: 'arrow-back' }} />
+            
             <WorkflowCardBody>
                 <TextInput
                     label={t('app:ORGANAIZATION_DETAILS.NAME')}

@@ -122,6 +122,33 @@ export const RegistrationWorkflow: React.FC<React.PropsWithChildren<Registration
             }));
         }
     };
+    const resetScreenData = (): void => {
+        console.log('I am in resetScreenData')
+        setScreenData({
+            Eula: {
+                accepted: false,
+            },
+            CreateAccount: {
+                emailAddress: '',
+            },
+            VerifyCode: {
+                code: '',
+                isAccountExist: false,
+            },
+            CreatePassword: {
+                password: '',
+                confirmPassword: '',
+            },
+            AccountDetails: {
+                firstName: '',
+                lastName: '',
+            },
+            Other: {},
+        })
+        setShowSuccessScreen(false);
+        setCurrentScreen(0);
+        viewPagerRef.current?.setPage(0);
+    };
 
     const finishRegistration = async (data: IndividualScreenData): Promise<void> => {
         try {
@@ -170,6 +197,7 @@ export const RegistrationWorkflow: React.FC<React.PropsWithChildren<Registration
             currentScreen={currentScreen}
             totalScreens={totalScreens}
             nextScreen={(data): Promise<void> | undefined => {
+                console.log('currentScreen', currentScreen);
                 try {
                     updateScreenData(data);
                     if (data.isAccountExist) {
@@ -187,12 +215,14 @@ export const RegistrationWorkflow: React.FC<React.PropsWithChildren<Registration
                 updateScreenData(data);
                 if (currentScreen === 0) {
                     navigate(-1);
+                } else {
+                    setCurrentScreen((i) => i - 1);
+                    viewPagerRef.current?.setPage(currentScreen - 1);
                 }
-                setCurrentScreen((i) => i - 1);
-                viewPagerRef.current?.setPage(currentScreen - 1);
             }}
             screenData={screenData}
             updateScreenData={updateScreenData}
+            resetScreenData={resetScreenData}
             isInviteRegistration={isInviteRegistration}
         >
             <ErrorManager {...errorDisplayConfig} mode="dialog">

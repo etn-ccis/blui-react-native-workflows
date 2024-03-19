@@ -13,6 +13,7 @@ import VerifyCodeScreenBaseExample from '../screens/VerifyCodeScreenBaseExample'
 import DemoAccountDetails from '../screens/DemoAccountDetails';
 import CreatePasswordScreenBaseExample from '../screens/CreatePasswordScreenBaseExample';
 import { CreateAccountScreen } from '../screens/CreateAccountScreen';
+import SmokeTestExample from '../screens/SmokeTestExample';
 
 const Drawer = createDrawerNavigator();
 
@@ -27,6 +28,7 @@ export type RootStackParamList = {
     AccountDetailsBaseExample: undefined;
     CreatePasswordScreenBaseExample: undefined;
     CreateAccountBaseExample: undefined;
+    SmokeTestExample: undefined;
 };
 
 const RootStack = createStackNavigator<RootStackParamList>();
@@ -49,18 +51,22 @@ export const MainRouter = (): any => (
             drawerContent={(props: any): ReactNode => <CustomDrawerContent {...props} />}
         >
             <RootStack.Screen name="Home" component={Home} />
-            <RootStack.Screen name="WorkFlowCardExample" component={WorkflowCardWrapper} />
+            {/* <RootStack.Screen name="WorkFlowCardExample" component={WorkflowCardWrapper} /> */}
             <RootStack.Screen name="RegistrationSuccessScreen" component={RegistrationSuccessScreen} />
             <RootStack.Screen name="I18nExample" component={I18nExample} />
-            <RootStack.Screen
+            {/* <RootStack.Screen
                 name="RegistrationProviderExample"
                 component={RegistrationProviderExample}
                 options={{ gestureEnabled: false }}
+            /> */}
+            <RootStack.Screen
+                name="RegistrationProviderExample"
+                component={RegistrationProviderExample}
+                // options={{ gestureEnabled: false, unmountOnBlur: true }}
+                // listeners={({navigation}) => ({blur: () => navigation.setParams({screen: undefined})})}
             />
-            <RootStack.Screen name="VerifyCodeScreenBaseExample" component={VerifyCodeScreenBaseExample} />
-            <RootStack.Screen name="AccountDetailsBaseExample" component={DemoAccountDetails} />
-            <RootStack.Screen name="CreatePasswordScreenBaseExample" component={CreatePasswordScreenBaseExample} />
-            <RootStack.Screen name="CreateAccountBaseExample" component={CreateAccountScreen} />
+           
+            <RootStack.Screen name="SmokeTestExample" component={WorkflowCardWrapper} />
         </Drawer.Navigator>
     </NavigationContainer>
 );

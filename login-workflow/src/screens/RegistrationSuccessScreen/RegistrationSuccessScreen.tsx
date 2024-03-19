@@ -23,6 +23,7 @@ export const RegistrationSuccessScreen: React.FC<SuccessScreenProps> = (props) =
                 RegistrationSuccessScreen: { organizationName: organization },
             },
         },
+        resetScreenData,
     } = useRegistrationWorkflowContext();
 
     const {
@@ -61,6 +62,8 @@ export const RegistrationSuccessScreen: React.FC<SuccessScreenProps> = (props) =
         ...WorkflowCardActionsProps,
         onNext: (): void => {
             onDismiss();
+            console.log('I am after on Dismiss');
+            resetScreenData();
             WorkflowCardActionsProps?.onNext?.();
         },
     };

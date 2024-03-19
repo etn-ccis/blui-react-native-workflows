@@ -45,7 +45,7 @@ export const EulaScreen: React.FC<EulaScreenProps> = (props) => {
         initialCheckboxValue,
         ...otherEulaScreenProps
     } = props;
-
+    console.log('eula screen', screenData)
     const eulaAccepted = initialCheckboxValue ? initialCheckboxValue : screenData.Eula.accepted;
     const [isLoading, setIsLoading] = useState(true);
     const [eulaData, setEulaData] = useState<string | JSX.Element>();

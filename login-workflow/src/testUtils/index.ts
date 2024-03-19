@@ -56,4 +56,7 @@ export const registrationWorkflowContextProps: RegistrationWorkflowContextProps 
     updateScreenData: function (): void {
         throw new Error('Function not implemented.');
     },
+    resetScreenData: function (): void {
+        throw new Error('Function not implemented.');
+    },
 };

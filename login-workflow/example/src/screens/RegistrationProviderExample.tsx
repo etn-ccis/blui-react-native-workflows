@@ -17,6 +17,7 @@ import {
 } from '@brightlayer-ui/react-native-auth-workflow';
 import { RootStackParamList } from '../navigation';
 import { useNavigation } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
 
 type AppProps = {
     navigation: StackNavigationProp<RootStackParamList, 'RegistrationProviderExample'>;
@@ -25,6 +26,7 @@ type AppProps = {
 const RegistrationProviderExample: React.FC<AppProps> = (): JSX.Element => {
     const app = useApp();
     const nav = useNavigation();
+    const { t } = useTranslation();
     return (
         <RegistrationContextProvider
             language={app.language}
@@ -45,10 +47,18 @@ const RegistrationProviderExample: React.FC<AppProps> = (): JSX.Element => {
                 REGISTER_SELF: undefined,
                 SUPPORT: undefined,
             }}
+            // errorConfig={{
+            //     messageBoxConfig:{
+            //         title: t('')
+            //     }
+            // }}
         >
             <ErrorContextProvider>
                 {/* Default Implementation */}
-                <RegistrationWorkflow />
+                <RegistrationWorkflow  isInviteRegistration initialRegistrationParams={{
+                    code:'d',
+                    email: 'Ee@cc.ccc'
+                }}/>
 
                 {/* implementation with custom screens. This custom screen is using app and workflow level translations  */}
                 {/* <RegistrationWorkflow>
