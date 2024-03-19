@@ -64,7 +64,7 @@ export const ChangePasswordDialog: React.FC<ChangePasswordDialogProps> = (props)
         onFinish,
         PasswordProps,
         ErrorDialogProps,
-        loading,
+        loading = false,
         currentPasswordTextInputProps,
         slots = {},
         slotProps = {},

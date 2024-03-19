@@ -1,4 +1,14 @@
 import { LOCAL_USER_DATA, REMEMBER_ME_DATA } from '../constants';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+// For cross compatibility pretend AsyncStorage is just window local storage
+const window = {
+    localStorage: {
+        getItem: (key: string): Promise<string | null> => AsyncStorage.getItem(key),
+        setItem: (key: string, value: string): Promise<void> => AsyncStorage.setItem(key, value),
+        removeItem: (key: string): Promise<void> => AsyncStorage.removeItem(key),
+    },
+};
 
 type AuthData = {
     userId: string | undefined;
@@ -7,42 +17,42 @@ type AuthData = {
 };
 
 async function readAuthData(): Promise<AuthData> {
-    const jsonUserData = window.localStorage.getItem(LOCAL_USER_DATA) || '{}';
-    const userData = (await JSON.parse(jsonUserData)) as {
+    const jsonUserData = (await window.localStorage.getItem(LOCAL_USER_DATA)) || '{}';
+    const userData = JSON.parse(jsonUserData) as {
         user?: string;
         userId?: string;
     };
-    const jsonRememberMeData = window.localStorage.getItem(REMEMBER_ME_DATA) || '{}';
-    const rememberMeData = (await JSON.parse(jsonRememberMeData)) as {
+    const jsonRememberMeData = (await window.localStorage.getItem(REMEMBER_ME_DATA)) || '{}';
+    const rememberMeData = JSON.parse(jsonRememberMeData) as {
         user: string;
         rememberMe: boolean;
     };
     return {
         userId: userData.userId,
         email: userData.user,
-        rememberMeData: rememberMeData,
+        rememberMeData,
     };
 }
 
 function saveAuthCredentials(user: string, userId: string): void {
     const userData = {
-        user: user,
-        userId: userId,
+        user,
+        userId,
     };
-    window.localStorage.setItem(LOCAL_USER_DATA, JSON.stringify(userData));
+    void window.localStorage.setItem(LOCAL_USER_DATA, JSON.stringify(userData));
 }
 function saveRememberMeData(user: string, rememberMe: boolean): void {
     const RememberMeData = {
         user: rememberMe ? user : '',
-        rememberMe: rememberMe,
+        rememberMe,
     };
-    window.localStorage.setItem(REMEMBER_ME_DATA, JSON.stringify(RememberMeData));
+    void window.localStorage.setItem(REMEMBER_ME_DATA, JSON.stringify(RememberMeData));
 }
 function clearAuthCredentials(): void {
-    window.localStorage.removeItem(LOCAL_USER_DATA);
+    void window.localStorage.removeItem(LOCAL_USER_DATA);
 }
 function clearRememberMeData(): void {
-    window.localStorage.removeItem(REMEMBER_ME_DATA);
+    void window.localStorage.removeItem(REMEMBER_ME_DATA);
 }
 export const LocalStorage = {
     readAuthData,
