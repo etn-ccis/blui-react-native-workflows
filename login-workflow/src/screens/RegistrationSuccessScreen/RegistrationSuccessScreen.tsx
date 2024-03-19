@@ -1,7 +1,18 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+import { StyleSheet, TextStyle } from 'react-native';
+import { Text } from 'react-native-paper';
+import { Trans, useTranslation } from 'react-i18next';
 import { SuccessScreenBase, SuccessScreenProps } from '../SuccessScreen';
 import { useRegistrationContext, useRegistrationWorkflowContext } from '../../contexts';
+
+const makeStyles = (): StyleSheet.NamedStyles<{
+    boldText: TextStyle;
+}> =>
+    StyleSheet.create({
+        boldText: {
+            fontWeight: 'bold',
+        },
+    });
 
 /**
  * Component that renders a success screen for when registration completes.
@@ -13,6 +24,7 @@ import { useRegistrationContext, useRegistrationWorkflowContext } from '../../co
 
 export const RegistrationSuccessScreen: React.FC<SuccessScreenProps> = (props) => {
     const { t } = useTranslation();
+    const styles = makeStyles();
     const { navigate, routeConfig } = useRegistrationContext();
     const {
         screenData: {
@@ -25,16 +37,31 @@ export const RegistrationSuccessScreen: React.FC<SuccessScreenProps> = (props) =
         },
     } = useRegistrationWorkflowContext();
 
+    const Bold = ({ children }: { children: React.ReactNode }): JSX.Element => (
+        <Text style={styles.boldText}>{children}</Text>
+    );
+
     const {
         icon = { family: 'material', name: 'check-circle' },
         messageTitle = `${t('bluiCommon:MESSAGES.WELCOME')}, ${firstName} ${lastName}!`,
-        message = email
-            ? t('bluiRegistration:REGISTRATION.SUCCESS_MESSAGE', {
-                  replace: { email, organization },
-              })
-            : t('bluiRegistration:REGISTRATION.SUCCESS_MESSAGE_WITHOUT_EMAIL_PROVIDED', {
-                  replace: { organization },
-              }),
+        message = (
+            <Text variant={'bodyMedium'}>
+                <Trans
+                    i18nKey={
+                        email
+                            ? 'bluiRegistration:REGISTRATION.SUCCESS_MESSAGE_ALT'
+                            : 'bluiRegistration:REGISTRATION.SUCCESS_MESSAGE_ALT_WITHOUT_EMAIL_PROVIDED'
+                    }
+                    values={{ email, organization }}
+                    components={{ boldTag: <Bold>{email}</Bold> }}
+                >
+                    <Text variant={'bodyMedium'}>
+                        Your account has successfully been created with the email {email} belonging to the
+                        {` ${String(organization)}`} org.
+                    </Text>
+                </Trans>
+            </Text>
+        ),
         canDismiss = true,
         onDismiss = (): void => navigate(routeConfig.LOGIN as string),
         WorkflowCardHeaderProps,

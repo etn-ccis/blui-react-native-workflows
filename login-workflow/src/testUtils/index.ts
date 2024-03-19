@@ -1,9 +1,26 @@
+import { i18nAuthInstance } from '../contexts/AuthContext/i18nAuthInstance';
 import {
+    AuthContextProviderProps,
     RegistrationContextProviderProps,
     RegistrationWorkflowContextProps,
     i18nRegistrationInstance,
 } from '../contexts';
 import { error } from 'console';
+
+export const authContextProviderProps: AuthContextProviderProps = {
+    language: 'en',
+    i18n: i18nAuthInstance,
+    navigate: (): void => {},
+    routeConfig: {},
+    actions: {
+        initiateSecurity: jest.fn(),
+        logIn: jest.fn(),
+        forgotPassword: jest.fn(),
+        verifyResetCode: jest.fn(),
+        setPassword: jest.fn(),
+        changePassword: jest.fn(),
+    },
+};
 
 export const registrationContextProviderProps: RegistrationContextProviderProps = {
     language: 'en',

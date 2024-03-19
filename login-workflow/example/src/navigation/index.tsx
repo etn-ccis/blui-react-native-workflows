@@ -10,7 +10,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
 import { View } from 'react-native';
 import RegistrationProviderExample from '../screens/RegistrationProviderExample';
-
+import AuthProviderExample from '../screens/AuthProviderExample';
 import { Login } from '../screens/Login';
 
 const getAuthState = (): any => ({
@@ -22,15 +22,8 @@ const navigationRef = createNavigationContainerRef();
 
 export type RootStackParamList = {
     Home: undefined;
-    I18nExample: undefined;
-    WorkFlowCardExample: undefined;
-    RegistrationSuccessScreen: undefined;
     RegistrationProviderExample: undefined;
-    NavigationDrawer: undefined;
-    VerifyCodeScreenBaseExample: undefined;
-    AccountDetailsBaseExample: undefined;
-    CreatePasswordScreenBaseExample: undefined;
-    CreateAccountBaseExample: undefined;
+    AuthProviderExample: undefined;
 };
 
 const RootStack = createStackNavigator<RootStackParamList>();
@@ -56,6 +49,11 @@ const AppRouter = (): any => (
             component={RegistrationProviderExample}
             options={{ gestureEnabled: false }}
         />
+         <RootStack.Screen
+                name="AuthProviderExample"
+                component={AuthProviderExample}
+                options={{ gestureEnabled: false }}
+            />
     </Drawer.Navigator>
 );
 const AuthRouter = (): any => {
