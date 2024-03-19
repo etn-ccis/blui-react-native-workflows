@@ -7,3 +7,4 @@ export * from './SuccessScreen';
 export * from './AccountDetailsScreen';
 export * from './CreatePasswordScreen';
 export * from './ExistingAccountSuccessScreen';
+export * from './ContactScreen';
