@@ -50,7 +50,7 @@ export const WorkflowCardActions: React.FC<WorkflowCardActionsProps> = (props) =
 
     const defaultStyles = makeStyles(fullWidthButton);
 
-    const showStepperDots = totalSteps === 0 && !fullWidthButton;
+    const showStepperDots = totalSteps !== 0 && !fullWidthButton;
     return (
         <View {...otherProps} style={style}>
             {divider && <Divider testID="workflow-card-action-divider" />}
