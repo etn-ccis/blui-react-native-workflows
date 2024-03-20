@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, TextStyle, View } from 'react-native';
+import { StyleSheet, TextStyle } from 'react-native';
 import { ChangePasswordScreenProps } from './types';
 import { PasswordTextField, SetPassword } from '../../components/SetPassword';
 import { SuccessScreenBase, SuccessScreenProps } from '..';
@@ -53,6 +53,7 @@ export const ChangePasswordScreenBase: React.FC<ChangePasswordScreenProps> = (pr
 
     const getSuccessScreen = (
         _props: SuccessScreenProps,
+        // eslint-disable-next-line
         SuccessScreen?: (props: SuccessScreenProps) => JSX.Element
     ): JSX.Element => (SuccessScreen ? SuccessScreen(_props) : <SuccessScreenBase {..._props} />);
 

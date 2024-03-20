@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, cleanup, RenderResult, fireEvent, screen } from '@testing-library/react-native';
+import { render, cleanup, RenderResult, screen } from '@testing-library/react-native';
 import { ChangePasswordScreenBase } from '../../screens/ChangePasswordScreen';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import '@testing-library/react-native/extend-expect';
