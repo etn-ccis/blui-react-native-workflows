@@ -26,8 +26,8 @@ const makeStyles = (): StyleSheet.NamedStyles<{
  * Base Component that renders a textField to enter current password and a change password form with a new password and confirm password inputs.
  * It includes callbacks so you can respond to changes in the inputs.
  *
- * @param {ChangePasswordDialogProps} props - props of Change Password Base component 
- * 
+ * @param {ChangePasswordDialogProps} props - props of Change Password Base component
+ *
  * @category Component
  */
 
