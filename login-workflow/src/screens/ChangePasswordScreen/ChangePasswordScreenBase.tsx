@@ -88,7 +88,7 @@ export const ChangePasswordScreenBase: React.FC<ChangePasswordScreenProps> = (pr
                     </SetPassword>
                 </ErrorManager>
             </WorkflowCardBody>
-            <WorkflowCardActions {...actionsProps} />
+            <WorkflowCardActions totalSteps={0} {...actionsProps} />
         </WorkflowCard>
     );
 };
