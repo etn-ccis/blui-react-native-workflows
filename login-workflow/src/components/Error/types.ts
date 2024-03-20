@@ -1,3 +1,4 @@
+import { TFunction } from 'i18next';
 import { StyleProp, ViewStyle } from 'react-native';
 
 /**
@@ -33,6 +34,11 @@ export type ErrorManagerProps = {
      *
      */
     error?: string;
+
+    /**
+     * Translate function to translate error related text
+     */
+    t?: TFunction;
 
     /**
      * Configuration options when using mode='dialog'
