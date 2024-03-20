@@ -1,8 +1,8 @@
 import React, { useCallback, useRef, useState } from 'react';
 import {
     useAuthContext,
-    ChangePasswordDialogBase,
-    ChangePasswordDialogProps,
+    ChangePasswordScreenBase,
+    ChangePasswordScreenProps,
     PasswordRequirement,
 } from '@brightlayer-ui/react-native-auth-workflow';
 import { useTranslation } from 'react-i18next';
@@ -36,7 +36,7 @@ export const defaultPasswordRequirements = (t: (input: string) => string): Passw
     },
 ];
 
-export const ChangePasswordDialog: React.FC<ChangePasswordDialogProps> = (props) => {
+export const ChangePasswordScreen: React.FC<ChangePasswordScreenProps> = (props) => {
     const { t } = useTranslation();
     const passwordRef = useRef(null);
     const confirmRef = useRef(null);
@@ -159,7 +159,7 @@ export const ChangePasswordDialog: React.FC<ChangePasswordDialogProps> = (props)
     };
 
     return (
-        <ChangePasswordDialogBase
+        <ChangePasswordScreenBase
             WorkflowCardBaseProps={workflowCardBaseProps}
             WorkflowCardHeaderProps={workflowCardHeaderProps}
             WorkflowCardInstructionProps={workflowCardInstructionProps}

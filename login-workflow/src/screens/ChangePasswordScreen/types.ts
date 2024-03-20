@@ -1,18 +1,18 @@
 import { TextInputProps } from 'react-native-paper';
-import { SuccessScreenProps } from '../../screens';
-import { SetPasswordProps } from '../SetPassword';
-import { WorkflowCardProps } from '../WorkflowCard';
-import { ErrorManagerProps } from '../Error';
+import { SuccessScreenProps } from '..';
+import { SetPasswordProps } from '../../components/SetPassword';
+import { WorkflowCardProps } from '../../components/WorkflowCard';
+import { ErrorManagerProps } from '../../components/Error';
 
-export type ChangePasswordDialogSlots = {
+export type ChangePasswordScreenSlots = {
     SuccessScreen?: (props?: SuccessScreenProps) => JSX.Element;
 };
 
-export type ChangePasswordDialogSlotsProps = {
+export type ChangePasswordScreenSlotsProps = {
     SuccessScreen?: SuccessScreenProps;
 };
 
-export type ChangePasswordDialogProps = WorkflowCardProps & { PasswordProps?: SetPasswordProps } & {
+export type ChangePasswordScreenProps = WorkflowCardProps & { PasswordProps?: SetPasswordProps } & {
     /**
      * The label to display for the current password field
      */
@@ -48,14 +48,14 @@ export type ChangePasswordDialogProps = WorkflowCardProps & { PasswordProps?: Se
     showSuccessScreen?: boolean;
 
     /**
-     * Used for ChangePasswordDialog SuccessScreen
+     * Used for ChangePasswordScreen SuccessScreen
      */
-    slots?: ChangePasswordDialogSlots;
+    slots?: ChangePasswordScreenSlots;
 
     /**
      * Applied to slot from SuccessScreen
      */
-    slotProps?: ChangePasswordDialogSlotsProps;
+    slotProps?: ChangePasswordScreenSlotsProps;
 
     /**
      * The configuration for customizing how errors are displayed

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChangePasswordDialog } from './ChangePasswordDialog';
+import { ChangePasswordScreen } from './ChangePasswordScreen';
 import { useApp } from '../contexts/AppContextProvider';
 import { LocalStorage } from '../store/local-storage';
 import { useNavigation } from '@react-navigation/native';
@@ -13,5 +13,5 @@ export const ChangePassword = (): JSX.Element => {
         navigate('Home');
     };
 
-    return <ChangePasswordDialog onFinish={(): void => logOut()} showSuccessScreen />;
+    return <ChangePasswordScreen onFinish={(): void => logOut()} showSuccessScreen />;
 };

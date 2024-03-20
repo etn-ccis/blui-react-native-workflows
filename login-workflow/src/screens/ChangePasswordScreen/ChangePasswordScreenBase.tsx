@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
 import { StyleSheet, TextStyle, View } from 'react-native';
-import { ChangePasswordDialogProps } from './types';
-import { PasswordTextField, SetPassword } from '../SetPassword';
-import { SuccessScreenBase, SuccessScreenProps } from '../../screens';
+import { ChangePasswordScreenProps } from './types';
+import { PasswordTextField, SetPassword } from '../../components/SetPassword';
+import { SuccessScreenBase, SuccessScreenProps } from '..';
 import {
     WorkflowCard,
     WorkflowCardActions,
     WorkflowCardBody,
     WorkflowCardHeader,
     WorkflowCardInstructions,
-} from '../WorkflowCard';
-import { ErrorManager } from '../Error';
-import { Text } from 'react-native-paper';
+} from '../../components/WorkflowCard';
+import { ErrorManager } from '../../components/Error';
 
 const makeStyles = (): StyleSheet.NamedStyles<{
     textInput: TextStyle;
@@ -26,12 +25,12 @@ const makeStyles = (): StyleSheet.NamedStyles<{
  * Base Component that renders a textField to enter current password and a change password form with a new password and confirm password inputs.
  * It includes callbacks so you can respond to changes in the inputs.
  *
- * @param {ChangePasswordDialogProps} props - props of Change Password Base component
+ * @param {ChangePasswordScreenProps} props - props of Change Password Base component
  *
  * @category Component
  */
 
-export const ChangePasswordDialogBase: React.FC<ChangePasswordDialogProps> = (props) => {
+export const ChangePasswordScreenBase: React.FC<ChangePasswordScreenProps> = (props) => {
     const {
         currentPasswordLabel,
         errorDisplayConfig,
