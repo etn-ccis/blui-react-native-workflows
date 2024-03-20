@@ -94,7 +94,7 @@ export const ChangePasswordScreen: React.FC<ChangePasswordScreenProps> = (props)
                 setShowSuccessScreen(true);
             } catch (_error) {
                 // TODO: Add error handling using triggerError, when moved to library
-                // eslint-disable-next-line no-console 
+                // eslint-disable-next-line no-console
                 console.log(_error as Error);
             } finally {
                 setIsLoading(false);
