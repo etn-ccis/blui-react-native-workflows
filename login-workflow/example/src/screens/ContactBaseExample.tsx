@@ -1,9 +1,7 @@
-import React, { useCallback, useRef } from 'react';
+import React from 'react';
 import { ContactSupportScreenBase } from '@brightlayer-ui/react-native-auth-workflow';
-import { Button, HelperText, Icon, Text, TextInput } from 'react-native-paper';
+import { Icon, Text } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
-import { useExtendedTheme } from '@brightlayer-ui/react-native-themes';
-import { View } from 'react-native';
 
 export const ContactBaseExample: React.FC = () => {
     const navigation = useNavigation();
@@ -43,7 +41,7 @@ export const ContactBaseExample: React.FC = () => {
         <ContactSupportScreenBase
             WorkflowCardHeaderProps={workflowCardHeaderProps}
             WorkflowCardActionsProps={workflowCardActionsProps}
-            icon={<Icon size={24} source='contacts'/>}
+            icon={<Icon size={24} source="contacts" />}
             emailSupportTitle={'emailSupportTitle'}
             emailSupportContent={defaultEmailSupportContent}
             phoneSupportTitle={'phoneSupportTitle'}
