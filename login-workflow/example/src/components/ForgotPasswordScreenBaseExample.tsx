@@ -20,6 +20,12 @@ export const ForgotPasswordScreenBaseExample: React.FC<ForgotPasswordScreenProps
                     <Text>Success</Text>
                 </View>
             }
+            WorkflowCardActionsProps={{
+                showPrevious: true,
+                previousLabel: 'Back',
+                showNext: true,
+                nextLabel: 'Next',
+            }}
         />
     );
 };
