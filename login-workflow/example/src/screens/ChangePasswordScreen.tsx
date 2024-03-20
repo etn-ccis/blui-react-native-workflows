@@ -6,13 +6,12 @@ import {
     PasswordRequirement,
 } from '@brightlayer-ui/react-native-auth-workflow';
 import { useTranslation } from 'react-i18next';
-import {
-    LENGTH_REGEX,
-    LOWER_CASE_REGEX,
-    NUMBERS_REGEX,
-    SPECIAL_CHAR_REGEX,
-    UPPER_CASE_REGEX,
-} from './CreatePasswordScreenBaseExample';
+
+export const SPECIAL_CHAR_REGEX = /[!"#$%&'()*+,-._/:;<=>?@[\]^`{|}~]+/;
+export const LENGTH_REGEX = /^.{8,16}$/;
+export const NUMBERS_REGEX = /[0-9]+/;
+export const UPPER_CASE_REGEX = /[A-Z]+/;
+export const LOWER_CASE_REGEX = /[a-z]+/;
 export const defaultPasswordRequirements = (t: (input: string) => string): PasswordRequirement[] => [
     {
         regex: LENGTH_REGEX,
