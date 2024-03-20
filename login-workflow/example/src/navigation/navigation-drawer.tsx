@@ -11,21 +11,6 @@ export const navGroupItems: NavItem[] = [
         icon: { name: 'home' },
     },
     {
-        title: 'Registration Success Screen',
-        itemID: 'RegistrationSuccessScreen',
-        icon: { name: 'looks-one' },
-    },
-    {
-        title: 'Workflow Card',
-        itemID: 'WorkFlowCardExample',
-        icon: { name: 'looks-two' },
-    },
-    {
-        title: 'I18n',
-        itemID: 'I18nExample',
-        icon: { name: 'translate' },
-    },
-    {
         title: 'Registration Provider',
         itemID: 'RegistrationProviderExample',
         icon: { name: 'app-registration' },
@@ -34,26 +19,6 @@ export const navGroupItems: NavItem[] = [
         title: 'Auth Provider',
         itemID: 'AuthProviderExample',
         icon: { name: 'app-registration' },
-    },
-    {
-        title: 'Verify Code Screen Base',
-        itemID: 'VerifyCodeScreenBaseExample',
-        icon: { name: 'check' },
-    },
-    {
-        title: 'Account Details Base Screen',
-        itemID: 'AccountDetailsBaseExample',
-        icon: { name: 'person' },
-    },
-    {
-        title: 'Create Password Screen Base',
-        itemID: 'CreatePasswordScreenBaseExample',
-        icon: { name: 'lock' },
-    },
-    {
-        title: 'Create Account Base Screen',
-        itemID: 'CreateAccountBaseExample',
-        icon: { name: 'person' },
     },
 ];
 
