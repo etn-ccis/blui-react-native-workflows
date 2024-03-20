@@ -4,3 +4,4 @@ export * from './Error';
 export * from './Dialog';
 export * from './RegistrationWorkflow';
 export * from './ChangePasswordDialog';
+export * from './Spinner';

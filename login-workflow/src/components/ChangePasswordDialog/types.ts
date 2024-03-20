@@ -1,7 +1,8 @@
-import { DialogProps, TextInputProps } from 'react-native-paper';
+import { TextInputProps } from 'react-native-paper';
 import { SuccessScreenProps } from '../../screens';
-import { BasicDialogProps } from '../Dialog';
 import { SetPasswordProps } from '../SetPassword';
+import { WorkflowCardProps } from '../WorkflowCard';
+import { ErrorManagerProps } from '../Error';
 
 export type ChangePasswordDialogSlots = {
     SuccessScreen?: (props?: SuccessScreenProps) => JSX.Element;
@@ -11,33 +12,11 @@ export type ChangePasswordDialogSlotsProps = {
     SuccessScreen?: SuccessScreenProps;
 };
 
-export type ChangePasswordDialogProps = Omit<DialogProps, 'children'> & { PasswordProps?: SetPasswordProps } & {
-    ErrorDialogProps?: BasicDialogProps;
-} & {
-    /**
-     * The title to display in the dialog
-     */
-    dialogTitle?: string;
-
-    /**
-     * The description to display in the dialog
-     */
-    dialogDescription?: string;
-
+export type ChangePasswordDialogProps = WorkflowCardProps & { PasswordProps?: SetPasswordProps } & {
     /**
      * The label to display for the current password field
      */
     currentPasswordLabel?: string;
-
-    /**
-     * The label to display for the previous button
-     */
-    previousLabel?: string;
-
-    /**
-     * The label to display for the next button
-     */
-    nextLabel?: string;
 
     /**
      * Function called when the current password field changes
@@ -58,25 +37,8 @@ export type ChangePasswordDialogProps = Omit<DialogProps, 'children'> & { Passwo
     onFinish?: () => void;
 
     /**
-     * Callback function to call when the form is submitted
-     * @returns void | Promise<void>
-     */
-    onSubmit?: () => void | Promise<void>;
-
-    /**
-     * Function called when the previous button is clicked
-     * @returns void
-     */
-    onPrevious?: () => void;
-
-    /**
-     * Boolean that indicates whether the loading spinner should be displayed
-     */
-    loading?: boolean;
-
-    /**
      * The props to pass to the current password field.
-     * See [MUI's TextInputProps API](https://mui.com/material-ui/api/text-field/) for more details.
+     * See React Native Paper [TextInputProps API](https://callstack.github.io/react-native-paper/docs/components/TextInput/) for more details.
      */
     currentPasswordTextInputProps?: TextInputProps;
 
@@ -94,4 +56,9 @@ export type ChangePasswordDialogProps = Omit<DialogProps, 'children'> & { Passwo
      * Applied to slot from SuccessScreen
      */
     slotProps?: ChangePasswordDialogSlotsProps;
+
+    /**
+     * The configuration for customizing how errors are displayed
+     */
+    errorDisplayConfig?: ErrorManagerProps;
 };

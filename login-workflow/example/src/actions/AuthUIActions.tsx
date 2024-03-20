@@ -167,6 +167,7 @@ export const ProjectAuthUIActions: AuthUIActionsWithApp = (appHelper) => ({
      * @returns Resolve if successful, otherwise reject with an error message.
      */
     changePassword: async (oldPassword: string, newPassword: string): Promise<void> => {
+        console.log('oldPassword', oldPassword, newPassword);
         await sleep(1000);
 
         if (isRandomFailure()) {
