@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v6.0.0 (Unreleased)
+
+### Fixed
+
+-   Support React Native ^0.73.0 and Gradle 8 [316](https://github.com/etn-ccis/blui-react-native-workflows/issues/316).
+-   Workflow card and screens to display correct titles [307](https://github.com/etn-ccis/blui-react-native-workflows/issues/307).
+-   Workflow card headers with close button [306](https://github.com/etn-ccis/blui-react-native-workflows/issues/306).
+-   Verification code validator function can be set [305](https://github.com/etn-ccis/blui-react-native-workflows/issues/305).
+-   Error display for email text inputs [302](https://github.com/etn-ccis/blui-react-native-workflows/issues/302).
+-   Disable next button for invalid inputs [276](https://github.com/etn-ccis/blui-react-native-workflows/issues/276).
+-   Navigation and error handling updated [275](https://github.com/etn-ccis/blui-react-native-workflows/issues/275).
+
 ## v5.2.0 (October 31, 2023)
 
 ### Fixed
