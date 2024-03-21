@@ -43,9 +43,9 @@ import { ErrorManager } from '@brightlayer-ui/react-native-auth-workflow';
 
 | Prop Name       | Type                   | Description                                                                               | Default                                   |
 | --------------- | ---------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------- |
-| title           | `string`               | Text to show in the title of the dialog.                                                  | `t('bluiCommon:MESSAGES.ERROR') (Error!)` |
+| backgroundColor | `string`               | The background color of the message box.                                                  | `theme.colors.error`                      |
 | dismissible     | `boolean`              | Whether the message box can be dismissed.                                                 | `true`                                    |
+| fontColor       | `string`               | The font color of the text inside the message box.                                        | `theme.colors.onError`                    |
 | position        | `'top' \| 'bottom'`    | Determines whether the message box should be displayed before or after children elements. | `'top'`                                   |
-| fontColor       | `string`               | The font color of the text inside the message box.                                        |                                           |
-| backgroundColor | `string`               | The background color of the message box.                                                  |                                           |
 | style           | `StyleProp<ViewStyle>` | Style overrides object                                                                    |                                           |
+| title           | `string`               | Text to show in the title of the dialog.                                                  | `t('bluiCommon:MESSAGES.ERROR') (Error!)` |

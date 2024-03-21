@@ -60,10 +60,11 @@ The properties of the underlying React Native Paper [Card.Content](https://calls
 |---|---|---|---|---|
 | backgroundColor   | `string`     | background color of header  | No | theme.colors.primary |
 | icon              | `IconSource` | icon to be shown on left side of header | No | close |
-| iconColor         | `string`     | icon color of header  | No | theme.colors.onPrimary |
+| iconColor         | `string`     | icon color of header  | No | theme.colors.onSurface |
+| subtitle          | `string`     | Text to display as subtitle in Header  | No | |
 | textColor         | `string`     | text color of header  | No | theme.colors.onPrimary |
 | title             | `string`     | text to display as title in header | Yes |  |
-| onIconPress       | `function`   | on press functionality for the icon | Yes |  |
+| onIconPress       | `() => void` | on press functionality for the icon | Yes |  |
 
 
 The properties of the underlying React Native [View](https://reactnative.dev/docs/view) component are also available.
