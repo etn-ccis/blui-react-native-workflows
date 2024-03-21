@@ -3,29 +3,27 @@ import { ForgotPasswordScreenBase, ForgotPasswordScreenProps } from '@brightlaye
 import { Text } from 'react-native-paper';
 import { View } from 'react-native';
 
-export const ForgotPasswordScreenBaseExample: React.FC<ForgotPasswordScreenProps> = () => {
-    return (
-        <ForgotPasswordScreenBase
-            WorkflowCardHeaderProps={{
-                title: 'Forgot Password Screen Base',
-            }}
-            WorkflowCardInstructionProps={{
-                instructions: 'Enter your email id for password reset',
-            }}
-            emailTextInputFieldProps={{
-                label: 'Email id',
-            }}
-            successScreen={
-                <View>
-                    <Text>Success</Text>
-                </View>
-            }
-            WorkflowCardActionsProps={{
-                showPrevious: true,
-                previousLabel: 'Back',
-                showNext: true,
-                nextLabel: 'Next',
-            }}
-        />
-    );
-};
+export const ForgotPasswordScreenBaseExample: React.FC<ForgotPasswordScreenProps> = () => (
+    <ForgotPasswordScreenBase
+        WorkflowCardHeaderProps={{
+            title: 'Forgot Password Screen Base',
+        }}
+        WorkflowCardInstructionProps={{
+            instructions: 'Enter your email id for password reset',
+        }}
+        emailTextInputFieldProps={{
+            label: 'Email id',
+        }}
+        successScreen={
+            <View>
+                <Text>Success</Text>
+            </View>
+        }
+        WorkflowCardActionsProps={{
+            showPrevious: true,
+            previousLabel: 'Back',
+            showNext: true,
+            nextLabel: 'Next',
+        }}
+    />
+);
