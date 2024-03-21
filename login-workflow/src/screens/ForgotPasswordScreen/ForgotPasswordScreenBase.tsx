@@ -8,7 +8,6 @@ import {
     WorkflowCardInstructions,
 } from '../../components';
 import { ForgotPasswordScreenProps } from './types';
-import { SuccessScreenBase, SuccessScreenProps } from '../SuccessScreen';
 import { HelperText, TextInput } from 'react-native-paper';
 
 /**
@@ -28,9 +27,6 @@ export const ForgotPasswordScreenBase: React.FC<React.PropsWithChildren<ForgotPa
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         emailValidator = (email: string): boolean | string => true,
         successScreen,
-        // contactPhone,
-        // responseTime,
-        // description,
         showSuccessScreen,
         errorDisplayConfig,
         emailTextInputFieldProps,
@@ -51,7 +47,6 @@ export const ForgotPasswordScreenBase: React.FC<React.PropsWithChildren<ForgotPa
         (email: string) => {
             setEmailInput(email);
             const emailValidatorResponse = emailValidator(email);
-
             setIsEmailValid(typeof emailValidatorResponse === 'boolean' ? emailValidatorResponse : false);
             setEmailError(typeof emailValidatorResponse === 'string' ? emailValidatorResponse : '');
         },
@@ -64,11 +59,6 @@ export const ForgotPasswordScreenBase: React.FC<React.PropsWithChildren<ForgotPa
             onNext({ email: emailInput });
         }
     };
-
-    // const getSuccessScreen = (
-    //     _props: SuccessScreenProps,
-    //     SuccessScreen?: (props: SuccessScreenProps) => JSX.Element
-    // ): JSX.Element => (SuccessScreen ? SuccessScreen(_props) : <SuccessScreenBase {..._props} />);
 
     return (
         <>
@@ -86,26 +76,21 @@ export const ForgotPasswordScreenBase: React.FC<React.PropsWithChildren<ForgotPa
                                 mode="flat"
                                 error={shouldValidateEmail && !isEmailValid}
                                 {...emailTextInputFieldProps}
-                                onBlur={(): void => {
+                                onBlur={(e): void => {
                                     // eslint-disable-next-line no-unused-expressions
-                                    // emailTextInputFieldProps?.onBlur && emailTextInputFieldProps.onBlur(e);
+                                    emailTextInputFieldProps?.onBlur && emailTextInputFieldProps.onBlur(e);
                                     setShouldValidateEmail(true);
                                 }}
-                                onChangeText={(text: string): void => {
+                                onChangeText={(email: string): void => {
                                     // eslint-disable-next-line no-unused-expressions
                                     emailTextInputFieldProps?.onChangeText &&
-                                        emailTextInputFieldProps.onChangeText(text);
-                                    handleEmailInputChange(text);
+                                        emailTextInputFieldProps.onChangeText(email);
+                                    handleEmailInputChange(email);
                                 }}
-                                // onKeyUp={(e): void => {
-                                //     if (
-                                //         e.key === 'Enter' &&
-                                //         ((emailInput.length > 0 && isEmailValid) || actionsProps.canGoNext)
-                                //     )
-                                //         handleOnNext();
-                                // }}
                             />
-                            {shouldValidateEmail && <HelperText type="error">{emailError}</HelperText>}
+                            <HelperText type="error" visible={shouldValidateEmail}>
+                                {emailError}
+                            </HelperText>
                         </ErrorManager>
                     </WorkflowCardBody>
                     <WorkflowCardActions
