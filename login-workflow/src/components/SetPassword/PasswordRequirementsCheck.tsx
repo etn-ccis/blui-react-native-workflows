@@ -27,7 +27,9 @@ export const PasswordRequirementsCheck: React.FC<PasswordRequirementsCheckProps>
     return (
         <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 4 }}>
             <Icon source={{ name: 'check' }} color={isChecked ? theme.colors.primary : theme.colors.disabled} />
-            <Text variant='bodySmall' style={defaultStyle.label}>{label}</Text>
+            <Text variant='bodySmall' style={defaultStyle.label}>
+                {label}
+            </Text>
         </View>
     );
 };
