@@ -9,7 +9,7 @@ import {
     WorkflowCardInstructions,
 } from '../../components';
 import { HelperText, Text, TextInput } from 'react-native-paper';
-import { View } from 'react-native';
+import { Text as RNText, View } from 'react-native';
 import { useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 
 /**
@@ -102,9 +102,16 @@ export const VerifyCodeScreenBase: React.FC<React.PropsWithChildren<VerifyCodeSc
                     <View>
                         <Text variant="bodyMedium">
                             {resendInstructions}{' '}
-                            <Text variant="titleSmall" style={{ color: theme.colors.primary }} onPress={onResend}>
+                            <RNText
+                                style={{
+                                    color: theme.colors.primary,
+                                    fontWeight: 'bold',
+                                    textDecorationLine: 'underline',
+                                }}
+                                onPress={onResend}
+                            >
                                 {resendLabel}
-                            </Text>
+                            </RNText>
                         </Text>
                     </View>
                 </ErrorManager>
