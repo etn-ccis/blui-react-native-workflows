@@ -12,6 +12,7 @@ import { View } from 'react-native';
 import RegistrationProviderExample from '../screens/RegistrationProviderExample';
 import AuthProviderExample from '../screens/AuthProviderExample';
 import { Login } from '../screens/Login';
+import { ResetPasswordScreenBaseExample } from '../components/ResetPasswordScreenBaseExample';
 
 const getAuthState = (): any => ({
     isAuthenticated: true,
@@ -24,6 +25,7 @@ export type RootStackParamList = {
     Home: undefined;
     RegistrationProviderExample: undefined;
     AuthProviderExample: undefined;
+    ResetPasswordScreenBaseExample: undefined;
 };
 
 const RootStack = createStackNavigator<RootStackParamList>();
@@ -52,6 +54,11 @@ const AppRouter = (): any => (
         <RootStack.Screen
             name="AuthProviderExample"
             component={AuthProviderExample}
+            options={{ gestureEnabled: false }}
+        />
+        <RootStack.Screen
+            name="ResetPasswordScreenBaseExample"
+            component={ResetPasswordScreenBaseExample}
             options={{ gestureEnabled: false }}
         />
     </Drawer.Navigator>

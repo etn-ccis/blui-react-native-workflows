@@ -20,6 +20,11 @@ export const navGroupItems: NavItem[] = [
         itemID: 'AuthProviderExample',
         icon: { name: 'app-registration' },
     },
+    {
+        title: 'ResetPasswordScreenBase',
+        itemID: 'ResetPasswordScreenBaseExample',
+        icon: { name: 'app-registration' },
+    },
 ];
 
 export type NavDrawerProps = {
