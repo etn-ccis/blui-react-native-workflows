@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.example.app-mergeDebugResources-34:/values-tg/values-tg.xml",
+            "map": [
+                {
+                    "source": "/Users/priyanka.m/.gradle/caches/transforms-3/d10d040f6dc36d35e250d48d5ebb15bd/transformed/jetified-react-android-0.73.2-debug/res/values-tg/values-tg.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7",
+                        "startColumns": "4,4,4,4,4,4",
+                        "startOffsets": "55,138,208,291,361,434",
+                        "endColumns": "82,69,82,69,72,71",
+                        "endOffsets": "133,203,286,356,429,501"
+                    }
+                }
+            ]
+        }
+    ]
+}

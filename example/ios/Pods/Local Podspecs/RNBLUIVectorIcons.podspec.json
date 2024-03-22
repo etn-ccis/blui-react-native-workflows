@@ -1,0 +1,23 @@
+{
+    "name": "RNBLUIVectorIcons",
+    "version": "2.2.0",
+    "summary": "Brightlayer UI vector icons for use in React Native projects, based on react-native-vector-icons",
+    "homepage": "https://github.com/etn-ccis/blui-icons",
+    "license": "BSD-3-Clause",
+    "authors": {
+        "Brightlayer UI": "brightlayer-ui@eaton.com"
+    },
+    "platforms": {
+        "ios": "9.0"
+    },
+    "source": {
+        "git": "https://github.com/etn-ccis/blui-icons.git",
+        "tag": "2.2.0"
+    },
+    "source_files": "ios/**/*.{h,c,cc,cpp,m,mm,swift}",
+    "resources": ["Fonts/*.ttf"],
+    "requires_arc": true,
+    "dependencies": {
+        "React": []
+    }
+}
