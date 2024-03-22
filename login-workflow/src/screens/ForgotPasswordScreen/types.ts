@@ -1,5 +1,6 @@
 import { TextInputProps } from 'react-native-paper';
 import { ErrorManagerProps, WorkflowCardProps } from '../../components';
+import { SuccessScreenProps } from '../SuccessScreen';
 
 export type ForgotPasswordScreenProps = WorkflowCardProps & {
     /**
@@ -22,7 +23,12 @@ export type ForgotPasswordScreenProps = WorkflowCardProps & {
     /**
      * used to pass Success Screen component
      */
-    successScreen?: JSX.Element;
+    successScreen?: (props: SuccessScreenProps) => JSX.Element;
+
+    /**
+     * props applied to Success Screen
+     */
+    successScreenProps?: SuccessScreenProps;
 
     /**
      * used to display contact phone number

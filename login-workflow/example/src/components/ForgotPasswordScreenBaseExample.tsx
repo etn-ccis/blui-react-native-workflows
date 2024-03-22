@@ -1,9 +1,7 @@
 import React from 'react';
-import { ForgotPasswordScreenBase, ForgotPasswordScreenProps } from '@brightlayer-ui/react-native-auth-workflow';
-import { Text } from 'react-native-paper';
-import { View } from 'react-native';
+import { ForgotPasswordScreenBase } from '@brightlayer-ui/react-native-auth-workflow';
 
-export const ForgotPasswordScreenBaseExample: React.FC<ForgotPasswordScreenProps> = () => (
+export const ForgotPasswordScreenBaseExample: React.FC = () => (
     <ForgotPasswordScreenBase
         WorkflowCardHeaderProps={{
             title: 'Forgot Password',
@@ -14,16 +12,21 @@ export const ForgotPasswordScreenBaseExample: React.FC<ForgotPasswordScreenProps
         emailTextInputProps={{
             label: 'Email Address',
         }}
-        successScreen={
-            <View>
-                <Text>Success</Text>
-            </View>
-        }
         WorkflowCardActionsProps={{
             showPrevious: true,
             previousLabel: 'Back',
             showNext: true,
             nextLabel: 'Next',
+        }}
+        successScreenProps={{
+            messageTitle: 'Hello',
+            canDismiss: true,
+            dismissButtonLabel: 'OKay',
+            message: 'Test',
+            WorkflowCardActionsProps: {
+                showNext: true,
+                fullWidthButton: true,
+            },
         }}
     />
 );

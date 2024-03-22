@@ -9,6 +9,7 @@ import {
 } from '../../components';
 import { ForgotPasswordScreenProps } from './types';
 import { HelperText, TextInput } from 'react-native-paper';
+import { SuccessScreenBase, SuccessScreenProps } from '../SuccessScreen';
 
 /**
  * Component renders a screen with forgot password for support with the application.
@@ -29,6 +30,7 @@ export const ForgotPasswordScreenBase: React.FC<React.PropsWithChildren<ForgotPa
         emailValidator = (email: string): boolean | string =>
             new RegExp(EMAIL_REGEX).test(email) ? true : 'Please enter a valid email',
         successScreen,
+        successScreenProps,
         showSuccessScreen,
         errorDisplayConfig,
         emailTextInputProps,
@@ -62,10 +64,15 @@ export const ForgotPasswordScreenBase: React.FC<React.PropsWithChildren<ForgotPa
         }
     };
 
+    const getSuccessScreen = (
+        _props: SuccessScreenProps,
+        _successScreen?: (props: SuccessScreenProps) => JSX.Element
+    ): JSX.Element => (_successScreen ? _successScreen(_props) : <SuccessScreenBase {..._props} />);
+
     return (
         <>
             {showSuccessScreen ? (
-                { successScreen }
+                getSuccessScreen(successScreenProps ?? {}, successScreen)
             ) : (
                 <WorkflowCard {...cardBaseProps}>
                     <WorkflowCardHeader {...headerProps} />
