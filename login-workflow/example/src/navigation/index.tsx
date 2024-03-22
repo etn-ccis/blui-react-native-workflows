@@ -8,10 +8,10 @@ import { NavigationDrawer } from './navigation-drawer';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
 import Home from '../screens/home';
-import { ChangePassword } from '../screens/ChangePassword';
 import { View } from 'react-native';
 import AuthProviderExample from '../screens/AuthProviderExample';
 import { Login } from '../screens/Login';
+import RegistrationProviderExample from '../screens/RegistrationProviderExample';
 
 const getAuthState = (): any => ({
     isAuthenticated: true,
@@ -46,7 +46,7 @@ const AppRouter = (): any => (
         <RootStack.Screen name="Home" component={Home} />
         <RootStack.Screen
             name="RegistrationProviderExample"
-            component={ChangePassword}
+            component={RegistrationProviderExample}
             options={{ gestureEnabled: false }}
         />
         <RootStack.Screen
