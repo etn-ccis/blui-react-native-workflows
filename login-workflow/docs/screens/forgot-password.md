@@ -39,11 +39,11 @@ This screen also extends the `WorkflowCardProps` type for updating the title, in
     ```tsx
     (responseTime: string): React.ReactNode => {
         return (
-            <p>
+            <Text>
                 {t('bluiAuth:FORGOT_PASSWORD.DESCRIPTION', {
                     responseTime,
                 })}
-            </p>
+            </Text>
         );
     };
     ```
