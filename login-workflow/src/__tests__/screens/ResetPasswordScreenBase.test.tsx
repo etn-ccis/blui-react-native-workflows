@@ -1,5 +1,5 @@
 import React from 'react';
-import { cleanup, render, RenderResult } from '@testing-library/react-native';
+import { cleanup, render, RenderResult, screen } from '@testing-library/react-native';
 import { Provider as PaperProvider } from 'react-native-paper';
 import '@testing-library/react-native/extend-expect';
 import { ResetPasswordScreenBase, ResetPasswordScreenProps } from '../../screens';
@@ -16,6 +16,18 @@ describe('ResetPasswordScreenBase tests', () => {
     afterEach(cleanup);
 
     it('renders without crashing', () => {
-        renderer();
+        renderer({
+            WorkflowCardHeaderProps: {
+                title: 'Reset Password',
+            },
+        });
+        expect(screen.getByText('Reset Password')).toBeTruthy();
+    });
+
+    it('should render success screen', () => {
+        renderer({
+            showSuccessScreen: true,
+        });
+        expect(screen.getByTestId('workflow-card-action-divider')).toBeOnTheScreen();
     });
 });

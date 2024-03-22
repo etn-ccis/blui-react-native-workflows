@@ -9,6 +9,7 @@ import {
     WorkflowCardActions,
     ErrorManager,
 } from '../../components';
+import { SuccessScreenBase, SuccessScreenProps } from '../SuccessScreen';
 
 /**
  * Component that renders a ResetPassword screen that allows a user to reset their password and shows a success message upon a successful password reset..
@@ -25,12 +26,17 @@ export const ResetPasswordScreenBase: React.FC<ResetPasswordScreenProps> = (prop
     const instructionsProps = props.WorkflowCardInstructionProps || {};
     const actionsProps = props.WorkflowCardActionsProps || {};
     const passwordProps = props.PasswordProps || { onPasswordChange: () => ({}) };
-    const { showSuccessScreen, successScreen, errorDisplayConfig } = props;
+    const { showSuccessScreen, successScreen, successScreenProps, errorDisplayConfig } = props;
+
+    const getSuccessScreen = (
+        _props: SuccessScreenProps,
+        _successScreen?: (props: SuccessScreenProps) => JSX.Element
+    ): JSX.Element => (_successScreen ? _successScreen(_props) : <SuccessScreenBase {..._props} />);
 
     return (
         <>
             {showSuccessScreen ? (
-                { successScreen }
+                getSuccessScreen(successScreenProps ?? {}, successScreen)
             ) : (
                 <WorkflowCard {...cardBaseProps}>
                     <WorkflowCardHeader {...headerProps} />

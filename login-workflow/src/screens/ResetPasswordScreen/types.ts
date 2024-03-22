@@ -1,6 +1,7 @@
 import { ErrorManagerProps } from '../../components/Error';
 import { SetPasswordProps } from '../../components/SetPassword/types';
 import { WorkflowCardProps } from '../../components/WorkflowCard/WorkflowCard.types';
+import { SuccessScreenProps } from '../SuccessScreen';
 
 export type ResetPasswordScreenProps = Omit<WorkflowCardProps, 'currentStep | totalSteps'> & {
     /**
@@ -16,7 +17,12 @@ export type ResetPasswordScreenProps = Omit<WorkflowCardProps, 'currentStep | to
     /**
      * used to pass Success Screen component
      */
-    successScreen?: JSX.Element;
+    successScreen?: (props: SuccessScreenProps) => JSX.Element;
+
+    /**
+     * props applied to Success Screen
+     */
+    successScreenProps?: SuccessScreenProps;
 
     /**
      * The configuration for customizing how errors are displayed
