@@ -7,6 +7,15 @@ import { PaperProvider } from 'react-native-paper';
 
 describe('VerifyCodeScreenBase  Tests', () => {
     afterEach(cleanup);
+    let mockOnPrevious: any;
+
+    beforeEach(() => {
+        mockOnPrevious = jest.fn();
+    });
+
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
 
     it('VerifyCodeScreenBase renders correctly', () => {
         render(
@@ -56,12 +65,13 @@ describe('VerifyCodeScreenBase  Tests', () => {
                     WorkflowCardActionsProps={{
                         showPrevious: true,
                         previousLabel: 'Back',
-                        onPrevious: () => jest.fn(),
+                        onPrevious: mockOnPrevious(),
                     }}
                 />
             </PaperProvider>
         );
         const prevButton = screen.getByText('Back');
         fireEvent.press(prevButton);
+        expect(mockOnPrevious).toHaveBeenCalled();
     });
 });

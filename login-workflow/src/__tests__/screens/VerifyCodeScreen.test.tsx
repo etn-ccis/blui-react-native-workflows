@@ -10,10 +10,12 @@ import '@testing-library/react-native/extend-expect';
 describe('Verify Code Full Screen Test cases', () => {
     let mockOnPrevious: any;
     let mockOnResend: any;
+    let mockOnClose: any;
 
     beforeEach(() => {
         mockOnPrevious = jest.fn();
         mockOnResend = jest.fn();
+        mockOnClose = jest.fn();
     });
 
     afterEach(() => {
@@ -34,6 +36,17 @@ describe('Verify Code Full Screen Test cases', () => {
     it('Should render correctly', () => {
         renderer();
         expect(screen.getByText('Verify Email')).toBeOnTheScreen();
+    });
+
+    it('clicking on close Icon test with mock function', () => {
+        renderer({
+            WorkflowCardHeaderProps: {
+                onIconPress: mockOnClose(),
+            },
+        });
+        const closeIcon = screen.getByTestId('workflow-card-icon');
+        fireEvent.press(closeIcon);
+        expect(mockOnClose).toHaveBeenCalled();
     });
 
     it('clicking on close Icon test', () => {
