@@ -57,12 +57,7 @@
     },
     "dependencies": {
         "color": "^4.2.3",
-        "lodash.clonedeep": "^4.5.0",
-        "react-native-reanimated": "^3.6.1",
-        "react-native-status-bar-height": "^2.5.0",
-        "react-native-svg": "^14.1.0",
-        "react-native-svg-transformer": "^1.3.0",
-        "react-native-tab-view": "^3.5.2"
+        "lodash.clonedeep": "^4.5.0"
     },
     "peerDependencies": {
         "@brightlayer-ui/colors": "^3.0.1",
@@ -79,7 +74,10 @@
         "react-native-keyboard-aware-scroll-view": "~0.9.1",
         "react-native-pager-view": "^6.2.3",
         "react-native-paper": "^5.0.0",
+        "react-native-reanimated": "^3.6.1",
         "react-native-safe-area-context": "^3.0.0",
+        "react-native-svg": "^15.1.0",
+        "react-native-svg-transformer": "^1.3.0",
         "react-native-vector-icons": "^9.0.0",
         "react-native-webview": "^11.23.1"
     },
@@ -134,8 +132,11 @@
         "react-native-keyboard-aware-scroll-view": "^0.9.5",
         "react-native-pager-view": "^6.2.3",
         "react-native-paper": "^5.0.0",
+        "react-native-reanimated": "^3.6.1",
         "react-native-safe-area-context": "^3.0.0",
         "react-native-screens": "^3.0.0",
+        "react-native-svg": "^15.1.0",
+        "react-native-svg-transformer": "^1.3.0",
         "react-native-vector-icons": "^9.2.0",
         "react-native-webview": "^13.8.1",
         "react-test-renderer": "^18.2.0",
