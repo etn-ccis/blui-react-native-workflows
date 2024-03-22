@@ -6,13 +6,13 @@ import { View } from 'react-native';
 export const ForgotPasswordScreenBaseExample: React.FC<ForgotPasswordScreenProps> = () => (
     <ForgotPasswordScreenBase
         WorkflowCardHeaderProps={{
-            title: 'Forgot Password Screen Base',
+            title: 'Forgot Password',
         }}
         WorkflowCardInstructionProps={{
-            instructions: 'Enter your email id for password reset',
+            instructions: 'Please enter the email address associated with the account',
         }}
         emailTextInputFieldProps={{
-            label: 'Email id',
+            label: 'Email Address',
         }}
         successScreen={
             <View>

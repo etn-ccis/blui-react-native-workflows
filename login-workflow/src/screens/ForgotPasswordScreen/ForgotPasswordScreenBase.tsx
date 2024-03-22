@@ -29,7 +29,7 @@ export const ForgotPasswordScreenBase: React.FC<React.PropsWithChildren<ForgotPa
         successScreen,
         showSuccessScreen,
         errorDisplayConfig,
-        emailTextInputFieldProps,
+        emailTextInputProps,
     } = props;
 
     const cardBaseProps = props.WorkflowCardBaseProps || {};
@@ -75,16 +75,15 @@ export const ForgotPasswordScreenBase: React.FC<React.PropsWithChildren<ForgotPa
                                 value={emailInput}
                                 mode="flat"
                                 error={shouldValidateEmail && !isEmailValid}
-                                {...emailTextInputFieldProps}
+                                {...emailTextInputProps}
                                 onBlur={(e): void => {
                                     // eslint-disable-next-line no-unused-expressions
-                                    emailTextInputFieldProps?.onBlur && emailTextInputFieldProps.onBlur(e);
+                                    emailTextInputProps?.onBlur && emailTextInputProps.onBlur(e);
                                     setShouldValidateEmail(true);
                                 }}
                                 onChangeText={(email: string): void => {
                                     // eslint-disable-next-line no-unused-expressions
-                                    emailTextInputFieldProps?.onChangeText &&
-                                        emailTextInputFieldProps.onChangeText(email);
+                                    emailTextInputProps?.onChangeText && emailTextInputProps.onChangeText(email);
                                     handleEmailInputChange(email);
                                 }}
                             />
