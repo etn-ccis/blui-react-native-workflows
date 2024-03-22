@@ -1,5 +1,5 @@
 import React from 'react';
-import { useRegistrationContext } from '../../contexts';
+import { useRegistrationContext, useRegistrationWorkflowContext } from '../../contexts';
 import { SuccessScreenBase, SuccessScreenProps } from '../SuccessScreen';
 import { useTranslation } from 'react-i18next';
 /**
@@ -13,6 +13,7 @@ import { useTranslation } from 'react-i18next';
 export const ExistingAccountSuccessScreen: React.FC<SuccessScreenProps> = (props) => {
     const { t } = useTranslation();
     const { navigate, routeConfig } = useRegistrationContext();
+    const { resetScreenData } = useRegistrationWorkflowContext();
     const {
         icon = { family: 'material', name: 'person' },
         messageTitle = t('bluiCommon:MESSAGES.WELCOME'),
@@ -30,6 +31,7 @@ export const ExistingAccountSuccessScreen: React.FC<SuccessScreenProps> = (props
         ...WorkflowCardHeaderProps,
         onIconPress: (): void => {
             navigate(routeConfig.LOGIN as string);
+            resetScreenData();
         },
     };
 
@@ -46,6 +48,7 @@ export const ExistingAccountSuccessScreen: React.FC<SuccessScreenProps> = (props
         ...WorkflowCardActionsProps,
         onNext: (): void => {
             onDismiss();
+            resetScreenData();
             WorkflowCardActionsProps?.onNext?.();
         },
     };

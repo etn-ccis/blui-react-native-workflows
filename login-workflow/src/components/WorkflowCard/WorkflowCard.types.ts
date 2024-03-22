@@ -41,17 +41,18 @@ export type WorkflowCardHeaderProps = Omit<ViewProps, 'children'> & {
     onIconPress?: () => void;
     /**
      * The background color of Header
-     * @default theme.colors.primary
+     * @default theme.colors.primaryContainer
      */
     backgroundColor?: string;
     /**
      * The text color of Header
-     * @default theme.colors.onPrimary
+     * For Mobile view @default theme.colors.onPrimaryContainer
+     * For Tablet view @default theme.colors.onSurface
      */
     textColor?: string;
     /**
      * The icon color of Header
-     * @default theme.colors.onPrimary
+     * @default theme.colors.onSurface
      */
     iconColor?: string;
     /**
