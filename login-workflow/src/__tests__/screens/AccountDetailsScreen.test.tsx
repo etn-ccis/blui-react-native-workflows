@@ -1,11 +1,11 @@
 import React from 'react';
+import '@testing-library/react-native/extend-expect';
 import { cleanup, render, screen, RenderResult, fireEvent, waitFor } from '@testing-library/react-native';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { RegistrationContextProvider } from '../../contexts';
 import { RegistrationWorkflow } from '../../components';
 import { registrationContextProviderProps } from '../../testUtils';
 import { AccountDetailsScreen, AccountDetailsScreenProps } from '../../screens/AccountDetailsScreen';
-import '@testing-library/react-native/extend-expect';
 
 afterEach(cleanup);
 
@@ -35,6 +35,7 @@ describe('Account Details Screen', () => {
 
     it('renders without crashing', () => {
         renderer();
+        expect(screen.getByText('Account Details')).toBeOnTheScreen();
     });
 
     it('should update values when passed as props', () => {
@@ -43,7 +44,6 @@ describe('Account Details Screen', () => {
                 title: 'Test Title',
             },
         });
-
         expect(screen.getByText('Test Title')).toBeOnTheScreen();
     });
 
@@ -53,11 +53,10 @@ describe('Account Details Screen', () => {
                 instructions: 'Test Instruction',
             },
         });
-
         expect(screen.getByText('Test Instruction')).toBeOnTheScreen();
     });
 
-    it('should call onNext, when Next button clicked', () => {
+    it('should call onNext, when Next button clicked', async () => {
         renderer({
             WorkflowCardActionsProps: {
                 onNext: mockOnNext(),
@@ -67,15 +66,21 @@ describe('Account Details Screen', () => {
         });
 
         const firstNameInput = screen.getByTestId('firstName');
-        fireEvent.changeText(firstNameInput, 'Test First Name');
+        expect(firstNameInput.props.value).toBe('');
 
         const lastNameInput = screen.getByTestId('lastName');
-        fireEvent.changeText(lastNameInput, 'Test Last Name');
+        expect(lastNameInput.props.value).toBe('');
 
         const nextButton = screen.getByText('Next');
-        expect(nextButton).toBeOnTheScreen();
+        expect(nextButton).toBeDisabled();
+
+        fireEvent.changeText(firstNameInput, 'Test First Name');
+        fireEvent.changeText(lastNameInput, 'Test Last Name');
+        expect(nextButton).toBeEnabled();
+
         fireEvent.press(nextButton);
         expect(mockOnNext).toHaveBeenCalled();
+        await waitFor(() => expect(screen.getByTestId('spinner')).toBeOnTheScreen());
     });
 
     it('should call onPrevious, when Back button clicked', () => {
@@ -88,7 +93,7 @@ describe('Account Details Screen', () => {
         });
 
         const backButton = screen.getByText('Back');
-        expect(backButton).toBeOnTheScreen();
+        expect(backButton).toBeEnabled();
         fireEvent.press(backButton);
         expect(mockOnPrevious).toHaveBeenCalled();
     });

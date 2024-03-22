@@ -38,6 +38,8 @@ export const registrationContextProviderProps: RegistrationContextProviderProps 
     },
 };
 
+const sleep = (ms: number): Promise<void> => new Promise((resolve) => setTimeout(resolve, ms));
+
 export const errorRegistrationContextProviderProps: RegistrationContextProviderProps = {
     language: 'en',
     i18n: i18nRegistrationInstance,
@@ -48,7 +50,8 @@ export const errorRegistrationContextProviderProps: RegistrationContextProviderP
         acceptEula: jest.fn(),
         requestRegistrationCode: jest.fn(),
         validateUserRegistrationRequest: jest.fn(),
-        createPassword: () => {
+        createPassword: async () => {
+            await sleep(800);
             throw error('This is the error test');
         },
         setAccountDetails: jest.fn(),

@@ -1,44 +1,41 @@
 import React from 'react';
 import '@testing-library/jest-dom';
-import { cleanup, render, fireEvent } from '@testing-library/react-native';
+import '@testing-library/react-native/extend-expect';
+import { cleanup, render, fireEvent, screen } from '@testing-library/react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import renderer from 'react-test-renderer';
 import { CreateAccountScreenBase } from '../../screens/CreateAccountScreen';
-jest.useFakeTimers();
 
 afterEach(cleanup);
 
 describe('Create Account Base', () => {
     it('renders correctly', () => {
-        const rendered = renderer
-            .create(
-                <SafeAreaProvider>
-                    <CreateAccountScreenBase />
-                </SafeAreaProvider>
-            )
-            .toJSON();
-        expect(rendered).toBeTruthy();
+        render(
+            <SafeAreaProvider>
+                <CreateAccountScreenBase />
+            </SafeAreaProvider>
+        );
+        expect(screen.getByTestId('email-textinput')).toBeOnTheScreen();
     });
+
     it('renders correctly with props', () => {
-        const rendered = renderer
-            .create(
-                <SafeAreaProvider>
-                    <CreateAccountScreenBase
-                        WorkflowCardInstructionProps={{ instructions: 'Test Instructions' }}
-                        initialValue="a"
-                        emailValidator={(email: string): boolean | string => {
-                            if (email?.length > 6) {
-                                return true;
-                            }
-                            return 'Please enter a valid email';
-                        }}
-                    />
-                </SafeAreaProvider>
-            )
-            .toJSON();
-        expect(rendered).toBeTruthy();
+        render(
+            <SafeAreaProvider>
+                <CreateAccountScreenBase
+                    WorkflowCardInstructionProps={{ instructions: 'Test Instructions' }}
+                    initialValue="a"
+                    emailValidator={(email: string): boolean | string => {
+                        if (email?.length > 6) {
+                            return true;
+                        }
+                        return 'Please enter a valid email';
+                    }}
+                />
+            </SafeAreaProvider>
+        );
+        expect(screen.getByText('Please enter a valid email')).toBeOnTheScreen();
     });
-    it(' email textinput onchange works correctly', () => {
+
+    it('email textinput onchange works correctly', () => {
         const updateInput = jest.fn();
         const { getByTestId } = render(
             <SafeAreaProvider>
