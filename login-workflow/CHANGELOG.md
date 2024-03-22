@@ -9,8 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+-   Using keyboard done button [265](https://github.com/etn-ccis/blui-react-native-workflows/issues/265).
 -   Navigation and error handling updated [275](https://github.com/etn-ccis/blui-react-native-workflows/issues/275).
 -   Disable next button for invalid inputs [276](https://github.com/etn-ccis/blui-react-native-workflows/issues/276).
+-   Keyboard bounce on every character [279](https://github.com/etn-ccis/blui-react-native-workflows/issues/279).
 -   Error display for email text inputs [302](https://github.com/etn-ccis/blui-react-native-workflows/issues/302).
 -   Verification code validator function can be set [305](https://github.com/etn-ccis/blui-react-native-workflows/issues/305).
 -   Workflow card headers with close button [306](https://github.com/etn-ccis/blui-react-native-workflows/issues/306).
