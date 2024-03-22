@@ -6,13 +6,13 @@ import { AuthContextProvider, ErrorContextProvider } from '@brightlayer-ui/react
 import { RootStackParamList } from '../navigation';
 import { useNavigation } from '@react-navigation/native';
 import { ProjectAuthUIActions } from '../actions/AuthUIActions';
-import { AuthCustomScreen } from '../components/AuthCustomScreen';
+import { ChangePassword } from './ChangePassword';
 
 type AppProps = {
-    navigation: StackNavigationProp<RootStackParamList, 'RegistrationProviderExample'>;
+    navigation: StackNavigationProp<RootStackParamList, 'AuthProviderExample'>;
 };
 
-const RegistrationProviderExample: React.FC<AppProps> = (): JSX.Element => {
+const AuthProviderExample: React.FC<AppProps> = (): JSX.Element => {
     const app = useApp();
     const nav = useNavigation();
 
@@ -38,9 +38,9 @@ const RegistrationProviderExample: React.FC<AppProps> = (): JSX.Element => {
             }}
         >
             <ErrorContextProvider>
-                <AuthCustomScreen />
+                <ChangePassword />
             </ErrorContextProvider>
         </AuthContextProvider>
     );
 };
-export default RegistrationProviderExample;
+export default AuthProviderExample;

@@ -45,7 +45,7 @@ export const ContactSupportScreenBase: React.FC<ContactSupportScreenProps> = (pr
             <WorkflowCardHeader {...headerProps} />
             {Object.keys(instructionsProps).length !== 0 && <WorkflowCardInstructions {...instructionsProps} />}
             {icon && (
-                <View style={{ alignItems: 'center', marginVertical: 16 }}>
+                <View style={{ alignItems: 'center', marginTop: 48, marginBottom: 16 }}>
                     <Icon source={icon} size={iconSize || 24} color={theme.colors.disabled} />
                 </View>
             )}

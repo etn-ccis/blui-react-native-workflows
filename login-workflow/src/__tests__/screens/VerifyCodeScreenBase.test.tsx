@@ -1,81 +1,77 @@
 import React from 'react';
 import '@testing-library/jest-dom';
-import { cleanup, fireEvent, render } from '@testing-library/react-native';
+import '@testing-library/react-native/extend-expect';
+import { cleanup, fireEvent, render, screen } from '@testing-library/react-native';
 import { VerifyCodeScreenBase } from '../../screens/VerifyCodeScreen';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { PaperProvider } from 'react-native-paper';
 
-jest.useFakeTimers();
 describe('VerifyCodeScreenBase  Tests', () => {
     afterEach(cleanup);
+    let mockOnPrevious: any;
+
+    beforeEach(() => {
+        mockOnPrevious = jest.fn();
+    });
+
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
 
     it('VerifyCodeScreenBase renders correctly', () => {
         render(
-            <SafeAreaProvider>
+            <PaperProvider>
                 <VerifyCodeScreenBase />
-            </SafeAreaProvider>
+            </PaperProvider>
         );
-
-        expect(render).toBeTruthy();
+        expect(screen.getByTestId('text-input-flat')).toBeOnTheScreen();
     });
 
     it('should call input handle function', () => {
-        const result = render(
-            <SafeAreaProvider>
-                <VerifyCodeScreenBase
-                    codeValidator={() => true}
-                    initialValue="456"
-                    WorkflowCardActionsProps={{
-                        canGoPrevious: true,
-                        showPrevious: true,
-                        previousLabel: 'Back',
-                        onPrevious: () => jest.fn(),
-                    }}
-                />
-            </SafeAreaProvider>
+        render(
+            <PaperProvider>
+                <VerifyCodeScreenBase />
+            </PaperProvider>
         );
-        const input = result.getByTestId('text-input-flat');
+        const input = screen.getByTestId('text-input-flat');
         fireEvent.changeText(input, '123');
-
         expect(input.props.value).toBe('123');
     });
 
     it('should call onNext callBack function', () => {
-        const result = render(
-            <SafeAreaProvider>
+        render(
+            <PaperProvider>
                 <VerifyCodeScreenBase
                     codeValidator={() => true}
                     initialValue="456789"
                     WorkflowCardActionsProps={{
-                        canGoNext: true,
                         showNext: true,
                         nextLabel: 'Next',
                         onNext: () => jest.fn(),
                     }}
                 />
-            </SafeAreaProvider>
+            </PaperProvider>
         );
-
-        const nextButton = result.getByRole('button');
+        const nextButton = screen.getByText('Next');
+        expect(nextButton).toBeEnabled();
         fireEvent.press(nextButton);
     });
 
     it('should call onPrevious callBack function', () => {
-        const result = render(
-            <SafeAreaProvider>
+        render(
+            <PaperProvider>
                 <VerifyCodeScreenBase
                     codeValidator={() => true}
                     initialValue="456789"
                     WorkflowCardActionsProps={{
-                        canGoPrevious: true,
                         showPrevious: true,
                         previousLabel: 'Back',
-                        onPrevious: () => jest.fn(),
+                        onPrevious: mockOnPrevious(),
                     }}
                 />
-            </SafeAreaProvider>
+            </PaperProvider>
         );
-
-        const prevButton = result.getByRole('button');
+        const prevButton = screen.getByText('Back');
         fireEvent.press(prevButton);
+        expect(mockOnPrevious).toHaveBeenCalled();
     });
 });
