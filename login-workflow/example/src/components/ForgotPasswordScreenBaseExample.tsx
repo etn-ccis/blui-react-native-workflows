@@ -11,7 +11,7 @@ export const ForgotPasswordScreenBaseExample: React.FC<ForgotPasswordScreenProps
         WorkflowCardInstructionProps={{
             instructions: 'Please enter the email address associated with the account',
         }}
-        emailTextInputFieldProps={{
+        emailTextInputProps={{
             label: 'Email Address',
         }}
         successScreen={

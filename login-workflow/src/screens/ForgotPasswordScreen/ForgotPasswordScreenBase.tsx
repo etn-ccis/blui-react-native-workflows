@@ -17,15 +17,17 @@ import { HelperText, TextInput } from 'react-native-paper';
  *
  * @category Component
  */
-
 export const ForgotPasswordScreenBase: React.FC<React.PropsWithChildren<ForgotPasswordScreenProps>> = (props) => {
     const [emailInput, setEmailInput] = useState(props.initialEmailValue ?? '');
+
+    const EMAIL_REGEX = /^[A-Z0-9._%+'-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 
     const {
         emailLabel,
         initialEmailValue = '',
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        emailValidator = (email: string): boolean | string => true,
+        emailValidator = (email: string): boolean | string =>
+            new RegExp(EMAIL_REGEX).test(email) ? true : 'Please enter a valid email',
         successScreen,
         showSuccessScreen,
         errorDisplayConfig,
