@@ -4,14 +4,14 @@ import { useApp } from '../contexts/AppContextProvider';
 import { RegistrationWorkflow, RegistrationContextProvider } from '@brightlayer-ui/react-native-auth-workflow';
 import { ProjectRegistrationUIActions } from '../actions/RegistrationUIActions';
 import i18nAppInstance from '../../translations/i18n';
-import Home from '../screens/home';
 import { NavigationDrawer } from './navigation-drawer';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
+import Home from '../screens/home';
 import { View } from 'react-native';
-import RegistrationProviderExample from '../screens/RegistrationProviderExample';
 import AuthProviderExample from '../screens/AuthProviderExample';
 import { Login } from '../screens/Login';
+import RegistrationProviderExample from '../screens/RegistrationProviderExample';
 import { ContactBaseExample } from '../screens/ContactBaseExample';
 
 const getAuthState = (): any => ({

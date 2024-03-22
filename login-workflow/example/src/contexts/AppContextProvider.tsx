@@ -13,8 +13,6 @@ export type AppContextType = {
     language: string;
     setLanguage: (language: string) => void;
     setLoginData: (args: LoginData) => void;
-    showChangePasswordDialog: boolean;
-    setShowChangePasswordDialog: (arg: boolean) => void;
 };
 
 export const AppContext = createContext<AppContextType | null>(null);
