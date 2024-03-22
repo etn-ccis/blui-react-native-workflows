@@ -56,7 +56,7 @@ export const ContactBaseExample: React.FC = () => {
             WorkflowCardHeaderProps={workflowCardHeaderProps}
             WorkflowCardActionsProps={workflowCardActionsProps}
             icon={{ name: 'chat-bubble-outline' }}
-            iconSize={40}
+            iconSize={60}
             emailSupportTitle={'EmailSupportTitle'}
             emailSupportContent={defaultEmailSupportContent}
             phoneSupportTitle={'PhoneSupportTitle'}
