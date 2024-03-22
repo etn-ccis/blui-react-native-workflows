@@ -4,15 +4,16 @@ import { useApp } from '../contexts/AppContextProvider';
 import { RegistrationWorkflow, RegistrationContextProvider } from '@brightlayer-ui/react-native-auth-workflow';
 import { ProjectRegistrationUIActions } from '../actions/RegistrationUIActions';
 import i18nAppInstance from '../../translations/i18n';
-import Home from '../screens/home';
 import { NavigationDrawer } from './navigation-drawer';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
+import Home from '../screens/home';
 import { View } from 'react-native';
-import RegistrationProviderExample from '../screens/RegistrationProviderExample';
 import AuthProviderExample from '../screens/AuthProviderExample';
 import { Login } from '../screens/Login';
 import { ResetPasswordScreenBaseExample } from '../components/ResetPasswordScreenBaseExample';
+import RegistrationProviderExample from '../screens/RegistrationProviderExample';
+import { ContactBaseExample } from '../screens/ContactBaseExample';
 
 const getAuthState = (): any => ({
     isAuthenticated: true,
@@ -26,6 +27,7 @@ export type RootStackParamList = {
     RegistrationProviderExample: undefined;
     AuthProviderExample: undefined;
     ResetPasswordScreenBaseExample: undefined;
+    Contact: undefined;
 };
 
 const RootStack = createStackNavigator<RootStackParamList>();
@@ -61,6 +63,7 @@ const AppRouter = (): any => (
             component={ResetPasswordScreenBaseExample}
             options={{ gestureEnabled: false }}
         />
+        <RootStack.Screen name="Contact" component={ContactBaseExample} />
     </Drawer.Navigator>
 );
 const RegistrationRouter = (): any => {

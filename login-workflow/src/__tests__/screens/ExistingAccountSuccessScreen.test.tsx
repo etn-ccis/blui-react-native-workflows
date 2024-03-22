@@ -1,10 +1,10 @@
 import React from 'react';
-import { cleanup, fireEvent, render, RenderResult, screen } from '@testing-library/react-native';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { RenderResult, cleanup, fireEvent, render, screen } from '@testing-library/react-native';
 import '@testing-library/react-native/extend-expect';
-import { RegistrationSuccessScreen, SuccessScreenProps } from '../../screens';
+import { ExistingAccountSuccessScreen, SuccessScreenProps } from '../../screens';
 import { registrationContextProviderProps } from '../../testUtils';
 import { RegistrationContextProvider, RegistrationWorkflowContextProvider } from '../../contexts';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 afterEach(cleanup);
 
@@ -19,20 +19,20 @@ const registrationWorkflowContextProps = {
         VerifyCode: { code: '12345' },
         CreatePassword: { password: 'password', confirmPassword: 'confirmPassword' },
         AccountDetails: { firstName: 'firstName', lastName: 'lastName' },
-        Other: { RegistrationSuccessScreen: { organizationName: 'Acme Co.' } },
     },
     updateScreenData: jest.fn(),
+    resetScreenData: jest.fn(),
 };
 
-describe('RegistrationSuccessScreen', () => {
-    let mockOnNext: any;
+describe('ExistingAccountSuccessScreen', () => {
+    let mockOnDismiss: any;
 
     afterEach(() => {
         jest.clearAllMocks();
     });
 
     beforeEach(() => {
-        mockOnNext = jest.fn();
+        mockOnDismiss = jest.fn();
     });
 
     const renderer = (props?: SuccessScreenProps): RenderResult =>
@@ -40,7 +40,7 @@ describe('RegistrationSuccessScreen', () => {
             <SafeAreaProvider>
                 <RegistrationContextProvider {...registrationContextProviderProps}>
                     <RegistrationWorkflowContextProvider {...registrationWorkflowContextProps}>
-                        <RegistrationSuccessScreen {...props} />
+                        <ExistingAccountSuccessScreen {...props} />
                     </RegistrationWorkflowContextProvider>
                 </RegistrationContextProvider>
             </SafeAreaProvider>
@@ -52,26 +52,19 @@ describe('RegistrationSuccessScreen', () => {
         expect(screen.getByText('Account Created!')).toBeOnTheScreen();
     });
 
-    it('should display email id and organization name on success screen', () => {
-        renderer();
-
-        expect(
-            screen.getByText(
-                'Your account has been successfully created with the email emailAddress@emailAddress.emailAddress. Your account has already been added to the Acme Co. organization.'
-            )
-        ).toBeOnTheScreen();
-    });
-
-    it('should call onNext, when click on Continue button', () => {
+    it('should call onDismiss, when Dismiss button is pressed', () => {
         renderer({
             WorkflowCardActionsProps: {
-                onNext: mockOnNext(),
+                nextLabel: 'Dismiss',
+                canGoNext: true,
+                showNext: true,
+                onNext: () => mockOnDismiss(),
             },
         });
 
-        const continueButton = screen.getByText('Finish');
-        expect(continueButton).toBeOnTheScreen();
-        fireEvent.press(continueButton);
-        expect(mockOnNext).toHaveBeenCalled();
+        const dismissButton = screen.getByText('Dismiss');
+        expect(dismissButton).toBeOnTheScreen();
+        fireEvent.press(dismissButton);
+        expect(mockOnDismiss).toHaveBeenCalled();
     });
 });

@@ -1,16 +1,17 @@
 import React from 'react';
+import '@testing-library/react-native/extend-expect';
 import { cleanup, render, RenderResult, screen } from '@testing-library/react-native';
 import { AccountDetailsScreenBase, AccountDetailsScreenProps } from '../../screens/AccountDetailsScreen';
 import { Provider as PaperProvider } from 'react-native-paper';
-import '@testing-library/react-native/extend-expect';
 
-describe('AccountDetailsScreenBase tests', () => {
+describe('AccountDetailsScreenBase Tests', () => {
     const renderer = (props?: AccountDetailsScreenProps): RenderResult =>
         render(
             <PaperProvider>
                 <AccountDetailsScreenBase {...props} />
             </PaperProvider>
         );
+
     afterEach(cleanup);
 
     it('renders without crashing', () => {

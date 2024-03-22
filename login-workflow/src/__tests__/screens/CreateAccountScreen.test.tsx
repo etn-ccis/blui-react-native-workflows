@@ -1,35 +1,34 @@
 import React from 'react';
 import '@testing-library/jest-dom';
+import '@testing-library/react-native/extend-expect';
 import { cleanup, render, fireEvent, screen } from '@testing-library/react-native';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import renderer from 'react-test-renderer';
 import { CreateAccountScreen } from '../../screens/CreateAccountScreen';
 import { RegistrationWorkflow } from 'src/components';
 import { RegistrationContextProvider } from 'src/contexts';
 import { registrationContextProviderProps } from 'src/testUtils';
+import { PaperProvider } from 'react-native-paper';
 jest.useFakeTimers();
 
 afterEach(cleanup);
 
 describe('Create Account Base', () => {
     it('renders correctly', () => {
-        const rendered = renderer
-            .create(
-                <SafeAreaProvider>
-                    <RegistrationContextProvider {...registrationContextProviderProps}>
-                        <RegistrationWorkflow initialScreenIndex={0}>
-                            <CreateAccountScreen />
-                        </RegistrationWorkflow>
-                    </RegistrationContextProvider>
-                </SafeAreaProvider>
-            )
-            .toJSON();
-        expect(rendered).toBeTruthy();
+        render(
+            <PaperProvider>
+                <RegistrationContextProvider {...registrationContextProviderProps}>
+                    <RegistrationWorkflow initialScreenIndex={0}>
+                        <CreateAccountScreen />
+                    </RegistrationWorkflow>
+                </RegistrationContextProvider>
+            </PaperProvider>
+        );
+        expect(screen.getByTestId('email-textinput')).toBeOnTheScreen();
     });
-    it('on next press', () => {
+
+    it('should call onNext, when Next button clicked', () => {
         const nextfn = jest.fn();
         render(
-            <SafeAreaProvider>
+            <PaperProvider>
                 <RegistrationContextProvider {...registrationContextProviderProps}>
                     <RegistrationWorkflow initialScreenIndex={0}>
                         <CreateAccountScreen
@@ -41,7 +40,7 @@ describe('Create Account Base', () => {
                         />
                     </RegistrationWorkflow>
                 </RegistrationContextProvider>
-            </SafeAreaProvider>
+            </PaperProvider>
         );
         const emailInput = screen.getByTestId('email-textinput');
         fireEvent.changeText(emailInput, 'email@test.com');
@@ -49,10 +48,10 @@ describe('Create Account Base', () => {
         expect(nextfn).toHaveBeenCalled();
     });
 
-    it('on previus press', () => {
+    it('should call onPrevious, when Back button clicked', () => {
         const prevFn = jest.fn();
         render(
-            <SafeAreaProvider>
+            <PaperProvider>
                 <RegistrationContextProvider {...registrationContextProviderProps}>
                     <RegistrationWorkflow initialScreenIndex={0}>
                         <CreateAccountScreen
@@ -64,7 +63,7 @@ describe('Create Account Base', () => {
                         />
                     </RegistrationWorkflow>
                 </RegistrationContextProvider>
-            </SafeAreaProvider>
+            </PaperProvider>
         );
         const emailInput = screen.getByTestId('email-textinput');
         fireEvent.changeText(emailInput, 'email@test.com');
