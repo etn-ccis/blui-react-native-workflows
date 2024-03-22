@@ -24,6 +24,7 @@ export const RegistrationWorkflowContextProvider: React.FC<
         previousScreen,
         screenData,
         updateScreenData,
+        resetScreenData,
         isInviteRegistration,
     } = props;
 
@@ -35,11 +36,21 @@ export const RegistrationWorkflowContextProvider: React.FC<
             previousScreen,
             screenData,
             updateScreenData,
+            resetScreenData,
             isInviteRegistration,
         };
 
         return propsForContext;
-    }, [currentScreen, totalScreens, nextScreen, previousScreen, screenData, updateScreenData, isInviteRegistration]);
+    }, [
+        currentScreen,
+        totalScreens,
+        nextScreen,
+        previousScreen,
+        screenData,
+        updateScreenData,
+        resetScreenData,
+        isInviteRegistration,
+    ]);
 
     return (
         <RegistrationWorkflowContext.Provider value={memoizedProps}>

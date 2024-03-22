@@ -22,6 +22,7 @@ const registrationWorkflowContextProps = {
         Other: { RegistrationSuccessScreen: { organizationName: 'Acme Co.' } },
     },
     updateScreenData: jest.fn(),
+    resetScreenData: jest.fn(),
 };
 
 describe('RegistrationSuccessScreen', () => {

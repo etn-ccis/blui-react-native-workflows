@@ -38,7 +38,7 @@ export const RegistrationWorkflow: React.FC<React.PropsWithChildren<Registration
     const { errorDisplayConfig: registrationWorkflowErrorConfig } = props;
     const [isAccountExist, setIsAccountExist] = useState(false);
     const { triggerError, errorManagerConfig: globalErrorManagerConfig } = useErrorManager();
-    const { actions, navigate } = useRegistrationContext();
+    const { actions, navigate, routeConfig } = useRegistrationContext();
     const viewPagerRef = useRef<PagerView>(null);
 
     const {
@@ -92,6 +92,7 @@ export const RegistrationWorkflow: React.FC<React.PropsWithChildren<Registration
         initialScreenIndex < 0 ? 0 : initialScreenIndex > totalScreens - 1 ? totalScreens - 1 : initialScreenIndex
     );
     const [showSuccessScreen, setShowSuccessScreen] = useState(false);
+    const [viewPagerIndex, setViewPagerIndex] = useState(0);
 
     const [screenData, setScreenData] = useState({
         Eula: {
@@ -140,6 +141,35 @@ export const RegistrationWorkflow: React.FC<React.PropsWithChildren<Registration
                 [screenId]: values,
             }));
         }
+    };
+
+    const resetScreenData = (): void => {
+        setScreenData({
+            Eula: {
+                accepted: false,
+            },
+            CreateAccount: {
+                emailAddress: '',
+            },
+            VerifyCode: {
+                code: '',
+                isAccountExist: false,
+            },
+            CreatePassword: {
+                password: '',
+                confirmPassword: '',
+            },
+            AccountDetails: {
+                firstName: '',
+                lastName: '',
+            },
+            Other: {},
+        });
+        setViewPagerIndex(viewPagerIndex + 1);
+        setIsAccountExist(false);
+        setCurrentScreen(0);
+        setShowSuccessScreen(false);
+        viewPagerRef.current?.setPage(0);
     };
 
     const finishRegistration = async (data: IndividualScreenData): Promise<void> => {
@@ -205,13 +235,16 @@ export const RegistrationWorkflow: React.FC<React.PropsWithChildren<Registration
             previousScreen={(data): void => {
                 updateScreenData(data);
                 if (currentScreen === 0) {
-                    navigate(-1);
+                    resetScreenData();
+                    navigate(routeConfig.LOGIN as string);
+                } else {
+                    setCurrentScreen((i) => i - 1);
+                    viewPagerRef.current?.setPage(currentScreen - 1);
                 }
-                setCurrentScreen((i) => i - 1);
-                viewPagerRef.current?.setPage(currentScreen - 1);
             }}
             screenData={screenData}
             updateScreenData={updateScreenData}
+            resetScreenData={resetScreenData}
             isInviteRegistration={isInviteRegistration}
         >
             <ErrorManager {...errorDisplayConfig} mode="dialog">
@@ -227,6 +260,7 @@ export const RegistrationWorkflow: React.FC<React.PropsWithChildren<Registration
                         initialPage={initialScreenIndex}
                         ref={viewPagerRef}
                         scrollEnabled={false}
+                        key={viewPagerIndex}
                     >
                         {screens.map((screen, index) => (
                             <View key={index + 1}>{screen}</View>

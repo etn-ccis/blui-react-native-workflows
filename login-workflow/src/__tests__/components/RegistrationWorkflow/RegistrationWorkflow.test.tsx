@@ -131,7 +131,7 @@ describe('RegistrationWorkflow', () => {
             void result.current.nextScreen({ screenId: 'Screen1', values: { test: 'test' } });
         });
         void act(() => {
-            result.current.previousScreen({
+            void result.current.nextScreen({
                 screenId: 'Screen2',
                 values: { test2: 'test2' },
             });
@@ -197,7 +197,7 @@ describe('RegistrationWorkflow', () => {
             void result.current.nextScreen({ screenId: 'Eula', values: { accepted: true } });
         });
         void act(() => {
-            result.current.previousScreen({
+            void result.current.nextScreen({
                 screenId: 'CreateAccount',
                 values: { emailAddress: 'emailAddress@emailAddress.com' },
                 isAccountExist: true,

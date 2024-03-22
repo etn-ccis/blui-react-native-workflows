@@ -35,6 +35,7 @@ export const RegistrationSuccessScreen: React.FC<SuccessScreenProps> = (props) =
                 RegistrationSuccessScreen: { organizationName: organization },
             },
         },
+        resetScreenData,
     } = useRegistrationWorkflowContext();
 
     const Bold = ({ children }: { children: React.ReactNode }): JSX.Element => (
@@ -73,6 +74,10 @@ export const RegistrationSuccessScreen: React.FC<SuccessScreenProps> = (props) =
     const workflowCardHeaderProps = {
         title: t('bluiRegistration:REGISTRATION.STEPS.COMPLETE'),
         ...WorkflowCardHeaderProps,
+        onIconPress: (): void => {
+            navigate(routeConfig.LOGIN as string);
+            resetScreenData();
+        },
     };
 
     const workflowCardBodyProps = {
@@ -88,6 +93,7 @@ export const RegistrationSuccessScreen: React.FC<SuccessScreenProps> = (props) =
         ...WorkflowCardActionsProps,
         onNext: (): void => {
             onDismiss();
+            resetScreenData();
             WorkflowCardActionsProps?.onNext?.();
         },
     };
