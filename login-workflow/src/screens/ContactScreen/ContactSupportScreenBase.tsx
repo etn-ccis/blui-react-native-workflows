@@ -44,12 +44,10 @@ export const ContactSupportScreenBase: React.FC<ContactSupportScreenProps> = (pr
             {icon && <View style={{ alignItems: 'center', marginVertical: 16 }}>{icon}</View>}
             <WorkflowCardBody>
                 <Text variant={'bodyLarge'} style={{ marginBottom: 8 }}>
-                    {' '}
                     {emailSupportTitle}
                 </Text>
                 <>{emailSupportContent?.(contactEmail ?? '')}</>
                 <Text variant={'bodyLarge'} style={{ marginBottom: 8, marginTop: 32 }}>
-                    {' '}
                     {phoneSupportTitle}
                 </Text>
                 <>{phoneSupportContent?.(contactPhone ?? '')}</>
