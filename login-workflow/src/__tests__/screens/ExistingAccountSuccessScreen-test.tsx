@@ -1,42 +1,70 @@
 import React from 'react';
-import { cleanup, fireEvent, render, screen } from '@testing-library/react-native';
+import { RenderResult, cleanup, fireEvent, render, screen } from '@testing-library/react-native';
 import '@testing-library/react-native/extend-expect';
-import { ExistingAccountSuccessScreen } from '../../screens/ExistingAccountSuccessScreen';
+import { ExistingAccountSuccessScreen, SuccessScreenProps } from '../../screens';
 import { registrationContextProviderProps } from '../../testUtils';
-import { RegistrationContextProvider } from '../../contexts';
+import { RegistrationContextProvider, RegistrationWorkflowContextProvider } from '../../contexts';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-describe('ExistingAccountSuccessScreen Test', () => {
-    afterEach(cleanup);
-    const onDismiss = jest.fn();
+afterEach(cleanup);
 
-    it('ExistingAccountSuccessScreen renders correctly', () => {
+const registrationWorkflowContextProps = {
+    currentScreen: 0,
+    totalScreens: 2,
+    nextScreen: jest.fn(),
+    previousScreen: jest.fn(),
+    screenData: {
+        Eula: { accepted: true },
+        CreateAccount: { emailAddress: 'emailAddress@emailAddress.emailAddress' },
+        VerifyCode: { code: '12345' },
+        CreatePassword: { password: 'password', confirmPassword: 'confirmPassword' },
+        AccountDetails: { firstName: 'firstName', lastName: 'lastName' },
+    },
+    updateScreenData: jest.fn(),
+    resetScreenData: jest.fn(),
+};
+
+describe('ExistingAccountSuccessScreen', () => {
+    let mockOnDismiss: any;
+
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
+
+    beforeEach(() => {
+        mockOnDismiss = jest.fn();
+    });
+
+    const renderer = (props?: SuccessScreenProps): RenderResult =>
         render(
-            <RegistrationContextProvider {...registrationContextProviderProps}>
-                <SafeAreaProvider>
-                    <ExistingAccountSuccessScreen />
-                </SafeAreaProvider>
-            </RegistrationContextProvider>
-        ).toJSON();
-        expect(render).toBeTruthy();
+            <SafeAreaProvider>
+                <RegistrationContextProvider {...registrationContextProviderProps}>
+                    <RegistrationWorkflowContextProvider {...registrationWorkflowContextProps}>
+                        <ExistingAccountSuccessScreen {...props} />
+                    </RegistrationWorkflowContextProvider>
+                </RegistrationContextProvider>
+            </SafeAreaProvider>
+        );
+
+    it('renders without crashing', () => {
+        renderer();
+
+        expect(screen.getByText('Account Created!')).toBeOnTheScreen();
     });
 
     it('should call onDismiss, when Dismiss button is pressed', () => {
-        render(
-            <RegistrationContextProvider {...registrationContextProviderProps}>
-                <SafeAreaProvider>
-                    <ExistingAccountSuccessScreen
-                        WorkflowCardActionsProps={{
-                            nextLabel: 'Dismiss',
-                            canGoNext: true,
-                            showNext: true,
-                            onNext: () => onDismiss(),
-                        }}
-                    />
-                </SafeAreaProvider>
-            </RegistrationContextProvider>
-        );
-        fireEvent.press(screen.getByText('Dismiss'));
-        expect(onDismiss).toHaveBeenCalled();
+        renderer({
+            WorkflowCardActionsProps: {
+                nextLabel: 'Dismiss',
+                canGoNext: true,
+                showNext: true,
+                onNext: () => mockOnDismiss(),
+            },
+        });
+
+        const dismissButton = screen.getByText('Dismiss');
+        expect(dismissButton).toBeOnTheScreen();
+        fireEvent.press(dismissButton);
+        expect(mockOnDismiss).toHaveBeenCalled();
     });
 });
