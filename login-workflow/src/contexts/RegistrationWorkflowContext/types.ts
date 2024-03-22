@@ -69,15 +69,15 @@ export type RegistrationWorkflowContextProps = {
      * @param {ScreenData} screenData - An object of data of all screens available in the Registration Workflow Context.
      *
      */
+    /**
+     * @returns {void} - Reset collected data/inputs of Registration Workflow.
+     */
+    resetScreenData: () => void;
     screenData: ScreenData;
     /**
      * @param {IndividualScreenData} updateScreenData - Updates collected data/inputs throughout the Registration Workflow.
      */
     updateScreenData: (data: IndividualScreenData) => void;
-    /**
-     * @returns {void} - Updates collected data/inputs throughout the Registration Workflow.
-     */
-    resetScreenData: () => void;
     /**
      * @param {boolean} isInviteRegistration - Indicates whether this workflow is for invitation-based registration.
      */

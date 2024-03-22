@@ -214,8 +214,6 @@ export const RegistrationWorkflow: React.FC<React.PropsWithChildren<Registration
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    // const selectedPage = React.useRef(0);
-
     return (
         <RegistrationWorkflowContextProvider
             currentScreen={currentScreen}
