@@ -1,8 +1,16 @@
+import { IconSource } from '@brightlayer-ui/react-native-components/core/__types__';
 import { WorkflowCardProps } from '../../components/WorkflowCard/WorkflowCard.types';
 
 export type ContactSupportScreenProps = WorkflowCardProps & {
-    icon?: JSX.Element;
+    /**
+     * The icon to display in the header
+     */
+    icon?: IconSource;
 
+    /**
+     * The Size of Icon
+     */
+    iconSize?: number;
     /**
      * The title for the email support section
      */

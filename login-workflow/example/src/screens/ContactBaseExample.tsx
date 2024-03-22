@@ -3,17 +3,21 @@ import { ContactSupportScreenBase } from '@brightlayer-ui/react-native-auth-work
 import { Text } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import { Linking } from 'react-native';
-import { Icon } from '@brightlayer-ui/react-native-components';
+import { useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 
 export const ContactBaseExample: React.FC = () => {
     const navigation = useNavigation();
     const contactEmail = 'something@email.com';
     const contactPhone = '1-800-123-4567';
-
+    const theme = useExtendedTheme();
     const defaultEmailSupportContent = (): JSX.Element => (
         <Text variant="bodyLarge">
             {`Contact Message `}
-            <Text variant="labelLarge" onPress={(): any => Linking.openURL(`mailto:${contactEmail ?? ''}`)}>
+            <Text
+                variant="labelLarge"
+                style={{ color: theme.colors.primary }}
+                onPress={(): any => Linking.openURL(`mailto:${contactEmail ?? ''}`)}
+            >
                 {contactEmail}
             </Text>
             {`.`}
@@ -23,7 +27,11 @@ export const ContactBaseExample: React.FC = () => {
     const defaultPhoneSupportContent = (): JSX.Element => (
         <Text variant="bodyLarge">
             {`Phone Message `}
-            <Text variant="labelLarge" onPress={(): any => Linking.openURL(`tel:${contactPhone ?? ''}`)}>
+            <Text
+                variant="labelLarge"
+                style={{ color: theme.colors.primary }}
+                onPress={(): any => Linking.openURL(`tel:${contactPhone ?? ''}`)}
+            >
                 {contactPhone}
             </Text>
             {`.`}
@@ -47,7 +55,8 @@ export const ContactBaseExample: React.FC = () => {
         <ContactSupportScreenBase
             WorkflowCardHeaderProps={workflowCardHeaderProps}
             WorkflowCardActionsProps={workflowCardActionsProps}
-            icon={<Icon size={40} source={{ name: 'chat-bubble-outline' }} />}
+            icon={{ name: 'chat-bubble-outline' }}
+            iconSize={40}
             emailSupportTitle={'EmailSupportTitle'}
             emailSupportContent={defaultEmailSupportContent}
             phoneSupportTitle={'PhoneSupportTitle'}

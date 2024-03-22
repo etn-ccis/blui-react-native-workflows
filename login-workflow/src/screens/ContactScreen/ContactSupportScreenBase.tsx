@@ -9,6 +9,8 @@ import {
 import { ContactSupportScreenProps } from './types';
 import { Text } from 'react-native-paper';
 import { View } from 'react-native';
+import { Icon } from '@brightlayer-ui/react-native-components';
+import { useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 
 /**
  * Component renders a screen with contact information for support with the application.
@@ -22,6 +24,7 @@ import { View } from 'react-native';
 export const ContactSupportScreenBase: React.FC<ContactSupportScreenProps> = (props) => {
     const {
         icon,
+        iconSize,
         emailSupportTitle,
         emailSupportContent,
         phoneSupportTitle,
@@ -31,7 +34,7 @@ export const ContactSupportScreenBase: React.FC<ContactSupportScreenProps> = (pr
         dismissButtonLabel,
         onDismiss,
     } = props;
-
+    const theme = useExtendedTheme();
     const cardBaseProps = props.WorkflowCardBaseProps || {};
     const headerProps = props.WorkflowCardHeaderProps || {};
     const instructionsProps = props.WorkflowCardInstructionProps || {};
@@ -41,7 +44,11 @@ export const ContactSupportScreenBase: React.FC<ContactSupportScreenProps> = (pr
         <WorkflowCard {...cardBaseProps}>
             <WorkflowCardHeader {...headerProps} />
             {Object.keys(instructionsProps).length !== 0 && <WorkflowCardInstructions {...instructionsProps} />}
-            {icon && <View style={{ alignItems: 'center', marginVertical: 16 }}>{icon}</View>}
+            {icon && (
+                <View style={{ alignItems: 'center', marginVertical: 16 }}>
+                    <Icon source={icon} size={iconSize || 24} color={theme.colors.disabled} />
+                </View>
+            )}
             <WorkflowCardBody>
                 <Text variant={'bodyLarge'} style={{ marginBottom: 8 }}>
                     {emailSupportTitle}
