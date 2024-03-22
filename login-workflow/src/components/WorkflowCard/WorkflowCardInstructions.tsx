@@ -14,8 +14,8 @@ const makeStyles = (
     StyleSheet.create({
         container: {
             marginHorizontal: isTablet ? 24 : 16,
-            paddingTop: 32,
-            paddingBottom: 40,
+            paddingTop: isTablet ? 0 : 32,
+            paddingBottom: isTablet ? 30 : 40,
         },
         workflowCardInstructions: {
             letterSpacing: 0,
