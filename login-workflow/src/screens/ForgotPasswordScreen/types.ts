@@ -22,7 +22,7 @@ export type ForgotPasswordScreenProps = WorkflowCardProps & {
     /**
      * used to pass Success Screen component
      */
-    successScreen: JSX.Element;
+    successScreen?: JSX.Element;
 
     /**
      * used to display contact phone number
