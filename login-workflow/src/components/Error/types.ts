@@ -123,7 +123,7 @@ export type ErrorMessageBoxProps = {
     errorMessage: string;
     /**
      * The background color of the message box
-     * @default error.main
+     * @default theme.colors.error
      */
     backgroundColor?: string;
 
@@ -137,7 +137,7 @@ export type ErrorMessageBoxProps = {
     /**
      *
      * The font color of the text inside the message box
-     * @default error.contrastText
+     * @default theme.colors.onError
      */
     fontColor?: string;
 
