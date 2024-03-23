@@ -58,11 +58,7 @@ const AppRouter = (): any => (
             component={AuthProviderExample}
             options={{ gestureEnabled: false }}
         />
-        <RootStack.Screen
-            name="ResetPasswordScreenBaseExample"
-            component={ResetPasswordScreenBaseExample}
-            options={{ gestureEnabled: false }}
-        />
+        <RootStack.Screen name="ResetPasswordScreenBaseExample" component={ResetPasswordScreenBaseExample} />
         <RootStack.Screen name="Contact" component={ContactBaseExample} />
     </Drawer.Navigator>
 );
