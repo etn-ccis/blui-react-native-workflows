@@ -31,7 +31,15 @@ const makeStyles = (): StyleSheet.NamedStyles<{
  */
 
 export const SuccessScreenBase: React.FC<SuccessScreenProps> = (props) => {
-    const { icon, messageTitle = '', message = '', dismissButtonLabel = '', canDismiss, onDismiss , ...emptyStateProps} = props;
+    const {
+        icon,
+        messageTitle = '',
+        message = '',
+        dismissButtonLabel = '',
+        canDismiss,
+        onDismiss,
+        ...emptyStateProps
+    } = props;
 
     const cardBaseProps = props.WorkflowCardBaseProps || {};
     const headerProps = props.WorkflowCardHeaderProps || {};
