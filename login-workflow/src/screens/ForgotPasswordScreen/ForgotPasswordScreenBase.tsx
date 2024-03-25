@@ -29,7 +29,7 @@ export const ForgotPasswordScreenBase: React.FC<React.PropsWithChildren<ForgotPa
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         emailValidator = (email: string): boolean | string =>
             new RegExp(EMAIL_REGEX).test(email) ? true : 'Please enter a valid email',
-        successScreen,
+        SuccessScreen,
         successScreenProps,
         showSuccessScreen,
         errorDisplayConfig,
@@ -72,7 +72,7 @@ export const ForgotPasswordScreenBase: React.FC<React.PropsWithChildren<ForgotPa
     return (
         <>
             {showSuccessScreen ? (
-                getSuccessScreen(successScreenProps ?? {}, successScreen)
+                getSuccessScreen(successScreenProps ?? {}, SuccessScreen)
             ) : (
                 <WorkflowCard {...cardBaseProps}>
                     <WorkflowCardHeader {...headerProps} />

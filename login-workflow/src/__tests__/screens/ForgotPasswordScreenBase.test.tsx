@@ -3,7 +3,7 @@ import '@testing-library/jest-dom';
 import '@testing-library/react-native/extend-expect';
 import { RenderResult, cleanup, fireEvent, render, screen } from '@testing-library/react-native';
 import { ForgotPasswordScreenBase, ForgotPasswordScreenProps } from '../../screens';
-import { PaperProvider } from 'react-native-paper';
+import { PaperProvider, Text } from 'react-native-paper';
 
 describe('ForgotPasswordScreenBase Tests', () => {
     afterEach(cleanup);
@@ -51,5 +51,24 @@ describe('ForgotPasswordScreenBase Tests', () => {
             showSuccessScreen: true,
         });
         expect(render).toBeTruthy();
+    });
+
+    it('should render passed props correctly', () => {
+        renderer({
+            emailLabel: 'Email ID',
+            initialEmailValue: 'test@eaton.com',
+            emailValidator: (email) => (email.length > 0 ? true : 'enter valid email'),
+            WorkflowCardActionsProps: {
+                showNext: true,
+                nextLabel: 'Next',
+                onNext: mockOnNext(),
+            },
+            SuccessScreen: () => <Text>Success</Text>,
+        });
+        expect(screen.getAllByText('Email ID')).toBeTruthy();
+        expect(screen.getByTestId('text-input-flat').props.value).toBe('test@eaton.com');
+        expect(screen.getByText('Next')).toBeEnabled();
+        fireEvent.press(screen.getByText('Next'));
+        expect(mockOnNext).toHaveBeenCalled();
     });
 });

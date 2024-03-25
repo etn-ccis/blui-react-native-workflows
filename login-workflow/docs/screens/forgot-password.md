@@ -2,7 +2,7 @@
 
 A screen that collects an email address so a user who forgets their password can request a reset code. The ForgotPasswordScreen must be used within an `AuthContextProvider`.
 
-![Forgot Password](../../media/screens/forgot-password.png)
+<img width="400" alt="Forgot Password" src="../../media/screens/forgot-password.png">
 
 ## Usage
 
@@ -19,17 +19,17 @@ import { AuthContextProvider, ForgotPasswordScreen } from '@brightlayer-ui/react
 
 | Prop Name           | Type                                         | Description                                                                                                                                              | Default                                                         |
 | ------------------- | -------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
-| emailLabel          | `string`                                     | Text to display as the label for the email text field.                                                                                                   | `t('bluiAuth:FORGOT_PASSWORD.EMAIL_ADDRESS')`// `Email Address` |
-| initialEmailValue   | `string`                                     | The initial value for the email text field input.                                                                                                        |                                                                 |
-| emailValidator      | `(email: string) => boolean \| string`       | A function that validates the email text field input.                                                                                                    | checks against valid email regex                                |
-| successScreen       | `(props: SuccessScreenProps) => JSX.Element` | Prop to pass SuccessScreen component                                                                                                                     | `<SuccessScreenBase />`                                         |
-| successScreenProps  | `SuccessScreenProps`                         | props applied to Success Screen component                                                                                                                |                                                                 |
 | contactPhone        | `string`                                     | The phone number to display in the contact section.                                                                                                      | `1-800-123-4567`                                                |
-| responseTime        | `string`                                     | The response time to display in the contact section.                                                                                                     | `24 hours`                                                      |
 | description         | `(responseTime: string) => React.ReactNode;` | used to update the instruction                                                                                                                           |
-| showSuccessScreen   | `boolean`                                    | If true, a success screen will appear after submitting the form                                                                                          | `true`                                                          |
-| errorDisplayConfig  | `ErrorManagerProps`                          | See [Error Management](../error-management.md)                                                                                                           |                                                                 |
+| emailLabel          | `string`                                     | Text to display as the label for the email text field.                                                                                                   | `t('bluiAuth:FORGOT_PASSWORD.EMAIL_ADDRESS')`// `Email Address` |
+| emailValidator      | `(email: string) => boolean \| string`       | A function that validates the email text field input.                                                                                                    | checks against valid email regex                                |
 | emailTextInputProps | `TextInputProps`                             | Props to pass to the email text input. See RNP's [TextInputProps API](https://callstack.github.io/react-native-paper/docs/components/TextInput/#props/). |                                                                 |
+| errorDisplayConfig  | `ErrorManagerProps`                          | See [Error Management](../error-management.md)                                                                                                           |                                                                 |
+| initialEmailValue   | `string`                                     | The initial value for the email text field input.                                                                                                        |                                                                 |
+| responseTime        | `string`                                     | The response time to display in the contact section.                                                                                                     | `24 hours`                                                      |
+| showSuccessScreen   | `boolean`                                    | If true, a success screen will appear after submitting the form                                                                                          | `true`                                                          |
+| SuccessScreen       | `(props: SuccessScreenProps) => JSX.Element` | Prop to pass SuccessScreen component                                                                                                                     | `<SuccessScreenBase />`                                         |
+| successScreenProps  | `SuccessScreenProps`                         | props applied to Success Screen component                                                                                                                |                                                                 |
 
 This screen also extends the `WorkflowCardProps` type for updating the title, instructions, buttons, etc. See [Workflow Card](../components/workflow-card.md) for more details.
 
