@@ -38,7 +38,6 @@ export const SuccessScreenBase: React.FC<SuccessScreenProps> = (props) => {
         dismissButtonLabel = '',
         canDismiss,
         onDismiss,
-        ...emptyStateProps
     } = props;
 
     const cardBaseProps = props.WorkflowCardBaseProps || {};
@@ -54,7 +53,7 @@ export const SuccessScreenBase: React.FC<SuccessScreenProps> = (props) => {
             {Object.keys(instructionsProps).length !== 0 && <WorkflowCardInstructions {...instructionsProps} />}
             <WorkflowCardBody scrollable={false} {...bodyProps}>
                 <View style={[styles.emptyStateContainer]}>
-                    <EmptyState icon={icon} title={messageTitle} description={message} {...emptyStateProps} />
+                    <EmptyState icon={icon} title={messageTitle} description={message} />
                 </View>
             </WorkflowCardBody>
             <WorkflowCardActions
