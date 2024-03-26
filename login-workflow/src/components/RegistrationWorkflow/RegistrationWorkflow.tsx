@@ -266,7 +266,7 @@ export const RegistrationWorkflow: React.FC<React.PropsWithChildren<Registration
                             selectedPage.current = e.nativeEvent.position;
                         }}
                         onPageScrollStateChanged={(e) => {
-                            if (e.nativeEvent.pageScrollState == 'idle') {
+                            if (e.nativeEvent.pageScrollState === 'idle') {
                                 viewPagerRef.current?.setPageWithoutAnimation(0);
                                 viewPagerRef.current?.setPageWithoutAnimation(selectedPage.current);
                             }
