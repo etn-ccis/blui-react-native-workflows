@@ -2,13 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## v6.0.0 (Unreleased)
 
 ### Fixed
 
+-   Keyboard persists issue on visibility icon toggle [174](https://github.com/etn-ccis/blui-react-native-workflows/issues/174).
 -   Using keyboard done button [265](https://github.com/etn-ccis/blui-react-native-workflows/issues/265).
 -   Navigation and error handling updated [275](https://github.com/etn-ccis/blui-react-native-workflows/issues/275).
 -   Disable next button for invalid inputs [276](https://github.com/etn-ccis/blui-react-native-workflows/issues/276).
