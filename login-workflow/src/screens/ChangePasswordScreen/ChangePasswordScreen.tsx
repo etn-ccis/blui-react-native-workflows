@@ -23,7 +23,6 @@ export const ChangePasswordScreen: React.FC<ChangePasswordScreenProps> = (props)
         slotProps = {},
     } = props;
 
-
     const [currentInput, setCurrentInput] = useState('');
     const [passwordInput, setPasswordInput] = useState('');
     const [confirmInput, setConfirmInput] = useState('');
@@ -78,7 +77,7 @@ export const ChangePasswordScreen: React.FC<ChangePasswordScreenProps> = (props)
                 setIsLoading(false);
             }
         }
-    }, [checkPasswords, currentInput, passwordInput, actions, setIsLoading, onFinish, props.showSuccessScreen]);
+    }, [checkPasswords, currentInput, passwordInput, actions, setIsLoading, onFinish, props.showSuccessScreen, triggerError]);
 
     const passwordProps = {
         newPasswordLabel: t('bluiAuth:CHANGE_PASSWORD.NEW_PASSWORD'),
@@ -150,7 +149,7 @@ export const ChangePasswordScreen: React.FC<ChangePasswordScreenProps> = (props)
             }}
             enableButton={checkPasswords}
             PasswordProps={passwordProps}
-            currentPasswordTextInputProps={{...currentPasswordTextInputProps, value: currentInput}}
+            currentPasswordTextInputProps={{ ...currentPasswordTextInputProps, value: currentInput }}
             slots={slots}
             slotProps={{
                 SuccessScreen: {

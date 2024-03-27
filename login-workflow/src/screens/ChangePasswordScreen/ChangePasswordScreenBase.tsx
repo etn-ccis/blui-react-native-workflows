@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { StyleSheet, TextStyle } from 'react-native';
 import { ChangePasswordScreenProps } from './types';
 import { PasswordTextField, SetPassword } from '../../components/SetPassword';
@@ -63,7 +63,7 @@ export const ChangePasswordScreenBase: React.FC<ChangePasswordScreenProps> = (pr
         getSuccessScreen(slotProps?.SuccessScreen || {}, slots?.SuccessScreen)
     ) : (
         <WorkflowCard {...cardBaseProps}>
-            <WorkflowCardHeader {...headerProps}  />
+            <WorkflowCardHeader {...headerProps} />
             {Object.keys(instructionsProps).length !== 0 && <WorkflowCardInstructions {...instructionsProps} />}
             <WorkflowCardBody>
                 <ErrorManager {...errorDisplayConfig}>
