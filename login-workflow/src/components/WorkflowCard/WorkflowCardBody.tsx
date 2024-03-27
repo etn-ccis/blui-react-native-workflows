@@ -37,7 +37,11 @@ export const WorkflowCardBody: React.FC<WorkflowCardBodyProps> = (props) => {
     return (
         <>
             {scrollable ? (
-                <ScrollView contentInsetAdjustmentBehavior="automatic" bounces={false}>
+                <ScrollView
+                    contentInsetAdjustmentBehavior="automatic"
+                    bounces={false}
+                    keyboardShouldPersistTaps={'handled'}
+                >
                     <Card.Content style={[defaultStyles.workflowBody, style]} {...otherCardContentProps}>
                         {children}
                     </Card.Content>
