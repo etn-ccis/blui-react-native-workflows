@@ -93,6 +93,7 @@ export const RegistrationWorkflow: React.FC<React.PropsWithChildren<Registration
     );
     const [showSuccessScreen, setShowSuccessScreen] = useState(false);
     const [viewPagerIndex, setViewPagerIndex] = useState(0);
+    const selectedPage = React.useRef(0);
 
     const [screenData, setScreenData] = useState({
         Eula: {
@@ -261,6 +262,15 @@ export const RegistrationWorkflow: React.FC<React.PropsWithChildren<Registration
                         ref={viewPagerRef}
                         scrollEnabled={false}
                         key={viewPagerIndex}
+                        onPageSelected={(e) => {
+                            selectedPage.current = e.nativeEvent.position;
+                        }}
+                        onPageScrollStateChanged={(e) => {
+                            if (e.nativeEvent.pageScrollState === 'idle') {
+                                viewPagerRef.current?.setPageWithoutAnimation(0);
+                                viewPagerRef.current?.setPageWithoutAnimation(selectedPage.current);
+                            }
+                        }}
                     >
                         {screens.map((screen, index) => (
                             <View key={index + 1}>{screen}</View>
