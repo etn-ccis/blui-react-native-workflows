@@ -7,6 +7,7 @@ import SelectDropdown from 'react-native-select-dropdown';
 import { useTranslation } from 'react-i18next';
 import { useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 import { useApp } from '../contexts/AppContextProvider';
+import { useNavigation } from '@react-navigation/native';
 
 const SwapIcon: IconFamily = {
     family: 'material',
@@ -33,10 +34,15 @@ export const UserMenuExample: React.FC<UserMenuExampleProps> = (props) => {
     const { onToggleRTL, onToggleTheme } = props;
     const theme = useExtendedTheme();
     const { i18n } = useTranslation();
+    const nav = useNavigation();
     const app = useApp();
     const handleLanguageChange = (newLanguage: string): void => {
         app.setLanguage(newLanguage);
         void i18n.changeLanguage(newLanguage);
+    };
+    const logout = (): void => {
+        app.isAuthenticated = false;
+        nav.navigate('Login');
     };
     const languageOptions = [
         { label: 'English', value: 'en' },
@@ -71,7 +77,7 @@ export const UserMenuExample: React.FC<UserMenuExampleProps> = (props) => {
                 />
             ),
         },
-        { title: 'Cancel', icon: CancelIcon },
+        { title: 'Logout', icon: CancelIcon, onPress: (): void => logout() },
     ];
 
     return (
