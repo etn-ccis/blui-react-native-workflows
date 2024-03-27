@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChangePasswordScreen } from './ChangePasswordScreen';
+import { ChangePasswordScreen } from '@brightlayer-ui/react-native-auth-workflow';
 import { useApp } from '../contexts/AppContextProvider';
 import { LocalStorage } from '../store/local-storage';
 import { useNavigation } from '@react-navigation/native';

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { StyleSheet, TextStyle } from 'react-native';
 import { ChangePasswordScreenProps } from './types';
 import { PasswordTextField, SetPassword } from '../../components/SetPassword';
@@ -43,8 +43,6 @@ export const ChangePasswordScreenBase: React.FC<ChangePasswordScreenProps> = (pr
 
     const styles = makeStyles();
 
-    const [currentPassword, setCurrentPassword] = useState('');
-
     const cardBaseProps = props.WorkflowCardBaseProps || {};
     const headerProps = props.WorkflowCardHeaderProps || {};
     const instructionsProps = props.WorkflowCardInstructionProps || {};
@@ -58,7 +56,6 @@ export const ChangePasswordScreenBase: React.FC<ChangePasswordScreenProps> = (pr
     ): JSX.Element => (SuccessScreen ? SuccessScreen(_props) : <SuccessScreenBase {..._props} />);
 
     const handleChange = (text: string): void => {
-        setCurrentPassword(text);
         currentPasswordChange?.(text);
     };
 
@@ -75,7 +72,6 @@ export const ChangePasswordScreenBase: React.FC<ChangePasswordScreenProps> = (pr
                             testID="current-password"
                             style={[styles.textInput]}
                             label={currentPasswordLabel}
-                            value={currentPassword}
                             {...currentPasswordTextInputProps}
                             onChangeText={(text: string) => {
                                 // eslint-disable-next-line no-unused-expressions
