@@ -67,7 +67,7 @@ export const ResetPasswordScreenBaseExample: React.FC = () => {
                         updateFields(passwordData);
                     },
                 }}
-                successScreenProps={{
+                SuccessScreenProps={{
                     icon: { name: 'check-circle' },
                     messageTitle: t('bluiAuth:PASSWORD_RESET.SUCCESS_MESSAGE'),
                     message: t('bluiAuth:CHANGE_PASSWORD.SUCCESS_MESSAGE'),

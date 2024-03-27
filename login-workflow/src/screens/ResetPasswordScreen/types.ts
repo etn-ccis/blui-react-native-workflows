@@ -22,7 +22,7 @@ export type ResetPasswordScreenProps = Omit<WorkflowCardProps, 'currentStep | to
     /**
      * props applied to Success Screen
      */
-    successScreenProps?: SuccessScreenProps;
+    SuccessScreenProps?: SuccessScreenProps;
 
     /**
      * The configuration for customizing how errors are displayed
