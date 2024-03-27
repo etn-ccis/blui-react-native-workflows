@@ -84,7 +84,7 @@ export const EulaScreenBase: React.FC<EulaScreenProps> = (props) => {
     const defaultStyles = makeStyles(theme);
 
     const [eulaAccepted, setEulaAccepted] = useState(initialCheckboxValue ?? false);
-    const [checkboxEnable, setCheckboxEnable] = useState(initialCheckboxValue ?? false);
+    const [checkboxEnable, setCheckboxEnable] = useState(eulaAccepted);
 
     const handleEulaAcceptedChecked = useCallback(
         (accepted: boolean) => {
@@ -104,10 +104,14 @@ export const EulaScreenBase: React.FC<EulaScreenProps> = (props) => {
         contentSize: { height: number };
     }): boolean => {
         const paddingToBottom = 30;
-        if(eulaAccepted){
-            return true
+        if (eulaAccepted) {
+            return true;
         }
         return layoutMeasurement.height + contentOffset.y >= contentSize.height - paddingToBottom;
+    };
+    const handleLayout = (event: LayoutChangeEvent): void => {
+        const { width, height } = event.nativeEvent.layout;
+        contentSizeRef.current = { width, height };
     };
     return (
         <WorkflowCard {...cardBaseProps}>
@@ -160,10 +164,11 @@ export const EulaScreenBase: React.FC<EulaScreenProps> = (props) => {
                                     scrollEventThrottle={10}
                                     nestedScrollEnabled={true}
                                     onContentSizeChange={(w, height) => {
-                                        if(eulaAccepted==false){
-                                        console.log(height, contentSizeRef.current.height)
-                                        setCheckboxEnable(height <= contentSizeRef.current.height);
-                                    }}}
+                                        if (eulaAccepted === false) {
+                                            setCheckboxEnable(height <= contentSizeRef.current.height);
+                                        }
+                                    }}
+                                    onLayout={handleLayout}
                                 >
                                     <Text variant={'titleSmall'} style={defaultStyles.text}>
                                         {eulaContent}
