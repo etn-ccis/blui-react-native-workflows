@@ -43,8 +43,6 @@ export const ChangePasswordScreenBase: React.FC<ChangePasswordScreenProps> = (pr
 
     const styles = makeStyles();
 
-    const [currentPassword, setCurrentPassword] = useState('');
-
     const cardBaseProps = props.WorkflowCardBaseProps || {};
     const headerProps = props.WorkflowCardHeaderProps || {};
     const instructionsProps = props.WorkflowCardInstructionProps || {};
@@ -58,7 +56,6 @@ export const ChangePasswordScreenBase: React.FC<ChangePasswordScreenProps> = (pr
     ): JSX.Element => (SuccessScreen ? SuccessScreen(_props) : <SuccessScreenBase {..._props} />);
 
     const handleChange = (text: string): void => {
-        setCurrentPassword(text);
         currentPasswordChange?.(text);
     };
 
@@ -66,7 +63,7 @@ export const ChangePasswordScreenBase: React.FC<ChangePasswordScreenProps> = (pr
         getSuccessScreen(slotProps?.SuccessScreen || {}, slots?.SuccessScreen)
     ) : (
         <WorkflowCard {...cardBaseProps}>
-            <WorkflowCardHeader {...headerProps} />
+            <WorkflowCardHeader {...headerProps}  />
             {Object.keys(instructionsProps).length !== 0 && <WorkflowCardInstructions {...instructionsProps} />}
             <WorkflowCardBody>
                 <ErrorManager {...errorDisplayConfig}>
@@ -75,7 +72,6 @@ export const ChangePasswordScreenBase: React.FC<ChangePasswordScreenProps> = (pr
                             testID="current-password"
                             style={[styles.textInput]}
                             label={currentPasswordLabel}
-                            value={currentPassword}
                             {...currentPasswordTextInputProps}
                             onChangeText={(text: string) => {
                                 // eslint-disable-next-line no-unused-expressions

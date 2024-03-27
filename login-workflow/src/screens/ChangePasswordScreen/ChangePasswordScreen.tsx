@@ -1,39 +1,9 @@
 import React, { useCallback, useRef, useState } from 'react';
-import {
-    useAuthContext,
-    ChangePasswordScreenBase,
-    ChangePasswordScreenProps,
-    PasswordRequirement,
-} from '@brightlayer-ui/react-native-auth-workflow';
 import { useTranslation } from 'react-i18next';
-
-export const SPECIAL_CHAR_REGEX = /[!"#$%&'()*+,-._/:;<=>?@[\]^`{|}~]+/;
-export const LENGTH_REGEX = /^.{8,16}$/;
-export const NUMBERS_REGEX = /[0-9]+/;
-export const UPPER_CASE_REGEX = /[A-Z]+/;
-export const LOWER_CASE_REGEX = /[a-z]+/;
-export const defaultPasswordRequirements = (t: (input: string) => string): PasswordRequirement[] => [
-    {
-        regex: LENGTH_REGEX,
-        description: t('bluiCommon:PASSWORD_REQUIREMENTS.LENGTH'),
-    },
-    {
-        regex: NUMBERS_REGEX,
-        description: t('bluiCommon:PASSWORD_REQUIREMENTS.NUMBERS'),
-    },
-    {
-        regex: UPPER_CASE_REGEX,
-        description: t('bluiCommon:PASSWORD_REQUIREMENTS.UPPER'),
-    },
-    {
-        regex: LOWER_CASE_REGEX,
-        description: t('bluiCommon:PASSWORD_REQUIREMENTS.LOWER'),
-    },
-    {
-        regex: SPECIAL_CHAR_REGEX,
-        description: t('bluiCommon:PASSWORD_REQUIREMENTS.SPECIAL'),
-    },
-];
+import { defaultPasswordRequirements } from '../../constants';
+import { ChangePasswordScreenProps } from './types';
+import { useAuthContext, useErrorManager } from '../../contexts';
+import { ChangePasswordScreenBase } from './ChangePasswordScreenBase';
 
 export const ChangePasswordScreen: React.FC<ChangePasswordScreenProps> = (props) => {
     const { t } = useTranslation();
@@ -53,12 +23,22 @@ export const ChangePasswordScreen: React.FC<ChangePasswordScreenProps> = (props)
         slotProps = {},
     } = props;
 
+
     const [currentInput, setCurrentInput] = useState('');
     const [passwordInput, setPasswordInput] = useState('');
     const [confirmInput, setConfirmInput] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [showSuccessScreen, setShowSuccessScreen] = useState(false);
     const { actions, navigate } = useAuthContext();
+    const { triggerError, errorManagerConfig } = useErrorManager();
+    const errorDisplayConfig = {
+        ...errorManagerConfig,
+        ...props.errorDisplayConfig,
+        onClose: (): void => {
+            if (props.errorDisplayConfig && props.errorDisplayConfig.onClose) props.errorDisplayConfig.onClose();
+            if (errorManagerConfig.onClose) errorManagerConfig?.onClose();
+        },
+    };
 
     const passwordRequirements = defaultPasswordRequirements(t);
 
@@ -93,9 +73,7 @@ export const ChangePasswordScreen: React.FC<ChangePasswordScreenProps> = (props)
                 }
                 setShowSuccessScreen(true);
             } catch (_error) {
-                // TODO: Add error handling using triggerError, when moved to library
-                // eslint-disable-next-line no-console
-                console.log(_error as Error);
+                triggerError(_error as Error);
             } finally {
                 setIsLoading(false);
             }
@@ -172,7 +150,7 @@ export const ChangePasswordScreen: React.FC<ChangePasswordScreenProps> = (props)
             }}
             enableButton={checkPasswords}
             PasswordProps={passwordProps}
-            currentPasswordTextInputProps={currentPasswordTextInputProps}
+            currentPasswordTextInputProps={{...currentPasswordTextInputProps, value: currentInput}}
             slots={slots}
             slotProps={{
                 SuccessScreen: {
@@ -189,12 +167,17 @@ export const ChangePasswordScreen: React.FC<ChangePasswordScreenProps> = (props)
                         nextLabel: t('bluiCommon:ACTIONS.DONE'),
                         onNext: (): void => {
                             onFinish?.();
+                            setShowSuccessScreen(false);
+                            setCurrentInput('');
+                            setConfirmInput('');
+                            setPasswordInput('');
                         },
                     },
                     ...slotProps.SuccessScreen,
                 },
             }}
             showSuccessScreen={showSuccessScreen}
+            errorDisplayConfig={errorDisplayConfig}
         />
     );
 };
