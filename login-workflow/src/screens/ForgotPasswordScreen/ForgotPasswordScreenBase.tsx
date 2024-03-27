@@ -30,7 +30,7 @@ export const ForgotPasswordScreenBase: React.FC<React.PropsWithChildren<ForgotPa
         emailValidator = (email: string): boolean | string =>
             new RegExp(EMAIL_REGEX).test(email) ? true : 'Please enter a valid email',
         SuccessScreen,
-        successScreenProps,
+        SuccessScreenProps: successScreenProps,
         showSuccessScreen,
         errorDisplayConfig,
         emailTextInputProps,

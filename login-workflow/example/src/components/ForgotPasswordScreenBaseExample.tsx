@@ -50,7 +50,7 @@ export const ForgotPasswordScreenBaseExample: React.FC = () => {
                     onNext: () => setShowSuccess(true),
                     totalSteps: 0,
                 }}
-                successScreenProps={{
+                SuccessScreenProps={{
                     icon: { name: 'check-circle' },
                     messageTitle: t('bluiCommon:MESSAGES.EMAIL_SENT'),
                     message: (

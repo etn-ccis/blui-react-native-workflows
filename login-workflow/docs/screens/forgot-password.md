@@ -29,7 +29,7 @@ import { AuthContextProvider, ForgotPasswordScreen } from '@brightlayer-ui/react
 | responseTime        | `string`                                     | The response time to display in the contact section.                                                                                                     | `24 hours`                                                      |
 | showSuccessScreen   | `boolean`                                    | If true, a success screen will appear after submitting the form                                                                                          | `true`                                                          |
 | SuccessScreen       | `(props: SuccessScreenProps) => JSX.Element` | Prop to pass SuccessScreen component                                                                                                                     | `<SuccessScreenBase />`                                         |
-| successScreenProps  | `SuccessScreenProps`                         | props applied to Success Screen component                                                                                                                |                                                                 |
+| SuccessScreenProps  | `SuccessScreenProps`                         | props applied to Success Screen component                                                                                                                |                                                                 |
 
 This screen also extends the `WorkflowCardProps` type for updating the title, instructions, buttons, etc. See [Workflow Card](../components/workflow-card.md) for more details.
 

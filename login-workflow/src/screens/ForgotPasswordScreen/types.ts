@@ -28,7 +28,7 @@ export type ForgotPasswordScreenProps = WorkflowCardProps & {
     /**
      * props applied to Success Screen
      */
-    successScreenProps?: SuccessScreenProps;
+    SuccessScreenProps?: SuccessScreenProps;
 
     /**
      * used to display contact phone number
