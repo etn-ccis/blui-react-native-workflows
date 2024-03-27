@@ -77,7 +77,16 @@ export const ChangePasswordScreen: React.FC<ChangePasswordScreenProps> = (props)
                 setIsLoading(false);
             }
         }
-    }, [checkPasswords, currentInput, passwordInput, actions, setIsLoading, onFinish, props.showSuccessScreen, triggerError]);
+    }, [
+        checkPasswords,
+        currentInput,
+        passwordInput,
+        actions,
+        setIsLoading,
+        onFinish,
+        props.showSuccessScreen,
+        triggerError,
+    ]);
 
     const passwordProps = {
         newPasswordLabel: t('bluiAuth:CHANGE_PASSWORD.NEW_PASSWORD'),
