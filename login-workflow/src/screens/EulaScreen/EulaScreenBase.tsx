@@ -39,7 +39,7 @@ const makeStyles = (
             alignItems: 'center',
             justifyContent: 'center',
         },
-        text: { letterSpacing: 0 , paddingLeft: 10},
+        text: { letterSpacing: 0, paddingLeft: 10 },
         webview: {
             flex: 1,
             backgroundColor: theme.colors.background,
