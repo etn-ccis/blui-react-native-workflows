@@ -19,7 +19,6 @@ import {
     ExistingAccountSuccessScreen,
 } from '../../screens';
 import { ErrorManagerProps } from '../Error';
-import { initialRegistrationWorkflowScreenData } from '../../constants';
 
 const styles = StyleSheet.create({
     pagerView: {
@@ -93,10 +92,30 @@ export const RegistrationWorkflow: React.FC<React.PropsWithChildren<Registration
         initialScreenIndex < 0 ? 0 : initialScreenIndex > totalScreens - 1 ? totalScreens - 1 : initialScreenIndex
     );
     const [showSuccessScreen, setShowSuccessScreen] = useState(false);
+    const initialRegistrationWorkflowScreenData = {
+        Eula: {
+            accepted: false,
+        },
+        CreateAccount: {
+            emailAddress: '',
+        },
+        VerifyCode: {
+            code: '',
+            isAccountExist: false,
+        },
+        CreatePassword: {
+            password: '',
+            confirmPassword: '',
+        },
+        AccountDetails: {
+            firstName: '',
+            lastName: '',
+        },
+        Other: {},
+    };
+    const [screenData, setScreenData] = useState(initialRegistrationWorkflowScreenData);
     const [viewPagerIndex, setViewPagerIndex] = useState(0);
     const selectedPage = React.useRef(0);
-
-    const [screenData, setScreenData] = useState(initialRegistrationWorkflowScreenData);
 
     const updateScreenData = (data: IndividualScreenData): void => {
         const { Other }: { [key: string]: any } = screenData;

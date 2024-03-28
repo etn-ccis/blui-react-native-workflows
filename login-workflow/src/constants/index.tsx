@@ -40,25 +40,3 @@ export const defaultPasswordRequirements = (t: (input: string) => string): Passw
         description: t('bluiCommon:PASSWORD_REQUIREMENTS.SPECIAL'),
     },
 ];
-
-export const initialRegistrationWorkflowScreenData = {
-    Eula: {
-        accepted: false,
-    },
-    CreateAccount: {
-        emailAddress: '',
-    },
-    VerifyCode: {
-        code: '',
-        isAccountExist: false,
-    },
-    CreatePassword: {
-        password: '',
-        confirmPassword: '',
-    },
-    AccountDetails: {
-        firstName: '',
-        lastName: '',
-    },
-    Other: {},
-};
