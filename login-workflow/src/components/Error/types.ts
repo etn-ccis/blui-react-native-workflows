@@ -4,7 +4,9 @@ import { StyleProp, ViewStyle } from 'react-native';
 /**
  * Props of AuthError
  */
-export type AuthError = { cause: { title: string; errorMessage: string; errorOptions?: TOptions; titleOptions?: TOptions } };
+export type AuthError = {
+    cause: { title: string; errorMessage: string; errorOptions?: TOptions; titleOptions?: TOptions };
+};
 
 /**
  * Props of ErrorManager Component that manages the display of error messages.
