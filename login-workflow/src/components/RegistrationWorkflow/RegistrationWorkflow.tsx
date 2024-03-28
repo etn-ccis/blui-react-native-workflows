@@ -19,6 +19,7 @@ import {
     ExistingAccountSuccessScreen,
 } from '../../screens';
 import { ErrorManagerProps } from '../Error';
+import { initialRegistrationWorkflowScreenData } from '../../constants';
 
 const styles = StyleSheet.create({
     pagerView: {
@@ -95,27 +96,7 @@ export const RegistrationWorkflow: React.FC<React.PropsWithChildren<Registration
     const [viewPagerIndex, setViewPagerIndex] = useState(0);
     const selectedPage = React.useRef(0);
 
-    const [screenData, setScreenData] = useState({
-        Eula: {
-            accepted: false,
-        },
-        CreateAccount: {
-            emailAddress: '',
-        },
-        VerifyCode: {
-            code: '',
-            isAccountExist: false,
-        },
-        CreatePassword: {
-            password: '',
-            confirmPassword: '',
-        },
-        AccountDetails: {
-            firstName: '',
-            lastName: '',
-        },
-        Other: {},
-    });
+    const [screenData, setScreenData] = useState(initialRegistrationWorkflowScreenData);
 
     const updateScreenData = (data: IndividualScreenData): void => {
         const { Other }: { [key: string]: any } = screenData;
@@ -145,27 +126,7 @@ export const RegistrationWorkflow: React.FC<React.PropsWithChildren<Registration
     };
 
     const resetScreenData = (): void => {
-        setScreenData({
-            Eula: {
-                accepted: false,
-            },
-            CreateAccount: {
-                emailAddress: '',
-            },
-            VerifyCode: {
-                code: '',
-                isAccountExist: false,
-            },
-            CreatePassword: {
-                password: '',
-                confirmPassword: '',
-            },
-            AccountDetails: {
-                firstName: '',
-                lastName: '',
-            },
-            Other: {},
-        });
+        setScreenData(initialRegistrationWorkflowScreenData);
         setViewPagerIndex(viewPagerIndex + 1);
         setIsAccountExist(false);
         setCurrentScreen(0);

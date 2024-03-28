@@ -6,6 +6,7 @@ import {
     WorkflowCardBody,
     WorkflowCardHeader,
     useRegistrationWorkflowContext,
+    useRegistrationContext,
 } from '@brightlayer-ui/react-native-auth-workflow';
 import { TextInput } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
@@ -20,7 +21,8 @@ type CustomScreenProps = {
 
 export const CustomScreen: React.FC<CustomScreenProps> = (props) => {
     const regWorkflow = useRegistrationWorkflowContext();
-    const { nextScreen, previousScreen, screenData, currentScreen, totalScreens } = regWorkflow;
+    const { navigate } = useRegistrationContext();
+    const { nextScreen, screenData, currentScreen, totalScreens, resetScreenData } = regWorkflow;
     const { organisationName } = props;
     const { t } = useTranslation();
 
@@ -32,17 +34,14 @@ export const CustomScreen: React.FC<CustomScreenProps> = (props) => {
         void nextScreen({
             screenId: 'Custom',
             values: { organisationName: organisationNameInput },
-            isAccountExist: true,
+            // isAccountExist: true,
         });
     }, [organisationNameInput, nextScreen]);
 
     const onPrevious = useCallback(() => {
-        void previousScreen({
-            screenId: 'Custom',
-            values: { organisationName: organisationName },
-            isAccountExist: true,
-        });
-    }, [organisationName, previousScreen]);
+        navigate(-1);
+        resetScreenData();
+    }, [navigate, resetScreenData]);
 
     return (
         <WorkflowCard>

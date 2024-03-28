@@ -16,7 +16,8 @@ export const VerifyCodeScreen: React.FC<VerifyCodeScreenProps> = (props) => {
     const { t } = useTranslation();
     const regWorkflow = useRegistrationWorkflowContext();
     const { actions, navigate } = useRegistrationContext();
-    const { nextScreen, previousScreen, screenData, currentScreen, totalScreens, updateScreenData } = regWorkflow;
+    const { nextScreen, previousScreen, screenData, currentScreen, totalScreens, updateScreenData, resetScreenData } =
+        regWorkflow;
     const { emailAddress } = screenData.CreateAccount;
     const { triggerError, errorManagerConfig } = useErrorManager();
     const errorDisplayConfig = {
@@ -109,7 +110,10 @@ export const VerifyCodeScreen: React.FC<VerifyCodeScreenProps> = (props) => {
 
     const workflowCardHeaderProps = {
         title: t('bluiRegistration:REGISTRATION.STEPS.VERIFY_EMAIL'),
-        onIconPress: () => navigate(-1),
+        onIconPress: (): void => {
+            navigate(-1);
+            resetScreenData();
+        },
         ...WorkflowCardHeaderProps,
     };
 
