@@ -7,7 +7,7 @@ A screen that allows a user to reset their password. The ResetPasswordScreen mus
 ## Usage
 
 ```tsx
-import { AuthContextProvider, ResetPasswordScreen } from '@brightlayer-ui/react-auth-workflow';
+import { AuthContextProvider, ResetPasswordScreen } from '@brightlayer-ui/react-native-auth-workflow';
 ...
 
 <AuthContextProvider {...props}>

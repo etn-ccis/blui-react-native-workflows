@@ -1,10 +1,11 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { ResetPasswordScreenBase, AuthContextProvider } from '@brightlayer-ui/react-native-auth-workflow';
 import { useApp } from '../contexts/AppContextProvider';
 import { useNavigation } from '@react-navigation/native';
 import { ProjectAuthUIActions } from '../actions/AuthUIActions';
 import i18nAppInstance from '../../translations/i18n';
 import { useTranslation } from 'react-i18next';
+import { defaultPasswordRequirements } from '../screens/ChangePasswordScreen';
 
 export const ResetPasswordScreenBaseExample: React.FC = () => {
     const app = useApp();
@@ -13,8 +14,9 @@ export const ResetPasswordScreenBaseExample: React.FC = () => {
 
     const [passwordInput, setPasswordInput] = useState('');
     const [confirmInput, setConfirmInput] = useState('');
-    const [enable, setEnable] = useState(false);
     const [showSuccess, setShowSuccess] = useState(false);
+    const passwordRef = useRef(null);
+    const confirmRef = useRef(null);
 
     const updateFields = useCallback(
         (fields: { password: string; confirm: string }) => {
@@ -24,9 +26,17 @@ export const ResetPasswordScreenBaseExample: React.FC = () => {
         [setPasswordInput, setConfirmInput]
     );
 
-    useEffect(() => {
-        setEnable(passwordInput !== '' && confirmInput !== '' && passwordInput === confirmInput);
-    }, [passwordInput, confirmInput]);
+    const passwordReqs = defaultPasswordRequirements(t);
+
+    const areValidMatchingPasswords = useCallback((): boolean => {
+        if (passwordReqs?.length === 0) {
+            return confirmInput === passwordInput;
+        }
+        for (let i = 0; i < passwordReqs.length; i++) {
+            if (!new RegExp(passwordReqs[i].regex).test(passwordInput)) return false;
+        }
+        return confirmInput === passwordInput;
+    }, [passwordReqs, passwordInput, confirmInput]);
 
     return (
         <AuthContextProvider
@@ -57,14 +67,21 @@ export const ResetPasswordScreenBaseExample: React.FC = () => {
                     previousLabel: 'Back',
                     showNext: true,
                     nextLabel: 'Next',
-                    canGoNext: enable,
+                    canGoNext: passwordInput !== '' && confirmInput !== '' && areValidMatchingPasswords(),
                     totalSteps: 0,
                     onPrevious: () => navigation.navigate('Home'),
                     onNext: () => setShowSuccess(true),
                 }}
                 PasswordProps={{
+                    passwordRef,
+                    confirmRef,
                     onPasswordChange: (passwordData: { password: string; confirm: string }): void => {
                         updateFields(passwordData);
+                    },
+                    onSubmit: (): void => {
+                        if (areValidMatchingPasswords()) {
+                            setShowSuccess(true);
+                        }
                     },
                 }}
                 SuccessScreenProps={{
@@ -78,6 +95,7 @@ export const ResetPasswordScreenBaseExample: React.FC = () => {
                         nextLabel: t('bluiCommon:ACTIONS.DONE'),
                         onNext: (): void => {
                             navigation.navigate('Home');
+                            setShowSuccess(false);
                         },
                     },
                 }}
