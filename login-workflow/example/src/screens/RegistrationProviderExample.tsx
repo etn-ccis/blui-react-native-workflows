@@ -5,7 +5,6 @@ import { ProjectRegistrationUIActions } from '../actions/RegistrationUIActions';
 import i18nAppInstance from '../../translations/i18n';
 import {
     RegistrationContextProvider,
-    ErrorContextProvider,
     RegistrationWorkflow,
     // AccountDetailsScreen,
     // CreatePasswordScreen,
@@ -46,7 +45,6 @@ const RegistrationProviderExample: React.FC<AppProps> = (): JSX.Element => {
                 SUPPORT: undefined,
             }}
         >
-            <ErrorContextProvider>
                 {/* Default Implementation */}
                 <RegistrationWorkflow />
 
@@ -83,7 +81,6 @@ const RegistrationProviderExample: React.FC<AppProps> = (): JSX.Element => {
                     isInviteRegistration
                     initialRegistrationParams={{ code: '123', email: 'aa@aa.aa' }}
                 /> */}
-            </ErrorContextProvider>
         </RegistrationContextProvider>
     );
 };
