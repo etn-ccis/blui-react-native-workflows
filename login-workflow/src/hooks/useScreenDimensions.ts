@@ -3,7 +3,7 @@
  * @module Hooks
  * @internal
  */
-import { useWindowDimensions } from 'react-native';
+import { Dimensions } from 'react-native';
 
 type ScreenDimensionsProps = {
     width: number;
@@ -17,7 +17,7 @@ type ScreenDimensionsProps = {
  * @category Hook
  */
 export const useScreenDimensions = (): ScreenDimensionsProps => {
-    const { height, width } = useWindowDimensions();
+    const { height, width } = Dimensions.get('screen');
     return {
         isTablet: width >= 768,
         width: width,
