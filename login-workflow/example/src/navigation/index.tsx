@@ -11,6 +11,7 @@ import Home from '../screens/home';
 import { View } from 'react-native';
 import AuthProviderExample from '../screens/AuthProviderExample';
 import { Login } from '../screens/Login';
+import { ForgotPasswordScreenBaseExample } from '../components/ForgotPasswordScreenBaseExample';
 import RegistrationProviderExample from '../screens/RegistrationProviderExample';
 import { ContactBaseExample } from '../screens/ContactBaseExample';
 
@@ -25,6 +26,7 @@ export type RootStackParamList = {
     Home: undefined;
     RegistrationProviderExample: undefined;
     AuthProviderExample: undefined;
+    ForgotPasswordScreenBaseExample: undefined;
     Contact: undefined;
 };
 
@@ -54,6 +56,11 @@ const AppRouter = (): any => (
         <RootStack.Screen
             name="AuthProviderExample"
             component={AuthProviderExample}
+            options={{ gestureEnabled: false }}
+        />
+        <RootStack.Screen
+            name="ForgotPasswordScreenBaseExample"
+            component={ForgotPasswordScreenBaseExample}
             options={{ gestureEnabled: false }}
         />
         <RootStack.Screen name="Contact" component={ContactBaseExample} />
