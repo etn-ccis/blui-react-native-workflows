@@ -23,7 +23,7 @@ const makeStyles = (
     StyleSheet.create({
         header: {
             height: 64,
-            paddingHorizontal: 16,
+            paddingHorizontal: isTablet ? 24 : 16,
             paddingVertical: 12,
             alignItems: 'center',
             flexDirection: 'row',

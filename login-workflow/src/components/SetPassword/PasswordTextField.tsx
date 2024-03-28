@@ -25,6 +25,7 @@ export const PasswordTextField: React.FC<TextInputProps> = forwardRef((props, re
                     testID="toggle-button"
                     icon={showPassword ? 'eye' : 'eye-off'}
                     onPress={() => setShowPassword(!showPassword)}
+                    mode="outlined"
                 />
             }
             {...otherProps}
