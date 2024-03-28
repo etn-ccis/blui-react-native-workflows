@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { Modal, View } from 'react-native';
 import { ActivityIndicator } from 'react-native-paper';
 import { useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 import { SpinnerProps } from './types';
@@ -14,20 +14,22 @@ import { SpinnerProps } from './types';
 export const Spinner: React.FC<SpinnerProps> = (props) => {
     const { visible, ...otherProps } = props;
     const theme = useExtendedTheme();
-
     return (
-        <View
-            style={{
-                height: '100%',
-                width: '100%',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-            }}
-            testID="spinner"
-            {...otherProps}
-        >
-            <ActivityIndicator animating={visible} size="large" color={theme.colors.primary} />
-        </View>
+        <Modal visible={visible} transparent animationType="fade" onRequestClose={() => {}}>
+            <View
+                style={{
+                    flex: 1,
+                    height: '100%',
+                    width: '100%',
+                    backgroundColor: 'transparent',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                }}
+                testID="spinner"
+                {...otherProps}
+            >
+                <ActivityIndicator animating={visible} size="large" color={theme.colors.primary} />
+            </View>
+        </Modal>
     );
 };

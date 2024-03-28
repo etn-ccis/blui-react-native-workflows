@@ -88,8 +88,9 @@ export const WorkflowCard: React.FC<WorkflowCardBaseProps> = (props) => {
                     },
                 ]}
             >
-                {loading ? <Spinner visible={loading} /> : children}
+                {children}
             </Card>
+            <Spinner visible={loading} />
         </ImageBackground>
     );
 };
