@@ -46,6 +46,7 @@ export const ForgotPasswordScreenBaseExample: React.FC = () => {
                     previousLabel: 'Back',
                     showNext: true,
                     nextLabel: 'Next',
+                    canGoNext: true,
                     onPrevious: () => navigation.navigate('Home'),
                     onNext: () => setShowSuccess(true),
                     totalSteps: 0,

@@ -57,13 +57,6 @@ export const ForgotPasswordScreenBase: React.FC<React.PropsWithChildren<ForgotPa
         [emailValidator]
     );
 
-    const handleOnNext = (): void => {
-        const { onNext } = actionsProps;
-        if (onNext) {
-            onNext({ email: emailInput });
-        }
-    };
-
     const getSuccessScreen = (
         _props: SuccessScreenProps,
         _successScreen?: (props: SuccessScreenProps) => JSX.Element
@@ -95,6 +88,11 @@ export const ForgotPasswordScreenBase: React.FC<React.PropsWithChildren<ForgotPa
                                     emailTextInputProps?.onChangeText && emailTextInputProps.onChangeText(email);
                                     handleEmailInputChange(email);
                                 }}
+                                onSubmitEditing={(): void => {
+                                    if (emailInput.length > 0 && isEmailValid && actionsProps.canGoNext) {
+                                        actionsProps.onNext?.();
+                                    }
+                                }}
                             />
                             <HelperText type="error" visible={shouldValidateEmail}>
                                 {emailError}
@@ -104,7 +102,6 @@ export const ForgotPasswordScreenBase: React.FC<React.PropsWithChildren<ForgotPa
                     <WorkflowCardActions
                         {...actionsProps}
                         canGoNext={emailInput.length > 0 && isEmailValid && actionsProps.canGoNext}
-                        onNext={handleOnNext}
                     />
                 </WorkflowCard>
             )}

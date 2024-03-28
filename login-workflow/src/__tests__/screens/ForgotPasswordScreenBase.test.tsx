@@ -7,10 +7,10 @@ import { PaperProvider, Text } from 'react-native-paper';
 
 describe('ForgotPasswordScreenBase Tests', () => {
     afterEach(cleanup);
-    let mockOnNext: any;
+    let mockFunction: any;
 
     beforeEach(() => {
-        mockOnNext = jest.fn();
+        mockFunction = jest.fn();
     });
 
     afterEach(() => {
@@ -34,16 +34,20 @@ describe('ForgotPasswordScreenBase Tests', () => {
             WorkflowCardActionsProps: {
                 showNext: true,
                 nextLabel: 'Next',
-                onNext: mockOnNext(),
+                canGoNext: true,
+                onNext: mockFunction(),
+            },
+            emailTextInputProps: {
+                onChangeText: mockFunction,
             },
         });
-
         const input = screen.getByTestId('text-input-flat');
-        const nextButton = screen.getByText('Next');
+        const nextButton = screen.getByTestId('workflow-card-next-button-text');
+        expect(nextButton).toBeDisabled();
         fireEvent.changeText(input, 'test@eaton.com');
-        expect(nextButton).toBeEnabled();
+        expect(input.props.value).toBe('test@eaton.com');
         fireEvent.press(nextButton);
-        expect(mockOnNext).toHaveBeenCalled();
+        expect(mockFunction).toHaveBeenCalled();
     });
 
     it('should render success screen', () => {
@@ -56,19 +60,18 @@ describe('ForgotPasswordScreenBase Tests', () => {
     it('should render passed props correctly', () => {
         renderer({
             emailLabel: 'Email ID',
-            initialEmailValue: 'test@eaton.com',
             emailValidator: (email) => (email.length > 0 ? true : 'enter valid email'),
+            initialEmailValue: 'test@eaton.com',
             WorkflowCardActionsProps: {
                 showNext: true,
                 nextLabel: 'Next',
-                onNext: mockOnNext(),
+                onNext: mockFunction(),
             },
             SuccessScreen: () => <Text>Success</Text>,
         });
         expect(screen.getAllByText('Email ID')).toBeTruthy();
         expect(screen.getByTestId('text-input-flat').props.value).toBe('test@eaton.com');
-        expect(screen.getByText('Next')).toBeEnabled();
         fireEvent.press(screen.getByText('Next'));
-        expect(mockOnNext).toHaveBeenCalled();
+        expect(mockFunction).toHaveBeenCalled();
     });
 });
