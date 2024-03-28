@@ -33,7 +33,7 @@ const makeStyles = ({
         tablet: {
             height: MAX_CARD_HEIGHT,
             width: MAX_CARD_WIDTH,
-            borderRadius: theme.roundness * 10,
+            borderRadius: theme.roundness * 6,
             overflow: 'hidden',
         },
     });
@@ -79,7 +79,7 @@ export const WorkflowCard: React.FC<WorkflowCardBaseProps> = (props) => {
                 style={{
                     maxHeight: height,
                     maxWidth: width,
-                    borderRadius: isTablet ? theme.roundness * 10 : 0,
+                    borderRadius: isTablet ? theme.roundness * 6 : 0,
                 }}
                 contentStyle={[
                     isTablet ? styles.tablet : styles.mobile,
