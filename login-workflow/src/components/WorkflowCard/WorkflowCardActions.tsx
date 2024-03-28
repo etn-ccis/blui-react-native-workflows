@@ -58,7 +58,14 @@ export const WorkflowCardActions: React.FC<WorkflowCardActionsProps> = (props) =
             {divider && <Divider testID="workflow-card-action-divider" />}
             <MobileStepper
                 styles={{
-                    root: [{ flex: 0, justifyContent: 'space-between', paddingHorizontal: isTablet ? 8 : 0 , paddingVertical: isTablet? 8: 0}],
+                    root: [
+                        {
+                            flex: 0,
+                            justifyContent: 'space-between',
+                            paddingHorizontal: isTablet ? 8 : 0,
+                            paddingVertical: isTablet ? 8 : 0,
+                        },
+                    ],
                     stepperContainer: !showStepperDots
                         ? {
                               display: 'none',
