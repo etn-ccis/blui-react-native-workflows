@@ -5,7 +5,6 @@ import { ProjectRegistrationUIActions } from '../actions/RegistrationUIActions';
 import i18nAppInstance from '../../translations/i18n';
 import {
     RegistrationContextProvider,
-    ErrorContextProvider,
     RegistrationWorkflow,
     // AccountDetailsScreen,
     // CreatePasswordScreen,
@@ -46,19 +45,18 @@ const RegistrationProviderExample: React.FC<AppProps> = (): JSX.Element => {
                 SUPPORT: undefined,
             }}
         >
-            <ErrorContextProvider>
-                {/* Default Implementation */}
-                <RegistrationWorkflow />
+            {/* Default Implementation */}
+            <RegistrationWorkflow />
 
-                {/* implementation with custom screens. This custom screen is using app and workflow level translations  */}
-                {/* <RegistrationWorkflow>
+            {/* implementation with custom screens. This custom screen is using app and workflow level translations  */}
+            {/* <RegistrationWorkflow>
                     <EulaScreen/> 
                     <CustomScreen/>
                     <AccountDetailsScreen/>
                 </RegistrationWorkflow> */}
 
-                {/* Show default success screen */}
-                {/* <RegistrationWorkflow successScreen={
+            {/* Show default success screen */}
+            {/* <RegistrationWorkflow successScreen={
                     <WorkflowCard>
                         <WorkflowCardHeader title='Test Success Screen' onIconPress={()=>{
                             console.log('close icon pressed')
@@ -78,12 +76,11 @@ const RegistrationProviderExample: React.FC<AppProps> = (): JSX.Element => {
                     <AccountDetailsScreen/>
                 </RegistrationWorkflow> */}
 
-                {/* Invite Registration Mode */}
-                {/* <RegistrationWorkflow
+            {/* Invite Registration Mode */}
+            {/* <RegistrationWorkflow
                     isInviteRegistration
                     initialRegistrationParams={{ code: '123', email: 'aa@aa.aa' }}
                 /> */}
-            </ErrorContextProvider>
         </RegistrationContextProvider>
     );
 };
