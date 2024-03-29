@@ -1,7 +1,11 @@
 import React, { ReactNode } from 'react';
 import { NavigationContainer, createNavigationContainerRef } from '@react-navigation/native';
 import { useApp } from '../contexts/AppContextProvider';
-import { RegistrationWorkflow, RegistrationContextProvider } from '@brightlayer-ui/react-native-auth-workflow';
+import {
+    RegistrationWorkflow,
+    RegistrationContextProvider,
+    AuthContextProvider,
+} from '@brightlayer-ui/react-native-auth-workflow';
 import { ProjectRegistrationUIActions } from '../actions/RegistrationUIActions';
 import i18nAppInstance from '../../translations/i18n';
 import { NavigationDrawer } from './navigation-drawer';
@@ -13,6 +17,8 @@ import AuthProviderExample from '../screens/AuthProviderExample';
 import { Login } from '../screens/Login';
 import RegistrationProviderExample from '../screens/RegistrationProviderExample';
 import { ContactBaseExample } from '../screens/ContactBaseExample';
+import { ProjectAuthUIActions } from '../actions/AuthUIActions';
+import { ChangePassword } from '../screens/ChangePassword';
 
 const getAuthState = (): any => ({
     isAuthenticated: true,
@@ -26,6 +32,7 @@ export type RootStackParamList = {
     RegistrationProviderExample: undefined;
     AuthProviderExample: undefined;
     Contact: undefined;
+    ChangePassword: undefined;
 };
 
 const RootStack = createStackNavigator<RootStackParamList>();
@@ -46,17 +53,7 @@ const AppRouter = (): any => (
         drawerContent={(props: any): ReactNode => <CustomDrawerContent {...props} />}
     >
         <RootStack.Screen name="Home" component={Home} />
-        <RootStack.Screen
-            name="RegistrationProviderExample"
-            component={RegistrationProviderExample}
-            options={{ gestureEnabled: false }}
-        />
-        <RootStack.Screen
-            name="AuthProviderExample"
-            component={AuthProviderExample}
-            options={{ gestureEnabled: false }}
-        />
-        <RootStack.Screen name="Contact" component={ContactBaseExample} />
+        <RootStack.Screen name="ChangePassword" component={ChangePassword} />
     </Drawer.Navigator>
 );
 const RegistrationRouter = (): any => {
@@ -91,18 +88,52 @@ const RegistrationRouter = (): any => {
                     )}
                 </Stack.Screen>
                 <Stack.Screen name="REGISTER_SELF">{() => <RegistrationWorkflow />}</Stack.Screen>
-                <Stack.Screen name="LOGIN" component={Login} />
             </Stack.Navigator>
         </RegistrationContextProvider>
     );
 };
+const AuthRouter = (): any => {
+    const app = useApp();
+    const routes = {
+        LOGIN: 'LOGIN',
+        FORGOT_PASSWORD: undefined,
+        RESET_PASSWORD: undefined,
+        REGISTER_INVITE: 'REGISTER_INVITE',
+        REGISTER_SELF: 'REGISTER_SELF',
+        SUPPORT: undefined,
+    };
+    return (
+        <AuthContextProvider
+            language={app.language}
+            actions={ProjectAuthUIActions(app)}
+            i18n={i18nAppInstance}
+            navigate={navigationRef.navigate}
+            routeConfig={{
+                LOGIN: 'Login',
+                FORGOT_PASSWORD: undefined,
+                RESET_PASSWORD: undefined,
+                REGISTER_INVITE: undefined,
+                REGISTER_SELF: undefined,
+                SUPPORT: undefined,
+            }}
+        >
+            <Stack.Navigator
+                screenOptions={{
+                    headerShown: false,
+                }}
+            >
+                <Stack.Screen name="LOGIN" component={Login} />
+            </Stack.Navigator>
+        </AuthContextProvider>
+    );
+};
 export const MainRouter = (): any => {
-    const authState = getAuthState();
+    const app = useApp();
     // Retrieve data that you are storing about the logged-in status of the user
 
     return (
         <NavigationContainer ref={navigationRef}>
-            {authState.isAuthenticated ? <AppRouter /> : <RegistrationRouter />}
+            {app.isAuthenticated ? <AppRouter /> : <AuthRouter />}
         </NavigationContainer>
     );
 };

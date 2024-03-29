@@ -41,8 +41,10 @@ export const UserMenuExample: React.FC<UserMenuExampleProps> = (props) => {
         void i18n.changeLanguage(newLanguage);
     };
     const logout = (): void => {
-        app.isAuthenticated = false;
-        nav.navigate('Login');
+        app.setAuthenticated(false);
+    };
+    const changePassword = (): void => {
+        nav.navigate('ChangePassword');
     };
     const languageOptions = [
         { label: 'English', value: 'en' },
@@ -77,6 +79,7 @@ export const UserMenuExample: React.FC<UserMenuExampleProps> = (props) => {
                 />
             ),
         },
+        { title: 'Change Password', icon: CancelIcon, onPress: (): void => changePassword() },
         { title: 'Logout', icon: CancelIcon, onPress: (): void => logout() },
     ];
 

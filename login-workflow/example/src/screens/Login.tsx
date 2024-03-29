@@ -16,8 +16,7 @@ export const Login: React.FC<CreatePasswordProps> = (props) => {
     const [passwordInput, setPasswordInput] = useState('');
 
     const onNext = useCallback(() => {
-        app.isAuthenticated = true;
-        nav.navigate('Home');
+        app.setAuthenticated(true);
     }, []);
 
     return (
