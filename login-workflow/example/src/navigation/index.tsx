@@ -61,10 +61,7 @@ const AppRouter = (): any => (
             options={{ gestureEnabled: false }}
         />
         <RootStack.Screen name="ResetPasswordScreenBaseExample" component={ResetPasswordScreenBaseExample} />
-        <RootStack.Screen
-            name="ForgotPasswordScreenBaseExample"
-            component={ForgotPasswordScreenBaseExample}
-        />
+        <RootStack.Screen name="ForgotPasswordScreenBaseExample" component={ForgotPasswordScreenBaseExample} />
         <RootStack.Screen name="Contact" component={ContactBaseExample} />
     </Drawer.Navigator>
 );

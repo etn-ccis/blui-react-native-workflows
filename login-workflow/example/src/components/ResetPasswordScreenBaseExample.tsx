@@ -5,7 +5,47 @@ import { useNavigation } from '@react-navigation/native';
 import { ProjectAuthUIActions } from '../actions/AuthUIActions';
 import i18nAppInstance from '../../translations/i18n';
 import { useTranslation } from 'react-i18next';
-import { defaultPasswordRequirements } from '../screens/ChangePasswordScreen';
+
+type PasswordRequirement = {
+    /**
+     * The description of the password requirement
+     */
+    description: string;
+
+    /**
+     * The regex to validate the password
+     */
+    regex: RegExp;
+};
+
+export const SPECIAL_CHAR_REGEX = /[!"#$%&'()*+,-._/:;<=>?@[\]^`{|}~]+/;
+export const LENGTH_REGEX = /^.{8,16}$/;
+export const NUMBERS_REGEX = /[0-9]+/;
+export const UPPER_CASE_REGEX = /[A-Z]+/;
+export const LOWER_CASE_REGEX = /[a-z]+/;
+
+export const defaultPasswordRequirements = (t: (input: string) => string): PasswordRequirement[] => [
+    {
+        regex: LENGTH_REGEX,
+        description: t('bluiCommon:PASSWORD_REQUIREMENTS.LENGTH'),
+    },
+    {
+        regex: NUMBERS_REGEX,
+        description: t('bluiCommon:PASSWORD_REQUIREMENTS.NUMBERS'),
+    },
+    {
+        regex: UPPER_CASE_REGEX,
+        description: t('bluiCommon:PASSWORD_REQUIREMENTS.UPPER'),
+    },
+    {
+        regex: LOWER_CASE_REGEX,
+        description: t('bluiCommon:PASSWORD_REQUIREMENTS.LOWER'),
+    },
+    {
+        regex: SPECIAL_CHAR_REGEX,
+        description: t('bluiCommon:PASSWORD_REQUIREMENTS.SPECIAL'),
+    },
+];
 
 export const ResetPasswordScreenBaseExample: React.FC = () => {
     const app = useApp();
