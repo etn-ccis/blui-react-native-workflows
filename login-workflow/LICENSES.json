@@ -10,35 +10,5 @@
         "repository": "https://github.com/lodash/lodash",
         "licenseUrl": "https://github.com/lodash/lodash/raw/master/LICENSE",
         "parents": "@brightlayer-ui/react-native-auth-workflow"
-    },
-    "react-native-reanimated@3.6.2": {
-        "licenses": "MIT",
-        "repository": "https://github.com/software-mansion/react-native-reanimated",
-        "licenseUrl": "https://github.com/software-mansion/react-native-reanimated/raw/master/LICENSE",
-        "parents": "@brightlayer-ui/react-native-auth-workflow"
-    },
-    "react-native-status-bar-height@2.6.0": {
-        "licenses": "MIT",
-        "repository": "https://github.com/ovr/react-native-status-bar-height",
-        "licenseUrl": "https://github.com/ovr/react-native-status-bar-height/raw/master/LICENSE",
-        "parents": "@brightlayer-ui/react-native-auth-workflow"
-    },
-    "react-native-svg-transformer@1.3.0": {
-        "licenses": "MIT",
-        "repository": "https://github.com/kristerkari/react-native-svg-transformer",
-        "licenseUrl": "https://github.com/kristerkari/react-native-svg-transformer/raw/master/LICENSE",
-        "parents": "@brightlayer-ui/react-native-auth-workflow"
-    },
-    "react-native-svg@14.1.0": {
-        "licenses": "MIT",
-        "repository": "https://github.com/react-native-community/react-native-svg",
-        "licenseUrl": "https://github.com/react-native-community/react-native-svg/raw/master/LICENSE",
-        "parents": "@brightlayer-ui/react-native-auth-workflow"
-    },
-    "react-native-tab-view@3.5.2": {
-        "licenses": "MIT",
-        "repository": "https://github.com/react-navigation/react-navigation",
-        "licenseUrl": "https://github.com/react-navigation/react-navigation/raw/master/LICENSE",
-        "parents": "@brightlayer-ui/react-native-auth-workflow"
     }
 }

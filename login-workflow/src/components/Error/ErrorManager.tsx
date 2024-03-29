@@ -2,6 +2,7 @@ import React, { useCallback } from 'react';
 import { BasicDialog } from '../Dialog/BasicDialog';
 import { ErrorMessageBox } from './ErrorMessageBox';
 import { ErrorManagerProps } from './types';
+import { TOptions } from 'i18next';
 
 /**
  * Component that manages the display of error messages. Can be configured to display a dialog, a message box, or neither
@@ -17,12 +18,15 @@ export const ErrorManager: React.FC<React.PropsWithChildren<ErrorManagerProps>> 
         mode = 'dialog',
         title,
         error = '',
+        errorOptions,
+        titleOptions,
         onClose = (): void => {},
         dialogConfig,
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        t = (key: string, _options?: TOptions): string => key,
         messageBoxConfig = {
             position: 'top',
         },
-        t = (key: string): string => key,
     } = props;
 
     const ErrorDialogWithProps = useCallback(
@@ -30,14 +34,14 @@ export const ErrorManager: React.FC<React.PropsWithChildren<ErrorManagerProps>> 
             <BasicDialog
                 testID="basic-dialog"
                 open={error.length > 0}
-                title={t(dialogConfig?.title ?? title ?? 'Error')}
-                body={t(error)}
+                title={t(dialogConfig?.title ?? title ?? 'Error', titleOptions)}
+                body={t(error, errorOptions)}
                 onDismiss={onClose}
                 dismissButtonText={t(dialogConfig?.dismissLabel ?? 'Okay')}
                 style={dialogConfig?.style}
             />
         ),
-        [dialogConfig, title, error, onClose, t]
+        [dialogConfig, title, error, onClose, errorOptions, titleOptions, t]
     );
 
     const ErrorMessageBoxWithProps = useCallback((): JSX.Element => {
@@ -45,8 +49,8 @@ export const ErrorManager: React.FC<React.PropsWithChildren<ErrorManagerProps>> 
 
         return (
             <ErrorMessageBox
-                title={t(messageBoxConfig?.title ?? title ?? 'Error')}
-                errorMessage={t(error)}
+                title={t(messageBoxConfig?.title ?? title ?? 'Error', titleOptions)}
+                errorMessage={t(error, errorOptions)}
                 dismissible={dismissible}
                 style={style}
                 backgroundColor={backgroundColor}
@@ -54,7 +58,7 @@ export const ErrorManager: React.FC<React.PropsWithChildren<ErrorManagerProps>> 
                 onClose={onClose}
             />
         );
-    }, [error, title, t, messageBoxConfig, onClose]);
+    }, [error, errorOptions, titleOptions, title, t, messageBoxConfig, onClose]);
 
     return mode === 'dialog' && error.length > 0 ? (
         <>
