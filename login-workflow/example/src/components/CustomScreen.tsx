@@ -22,7 +22,7 @@ type CustomScreenProps = {
 export const CustomScreen: React.FC<CustomScreenProps> = (props) => {
     const regWorkflow = useRegistrationWorkflowContext();
     const { navigate } = useRegistrationContext();
-    const { nextScreen, screenData, currentScreen, totalScreens, resetScreenData } = regWorkflow;
+    const { nextScreen, screenData, currentScreen, totalScreens, resetScreenData, previousScreen } = regWorkflow;
     const { organisationName } = props;
     const { t } = useTranslation();
 
@@ -38,14 +38,22 @@ export const CustomScreen: React.FC<CustomScreenProps> = (props) => {
         });
     }, [organisationNameInput, nextScreen]);
 
-    const onPrevious = useCallback(() => {
+    const onIconPress = useCallback(() => {
         navigate(-1);
         resetScreenData();
     }, [navigate, resetScreenData]);
 
+    const onPrevious = useCallback(() => {
+        void previousScreen({
+            screenId: 'Custom',
+            values: { organisationName: organisationNameInput },
+            // isAccountExist: true,
+        });
+    }, [organisationNameInput, previousScreen]);
+
     return (
         <WorkflowCard>
-            <WorkflowCardHeader title="Custom Screen" onIconPress={onPrevious} icon={{ name: 'arrow-back' }} />
+            <WorkflowCardHeader title="Custom Screen" onIconPress={onIconPress} icon={{ name: 'arrow-back' }} />
             <WorkflowCardBody>
                 <TextInput
                     label={t('app:ORGANAIZATION_DETAILS.NAME')}
