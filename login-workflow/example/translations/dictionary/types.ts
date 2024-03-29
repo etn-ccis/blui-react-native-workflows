@@ -18,10 +18,6 @@ export type AppTranslations = {
     ORGANAIZATION_DETAILS: {
         NAME: string;
     };
-    ERROR_MESSAGE: {
-        EMAIL_ERROR_MESSAGE: string;
-        EMAIL_ERROR_TITLE: string;
-    };
 };
 export type AppTranslationsFile = {
     translation: AppTranslations;

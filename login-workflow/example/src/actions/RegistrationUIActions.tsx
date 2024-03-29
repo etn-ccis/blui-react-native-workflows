@@ -61,16 +61,8 @@ export const ProjectRegistrationUIActions: () => RegistrationUIActions = () => (
     requestRegistrationCode: async (email: string): Promise<string> => {
         await sleep(800);
         if (isRandomFailure()) {
-            //throw new Error('Sorry, there was a problem sending your request.');
+            throw new Error('Sorry, there was a problem sending your request.');
         }
-        throw new Error('', {
-            cause: {
-                errorMessage: 'ERROR_MESSAGE.EMAIL_ERROR_MESSAGE',
-                errorOptions: { email: email },
-                title: 'ERROR_MESSAGE.EMAIL_ERROR_TITLE',
-                titleOptions: { timestamp: Date.now() },
-            },
-        });
         return 'a1b2c3';
     },
 
