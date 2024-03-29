@@ -88,6 +88,12 @@ export const ChangePasswordScreen: React.FC<ChangePasswordScreenProps> = (props)
         triggerError,
     ]);
 
+    const clearScreenData = (): void => {
+        setCurrentInput('');
+        setConfirmInput('');
+        setPasswordInput('');
+    };
+
     const passwordProps = {
         newPasswordLabel: t('bluiAuth:CHANGE_PASSWORD.NEW_PASSWORD'),
         confirmPasswordLabel: t('bluiAuth:CHANGE_PASSWORD.CONFIRM_NEW_PASSWORD'),
@@ -119,7 +125,10 @@ export const ChangePasswordScreen: React.FC<ChangePasswordScreenProps> = (props)
 
     const workflowCardHeaderProps = {
         title: t('bluiAuth:CHANGE_PASSWORD.PASSWORD'),
-        onIconPress: () => navigate(-1),
+        onIconPress: (): void => {
+            clearScreenData();
+            navigate(-1);
+        },
         ...WorkflowCardHeaderProps,
     };
 
@@ -141,7 +150,9 @@ export const ChangePasswordScreen: React.FC<ChangePasswordScreenProps> = (props)
             WorkflowCardActionsProps?.onNext?.();
         },
         onPrevious: (): void => {
+            clearScreenData();
             WorkflowCardActionsProps?.onPrevious?.();
+            navigate(-1);
         },
     };
 
@@ -176,9 +187,7 @@ export const ChangePasswordScreen: React.FC<ChangePasswordScreenProps> = (props)
                         onNext: (): void => {
                             onFinish?.();
                             setShowSuccessScreen(false);
-                            setCurrentInput('');
-                            setConfirmInput('');
-                            setPasswordInput('');
+                            clearScreenData();
                         },
                     },
                     ...slotProps.SuccessScreen,
