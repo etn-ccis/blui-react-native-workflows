@@ -15,6 +15,7 @@ import Home from '../screens/home';
 import { View } from 'react-native';
 import AuthProviderExample from '../screens/AuthProviderExample';
 import { Login } from '../screens/Login';
+import { ForgotPasswordScreenBaseExample } from '../components/ForgotPasswordScreenBaseExample';
 import RegistrationProviderExample from '../screens/RegistrationProviderExample';
 import { ContactBaseExample } from '../screens/ContactBaseExample';
 import { ProjectAuthUIActions } from '../actions/AuthUIActions';
@@ -31,6 +32,7 @@ export type RootStackParamList = {
     Home: undefined;
     RegistrationProviderExample: undefined;
     AuthProviderExample: undefined;
+    ForgotPasswordScreenBaseExample: undefined;
     Contact: undefined;
     ChangePassword: undefined;
 };
