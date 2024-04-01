@@ -59,7 +59,7 @@ export const Registration: React.FC<CreatePasswordProps> = (props) => {
                 screenOptions={{
                     headerShown: false,
                 }}
-                initialRouteName="REGISTER_SELF_NEW"
+                // initialRouteName="REGISTER_SELF_NEW"
             >
                 <Stack.Screen name="REGISTER_INVITE_NEW">
                     {() => (
