@@ -21,6 +21,16 @@ export const navGroupItems: NavItem[] = [
         icon: { name: 'app-registration' },
     },
     {
+        title: 'ResetPasswordScreenBase',
+        itemID: 'ResetPasswordScreenBaseExample',
+        icon: { name: 'lock' },
+    },
+    {
+        title: 'ForgotPasswordScreenBase',
+        itemID: 'ForgotPasswordScreenBaseExample',
+        icon: { name: 'app-registration' },
+    },
+    {
         title: 'Contact',
         itemID: 'Contact',
         icon: { name: 'contact-page' },
