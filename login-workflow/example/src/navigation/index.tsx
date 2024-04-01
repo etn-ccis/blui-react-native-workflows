@@ -11,7 +11,7 @@ import i18nAppInstance from '../../translations/i18n';
 import { NavigationDrawer } from './navigation-drawer';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
-import Home from '../screens/home';
+import Home from '../screens/Home';
 import { View } from 'react-native';
 import AuthProviderExample from '../screens/AuthProviderExample';
 import { Login } from '../screens/Login';
@@ -20,6 +20,7 @@ import RegistrationProviderExample from '../screens/RegistrationProviderExample'
 import { ContactBaseExample } from '../screens/ContactBaseExample';
 import { ProjectAuthUIActions } from '../actions/AuthUIActions';
 import { ChangePassword } from '../screens/ChangePassword';
+import { Registration } from '../screens/Registration';
 
 const getAuthState = (): any => ({
     isAuthenticated: true,
@@ -30,6 +31,8 @@ const navigationRef = createNavigationContainerRef();
 
 export type RootStackParamList = {
     Home: undefined;
+    Dashboard: undefined;
+    Locations: undefined;
     RegistrationProviderExample: undefined;
     AuthProviderExample: undefined;
     ForgotPasswordScreenBaseExample: undefined;
@@ -105,28 +108,32 @@ const AuthRouter = (): any => {
         SUPPORT: undefined,
     };
     return (
-        <AuthContextProvider
-            language={app.language}
-            actions={ProjectAuthUIActions(app)}
-            i18n={i18nAppInstance}
-            navigate={navigationRef.navigate}
-            routeConfig={{
-                LOGIN: 'Login',
-                FORGOT_PASSWORD: undefined,
-                RESET_PASSWORD: undefined,
-                REGISTER_INVITE: undefined,
-                REGISTER_SELF: undefined,
-                SUPPORT: undefined,
-            }}
-        >
-            <Stack.Navigator
-                screenOptions={{
-                    headerShown: false,
+        <>
+            <AuthContextProvider
+                language={app.language}
+                actions={ProjectAuthUIActions(app)}
+                i18n={i18nAppInstance}
+                navigate={navigationRef.navigate}
+                routeConfig={{
+                    LOGIN: 'Login',
+                    FORGOT_PASSWORD: undefined,
+                    RESET_PASSWORD: undefined,
+                    REGISTER_INVITE: undefined,
+                    REGISTER_SELF: 'REGISTER_SELF',
+                    SUPPORT: undefined,
                 }}
             >
-                <Stack.Screen name="LOGIN" component={Login} />
-            </Stack.Navigator>
-        </AuthContextProvider>
+                <Stack.Navigator
+                    screenOptions={{
+                        headerShown: false,
+                    }}
+                >
+                    <Stack.Screen name="LOGIN" component={Login} />
+                    <Stack.Screen name="REGISTER_SELF" component={Registration} />
+                    <Stack.Screen name="REGISTER_INVITE" component={Registration} />
+                </Stack.Navigator>
+            </AuthContextProvider>
+        </>
     );
 };
 export const MainRouter = (): any => {
@@ -135,7 +142,13 @@ export const MainRouter = (): any => {
 
     return (
         <NavigationContainer ref={navigationRef}>
-            {app.isAuthenticated ? <AppRouter /> : <AuthRouter />}
+            {app.isAuthenticated ? (
+                <AppRouter />
+            ) : (
+                <>
+                    <AuthRouter />
+                </>
+            )}
         </NavigationContainer>
     );
 };
