@@ -2,22 +2,10 @@ import { ReactNode } from 'react';
 import { ErrorManagerProps } from '../../components/Error';
 import { WorkflowCardProps } from '../../components/WorkflowCard/WorkflowCard.types';
 import { IconSource } from '@brightlayer-ui/react-native-components/core/__types__';
+import { EmptyStateProps } from '@brightlayer-ui/react-native-components';
 
 export type SuccessScreenProps = WorkflowCardProps & {
-    /**
-     * The icon to display in the header
-     */
-    icon?: IconSource;
-
-    /**
-     * The title of the success message
-     */
-    messageTitle?: ReactNode;
-
-    /**
-     * The success message to be displayed on the screen
-     */
-    message?: ReactNode;
+    emptyStateProps: EmptyStateProps;
 
     /**
      * To display label for the button

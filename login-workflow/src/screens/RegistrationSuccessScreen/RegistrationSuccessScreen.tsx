@@ -43,31 +43,32 @@ export const RegistrationSuccessScreen: React.FC<SuccessScreenProps> = (props) =
     );
 
     const {
-        icon = { family: 'material', name: 'check-circle' },
-        messageTitle = `${t('bluiCommon:MESSAGES.WELCOME')}, ${firstName} ${lastName}!`,
-        message = (
-            <Text variant={'bodyMedium'}>
-                <Trans
-                    i18nKey={
-                        email
-                            ? 'bluiRegistration:REGISTRATION.SUCCESS_MESSAGE_ALT'
-                            : 'bluiRegistration:REGISTRATION.SUCCESS_MESSAGE_ALT_WITHOUT_EMAIL_PROVIDED'
-                    }
-                    values={{ email, organization }}
-                    components={{ boldTag: <Bold>{email}</Bold> }}
-                >
-                    <Text variant={'bodyMedium'}>
-                        Your account has successfully been created with the email {email} belonging to the
-                        {` ${String(organization)}`} org.
-                    </Text>
-                </Trans>
-            </Text>
-        ),
+        // icon = { family: 'material', name: 'check-circle' },
+        // messageTitle = `${t('bluiCommon:MESSAGES.WELCOME')}, ${firstName} ${lastName}!`,
+        // message = (
+        //     <Text variant={'bodyMedium'}>
+        //         <Trans
+        //             i18nKey={
+        //                 email
+        //                     ? 'bluiRegistration:REGISTRATION.SUCCESS_MESSAGE_ALT'
+        //                     : 'bluiRegistration:REGISTRATION.SUCCESS_MESSAGE_ALT_WITHOUT_EMAIL_PROVIDED'
+        //             }
+        //             values={{ email, organization }}
+        //             components={{ boldTag: <Bold>{email}</Bold> }}
+        //         >
+        //             <Text variant={'bodyMedium'}>
+        //                 Your account has successfully been created with the email {email} belonging to the
+        //                 {` ${String(organization)}`} org.
+        //             </Text>
+        //         </Trans>
+        //     </Text>
+        // ),
         canDismiss = true,
         onDismiss = (): void => navigate(routeConfig.LOGIN as string),
         WorkflowCardHeaderProps,
         WorkflowCardActionsProps,
         WorkflowCardBodyProps,
+        emptyStateProps,
         ...otherRegistrationSuccessScreenProps
     } = props;
 
@@ -103,9 +104,28 @@ export const RegistrationSuccessScreen: React.FC<SuccessScreenProps> = (props) =
             WorkflowCardHeaderProps={workflowCardHeaderProps}
             WorkflowCardActionsProps={workflowCardActionsProps}
             WorkflowCardBodyProps={workflowCardBodyProps}
-            icon={icon}
-            messageTitle={messageTitle}
-            message={message}
+            emptyStateProps={{
+                icon: { family: 'material', name: 'check-circle' },
+                title: `${t('bluiCommon:MESSAGES.WELCOME')}, ${firstName} ${lastName}!`,
+                description: (
+                    <Text variant={'bodyMedium'}>
+                        <Trans
+                            i18nKey={
+                                email
+                                    ? 'bluiRegistration:REGISTRATION.SUCCESS_MESSAGE_ALT'
+                                    : 'bluiRegistration:REGISTRATION.SUCCESS_MESSAGE_ALT_WITHOUT_EMAIL_PROVIDED'
+                            }
+                            values={{ email, organization }}
+                            components={{ boldTag: <Bold>{email}</Bold> }}
+                        >
+                            <Text variant={'bodyMedium'}>
+                                Your account has successfully been created with the email {email} belonging to the
+                                {` ${String(organization)}`} org.
+                            </Text>
+                        </Trans>
+                    </Text>
+                ),
+            }}
             {...otherRegistrationSuccessScreenProps}
         />
     );
