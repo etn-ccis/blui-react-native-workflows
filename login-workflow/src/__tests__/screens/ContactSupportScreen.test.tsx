@@ -8,7 +8,7 @@ import { ContactSupportScreenProps } from 'src/screens';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 afterEach(cleanup);
 
-describe('Account Details Screen', () => {
+describe('Contact Support Screen', () => {
     let mockOnNext: any;
 
     afterEach(() => {
