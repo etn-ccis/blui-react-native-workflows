@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 import { useApp } from '../contexts/AppContextProvider';
 import { useNavigation } from '@react-navigation/native';
+import { LocalStorage } from '../store/local-storage';
 
 const SwapIcon: IconFamily = {
     family: 'material',
@@ -41,7 +42,8 @@ export const UserMenuExample: React.FC<UserMenuExampleProps> = (props) => {
         void i18n.changeLanguage(newLanguage);
     };
     const logout = (): void => {
-        app.setAuthenticated(false);
+        LocalStorage.clearAuthCredentials();
+        app.onUserNotAuthenticated();
     };
     const changePassword = (): void => {
         nav.navigate('ChangePassword');
