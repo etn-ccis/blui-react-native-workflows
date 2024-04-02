@@ -9,7 +9,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
 import Home from '../screens/home';
 import { View } from 'react-native';
-import AuthProviderExample from '../screens/ContactFullScreenExample';
+import AuthProviderExample from '../screens/AuthProviderExample';
 import { Login } from '../screens/Login';
 import { ResetPasswordScreenBaseExample } from '../components/ResetPasswordScreenBaseExample';
 import { ForgotPasswordScreenBaseExample } from '../components/ForgotPasswordScreenBaseExample';
