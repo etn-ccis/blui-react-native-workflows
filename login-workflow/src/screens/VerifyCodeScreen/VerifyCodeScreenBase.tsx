@@ -83,6 +83,7 @@ export const VerifyCodeScreenBase: React.FC<React.PropsWithChildren<VerifyCodeSc
                     <TextInput
                         label={verifyCodeInputLabel}
                         mode="flat"
+                        testID="verify-code-textinput"
                         value={verifyCode}
                         onChangeText={handleVerifyCodeInputChange}
                         error={shouldValidateCode && !isCodeValid}
@@ -108,6 +109,7 @@ export const VerifyCodeScreenBase: React.FC<React.PropsWithChildren<VerifyCodeSc
                                     fontWeight: 'bold',
                                     textDecorationLine: 'underline',
                                 }}
+                                testID="resend-code"
                                 onPress={onResend}
                             >
                                 {resendLabel}
