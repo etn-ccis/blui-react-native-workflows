@@ -13,7 +13,6 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
 import Home from '../screens/Home';
 import { View } from 'react-native';
-import AuthProviderExample from '../screens/AuthProviderExample';
 import { Login } from '../screens/Login';
 import { ForgotPasswordScreenBaseExample } from '../components/ForgotPasswordScreenBaseExample';
 import RegistrationProviderExample from '../screens/RegistrationProviderExample';
@@ -21,6 +20,8 @@ import { ContactBaseExample } from '../screens/ContactBaseExample';
 import { ProjectAuthUIActions } from '../actions/AuthUIActions';
 import { ChangePassword } from '../screens/ChangePassword';
 import { Registration } from '../screens/Registration';
+import Locations from '../screens/Locations';
+import Dashboard from '../screens/Dashboard';
 
 const getAuthState = (): any => ({
     isAuthenticated: true,
@@ -58,6 +59,8 @@ const AppRouter = (): any => (
         drawerContent={(props: any): ReactNode => <CustomDrawerContent {...props} />}
     >
         <RootStack.Screen name="Home" component={Home} />
+        <RootStack.Screen name="Locations" component={Locations} />
+        <RootStack.Screen name="Dashboard" component={Dashboard} />
         <RootStack.Screen name="ChangePassword" component={ChangePassword} />
     </Drawer.Navigator>
 );
@@ -118,7 +121,7 @@ const AuthRouter = (): any => {
                     LOGIN: 'Login',
                     FORGOT_PASSWORD: undefined,
                     RESET_PASSWORD: undefined,
-                    REGISTER_INVITE: undefined,
+                    REGISTER_INVITE: 'REGISTER_INVITE',
                     REGISTER_SELF: 'REGISTER_SELF',
                     SUPPORT: undefined,
                 }}

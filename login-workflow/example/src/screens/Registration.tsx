@@ -1,29 +1,17 @@
 import React, { useCallback, useState } from 'react';
-import {
-    WorkflowCard,
-    WorkflowCardActions,
-    WorkflowCardBody,
-    RegistrationContextProvider,
-    RegistrationWorkflow,
-} from '@brightlayer-ui/react-native-auth-workflow';
-import { Button, TextInput } from 'react-native-paper';
-import { createNavigationContainerRef, useNavigation } from '@react-navigation/native';
+import { RegistrationContextProvider, RegistrationWorkflow } from '@brightlayer-ui/react-native-auth-workflow';
+import { useNavigation } from '@react-navigation/native';
 import { useApp } from '../contexts/AppContextProvider';
-import { View } from 'react-native';
 import { ProjectRegistrationUIActions } from '../actions/RegistrationUIActions';
 import i18nAppInstance from '../../translations/i18n';
-import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
 type CreatePasswordProps = {
     username?: any;
     password?: any;
 };
 
-export const Registration: React.FC<CreatePasswordProps> = (props) => {
-    // const app = useApp();
+export const Registration: React.FC<CreatePasswordProps> = () => {
     const navigation = useNavigation();
-    const [usernameInput, setUsernameInput] = useState('');
-    const [passwordInput, setPasswordInput] = useState('');
     const app = useApp();
     const routes = {
         LOGIN: 'LOGIN',
@@ -33,12 +21,7 @@ export const Registration: React.FC<CreatePasswordProps> = (props) => {
         REGISTER_SELF: 'REGISTER_SELF',
         SUPPORT: undefined,
     };
-    const Stack = createStackNavigator();
-    // const Drawer = createDrawerNavigator();
-    // const navigationRef = createNavigationContainerRef();
-    const onNext = useCallback(() => {
-        app.setAuthenticated(true);
-    }, []);
+    const RegistrationStack = createStackNavigator();
 
     return (
         <RegistrationContextProvider
@@ -46,7 +29,6 @@ export const Registration: React.FC<CreatePasswordProps> = (props) => {
             actions={ProjectRegistrationUIActions()}
             i18n={i18nAppInstance}
             routeConfig={routes}
-            // navigate={navigationRef.navigate}
             navigate={(destination: -1 | string) => {
                 if (typeof destination === 'string') {
                     navigation.navigate(destination);
@@ -55,22 +37,23 @@ export const Registration: React.FC<CreatePasswordProps> = (props) => {
                 }
             }}
         >
-            <Stack.Navigator
+            <RegistrationStack.Navigator
                 screenOptions={{
                     headerShown: false,
                 }}
-                // initialRouteName="REGISTER_SELF_NEW"
             >
-                <Stack.Screen name="REGISTER_INVITE_NEW">
+                <RegistrationStack.Screen name="NESTED_REGISTER_INVITE">
                     {() => (
                         <RegistrationWorkflow
                             isInviteRegistration
                             initialRegistrationParams={{ code: '123', email: 'aa@aa.aa' }}
                         />
                     )}
-                </Stack.Screen>
-                <Stack.Screen name="REGISTER_SELF_NEW">{() => <RegistrationWorkflow />}</Stack.Screen>
-            </Stack.Navigator>
+                </RegistrationStack.Screen>
+                <RegistrationStack.Screen name="NESTED_REGISTER_SELF">
+                    {() => <RegistrationWorkflow />}
+                </RegistrationStack.Screen>
+            </RegistrationStack.Navigator>
         </RegistrationContextProvider>
     );
 };

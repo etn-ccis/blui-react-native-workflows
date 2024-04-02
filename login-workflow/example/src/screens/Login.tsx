@@ -46,7 +46,7 @@ export const Login: React.FC<CreatePasswordProps> = (props) => {
                             labelStyle={{ fontSize: 16 }}
                             uppercase={false}
                             onPress={(): void => {
-                                navigation.navigate('REGISTER_INVITE', { screen: 'REGISTER_INVITE_NEW' });
+                                navigation.navigate('REGISTER_INVITE', { screen: 'NESTED_REGISTER_INVITE' });
                             }}
                         >
                             [Test Invite Register]
@@ -56,7 +56,7 @@ export const Login: React.FC<CreatePasswordProps> = (props) => {
                             labelStyle={{ fontSize: 16 }}
                             uppercase={false}
                             onPress={(): void => {
-                                navigation.navigate('REGISTER_SELF', { screen: 'REGISTER_SELF_NEW' });
+                                navigation.navigate('REGISTER_SELF', { screen: 'NESTED_REGISTER_SELF' });
                             }}
                         >
                             [Test Self Register]

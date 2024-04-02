@@ -65,7 +65,7 @@ const styles = (
     });
 
 type AppProps = {
-    navigation: StackNavigationProp<RootStackParamList, 'Home'>;
+    navigation: StackNavigationProp<RootStackParamList, 'Locations'>;
 };
 
 const toggleRTL = (): void => {
@@ -76,7 +76,7 @@ const toggleRTL = (): void => {
     }
     RNRestart.Restart();
 };
-const Home: React.FC<AppProps> = ({ navigation }): JSX.Element => {
+const Locations: React.FC<AppProps> = ({ navigation }): JSX.Element => {
     const theme = useExtendedTheme();
     const { t } = useTranslation();
     const { theme: themeType, setTheme } = useThemeContext();
@@ -96,7 +96,7 @@ const Home: React.FC<AppProps> = ({ navigation }): JSX.Element => {
     return (
         <>
             <Header
-                title={`${t('TOOLBAR_MENU.HOME_PAGE')}`}
+                title={`${t('DRAWER_MENU.LOCATIONS')}`}
                 icon={{ name: 'menu' }}
                 onIconPress={(): void => {
                     navigation.openDrawer();
@@ -124,7 +124,7 @@ const Home: React.FC<AppProps> = ({ navigation }): JSX.Element => {
                 >
                     <EmptyState
                         icon={Event}
-                        title={`${t('TOOLBAR_MENU.HOME_PAGE')}`}
+                        title={`${t('DRAWER_MENU.LOCATIONS')}`}
                         description={`${t('PAGE_DETAILS.AUTHORISED_MESSAGE')}`}
                     />
                 </ScrollView>
@@ -133,4 +133,4 @@ const Home: React.FC<AppProps> = ({ navigation }): JSX.Element => {
     );
 };
 
-export default Home;
+export default Locations;
