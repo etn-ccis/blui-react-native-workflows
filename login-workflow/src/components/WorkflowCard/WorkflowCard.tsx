@@ -86,10 +86,12 @@ export const WorkflowCard: React.FC<WorkflowCardBaseProps> = (props) => {
                     {
                         backgroundColor: theme.colors.surfaceContainer,
                         paddingTop: !isTablet && !hasWorkflowCardHeader ? insets.top : 0,
+                        position: 'relative',
                     },
                 ]}
             >
-                {loading ? <Spinner visible={loading} /> : children}
+                {children}
+                {loading && <Spinner visible={loading} /> }
             </Card>
         </ImageBackground>
     );
