@@ -1,6 +1,5 @@
 import React, { useCallback, useRef, useState } from 'react';
 import { ResetPasswordScreenBase } from '@brightlayer-ui/react-native-auth-workflow';
-import { useApp } from '../contexts/AppContextProvider';
 import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 

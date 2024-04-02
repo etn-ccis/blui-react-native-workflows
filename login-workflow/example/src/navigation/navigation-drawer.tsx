@@ -45,7 +45,7 @@ export const NavigationDrawer: React.FC<NavDrawerProps> = ({ navigation }) => {
     useEffect(() => {
         const id = navGroupItems[navigationState.index].itemID;
         setSelected(id);
-    }, [navGroupItems]);
+    }, [navGroupItems, navigationState.index]);
 
     return (
         <Drawer activeItem={selected} onItemSelect={(id: string): void => selectItem(id)}>
