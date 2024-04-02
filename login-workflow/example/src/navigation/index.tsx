@@ -13,6 +13,7 @@ import AuthProviderExample from '../screens/AuthProviderExample';
 import { Login } from '../screens/Login';
 import RegistrationProviderExample from '../screens/RegistrationProviderExample';
 import { ContactBaseExample } from '../screens/ContactBaseExample';
+import { LoginBaseExample } from '../screens/LoginBaseExample';
 
 const getAuthState = (): any => ({
     isAuthenticated: true,
@@ -26,6 +27,7 @@ export type RootStackParamList = {
     RegistrationProviderExample: undefined;
     AuthProviderExample: undefined;
     Contact: undefined;
+    LoginExample: undefined;
 };
 
 const RootStack = createStackNavigator<RootStackParamList>();
@@ -57,6 +59,8 @@ const AppRouter = (): any => (
             options={{ gestureEnabled: false }}
         />
         <RootStack.Screen name="Contact" component={ContactBaseExample} />
+        <RootStack.Screen name="LoginExample" component={LoginBaseExample} />
+    
     </Drawer.Navigator>
 );
 const RegistrationRouter = (): any => {
