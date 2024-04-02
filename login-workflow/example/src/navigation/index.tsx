@@ -9,12 +9,13 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
 import Home from '../screens/home';
 import { View } from 'react-native';
-import AuthProviderExample from '../screens/AuthProviderExample';
+import AuthProviderExample from '../screens/ContactFullScreenExample';
 import { Login } from '../screens/Login';
 import { ResetPasswordScreenBaseExample } from '../components/ResetPasswordScreenBaseExample';
 import { ForgotPasswordScreenBaseExample } from '../components/ForgotPasswordScreenBaseExample';
 import RegistrationProviderExample from '../screens/RegistrationProviderExample';
 import { ContactBaseExample } from '../screens/ContactBaseExample';
+import ContactFullScreenExample from '../screens/ContactFullScreenExample';
 
 const getAuthState = (): any => ({
     isAuthenticated: true,
@@ -30,6 +31,7 @@ export type RootStackParamList = {
     ResetPasswordScreenBaseExample: undefined;
     ForgotPasswordScreenBaseExample: undefined;
     Contact: undefined;
+    ContactFullScreenExample: undefined;
 };
 
 const RootStack = createStackNavigator<RootStackParamList>();
@@ -60,6 +62,7 @@ const AppRouter = (): any => (
             component={AuthProviderExample}
             options={{ gestureEnabled: false }}
         />
+        <RootStack.Screen name="ContactFullScreenExample" component={ContactFullScreenExample} />
         <RootStack.Screen name="ResetPasswordScreenBaseExample" component={ResetPasswordScreenBaseExample} />
         <RootStack.Screen name="ForgotPasswordScreenBaseExample" component={ForgotPasswordScreenBaseExample} />
         <RootStack.Screen name="Contact" component={ContactBaseExample} />

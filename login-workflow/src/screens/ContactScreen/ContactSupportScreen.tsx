@@ -24,7 +24,7 @@ export const ContactSupportScreen: React.FC<ContactSupportScreenProps> = (props)
 
     const defaultEmailSupportContent = (): JSX.Element => (
         <Text variant="bodyLarge">
-            {`Contact Message `}
+            {`${t('bluiAuth:CONTACT_SUPPORT.SUPPORT_MESSAGE')}`}
             <Text
                 variant="labelLarge"
                 style={{ color: theme.colors.primary }}
@@ -38,7 +38,7 @@ export const ContactSupportScreen: React.FC<ContactSupportScreenProps> = (props)
 
     const defaultPhoneSupportContent = (): JSX.Element => (
         <Text variant="bodyLarge">
-            {`Phone Message `}
+            {`${t('bluiAuth:CONTACT_SUPPORT.TECHNICAL_ASSISTANCE')}`}
             <Text
                 variant="labelLarge"
                 style={{ color: theme.colors.primary }}
