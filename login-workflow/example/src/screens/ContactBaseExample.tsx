@@ -48,7 +48,7 @@ export const ContactBaseExample: React.FC = () => {
         canGoNext: true,
         fullWidthButton: true,
         onNext: (): void => {
-            navigation.navigate('Home');
+            navigation.navigate('LOGIN');
         },
     };
     return (

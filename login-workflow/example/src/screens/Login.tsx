@@ -10,14 +10,19 @@ type CreatePasswordProps = {
     password?: any;
 };
 
-export const Login: React.FC<CreatePasswordProps> = (props) => {
+export const Login: React.FC<CreatePasswordProps> = () => {
     const app = useApp();
     const navigation = useNavigation();
     const [usernameInput, setUsernameInput] = useState('');
     const [passwordInput, setPasswordInput] = useState('');
 
     const onNext = useCallback(() => {
-        app.setAuthenticated(true);
+        app.onUserAuthenticated({
+            email: 'Test@test.com',
+            userId: usernameInput,
+            rememberMe: false,
+        });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
@@ -65,7 +70,7 @@ export const Login: React.FC<CreatePasswordProps> = (props) => {
                             mode={'text'}
                             labelStyle={{ fontSize: 16 }}
                             uppercase={false}
-                            // onPress={(): void => navigation.navigate('PasswordResetInitiation')}
+                            onPress={(): void => navigation.navigate('FORGOT_PASSWORD')}
                         >
                             [Test Forgot Password]
                         </Button>
@@ -73,11 +78,7 @@ export const Login: React.FC<CreatePasswordProps> = (props) => {
                             mode={'text'}
                             labelStyle={{ fontSize: 16 }}
                             uppercase={false}
-                            // onPress={(): void =>
-                            //     // navigation.navigate('PasswordResetCompletion', {
-                            //     //     code: 'DEBUG_VALIDATION_CODE_DEADBEEF',
-                            //     // })
-                            // }
+                            onPress={(): void => navigation.navigate('RESET_PASSWORD')}
                         >
                             [Test Reset Password]
                         </Button>
@@ -85,7 +86,7 @@ export const Login: React.FC<CreatePasswordProps> = (props) => {
                             mode={'text'}
                             labelStyle={{ fontSize: 16 }}
                             uppercase={false}
-                            // onPress={(): void => navigation.navigate('SupportContact')}
+                            onPress={(): void => navigation.navigate('SUPPORT')}
                         >
                             [Test Contact Support]
                         </Button>

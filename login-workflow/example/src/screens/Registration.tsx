@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React from 'react';
 import { RegistrationContextProvider, RegistrationWorkflow } from '@brightlayer-ui/react-native-auth-workflow';
 import { useNavigation } from '@react-navigation/native';
 import { useApp } from '../contexts/AppContextProvider';
