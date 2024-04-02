@@ -16,9 +16,13 @@ const MAX_CARD_WIDTH = 450;
 const makeStyles = ({
     insets,
     theme,
+    height,
+    width,
 }: {
     insets: EdgeInsets;
     theme: ExtendedTheme;
+    height: number;
+    width: number;
 }): StyleSheet.NamedStyles<{
     mobile: CardProps['style'];
     tablet: CardProps['style'];
@@ -31,8 +35,8 @@ const makeStyles = ({
             borderRadius: 0,
         },
         tablet: {
-            height: MAX_CARD_HEIGHT,
-            width: MAX_CARD_WIDTH,
+            height: height > MAX_CARD_HEIGHT ? MAX_CARD_HEIGHT : height,
+            width: width > MAX_CARD_WIDTH ? MAX_CARD_WIDTH : width,
             borderRadius: theme.roundness * 2,
             overflow: 'hidden',
         },
@@ -53,11 +57,9 @@ export const WorkflowCard: React.FC<WorkflowCardBaseProps> = (props) => {
     const { loading, backgroundImage, children, style, ...otherImageProps } = props;
     const theme = useExtendedTheme();
     const { isTablet, width, height } = useScreenDimensions();
-
     const hasWorkflowCardHeader = hasWorkflowCardHeaderRecursive(children);
     const insets = useSafeAreaInsets();
-    const styles = makeStyles({ insets, theme });
-
+    const styles = makeStyles({ insets, theme, height, width });
     return (
         <ImageBackground
             source={backgroundImage ? backgroundImage : defaultImage}
@@ -76,13 +78,11 @@ export const WorkflowCard: React.FC<WorkflowCardBaseProps> = (props) => {
             {...otherImageProps}
         >
             <Card
-                style={{
-                    maxHeight: height,
-                    maxWidth: width,
-                }}
                 contentStyle={[
                     isTablet ? styles.tablet : styles.mobile,
                     {
+                        maxHeight: height,
+                        maxWidth: width,
                         backgroundColor: theme.colors.surface,
                         paddingTop: !isTablet && !hasWorkflowCardHeader ? insets.top : 0,
                     },
