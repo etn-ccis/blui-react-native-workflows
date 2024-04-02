@@ -26,6 +26,7 @@ export const CreatePasswordScreen: React.FC<CreatePasswordScreenProps> = (props)
         },
         currentScreen,
         totalScreens,
+        resetScreenData,
     } = regWorkflow;
 
     const {
@@ -126,7 +127,10 @@ export const CreatePasswordScreen: React.FC<CreatePasswordScreenProps> = (props)
 
     const workflowCardHeaderProps = {
         title: t('bluiRegistration:REGISTRATION.STEPS.PASSWORD'),
-        onIconPress: () => navigate(-1),
+        onIconPress: (): void => {
+            navigate(-1);
+            resetScreenData();
+        },
         ...WorkflowCardHeaderProps,
     };
 

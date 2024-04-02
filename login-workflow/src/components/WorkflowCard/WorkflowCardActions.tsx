@@ -4,6 +4,7 @@ import { Button, Divider } from 'react-native-paper';
 import { StyleSheet, ViewStyle, View } from 'react-native';
 import { WorkflowCardActionsProps } from './WorkflowCard.types';
 import { MobileStepper } from '@brightlayer-ui/react-native-components';
+import { useScreenDimensions } from '../../hooks/useScreenDimensions';
 
 const makeStyles = (
     fullWidthButton: boolean | undefined
@@ -49,6 +50,7 @@ export const WorkflowCardActions: React.FC<WorkflowCardActionsProps> = (props) =
     } = props;
 
     const defaultStyles = makeStyles(fullWidthButton);
+    const { isTablet } = useScreenDimensions();
 
     const showStepperDots = totalSteps !== 0 && !fullWidthButton;
     return (
@@ -56,7 +58,14 @@ export const WorkflowCardActions: React.FC<WorkflowCardActionsProps> = (props) =
             {divider && <Divider testID="workflow-card-action-divider" />}
             <MobileStepper
                 styles={{
-                    root: [{ flex: 0, justifyContent: 'space-between' }],
+                    root: [
+                        {
+                            flex: 0,
+                            justifyContent: 'space-between',
+                            paddingHorizontal: isTablet ? 8 : 0,
+                            paddingVertical: isTablet ? 8 : 0,
+                        },
+                    ],
                     stepperContainer: !showStepperDots
                         ? {
                               display: 'none',

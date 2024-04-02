@@ -9,6 +9,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Home from '../screens/Home';
 import { View } from 'react-native';
 import { Login } from '../screens/Login';
+import { ResetPasswordScreenBaseExample } from '../components/ResetPasswordScreenBaseExample';
 import { ForgotPasswordScreenBaseExample } from '../components/ForgotPasswordScreenBaseExample';
 import { ContactBaseExample } from '../screens/ContactBaseExample';
 import { ProjectAuthUIActions } from '../actions/AuthUIActions';
@@ -27,6 +28,7 @@ export type RootStackParamList = {
     Locations: undefined;
     RegistrationProviderExample: undefined;
     AuthProviderExample: undefined;
+    ResetPasswordScreenBaseExample: undefined;
     ForgotPasswordScreenBaseExample: undefined;
     Contact: undefined;
     ChangePassword: undefined;
@@ -80,6 +82,7 @@ const AuthRouter = (): any => {
                 >
                     <Stack.Screen name="LOGIN" component={Login} />
                     <Stack.Screen name="FORGOT_PASSWORD" component={ForgotPasswordScreenBaseExample} />
+                    <Stack.Screen name="RESET_PASSWORD" component={ResetPasswordScreenBaseExample} />
                     <Stack.Screen name="SUPPORT" component={ContactBaseExample} />
                     <Stack.Screen name="REGISTER_SELF" component={Registration} />
                     <Stack.Screen name="REGISTER_INVITE" component={Registration} />

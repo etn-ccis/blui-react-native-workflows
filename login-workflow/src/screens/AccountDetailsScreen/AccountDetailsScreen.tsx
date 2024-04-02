@@ -17,9 +17,9 @@ import { useRegistrationContext } from '../../contexts/RegistrationContext';
 
 export const AccountDetailsScreen: React.FC<AccountDetailsScreenProps> = (props) => {
     const { t } = useTranslation();
-    const { actions } = useRegistrationContext();
+    const { actions, navigate } = useRegistrationContext();
     const regWorkflow = useRegistrationWorkflowContext();
-    const { nextScreen, previousScreen, screenData, currentScreen, totalScreens } = regWorkflow;
+    const { nextScreen, previousScreen, screenData, currentScreen, totalScreens, resetScreenData } = regWorkflow;
     const [firstName, setFirstName] = useState(screenData.AccountDetails.firstName);
     const [lastName, setLastName] = useState(screenData.AccountDetails.lastName);
     const [isLoading, setIsLoading] = useState(false);
@@ -82,6 +82,10 @@ export const AccountDetailsScreen: React.FC<AccountDetailsScreenProps> = (props)
 
     const workflowCardHeaderProps = {
         title: t('bluiRegistration:REGISTRATION.STEPS.ACCOUNT_DETAILS'),
+        onIconPress: (): void => {
+            navigate(-1);
+            resetScreenData();
+        },
         ...WorkflowCardHeaderProps,
     };
 
