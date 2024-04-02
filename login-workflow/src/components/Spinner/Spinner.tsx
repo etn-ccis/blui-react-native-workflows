@@ -25,8 +25,8 @@ export const Spinner: React.FC<SpinnerProps> = (props) => {
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                position:'absolute',
-                backgroundColor:`rgba(255,255,255,${theme.dark ? 0.15:0.75})`
+                position: 'absolute',
+                backgroundColor: `rgba(255,255,255,${theme.dark ? 0.15 : 0.75})`,
             }}
             testID="spinner"
             {...otherProps}
