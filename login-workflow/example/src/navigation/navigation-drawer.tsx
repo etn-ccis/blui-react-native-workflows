@@ -21,7 +21,6 @@ export const NavigationDrawer: React.FC<NavDrawerProps> = ({ navigation }) => {
     const selectItem = useCallback(
         (id: any) => {
             navigation.navigate(id);
-            setSelected(id);
         },
         [navigation]
     );
@@ -46,7 +45,7 @@ export const NavigationDrawer: React.FC<NavDrawerProps> = ({ navigation }) => {
     useEffect(() => {
         const id = navGroupItems[navigationState.index].itemID;
         setSelected(id);
-    }, [navigationState.index]);
+    }, [navGroupItems]);
 
     return (
         <Drawer activeItem={selected} onItemSelect={(id: string): void => selectItem(id)}>

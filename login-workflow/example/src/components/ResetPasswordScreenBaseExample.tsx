@@ -46,7 +46,6 @@ export const defaultPasswordRequirements = (t: (input: string) => string): Passw
 ];
 
 export const ResetPasswordScreenBaseExample: React.FC = () => {
-    const app = useApp();
     const navigation = useNavigation();
     const { t } = useTranslation();
 
