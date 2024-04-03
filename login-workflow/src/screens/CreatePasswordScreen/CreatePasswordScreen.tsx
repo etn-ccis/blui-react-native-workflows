@@ -68,7 +68,9 @@ export const CreatePasswordScreen: React.FC<CreatePasswordScreenProps> = (props)
         } catch (_error) {
             triggerError(_error as Error);
         } finally {
-            setIsLoading(false);
+            setTimeout(() => {
+                setIsLoading(false);
+            }, 100);
         }
     }, [actions, passwordInput, nextScreen, confirmInput, triggerError]);
 

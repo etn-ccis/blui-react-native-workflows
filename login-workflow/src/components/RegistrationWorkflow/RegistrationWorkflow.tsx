@@ -19,6 +19,7 @@ import {
     ExistingAccountSuccessScreen,
 } from '../../screens';
 import { ErrorManagerProps } from '../Error';
+import { Spinner } from '../Spinner';
 
 const styles = StyleSheet.create({
     pagerView: {
@@ -153,8 +154,13 @@ export const RegistrationWorkflow: React.FC<React.PropsWithChildren<Registration
         viewPagerRef.current?.setPage(0);
     };
 
+    const [loading, setLoading] = useState(false);
+
     const finishRegistration = async (data: IndividualScreenData): Promise<void> => {
         try {
+            setTimeout(() => {
+                setLoading(true);
+            }, 100);
             if (actions && actions.completeRegistration) {
                 const { Eula, CreateAccount, VerifyCode, CreatePassword, AccountDetails, Other } = screenData;
                 const userInfo = {
@@ -181,6 +187,10 @@ export const RegistrationWorkflow: React.FC<React.PropsWithChildren<Registration
             }
         } catch (err) {
             console.error(err);
+        } finally {
+            setTimeout(() => {
+                setLoading(false);
+            }, 100);
         }
     };
 
@@ -257,6 +267,7 @@ export const RegistrationWorkflow: React.FC<React.PropsWithChildren<Registration
                         ))}
                     </PagerView>
                 )}
+                {loading ? <Spinner visible={loading} /> : null}
             </ErrorManager>
         </RegistrationWorkflowContextProvider>
     );

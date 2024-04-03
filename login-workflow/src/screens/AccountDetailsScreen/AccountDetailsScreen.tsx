@@ -44,7 +44,9 @@ export const AccountDetailsScreen: React.FC<AccountDetailsScreenProps> = (props)
         } catch (_error) {
             triggerError(_error as Error);
         } finally {
-            setIsLoading(false);
+            setTimeout(() => {
+                setIsLoading(false);
+            }, 100);
         }
     }, [actions, firstName, lastName, nextScreen, triggerError]);
 

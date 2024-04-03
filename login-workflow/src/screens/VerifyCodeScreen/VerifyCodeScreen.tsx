@@ -87,7 +87,9 @@ export const VerifyCodeScreen: React.FC<VerifyCodeScreenProps> = (props) => {
             } catch (_error) {
                 triggerError(_error as Error);
             } finally {
-                setIsLoading(false);
+                setTimeout(() => {
+                    setIsLoading(false);
+                }, 100);
             }
         },
         [t, actions, nextScreen, triggerError, updateScreenData]

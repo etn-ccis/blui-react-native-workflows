@@ -121,7 +121,9 @@ export const EulaScreen: React.FC<EulaScreenProps> = (props) => {
         } catch (_error) {
             triggerError(_error as Error);
         } finally {
-            setIsLoading(false);
+            setTimeout(() => {
+                setIsLoading(false);
+            }, 100);
         }
     }, [actions, nextScreen, triggerError, isInviteRegistration, screenData, t, updateScreenData]);
 

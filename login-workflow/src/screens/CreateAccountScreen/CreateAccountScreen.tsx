@@ -43,7 +43,9 @@ export const CreateAccountScreen: React.FC<CreateAccountScreenProps> = (props) =
         } catch (_error) {
             triggerError(_error as Error);
         } finally {
-            setIsLoading(false);
+            setTimeout(() => {
+                setIsLoading(false);
+            }, 100);
         }
     }, [actions, emailInputValue, nextScreen, triggerError]);
 
