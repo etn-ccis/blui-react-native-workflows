@@ -15,6 +15,7 @@ import { ResetPasswordScreenBaseExample } from '../components/ResetPasswordScree
 import { ForgotPasswordScreenBaseExample } from '../components/ForgotPasswordScreenBaseExample';
 import RegistrationProviderExample from '../screens/RegistrationProviderExample';
 import { ContactBaseExample } from '../screens/ContactBaseExample';
+import ContactFullScreenExample from '../screens/ContactFullScreenExample';
 
 const getAuthState = (): any => ({
     isAuthenticated: true,
@@ -30,6 +31,7 @@ export type RootStackParamList = {
     ResetPasswordScreenBaseExample: undefined;
     ForgotPasswordScreenBaseExample: undefined;
     Contact: undefined;
+    ContactFullScreenExample: undefined;
 };
 
 const RootStack = createStackNavigator<RootStackParamList>();
@@ -60,6 +62,7 @@ const AppRouter = (): any => (
             component={AuthProviderExample}
             options={{ gestureEnabled: false }}
         />
+        <RootStack.Screen name="ContactFullScreenExample" component={ContactFullScreenExample} />
         <RootStack.Screen name="ResetPasswordScreenBaseExample" component={ResetPasswordScreenBaseExample} />
         <RootStack.Screen name="ForgotPasswordScreenBaseExample" component={ForgotPasswordScreenBaseExample} />
         <RootStack.Screen name="Contact" component={ContactBaseExample} />

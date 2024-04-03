@@ -21,6 +21,11 @@ export const navGroupItems: NavItem[] = [
         icon: { name: 'app-registration' },
     },
     {
+        title: 'Contact Full Screen',
+        itemID: 'ContactFullScreenExample',
+        icon: { name: 'app-registration' },
+    },
+    {
         title: 'ResetPasswordScreenBase',
         itemID: 'ResetPasswordScreenBaseExample',
         icon: { name: 'lock' },
