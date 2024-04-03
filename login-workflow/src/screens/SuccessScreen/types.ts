@@ -5,7 +5,7 @@ import { IconSource } from '@brightlayer-ui/react-native-components/core/__types
 import { EmptyStateProps } from '@brightlayer-ui/react-native-components';
 
 export type SuccessScreenProps = WorkflowCardProps & {
-    emptyStateProps: EmptyStateProps;
+    emptyStateProps?: EmptyStateProps;
 
     /**
      * To display label for the button
