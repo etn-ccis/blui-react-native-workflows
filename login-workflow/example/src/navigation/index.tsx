@@ -18,7 +18,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ContactFullScreenExample from '../screens/ContactFullScreenExample';
 
 const getAuthState = (): any => ({
-    isAuthenticated: false,
+    isAuthenticated: true,
 });
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
