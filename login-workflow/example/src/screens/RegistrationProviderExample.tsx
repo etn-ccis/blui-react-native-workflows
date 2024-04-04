@@ -54,10 +54,10 @@ const RegistrationProviderExample: React.FC<AppProps> = (): JSX.Element => {
 
             {/* implementation with custom screens. This custom screen is using app and workflow level translations  */}
             <RegistrationWorkflow>
-                <EulaScreen />
+                {/* <EulaScreen />
                 <CustomScreen />
                 <CreatePasswordScreen />
-                <VerifyCodeScreen />
+                <VerifyCodeScreen /> */}
             </RegistrationWorkflow>
 
             {/* Show default success screen */}
