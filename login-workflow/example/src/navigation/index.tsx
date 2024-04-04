@@ -7,7 +7,7 @@ import i18nAppInstance from '../../translations/i18n';
 import { NavigationDrawer } from './navigation-drawer';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import Home from '../screens/home';
-import { View } from 'react-native';
+import { Dimensions, View } from 'react-native';
 import AuthProviderExample from '../screens/AuthProviderExample';
 import { Login } from '../screens/Login';
 import { ResetPasswordScreenBaseExample } from '../components/ResetPasswordScreenBaseExample';
@@ -69,6 +69,7 @@ const AppRouter = (): any => (
     </Drawer.Navigator>
 );
 const RegistrationRouter = (): any => {
+    const { height, width } = Dimensions.get('screen');
     const app = useApp();
     const routes = {
         LOGIN: 'LOGIN',
@@ -89,7 +90,7 @@ const RegistrationRouter = (): any => {
             <Stack.Navigator
                 screenOptions={{
                     headerShown: false,
-                    orientation: 'portrait',
+                    orientation: width >= 768 && height >= 768 ? 'all' : 'portrait',
                 }}
             >
                 <Stack.Screen name="REGISTER_INVITE">
