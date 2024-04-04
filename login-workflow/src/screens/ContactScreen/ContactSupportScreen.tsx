@@ -4,14 +4,24 @@ import { ContactSupportScreenProps } from './types';
 import { useAuthContext } from '../../contexts';
 import { useTranslation } from 'react-i18next';
 import { Text } from 'react-native-paper';
-import { useExtendedTheme } from '@brightlayer-ui/react-native-themes';
-import { Linking } from 'react-native';
+import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
+import { Linking, TextStyle, StyleSheet } from 'react-native';
+
+const makeStyles = (
+    theme: ExtendedTheme
+): StyleSheet.NamedStyles<{
+    textStyles: TextStyle;
+}> =>
+    StyleSheet.create({
+        textStyles: {
+            color: theme.colors.primary,
+        },
+    });
 
 /**
  * Component renders a screen with contact information for support with the application.
- * Contact information is pulled from the context passed into the workflow.
  *
- * @param {ContactSupportScreenProps} props - Props of Create Account Screen
+ * @param {ContactSupportScreenProps} props - Props of Contact Support Screen
  *
  * @category Component
  */
@@ -20,6 +30,7 @@ export const ContactSupportScreen: React.FC<ContactSupportScreenProps> = (props)
     const { t } = useTranslation();
     const { navigate } = useAuthContext();
     const theme = useExtendedTheme();
+    const defaultStyles = makeStyles(theme);
     const { contactEmail = 'something@email.com', contactPhone = '1-800-123-4567' } = props;
 
     const defaultEmailSupportContent = (): JSX.Element => (
@@ -27,7 +38,7 @@ export const ContactSupportScreen: React.FC<ContactSupportScreenProps> = (props)
             {`${t('bluiAuth:CONTACT_SUPPORT.SUPPORT_MESSAGE')}`}
             <Text
                 variant="labelLarge"
-                style={{ color: theme.colors.primary }}
+                style={defaultStyles.textStyles}
                 onPress={(): any => Linking.openURL(`mailto:${contactEmail ?? ''}`)}
             >
                 {contactEmail}
@@ -41,7 +52,7 @@ export const ContactSupportScreen: React.FC<ContactSupportScreenProps> = (props)
             {`${t('bluiAuth:CONTACT_SUPPORT.TECHNICAL_ASSISTANCE')}`}
             <Text
                 variant="labelLarge"
-                style={{ color: theme.colors.primary }}
+                style={defaultStyles.textStyles}
                 onPress={(): any => Linking.openURL(`tel:${contactPhone ?? ''}`)}
             >
                 {contactPhone}
