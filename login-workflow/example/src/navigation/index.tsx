@@ -10,9 +10,12 @@ import Home from '../screens/home';
 import { View } from 'react-native';
 import AuthProviderExample from '../screens/AuthProviderExample';
 import { Login } from '../screens/Login';
+import { ResetPasswordScreenBaseExample } from '../components/ResetPasswordScreenBaseExample';
+import { ForgotPasswordScreenBaseExample } from '../components/ForgotPasswordScreenBaseExample';
 import RegistrationProviderExample from '../screens/RegistrationProviderExample';
 import { ContactBaseExample } from '../screens/ContactBaseExample';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import ContactFullScreenExample from '../screens/ContactFullScreenExample';
 
 const getAuthState = (): any => ({
     isAuthenticated: false,
@@ -25,7 +28,10 @@ export type RootStackParamList = {
     Home: undefined;
     RegistrationProviderExample: undefined;
     AuthProviderExample: undefined;
+    ResetPasswordScreenBaseExample: undefined;
+    ForgotPasswordScreenBaseExample: undefined;
     Contact: undefined;
+    ContactFullScreenExample: undefined;
 };
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
@@ -56,6 +62,9 @@ const AppRouter = (): any => (
             component={AuthProviderExample}
             options={{ gestureEnabled: false }}
         />
+        <RootStack.Screen name="ContactFullScreenExample" component={ContactFullScreenExample} />
+        <RootStack.Screen name="ResetPasswordScreenBaseExample" component={ResetPasswordScreenBaseExample} />
+        <RootStack.Screen name="ForgotPasswordScreenBaseExample" component={ForgotPasswordScreenBaseExample} />
         <RootStack.Screen name="Contact" component={ContactBaseExample} />
     </Drawer.Navigator>
 );
@@ -80,7 +89,7 @@ const RegistrationRouter = (): any => {
             <Stack.Navigator
                 screenOptions={{
                     headerShown: false,
-                    orientation:'portrait',
+                    orientation: 'portrait',
                 }}
             >
                 <Stack.Screen name="REGISTER_INVITE">

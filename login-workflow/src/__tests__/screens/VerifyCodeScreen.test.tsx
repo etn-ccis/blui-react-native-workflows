@@ -81,7 +81,7 @@ describe('Verify Code Full Screen Test cases', () => {
 
     it('should display loader, when next button is pressed', async () => {
         renderer();
-        const codeInput = screen.getByTestId('text-input-flat');
+        const codeInput = screen.getByTestId('verify-code-textinput');
         fireEvent.changeText(codeInput, '123');
 
         const nextButton = screen.getByText('Next');

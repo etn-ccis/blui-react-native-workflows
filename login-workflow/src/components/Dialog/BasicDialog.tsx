@@ -39,6 +39,7 @@ export const BasicDialog: React.FC<BasicDialogProps> = (props) => {
                 </Dialog.Content>
                 <Dialog.Actions style={[defaultStyles.actions]}>
                     <Button
+                        testID="dismiss-button"
                         onPress={(): void => {
                             onDismiss?.();
                         }}

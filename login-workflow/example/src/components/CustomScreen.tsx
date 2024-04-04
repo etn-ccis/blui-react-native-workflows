@@ -6,6 +6,7 @@ import {
     WorkflowCardBody,
     WorkflowCardHeader,
     useRegistrationWorkflowContext,
+    useRegistrationContext,
 } from '@brightlayer-ui/react-native-auth-workflow';
 import { TextInput } from 'react-native-paper';
 import { useTranslation } from 'react-i18next';
@@ -20,7 +21,8 @@ type CustomScreenProps = {
 
 export const CustomScreen: React.FC<CustomScreenProps> = (props) => {
     const regWorkflow = useRegistrationWorkflowContext();
-    const { nextScreen, previousScreen, screenData, currentScreen, totalScreens } = regWorkflow;
+    const { navigate } = useRegistrationContext();
+    const { nextScreen, screenData, currentScreen, totalScreens, resetScreenData, previousScreen } = regWorkflow;
     const { organisationName } = props;
     const { t } = useTranslation();
 
@@ -32,21 +34,26 @@ export const CustomScreen: React.FC<CustomScreenProps> = (props) => {
         void nextScreen({
             screenId: 'Custom',
             values: { organisationName: organisationNameInput },
-            isAccountExist: true,
+            // isAccountExist: true,
         });
     }, [organisationNameInput, nextScreen]);
+
+    const onIconPress = useCallback(() => {
+        navigate(-1);
+        resetScreenData();
+    }, [navigate, resetScreenData]);
 
     const onPrevious = useCallback(() => {
         void previousScreen({
             screenId: 'Custom',
-            values: { organisationName: organisationName },
-            isAccountExist: true,
+            values: { organisationName: organisationNameInput },
+            // isAccountExist: true,
         });
-    }, [organisationName, previousScreen]);
+    }, [organisationNameInput, previousScreen]);
 
     return (
         <WorkflowCard>
-            <WorkflowCardHeader title="Custom Screen" onIconPress={onPrevious} icon={{ name: 'arrow-back' }} />
+            <WorkflowCardHeader title="Custom Screen" onIconPress={onIconPress} icon={{ name: 'arrow-back' }} />
             <WorkflowCardBody>
                 <TextInput
                     label={t('app:ORGANAIZATION_DETAILS.NAME')}

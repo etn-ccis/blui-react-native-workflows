@@ -39,7 +39,7 @@ const makeStyles = (
             alignItems: 'center',
             justifyContent: 'center',
         },
-        text: { letterSpacing: 0 },
+        text: { letterSpacing: 0, paddingLeft: 10 },
         webview: {
             flex: 1,
             backgroundColor: theme.colors.background,
@@ -84,7 +84,7 @@ export const EulaScreenBase: React.FC<EulaScreenProps> = (props) => {
     const defaultStyles = makeStyles(theme);
 
     const [eulaAccepted, setEulaAccepted] = useState(initialCheckboxValue ?? false);
-    const [checkboxEnable, setCheckboxEnable] = useState(false);
+    const [checkboxEnable, setCheckboxEnable] = useState(eulaAccepted);
 
     const handleEulaAcceptedChecked = useCallback(
         (accepted: boolean) => {
@@ -104,15 +104,15 @@ export const EulaScreenBase: React.FC<EulaScreenProps> = (props) => {
         contentSize: { height: number };
     }): boolean => {
         const paddingToBottom = 30;
+        if (eulaAccepted) {
+            return true;
+        }
         return layoutMeasurement.height + contentOffset.y >= contentSize.height - paddingToBottom;
     };
-
     const handleLayout = (event: LayoutChangeEvent): void => {
         const { width, height } = event.nativeEvent.layout;
         contentSizeRef.current = { width, height };
-        setCheckboxEnable(height >= contentSizeRef.current.height);
     };
-
     return (
         <WorkflowCard {...cardBaseProps}>
             <WorkflowCardHeader {...headerProps} />
@@ -164,11 +164,13 @@ export const EulaScreenBase: React.FC<EulaScreenProps> = (props) => {
                                     scrollEventThrottle={10}
                                     nestedScrollEnabled={true}
                                     onContentSizeChange={(w, height) => {
-                                        setCheckboxEnable(height <= contentSizeRef.current.height);
+                                        if (eulaAccepted === false) {
+                                            setCheckboxEnable(height <= contentSizeRef.current.height);
+                                        }
                                     }}
                                     onLayout={handleLayout}
                                 >
-                                    <Text variant={'titleSmall'} style={defaultStyles.text}>
+                                    <Text variant={'bodyLarge'} style={defaultStyles.text}>
                                         {eulaContent}
                                     </Text>
                                 </ScrollView>

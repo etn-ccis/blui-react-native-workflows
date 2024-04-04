@@ -92,9 +92,7 @@ export const RegistrationWorkflow: React.FC<React.PropsWithChildren<Registration
         initialScreenIndex < 0 ? 0 : initialScreenIndex > totalScreens - 1 ? totalScreens - 1 : initialScreenIndex
     );
     const [showSuccessScreen, setShowSuccessScreen] = useState(false);
-    const [viewPagerIndex, setViewPagerIndex] = useState(0);
-
-    const [screenData, setScreenData] = useState({
+    const initialRegistrationWorkflowScreenData = {
         Eula: {
             accepted: false,
         },
@@ -114,7 +112,10 @@ export const RegistrationWorkflow: React.FC<React.PropsWithChildren<Registration
             lastName: '',
         },
         Other: {},
-    });
+    };
+    const [screenData, setScreenData] = useState(initialRegistrationWorkflowScreenData);
+    const [viewPagerIndex, setViewPagerIndex] = useState(0);
+    const selectedPage = React.useRef(0);
 
     const updateScreenData = (data: IndividualScreenData): void => {
         const { Other }: { [key: string]: any } = screenData;
@@ -144,27 +145,7 @@ export const RegistrationWorkflow: React.FC<React.PropsWithChildren<Registration
     };
 
     const resetScreenData = (): void => {
-        setScreenData({
-            Eula: {
-                accepted: false,
-            },
-            CreateAccount: {
-                emailAddress: '',
-            },
-            VerifyCode: {
-                code: '',
-                isAccountExist: false,
-            },
-            CreatePassword: {
-                password: '',
-                confirmPassword: '',
-            },
-            AccountDetails: {
-                firstName: '',
-                lastName: '',
-            },
-            Other: {},
-        });
+        setScreenData(initialRegistrationWorkflowScreenData);
         setViewPagerIndex(viewPagerIndex + 1);
         setIsAccountExist(false);
         setCurrentScreen(0);
@@ -261,6 +242,15 @@ export const RegistrationWorkflow: React.FC<React.PropsWithChildren<Registration
                         ref={viewPagerRef}
                         scrollEnabled={false}
                         key={viewPagerIndex}
+                        onPageSelected={(e) => {
+                            selectedPage.current = e.nativeEvent.position;
+                        }}
+                        onPageScrollStateChanged={(e) => {
+                            if (e.nativeEvent.pageScrollState === 'idle') {
+                                viewPagerRef.current?.setPageWithoutAnimation(0);
+                                viewPagerRef.current?.setPageWithoutAnimation(selectedPage.current);
+                            }
+                        }}
                     >
                         {screens.map((screen, index) => (
                             <View key={index + 1}>{screen}</View>

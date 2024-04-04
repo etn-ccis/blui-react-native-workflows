@@ -17,9 +17,9 @@ import { EMAIL_REGEX } from '../../constants';
 
 export const CreateAccountScreen: React.FC<CreateAccountScreenProps> = (props) => {
     const { t } = useTranslation();
-    const { actions } = useRegistrationContext();
+    const { actions, navigate } = useRegistrationContext();
     const regWorkflow = useRegistrationWorkflowContext();
-    const { nextScreen, previousScreen, screenData, totalScreens, currentScreen } = regWorkflow;
+    const { nextScreen, previousScreen, resetScreenData, screenData, totalScreens, currentScreen } = regWorkflow;
     const [emailInputValue, setEmailInputValue] = useState(screenData.CreateAccount.emailAddress);
     const [isLoading, setIsLoading] = useState(false);
     const { triggerError, errorManagerConfig } = useErrorManager();
@@ -77,6 +77,10 @@ export const CreateAccountScreen: React.FC<CreateAccountScreenProps> = (props) =
 
     const workflowCardHeaderProps = {
         title: t('bluiRegistration:REGISTRATION.STEPS.CREATE_ACCOUNT'),
+        onIconPress: (): void => {
+            navigate(-1);
+            resetScreenData();
+        },
         ...WorkflowCardHeaderProps,
     };
 

@@ -1,10 +1,12 @@
-import { TFunction } from 'i18next';
+import { TFunction, TOptions } from 'i18next';
 import { StyleProp, ViewStyle } from 'react-native';
 
 /**
  * Props of AuthError
  */
-export type AuthError = { cause: { title: string; errorMessage: string } };
+export type AuthError = {
+    cause: { title: string; errorMessage: string; errorOptions?: TOptions; titleOptions?: TOptions };
+};
 
 /**
  * Props of ErrorManager Component that manages the display of error messages.
@@ -34,6 +36,16 @@ export type ErrorManagerProps = {
      *
      */
     error?: string;
+
+    /**
+     * Interpolate string with a dynamic value to pass values using t function for message
+     */
+    errorOptions?: TOptions;
+
+    /**
+     * Interpolate string with a dynamic value to pass values using t function for title
+     */
+    titleOptions?: TOptions;
 
     /**
      * Translate function to translate error related text

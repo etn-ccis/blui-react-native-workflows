@@ -1,3 +1,3 @@
 export * from './home';
 export * from './RegistrationProviderExample';
-export * from './AuthProviderExample';
+export * from './ContactFullScreenExample';
