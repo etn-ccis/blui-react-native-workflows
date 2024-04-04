@@ -20,6 +20,7 @@ import {
 } from '../../screens';
 import { ErrorManagerProps } from '../Error';
 import { Spinner } from '../Spinner';
+import { timeOutDelay } from '../../constants';
 
 const styles = StyleSheet.create({
     pagerView: {
@@ -160,7 +161,7 @@ export const RegistrationWorkflow: React.FC<React.PropsWithChildren<Registration
         try {
             setTimeout(() => {
                 setLoading(true);
-            }, 100);
+            }, timeOutDelay);
             if (actions && actions.completeRegistration) {
                 const { Eula, CreateAccount, VerifyCode, CreatePassword, AccountDetails, Other } = screenData;
                 const userInfo = {
@@ -190,7 +191,7 @@ export const RegistrationWorkflow: React.FC<React.PropsWithChildren<Registration
         } finally {
             setTimeout(() => {
                 setLoading(false);
-            }, 100);
+            }, timeOutDelay);
         }
     };
 
