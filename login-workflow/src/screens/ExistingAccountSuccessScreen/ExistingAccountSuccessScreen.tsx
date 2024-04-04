@@ -2,6 +2,7 @@ import React from 'react';
 import { useRegistrationContext, useRegistrationWorkflowContext } from '../../contexts';
 import { SuccessScreenBase, SuccessScreenProps } from '../SuccessScreen';
 import { useTranslation } from 'react-i18next';
+
 /**
  * Full screen component that renders a Success Screen for the accounts that already exists in the records
  *
@@ -9,7 +10,6 @@ import { useTranslation } from 'react-i18next';
  *
  * @category Component
  */
-
 export const ExistingAccountSuccessScreen: React.FC<SuccessScreenProps> = (props) => {
     const { t } = useTranslation();
     const { navigate, routeConfig } = useRegistrationContext();

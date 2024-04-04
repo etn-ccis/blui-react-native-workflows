@@ -25,7 +25,6 @@ const makeStyles = (
  *
  * @category Component
  */
-
 export const ContactSupportScreen: React.FC<ContactSupportScreenProps> = (props) => {
     const { t } = useTranslation();
     const { navigate } = useAuthContext();

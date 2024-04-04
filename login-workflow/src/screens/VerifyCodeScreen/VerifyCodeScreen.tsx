@@ -3,6 +3,7 @@ import { VerifyCodeScreenProps } from './types';
 import { VerifyCodeScreenBase } from './VerifyCodeScreenBase';
 import { useTranslation } from 'react-i18next';
 import { useErrorManager, useRegistrationContext, useRegistrationWorkflowContext } from '../../contexts';
+import { timeOutDelay } from '../../constants';
 
 /**
  * Component that renders a screen that prompts a user to enter the confirmation code
@@ -89,7 +90,7 @@ export const VerifyCodeScreen: React.FC<VerifyCodeScreenProps> = (props) => {
             } finally {
                 setTimeout(() => {
                     setIsLoading(false);
-                }, 100);
+                }, timeOutDelay);
             }
         },
         [t, actions, nextScreen, triggerError, updateScreenData]
