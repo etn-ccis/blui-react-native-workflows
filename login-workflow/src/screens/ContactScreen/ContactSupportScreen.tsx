@@ -5,8 +5,7 @@ import { useAuthContext } from '../../contexts';
 import { useTranslation } from 'react-i18next';
 import { Text } from 'react-native-paper';
 import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
-import { Linking } from 'react-native';
-import { StyleSheet, TextStyle } from 'react-native';
+import { Linking, TextStyle, StyleSheet } from 'react-native';
 
 const makeStyles = (
     theme: ExtendedTheme
