@@ -4,7 +4,7 @@ import { CreateAccountScreenBase } from './CreateAccountScreenBase';
 import { useRegistrationWorkflowContext, useRegistrationContext } from '../../contexts';
 import { useErrorManager } from '../../contexts/ErrorContext/useErrorManager';
 import { useTranslation } from 'react-i18next';
-import { EMAIL_REGEX } from '../../constants';
+import { EMAIL_REGEX, timeOutDelay } from '../../constants';
 
 /**
  * Component that renders a screen for the user to enter their email address to start the
@@ -14,7 +14,6 @@ import { EMAIL_REGEX } from '../../constants';
  *
  * @category Component
  */
-
 export const CreateAccountScreen: React.FC<CreateAccountScreenProps> = (props) => {
     const { t } = useTranslation();
     const { actions, navigate } = useRegistrationContext();
@@ -43,7 +42,9 @@ export const CreateAccountScreen: React.FC<CreateAccountScreenProps> = (props) =
         } catch (_error) {
             triggerError(_error as Error);
         } finally {
-            setIsLoading(false);
+            setTimeout(() => {
+                setIsLoading(false);
+            }, timeOutDelay);
         }
     }, [actions, emailInputValue, nextScreen, triggerError]);
 

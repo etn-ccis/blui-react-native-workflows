@@ -4,6 +4,7 @@ import { EulaScreenBase } from './EulaScreenBase';
 import { useRegistrationContext, useRegistrationWorkflowContext } from '../../contexts';
 import { useErrorManager } from '../../contexts/ErrorContext/useErrorManager';
 import { useTranslation } from 'react-i18next';
+import { timeOutDelay } from '../../constants';
 
 /**
  * Component that renders a screen displaying the EULA and requests acceptance via a checkbox.
@@ -12,7 +13,6 @@ import { useTranslation } from 'react-i18next';
  *
  * @category Component
  */
-
 export const EulaScreen: React.FC<EulaScreenProps> = (props) => {
     const { t } = useTranslation();
     const { actions, language, navigate } = useRegistrationContext();
@@ -121,7 +121,9 @@ export const EulaScreen: React.FC<EulaScreenProps> = (props) => {
         } catch (_error) {
             triggerError(_error as Error);
         } finally {
-            setIsLoading(false);
+            setTimeout(() => {
+                setIsLoading(false);
+            }, timeOutDelay);
         }
     }, [actions, nextScreen, triggerError, isInviteRegistration, screenData, t, updateScreenData]);
 
