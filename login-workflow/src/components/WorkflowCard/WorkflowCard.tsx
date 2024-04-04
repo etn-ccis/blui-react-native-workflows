@@ -16,13 +16,9 @@ const MAX_CARD_WIDTH = 450;
 const makeStyles = ({
     insets,
     theme,
-    height,
-    width,
 }: {
     insets: EdgeInsets;
     theme: ExtendedTheme;
-    height: number;
-    width: number;
 }): StyleSheet.NamedStyles<{
     mobile: CardProps['style'];
     tablet: CardProps['style'];
@@ -35,9 +31,9 @@ const makeStyles = ({
             borderRadius: 0,
         },
         tablet: {
-            height: height > MAX_CARD_HEIGHT ? MAX_CARD_HEIGHT : height,
-            width: width > MAX_CARD_WIDTH ? MAX_CARD_WIDTH : width,
-            borderRadius: theme.roundness * 2,
+            height: MAX_CARD_HEIGHT,
+            width: MAX_CARD_WIDTH,
+            borderRadius: theme.roundness * 6,
             overflow: 'hidden',
         },
     });
@@ -57,9 +53,11 @@ export const WorkflowCard: React.FC<WorkflowCardBaseProps> = (props) => {
     const { loading, backgroundImage, children, style, ...otherImageProps } = props;
     const theme = useExtendedTheme();
     const { isTablet, width, height } = useScreenDimensions();
+
     const hasWorkflowCardHeader = hasWorkflowCardHeaderRecursive(children);
     const insets = useSafeAreaInsets();
-    const styles = makeStyles({ insets, theme, height, width });
+    const styles = makeStyles({ insets, theme });
+
     return (
         <ImageBackground
             source={backgroundImage ? backgroundImage : defaultImage}
@@ -78,17 +76,22 @@ export const WorkflowCard: React.FC<WorkflowCardBaseProps> = (props) => {
             {...otherImageProps}
         >
             <Card
+                style={{
+                    maxHeight: height,
+                    maxWidth: width,
+                    borderRadius: isTablet ? theme.roundness * 6 : 0,
+                }}
                 contentStyle={[
                     isTablet ? styles.tablet : styles.mobile,
                     {
-                        maxHeight: height,
-                        maxWidth: width,
-                        backgroundColor: theme.colors.surface,
+                        backgroundColor: theme.colors.surfaceContainer,
                         paddingTop: !isTablet && !hasWorkflowCardHeader ? insets.top : 0,
+                        position: 'relative',
                     },
                 ]}
             >
-                {loading ? <Spinner visible={loading} /> : children}
+                {children}
+                {loading && <Spinner visible={loading} />}
             </Card>
         </ImageBackground>
     );
