@@ -26,9 +26,9 @@ export const navGroupItems: NavItem[] = [
         icon: { name: 'contact-page' },
     },
     {
-        title:'Login Example',
-        itemID:'LoginExample',
-        icon: {name:'app-registration'},
+        title: 'Login Example',
+        itemID: 'LoginExample',
+        icon: { name: 'app-registration' },
     },
 ];
 

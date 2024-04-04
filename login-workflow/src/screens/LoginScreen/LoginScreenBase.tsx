@@ -2,9 +2,7 @@ import React, { useCallback, useRef, useState } from 'react';
 import { LoginScreenProps } from './types';
 import { WorkflowCard } from '../../components/WorkflowCard';
 import { WorkflowCardBody } from '../../components/WorkflowCard/WorkflowCardBody';
-// import cyberSecurityBadge from '../../assets/images/cybersecurity_certified.png';
-import { PasswordTextField } from '../../components';
-import {ErrorManager} from '../../components';
+import { ErrorManager, PasswordTextField } from '../../components';
 import { Image, View } from 'react-native';
 import { Button, Checkbox, HelperText, Text, TextInput } from 'react-native-paper';
 import { useExtendedTheme } from '@brightlayer-ui/react-native-themes';
@@ -14,10 +12,9 @@ import { useScreenDimensions } from '../../hooks/useScreenDimensions';
  * Component that renders a login screen that prompts a user to enter a username and password to login.
  *
  * @param {LoginScreenProps} props - Props of Login Screen component
- * 
+ *
  * @category Component
  */
-
 
 export const LoginScreenBase: React.FC<React.PropsWithChildren<LoginScreenProps>> = (props) => {
     const {
@@ -91,10 +88,6 @@ export const LoginScreenBase: React.FC<React.PropsWithChildren<LoginScreenProps>
         [passwordValidator]
     );
 
-    const handleLogin = (): void => {
-        if (onLogin) void onLogin(username, password, rememberMe);
-    };
-
     const handleForgotPassword = (): void => {
         if (onForgotPassword) onForgotPassword();
     };
@@ -120,9 +113,12 @@ export const LoginScreenBase: React.FC<React.PropsWithChildren<LoginScreenProps>
         typeof isPasswordValid === 'boolean' &&
         isPasswordValid;
 
-    const handleLoginSubmit = (e: React.KeyboardEvent<HTMLDivElement>): void => {
-        if (e.key === 'Enter' && isFormValid()) {
-            void handleLogin();
+    const handleLogin = (): void => {
+        if (isFormValid() && onLogin) void onLogin(username, password, rememberMe);
+    };
+    const handleLoginSubmit = (): void => {
+        if (isFormValid()) {
+            handleLogin();
         }
     };
 
@@ -131,7 +127,7 @@ export const LoginScreenBase: React.FC<React.PropsWithChildren<LoginScreenProps>
             <WorkflowCardBody>
                 {header}
                 <View
-                    style={{ display: 'flex', maxWidth: '100%',marginBottom:isTablet ? 24 : 16 }}
+                    style={{ display: 'flex', maxWidth: '100%', marginBottom: isTablet ? 24 : 16 }}
                     testID={'projectImageWrapper'}
                 >
                     {projectImage}
@@ -145,14 +141,14 @@ export const LoginScreenBase: React.FC<React.PropsWithChildren<LoginScreenProps>
                             justifyContent: 'center',
                             alignItems: 'center',
                             width: '100%',
-                            marginVertical:isTablet ? 32 : 24
+                            marginVertical: isTablet ? 32 : 24,
                         }}
                         testID={'inputFieldsWrapper'}
                     >
                         <View
                             style={{
                                 width: '100%',
-                                marginVertical:isTablet ? 32 : 24
+                                marginVertical: isTablet ? 32 : 24,
                             }}
                         >
                             <TextInput
@@ -169,8 +165,9 @@ export const LoginScreenBase: React.FC<React.PropsWithChildren<LoginScreenProps>
                                 }}
                                 onSubmitEditing={(e: any): void => {
                                     // eslint-disable-next-line no-unused-expressions
-                                    usernameTextFieldProps?.onSubmitEditing && usernameTextFieldProps.onSubmitEditing(e);
-                                    if (e.key === 'Enter' && passwordField.current) passwordField.current.focus();
+                                    usernameTextFieldProps?.onSubmitEditing &&
+                                        usernameTextFieldProps.onSubmitEditing(e);
+                                    if (passwordField.current) passwordField.current.focus();
                                 }}
                                 onBlur={(e): void => {
                                     // eslint-disable-next-line no-unused-expressions
@@ -178,19 +175,20 @@ export const LoginScreenBase: React.FC<React.PropsWithChildren<LoginScreenProps>
                                     setShouldValidateUsername(true);
                                 }}
                             />
-                            {shouldValidateUsername && !isUsernameValid && <HelperText type="error">{usernameError}</HelperText>}
-
+                            {shouldValidateUsername && !isUsernameValid && (
+                                <HelperText type="error">{usernameError}</HelperText>
+                            )}
                         </View>
                         <View
                             style={{
                                 width: '100%',
-                               }}
+                            }}
                         >
                             <PasswordTextField
                                 ref={passwordField}
                                 testID={'passwordTextField'}
                                 label={passwordLabel || 'Password'}
-                                mode='flat'
+                                mode="flat"
                                 value={password}
                                 error={shouldValidatePassword && !isPasswordValid}
                                 {...passwordTextFieldProps}
@@ -201,8 +199,9 @@ export const LoginScreenBase: React.FC<React.PropsWithChildren<LoginScreenProps>
                                 }}
                                 onSubmitEditing={(e: any): void => {
                                     // eslint-disable-next-line no-unused-expressions
-                                    passwordTextFieldProps?.onSubmitEditing && passwordTextFieldProps.onSubmitEditing(e);
-                                    handleLoginSubmit(e);
+                                    passwordTextFieldProps?.onSubmitEditing &&
+                                        passwordTextFieldProps.onSubmitEditing(e);
+                                    handleLoginSubmit();
                                 }}
                                 onBlur={(e): void => {
                                     // eslint-disable-next-line no-unused-expressions
@@ -210,7 +209,9 @@ export const LoginScreenBase: React.FC<React.PropsWithChildren<LoginScreenProps>
                                     setShouldValidatePassword(true);
                                 }}
                             />
-                            {shouldValidatePassword && !isPasswordValid && <HelperText type="error">{passwordError}</HelperText>}
+                            {shouldValidatePassword && !isPasswordValid && (
+                                <HelperText type="error">{passwordError}</HelperText>
+                            )}
                         </View>
                     </View>
                 </ErrorManager>
@@ -220,9 +221,9 @@ export const LoginScreenBase: React.FC<React.PropsWithChildren<LoginScreenProps>
                         alignItems: 'center',
                         width: '100%',
                         justifyContent: 'center',
-                        flexDirection:'row',
-                        marginTop:isTablet ? 24 : 16,
-                        marginBottom:isTablet ? 32 : 24,
+                        flexDirection: 'row',
+                        marginTop: isTablet ? 24 : 16,
+                        marginBottom: isTablet ? 32 : 24,
                     }}
                     testID={'rememberMeLoginRowWrapper'}
                 >
@@ -230,21 +231,18 @@ export const LoginScreenBase: React.FC<React.PropsWithChildren<LoginScreenProps>
                         <View
                             style={{
                                 display: 'flex',
-                                flex:1,
+                                flex: 1,
                                 alignItems: 'center',
-                                flexDirection:'row'
+                                flexDirection: 'row',
                             }}
                             testID={'rememberMeWrapper'}
                         >
                             <Checkbox.Android
-                                status={rememberMe?'checked' : 'unchecked'}
+                                status={rememberMe ? 'checked' : 'unchecked'}
                                 onPress={() => handleRememberMeChanged(!rememberMe)}
                                 testID={'rememberMeCheckbox'}
                             />
-                            <Text
-                                variant='bodyLarge'
-                                testID={'rememberMeLabel'}
-                            >
+                            <Text variant="bodyLarge" testID={'rememberMeLabel'}>
                                 {rememberMeLabel || 'Remember Me'}
                             </Text>
                         </View>
@@ -262,7 +260,7 @@ export const LoginScreenBase: React.FC<React.PropsWithChildren<LoginScreenProps>
                             testID={'loginButton'}
                             onPress={handleLogin}
                             disabled={!isFormValid()}
-                            mode='contained'
+                            mode="contained"
                             style={{
                                 width: '100%',
                             }}
@@ -274,12 +272,18 @@ export const LoginScreenBase: React.FC<React.PropsWithChildren<LoginScreenProps>
 
                 {showForgotPassword && (
                     <View
-                        style={{ display: 'flex', justifyContent: 'center',alignContent:'center', alignItems: 'center', marginBottom:isTablet ? 32 : 24, }}
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignContent: 'center',
+                            alignItems: 'center',
+                            marginBottom: isTablet ? 32 : 24,
+                        }}
                         testID={'forgotPasswordWrapper'}
                     >
                         <Text
-                            variant='labelLarge'
-                            style={{color:theme.colors.primary}}
+                            variant="labelLarge"
+                            style={{ color: theme.colors.primary }}
                             onPress={handleForgotPassword}
                             testID={'forgotPasswordLabel'}
                         >
@@ -297,20 +301,16 @@ export const LoginScreenBase: React.FC<React.PropsWithChildren<LoginScreenProps>
                             flexDirection: 'column',
                             marginTop: 4,
                             alignContent: 'center',
-                            marginBottom:isTablet ? 32 : 24,
+                            marginBottom: isTablet ? 32 : 24,
                         }}
                         testID={'selfRegisterWrapper'}
                     >
-                        <Text
-                            variant='bodyMedium'
-
-                            testID={'selfRegisterInstructionLabel'}
-                        >
+                        <Text variant="bodyMedium" testID={'selfRegisterInstructionLabel'}>
                             {selfRegisterInstructions || 'Need an account?'}
                         </Text>
                         <Text
-                            variant='labelLarge'
-                            style={{color:theme.colors.primary}}
+                            variant="labelLarge"
+                            style={{ color: theme.colors.primary }}
                             onPress={handleSelfRegister}
                             testID={'selfRegisterLabel'}
                         >
@@ -321,12 +321,19 @@ export const LoginScreenBase: React.FC<React.PropsWithChildren<LoginScreenProps>
 
                 {showContactSupport && (
                     <View
-                        style={{ display: 'flex', justifyContent: 'center', marginTop: 4, alignContent:'center', alignItems: 'center',marginBottom:isTablet ? 32 : 24, }}
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            marginTop: 4,
+                            alignContent: 'center',
+                            alignItems: 'center',
+                            marginBottom: isTablet ? 32 : 24,
+                        }}
                         testID={'contactSupportWrapper'}
                     >
                         <Text
-                            variant='labelLarge'
-                            style={{color:theme.colors.primary}}
+                            variant="labelLarge"
+                            style={{ color: theme.colors.primary }}
                             onPress={handleContactSupport}
                             testID={'contactSupportLabel'}
                         >
@@ -342,7 +349,11 @@ export const LoginScreenBase: React.FC<React.PropsWithChildren<LoginScreenProps>
                         style={{ display: 'flex', justifyContent: 'center', marginTop: 2 }}
                         testID={'cyberSecurityBadgeWrapper'}
                     >
-                        <Image style={{width:'100%'}} resizeMode='contain' source={require('../../assets/images/cybersecurity_certified.png')}/>
+                        <Image
+                            style={{ width: '100%' }}
+                            resizeMode="contain"
+                            source={require('../../assets/images/cybersecurity_certified.png')}
+                        />
                     </View>
                 )}
             </WorkflowCardBody>

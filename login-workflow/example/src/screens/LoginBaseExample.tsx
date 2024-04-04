@@ -1,14 +1,10 @@
 import React, { useState } from 'react';
-import {  LoginScreenProps, LoginScreenBase } from '@brightlayer-ui/react-native-auth-workflow';
+import { LoginScreenProps, LoginScreenBase } from '@brightlayer-ui/react-native-auth-workflow';
 import { Image } from 'react-native';
 
-
 export const LoginBaseExample: React.FC<React.PropsWithChildren<LoginScreenProps>> = (props) => {
-
-    const [isLoading, setIsLoading] = useState(false);
-    const [rememberMe, setRememberMe] = useState(false) 
+    const [rememberMe, setRememberMe] = useState(false);
     const EMAIL_REGEX = /^[A-Z0-9._%+'-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-
 
     const {
         usernameLabel = 'EMAIL',
@@ -37,13 +33,16 @@ export const LoginBaseExample: React.FC<React.PropsWithChildren<LoginScreenProps
         loginButtonLabel = 'LOG IN',
         showForgotPassword = true,
         forgotPasswordLabel = 'FORGOT PASSWORD',
+        // eslint-disable-next-line no-console
         onForgotPassword = (): void => console.log('forgot password pressed'),
         showSelfRegistration = true,
         selfRegisterInstructions = 'NEED ACCOUNT',
         selfRegisterButtonLabel = 'CREATE ACCOUNT',
+        // eslint-disable-next-line no-console
         onSelfRegister = (): void => console.log('self registration pressed'),
         showContactSupport = true,
         contactSupportLabel = 'CONTACT',
+        // eslint-disable-next-line no-console
         onContactSupport = (): void => console.log('self registration pressed'),
         showCyberSecurityBadge = true,
         header,
@@ -52,7 +51,7 @@ export const LoginBaseExample: React.FC<React.PropsWithChildren<LoginScreenProps
 
     return (
         <LoginScreenBase
-            loading={isLoading}
+            loading={false}
             usernameLabel={usernameLabel}
             usernameTextFieldProps={usernameTextFieldProps}
             usernameValidator={usernameValidator}
@@ -65,8 +64,9 @@ export const LoginBaseExample: React.FC<React.PropsWithChildren<LoginScreenProps
             rememberMeInitialValue={rememberMeInitialValue}
             onRememberMeChanged={onRememberMeChanged}
             loginButtonLabel={loginButtonLabel}
-            onLogin={
-                ()=>console.log('loginPressed')
+            onLogin={(user: string | undefined, pass: string | undefined): void =>
+                // eslint-disable-next-line no-console
+                console.log('loginPressed', user, pass)
             }
             showForgotPassword={showForgotPassword}
             forgotPasswordLabel={forgotPasswordLabel}
@@ -79,7 +79,13 @@ export const LoginBaseExample: React.FC<React.PropsWithChildren<LoginScreenProps
             contactSupportLabel={contactSupportLabel}
             onContactSupport={onContactSupport}
             showCyberSecurityBadge={showCyberSecurityBadge}
-            projectImage={<Image style={{width:'100%'}} resizeMode='contain' source={require('../assets/images/eaton_stacked_logo.png')}/>}
+            projectImage={
+                <Image
+                    style={{ width: '100%' }}
+                    resizeMode="contain"
+                    source={require('../assets/images/eaton_stacked_logo.png')}
+                />
+            }
             header={header}
             footer={footer}
         />

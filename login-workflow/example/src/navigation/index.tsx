@@ -60,7 +60,6 @@ const AppRouter = (): any => (
         />
         <RootStack.Screen name="Contact" component={ContactBaseExample} />
         <RootStack.Screen name="LoginExample" component={LoginBaseExample} />
-    
     </Drawer.Navigator>
 );
 const RegistrationRouter = (): any => {
