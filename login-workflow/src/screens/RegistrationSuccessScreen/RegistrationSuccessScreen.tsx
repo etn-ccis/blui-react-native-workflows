@@ -61,7 +61,7 @@ export const RegistrationSuccessScreen: React.FC<SuccessScreenProps> = (props) =
             resetScreenData();
         },
     };
-    const e = {
+    const emptyStatesProps = {
         icon: CheckCircleIcon,
         title: `${t('bluiCommon:MESSAGES.WELCOME')}, ${firstName} ${lastName}!`,
         description: (
@@ -108,7 +108,7 @@ export const RegistrationSuccessScreen: React.FC<SuccessScreenProps> = (props) =
             WorkflowCardHeaderProps={workflowCardHeaderProps}
             WorkflowCardActionsProps={workflowCardActionsProps}
             WorkflowCardBodyProps={workflowCardBodyProps}
-            emptyStateProps={e}
+            emptyStateProps={emptyStatesProps}
             {...otherRegistrationSuccessScreenProps}
         />
     );

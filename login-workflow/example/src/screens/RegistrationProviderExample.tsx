@@ -22,6 +22,7 @@ import { useNavigation } from '@react-navigation/native';
 import { CustomScreen } from '../components/CustomScreen';
 import { View } from 'react-native';
 import { Text } from 'react-native-paper';
+import { AccountDetailsScreen } from './AccountDetails';
 
 type AppProps = {
     navigation: StackNavigationProp<RootStackParamList, 'RegistrationProviderExample'>;
@@ -56,30 +57,36 @@ const RegistrationProviderExample: React.FC<AppProps> = (): JSX.Element => {
             {/* <RegistrationWorkflow /> */}
 
             {/* implementation with custom screens. This custom screen is using app and workflow level translations  */}
-            {/* <RegistrationWorkflow successScreen={}>
+            <RegistrationWorkflow>
                 <EulaScreen />
                 <CustomScreen />
                 <CreatePasswordScreen />
                 <VerifyCodeScreen />
-            </RegistrationWorkflow> */}
-
-            {/* Show default success screen */}
-            <RegistrationWorkflow
-                successScreen={
-                    <Suc>
-                }
-            >
-                <EulaScreen />
-                <CustomScreen />
-                {/* <AccountDetailsScreen /> */}
             </RegistrationWorkflow>
 
-            {/* Invite Registration Mode */}
+            {/* Show default success screen */}
             {/* <RegistrationWorkflow
-                    isInviteRegistration
-                    initialRegistrationParams={{ code: '123', email: 'aa@aa.aa' }}
-                /> */}
-            {/* </ErrorContextProvider> */}
+                successScreen={
+                    <WorkflowCard>
+                        <WorkflowCardHeader
+                            title="Test Success Screen"
+                            onIconPress={() => {
+                                console.log('close icon pressed');
+                            }}
+                        ></WorkflowCardHeader>
+                        <WorkflowCardBody>
+                            <View>
+                                <Text>Success</Text>
+                            </View>
+                        </WorkflowCardBody>
+                        <WorkflowCardActions showNext nextLabel="Okay" fullWidthButton />
+                    </WorkflowCard>
+                }
+            > */}
+            {/* <EulaScreen />
+                <CustomScreen />
+                <AccountDetailsScreen />
+            </RegistrationWorkflow> */}
         </RegistrationContextProvider>
     );
 };

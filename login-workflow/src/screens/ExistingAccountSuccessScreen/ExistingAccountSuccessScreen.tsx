@@ -2,6 +2,7 @@ import React from 'react';
 import { useRegistrationContext, useRegistrationWorkflowContext } from '../../contexts';
 import { SuccessScreenBase, SuccessScreenProps } from '../SuccessScreen';
 import { useTranslation } from 'react-i18next';
+import { IconFamily } from '@brightlayer-ui/react-native-components/core/__types__';
 /**
  * Full screen component that renders a Success Screen for the accounts that already exists in the records
  *
@@ -15,14 +16,12 @@ export const ExistingAccountSuccessScreen: React.FC<SuccessScreenProps> = (props
     const { navigate, routeConfig } = useRegistrationContext();
     const { resetScreenData } = useRegistrationWorkflowContext();
     const {
-        icon = { family: 'material', name: 'person' },
-        messageTitle = t('bluiCommon:MESSAGES.WELCOME'),
-        message = t('bluiRegistration:REGISTRATION.SUCCESS_EXISTING'),
         canDismiss = true,
         onDismiss = (): void => navigate(routeConfig.LOGIN as string),
         WorkflowCardHeaderProps,
         WorkflowCardActionsProps,
         WorkflowCardBodyProps,
+        emptyStateProps,
         ...otherExistingAccountSuccessScreenProps
     } = props;
 
@@ -52,15 +51,21 @@ export const ExistingAccountSuccessScreen: React.FC<SuccessScreenProps> = (props
             WorkflowCardActionsProps?.onNext?.();
         },
     };
+    const icon: IconFamily = { family: 'material', name: 'person' };
+
+    const emptyStatesProps = {
+        icon: icon,
+        title: t('bluiCommon:MESSAGES.WELCOME'),
+        description: t('bluiRegistration:REGISTRATION.SUCCESS_EXISTING'),
+        ...emptyStateProps,
+    };
 
     return (
         <SuccessScreenBase
             WorkflowCardHeaderProps={workflowCardHeaderProps}
             WorkflowCardActionsProps={workflowCardActionsProps}
             WorkflowCardBodyProps={workflowCardBodyProps}
-            icon={icon}
-            messageTitle={messageTitle}
-            message={message}
+            emptyStateProps={emptyStatesProps}
             {...otherExistingAccountSuccessScreenProps}
         />
     );
