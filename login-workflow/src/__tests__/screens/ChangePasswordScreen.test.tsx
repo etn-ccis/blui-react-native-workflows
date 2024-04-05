@@ -22,7 +22,6 @@ afterEach(cleanup);
 describe('Change Password tests', () => {
     let updateFields: any;
     let mockOnNext: any;
-    let mockOnPrevious: any;
 
     afterEach(() => {
         jest.clearAllMocks();
@@ -30,7 +29,6 @@ describe('Change Password tests', () => {
 
     beforeEach(() => {
         mockOnNext = jest.fn();
-        mockOnPrevious = jest.fn();
         updateFields = jest.fn();
     });
 
@@ -98,8 +96,8 @@ describe('Change Password tests', () => {
         expect(newPasswordInput).toHaveDisplayValue('Abc@1234');
         fireEvent.changeText(confirmPasswordInput, 'Abc@1234');
         expect(confirmPasswordInput).toHaveDisplayValue('Abc@1234');
-        expect(screen.getByText('Okay')).toBeEnabled();
-        fireEvent.press(screen.getByText('Okay'));
+        expect(screen.getByText('Submit')).toBeEnabled();
+        fireEvent.press(screen.getByText('Submit'));
 
         await waitFor(() => expect(screen.getByText('Your password was successfully reset.')));
     });
@@ -128,26 +126,6 @@ describe('Change Password tests', () => {
 
         expect(passwordField).toHaveDisplayValue('A');
         expect(confirmPasswordField).toHaveDisplayValue('A');
-    });
-
-    it('should call onPrevious, when Back button clicked', () => {
-        renderer({
-            WorkflowCardActionsProps: {
-                onPrevious: mockOnPrevious(),
-                showPrevious: true,
-                previousLabel: 'Back',
-            },
-            PasswordProps: {
-                newPasswordLabel: 'Password',
-                confirmPasswordLabel: 'Confirm Password',
-                onPasswordChange: jest.fn(),
-                passwordRequirements: passwordRequirements,
-            },
-        });
-
-        const backButton = screen.getByText('Back');
-        fireEvent.press(backButton);
-        expect(mockOnPrevious).toHaveBeenCalled();
     });
 
     it('should call onNext, when Next button clicked', () => {
@@ -217,7 +195,7 @@ describe('Change Password tests', () => {
         const currentPasswordField = getByTestId('current-password');
         const passwordField = getByTestId('password');
         const confirmPasswordField = getByTestId('confirm');
-        const nextButton = screen.getByText('Okay');
+        const nextButton = screen.getByText('Submit');
 
         fireEvent.changeText(currentPasswordField, 'Password');
         fireEvent.changeText(passwordField, 'Password@123A');
