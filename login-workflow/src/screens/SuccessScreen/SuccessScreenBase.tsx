@@ -46,7 +46,7 @@ export const SuccessScreenBase: React.FC<SuccessScreenProps> = (props) => {
             {Object.keys(instructionsProps).length !== 0 && <WorkflowCardInstructions {...instructionsProps} />}
             <WorkflowCardBody scrollable={false} {...bodyProps}>
                 <View style={[styles.emptyStateContainer]}>
-                    <EmptyState {...emptyStateProps} />
+                    {emptyStateProps && <EmptyState {...emptyStateProps} />}
                 </View>
             </WorkflowCardBody>
             <WorkflowCardActions
