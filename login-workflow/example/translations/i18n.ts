@@ -1,20 +1,27 @@
 import i18next from 'i18next';
 import { AppDictionaries } from './dictionary';
 import { initReactI18next } from 'react-i18next';
+import { NativeModules, Platform } from 'react-native';
+
+const locale =
+    Platform.OS === 'ios'
+        ? NativeModules.SettingsManager.settings.AppleLocale
+        : NativeModules.I18nManager.localeIdentifier;
+
 
 void i18next
     .use(initReactI18next) // passes i18n down to react-i18next
     .init(
         {
+            lng: locale.substring(0, 2),
             fallbackLng: 'en',
             ns: ['app'],
             defaultNS: 'app',
             load: 'languageOnly',
             detection: {
-                order: ['localStorage'],
-                caches: ['localStorage'],
-                lookupLocalStorage: 'app-i18nextLng',
-                lookupQuerystring: 'lng',
+                order: ['AsyncStorage'],
+                caches: ['AsyncStorage'],
+                lookupAsyncStorage: 'app-i18nextLng',
             },
             react: { useSuspense: false },
             interpolation: { escapeValue: false },

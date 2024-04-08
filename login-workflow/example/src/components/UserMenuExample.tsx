@@ -7,6 +7,7 @@ import SelectDropdown from 'react-native-select-dropdown';
 import { useTranslation } from 'react-i18next';
 import { useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 import { useApp } from '../contexts/AppContextProvider';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SwapIcon: IconFamily = {
     family: 'material',
@@ -34,9 +35,16 @@ export const UserMenuExample: React.FC<UserMenuExampleProps> = (props) => {
     const theme = useExtendedTheme();
     const { i18n } = useTranslation();
     const app = useApp();
-    const handleLanguageChange = (newLanguage: string): void => {
+    const handleLanguageChange = async(newLanguage: string) => {
         app.setLanguage(newLanguage);
         void i18n.changeLanguage(newLanguage);
+        try {
+            await AsyncStorage.setItem('userLanguage', newLanguage);
+            console.log(`Language successfully changed to ${newLanguage}`); // Optional for logging
+          } catch (error) {
+            console.error('Error setting new language:', error);
+          }
+
     };
     const languageOptions = [
         { label: 'English', value: 'en' },

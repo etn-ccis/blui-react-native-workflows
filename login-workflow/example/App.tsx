@@ -13,10 +13,12 @@ import { MainRouter } from './src/navigation';
 import { ThemeContext, ThemeType } from './src/contexts/ThemeContext';
 import { blue, blueDark } from '@brightlayer-ui/react-native-themes';
 import i18nAppInstance from './translations/i18n';
-import { I18nextProvider } from 'react-i18next';
+import { I18nextProvider, useTranslation } from 'react-i18next';
 import { AppContext, AppContextType } from './src/contexts/AppContextProvider';
 import { LocalStorage } from './src/store/local-storage';
 import { Spinner } from '@brightlayer-ui/react-native-auth-workflow';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useApp } from './src/contexts/AppContextProvider';
 
 export const App = (): JSX.Element => {
     const [theme, setTheme] = useState<ThemeType>('light');
@@ -27,7 +29,7 @@ export const App = (): JSX.Element => {
         rememberMe: false,
     });
     const [isLoading, setIsLoading] = useState(true);
-
+    const { i18n } = useTranslation();
     // handle initialization of auth data on first load
     useEffect(() => {
         const initialize = async (): Promise<void> => {
@@ -35,6 +37,7 @@ export const App = (): JSX.Element => {
                 const userData = await LocalStorage.readAuthData();
                 setLoginData({ email: userData.rememberMeData.user, rememberMe: userData.rememberMeData.rememberMe });
                 setIsAuthenticated(Boolean(userData.userId));
+                getLanguage()
             } catch (e) {
                 // handle any error state, rejected promises, etc..
             } finally {
@@ -44,6 +47,19 @@ export const App = (): JSX.Element => {
         // eslint-disable-next-line
         initialize();
     }, []);
+    const getLanguage= async()=>{
+        
+    // const app = useApp();
+        try {
+            const storedLanguage = await AsyncStorage.getItem('userLanguage');
+            if(storedLanguage!==null){
+                // app.setLanguage(storedLanguage);
+        void i18n.changeLanguage(storedLanguage);
+            }
+          } catch (error) {
+            console.error('Error getting language from Async Storage:', error);
+          }
+    }
 
     return isLoading ? (
         <Spinner visible={isLoading} />
