@@ -11,7 +11,7 @@ export type LoginScreenProps = WorkflowCardBaseProps & {
 
     /**
      * The props to pass to the username text field.
-     * See [MUI's TextFieldProps API](https://mui.com/material-ui/api/text-field/) for more details.
+     * See [React Native Paper TextInputProps API](https://callstack.github.io/react-native-paper/docs/components/TextInput/) for more details.
      */
     usernameTextFieldProps?: TextInputProps;
 
@@ -34,7 +34,7 @@ export type LoginScreenProps = WorkflowCardBaseProps & {
 
     /**
      * The props to pass to the password text field.
-     * See [MUI's TextFieldProps API](https://mui.com/material-ui/api/text-field/) for more details.
+     * See [React Native Paper TextInputProps API](https://callstack.github.io/react-native-paper/docs/components/TextInput/) for more details.
      */
     passwordTextFieldProps?: TextInputProps;
 

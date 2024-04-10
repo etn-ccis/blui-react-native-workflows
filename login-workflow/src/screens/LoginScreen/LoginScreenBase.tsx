@@ -3,10 +3,103 @@ import { LoginScreenProps } from './types';
 import { WorkflowCard } from '../../components/WorkflowCard';
 import { WorkflowCardBody } from '../../components/WorkflowCard/WorkflowCardBody';
 import { ErrorManager, PasswordTextField } from '../../components';
-import { Image, View } from 'react-native';
+import { Image, View, StyleSheet, ViewStyle } from 'react-native';
 import { Button, Checkbox, HelperText, Text, TextInput } from 'react-native-paper';
 import { useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 import { useScreenDimensions } from '../../hooks/useScreenDimensions';
+
+const makeStyles = (
+    isTablet: boolean
+): StyleSheet.NamedStyles<{
+    container: ViewStyle;
+    projectImageWrapper: ViewStyle;
+    inputFieldsWrapper: ViewStyle;
+    usernameWrapper: ViewStyle;
+    passwordWrapper: ViewStyle;
+    rememberMeLoginRowWrapper: ViewStyle;
+    rememberMeWrapper: ViewStyle;
+    loginButtonWrapper: ViewStyle;
+    loginButton: ViewStyle;
+    forgotPasswordWrapper: ViewStyle;
+    selfRegisterWrapper: ViewStyle;
+    contactSupportWrapper: ViewStyle;
+    footerWrapper: ViewStyle;
+    cyberSecurityBadgeWrapper: ViewStyle;
+}> =>
+    StyleSheet.create({
+        container: {
+            flex: 1,
+        },
+        projectImageWrapper: {
+            display: 'flex',
+            maxWidth: '100%',
+            marginBottom: isTablet ? 24 : 16,
+        },
+        inputFieldsWrapper: {
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: '100%',
+            marginVertical: isTablet ? 32 : 24,
+        },
+        usernameWrapper: {
+            width: '100%',
+            marginVertical: isTablet ? 32 : 24,
+        },
+        passwordWrapper: {
+            width: '100%',
+        },
+        rememberMeLoginRowWrapper: {
+            display: 'flex',
+            alignItems: 'center',
+            width: '100%',
+            justifyContent: 'center',
+            flexDirection: 'row',
+            marginTop: isTablet ? 24 : 16,
+            marginBottom: isTablet ? 32 : 24,
+        },
+        rememberMeWrapper: {
+            display: 'flex',
+            flex: 1,
+            alignItems: 'center',
+            flexDirection: 'row',
+        },
+        loginButtonWrapper: {
+            display: 'flex',
+            flex: 1,
+            justifyContent: 'flex-end',
+        },
+        loginButton: {
+            width: '100%',
+        },
+        forgotPasswordWrapper: {
+            display: 'flex',
+            justifyContent: 'center',
+            alignContent: 'center',
+            alignItems: 'center',
+            marginBottom: isTablet ? 32 : 24,
+        },
+        selfRegisterWrapper: {
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexDirection: 'column',
+            marginTop: 4,
+            alignContent: 'center',
+            marginBottom: isTablet ? 32 : 24,
+        },
+        contactSupportWrapper: {
+            display: 'flex',
+            justifyContent: 'center',
+            marginTop: 4,
+            alignContent: 'center',
+            alignItems: 'center',
+            marginBottom: isTablet ? 32 : 24,
+        },
+        footerWrapper: { display: 'flex', justifyContent: 'center' },
+        cyberSecurityBadgeWrapper: { display: 'flex', justifyContent: 'center', marginTop: 2 },
+    });
 
 /**
  * Component that renders a login screen that prompts a user to enter a username and password to login.
@@ -65,7 +158,7 @@ export const LoginScreenBase: React.FC<React.PropsWithChildren<LoginScreenProps>
 
     const [usernameError, setUsernameError] = useState(isUsernameValid === true ? '' : isUsernameValid);
     const [passwordError, setPasswordError] = useState(isPasswordValid === true ? '' : isPasswordValid);
-
+    const defaultStyles = makeStyles(isTablet);
     const handleUsernameInputChange = useCallback(
         (value: string) => {
             setUsername(value);
@@ -126,31 +219,13 @@ export const LoginScreenBase: React.FC<React.PropsWithChildren<LoginScreenProps>
         <WorkflowCard testID={'root'} {...otherProps}>
             <WorkflowCardBody>
                 {header}
-                <View
-                    style={{ display: 'flex', maxWidth: '100%', marginBottom: isTablet ? 24 : 16 }}
-                    testID={'projectImageWrapper'}
-                >
+                <View style={defaultStyles.projectImageWrapper} testID={'projectImageWrapper'}>
                     {projectImage}
                 </View>
 
                 <ErrorManager {...errorDisplayConfig}>
-                    <View
-                        style={{
-                            display: 'flex',
-                            flexDirection: 'column',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            width: '100%',
-                            marginVertical: isTablet ? 32 : 24,
-                        }}
-                        testID={'inputFieldsWrapper'}
-                    >
-                        <View
-                            style={{
-                                width: '100%',
-                                marginVertical: isTablet ? 32 : 24,
-                            }}
-                        >
+                    <View style={defaultStyles.inputFieldsWrapper} testID={'inputFieldsWrapper'}>
+                        <View style={defaultStyles.usernameWrapper}>
                             <TextInput
                                 testID={'usernameTextField'}
                                 label={usernameLabel || 'Username'}
@@ -179,11 +254,7 @@ export const LoginScreenBase: React.FC<React.PropsWithChildren<LoginScreenProps>
                                 <HelperText type="error">{usernameError}</HelperText>
                             )}
                         </View>
-                        <View
-                            style={{
-                                width: '100%',
-                            }}
-                        >
+                        <View style={defaultStyles.passwordWrapper}>
                             <PasswordTextField
                                 ref={passwordField}
                                 testID={'passwordTextField'}
@@ -215,28 +286,9 @@ export const LoginScreenBase: React.FC<React.PropsWithChildren<LoginScreenProps>
                         </View>
                     </View>
                 </ErrorManager>
-                <View
-                    style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        width: '100%',
-                        justifyContent: 'center',
-                        flexDirection: 'row',
-                        marginTop: isTablet ? 24 : 16,
-                        marginBottom: isTablet ? 32 : 24,
-                    }}
-                    testID={'rememberMeLoginRowWrapper'}
-                >
+                <View style={defaultStyles.rememberMeLoginRowWrapper} testID={'rememberMeLoginRowWrapper'}>
                     {showRememberMe && (
-                        <View
-                            style={{
-                                display: 'flex',
-                                flex: 1,
-                                alignItems: 'center',
-                                flexDirection: 'row',
-                            }}
-                            testID={'rememberMeWrapper'}
-                        >
+                        <View style={defaultStyles.rememberMeWrapper} testID={'rememberMeWrapper'}>
                             <Checkbox.Android
                                 status={rememberMe ? 'checked' : 'unchecked'}
                                 onPress={() => handleRememberMeChanged(!rememberMe)}
@@ -248,12 +300,12 @@ export const LoginScreenBase: React.FC<React.PropsWithChildren<LoginScreenProps>
                         </View>
                     )}
                     <View
-                        style={{
-                            display: 'flex',
-                            flex: 1,
-                            justifyContent: 'flex-end',
-                            width: showRememberMe ? 'auto' : '100%',
-                        }}
+                        style={[
+                            defaultStyles.loginButtonWrapper,
+                            {
+                                width: showRememberMe ? 'auto' : '100%',
+                            },
+                        ]}
                         testID={'loginButtonWrapper'}
                     >
                         <Button
@@ -261,9 +313,7 @@ export const LoginScreenBase: React.FC<React.PropsWithChildren<LoginScreenProps>
                             onPress={handleLogin}
                             disabled={!isFormValid()}
                             mode="contained"
-                            style={{
-                                width: '100%',
-                            }}
+                            style={defaultStyles.loginButton}
                         >
                             {loginButtonLabel || 'Log In'}
                         </Button>
@@ -271,16 +321,7 @@ export const LoginScreenBase: React.FC<React.PropsWithChildren<LoginScreenProps>
                 </View>
 
                 {showForgotPassword && (
-                    <View
-                        style={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignContent: 'center',
-                            alignItems: 'center',
-                            marginBottom: isTablet ? 32 : 24,
-                        }}
-                        testID={'forgotPasswordWrapper'}
-                    >
+                    <View style={defaultStyles.forgotPasswordWrapper} testID={'forgotPasswordWrapper'}>
                         <Text
                             variant="labelLarge"
                             style={{ color: theme.colors.primary }}
@@ -293,18 +334,7 @@ export const LoginScreenBase: React.FC<React.PropsWithChildren<LoginScreenProps>
                 )}
 
                 {showSelfRegistration && (
-                    <View
-                        style={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            flexDirection: 'column',
-                            marginTop: 4,
-                            alignContent: 'center',
-                            marginBottom: isTablet ? 32 : 24,
-                        }}
-                        testID={'selfRegisterWrapper'}
-                    >
+                    <View style={defaultStyles.selfRegisterWrapper} testID={'selfRegisterWrapper'}>
                         <Text variant="bodyMedium" testID={'selfRegisterInstructionLabel'}>
                             {selfRegisterInstructions || 'Need an account?'}
                         </Text>
@@ -320,17 +350,7 @@ export const LoginScreenBase: React.FC<React.PropsWithChildren<LoginScreenProps>
                 )}
 
                 {showContactSupport && (
-                    <View
-                        style={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            marginTop: 4,
-                            alignContent: 'center',
-                            alignItems: 'center',
-                            marginBottom: isTablet ? 32 : 24,
-                        }}
-                        testID={'contactSupportWrapper'}
-                    >
+                    <View style={defaultStyles.contactSupportWrapper} testID={'contactSupportWrapper'}>
                         <Text
                             variant="labelLarge"
                             style={{ color: theme.colors.primary }}
@@ -342,13 +362,10 @@ export const LoginScreenBase: React.FC<React.PropsWithChildren<LoginScreenProps>
                     </View>
                 )}
 
-                <View style={{ display: 'flex', justifyContent: 'center' }}>{footer}</View>
+                <View style={defaultStyles.footerWrapper}>{footer}</View>
 
                 {showCyberSecurityBadge && (
-                    <View
-                        style={{ display: 'flex', justifyContent: 'center', marginTop: 2 }}
-                        testID={'cyberSecurityBadgeWrapper'}
-                    >
+                    <View style={defaultStyles.cyberSecurityBadgeWrapper} testID={'cyberSecurityBadgeWrapper'}>
                         <Image
                             style={{ width: '100%' }}
                             resizeMode="contain"
