@@ -138,21 +138,15 @@ export const ChangePasswordScreen: React.FC<ChangePasswordScreenProps> = (props)
     };
 
     const workflowCardActionsProps = {
+        showPrevious: false,
+        fullWidthButton: true,
         showNext: true,
-        nextLabel: t('bluiCommon:ACTIONS.OKAY'),
-        showPrevious: true,
-        previousLabel: t('bluiCommon:ACTIONS.BACK'),
-        canGoPrevious: true,
+        nextLabel: t('bluiCommon:ACTIONS.SUBMIT'),
         canGoNext: passwordInput !== '' && confirmInput !== '' && areValidMatchingPasswords(),
         ...WorkflowCardActionsProps,
         onNext: (): void => {
             void onNext();
             WorkflowCardActionsProps?.onNext?.();
-        },
-        onPrevious: (): void => {
-            clearScreenData();
-            WorkflowCardActionsProps?.onPrevious?.();
-            navigate(-1);
         },
     };
 

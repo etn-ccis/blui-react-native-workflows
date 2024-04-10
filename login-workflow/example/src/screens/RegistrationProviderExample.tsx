@@ -6,23 +6,19 @@ import i18nAppInstance from '../../translations/i18n';
 import {
     RegistrationContextProvider,
     RegistrationWorkflow,
-    EulaScreen,
+    // EulaScreen,
     // ErrorContextProvider,
     // AccountDetailsScreen,
-    CreatePasswordScreen,
-    VerifyCodeScreen,
-    WorkflowCard,
-    WorkflowCardHeader,
-    WorkflowCardBody,
-    WorkflowCardActions,
-    SuccessScreenBase,
+    // CreatePasswordScreen,
+    // VerifyCodeScreen,
+    // WorkflowCard,
+    // WorkflowCardHeader,
+    // WorkflowCardBody,
+    // WorkflowCardActions,
 } from '@brightlayer-ui/react-native-auth-workflow';
 import { RootStackParamList } from '../navigation';
 import { useNavigation } from '@react-navigation/native';
-import { CustomScreen } from '../components/CustomScreen';
-import { View } from 'react-native';
-import { Text } from 'react-native-paper';
-import { AccountDetailsScreen } from './AccountDetails';
+// import { CustomScreen } from '../components/CustomScreen';
 
 type AppProps = {
     navigation: StackNavigationProp<RootStackParamList, 'RegistrationProviderExample'>;
@@ -58,10 +54,10 @@ const RegistrationProviderExample: React.FC<AppProps> = (): JSX.Element => {
 
             {/* implementation with custom screens. This custom screen is using app and workflow level translations  */}
             <RegistrationWorkflow>
-                <EulaScreen />
+                {/* <EulaScreen />
                 <CustomScreen />
                 <CreatePasswordScreen />
-                <VerifyCodeScreen />
+                <VerifyCodeScreen /> */}
             </RegistrationWorkflow>
 
             {/* Show default success screen */}

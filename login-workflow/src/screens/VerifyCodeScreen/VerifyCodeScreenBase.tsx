@@ -87,6 +87,7 @@ export const VerifyCodeScreenBase: React.FC<React.PropsWithChildren<VerifyCodeSc
                         value={verifyCode}
                         onChangeText={handleVerifyCodeInputChange}
                         error={shouldValidateCode && !isCodeValid}
+                        autoCapitalize="none"
                         {...verifyCodeTextInputProps}
                         onSubmitEditing={(): void => {
                             if (verifyCode.length > 0 && isCodeValid && actionsProps.canGoNext) handleOnNext();

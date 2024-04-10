@@ -10,7 +10,6 @@ import { IconFamily } from '@brightlayer-ui/react-native-components/core/__types
  *
  * @category Component
  */
-
 export const ExistingAccountSuccessScreen: React.FC<SuccessScreenProps> = (props) => {
     const { t } = useTranslation();
     const { navigate, routeConfig } = useRegistrationContext();

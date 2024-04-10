@@ -5,6 +5,7 @@ import { useRegistrationWorkflowContext } from '../../contexts/RegistrationWorkf
 import { useErrorManager } from '../../contexts/ErrorContext';
 import { AccountDetailsScreenBase } from './AccountDetailsScreenBase';
 import { useRegistrationContext } from '../../contexts/RegistrationContext';
+import { timeOutDelay } from '../../constants';
 
 /**
  * Component renders a screen with account details information for support with the application.
@@ -14,7 +15,6 @@ import { useRegistrationContext } from '../../contexts/RegistrationContext';
  *
  * @category Component
  */
-
 export const AccountDetailsScreen: React.FC<AccountDetailsScreenProps> = (props) => {
     const { t } = useTranslation();
     const { actions, navigate } = useRegistrationContext();
@@ -44,7 +44,9 @@ export const AccountDetailsScreen: React.FC<AccountDetailsScreenProps> = (props)
         } catch (_error) {
             triggerError(_error as Error);
         } finally {
-            setIsLoading(false);
+            setTimeout(() => {
+                setIsLoading(false);
+            }, timeOutDelay);
         }
     }, [actions, firstName, lastName, nextScreen, triggerError]);
 
