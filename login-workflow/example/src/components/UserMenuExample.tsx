@@ -35,16 +35,15 @@ export const UserMenuExample: React.FC<UserMenuExampleProps> = (props) => {
     const theme = useExtendedTheme();
     const { i18n } = useTranslation();
     const app = useApp();
-    const handleLanguageChange = async(newLanguage: string) => {
+    const handleLanguageChange = async (newLanguage: string): Promise<any> => {
         app.setLanguage(newLanguage);
         void i18n.changeLanguage(newLanguage);
         try {
             await AsyncStorage.setItem('userLanguage', newLanguage);
-            console.log(`Language successfully changed to ${newLanguage}`); // Optional for logging
-          } catch (error) {
+        } catch (error) {
+            // eslint-disable-next-line no-console
             console.error('Error setting new language:', error);
-          }
-
+        }
     };
     const languageOptions = [
         { label: 'English', value: 'en' },
@@ -67,6 +66,7 @@ export const UserMenuExample: React.FC<UserMenuExampleProps> = (props) => {
             rightComponent: (
                 <SelectDropdown
                     defaultValue={languageOptions.find((option) => option.value === i18n.language)}
+                    // eslint-disable-next-line
                     onSelect={(item) => handleLanguageChange(item.value)}
                     data={languageOptions}
                     buttonStyle={{ backgroundColor: theme.colors.background }}

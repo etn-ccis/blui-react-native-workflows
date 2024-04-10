@@ -18,7 +18,6 @@ import { AppContext, AppContextType } from './src/contexts/AppContextProvider';
 import { LocalStorage } from './src/store/local-storage';
 import { Spinner } from '@brightlayer-ui/react-native-auth-workflow';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useApp } from './src/contexts/AppContextProvider';
 
 export const App = (): JSX.Element => {
     const [theme, setTheme] = useState<ThemeType>('light');
@@ -30,6 +29,18 @@ export const App = (): JSX.Element => {
     });
     const [isLoading, setIsLoading] = useState(true);
     const { i18n } = useTranslation();
+    const getLanguage = async (): Promise<void> => {
+        // const app = useApp();
+        try {
+            const storedLanguage = await AsyncStorage.getItem('userLanguage');
+            if (storedLanguage !== null) {
+                // app.setLanguage(storedLanguage);
+                void i18n.changeLanguage(storedLanguage);
+            }
+        } catch (error) {
+            console.error('Error getting language from Async Storage:', error);
+        }
+    };
     // handle initialization of auth data on first load
     useEffect(() => {
         const initialize = async (): Promise<void> => {
@@ -37,7 +48,7 @@ export const App = (): JSX.Element => {
                 const userData = await LocalStorage.readAuthData();
                 setLoginData({ email: userData.rememberMeData.user, rememberMe: userData.rememberMeData.rememberMe });
                 setIsAuthenticated(Boolean(userData.userId));
-                getLanguage()
+                await getLanguage();
             } catch (e) {
                 // handle any error state, rejected promises, etc..
             } finally {
@@ -47,19 +58,6 @@ export const App = (): JSX.Element => {
         // eslint-disable-next-line
         initialize();
     }, []);
-    const getLanguage= async()=>{
-        
-    // const app = useApp();
-        try {
-            const storedLanguage = await AsyncStorage.getItem('userLanguage');
-            if(storedLanguage!==null){
-                // app.setLanguage(storedLanguage);
-        void i18n.changeLanguage(storedLanguage);
-            }
-          } catch (error) {
-            console.error('Error getting language from Async Storage:', error);
-          }
-    }
 
     return isLoading ? (
         <Spinner visible={isLoading} />
