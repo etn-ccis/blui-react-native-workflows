@@ -103,8 +103,7 @@ export const VerifyCodeScreen: React.FC<VerifyCodeScreenProps> = (props) => {
         });
     };
 
-    const { WorkflowCardBaseProps, WorkflowCardHeaderProps, WorkflowCardInstructionProps, WorkflowCardActionsProps } =
-        props;
+    const { WorkflowCardBaseProps, WorkflowCardHeaderProps, WorkflowCardBodyProps, WorkflowCardActionsProps } = props;
 
     const workflowCardBaseProps = {
         loading: isLoading,
@@ -120,9 +119,9 @@ export const VerifyCodeScreen: React.FC<VerifyCodeScreenProps> = (props) => {
         ...WorkflowCardHeaderProps,
     };
 
-    const workflowCardInstructionProps = {
+    const workflowCardBodyProps = {
         instructions: t('bluiRegistration:SELF_REGISTRATION.VERIFY_EMAIL.MESSAGE'),
-        ...WorkflowCardInstructionProps,
+        ...WorkflowCardBodyProps,
     };
 
     const workflowCardActionsProps = {
@@ -150,7 +149,7 @@ export const VerifyCodeScreen: React.FC<VerifyCodeScreenProps> = (props) => {
         <VerifyCodeScreenBase
             WorkflowCardBaseProps={workflowCardBaseProps}
             WorkflowCardHeaderProps={workflowCardHeaderProps}
-            WorkflowCardInstructionProps={workflowCardInstructionProps}
+            WorkflowCardBodyProps={workflowCardBodyProps}
             WorkflowCardActionsProps={workflowCardActionsProps}
             resendInstructions={resendInstructions}
             resendLabel={resendLabel}

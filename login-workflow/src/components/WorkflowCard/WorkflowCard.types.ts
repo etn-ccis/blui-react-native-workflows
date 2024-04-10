@@ -81,13 +81,24 @@ export type WorkflowCardInstructionProps = Omit<TextProps<'bodyLarge'>, 'childre
 /**
  * Props for WorkflowCardBody component
  */
-export type WorkflowCardBodyProps = Partial<CardContentProps> & {
-    /**
-     * If true, the scroll view will be enabled otherwise view will be enabled
-     * @default true
-     */
-    scrollable?: boolean;
-};
+export type WorkflowCardBodyProps = Partial<CardContentProps> &
+    Omit<TextProps<'bodyLarge'>, 'children' | 'theme' | 'variant'> & {
+        /**
+         *
+         * The text to display as instructions
+         */
+        instructions?: string | JSX.Element;
+        /**
+         * Whether or not to show a divider below the instructions
+         * @default true
+         */
+        divider?: boolean;
+        /**
+         * If true, the scroll view will be enabled otherwise view will be enabled
+         * @default true
+         */
+        scrollable?: boolean;
+    };
 
 /**
  * Props for WorkflowCardActions component

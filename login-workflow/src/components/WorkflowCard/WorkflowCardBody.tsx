@@ -1,24 +1,33 @@
 import React from 'react';
-import { ScrollView, StyleSheet, View, ViewStyle } from 'react-native';
+import { StyleSheet, View, ViewStyle } from 'react-native';
 import { useScreenDimensions } from '../../hooks/useScreenDimensions';
 import { WorkflowCardBodyProps } from './WorkflowCard.types';
-import { Card } from 'react-native-paper';
+import { Card, Divider, Text } from 'react-native-paper';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 const makeStyles = (
     isTablet: boolean
 ): StyleSheet.NamedStyles<{
+    instructionsContainer: ViewStyle;
+    instructions: ViewStyle;
     viewContainer: ViewStyle;
     workflowBody: ViewStyle;
 }> =>
     StyleSheet.create({
-        viewContainer: {
-            flex: 1,
-        },
         workflowBody: {
             marginHorizontal: isTablet ? 24 : 16,
             paddingTop: 32,
             paddingBottom: isTablet ? 32 : 24,
             paddingHorizontal: 0,
+            flex: 1,
+        },
+        instructionsContainer: {
+            paddingBottom: isTablet ? 30 : 40,
+        },
+        instructions: {
+            letterSpacing: 0,
+        },
+        viewContainer: {
             flex: 1,
         },
     });
@@ -31,21 +40,34 @@ const makeStyles = (
  * @category Component
  */
 export const WorkflowCardBody: React.FC<WorkflowCardBodyProps> = (props) => {
-    const { children, style, scrollable = true, ...otherCardContentProps } = props;
+    const { instructions, divider = true, children, style, scrollable = true, ...otherCardContentProps } = props;
     const { isTablet } = useScreenDimensions();
     const defaultStyles = makeStyles(isTablet);
+
     return (
         <>
             {scrollable ? (
-                <ScrollView
+                <KeyboardAwareScrollView
                     contentInsetAdjustmentBehavior="automatic"
                     bounces={false}
                     keyboardShouldPersistTaps={'handled'}
                 >
-                    <Card.Content style={[defaultStyles.workflowBody, style]} {...otherCardContentProps}>
+                    <View style={[defaultStyles.workflowBody, style]} {...otherCardContentProps}>
+                        {/* <View style={[defaultStyles.instructionsContainer]}> */}
+                        {typeof instructions === 'string' ? (
+                            <Text variant="bodyLarge" style={[defaultStyles.instructions]}>
+                                {instructions}
+                            </Text>
+                        ) : (
+                            instructions
+                        )}
+                        {/* </View> */}
+                    </View>
+                    {divider && <Divider />}
+                    <View style={[defaultStyles.workflowBody, style]} {...otherCardContentProps}>
                         {children}
-                    </Card.Content>
-                </ScrollView>
+                    </View>
+                </KeyboardAwareScrollView>
             ) : (
                 <Card.Content style={[defaultStyles.workflowBody, style]} {...otherCardContentProps}>
                     <View style={defaultStyles.viewContainer}>{children}</View>

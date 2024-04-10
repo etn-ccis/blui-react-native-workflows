@@ -6,7 +6,6 @@ import {
     WorkflowCardActions,
     WorkflowCardBody,
     WorkflowCardHeader,
-    WorkflowCardInstructions,
 } from '../../components';
 import { HelperText, Text, TextInput } from 'react-native-paper';
 import { Text as RNText, View } from 'react-native';
@@ -34,7 +33,7 @@ export const VerifyCodeScreenBase: React.FC<React.PropsWithChildren<VerifyCodeSc
 
     const cardBaseProps = props.WorkflowCardBaseProps || {};
     const headerProps = props.WorkflowCardHeaderProps || {};
-    const instructionsProps = props.WorkflowCardInstructionProps || {};
+    const bodyProps = props.WorkflowCardBodyProps || {};
     const actionsProps = props.WorkflowCardActionsProps || {};
 
     const [verifyCode, setVerifyCode] = React.useState(initialValue ?? '');
@@ -77,8 +76,7 @@ export const VerifyCodeScreenBase: React.FC<React.PropsWithChildren<VerifyCodeSc
     return (
         <WorkflowCard {...cardBaseProps}>
             <WorkflowCardHeader {...headerProps} />
-            <WorkflowCardInstructions {...instructionsProps} />
-            <WorkflowCardBody>
+            <WorkflowCardBody {...bodyProps}>
                 <ErrorManager {...errorDisplayConfig}>
                     <TextInput
                         label={verifyCodeInputLabel}

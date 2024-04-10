@@ -58,7 +58,8 @@ export const CreateAccountScreen: React.FC<CreateAccountScreenProps> = (props) =
     const {
         WorkflowCardBaseProps,
         WorkflowCardHeaderProps,
-        WorkflowCardInstructionProps,
+        // WorkflowCardInstructionProps,
+        WorkflowCardBodyProps,
         WorkflowCardActionsProps,
         emailLabel = t('bluiCommon:LABELS.EMAIL'),
         initialValue = screenData.CreateAccount.emailAddress,
@@ -85,9 +86,9 @@ export const CreateAccountScreen: React.FC<CreateAccountScreenProps> = (props) =
         ...WorkflowCardHeaderProps,
     };
 
-    const workflowCardInstructionProps = {
+    const workflowCardBodyProps = {
         instructions: t('bluiRegistration:SELF_REGISTRATION.INSTRUCTIONS'),
-        ...WorkflowCardInstructionProps,
+        ...WorkflowCardBodyProps,
     };
 
     const workflowCardActionsProps = {
@@ -118,7 +119,7 @@ export const CreateAccountScreen: React.FC<CreateAccountScreenProps> = (props) =
         <CreateAccountScreenBase
             WorkflowCardBaseProps={workflowCardBaseProps}
             WorkflowCardHeaderProps={workflowCardHeaderProps}
-            WorkflowCardInstructionProps={workflowCardInstructionProps}
+            WorkflowCardBodyProps={workflowCardBodyProps}
             emailLabel={emailLabel}
             initialValue={
                 screenData.CreateAccount.emailAddress.length > 0 ? screenData.CreateAccount.emailAddress : initialValue

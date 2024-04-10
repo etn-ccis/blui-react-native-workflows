@@ -59,7 +59,7 @@ export const AccountDetailsScreen: React.FC<AccountDetailsScreenProps> = (props)
 
     const {
         WorkflowCardHeaderProps,
-        WorkflowCardInstructionProps,
+        WorkflowCardBodyProps,
         WorkflowCardActionsProps,
         WorkflowCardBaseProps,
         firstNameLabel = t('bluiCommon:FORMS.FIRST_NAME'),
@@ -91,9 +91,9 @@ export const AccountDetailsScreen: React.FC<AccountDetailsScreenProps> = (props)
         ...WorkflowCardHeaderProps,
     };
 
-    const workflowCardInstructionProps = {
+    const workflowCardBodyProps = {
         instructions: t('bluiRegistration:REGISTRATION.INSTRUCTIONS.ACCOUNT_DETAILS'),
-        ...WorkflowCardInstructionProps,
+        ...WorkflowCardBodyProps,
     };
 
     const workflowCardBaseProps = {
@@ -132,7 +132,7 @@ export const AccountDetailsScreen: React.FC<AccountDetailsScreenProps> = (props)
         <AccountDetailsScreenBase
             WorkflowCardBaseProps={workflowCardBaseProps}
             WorkflowCardHeaderProps={workflowCardHeaderProps}
-            WorkflowCardInstructionProps={workflowCardInstructionProps}
+            WorkflowCardBodyProps={workflowCardBodyProps}
             initialFirstName={firstName.length > 0 ? firstName : initialFirstName}
             initialLastName={lastName.length > 0 ? lastName : initialLastName}
             firstNameLabel={firstNameLabel}
