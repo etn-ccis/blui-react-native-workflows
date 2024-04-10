@@ -49,6 +49,7 @@ export const CreateAccountScreenBase: React.FC<CreateAccountScreenProps & { inpu
         },
         [emailValidator]
     );
+
     useEffect(() => {
         if (emailInput.length > 0) {
             setShouldValidateEmail(true);
@@ -56,6 +57,7 @@ export const CreateAccountScreenBase: React.FC<CreateAccountScreenProps & { inpu
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
     return (
         <WorkflowCard {...cardBaseProps}>
             <WorkflowCardHeader {...headerProps} />

@@ -6,7 +6,6 @@ import {
     WorkflowCardActions,
     WorkflowCardBody,
     WorkflowCardHeader,
-    WorkflowCardInstructions,
 } from '../../components';
 import { LayoutChangeEvent, ScrollView, TouchableOpacity, View, StyleSheet, ViewStyle, TextStyle } from 'react-native';
 import { Checkbox, Text } from 'react-native-paper';
@@ -75,7 +74,7 @@ export const EulaScreenBase: React.FC<EulaScreenProps> = (props) => {
 
     const cardBaseProps = props.WorkflowCardBaseProps || {};
     const headerProps = props.WorkflowCardHeaderProps || {};
-    const instructionsProps = props.WorkflowCardInstructionProps || {};
+    const bodyProps = props.WorkflowCardBodyProps || {};
     const actionsProps = props.WorkflowCardActionsProps || {};
     const theme = useExtendedTheme();
     const { t } = useTranslation();
@@ -116,8 +115,7 @@ export const EulaScreenBase: React.FC<EulaScreenProps> = (props) => {
     return (
         <WorkflowCard {...cardBaseProps}>
             <WorkflowCardHeader {...headerProps} />
-            {Object.keys(instructionsProps).length !== 0 && <WorkflowCardInstructions {...instructionsProps} />}
-            <WorkflowCardBody scrollable={false}>
+            <WorkflowCardBody scrollable={false} {...bodyProps}>
                 <View style={defaultStyles.container}>
                     {refreshConfig?.showRefreshButton ? (
                         <View style={defaultStyles.retryContainer}>

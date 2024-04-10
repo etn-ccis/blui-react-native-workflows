@@ -3,13 +3,7 @@ import { StyleSheet, TextStyle } from 'react-native';
 import { ChangePasswordScreenProps } from './types';
 import { PasswordTextField, SetPassword } from '../../components/SetPassword';
 import { SuccessScreenBase, SuccessScreenProps } from '..';
-import {
-    WorkflowCard,
-    WorkflowCardActions,
-    WorkflowCardBody,
-    WorkflowCardHeader,
-    WorkflowCardInstructions,
-} from '../../components/WorkflowCard';
+import { WorkflowCard, WorkflowCardActions, WorkflowCardBody, WorkflowCardHeader } from '../../components/WorkflowCard';
 import { ErrorManager } from '../../components/Error';
 
 const makeStyles = (): StyleSheet.NamedStyles<{
@@ -45,7 +39,7 @@ export const ChangePasswordScreenBase: React.FC<ChangePasswordScreenProps> = (pr
 
     const cardBaseProps = props.WorkflowCardBaseProps || {};
     const headerProps = props.WorkflowCardHeaderProps || {};
-    const instructionsProps = props.WorkflowCardInstructionProps || {};
+    const bodyProps = props.WorkflowCardBodyProps || {};
     const actionsProps = props.WorkflowCardActionsProps || {};
     const passwordProps = props.PasswordProps || { onPasswordChange: () => ({}) };
 
@@ -64,8 +58,8 @@ export const ChangePasswordScreenBase: React.FC<ChangePasswordScreenProps> = (pr
     ) : (
         <WorkflowCard {...cardBaseProps}>
             <WorkflowCardHeader {...headerProps} />
-            {Object.keys(instructionsProps).length !== 0 && <WorkflowCardInstructions {...instructionsProps} />}
-            <WorkflowCardBody>
+            {/* {Object.keys(instructionsProps).length !== 0 && <WorkflowCardInstructions {...instructionsProps} />} */}
+            <WorkflowCardBody {...bodyProps}>
                 <ErrorManager {...errorDisplayConfig}>
                     <SetPassword {...passwordProps}>
                         <PasswordTextField

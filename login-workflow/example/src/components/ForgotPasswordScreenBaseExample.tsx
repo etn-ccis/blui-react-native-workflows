@@ -34,7 +34,7 @@ export const ForgotPasswordScreenBaseExample: React.FC = () => {
                     title: 'Forgot Password',
                     onIconPress: () => navigation.navigate('Home'),
                 }}
-                WorkflowCardInstructionProps={{
+                WorkflowCardBodyProps={{
                     instructions: 'Please enter the email address associated with the account',
                 }}
                 emailTextInputProps={{

@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-    WorkflowCard,
-    WorkflowCardActions,
-    WorkflowCardBody,
-    WorkflowCardHeader,
-    WorkflowCardInstructions,
-} from '../../components/WorkflowCard';
+import { WorkflowCard, WorkflowCardActions, WorkflowCardBody, WorkflowCardHeader } from '../../components/WorkflowCard';
 import { SuccessScreenProps } from './types';
 import { EmptyState } from '@brightlayer-ui/react-native-components';
 import { View, StyleSheet, ViewStyle } from 'react-native';
@@ -35,7 +29,6 @@ export const SuccessScreenBase: React.FC<SuccessScreenProps> = (props) => {
 
     const cardBaseProps = props.WorkflowCardBaseProps || {};
     const headerProps = props.WorkflowCardHeaderProps || {};
-    const instructionsProps = props.WorkflowCardInstructionProps || {};
     const actionsProps = props.WorkflowCardActionsProps || {};
     const bodyProps = props.WorkflowCardBodyProps || {};
     const styles = makeStyles();
@@ -43,7 +36,6 @@ export const SuccessScreenBase: React.FC<SuccessScreenProps> = (props) => {
     return (
         <WorkflowCard {...cardBaseProps}>
             {Object.keys(headerProps).length !== 0 && <WorkflowCardHeader {...headerProps} />}
-            {Object.keys(instructionsProps).length !== 0 && <WorkflowCardInstructions {...instructionsProps} />}
             <WorkflowCardBody scrollable={false} {...bodyProps}>
                 <View style={[styles.emptyStateContainer]}>
                     <EmptyState icon={icon} title={messageTitle} description={message} />

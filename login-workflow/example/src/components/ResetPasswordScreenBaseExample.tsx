@@ -98,7 +98,7 @@ export const ResetPasswordScreenBaseExample: React.FC = () => {
                     title: 'Reset Password',
                     onIconPress: () => navigation.navigate('Home'),
                 }}
-                WorkflowCardInstructionProps={{
+                WorkflowCardBodyProps={{
                     instructions:
                         'Please select a password. Make sure that your password meets the necessary complexity requirements outlined below.',
                 }}

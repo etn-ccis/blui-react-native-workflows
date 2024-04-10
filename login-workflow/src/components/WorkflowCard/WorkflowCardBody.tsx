@@ -8,7 +8,6 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 const makeStyles = (
     isTablet: boolean
 ): StyleSheet.NamedStyles<{
-    instructionsContainer: ViewStyle;
     instructions: ViewStyle;
     viewContainer: ViewStyle;
     workflowBody: ViewStyle;
@@ -20,9 +19,6 @@ const makeStyles = (
             paddingBottom: isTablet ? 32 : 24,
             paddingHorizontal: 0,
             flex: 1,
-        },
-        instructionsContainer: {
-            paddingBottom: isTablet ? 30 : 40,
         },
         instructions: {
             letterSpacing: 0,
@@ -53,7 +49,6 @@ export const WorkflowCardBody: React.FC<WorkflowCardBodyProps> = (props) => {
                     keyboardShouldPersistTaps={'handled'}
                 >
                     <View style={[defaultStyles.workflowBody, style]} {...otherCardContentProps}>
-                        {/* <View style={[defaultStyles.instructionsContainer]}> */}
                         {typeof instructions === 'string' ? (
                             <Text variant="bodyLarge" style={[defaultStyles.instructions]}>
                                 {instructions}
@@ -61,7 +56,6 @@ export const WorkflowCardBody: React.FC<WorkflowCardBodyProps> = (props) => {
                         ) : (
                             instructions
                         )}
-                        {/* </View> */}
                     </View>
                     {divider && <Divider />}
                     <View style={[defaultStyles.workflowBody, style]} {...otherCardContentProps}>

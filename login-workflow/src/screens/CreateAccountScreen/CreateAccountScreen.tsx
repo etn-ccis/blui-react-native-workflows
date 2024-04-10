@@ -58,7 +58,6 @@ export const CreateAccountScreen: React.FC<CreateAccountScreenProps> = (props) =
     const {
         WorkflowCardBaseProps,
         WorkflowCardHeaderProps,
-        // WorkflowCardInstructionProps,
         WorkflowCardBodyProps,
         WorkflowCardActionsProps,
         emailLabel = t('bluiCommon:LABELS.EMAIL'),

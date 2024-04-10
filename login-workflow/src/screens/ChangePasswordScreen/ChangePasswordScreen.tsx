@@ -15,7 +15,7 @@ export const ChangePasswordScreen: React.FC<ChangePasswordScreenProps> = (props)
         PasswordProps,
         WorkflowCardBaseProps,
         WorkflowCardHeaderProps,
-        WorkflowCardInstructionProps,
+        WorkflowCardBodyProps,
         WorkflowCardActionsProps,
         currentPasswordTextInputProps,
         onFinish,
@@ -132,9 +132,9 @@ export const ChangePasswordScreen: React.FC<ChangePasswordScreenProps> = (props)
         ...WorkflowCardHeaderProps,
     };
 
-    const workflowCardInstructionProps = {
+    const workflowCardBodyProps = {
         instructions: t('bluiAuth:CHANGE_PASSWORD.PASSWORD_INFO'),
-        ...WorkflowCardInstructionProps,
+        ...WorkflowCardBodyProps,
     };
 
     const workflowCardActionsProps = {
@@ -154,7 +154,7 @@ export const ChangePasswordScreen: React.FC<ChangePasswordScreenProps> = (props)
         <ChangePasswordScreenBase
             WorkflowCardBaseProps={workflowCardBaseProps}
             WorkflowCardHeaderProps={workflowCardHeaderProps}
-            WorkflowCardInstructionProps={workflowCardInstructionProps}
+            WorkflowCardBodyProps={workflowCardBodyProps}
             WorkflowCardActionsProps={workflowCardActionsProps}
             currentPasswordLabel={currentPasswordLabel}
             currentPasswordChange={(currentPwd): void => {

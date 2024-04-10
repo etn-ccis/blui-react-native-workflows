@@ -5,7 +5,6 @@ import {
     WorkflowCardActions,
     WorkflowCardBody,
     WorkflowCardHeader,
-    WorkflowCardInstructions,
 } from '../../components';
 import { ForgotPasswordScreenProps } from './types';
 import { HelperText, TextInput } from 'react-native-paper';
@@ -38,7 +37,7 @@ export const ForgotPasswordScreenBase: React.FC<React.PropsWithChildren<ForgotPa
 
     const cardBaseProps = props.WorkflowCardBaseProps || {};
     const headerProps = props.WorkflowCardHeaderProps || {};
-    const instructionsProps = props.WorkflowCardInstructionProps || {};
+    const bodyProps = props.WorkflowCardBodyProps || {};
     const actionsProps = props.WorkflowCardActionsProps || {};
 
     const validateEmail = (): boolean => typeof emailValidator(initialEmailValue) !== 'string';
@@ -69,8 +68,7 @@ export const ForgotPasswordScreenBase: React.FC<React.PropsWithChildren<ForgotPa
             ) : (
                 <WorkflowCard {...cardBaseProps}>
                     <WorkflowCardHeader {...headerProps} />
-                    <WorkflowCardInstructions {...instructionsProps} />
-                    <WorkflowCardBody>
+                    <WorkflowCardBody {...bodyProps}>
                         <ErrorManager {...errorDisplayConfig}>
                             <TextInput
                                 label={emailLabel}
