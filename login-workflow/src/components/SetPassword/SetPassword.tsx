@@ -58,10 +58,10 @@ export const SetPassword: React.FC<React.PropsWithChildren<SetPasswordProps>> = 
     const { isTablet } = useScreenDimensions();
     const theme = useExtendedTheme();
     const defaultStyle = makeStyles(isTablet, theme);
+
     const onPassChange = useCallback(
         (newPassword: any) => {
             setPasswordInput(newPassword);
-
             onPasswordChange?.({ password: newPassword, confirm: confirmInput });
         },
         [setPasswordInput, onPasswordChange, confirmInput]

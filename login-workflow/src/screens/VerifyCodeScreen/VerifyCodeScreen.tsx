@@ -3,6 +3,7 @@ import { VerifyCodeScreenProps } from './types';
 import { VerifyCodeScreenBase } from './VerifyCodeScreenBase';
 import { useTranslation } from 'react-i18next';
 import { useErrorManager, useRegistrationContext, useRegistrationWorkflowContext } from '../../contexts';
+import { timeOutDelay } from '../../constants';
 
 /**
  * Component that renders a screen that prompts a user to enter the confirmation code
@@ -16,7 +17,8 @@ export const VerifyCodeScreen: React.FC<VerifyCodeScreenProps> = (props) => {
     const { t } = useTranslation();
     const regWorkflow = useRegistrationWorkflowContext();
     const { actions, navigate } = useRegistrationContext();
-    const { nextScreen, previousScreen, screenData, currentScreen, totalScreens, updateScreenData } = regWorkflow;
+    const { nextScreen, previousScreen, screenData, currentScreen, totalScreens, updateScreenData, resetScreenData } =
+        regWorkflow;
     const { emailAddress } = screenData.CreateAccount;
     const { triggerError, errorManagerConfig } = useErrorManager();
     const errorDisplayConfig = {
@@ -86,7 +88,9 @@ export const VerifyCodeScreen: React.FC<VerifyCodeScreenProps> = (props) => {
             } catch (_error) {
                 triggerError(_error as Error);
             } finally {
-                setIsLoading(false);
+                setTimeout(() => {
+                    setIsLoading(false);
+                }, timeOutDelay);
             }
         },
         [t, actions, nextScreen, triggerError, updateScreenData]
@@ -109,7 +113,10 @@ export const VerifyCodeScreen: React.FC<VerifyCodeScreenProps> = (props) => {
 
     const workflowCardHeaderProps = {
         title: t('bluiRegistration:REGISTRATION.STEPS.VERIFY_EMAIL'),
-        onIconPress: () => navigate(-1),
+        onIconPress: (): void => {
+            navigate(-1);
+            resetScreenData();
+        },
         ...WorkflowCardHeaderProps,
     };
 

@@ -19,6 +19,8 @@ import {
     ExistingAccountSuccessScreen,
 } from '../../screens';
 import { ErrorManagerProps } from '../Error';
+import { Spinner } from '../Spinner';
+import { timeOutDelay } from '../../constants';
 
 const styles = StyleSheet.create({
     pagerView: {
@@ -92,10 +94,7 @@ export const RegistrationWorkflow: React.FC<React.PropsWithChildren<Registration
         initialScreenIndex < 0 ? 0 : initialScreenIndex > totalScreens - 1 ? totalScreens - 1 : initialScreenIndex
     );
     const [showSuccessScreen, setShowSuccessScreen] = useState(false);
-    const [viewPagerIndex, setViewPagerIndex] = useState(0);
-    const selectedPage = React.useRef(0);
-
-    const [screenData, setScreenData] = useState({
+    const initialRegistrationWorkflowScreenData = {
         Eula: {
             accepted: false,
         },
@@ -115,7 +114,10 @@ export const RegistrationWorkflow: React.FC<React.PropsWithChildren<Registration
             lastName: '',
         },
         Other: {},
-    });
+    };
+    const [screenData, setScreenData] = useState(initialRegistrationWorkflowScreenData);
+    const [viewPagerIndex, setViewPagerIndex] = useState(0);
+    const selectedPage = React.useRef(0);
 
     const updateScreenData = (data: IndividualScreenData): void => {
         const { Other }: { [key: string]: any } = screenData;
@@ -145,27 +147,7 @@ export const RegistrationWorkflow: React.FC<React.PropsWithChildren<Registration
     };
 
     const resetScreenData = (): void => {
-        setScreenData({
-            Eula: {
-                accepted: false,
-            },
-            CreateAccount: {
-                emailAddress: '',
-            },
-            VerifyCode: {
-                code: '',
-                isAccountExist: false,
-            },
-            CreatePassword: {
-                password: '',
-                confirmPassword: '',
-            },
-            AccountDetails: {
-                firstName: '',
-                lastName: '',
-            },
-            Other: {},
-        });
+        setScreenData(initialRegistrationWorkflowScreenData);
         setViewPagerIndex(viewPagerIndex + 1);
         setIsAccountExist(false);
         setCurrentScreen(0);
@@ -173,8 +155,13 @@ export const RegistrationWorkflow: React.FC<React.PropsWithChildren<Registration
         viewPagerRef.current?.setPage(0);
     };
 
+    const [loading, setLoading] = useState(false);
+
     const finishRegistration = async (data: IndividualScreenData): Promise<void> => {
         try {
+            setTimeout(() => {
+                setLoading(true);
+            }, timeOutDelay);
             if (actions && actions.completeRegistration) {
                 const { Eula, CreateAccount, VerifyCode, CreatePassword, AccountDetails, Other } = screenData;
                 const userInfo = {
@@ -201,6 +188,10 @@ export const RegistrationWorkflow: React.FC<React.PropsWithChildren<Registration
             }
         } catch (err) {
             console.error(err);
+        } finally {
+            setTimeout(() => {
+                setLoading(false);
+            }, timeOutDelay);
         }
     };
 
@@ -277,6 +268,7 @@ export const RegistrationWorkflow: React.FC<React.PropsWithChildren<Registration
                         ))}
                     </PagerView>
                 )}
+                {loading ? <Spinner visible={loading} /> : null}
             </ErrorManager>
         </RegistrationWorkflowContextProvider>
     );

@@ -21,7 +21,6 @@ const makeStyles = (): StyleSheet.NamedStyles<{
  *
  * @category Component
  */
-
 export const RegistrationSuccessScreen: React.FC<SuccessScreenProps> = (props) => {
     const { t } = useTranslation();
     const styles = makeStyles();

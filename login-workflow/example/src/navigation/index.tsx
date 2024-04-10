@@ -6,19 +6,22 @@ import { ProjectRegistrationUIActions } from '../actions/RegistrationUIActions';
 import i18nAppInstance from '../../translations/i18n';
 import { NavigationDrawer } from './navigation-drawer';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { createStackNavigator } from '@react-navigation/stack';
 import Home from '../screens/home';
-import { View } from 'react-native';
+import { Dimensions, View } from 'react-native';
 import AuthProviderExample from '../screens/AuthProviderExample';
 import { Login } from '../screens/Login';
+import { ResetPasswordScreenBaseExample } from '../components/ResetPasswordScreenBaseExample';
+import { ForgotPasswordScreenBaseExample } from '../components/ForgotPasswordScreenBaseExample';
 import RegistrationProviderExample from '../screens/RegistrationProviderExample';
 import { ContactBaseExample } from '../screens/ContactBaseExample';
 import { LoginBaseExample } from '../screens/LoginBaseExample';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import ContactFullScreenExample from '../screens/ContactFullScreenExample';
 
 const getAuthState = (): any => ({
     isAuthenticated: true,
 });
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 const navigationRef = createNavigationContainerRef();
 
@@ -26,11 +29,14 @@ export type RootStackParamList = {
     Home: undefined;
     RegistrationProviderExample: undefined;
     AuthProviderExample: undefined;
+    ResetPasswordScreenBaseExample: undefined;
+    ForgotPasswordScreenBaseExample: undefined;
     Contact: undefined;
     LoginExample: undefined;
+    ContactFullScreenExample: undefined;
 };
 
-const RootStack = createStackNavigator<RootStackParamList>();
+const RootStack = createNativeStackNavigator<RootStackParamList>();
 
 const CustomDrawerContent = (props: any): any => (
     <View style={{ height: '100%' }}>
@@ -58,11 +64,15 @@ const AppRouter = (): any => (
             component={AuthProviderExample}
             options={{ gestureEnabled: false }}
         />
+        <RootStack.Screen name="ContactFullScreenExample" component={ContactFullScreenExample} />
+        <RootStack.Screen name="ResetPasswordScreenBaseExample" component={ResetPasswordScreenBaseExample} />
+        <RootStack.Screen name="ForgotPasswordScreenBaseExample" component={ForgotPasswordScreenBaseExample} />
         <RootStack.Screen name="Contact" component={ContactBaseExample} />
         <RootStack.Screen name="LoginExample" component={LoginBaseExample} />
     </Drawer.Navigator>
 );
 const RegistrationRouter = (): any => {
+    const { height, width } = Dimensions.get('screen');
     const app = useApp();
     const routes = {
         LOGIN: 'LOGIN',
@@ -83,6 +93,7 @@ const RegistrationRouter = (): any => {
             <Stack.Navigator
                 screenOptions={{
                     headerShown: false,
+                    orientation: width >= 768 && height >= 768 ? 'all' : 'portrait',
                 }}
             >
                 <Stack.Screen name="REGISTER_INVITE">

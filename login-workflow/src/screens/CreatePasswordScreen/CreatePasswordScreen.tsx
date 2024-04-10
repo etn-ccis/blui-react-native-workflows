@@ -1,6 +1,6 @@
 import React, { useCallback, useRef, useState } from 'react';
 import { CreatePasswordScreenBase } from './CreatePasswordScreenBase';
-import { defaultPasswordRequirements } from '../../constants';
+import { defaultPasswordRequirements, timeOutDelay } from '../../constants';
 import { CreatePasswordScreenProps } from './types';
 import { useRegistrationContext, useRegistrationWorkflowContext } from '../../contexts';
 import { useErrorManager } from '../../contexts/ErrorContext/useErrorManager';
@@ -13,7 +13,6 @@ import { useTranslation } from 'react-i18next';
  *
  * @category Component
  */
-
 export const CreatePasswordScreen: React.FC<CreatePasswordScreenProps> = (props) => {
     const { t } = useTranslation();
     const { actions, navigate } = useRegistrationContext();
@@ -26,6 +25,7 @@ export const CreatePasswordScreen: React.FC<CreatePasswordScreenProps> = (props)
         },
         currentScreen,
         totalScreens,
+        resetScreenData,
     } = regWorkflow;
 
     const {
@@ -67,7 +67,9 @@ export const CreatePasswordScreen: React.FC<CreatePasswordScreenProps> = (props)
         } catch (_error) {
             triggerError(_error as Error);
         } finally {
-            setIsLoading(false);
+            setTimeout(() => {
+                setIsLoading(false);
+            }, timeOutDelay);
         }
     }, [actions, passwordInput, nextScreen, confirmInput, triggerError]);
 
@@ -126,7 +128,10 @@ export const CreatePasswordScreen: React.FC<CreatePasswordScreenProps> = (props)
 
     const workflowCardHeaderProps = {
         title: t('bluiRegistration:REGISTRATION.STEPS.PASSWORD'),
-        onIconPress: () => navigate(-1),
+        onIconPress: (): void => {
+            navigate(-1);
+            resetScreenData();
+        },
         ...WorkflowCardHeaderProps,
     };
 

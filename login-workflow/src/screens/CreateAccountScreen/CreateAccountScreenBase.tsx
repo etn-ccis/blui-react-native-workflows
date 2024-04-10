@@ -71,6 +71,7 @@ export const CreateAccountScreenBase: React.FC<CreateAccountScreenProps & { inpu
                         label={emailLabel}
                         value={emailInput}
                         error={shouldValidateEmail && !isEmailValid}
+                        autoCapitalize="none"
                         {...emailTextFieldProps}
                         onChangeText={(text): void => {
                             // eslint-disable-next-line no-unused-expressions
@@ -83,7 +84,8 @@ export const CreateAccountScreenBase: React.FC<CreateAccountScreenProps & { inpu
                             setShouldValidateEmail(true);
                         }}
                         onSubmitEditing={(): void => {
-                            if (isEmailValid && actionsProps.canGoNext) actionsProps.onNext?.();
+                            if (emailInput.length > 0 && isEmailValid && actionsProps.canGoNext)
+                                actionsProps.onNext?.();
                         }}
                         returnKeyType="next"
                     />

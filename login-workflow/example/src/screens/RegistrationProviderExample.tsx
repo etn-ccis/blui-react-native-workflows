@@ -5,8 +5,9 @@ import { ProjectRegistrationUIActions } from '../actions/RegistrationUIActions';
 import i18nAppInstance from '../../translations/i18n';
 import {
     RegistrationContextProvider,
-    ErrorContextProvider,
     RegistrationWorkflow,
+    // EulaScreen,
+    // ErrorContextProvider,
     // AccountDetailsScreen,
     // CreatePasswordScreen,
     // VerifyCodeScreen,
@@ -17,6 +18,7 @@ import {
 } from '@brightlayer-ui/react-native-auth-workflow';
 import { RootStackParamList } from '../navigation';
 import { useNavigation } from '@react-navigation/native';
+// import { CustomScreen } from '../components/CustomScreen';
 
 type AppProps = {
     navigation: StackNavigationProp<RootStackParamList, 'RegistrationProviderExample'>;
@@ -46,19 +48,20 @@ const RegistrationProviderExample: React.FC<AppProps> = (): JSX.Element => {
                 SUPPORT: undefined,
             }}
         >
-            <ErrorContextProvider>
-                {/* Default Implementation */}
-                <RegistrationWorkflow />
+            {/* <ErrorContextProvider> */}
+            {/* Default Implementation */}
+            {/* <RegistrationWorkflow /> */}
 
-                {/* implementation with custom screens. This custom screen is using app and workflow level translations  */}
-                {/* <RegistrationWorkflow>
-                    <EulaScreen/> 
-                    <CustomScreen/>
-                    <AccountDetailsScreen/>
-                </RegistrationWorkflow> */}
+            {/* implementation with custom screens. This custom screen is using app and workflow level translations  */}
+            <RegistrationWorkflow>
+                {/* <EulaScreen />
+                <CustomScreen />
+                <CreatePasswordScreen />
+                <VerifyCodeScreen /> */}
+            </RegistrationWorkflow>
 
-                {/* Show default success screen */}
-                {/* <RegistrationWorkflow successScreen={
+            {/* Show default success screen */}
+            {/* <RegistrationWorkflow successScreen={
                     <WorkflowCard>
                         <WorkflowCardHeader title='Test Success Screen' onIconPress={()=>{
                             console.log('close icon pressed')
@@ -78,12 +81,12 @@ const RegistrationProviderExample: React.FC<AppProps> = (): JSX.Element => {
                     <AccountDetailsScreen/>
                 </RegistrationWorkflow> */}
 
-                {/* Invite Registration Mode */}
-                {/* <RegistrationWorkflow
+            {/* Invite Registration Mode */}
+            {/* <RegistrationWorkflow
                     isInviteRegistration
                     initialRegistrationParams={{ code: '123', email: 'aa@aa.aa' }}
                 /> */}
-            </ErrorContextProvider>
+            {/* </ErrorContextProvider> */}
         </RegistrationContextProvider>
     );
 };
