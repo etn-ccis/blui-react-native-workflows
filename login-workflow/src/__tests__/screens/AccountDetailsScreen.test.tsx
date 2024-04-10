@@ -49,7 +49,7 @@ describe('Account Details Screen', () => {
 
     it('should update instruction when passed as props', () => {
         renderer({
-            WorkflowCardInstructionProps: {
+            WorkflowCardBodyProps: {
                 instructions: 'Test Instruction',
             },
         });

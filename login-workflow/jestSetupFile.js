@@ -15,3 +15,7 @@ jest.mock('react-native-webview', () => {
         WebView: View,
     };
 });
+jest.mock('react-native-keyboard-aware-scroll-view', () => {
+    const KeyboardAwareScrollView = ({ children }) => children;
+    return { KeyboardAwareScrollView };
+});
