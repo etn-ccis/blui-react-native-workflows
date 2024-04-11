@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { ResetPasswordScreenProps } from './types';
 import { useTranslation } from 'react-i18next';
 import { useAuthContext, useErrorManager } from '../../contexts';
-import { parseQueryString } from '../../utils/parseQueryString';
 import { defaultPasswordRequirements } from '../../constants';
 import { ResetPasswordScreenBase } from './ResetPasswordScreenBase';
 
@@ -127,6 +126,7 @@ export const ResetPasswordScreen: React.FC<ResetPasswordScreenProps> = (props) =
         nextLabel: t('bluiCommon:ACTIONS.NEXT'),
         previousLabel: t('bluiCommon:ACTIONS.BACK'),
         canGoNext: passwordInput !== '' && confirmInput !== '' && areValidMatchingPasswords(),
+        totalSteps: 0,
         ...WorkflowCardActionsProps,
         onNext: (): void => {
             void handleOnNext();
@@ -161,6 +161,11 @@ export const ResetPasswordScreen: React.FC<ResetPasswordScreenProps> = (props) =
         },
     };
 
+    const clearScreenData = (): void => {
+        setPasswordInput('');
+        setConfirmInput('');
+    };
+
     return (
         <ResetPasswordScreenBase
             WorkflowCardBaseProps={workflowCardBaseProps}
@@ -171,16 +176,20 @@ export const ResetPasswordScreen: React.FC<ResetPasswordScreenProps> = (props) =
             showSuccessScreen={showSuccessScreen}
             SuccessScreen={SuccessScreen}
             SuccessScreenProps={{
-                icon: { name: 'check-circle' },
-                messageTitle: t('bluiAuth:PASSWORD_RESET.SUCCESS_MESSAGE'),
-                message: t('bluiAuth:CHANGE_PASSWORD.SUCCESS_MESSAGE'),
+                emptyStateProps: {
+                    icon: { name: 'check-circle' },
+                    title: t('bluiAuth:PASSWORD_RESET.SUCCESS_MESSAGE'),
+                    description: t('bluiAuth:CHANGE_PASSWORD.SUCCESS_MESSAGE'),
+                },
                 WorkflowCardActionsProps: {
                     showPrevious: false,
                     fullWidthButton: true,
                     showNext: true,
                     nextLabel: t('bluiCommon:ACTIONS.DONE'),
                     onNext: (): void => {
-                        navigate(routeConfig.LOGIN as string);
+                        navigate(-1);
+                        setShowSuccessScreen(false);
+                        clearScreenData();
                     },
                 },
                 ...SuccessScreenProps,

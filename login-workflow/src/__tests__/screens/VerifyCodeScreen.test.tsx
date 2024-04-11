@@ -1,11 +1,11 @@
 import React from 'react';
+import '@testing-library/react-native/extend-expect';
 import { RenderResult, fireEvent, render, screen, waitFor } from '@testing-library/react-native';
 import { RegistrationWorkflow } from 'src/components';
 import { RegistrationContextProvider } from 'src/contexts';
 import { VerifyCodeScreen, VerifyCodeScreenProps } from 'src/screens';
 import { registrationContextProviderProps } from 'src/testUtils';
 import { PaperProvider } from 'react-native-paper';
-import '@testing-library/react-native/extend-expect';
 
 describe('Verify Code Full Screen Test cases', () => {
     let mockOnPrevious: any;
