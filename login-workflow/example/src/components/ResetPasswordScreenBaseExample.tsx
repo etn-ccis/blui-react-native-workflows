@@ -1,5 +1,9 @@
 import React, { useCallback, useRef, useState } from 'react';
-import { ResetPasswordScreenBase, AuthContextProvider } from '@brightlayer-ui/react-native-auth-workflow';
+import {
+    ResetPasswordScreenBase,
+    AuthContextProvider,
+    ResetPasswordScreen,
+} from '@brightlayer-ui/react-native-auth-workflow';
 import { useApp } from '../contexts/AppContextProvider';
 import { useNavigation } from '@react-navigation/native';
 import { ProjectAuthUIActions } from '../actions/AuthUIActions';
@@ -93,7 +97,7 @@ export const ResetPasswordScreenBaseExample: React.FC = () => {
                 SUPPORT: undefined,
             }}
         >
-            <ResetPasswordScreenBase
+            {/* <ResetPasswordScreenBase
                 WorkflowCardHeaderProps={{
                     title: 'Reset Password',
                     onIconPress: () => navigation.navigate('Home'),
@@ -140,7 +144,8 @@ export const ResetPasswordScreenBaseExample: React.FC = () => {
                     },
                 }}
                 showSuccessScreen={showSuccess}
-            />
+            /> */}
+            <ResetPasswordScreen />
         </AuthContextProvider>
     );
 };
