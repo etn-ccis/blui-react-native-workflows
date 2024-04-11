@@ -231,6 +231,7 @@ export const LoginScreenBase: React.FC<React.PropsWithChildren<LoginScreenProps>
                                 label={usernameLabel || 'Username'}
                                 value={username}
                                 error={shouldValidateUsername && !isUsernameValid}
+                                autoCapitalize="none"
                                 mode="flat"
                                 {...usernameTextFieldProps}
                                 onChangeText={(e): void => {
