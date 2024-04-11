@@ -25,7 +25,7 @@ const makeStyles = (): StyleSheet.NamedStyles<{
  */
 
 export const SuccessScreenBase: React.FC<SuccessScreenProps> = (props) => {
-    const { icon, messageTitle = '', message = '', dismissButtonLabel = '', canDismiss, onDismiss } = props;
+    const { dismissButtonLabel = '', canDismiss, onDismiss, emptyStateProps } = props;
 
     const cardBaseProps = props.WorkflowCardBaseProps || {};
     const headerProps = props.WorkflowCardHeaderProps || {};
@@ -38,7 +38,7 @@ export const SuccessScreenBase: React.FC<SuccessScreenProps> = (props) => {
             {Object.keys(headerProps).length !== 0 && <WorkflowCardHeader {...headerProps} />}
             <WorkflowCardBody scrollable={false} {...bodyProps}>
                 <View style={[styles.emptyStateContainer]}>
-                    <EmptyState icon={icon} title={messageTitle} description={message} />
+                    {emptyStateProps && <EmptyState {...emptyStateProps} />}
                 </View>
             </WorkflowCardBody>
             <WorkflowCardActions

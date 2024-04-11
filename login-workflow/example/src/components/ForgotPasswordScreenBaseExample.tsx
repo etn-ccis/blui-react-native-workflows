@@ -52,15 +52,17 @@ export const ForgotPasswordScreenBaseExample: React.FC = () => {
                     totalSteps: 0,
                 }}
                 SuccessScreenProps={{
-                    icon: { name: 'check-circle' },
-                    messageTitle: t('bluiCommon:MESSAGES.EMAIL_SENT'),
-                    message: (
-                        <Trans i18nKey={'bluiAuth:FORGOT_PASSWORD.LINK_SENT_ALT'} values={{ email: email }}>
-                            <Text>
-                                Link has been sent to <b>{email}</b>
-                            </Text>
-                        </Trans>
-                    ),
+                    emptyStateProps: {
+                        icon: { name: 'check-circle' },
+                        title: t('bluiCommon:MESSAGES.EMAIL_SENT'),
+                        description: (
+                            <Trans i18nKey={'bluiAuth:FORGOT_PASSWORD.LINK_SENT_ALT'} values={{ email: email }}>
+                                <Text>
+                                    Link has been sent to <b>{email}</b>
+                                </Text>
+                            </Trans>
+                        ),
+                    },
                     WorkflowCardActionsProps: {
                         showPrevious: false,
                         fullWidthButton: true,
