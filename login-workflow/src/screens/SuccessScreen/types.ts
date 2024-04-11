@@ -3,6 +3,9 @@ import { WorkflowCardProps } from '../../components/WorkflowCard/WorkflowCard.ty
 import { EmptyStateProps } from '@brightlayer-ui/react-native-components';
 
 export type SuccessScreenProps = WorkflowCardProps & {
+    /**
+     * To pass EmptyStateProps i.e icon, title, description... etc
+     */
     emptyStateProps?: EmptyStateProps;
 
     /**
