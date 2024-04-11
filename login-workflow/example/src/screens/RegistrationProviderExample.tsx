@@ -61,32 +61,28 @@ const RegistrationProviderExample: React.FC<AppProps> = (): JSX.Element => {
             </RegistrationWorkflow>
 
             {/* Show default success screen */}
-            {/* <RegistrationWorkflow successScreen={
-                    <WorkflowCard>
-                        <WorkflowCardHeader title='Test Success Screen' onIconPress={()=>{
-                            console.log('close icon pressed')
-                        }}></WorkflowCardHeader>
-                        <WorkflowCardBody>
-                            <View><Text>Success</Text></View>
-                        </WorkflowCardBody>
-                        <WorkflowCardActions
-                            showNext
-                            nextLabel="Okay"
-                            fullWidthButton
-                        />
-                    </WorkflowCard>
-                }>
-                    <EulaScreen/>
-                    <CustomScreen/>
-                    <AccountDetailsScreen/>
-                </RegistrationWorkflow> */}
-
-            {/* Invite Registration Mode */}
             {/* <RegistrationWorkflow
-                    isInviteRegistration
-                    initialRegistrationParams={{ code: '123', email: 'aa@aa.aa' }}
-                /> */}
-            {/* </ErrorContextProvider> */}
+                successScreen={
+                    <WorkflowCard>
+                        <WorkflowCardHeader
+                            title="Test Success Screen"
+                            onIconPress={() => {
+                                console.log('close icon pressed');
+                            }}
+                        ></WorkflowCardHeader>
+                        <WorkflowCardBody>
+                            <View>
+                                <Text>Success</Text>
+                            </View>
+                        </WorkflowCardBody>
+                        <WorkflowCardActions showNext nextLabel="Okay" fullWidthButton />
+                    </WorkflowCard>
+                }
+            > */}
+            {/* <EulaScreen />
+                <CustomScreen />
+                <AccountDetailsScreen />
+            </RegistrationWorkflow> */}
         </RegistrationContextProvider>
     );
 };

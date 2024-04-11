@@ -129,9 +129,11 @@ export const ResetPasswordScreenBaseExample: React.FC = () => {
                     },
                 }}
                 SuccessScreenProps={{
-                    icon: { name: 'check-circle' },
-                    messageTitle: t('bluiAuth:PASSWORD_RESET.SUCCESS_MESSAGE'),
-                    message: t('bluiAuth:CHANGE_PASSWORD.SUCCESS_MESSAGE'),
+                    emptyStateProps: {
+                        icon: { name: 'check-circle' },
+                        title: t('bluiAuth:PASSWORD_RESET.SUCCESS_MESSAGE'),
+                        description: t('bluiAuth:CHANGE_PASSWORD.SUCCESS_MESSAGE'),
+                    },
                     WorkflowCardActionsProps: {
                         showPrevious: false,
                         fullWidthButton: true,
