@@ -30,11 +30,10 @@ export const App = (): JSX.Element => {
     const [isLoading, setIsLoading] = useState(true);
     const { i18n } = useTranslation();
     const getLanguage = async (): Promise<void> => {
-        // const app = useApp();
         try {
             const storedLanguage = await AsyncStorage.getItem('userLanguage');
             if (storedLanguage !== null) {
-                // app.setLanguage(storedLanguage);
+                setLanguage(storedLanguage);
                 void i18n.changeLanguage(storedLanguage);
             }
         } catch (error) {
