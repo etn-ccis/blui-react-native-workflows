@@ -40,6 +40,11 @@ export const navGroupItems: NavItem[] = [
         itemID: 'Contact',
         icon: { name: 'contact-page' },
     },
+    {
+        title: 'Login Example',
+        itemID: 'LoginExample',
+        icon: { name: 'app-registration' },
+    },
 ];
 
 export type NavDrawerProps = {

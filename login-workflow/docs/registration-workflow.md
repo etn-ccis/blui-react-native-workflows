@@ -113,3 +113,5 @@ The RouteConfig is an object that specifies the paths you are using for the rout
 | screenData           | `ScreenData`                           | An object of data of all screens available in the Registration Workflow Context. Check [ScreenData](#screendata) for more details. |         |
 | totalScreens         | `number`                               | The total number of screens in the registration workflow.                                                                          |         |
 | updateScreenData     | `(data: IndividualScreenData) => void` | Updates collected data/inputs throughout the Registration Workflow.                                                                |         |
+
+> To reset the workflow data when the user clicks on the close icon from the header, the custom screen should call `resetScreenData()` function.
