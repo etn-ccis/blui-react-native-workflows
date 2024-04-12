@@ -52,7 +52,7 @@ export const ForgotPasswordScreenBaseExample: React.FC = () => {
                     totalSteps: 0,
                 }}
                 SuccessScreenProps={{
-                    emptyStateProps: {
+                    EmptyStateProps: {
                         icon: { name: 'check-circle' },
                         title: t('bluiCommon:MESSAGES.EMAIL_SENT'),
                         description: (
