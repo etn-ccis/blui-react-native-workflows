@@ -14,6 +14,7 @@ import { ResetPasswordScreenBaseExample } from '../components/ResetPasswordScree
 import { ForgotPasswordScreenBaseExample } from '../components/ForgotPasswordScreenBaseExample';
 import RegistrationProviderExample from '../screens/RegistrationProviderExample';
 import { ContactBaseExample } from '../screens/ContactBaseExample';
+import { LoginBaseExample } from '../screens/LoginBaseExample';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ContactFullScreenExample from '../screens/ContactFullScreenExample';
 
@@ -31,6 +32,7 @@ export type RootStackParamList = {
     ResetPasswordScreenBaseExample: undefined;
     ForgotPasswordScreenBaseExample: undefined;
     Contact: undefined;
+    LoginExample: undefined;
     ContactFullScreenExample: undefined;
 };
 
@@ -66,6 +68,7 @@ const AppRouter = (): any => (
         <RootStack.Screen name="ResetPasswordScreenBaseExample" component={ResetPasswordScreenBaseExample} />
         <RootStack.Screen name="ForgotPasswordScreenBaseExample" component={ForgotPasswordScreenBaseExample} />
         <RootStack.Screen name="Contact" component={ContactBaseExample} />
+        <RootStack.Screen name="LoginExample" component={LoginBaseExample} />
     </Drawer.Navigator>
 );
 const RegistrationRouter = (): any => {
