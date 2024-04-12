@@ -102,6 +102,11 @@ export const ResetPasswordScreen: React.FC<ResetPasswordScreenProps> = (props) =
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+    const clearScreenData = (): void => {
+        setPasswordInput('');
+        setConfirmInput('');
+    };
+
     const workflowCardBaseProps = {
         loading: isLoading,
         ...WorkflowCardBaseProps,
@@ -110,6 +115,7 @@ export const ResetPasswordScreen: React.FC<ResetPasswordScreenProps> = (props) =
     const workflowCardHeaderProps = {
         title: t('bluiCommon:FORMS.RESET_PASSWORD'),
         onIconPress: (): void => {
+            clearScreenData();
             navigate(-1);
         },
         ...WorkflowCardHeaderProps,
@@ -133,6 +139,7 @@ export const ResetPasswordScreen: React.FC<ResetPasswordScreenProps> = (props) =
             WorkflowCardActionsProps?.onNext?.();
         },
         onPrevious: (): void => {
+            clearScreenData();
             navigate(routeConfig.LOGIN as string);
             WorkflowCardActionsProps?.onPrevious?.();
         },
@@ -159,11 +166,6 @@ export const ResetPasswordScreen: React.FC<ResetPasswordScreenProps> = (props) =
                 PasswordProps?.onSubmit?.();
             }
         },
-    };
-
-    const clearScreenData = (): void => {
-        setPasswordInput('');
-        setConfirmInput('');
     };
 
     return (
