@@ -34,6 +34,7 @@ export const ResetPasswordScreen: React.FC<ResetPasswordScreenProps> = (props) =
         PasswordProps,
         SuccessScreen,
         SuccessScreenProps,
+        accountParams,
     } = props;
 
     const [passwordInput, setPasswordInput] = useState(PasswordProps?.initialNewPasswordValue ?? '');
@@ -42,12 +43,12 @@ export const ResetPasswordScreen: React.FC<ResetPasswordScreenProps> = (props) =
     const [isLoading, setIsLoading] = useState(false);
     const [showSuccessScreen, setShowSuccessScreen] = useState(false);
 
-    // const { code, email } = parseQueryString(window.location.search);
-    const code = '';
-    const email = '';
-
     const { actions, navigate, routeConfig } = useAuthContext();
     const passwordReqs = PasswordProps?.passwordRequirements ?? defaultPasswordRequirements(t);
+
+    // eslint-disable-next-line
+    const code = accountParams?.code!;
+    const email = accountParams?.email;
 
     const verifyResetCode = useCallback(async (): Promise<void> => {
         try {

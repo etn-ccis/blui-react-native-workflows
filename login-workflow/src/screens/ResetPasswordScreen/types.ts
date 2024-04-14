@@ -5,6 +5,20 @@ import { SuccessScreenProps } from '../SuccessScreen';
 
 export type ResetPasswordScreenProps = Omit<WorkflowCardProps, 'currentStep | totalSteps'> & {
     /**
+     * Pass code and email for Reset Password action calls
+     */
+    accountParams?: {
+        /**
+         * verification code for Resetting pasword
+         */
+        code: string;
+        /**
+         * email address of respective account
+         */
+        email?: string;
+    };
+
+    /**
      * The props that will be passed to the SetPassword component
      */
     PasswordProps?: SetPasswordProps;
