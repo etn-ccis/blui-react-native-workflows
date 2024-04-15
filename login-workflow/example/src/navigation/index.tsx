@@ -6,7 +6,7 @@ import i18nAppInstance from '../../translations/i18n';
 import { NavigationDrawer } from './navigation-drawer';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
-import Home from '../screens/Home';
+import Home from '../screens/home';
 import { View } from 'react-native';
 import { Login } from '../screens/Login';
 import { ResetPasswordScreenBaseExample } from '../components/ResetPasswordScreenBaseExample';

@@ -22,6 +22,7 @@ export const Login: React.FC<CreatePasswordProps> = () => {
             userId: usernameInput,
             rememberMe: false,
         });
+        navigation.navigate('Home');
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -61,7 +62,7 @@ export const Login: React.FC<CreatePasswordProps> = () => {
                             labelStyle={{ fontSize: 16 }}
                             uppercase={false}
                             onPress={(): void => {
-                                navigation.navigate('REGISTER_SELF', { screen: 'NESTED_REGISTER_SELF' });
+                                navigation.navigate('REGISTER_SELF');
                             }}
                         >
                             [Test Self Register]
