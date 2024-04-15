@@ -53,7 +53,7 @@ export const ErrorMessageBox = (props: ErrorMessageBoxProps): JSX.Element => {
         <View style={[defaultStyles.errorMessageBox, style]}>
             {dismissible && (
                 <Icon
-                    testID={'error-message-box-close'}
+                    testID="blui-error-message-box-close-icon"
                     name={'close'}
                     size={20}
                     style={[defaultStyles.icon]}

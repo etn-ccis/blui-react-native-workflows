@@ -138,21 +138,15 @@ export const ChangePasswordScreen: React.FC<ChangePasswordScreenProps> = (props)
     };
 
     const workflowCardActionsProps = {
+        showPrevious: false,
+        fullWidthButton: true,
         showNext: true,
-        nextLabel: t('bluiCommon:ACTIONS.OKAY'),
-        showPrevious: true,
-        previousLabel: t('bluiCommon:ACTIONS.BACK'),
-        canGoPrevious: true,
+        nextLabel: t('bluiCommon:ACTIONS.SUBMIT'),
         canGoNext: passwordInput !== '' && confirmInput !== '' && areValidMatchingPasswords(),
         ...WorkflowCardActionsProps,
         onNext: (): void => {
             void onNext();
             WorkflowCardActionsProps?.onNext?.();
-        },
-        onPrevious: (): void => {
-            clearScreenData();
-            WorkflowCardActionsProps?.onPrevious?.();
-            navigate(-1);
         },
     };
 
@@ -173,9 +167,11 @@ export const ChangePasswordScreen: React.FC<ChangePasswordScreenProps> = (props)
             slots={slots}
             slotProps={{
                 SuccessScreen: {
-                    icon: { family: 'material', name: 'check-circle' },
-                    messageTitle: t('bluiAuth:PASSWORD_RESET.SUCCESS_MESSAGE'),
-                    message: t('bluiAuth:CHANGE_PASSWORD.SUCCESS_MESSAGE'),
+                    EmptyStateProps: {
+                        icon: { family: 'material', name: 'check-circle' },
+                        title: t('bluiAuth:PASSWORD_RESET.SUCCESS_MESSAGE'),
+                        description: t('bluiAuth:CHANGE_PASSWORD.SUCCESS_MESSAGE'),
+                    },
                     onDismiss: (): void => {
                         onFinish?.();
                     },

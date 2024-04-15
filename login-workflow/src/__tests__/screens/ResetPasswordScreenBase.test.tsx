@@ -38,7 +38,7 @@ describe('ResetPasswordScreenBase tests', () => {
         renderer({
             showSuccessScreen: true,
         });
-        expect(screen.getByTestId('workflow-card-action-divider')).toBeOnTheScreen();
+        expect(screen.getByTestId('blui-workflow-card-action-divider')).toBeOnTheScreen();
     });
 
     it('should render passed props correctly', () => {
@@ -53,9 +53,9 @@ describe('ResetPasswordScreenBase tests', () => {
             },
         });
         expect(screen.getAllByText('New Password')).toBeTruthy();
-        expect(screen.getByTestId('password').props.value).toBe('New');
+        expect(screen.getByTestId('blui-set-password-password-text-field').props.value).toBe('New');
         expect(screen.getAllByText('Confirm New Password')).toBeTruthy();
-        expect(screen.getByTestId('confirm').props.value).toBe('Confirm New');
+        expect(screen.getByTestId('blui-set-password-confirm-password-text-field').props.value).toBe('Confirm New');
         expect(screen.getByText('wrong entries')).toBeOnTheScreen();
     });
 

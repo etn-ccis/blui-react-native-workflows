@@ -23,7 +23,7 @@ describe('VerifyCodeScreenBase  Tests', () => {
                 <VerifyCodeScreenBase />
             </PaperProvider>
         );
-        expect(screen.getByTestId('text-input-flat')).toBeOnTheScreen();
+        expect(screen.getByTestId('blui-verify-code-text-input')).toBeOnTheScreen();
     });
 
     it('should call input handle function', () => {
@@ -32,7 +32,7 @@ describe('VerifyCodeScreenBase  Tests', () => {
                 <VerifyCodeScreenBase />
             </PaperProvider>
         );
-        const input = screen.getByTestId('text-input-flat');
+        const input = screen.getByTestId('blui-verify-code-text-input');
         fireEvent.changeText(input, '123');
         expect(input.props.value).toBe('123');
     });

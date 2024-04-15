@@ -4,6 +4,7 @@ import { Text } from 'react-native-paper';
 import { Trans, useTranslation } from 'react-i18next';
 import { SuccessScreenBase, SuccessScreenProps } from '../SuccessScreen';
 import { useRegistrationContext, useRegistrationWorkflowContext } from '../../contexts';
+import { IconFamily } from '@brightlayer-ui/react-native-components/core/__types__';
 
 const makeStyles = (): StyleSheet.NamedStyles<{
     boldText: TextStyle;
@@ -21,7 +22,6 @@ const makeStyles = (): StyleSheet.NamedStyles<{
  *
  * @category Component
  */
-
 export const RegistrationSuccessScreen: React.FC<SuccessScreenProps> = (props) => {
     const { t } = useTranslation();
     const styles = makeStyles();
@@ -37,15 +37,33 @@ export const RegistrationSuccessScreen: React.FC<SuccessScreenProps> = (props) =
         },
         resetScreenData,
     } = useRegistrationWorkflowContext();
-
+    const CheckCircleIcon: IconFamily = { family: 'material-community', name: 'check-circle', direction: 'ltr' };
     const Bold = ({ children }: { children: React.ReactNode }): JSX.Element => (
         <Text style={styles.boldText}>{children}</Text>
     );
 
     const {
-        icon = { family: 'material', name: 'check-circle' },
-        messageTitle = `${t('bluiCommon:MESSAGES.WELCOME')}, ${firstName} ${lastName}!`,
-        message = (
+        canDismiss = true,
+        onDismiss = (): void => navigate(routeConfig.LOGIN as string),
+        WorkflowCardHeaderProps,
+        WorkflowCardActionsProps,
+        WorkflowCardBodyProps,
+        EmptyStateProps,
+        ...otherRegistrationSuccessScreenProps
+    } = props;
+
+    const workflowCardHeaderProps = {
+        title: t('bluiRegistration:REGISTRATION.STEPS.COMPLETE'),
+        ...WorkflowCardHeaderProps,
+        onIconPress: (): void => {
+            navigate(routeConfig.LOGIN as string);
+            resetScreenData();
+        },
+    };
+    const emptyStatesProps = {
+        icon: CheckCircleIcon,
+        title: `${t('bluiCommon:MESSAGES.WELCOME')}, ${firstName} ${lastName}!`,
+        description: (
             <Text variant={'bodyMedium'}>
                 <Trans
                     i18nKey={
@@ -63,21 +81,7 @@ export const RegistrationSuccessScreen: React.FC<SuccessScreenProps> = (props) =
                 </Trans>
             </Text>
         ),
-        canDismiss = true,
-        onDismiss = (): void => navigate(routeConfig.LOGIN as string),
-        WorkflowCardHeaderProps,
-        WorkflowCardActionsProps,
-        WorkflowCardBodyProps,
-        ...otherRegistrationSuccessScreenProps
-    } = props;
-
-    const workflowCardHeaderProps = {
-        title: t('bluiRegistration:REGISTRATION.STEPS.COMPLETE'),
-        ...WorkflowCardHeaderProps,
-        onIconPress: (): void => {
-            navigate(routeConfig.LOGIN as string);
-            resetScreenData();
-        },
+        ...EmptyStateProps,
     };
 
     const workflowCardBodyProps = {
@@ -103,9 +107,7 @@ export const RegistrationSuccessScreen: React.FC<SuccessScreenProps> = (props) =
             WorkflowCardHeaderProps={workflowCardHeaderProps}
             WorkflowCardActionsProps={workflowCardActionsProps}
             WorkflowCardBodyProps={workflowCardBodyProps}
-            icon={icon}
-            messageTitle={messageTitle}
-            message={message}
+            EmptyStateProps={emptyStatesProps}
             {...otherRegistrationSuccessScreenProps}
         />
     );

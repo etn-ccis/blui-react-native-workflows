@@ -32,7 +32,7 @@ export const ErrorManager: React.FC<React.PropsWithChildren<ErrorManagerProps>> 
     const ErrorDialogWithProps = useCallback(
         (): JSX.Element => (
             <BasicDialog
-                testID="basic-dialog"
+                testID="blui-error-manager-basic-dialog"
                 open={error.length > 0}
                 title={t(dialogConfig?.title ?? title ?? 'Error', titleOptions)}
                 body={t(error, errorOptions)}

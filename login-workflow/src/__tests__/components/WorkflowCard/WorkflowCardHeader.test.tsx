@@ -52,7 +52,7 @@ describe('WorkflowCardHeader', () => {
                 <WorkflowCardHeader title="Test Title" onIconPress={onIconPress} />
             </SafeAreaProvider>
         );
-        const icon = getByTestId('workflow-card-icon');
+        const icon = getByTestId('blui-workflow-card-header-icon');
         fireEvent.press(icon);
         expect(onIconPress).toHaveBeenCalledTimes(1);
     });

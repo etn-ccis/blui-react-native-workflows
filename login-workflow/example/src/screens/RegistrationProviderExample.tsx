@@ -6,11 +6,11 @@ import i18nAppInstance from '../../translations/i18n';
 import {
     RegistrationContextProvider,
     RegistrationWorkflow,
-    EulaScreen,
+    // EulaScreen,
     // ErrorContextProvider,
     // AccountDetailsScreen,
-    CreatePasswordScreen,
-    VerifyCodeScreen,
+    // CreatePasswordScreen,
+    // VerifyCodeScreen,
     // WorkflowCard,
     // WorkflowCardHeader,
     // WorkflowCardBody,
@@ -18,7 +18,7 @@ import {
 } from '@brightlayer-ui/react-native-auth-workflow';
 import { RootStackParamList } from '../navigation';
 import { useNavigation } from '@react-navigation/native';
-import { CustomScreen } from '../components/CustomScreen';
+// import { CustomScreen } from '../components/CustomScreen';
 
 type AppProps = {
     navigation: StackNavigationProp<RootStackParamList, 'RegistrationProviderExample'>;
@@ -54,39 +54,35 @@ const RegistrationProviderExample: React.FC<AppProps> = (): JSX.Element => {
 
             {/* implementation with custom screens. This custom screen is using app and workflow level translations  */}
             <RegistrationWorkflow>
-                <EulaScreen />
+                {/* <EulaScreen />
                 <CustomScreen />
                 <CreatePasswordScreen />
-                <VerifyCodeScreen />
+                <VerifyCodeScreen /> */}
             </RegistrationWorkflow>
 
             {/* Show default success screen */}
-            {/* <RegistrationWorkflow successScreen={
-                    <WorkflowCard>
-                        <WorkflowCardHeader title='Test Success Screen' onIconPress={()=>{
-                            console.log('close icon pressed')
-                        }}></WorkflowCardHeader>
-                        <WorkflowCardBody>
-                            <View><Text>Success</Text></View>
-                        </WorkflowCardBody>
-                        <WorkflowCardActions
-                            showNext
-                            nextLabel="Okay"
-                            fullWidthButton
-                        />
-                    </WorkflowCard>
-                }>
-                    <EulaScreen/>
-                    <CustomScreen/>
-                    <AccountDetailsScreen/>
-                </RegistrationWorkflow> */}
-
-            {/* Invite Registration Mode */}
             {/* <RegistrationWorkflow
-                    isInviteRegistration
-                    initialRegistrationParams={{ code: '123', email: 'aa@aa.aa' }}
-                /> */}
-            {/* </ErrorContextProvider> */}
+                successScreen={
+                    <WorkflowCard>
+                        <WorkflowCardHeader
+                            title="Test Success Screen"
+                            onIconPress={() => {
+                                console.log('close icon pressed');
+                            }}
+                        ></WorkflowCardHeader>
+                        <WorkflowCardBody>
+                            <View>
+                                <Text>Success</Text>
+                            </View>
+                        </WorkflowCardBody>
+                        <WorkflowCardActions showNext nextLabel="Okay" fullWidthButton />
+                    </WorkflowCard>
+                }
+            > */}
+            {/* <EulaScreen />
+                <CustomScreen />
+                <AccountDetailsScreen />
+            </RegistrationWorkflow> */}
         </RegistrationContextProvider>
     );
 };

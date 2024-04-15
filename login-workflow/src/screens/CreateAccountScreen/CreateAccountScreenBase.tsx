@@ -65,12 +65,13 @@ export const CreateAccountScreenBase: React.FC<CreateAccountScreenProps & { inpu
                 <ErrorManager {...errorDisplayConfig}>
                     <TextInput
                         ref={inputRef}
-                        testID="email-textinput"
+                        testID="blui-create-account-email-text-input"
                         mode="flat"
                         keyboardType="email-address"
                         label={emailLabel}
                         value={emailInput}
                         error={shouldValidateEmail && !isEmailValid}
+                        autoCapitalize="none"
                         {...emailTextFieldProps}
                         onChangeText={(text): void => {
                             // eslint-disable-next-line no-unused-expressions

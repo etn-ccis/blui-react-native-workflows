@@ -83,9 +83,11 @@ export const VerifyCodeScreenBase: React.FC<React.PropsWithChildren<VerifyCodeSc
                     <TextInput
                         label={verifyCodeInputLabel}
                         mode="flat"
+                        testID="blui-verify-code-text-input"
                         value={verifyCode}
                         onChangeText={handleVerifyCodeInputChange}
                         error={shouldValidateCode && !isCodeValid}
+                        autoCapitalize="none"
                         {...verifyCodeTextInputProps}
                         onSubmitEditing={(): void => {
                             if (verifyCode.length > 0 && isCodeValid && actionsProps.canGoNext) handleOnNext();
@@ -108,6 +110,7 @@ export const VerifyCodeScreenBase: React.FC<React.PropsWithChildren<VerifyCodeSc
                                     fontWeight: 'bold',
                                     textDecorationLine: 'underline',
                                 }}
+                                testID="blui-verify-code-resend-code-button"
                                 onPress={onResend}
                             >
                                 {resendLabel}

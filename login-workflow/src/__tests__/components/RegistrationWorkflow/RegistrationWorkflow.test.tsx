@@ -13,7 +13,7 @@ import { RegistrationWorkflow } from '../../../components/RegistrationWorkflow/R
 import { RegistrationContextProvider, useRegistrationWorkflowContext } from '../../../contexts';
 import { CreateAccountScreen } from '../../../screens';
 import { registrationContextProviderProps } from '../../../testUtils';
-import { Button, Text, Provider as PaperProvider } from 'react-native-paper';
+import { Button, Text, Provider as PaperProvider, TextInput } from 'react-native-paper';
 import { View } from 'react-native';
 import { RegistrationWorkflowProps } from 'src/components/RegistrationWorkflow/types';
 import '@testing-library/react-native/extend-expect';
@@ -168,7 +168,7 @@ describe('RegistrationWorkflow', () => {
                 </RegistrationContextProvider>
             </PaperProvider>
         );
-        const verifyEmailInput = getByTestId('email-textinput');
+        const verifyEmailInput = getByTestId('blui-create-account-email-text-input');
         fireEvent.changeText(verifyEmailInput, 'test@test.net');
         const nextButton = getByText('Next');
         fireEvent.press(nextButton);
@@ -271,5 +271,33 @@ describe('RegistrationWorkflow', () => {
         expect(screen.queryByText('Create Account')).not.toBeOnTheScreen();
         expect(screen.getByText('Create Password')).toBeOnTheScreen();
         expect(screen.getAllByText('Next').length).toBe(3);
+    });
+
+    it('should display custom screen', () => {
+        render(
+            <PaperProvider>
+                <RegistrationContextProvider {...registrationContextProviderProps}>
+                    <RegistrationWorkflow>
+                        <TextInput testID="blui-registration-workflow-text-input" />
+                    </RegistrationWorkflow>
+                </RegistrationContextProvider>
+            </PaperProvider>
+        );
+
+        expect(screen.getByTestId('blui-registration-workflow-text-input')).toBeOnTheScreen();
+    });
+
+    it('should display single screen', () => {
+        render(
+            <PaperProvider>
+                <RegistrationContextProvider {...registrationContextProviderProps}>
+                    <RegistrationWorkflow>
+                        <CreateAccountScreen />
+                    </RegistrationWorkflow>
+                </RegistrationContextProvider>
+            </PaperProvider>
+        );
+
+        expect(screen.getByTestId('blui-create-account-email-text-input')).toBeOnTheScreen();
     });
 });
