@@ -3,10 +3,9 @@ import { ForgotPasswordScreenProps } from './types';
 import { Trans, useTranslation } from 'react-i18next';
 import { useAuthContext, useErrorManager } from '../../contexts';
 import { ForgotPasswordScreenBase } from './ForgotPasswordScreenBase';
-import { View } from 'react-native';
+import { Linking, TextStyle, StyleSheet, View } from 'react-native';
 import { Text } from 'react-native-paper';
 import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
-import { Linking, TextStyle, StyleSheet } from 'react-native';
 
 const makeStyles = (
     theme: ExtendedTheme
@@ -118,6 +117,11 @@ export const ForgotPasswordScreen: React.FC<ForgotPasswordScreenProps> = (props)
         ...WorkflowCardHeaderProps,
     };
 
+    const emailInputProps = {
+        onChangeText: (email: string): void => setEmailInput(email),
+        ...emailTextInputProps,
+    };
+
     const workflowCardActionsProps = {
         showNext: true,
         showPrevious: true,
@@ -126,9 +130,8 @@ export const ForgotPasswordScreen: React.FC<ForgotPasswordScreenProps> = (props)
         canGoNext: true,
         canGoPrevious: true,
         ...WorkflowCardActionsProps,
-        onNext: (data: any): void => {
-            setEmailInput(data.email);
-            void handleOnNext(data.email);
+        onNext: (): void => {
+            void handleOnNext(emailInput);
             WorkflowCardActionsProps?.onNext?.();
         },
         onPrevious: (): void => {
@@ -146,11 +149,11 @@ export const ForgotPasswordScreen: React.FC<ForgotPasswordScreenProps> = (props)
             emailLabel={emailLabel}
             initialEmailValue={initialEmailValue}
             emailValidator={emailValidator}
-            emailTextInputProps={emailTextInputProps}
+            emailTextInputProps={emailInputProps}
             showSuccessScreen={enableSuccessScreen && showSuccessScreen}
             SuccessScreen={SuccessScreen}
             SuccessScreenProps={{
-                emptyStateProps: {
+                EmptyStateProps: {
                     icon: { name: 'check-circle' },
                     title: t('bluiCommon:MESSAGES.EMAIL_SENT'),
                     description: (
