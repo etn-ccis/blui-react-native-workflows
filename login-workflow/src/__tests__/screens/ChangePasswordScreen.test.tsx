@@ -51,7 +51,7 @@ describe('Change Password tests', () => {
 
     it('should display input field with passed prop', () => {
         renderer();
-        const currentPasswordInput = screen.getByTestId('current-password');
+        const currentPasswordInput = screen.getByTestId('blui-change-password-current-password-text-field');
         expect(currentPasswordInput).toHaveDisplayValue('');
         fireEvent.changeText(currentPasswordInput, 'Abc@2023');
         expect(currentPasswordInput).toHaveDisplayValue('Abc@2023');
@@ -67,9 +67,9 @@ describe('Change Password tests', () => {
             },
         });
 
-        const newPasswordInput = screen.getByTestId('password');
+        const newPasswordInput = screen.getByTestId('blui-set-password-password-text-field');
         expect(newPasswordInput).toHaveDisplayValue('');
-        const confirmPasswordInput = screen.getByTestId('confirm');
+        const confirmPasswordInput = screen.getByTestId('blui-set-password-confirm-password-text-field');
         expect(confirmPasswordInput).toHaveDisplayValue('');
         fireEvent.changeText(newPasswordInput, 'Abc@1234');
         expect(newPasswordInput).toHaveDisplayValue('Abc@1234');
@@ -88,10 +88,10 @@ describe('Change Password tests', () => {
             },
         });
 
-        const currentPasswordInput = screen.getByTestId('current-password');
+        const currentPasswordInput = screen.getByTestId('blui-change-password-current-password-text-field');
         fireEvent.changeText(currentPasswordInput, 'Abc@1234');
-        const newPasswordInput = screen.getByTestId('password');
-        const confirmPasswordInput = screen.getByTestId('confirm');
+        const newPasswordInput = screen.getByTestId('blui-set-password-password-text-field');
+        const confirmPasswordInput = screen.getByTestId('blui-set-password-confirm-password-text-field');
         fireEvent.changeText(newPasswordInput, 'Abc@1234');
         expect(newPasswordInput).toHaveDisplayValue('Abc@1234');
         fireEvent.changeText(confirmPasswordInput, 'Abc@1234');
@@ -118,8 +118,8 @@ describe('Change Password tests', () => {
             },
         });
 
-        const passwordField = screen.getByTestId('password');
-        const confirmPasswordField = screen.getByTestId('confirm');
+        const passwordField = screen.getByTestId('blui-set-password-password-text-field');
+        const confirmPasswordField = screen.getByTestId('blui-set-password-confirm-password-text-field');
 
         fireEvent.changeText(passwordField, 'A');
         fireEvent.changeText(confirmPasswordField, 'A');
@@ -144,9 +144,9 @@ describe('Change Password tests', () => {
             currentPasswordLabel: 'Current Label',
         });
 
-        const currentPasswordField = screen.getByTestId('current-password');
-        const passwordField = screen.getByTestId('password');
-        const confirmPasswordField = screen.getByTestId('confirm');
+        const currentPasswordField = screen.getByTestId('blui-change-password-current-password-text-field');
+        const passwordField = screen.getByTestId('blui-set-password-password-text-field');
+        const confirmPasswordField = screen.getByTestId('blui-set-password-confirm-password-text-field');
         const nextButton = screen.getByText('Next');
         expect(nextButton).toBeDisabled();
 
@@ -174,8 +174,8 @@ describe('Change Password tests', () => {
             currentPasswordLabel: 'Current Label',
         });
 
-        const passwordField = screen.getByTestId('password');
-        const confirmPasswordField = screen.getByTestId('confirm');
+        const passwordField = screen.getByTestId('blui-set-password-password-text-field');
+        const confirmPasswordField = screen.getByTestId('blui-set-password-confirm-password-text-field');
         const nextButton = screen.getByText('Next');
 
         fireEvent.changeText(passwordField, 'Password@123A');
@@ -192,9 +192,9 @@ describe('Change Password tests', () => {
             onFinish: mockOnFinish(),
         });
 
-        const currentPasswordField = getByTestId('current-password');
-        const passwordField = getByTestId('password');
-        const confirmPasswordField = getByTestId('confirm');
+        const currentPasswordField = getByTestId('blui-change-password-current-password-text-field');
+        const passwordField = getByTestId('blui-set-password-password-text-field');
+        const confirmPasswordField = getByTestId('blui-set-password-confirm-password-text-field');
         const nextButton = screen.getByText('Submit');
 
         fireEvent.changeText(currentPasswordField, 'Password');
@@ -213,7 +213,7 @@ describe('Change Password tests', () => {
             },
         });
 
-        const crossButton = screen.getByTestId('workflow-card-icon');
+        const crossButton = screen.getByTestId('blui-workflow-card-header-icon');
         fireEvent.press(crossButton);
         expect(mockOnIconPress).toHaveBeenCalled();
     });

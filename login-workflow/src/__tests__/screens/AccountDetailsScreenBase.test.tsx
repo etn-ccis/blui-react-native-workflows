@@ -26,7 +26,7 @@ describe('AccountDetailsScreenBase Tests', () => {
             initialLastName: 'Test Last Name',
         });
 
-        expect(screen.getByTestId('firstName')).toHaveDisplayValue('Test First Name');
-        expect(screen.getByTestId('lastName')).toHaveDisplayValue('Test Last Name');
+        expect(screen.getByTestId('blui-account-details-first-name')).toHaveDisplayValue('Test First Name');
+        expect(screen.getByTestId('blui-account-details-last-name')).toHaveDisplayValue('Test Last Name');
     });
 });

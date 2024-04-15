@@ -29,8 +29,8 @@ describe('ErrorMessageBox Test', () => {
 
     it('should call onDismiss prop, when button is pressed', () => {
         renderer();
-        expect(screen.getByTestId('error-message-box-close')).toBeOnTheScreen();
-        fireEvent.press(screen.getByTestId('error-message-box-close'));
+        expect(screen.getByTestId('blui-error-message-box-close-icon')).toBeOnTheScreen();
+        fireEvent.press(screen.getByTestId('blui-error-message-box-close-icon'));
         expect(onClose).toHaveBeenCalled();
     });
 });

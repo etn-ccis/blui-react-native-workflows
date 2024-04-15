@@ -168,7 +168,7 @@ describe('RegistrationWorkflow', () => {
                 </RegistrationContextProvider>
             </PaperProvider>
         );
-        const verifyEmailInput = getByTestId('email-textinput');
+        const verifyEmailInput = getByTestId('blui-create-account-email-text-input');
         fireEvent.changeText(verifyEmailInput, 'test@test.net');
         const nextButton = getByText('Next');
         fireEvent.press(nextButton);
@@ -278,13 +278,13 @@ describe('RegistrationWorkflow', () => {
             <PaperProvider>
                 <RegistrationContextProvider {...registrationContextProviderProps}>
                     <RegistrationWorkflow>
-                        <TextInput testID="test-input" />
+                        <TextInput testID="blui-registration-workflow-text-input" />
                     </RegistrationWorkflow>
                 </RegistrationContextProvider>
             </PaperProvider>
         );
 
-        expect(screen.getByTestId('test-input')).toBeOnTheScreen();
+        expect(screen.getByTestId('blui-registration-workflow-text-input')).toBeOnTheScreen();
     });
 
     it('should display single screen', () => {
@@ -298,6 +298,6 @@ describe('RegistrationWorkflow', () => {
             </PaperProvider>
         );
 
-        expect(screen.getByTestId('email-textinput')).toBeOnTheScreen();
+        expect(screen.getByTestId('blui-create-account-email-text-input')).toBeOnTheScreen();
     });
 });

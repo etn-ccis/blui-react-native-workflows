@@ -22,7 +22,7 @@ describe('Create Account Base', () => {
                 </RegistrationContextProvider>
             </PaperProvider>
         );
-        expect(screen.getByTestId('email-textinput')).toBeOnTheScreen();
+        expect(screen.getByTestId('blui-create-account-email-text-input')).toBeOnTheScreen();
     });
 
     it('should call onNext, when Next button clicked', () => {
@@ -42,7 +42,7 @@ describe('Create Account Base', () => {
                 </RegistrationContextProvider>
             </PaperProvider>
         );
-        const emailInput = screen.getByTestId('email-textinput');
+        const emailInput = screen.getByTestId('blui-create-account-email-text-input');
         fireEvent.changeText(emailInput, 'email@test.com');
         fireEvent.press(screen.getByText('NextButton'));
         expect(nextfn).toHaveBeenCalled();
@@ -65,7 +65,7 @@ describe('Create Account Base', () => {
                 </RegistrationContextProvider>
             </PaperProvider>
         );
-        const emailInput = screen.getByTestId('email-textinput');
+        const emailInput = screen.getByTestId('blui-create-account-email-text-input');
         fireEvent.changeText(emailInput, 'email@test.com');
         fireEvent.press(screen.getByText('Back'));
         expect(prevFn).toHaveBeenCalled();

@@ -16,9 +16,9 @@ describe('LoginScreenBase', () => {
                 <LoginScreenBase />
             </PaperProvider>
         );
-        expect(getByTestId('usernameTextField')).toBeTruthy();
-        expect(getByTestId('passwordTextField')).toBeTruthy();
-        expect(getByTestId('loginButton')).toBeTruthy();
+        expect(getByTestId('blui-login-username-text-field')).toBeTruthy();
+        expect(getByTestId('blui-login-password-text-field')).toBeTruthy();
+        expect(getByTestId('blui-login-login-button')).toBeTruthy();
     });
 
     test('triggers login function when login button is pressed with valid inputs', () => {
@@ -46,9 +46,9 @@ describe('LoginScreenBase', () => {
                 />
             </PaperProvider>
         );
-        fireEvent.changeText(getByTestId('usernameTextField'), 'email@email.com');
-        fireEvent.changeText(getByTestId('passwordTextField'), 'testpassword');
-        fireEvent.press(getByTestId('loginButton'));
+        fireEvent.changeText(getByTestId('blui-login-username-text-field'), 'email@email.com');
+        fireEvent.changeText(getByTestId('blui-login-password-text-field'), 'testpassword');
+        fireEvent.press(getByTestId('blui-login-login-button'));
         expect(mockLogin).toHaveBeenCalledWith('email@email.com', 'testpassword', undefined);
     });
 
@@ -59,9 +59,9 @@ describe('LoginScreenBase', () => {
                 <LoginScreenBase onLogin={mockLogin} />
             </PaperProvider>
         );
-        fireEvent.changeText(getByTestId('usernameTextField'), '');
-        fireEvent.changeText(getByTestId('passwordTextField'), '');
-        fireEvent.press(getByTestId('loginButton'));
+        fireEvent.changeText(getByTestId('blui-login-username-text-field'), '');
+        fireEvent.changeText(getByTestId('blui-login-password-text-field'), '');
+        fireEvent.press(getByTestId('blui-login-login-button'));
         expect(mockLogin).not.toHaveBeenCalled();
     });
 
@@ -72,7 +72,7 @@ describe('LoginScreenBase', () => {
                 <LoginScreenBase showForgotPassword onForgotPassword={mockForgotPassword} />
             </PaperProvider>
         );
-        fireEvent.press(getByTestId('forgotPasswordLabel'));
+        fireEvent.press(getByTestId('blui-login-forgot-password-label'));
         expect(mockForgotPassword).toHaveBeenCalled();
     });
 
@@ -83,7 +83,7 @@ describe('LoginScreenBase', () => {
                 <LoginScreenBase showSelfRegistration onSelfRegister={mockSelfRegister} />
             </PaperProvider>
         );
-        fireEvent.press(getByTestId('selfRegisterLabel'));
+        fireEvent.press(getByTestId('blui-login-self-register-label'));
         expect(mockSelfRegister).toHaveBeenCalled();
     });
 
@@ -94,7 +94,7 @@ describe('LoginScreenBase', () => {
                 <LoginScreenBase showContactSupport onContactSupport={mockContactSupport} />
             </PaperProvider>
         );
-        fireEvent.press(getByTestId('contactSupportLabel'));
+        fireEvent.press(getByTestId('blui-login-contact-support-label'));
         expect(mockContactSupport).toHaveBeenCalled();
     });
 
@@ -105,7 +105,7 @@ describe('LoginScreenBase', () => {
                 <LoginScreenBase showRememberMe onRememberMeChanged={mockRememberMeChanged} />
             </PaperProvider>
         );
-        const checkbox = getByTestId('rememberMeCheckbox');
+        const checkbox = getByTestId('blui-login-remember-me-checkbox');
 
         fireEvent.press(checkbox);
         expect(mockRememberMeChanged).toHaveBeenCalled();
@@ -117,7 +117,7 @@ describe('LoginScreenBase', () => {
                 <LoginScreenBase usernameTextFieldProps={{ onSubmitEditing: mockSubmitEditing }} />
             </PaperProvider>
         );
-        const usernameInput = getByTestId('usernameTextField');
+        const usernameInput = getByTestId('blui-login-username-text-field');
 
         fireEvent(usernameInput, 'submitEditing');
 
@@ -130,7 +130,7 @@ describe('LoginScreenBase', () => {
                 <LoginScreenBase passwordTextFieldProps={{ onSubmitEditing: mockSubmitEditing }} />
             </PaperProvider>
         );
-        const passwordInput = getByTestId('passwordTextField');
+        const passwordInput = getByTestId('blui-login-password-text-field');
 
         fireEvent(passwordInput, 'submitEditing');
 

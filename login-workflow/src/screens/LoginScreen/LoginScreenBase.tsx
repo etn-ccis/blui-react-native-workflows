@@ -216,18 +216,18 @@ export const LoginScreenBase: React.FC<React.PropsWithChildren<LoginScreenProps>
     };
 
     return (
-        <WorkflowCard testID={'root'} {...otherProps}>
+        <WorkflowCard testID="blui-login-workflow-card" {...otherProps}>
             <WorkflowCardBody>
                 {header}
-                <View style={defaultStyles.projectImageWrapper} testID={'projectImageWrapper'}>
+                <View style={defaultStyles.projectImageWrapper} testID="blui-login-project-image-wrapper">
                     {projectImage}
                 </View>
 
                 <ErrorManager {...errorDisplayConfig}>
-                    <View style={defaultStyles.inputFieldsWrapper} testID={'inputFieldsWrapper'}>
+                    <View style={defaultStyles.inputFieldsWrapper} testID="blui-login-input-fields-wrapper">
                         <View style={defaultStyles.usernameWrapper}>
                             <TextInput
-                                testID={'usernameTextField'}
+                                testID={'blui-login-username-text-field'}
                                 label={usernameLabel || 'Username'}
                                 value={username}
                                 error={shouldValidateUsername && !isUsernameValid}
@@ -258,7 +258,7 @@ export const LoginScreenBase: React.FC<React.PropsWithChildren<LoginScreenProps>
                         <View style={defaultStyles.passwordWrapper}>
                             <PasswordTextField
                                 ref={passwordField}
-                                testID={'passwordTextField'}
+                                testID={'blui-login-password-text-field'}
                                 label={passwordLabel || 'Password'}
                                 mode="flat"
                                 value={password}
@@ -287,15 +287,15 @@ export const LoginScreenBase: React.FC<React.PropsWithChildren<LoginScreenProps>
                         </View>
                     </View>
                 </ErrorManager>
-                <View style={defaultStyles.rememberMeLoginRowWrapper} testID={'rememberMeLoginRowWrapper'}>
+                <View style={defaultStyles.rememberMeLoginRowWrapper} testID={'blui-login-remember-me-row-wrapper'}>
                     {showRememberMe && (
-                        <View style={defaultStyles.rememberMeWrapper} testID={'rememberMeWrapper'}>
+                        <View style={defaultStyles.rememberMeWrapper} testID={'blui-login-remember-me-wrapper'}>
                             <Checkbox.Android
                                 status={rememberMe ? 'checked' : 'unchecked'}
                                 onPress={() => handleRememberMeChanged(!rememberMe)}
-                                testID={'rememberMeCheckbox'}
+                                testID={'blui-login-remember-me-checkbox'}
                             />
-                            <Text variant="bodyLarge" testID={'rememberMeLabel'}>
+                            <Text variant="bodyLarge" testID={'blui-login-remember-me-login'}>
                                 {rememberMeLabel || 'Remember Me'}
                             </Text>
                         </View>
@@ -307,10 +307,10 @@ export const LoginScreenBase: React.FC<React.PropsWithChildren<LoginScreenProps>
                                 width: showRememberMe ? 'auto' : '100%',
                             },
                         ]}
-                        testID={'loginButtonWrapper'}
+                        testID={'blui-login-login-button-wrapper'}
                     >
                         <Button
-                            testID={'loginButton'}
+                            testID={'blui-login-login-button'}
                             onPress={handleLogin}
                             disabled={!isFormValid()}
                             mode="contained"
@@ -322,12 +322,12 @@ export const LoginScreenBase: React.FC<React.PropsWithChildren<LoginScreenProps>
                 </View>
 
                 {showForgotPassword && (
-                    <View style={defaultStyles.forgotPasswordWrapper} testID={'forgotPasswordWrapper'}>
+                    <View style={defaultStyles.forgotPasswordWrapper} testID={'blui-login-forgot-password-wrapper'}>
                         <Text
                             variant="labelLarge"
                             style={{ color: theme.colors.primary }}
                             onPress={handleForgotPassword}
-                            testID={'forgotPasswordLabel'}
+                            testID={'blui-login-forgot-password-label'}
                         >
                             {forgotPasswordLabel || 'Forgot your password?'}
                         </Text>
@@ -335,15 +335,15 @@ export const LoginScreenBase: React.FC<React.PropsWithChildren<LoginScreenProps>
                 )}
 
                 {showSelfRegistration && (
-                    <View style={defaultStyles.selfRegisterWrapper} testID={'selfRegisterWrapper'}>
-                        <Text variant="bodyMedium" testID={'selfRegisterInstructionLabel'}>
+                    <View style={defaultStyles.selfRegisterWrapper} testID={'blui-login-self-register-wrapper'}>
+                        <Text variant="bodyMedium" testID={'blui-login-self-register-instruction-label'}>
                             {selfRegisterInstructions || 'Need an account?'}
                         </Text>
                         <Text
                             variant="labelLarge"
                             style={{ color: theme.colors.primary }}
                             onPress={handleSelfRegister}
-                            testID={'selfRegisterLabel'}
+                            testID={'blui-login-self-register-label'}
                         >
                             {selfRegisterButtonLabel || 'Register now!'}
                         </Text>
@@ -351,12 +351,12 @@ export const LoginScreenBase: React.FC<React.PropsWithChildren<LoginScreenProps>
                 )}
 
                 {showContactSupport && (
-                    <View style={defaultStyles.contactSupportWrapper} testID={'contactSupportWrapper'}>
+                    <View style={defaultStyles.contactSupportWrapper} testID={'blui-login-contact-support-wrapper'}>
                         <Text
                             variant="labelLarge"
                             style={{ color: theme.colors.primary }}
                             onPress={handleContactSupport}
-                            testID={'contactSupportLabel'}
+                            testID={'blui-login-contact-support-label'}
                         >
                             {contactSupportLabel || 'Contact Support'}
                         </Text>
@@ -366,7 +366,10 @@ export const LoginScreenBase: React.FC<React.PropsWithChildren<LoginScreenProps>
                 <View style={defaultStyles.footerWrapper}>{footer}</View>
 
                 {showCyberSecurityBadge && (
-                    <View style={defaultStyles.cyberSecurityBadgeWrapper} testID={'cyberSecurityBadgeWrapper'}>
+                    <View
+                        style={defaultStyles.cyberSecurityBadgeWrapper}
+                        testID={'blui-login-cyber-security-badge-wrapper'}
+                    >
                         <Image
                             style={{ width: '100%' }}
                             resizeMode="contain"

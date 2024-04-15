@@ -36,12 +36,12 @@ describe('ErrorManager Test', () => {
 
     it('should display error dialog as default mode', () => {
         renderer();
-        expect(screen.getByTestId('basic-dialog')).toBeOnTheScreen();
+        expect(screen.getByTestId('blui-error-manager-basic-dialog')).toBeOnTheScreen();
     });
     it('should display error dialog as default mode', () => {
         const props = defaultProps;
         props.mode = 'message-box';
         renderer(props);
-        expect(screen.getByTestId('error-message-box-close')).toBeOnTheScreen();
+        expect(screen.getByTestId('blui-error-message-box-close-icon')).toBeOnTheScreen();
     });
 });

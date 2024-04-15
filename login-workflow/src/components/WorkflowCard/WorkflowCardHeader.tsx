@@ -93,7 +93,7 @@ export const WorkflowCardHeader: React.FC<WorkflowCardHeaderProps> = (props) => 
                 ]}
                 {...otherprops}
             >
-                <TouchableOpacity testID="workflow-card-icon" onPress={onIconPress}>
+                <TouchableOpacity testID="blui-workflow-card-header-icon" onPress={onIconPress}>
                     {getIcon()}
                 </TouchableOpacity>
                 <View style={defaultStyles.headerContent}>

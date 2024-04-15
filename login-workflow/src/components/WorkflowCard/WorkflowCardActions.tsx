@@ -55,7 +55,7 @@ export const WorkflowCardActions: React.FC<WorkflowCardActionsProps> = (props) =
     const showStepperDots = totalSteps !== 0 && !fullWidthButton;
     return (
         <View {...otherProps} style={style}>
-            {divider && <Divider testID="workflow-card-action-divider" />}
+            {divider && <Divider testID="blui-workflow-card-action-divider" />}
             <MobileStepper
                 styles={{
                     root: [
@@ -81,7 +81,7 @@ export const WorkflowCardActions: React.FC<WorkflowCardActionsProps> = (props) =
                             disabled={
                                 canGoPrevious === false || (typeof canGoPrevious === 'function' && !canGoPrevious())
                             }
-                            testID={'workflow-card-previous-button'}
+                            testID={'blui-workflow-card-actions-previous-button'}
                             style={[defaultStyles.previousButton, defaultStyles.button]}
                             onPress={onPrevious}
                         >
@@ -97,7 +97,7 @@ export const WorkflowCardActions: React.FC<WorkflowCardActionsProps> = (props) =
                             mode="contained"
                             disabled={canGoNext === false || (typeof canGoNext === 'function' && !canGoNext())}
                             onPress={onNext}
-                            testID={'workflow-card-next-button'}
+                            testID={'blui-workflow-card-actions-next-button'}
                             style={[defaultStyles.nextButton, defaultStyles.button]}
                         >
                             {nextLabel}
