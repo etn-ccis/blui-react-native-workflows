@@ -167,7 +167,7 @@ export const ChangePasswordScreen: React.FC<ChangePasswordScreenProps> = (props)
             slots={slots}
             slotProps={{
                 SuccessScreen: {
-                    emptyStateProps: {
+                    EmptyStateProps: {
                         icon: { family: 'material', name: 'check-circle' },
                         title: t('bluiAuth:PASSWORD_RESET.SUCCESS_MESSAGE'),
                         description: t('bluiAuth:CHANGE_PASSWORD.SUCCESS_MESSAGE'),
