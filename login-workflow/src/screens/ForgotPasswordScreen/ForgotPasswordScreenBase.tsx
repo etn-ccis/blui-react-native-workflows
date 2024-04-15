@@ -78,6 +78,7 @@ export const ForgotPasswordScreenBase: React.FC<React.PropsWithChildren<ForgotPa
                                 mode="flat"
                                 error={shouldValidateEmail && !isEmailValid}
                                 autoCapitalize="none"
+                                testID="forgot-password-textinput"
                                 {...emailTextInputProps}
                                 onBlur={(e): void => {
                                     // eslint-disable-next-line no-unused-expressions
