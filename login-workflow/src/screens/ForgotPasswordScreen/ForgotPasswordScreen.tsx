@@ -5,11 +5,31 @@ import { useAuthContext, useErrorManager } from '../../contexts';
 import { ForgotPasswordScreenBase } from './ForgotPasswordScreenBase';
 import { View } from 'react-native';
 import { Text } from 'react-native-paper';
+import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
+import { Linking, TextStyle, StyleSheet } from 'react-native';
+
+const makeStyles = (
+    theme: ExtendedTheme
+): StyleSheet.NamedStyles<{
+    boldText: TextStyle;
+    textStyles: TextStyle;
+}> =>
+    StyleSheet.create({
+        boldText: {
+            fontWeight: 'bold',
+        },
+        textStyles: {
+            color: theme.colors.primary,
+        },
+    });
 
 export const ForgotPasswordScreen: React.FC<ForgotPasswordScreenProps> = (props) => {
     const { t } = useTranslation();
     const { actions, navigate, routeConfig } = useAuthContext();
     const { triggerError, errorManagerConfig } = useErrorManager();
+    const theme = useExtendedTheme();
+    const styles = makeStyles(theme);
+
     const errorDisplayConfig = {
         ...errorManagerConfig,
         ...props.errorDisplayConfig,
@@ -24,6 +44,10 @@ export const ForgotPasswordScreen: React.FC<ForgotPasswordScreenProps> = (props)
     const [showSuccessScreen, setShowSuccessScreen] = useState(false);
 
     const EMAIL_REGEX = /^[A-Z0-9._%+'-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+
+    const Bold = ({ children }: { children: React.ReactNode }): JSX.Element => (
+        <Text style={styles.boldText}>{children}</Text>
+    );
 
     const handleOnNext = useCallback(
         async (email: string): Promise<void> => {
@@ -70,19 +94,19 @@ export const ForgotPasswordScreen: React.FC<ForgotPasswordScreenProps> = (props)
 
     const workflowCardInstructionProps = {
         instructions: description ? (
-            <View style={{ paddingHorizontal: 16, paddingTop: 16 }}> {description(responseTime)} </View>
+            <View> {description(responseTime)} </View>
         ) : (
-            <Text style={{ paddingHorizontal: 16, paddingTop: 16 }}>
-                {/* <Trans
-                    i18nKey={'bluiAuth:FORGOT_PASSWORD.INSTRUCTIONS_ALT'}
+            <Text variant="bodyLarge">
+                <Trans
+                    i18nKey={'bluiAuth:FORGOT_PASSWORD.INSTRUCTIONS'}
                     values={{ phone: contactPhone, time: responseTime }}
-                > */}
-                Please enter your email, we will respond in {responseTime}. For urgent issues please call{' '}
-                {/* <Text href={`tel:${contactPhone}`} sx={LinkStyles}>
+                    components={{ boldTag: <Bold>{responseTime}</Bold> }}
+                >
+                    Please enter your email, we will respond in {responseTime}. For urgent issues please call
+                    <Text style={styles.textStyles} onPress={(): any => Linking.openURL(`tel:${contactPhone ?? ''}`)}>
                         {contactPhone}
-                    </Text> */}
-                {'.'}
-                {/* </Trans> */}
+                    </Text>
+                </Trans>
             </Text>
         ),
         ...WorkflowCardInstructionProps,
@@ -90,6 +114,7 @@ export const ForgotPasswordScreen: React.FC<ForgotPasswordScreenProps> = (props)
 
     const workflowCardHeaderProps = {
         title: t('bluiAuth:HEADER.FORGOT_PASSWORD'),
+        onIconPress: (): void => navigate(-1),
         ...WorkflowCardHeaderProps,
     };
 
@@ -129,13 +154,14 @@ export const ForgotPasswordScreen: React.FC<ForgotPasswordScreenProps> = (props)
                     icon: { name: 'check-circle' },
                     title: t('bluiCommon:MESSAGES.EMAIL_SENT'),
                     description: (
-                        <Text
-                            style={{
-                                overflow: 'hidden',
-                            }}
-                        >
-                            {/* <Trans i18nKey={'bluiAuth:FORGOT_PASSWORD.LINK_SENT_ALT'} values={{ email: emailInput }}> */}
-                            Link has been sent to {emailInput}.{/* </Trans> */}
+                        <Text variant="bodyLarge">
+                            <Trans
+                                i18nKey={'bluiAuth:FORGOT_PASSWORD.LINK_SENT'}
+                                values={{ email: emailInput }}
+                                components={{ boldTag: <Bold>{emailInput}</Bold> }}
+                            >
+                                A link to reset your password has been sent to {emailInput}.
+                            </Trans>
                         </Text>
                     ),
                 },
