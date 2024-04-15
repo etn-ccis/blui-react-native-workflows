@@ -65,8 +65,8 @@ describe('Create Password Screen', () => {
             },
         });
 
-        const passwordField = screen.getByTestId('password');
-        const confirmPasswordField = screen.getByTestId('confirm');
+        const passwordField = screen.getByTestId('blui-set-password-password-text-field');
+        const confirmPasswordField = screen.getByTestId('blui-set-password-confirm-password-text-field');
         const nextButton = screen.getByText('Next');
         expect(nextButton).toBeDisabled();
 
@@ -76,7 +76,7 @@ describe('Create Password Screen', () => {
 
         fireEvent.press(nextButton);
         expect(mockOnNext).toHaveBeenCalled();
-        await waitFor(() => expect(screen.getByTestId('spinner')).toBeOnTheScreen());
+        await waitFor(() => expect(screen.getByTestId('blui-spinner')).toBeOnTheScreen());
     });
 
     it('should enable next button, when passwordRequirements prop is empty', () => {
@@ -95,8 +95,8 @@ describe('Create Password Screen', () => {
             },
         });
 
-        const passwordField = screen.getByTestId('password');
-        const confirmPasswordField = screen.getByTestId('confirm');
+        const passwordField = screen.getByTestId('blui-set-password-password-text-field');
+        const confirmPasswordField = screen.getByTestId('blui-set-password-confirm-password-text-field');
 
         fireEvent.changeText(passwordField, 'A');
         fireEvent.changeText(confirmPasswordField, 'A');
@@ -151,8 +151,8 @@ describe('Create Password Screen', () => {
             </PaperProvider>
         );
 
-        const passwordField = screen.getByTestId('password');
-        const confirmPasswordField = screen.getByTestId('confirm');
+        const passwordField = screen.getByTestId('blui-set-password-password-text-field');
+        const confirmPasswordField = screen.getByTestId('blui-set-password-confirm-password-text-field');
         const nextButton = screen.getByText('Next');
         expect(nextButton).toBeDisabled();
 
@@ -162,6 +162,6 @@ describe('Create Password Screen', () => {
 
         fireEvent.press(nextButton);
         expect(mockOnNext).toHaveBeenCalled();
-        await waitFor(() => expect(screen.getByTestId('spinner')).toBeOnTheScreen());
+        await waitFor(() => expect(screen.getByTestId('blui-spinner')).toBeOnTheScreen());
     });
 });

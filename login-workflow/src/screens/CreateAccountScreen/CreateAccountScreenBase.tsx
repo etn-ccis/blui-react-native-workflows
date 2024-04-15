@@ -65,7 +65,7 @@ export const CreateAccountScreenBase: React.FC<CreateAccountScreenProps & { inpu
                 <ErrorManager {...errorDisplayConfig}>
                     <TextInput
                         ref={inputRef}
-                        testID="email-textinput"
+                        testID="blui-create-account-email-text-input"
                         mode="flat"
                         keyboardType="email-address"
                         label={emailLabel}

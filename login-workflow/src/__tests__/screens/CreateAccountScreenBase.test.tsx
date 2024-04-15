@@ -14,7 +14,7 @@ describe('Create Account Base', () => {
                 <CreateAccountScreenBase />
             </SafeAreaProvider>
         );
-        expect(screen.getByTestId('email-textinput')).toBeOnTheScreen();
+        expect(screen.getByTestId('blui-create-account-email-text-input')).toBeOnTheScreen();
     });
 
     it('renders correctly with props', () => {
@@ -53,7 +53,7 @@ describe('Create Account Base', () => {
             </SafeAreaProvider>
         );
 
-        const Input = getByTestId('email-textinput');
+        const Input = getByTestId('blui-create-account-email-text-input');
         fireEvent.changeText(Input, 'email@test.com');
         expect(updateInput).toHaveBeenCalledTimes(1);
     });

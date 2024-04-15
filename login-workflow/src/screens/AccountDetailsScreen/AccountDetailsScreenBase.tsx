@@ -104,7 +104,7 @@ export const AccountDetailsScreenBase: React.FC<AccountDetailsScreenProps> = (pr
             <WorkflowCardBody>
                 <ErrorManager {...errorDisplayConfig}>
                     <TextInput
-                        testID="firstName"
+                        testID="blui-account-details-first-name"
                         mode="flat"
                         ref={firstNameRef}
                         label={firstNameLabel}
@@ -123,7 +123,7 @@ export const AccountDetailsScreenBase: React.FC<AccountDetailsScreenProps> = (pr
                     />
                     {shouldValidateFirstName && <HelperText type="error">{firstNameError}</HelperText>}
                     <TextInput
-                        testID="lastName"
+                        testID="blui-account-details-last-name"
                         mode="flat"
                         ref={lastNameRef}
                         label={lastNameLabel}

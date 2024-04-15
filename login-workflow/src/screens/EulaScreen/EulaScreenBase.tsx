@@ -133,7 +133,7 @@ export const EulaScreenBase: React.FC<EulaScreenProps> = (props) => {
                             {html ? (
                                 <WebView
                                     originWhitelist={['*']}
-                                    testID="eulaBase-webview"
+                                    testID="blui-eula-web-view"
                                     source={{ html: eulaContent as string, baseUrl: '' }}
                                     scalesPageToFit={false}
                                     nestedScrollEnabled={true}
@@ -159,7 +159,7 @@ export const EulaScreenBase: React.FC<EulaScreenProps> = (props) => {
                                             setCheckboxEnable(true);
                                         }
                                     }}
-                                    testID="eulaBase-scrollview"
+                                    testID="blui-eula-scroll-view"
                                     ref={scrollViewRef}
                                     scrollEventThrottle={10}
                                     nestedScrollEnabled={true}
@@ -177,7 +177,7 @@ export const EulaScreenBase: React.FC<EulaScreenProps> = (props) => {
                             )}
                             <ErrorManager {...errorDisplayConfig}>
                                 <Checkbox.Item
-                                    testID="eulaBase-checkbox"
+                                    testID="blui-eula-checkbox"
                                     color={checkboxProps?.color || theme.colors.primary}
                                     disabled={!checkboxEnable}
                                     status={eulaAccepted ? 'checked' : 'unchecked'}

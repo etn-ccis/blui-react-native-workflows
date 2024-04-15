@@ -69,7 +69,7 @@ export const ChangePasswordScreenBase: React.FC<ChangePasswordScreenProps> = (pr
                 <ErrorManager {...errorDisplayConfig}>
                     <SetPassword {...passwordProps}>
                         <PasswordTextField
-                            testID="current-password"
+                            testID="blui-change-password-current-password-text-field"
                             style={[styles.textInput]}
                             label={currentPasswordLabel}
                             {...currentPasswordTextInputProps}

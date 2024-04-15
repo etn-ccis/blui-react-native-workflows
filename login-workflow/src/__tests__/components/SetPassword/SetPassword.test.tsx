@@ -27,8 +27,8 @@ describe('Set Password Test', () => {
             />
         );
 
-        const passwordInput = getByTestId('password');
-        const confirmInput = getByTestId('confirm');
+        const passwordInput = getByTestId('blui-set-password-password-text-field');
+        const confirmInput = getByTestId('blui-set-password-confirm-password-text-field');
         fireEvent.changeText(passwordInput, 'Password@123');
         fireEvent.changeText(confirmInput, 'Password@123');
         expect(render).toBeTruthy();
@@ -49,8 +49,8 @@ describe('Set Password Test', () => {
             />
         );
 
-        const passwordInput = getByTestId('password');
-        const confirmInput = getByTestId('confirm');
+        const passwordInput = getByTestId('blui-set-password-password-text-field');
+        const confirmInput = getByTestId('blui-set-password-confirm-password-text-field');
         fireEvent.changeText(passwordInput, 'Pass');
         fireEvent.changeText(confirmInput, 'Pass');
         expect(render).toBeTruthy();
@@ -67,8 +67,8 @@ describe('Set Password Test', () => {
 
     it('PasswordtextField toggles visibility', () => {
         const { getByTestId } = render(<PasswordTextField />);
-        const toggleButton = getByTestId('toggle-button');
-        const textfield = getByTestId('textfield');
+        const toggleButton = getByTestId('blui-password-text-field-toggle-button');
+        const textfield = getByTestId('blui-password-text-field');
         fireEvent.press(toggleButton);
         expect(textfield.props.secureTextEntry).toBe(false);
     });
