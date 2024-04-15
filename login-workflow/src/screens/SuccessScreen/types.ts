@@ -6,7 +6,7 @@ export type SuccessScreenProps = WorkflowCardProps & {
     /**
      * To pass EmptyStateProps i.e icon, title, description... etc
      */
-    emptyStateProps?: EmptyStateProps;
+    EmptyStateProps?: EmptyStateProps;
 
     /**
      * To display label for the button

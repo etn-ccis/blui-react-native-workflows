@@ -48,7 +48,7 @@ export const RegistrationSuccessScreen: React.FC<SuccessScreenProps> = (props) =
         WorkflowCardHeaderProps,
         WorkflowCardActionsProps,
         WorkflowCardBodyProps,
-        emptyStateProps,
+        EmptyStateProps,
         ...otherRegistrationSuccessScreenProps
     } = props;
 
@@ -81,7 +81,7 @@ export const RegistrationSuccessScreen: React.FC<SuccessScreenProps> = (props) =
                 </Trans>
             </Text>
         ),
-        ...emptyStateProps,
+        ...EmptyStateProps,
     };
 
     const workflowCardBodyProps = {
@@ -107,7 +107,7 @@ export const RegistrationSuccessScreen: React.FC<SuccessScreenProps> = (props) =
             WorkflowCardHeaderProps={workflowCardHeaderProps}
             WorkflowCardActionsProps={workflowCardActionsProps}
             WorkflowCardBodyProps={workflowCardBodyProps}
-            emptyStateProps={emptyStatesProps}
+            EmptyStateProps={emptyStatesProps}
             {...otherRegistrationSuccessScreenProps}
         />
     );

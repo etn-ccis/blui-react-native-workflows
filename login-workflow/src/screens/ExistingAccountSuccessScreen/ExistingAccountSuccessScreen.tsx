@@ -20,7 +20,7 @@ export const ExistingAccountSuccessScreen: React.FC<SuccessScreenProps> = (props
         WorkflowCardHeaderProps,
         WorkflowCardActionsProps,
         WorkflowCardBodyProps,
-        emptyStateProps,
+        EmptyStateProps,
         ...otherExistingAccountSuccessScreenProps
     } = props;
 
@@ -56,7 +56,7 @@ export const ExistingAccountSuccessScreen: React.FC<SuccessScreenProps> = (props
         icon: icon,
         title: t('bluiCommon:MESSAGES.WELCOME'),
         description: t('bluiRegistration:REGISTRATION.SUCCESS_EXISTING'),
-        ...emptyStateProps,
+        ...EmptyStateProps,
     };
 
     return (
@@ -64,7 +64,7 @@ export const ExistingAccountSuccessScreen: React.FC<SuccessScreenProps> = (props
             WorkflowCardHeaderProps={workflowCardHeaderProps}
             WorkflowCardActionsProps={workflowCardActionsProps}
             WorkflowCardBodyProps={workflowCardBodyProps}
-            emptyStateProps={emptyStatesProps}
+            EmptyStateProps={emptyStatesProps}
             {...otherExistingAccountSuccessScreenProps}
         />
     );
