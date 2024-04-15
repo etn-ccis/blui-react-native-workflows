@@ -42,7 +42,7 @@ describe('ForgotPasswordScreenBase Tests', () => {
             },
         });
         const input = screen.getByTestId('text-input-flat');
-        const nextButton = screen.getByTestId('workflow-card-next-button-text');
+        const nextButton = screen.getByTestId('blui-workflow-card-actions-next-button-text');
         expect(nextButton).toBeDisabled();
         fireEvent.changeText(input, 'test@eaton.com');
         expect(input.props.value).toBe('test@eaton.com');

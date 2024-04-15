@@ -14,7 +14,7 @@ describe('CreatePasswordScreenBase Tests', () => {
             </PaperProvider>
         );
 
-        expect(screen.getByTestId('password')).toBeOnTheScreen();
-        expect(screen.getByTestId('confirm')).toBeOnTheScreen();
+        expect(screen.getByTestId('blui-set-password-password-text-field')).toBeOnTheScreen();
+        expect(screen.getByTestId('blui-set-password-confirm-password-text-field')).toBeOnTheScreen();
     });
 });

@@ -1,11 +1,11 @@
 import React from 'react';
+import '@testing-library/react-native/extend-expect';
 import { RenderResult, fireEvent, render, screen, waitFor } from '@testing-library/react-native';
 import { RegistrationWorkflow } from 'src/components';
 import { RegistrationContextProvider } from 'src/contexts';
 import { VerifyCodeScreen, VerifyCodeScreenProps } from 'src/screens';
 import { registrationContextProviderProps } from 'src/testUtils';
 import { PaperProvider } from 'react-native-paper';
-import '@testing-library/react-native/extend-expect';
 
 describe('Verify Code Full Screen Test cases', () => {
     let mockOnPrevious: any;
@@ -44,14 +44,14 @@ describe('Verify Code Full Screen Test cases', () => {
                 onIconPress: mockOnClose(),
             },
         });
-        const closeIcon = screen.getByTestId('workflow-card-icon');
+        const closeIcon = screen.getByTestId('blui-workflow-card-header-icon');
         fireEvent.press(closeIcon);
         expect(mockOnClose).toHaveBeenCalled();
     });
 
     it('clicking on close Icon test', () => {
         renderer();
-        const closeIcon = screen.getByTestId('workflow-card-icon');
+        const closeIcon = screen.getByTestId('blui-workflow-card-header-icon');
         fireEvent.press(closeIcon);
     });
 
@@ -74,19 +74,19 @@ describe('Verify Code Full Screen Test cases', () => {
                 onPrevious: mockOnPrevious(),
             },
         });
-        const prevButton = screen.getByTestId('workflow-card-previous-button');
+        const prevButton = screen.getByTestId('blui-workflow-card-actions-previous-button');
         fireEvent.press(prevButton);
         expect(mockOnPrevious).toHaveBeenCalled();
     });
 
     it('should display loader, when next button is pressed', async () => {
         renderer();
-        const codeInput = screen.getByTestId('verify-code-textinput');
+        const codeInput = screen.getByTestId('blui-verify-code-text-input');
         fireEvent.changeText(codeInput, '123');
 
         const nextButton = screen.getByText('Next');
         expect(nextButton).toBeOnTheScreen();
         fireEvent.press(nextButton);
-        await waitFor(() => expect(screen.getByTestId('spinner')).toBeOnTheScreen());
+        await waitFor(() => expect(screen.getByTestId('blui-spinner')).toBeOnTheScreen());
     });
 });

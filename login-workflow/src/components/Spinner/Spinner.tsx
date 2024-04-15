@@ -28,7 +28,7 @@ export const Spinner: React.FC<SpinnerProps> = (props) => {
                 position: 'absolute',
                 backgroundColor: `rgba(255,255,255,${theme.dark ? 0.15 : 0.75})`,
             }}
-            testID="spinner"
+            testID="blui-spinner"
             {...otherProps}
         >
             <ActivityIndicator animating={visible} size="large" color={theme.colors.primary} />

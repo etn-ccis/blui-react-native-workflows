@@ -65,10 +65,10 @@ describe('Account Details Screen', () => {
             },
         });
 
-        const firstNameInput = screen.getByTestId('firstName');
+        const firstNameInput = screen.getByTestId('blui-account-details-first-name');
         expect(firstNameInput.props.value).toBe('');
 
-        const lastNameInput = screen.getByTestId('lastName');
+        const lastNameInput = screen.getByTestId('blui-account-details-last-name');
         expect(lastNameInput.props.value).toBe('');
 
         const nextButton = screen.getByText('Next');
@@ -80,7 +80,7 @@ describe('Account Details Screen', () => {
 
         fireEvent.press(nextButton);
         expect(mockOnNext).toHaveBeenCalled();
-        await waitFor(() => expect(screen.getByTestId('spinner')).toBeOnTheScreen());
+        await waitFor(() => expect(screen.getByTestId('blui-spinner')).toBeOnTheScreen());
     });
 
     it('should call onPrevious, when Back button clicked', () => {
@@ -101,10 +101,10 @@ describe('Account Details Screen', () => {
     it('should enable Next button, when both the inputs are valid', () => {
         renderer();
 
-        const firstNameInput = screen.getByTestId('firstName');
+        const firstNameInput = screen.getByTestId('blui-account-details-first-name');
         fireEvent.changeText(firstNameInput, 'Test First Name');
 
-        const lastNameInput = screen.getByTestId('lastName');
+        const lastNameInput = screen.getByTestId('blui-account-details-last-name');
         fireEvent.changeText(lastNameInput, 'Test Last Name');
         expect(screen.getByText('Next')).toBeEnabled();
     });
@@ -112,10 +112,10 @@ describe('Account Details Screen', () => {
     it('should disable Next button, when the first name input is invalid', () => {
         renderer();
 
-        const firstNameInput = screen.getByTestId('firstName');
+        const firstNameInput = screen.getByTestId('blui-account-details-first-name');
         fireEvent.changeText(firstNameInput, '');
 
-        const lastNameInput = screen.getByTestId('lastName');
+        const lastNameInput = screen.getByTestId('blui-account-details-last-name');
         fireEvent.changeText(lastNameInput, 'Test Last Name');
         expect(screen.getByText('Next')).toBeDisabled();
     });
@@ -123,10 +123,10 @@ describe('Account Details Screen', () => {
     it('should disable Next button, when the last name input is invalid', () => {
         renderer();
 
-        const firstNameInput = screen.getByTestId('firstName');
+        const firstNameInput = screen.getByTestId('blui-account-details-first-name');
         fireEvent.changeText(firstNameInput, 'Test First Name');
 
-        const lastNameInput = screen.getByTestId('lastName');
+        const lastNameInput = screen.getByTestId('blui-account-details-last-name');
         fireEvent.changeText(lastNameInput, '');
         expect(screen.getByText('Next')).toBeDisabled();
     });
@@ -141,15 +141,15 @@ describe('Account Details Screen', () => {
     it('should display loader, when next button is pressed', async () => {
         renderer();
 
-        const firstNameInput = screen.getByTestId('firstName');
+        const firstNameInput = screen.getByTestId('blui-account-details-first-name');
         fireEvent.changeText(firstNameInput, 'Test First Name');
 
-        const lastNameInput = screen.getByTestId('lastName');
+        const lastNameInput = screen.getByTestId('blui-account-details-last-name');
         fireEvent.changeText(lastNameInput, 'Test Last Name');
 
         const nextButton = screen.getByText('Next');
         expect(nextButton).toBeOnTheScreen();
         fireEvent.press(nextButton);
-        await waitFor(() => expect(screen.getByTestId('spinner')).toBeOnTheScreen());
+        await waitFor(() => expect(screen.getByTestId('blui-spinner')).toBeOnTheScreen());
     });
 });

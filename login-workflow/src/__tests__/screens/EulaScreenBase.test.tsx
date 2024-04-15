@@ -124,7 +124,7 @@ describe('Eula Screen Base', () => {
                 />
             </SafeAreaProvider>
         );
-        const scrollView = getByTestId('eulaBase-scrollview');
+        const scrollView = getByTestId('blui-eula-scroll-view');
         fireEvent.scroll(scrollView, {
             nativeEvent: {
                 layoutMeasurement: { height: 100, width: 100 },
@@ -133,7 +133,7 @@ describe('Eula Screen Base', () => {
             },
         }); // Simulate scrolling
 
-        const checkbox = getByTestId('eulaBase-checkbox');
+        const checkbox = getByTestId('blui-eula-checkbox');
         fireEvent.press(checkbox);
         expect(checkboxfunction).toHaveBeenCalledTimes(1);
     });
@@ -181,7 +181,7 @@ describe('Eula Screen Base', () => {
                 />
             </SafeAreaProvider>
         );
-        const scrollView = getByTestId('eulaBase-webview');
+        const scrollView = getByTestId('blui-eula-web-view');
         fireEvent.scroll(scrollView, {
             nativeEvent: {
                 layoutMeasurement: { height: 100, width: 100 },
@@ -190,7 +190,7 @@ describe('Eula Screen Base', () => {
             },
         }); // Simulate scrolling
 
-        const checkbox = getByTestId('eulaBase-checkbox');
+        const checkbox = getByTestId('blui-eula-checkbox');
         fireEvent.press(checkbox);
         expect(checkboxfunction).toHaveBeenCalledTimes(1);
     });

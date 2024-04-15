@@ -92,7 +92,7 @@ export const SetPassword: React.FC<React.PropsWithChildren<SetPasswordProps>> = 
         <>
             {children}
             <PasswordTextField
-                testID="password"
+                testID="blui-set-password-password-text-field"
                 label={newPasswordLabel}
                 value={passwordInput}
                 ref={passwordRef}
@@ -112,7 +112,7 @@ export const SetPassword: React.FC<React.PropsWithChildren<SetPasswordProps>> = 
                 style={defaultStyle.passwordRequirementContainer}
             />
             <PasswordTextField
-                testID="confirm"
+                testID="blui-set-password-confirm-password-text-field"
                 label={confirmPasswordLabel}
                 value={confirmInput}
                 ref={confirmRef}

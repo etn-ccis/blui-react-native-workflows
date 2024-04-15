@@ -16,13 +16,13 @@ export const PasswordTextField: React.FC<TextInputProps> = forwardRef((props, re
     return (
         <TextInput
             ref={ref}
-            testID="textfield"
+            testID="blui-password-text-field"
             secureTextEntry={!showPassword}
             mode="flat"
             label="Password"
             right={
                 <TextInput.Icon
-                    testID="toggle-button"
+                    testID="blui-password-text-field-toggle-button"
                     icon={showPassword ? 'eye' : 'eye-off'}
                     onPress={() => setShowPassword(!showPassword)}
                 />

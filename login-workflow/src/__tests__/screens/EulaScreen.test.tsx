@@ -47,7 +47,7 @@ describe('Eula Screen', () => {
                 </RegistrationContextProvider>
             </PaperProvider>
         );
-        const checkbox = screen.getByTestId('eulaBase-checkbox');
+        const checkbox = screen.getByTestId('blui-eula-checkbox');
         fireEvent.press(checkbox);
         const nextButton = screen.getByText('NextButton');
         expect(nextButton).toBeEnabled();
@@ -177,7 +177,7 @@ describe('Eula Screen', () => {
         );
 
         await waitFor(() => expect(queryByText('Loading...')).toBeNull());
-        const checkbox = getByTestId('eulaBase-checkbox');
+        const checkbox = getByTestId('blui-eula-checkbox');
         fireEvent.press(checkbox);
         fireEvent.press(getByText('Next'));
         await waitFor(() => expect(queryByText('Loading...')).toBeNull());
@@ -221,7 +221,7 @@ describe('Eula Screen', () => {
         );
 
         await waitFor(() => expect(queryByText('Loading...')).toBeNull());
-        const checkbox = getByTestId('eulaBase-checkbox');
+        const checkbox = getByTestId('blui-eula-checkbox');
         fireEvent.press(checkbox);
         fireEvent.press(getByText('Next'));
         await waitFor(() => expect(queryByText('Loading...')).toBeNull());

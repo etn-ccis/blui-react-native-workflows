@@ -29,7 +29,7 @@ describe('WorkflowCardActions Test', () => {
         const { getByTestId } = render(
             <WorkflowCardActions previousLabel={'Back'} nextLabel="Next" showPrevious showNext onNext={onNext} />
         );
-        const nextButton = getByTestId('workflow-card-next-button');
+        const nextButton = getByTestId('blui-workflow-card-actions-next-button');
         fireEvent.press(nextButton);
         expect(onNext).toHaveBeenCalledTimes(1);
     });
@@ -45,7 +45,7 @@ describe('WorkflowCardActions Test', () => {
                 onPrevious={onPrevious}
             />
         );
-        const previousButton = getByTestId('workflow-card-previous-button');
+        const previousButton = getByTestId('blui-workflow-card-actions-previous-button');
         fireEvent.press(previousButton);
         expect(onPrevious).toHaveBeenCalledTimes(1);
     });
@@ -61,7 +61,7 @@ describe('WorkflowCardActions Test', () => {
                 canGoPrevious={() => false}
             />
         );
-        const previousButton = getByTestId('workflow-card-previous-button');
+        const previousButton = getByTestId('blui-workflow-card-actions-previous-button');
         fireEvent.press(previousButton);
         expect(onPrevious).toHaveBeenCalledTimes(0);
     });
@@ -77,7 +77,7 @@ describe('WorkflowCardActions Test', () => {
                 canGoNext={() => false}
             />
         );
-        const nextButton = getByTestId('workflow-card-next-button');
+        const nextButton = getByTestId('blui-workflow-card-actions-next-button');
         fireEvent.press(nextButton);
         expect(onNext).toHaveBeenCalledTimes(0);
     });

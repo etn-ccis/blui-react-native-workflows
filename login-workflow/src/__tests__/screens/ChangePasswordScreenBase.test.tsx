@@ -40,8 +40,8 @@ describe('Change Password Screen Base', () => {
         renderer();
 
         const currentPasswordInput = screen.getAllByText('Current Password')[0];
-        const passwordInput = screen.getByTestId('password');
-        const confirmInput = screen.getByTestId('confirm');
+        const passwordInput = screen.getByTestId('blui-set-password-password-text-field');
+        const confirmInput = screen.getByTestId('blui-set-password-confirm-password-text-field');
 
         expect(currentPasswordInput).toBeOnTheScreen();
         expect(passwordInput).toBeOnTheScreen();
@@ -51,7 +51,7 @@ describe('Change Password Screen Base', () => {
     it('input onChange callBack', () => {
         renderer();
 
-        const currentPasswordInput = screen.getByTestId('current-password');
+        const currentPasswordInput = screen.getByTestId('blui-change-password-current-password-text-field');
         fireEvent.changeText(currentPasswordInput, 'Password@123A');
         expect(currentPasswordInput).toHaveDisplayValue('Password@123A');
     });
