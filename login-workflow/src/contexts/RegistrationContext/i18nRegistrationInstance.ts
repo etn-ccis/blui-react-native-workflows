@@ -1,16 +1,24 @@
 import i18next from 'i18next';
 import { RegistrationDictionaries } from './RegistrationDictionaries';
 import { SharedDictionaries } from '../SharedDictionaries';
+import { NativeModules, Platform } from 'react-native';
+
+const locale =
+    Platform.OS === 'ios'
+        ? NativeModules.SettingsManager.settings.AppleLocale
+        : NativeModules.I18nManager.localeIdentifier;
 
 export const i18nRegistrationInstance = i18next.createInstance(
     {
+        lng: locale.substring(0, 2),
         fallbackLng: 'en',
         ns: ['bluiRegistration', 'bluiCommon'],
         defaultNS: 'bluiRegistration',
         load: 'languageOnly',
         detection: {
-            order: ['querystring', 'localStorage', 'navigator'],
-            caches: ['localStorage'],
+            order: ['AsyncStorage'],
+            caches: ['AsyncStorage'],
+            lookupAsyncStorage: 'app-i18nextLng',
         },
         react: { useSuspense: false },
         interpolation: { escapeValue: false },
