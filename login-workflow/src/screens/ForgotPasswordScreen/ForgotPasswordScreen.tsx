@@ -29,6 +29,24 @@ export const ForgotPasswordScreen: React.FC<ForgotPasswordScreenProps> = (props)
     const theme = useExtendedTheme();
     const styles = makeStyles(theme);
 
+    const {
+        emailLabel = t('bluiCommon:LABELS.EMAIL'),
+        contactPhone = '1-800-123-4567',
+        initialEmailValue,
+        description,
+        responseTime = t('bluiAuth:FORGOT_PASSWORD.RESPONSE_TIME'),
+        emailValidator = (email: string): boolean | string =>
+            new RegExp(EMAIL_REGEX).test(email) ? true : t('bluiCommon:MESSAGES.EMAIL_ENTRY_ERROR'),
+        WorkflowCardBaseProps,
+        WorkflowCardHeaderProps,
+        WorkflowCardInstructionProps,
+        WorkflowCardActionsProps,
+        showSuccessScreen: enableSuccessScreen = true,
+        SuccessScreen,
+        SuccessScreenProps,
+        emailTextInputProps,
+    } = props;
+
     const errorDisplayConfig = {
         ...errorManagerConfig,
         ...props.errorDisplayConfig,
@@ -38,7 +56,7 @@ export const ForgotPasswordScreen: React.FC<ForgotPasswordScreenProps> = (props)
         },
     };
 
-    const [emailInput, setEmailInput] = useState('');
+    const [emailInput, setEmailInput] = useState(initialEmailValue ?? '');
     const [isLoading, setIsLoading] = useState(false);
     const [showSuccessScreen, setShowSuccessScreen] = useState(false);
 
@@ -74,23 +92,10 @@ export const ForgotPasswordScreen: React.FC<ForgotPasswordScreenProps> = (props)
         [actions, triggerError]
     );
 
-    const {
-        emailLabel = t('bluiCommon:LABELS.EMAIL'),
-        contactPhone = '1-800-123-4567',
-        initialEmailValue,
-        description,
-        responseTime = t('bluiAuth:FORGOT_PASSWORD.RESPONSE_TIME'),
-        emailValidator = (email: string): boolean | string =>
-            new RegExp(EMAIL_REGEX).test(email) ? true : t('bluiCommon:MESSAGES.EMAIL_ENTRY_ERROR'),
-        WorkflowCardBaseProps,
-        WorkflowCardHeaderProps,
-        WorkflowCardInstructionProps,
-        WorkflowCardActionsProps,
-        showSuccessScreen: enableSuccessScreen = true,
-        SuccessScreen,
-        SuccessScreenProps,
-        emailTextInputProps,
-    } = props;
+    const clearEmailInput = (): void => {
+        console.log('Test clear email Input');
+        setEmailInput('');
+    };
 
     const workflowCardBaseProps = {
         loading: isLoading,
@@ -114,7 +119,10 @@ export const ForgotPasswordScreen: React.FC<ForgotPasswordScreenProps> = (props)
 
     const workflowCardHeaderProps = {
         title: t('bluiAuth:HEADER.FORGOT_PASSWORD'),
-        onIconPress: (): void => navigate(-1),
+        onIconPress: (): void => {
+            navigate(-1);
+            clearEmailInput();
+        },
         ...WorkflowCardHeaderProps,
     };
 
@@ -139,6 +147,7 @@ export const ForgotPasswordScreen: React.FC<ForgotPasswordScreenProps> = (props)
         onPrevious: (): void => {
             navigate(routeConfig.LOGIN as string);
             WorkflowCardActionsProps?.onPrevious?.();
+            clearEmailInput();
         },
     };
 
@@ -149,7 +158,7 @@ export const ForgotPasswordScreen: React.FC<ForgotPasswordScreenProps> = (props)
             WorkflowCardInstructionProps={workflowCardInstructionProps}
             WorkflowCardActionsProps={workflowCardActionsProps}
             emailLabel={emailLabel}
-            initialEmailValue={initialEmailValue}
+            initialEmailValue={emailInput}
             emailValidator={emailValidator}
             emailTextInputProps={emailInputProps}
             showSuccessScreen={enableSuccessScreen && showSuccessScreen}
@@ -177,7 +186,10 @@ export const ForgotPasswordScreen: React.FC<ForgotPasswordScreenProps> = (props)
                     canGoNext: true,
                     fullWidthButton: true,
                     onNext: (): void => {
+                        clearEmailInput();
                         navigate(routeConfig.LOGIN as string);
+                        setShowSuccessScreen(false);
+                        console.log('Test onNext in Succes screen', emailInput);
                     },
                 },
                 ...SuccessScreenProps,
