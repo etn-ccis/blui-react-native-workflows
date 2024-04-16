@@ -37,6 +37,7 @@ export const UserMenuExample: React.FC<UserMenuExampleProps> = (props) => {
     const { i18n } = useTranslation();
     const nav = useNavigation();
     const app = useApp();
+    console.log('user menu routes', nav.getState()?.routes);
     const handleLanguageChange = (newLanguage: string): void => {
         app.setLanguage(newLanguage);
         void i18n.changeLanguage(newLanguage);
@@ -44,6 +45,8 @@ export const UserMenuExample: React.FC<UserMenuExampleProps> = (props) => {
     const logout = (): void => {
         LocalStorage.clearAuthCredentials();
         app.onUserNotAuthenticated();
+        // app.setAuthenticated(false);
+        app.setLoginData({ email: '', rememberMe: false });
         nav.navigate('LOGIN');
     };
     const changePassword = (): void => {

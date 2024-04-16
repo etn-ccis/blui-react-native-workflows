@@ -12,13 +12,15 @@ export const ChangePassword = (): JSX.Element => {
     const logOut = (): void => {
         LocalStorage.clearAuthCredentials();
         app.onUserNotAuthenticated();
+        // app.setAuthenticated(false);
     };
-
+    console.log('routes before', nav.getState()?.routes);
     return (
         <ChangePasswordScreen
             onFinish={(): void => logOut()}
             WorkflowCardHeaderProps={{
                 onIconPress: (): void => {
+                    console.log('routes', nav.getState()?.routes);
                     nav.goBack();
                 },
             }}

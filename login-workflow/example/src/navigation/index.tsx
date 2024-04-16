@@ -88,8 +88,12 @@ const AuthRouter = (): any => {
                     }}
                 >
                     <Stack.Screen name="LOGIN" component={Login} />
+                    {/* {!app.isAuthenticated && ( */}
                     <Stack.Screen name="FORGOT_PASSWORD" component={ForgotPasswordScreenBaseExample} />
+                    {/* )} */}
+                    {/* {!app.isAuthenticated && ( */}
                     <Stack.Screen name="RESET_PASSWORD" component={ResetPasswordScreenBaseExample} />
+                    {/* )} */}
                     <Stack.Screen name="SUPPORT" component={ContactBaseExample} />
                     {app.isAuthenticated && <Stack.Screen name="ChangePassword" component={ChangePassword} />}
                 </Stack.Navigator>
@@ -143,10 +147,10 @@ const RegistrationRouter = (): any => {
 export const MainRouter = (): any => {
     const app = useApp();
     // Retrieve data that you are storing about the logged-in status of the user
-
+    console.log('app.is', app.isAuthenticated);
     return (
         <NavigationContainer ref={navigationRef}>
-            <RootStack.Navigator
+            <Stack.Navigator
                 initialRouteName="AuthProviderExample"
                 screenOptions={{
                     headerShown: false,
@@ -155,7 +159,7 @@ export const MainRouter = (): any => {
                 <Stack.Screen name="AppProviderExample" component={AppRouter} />
                 <Stack.Screen name="AuthProviderExample" component={AuthRouter} />
                 <Stack.Screen name="RegistrationProviderExample" component={RegistrationRouter} />
-            </RootStack.Navigator>
+            </Stack.Navigator>
         </NavigationContainer>
     );
 };
