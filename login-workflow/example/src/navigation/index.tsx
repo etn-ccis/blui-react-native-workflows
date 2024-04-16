@@ -8,7 +8,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
 import Home from '../screens/home';
 import { View } from 'react-native';
-import { Login } from '../screens/Login';
+import { LoginBaseExample } from '../screens/LoginBaseExample';
 import { ResetPasswordScreenBaseExample } from '../components/ResetPasswordScreenBaseExample';
 import { ForgotPasswordScreenBaseExample } from '../components/ForgotPasswordScreenBaseExample';
 import { ContactBaseExample } from '../screens/ContactBaseExample';
@@ -20,11 +20,8 @@ import Dashboard from '../screens/Dashboard';
 
 import { RegistrationContextProvider } from '@brightlayer-ui/react-native-auth-workflow';
 import { useNavigation } from '@react-navigation/native';
-// import { useApp } from '../contexts/AppContextProvider';
 import { ProjectRegistrationUIActions } from '../actions/RegistrationUIActions';
 import { RegistrationInvite } from '../screens/RegistrationInvite';
-// import i18nAppInstance from '../../translations/i18n';
-// import { createStackNavigator } from '@react-navigation/stack';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -58,6 +55,7 @@ const AppRouter = (): any => (
             drawerStyle: { backgroundColor: 'transparent' },
         }}
         drawerContent={(props: any): ReactNode => <CustomDrawerContent {...props} />}
+        backBehavior="none"
     >
         <RootStack.Screen name="Home" component={Home} />
         <RootStack.Screen name="Locations" component={Locations} />
@@ -87,13 +85,9 @@ const AuthRouter = (): any => {
                         headerShown: false,
                     }}
                 >
-                    <Stack.Screen name="LOGIN" component={Login} />
-                    {/* {!app.isAuthenticated && ( */}
+                    <Stack.Screen name="LOGIN" component={LoginBaseExample} />
                     <Stack.Screen name="FORGOT_PASSWORD" component={ForgotPasswordScreenBaseExample} />
-                    {/* )} */}
-                    {/* {!app.isAuthenticated && ( */}
                     <Stack.Screen name="RESET_PASSWORD" component={ResetPasswordScreenBaseExample} />
-                    {/* )} */}
                     <Stack.Screen name="SUPPORT" component={ContactBaseExample} />
                     {app.isAuthenticated && <Stack.Screen name="ChangePassword" component={ChangePassword} />}
                 </Stack.Navigator>
@@ -145,15 +139,13 @@ const RegistrationRouter = (): any => {
     );
 };
 export const MainRouter = (): any => {
-    const app = useApp();
-    // Retrieve data that you are storing about the logged-in status of the user
-    console.log('app.is', app.isAuthenticated);
     return (
         <NavigationContainer ref={navigationRef}>
             <Stack.Navigator
                 initialRouteName="AuthProviderExample"
                 screenOptions={{
                     headerShown: false,
+                    animationEnabled: false,
                 }}
             >
                 <Stack.Screen name="AppProviderExample" component={AppRouter} />

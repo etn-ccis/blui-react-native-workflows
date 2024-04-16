@@ -7,7 +7,7 @@ import SelectDropdown from 'react-native-select-dropdown';
 import { useTranslation } from 'react-i18next';
 import { useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 import { useApp } from '../contexts/AppContextProvider';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { LocalStorage } from '../store/local-storage';
 
 const SwapIcon: IconFamily = {
@@ -37,7 +37,7 @@ export const UserMenuExample: React.FC<UserMenuExampleProps> = (props) => {
     const { i18n } = useTranslation();
     const nav = useNavigation();
     const app = useApp();
-    console.log('user menu routes', nav.getState()?.routes);
+    const route = useRoute().name;
     const handleLanguageChange = (newLanguage: string): void => {
         app.setLanguage(newLanguage);
         void i18n.changeLanguage(newLanguage);
@@ -50,7 +50,10 @@ export const UserMenuExample: React.FC<UserMenuExampleProps> = (props) => {
         nav.navigate('LOGIN');
     };
     const changePassword = (): void => {
-        nav.navigate('ChangePassword');
+        nav.navigate({
+            name: 'ChangePassword',
+            params: { previousScreen: route },
+        });
     };
     const languageOptions = [
         { label: 'English', value: 'en' },
