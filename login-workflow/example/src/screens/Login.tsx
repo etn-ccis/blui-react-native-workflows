@@ -22,7 +22,7 @@ export const Login: React.FC<CreatePasswordProps> = () => {
             userId: usernameInput,
             rememberMe: false,
         });
-        navigation.navigate('Home');
+        navigation.navigate('AppProviderExample');
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -52,7 +52,7 @@ export const Login: React.FC<CreatePasswordProps> = () => {
                             labelStyle={{ fontSize: 16 }}
                             uppercase={false}
                             onPress={(): void => {
-                                navigation.navigate('REGISTER_INVITE', { screen: 'NESTED_REGISTER_INVITE' });
+                                navigation.navigate('RegistrationProviderExample', { screen: 'REGISTER_INVITE' });
                             }}
                         >
                             [Test Invite Register]
@@ -62,7 +62,7 @@ export const Login: React.FC<CreatePasswordProps> = () => {
                             labelStyle={{ fontSize: 16 }}
                             uppercase={false}
                             onPress={(): void => {
-                                navigation.navigate('REGISTER_SELF');
+                                navigation.navigate('RegistrationProviderExample', { screen: 'REGISTER_SELF' });
                             }}
                         >
                             [Test Self Register]

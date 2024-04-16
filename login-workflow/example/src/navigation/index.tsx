@@ -18,6 +18,14 @@ import { Registration } from '../screens/Registration';
 import Locations from '../screens/Locations';
 import Dashboard from '../screens/Dashboard';
 
+import { RegistrationContextProvider } from '@brightlayer-ui/react-native-auth-workflow';
+import { useNavigation } from '@react-navigation/native';
+// import { useApp } from '../contexts/AppContextProvider';
+import { ProjectRegistrationUIActions } from '../actions/RegistrationUIActions';
+import { RegistrationInvite } from '../screens/RegistrationInvite';
+// import i18nAppInstance from '../../translations/i18n';
+// import { createStackNavigator } from '@react-navigation/stack';
+
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 const navigationRef = createNavigationContainerRef();
@@ -54,7 +62,6 @@ const AppRouter = (): any => (
         <RootStack.Screen name="Home" component={Home} />
         <RootStack.Screen name="Locations" component={Locations} />
         <RootStack.Screen name="Dashboard" component={Dashboard} />
-        <RootStack.Screen name="ChangePassword" component={ChangePassword} />
     </Drawer.Navigator>
 );
 const AuthRouter = (): any => {
@@ -84,10 +91,52 @@ const AuthRouter = (): any => {
                     <Stack.Screen name="FORGOT_PASSWORD" component={ForgotPasswordScreenBaseExample} />
                     <Stack.Screen name="RESET_PASSWORD" component={ResetPasswordScreenBaseExample} />
                     <Stack.Screen name="SUPPORT" component={ContactBaseExample} />
-                    <Stack.Screen name="REGISTER_SELF" component={Registration} />
-                    <Stack.Screen name="REGISTER_INVITE" component={Registration} />
+                    {app.isAuthenticated && <Stack.Screen name="ChangePassword" component={ChangePassword} />}
                 </Stack.Navigator>
             </AuthContextProvider>
+        </>
+    );
+};
+
+const RegistrationRouter = (): any => {
+    const app = useApp();
+    const navigation = useNavigation();
+    const routes = {
+        LOGIN: 'LOGIN',
+        FORGOT_PASSWORD: undefined,
+        RESET_PASSWORD: undefined,
+        REGISTER_INVITE: 'REGISTER_INVITE',
+        REGISTER_SELF: 'REGISTER_SELF',
+        SUPPORT: undefined,
+    };
+    const RegistrationStack = createStackNavigator();
+    return (
+        <>
+            <RegistrationContextProvider
+                language={app.language}
+                actions={ProjectRegistrationUIActions()}
+                i18n={i18nAppInstance}
+                routeConfig={routes}
+                navigate={(destination: -1 | string) => {
+                    if (typeof destination === 'string') {
+                        navigation.navigate(destination);
+                    } else {
+                        navigation.goBack();
+                    }
+                }}
+            >
+                <RegistrationStack.Navigator
+                    screenOptions={{
+                        headerShown: false,
+                    }}
+                >
+                    <RegistrationStack.Screen name="REGISTER_SELF" component={Registration}></RegistrationStack.Screen>
+                    <RegistrationStack.Screen
+                        name="REGISTER_INVITE"
+                        component={RegistrationInvite}
+                    ></RegistrationStack.Screen>
+                </RegistrationStack.Navigator>
+            </RegistrationContextProvider>
         </>
     );
 };
@@ -97,13 +146,16 @@ export const MainRouter = (): any => {
 
     return (
         <NavigationContainer ref={navigationRef}>
-            {app.isAuthenticated ? (
-                <AppRouter />
-            ) : (
-                <>
-                    <AuthRouter />
-                </>
-            )}
+            <RootStack.Navigator
+                initialRouteName="AuthProviderExample"
+                screenOptions={{
+                    headerShown: false,
+                }}
+            >
+                <Stack.Screen name="AppProviderExample" component={AppRouter} />
+                <Stack.Screen name="AuthProviderExample" component={AuthRouter} />
+                <Stack.Screen name="RegistrationProviderExample" component={RegistrationRouter} />
+            </RootStack.Navigator>
         </NavigationContainer>
     );
 };

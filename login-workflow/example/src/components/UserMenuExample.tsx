@@ -44,6 +44,7 @@ export const UserMenuExample: React.FC<UserMenuExampleProps> = (props) => {
     const logout = (): void => {
         LocalStorage.clearAuthCredentials();
         app.onUserNotAuthenticated();
+        nav.navigate('LOGIN');
     };
     const changePassword = (): void => {
         nav.navigate('ChangePassword');
