@@ -21,6 +21,7 @@ export const CreatePasswordScreenBase: React.FC<CreatePasswordScreenProps> = (pr
     const cardBaseProps = props.WorkflowCardBaseProps || {};
     const headerProps = props.WorkflowCardHeaderProps || {};
     const instructionsProps = props.WorkflowCardInstructionProps || {};
+    const cardBodyProps = props.WorkflowCardBodyProps || {};
     const actionsProps = props.WorkflowCardActionsProps || {};
     const passwordProps = props.PasswordProps || { onPasswordChange: () => ({}) };
     const { errorDisplayConfig } = props;
@@ -28,8 +29,8 @@ export const CreatePasswordScreenBase: React.FC<CreatePasswordScreenProps> = (pr
     return (
         <WorkflowCard {...cardBaseProps}>
             <WorkflowCardHeader {...headerProps} />
-            <WorkflowCardInstructions {...instructionsProps} />
-            <WorkflowCardBody>
+            {/* <WorkflowCardInstructions {...instructionsProps} /> */}
+            <WorkflowCardBody {...cardBodyProps}>
                 <ErrorManager {...errorDisplayConfig}>
                     <SetPassword {...passwordProps} />
                 </ErrorManager>

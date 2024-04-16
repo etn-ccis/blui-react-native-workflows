@@ -46,6 +46,7 @@ export const AccountDetailsScreenBase: React.FC<AccountDetailsScreenProps> = (pr
     const cardBaseProps = props.WorkflowCardBaseProps || {};
     const headerProps = props.WorkflowCardHeaderProps || {};
     const instructionsProps = props.WorkflowCardInstructionProps || {};
+    const cardBodyProps = props.WorkflowCardBodyProps || {};
     const actionsProps = props.WorkflowCardActionsProps || {};
 
     const firstNameRef = useRef<any>(null);
@@ -100,8 +101,8 @@ export const AccountDetailsScreenBase: React.FC<AccountDetailsScreenProps> = (pr
     return (
         <WorkflowCard {...cardBaseProps}>
             <WorkflowCardHeader {...headerProps} />
-            <WorkflowCardInstructions {...instructionsProps} />
-            <WorkflowCardBody>
+            {/* <WorkflowCardInstructions {...instructionsProps} /> */}
+            <WorkflowCardBody {...cardBodyProps}>
                 <ErrorManager {...errorDisplayConfig}>
                     <TextInput
                         testID="blui-account-details-first-name"

@@ -76,6 +76,7 @@ export const EulaScreenBase: React.FC<EulaScreenProps> = (props) => {
     const cardBaseProps = props.WorkflowCardBaseProps || {};
     const headerProps = props.WorkflowCardHeaderProps || {};
     const instructionsProps = props.WorkflowCardInstructionProps || {};
+    const cardBodyProps = props.WorkflowCardBodyProps || {};
     const actionsProps = props.WorkflowCardActionsProps || {};
     const theme = useExtendedTheme();
     const { t } = useTranslation();
@@ -116,8 +117,8 @@ export const EulaScreenBase: React.FC<EulaScreenProps> = (props) => {
     return (
         <WorkflowCard {...cardBaseProps}>
             <WorkflowCardHeader {...headerProps} />
-            {Object.keys(instructionsProps).length !== 0 && <WorkflowCardInstructions {...instructionsProps} />}
-            <WorkflowCardBody scrollable={false}>
+            {/* {Object.keys(instructionsProps).length !== 0 && <WorkflowCardInstructions {...instructionsProps} />} */}
+            <WorkflowCardBody scrollable={false} {...cardBodyProps}>
                 <View style={defaultStyles.container}>
                     {refreshConfig?.showRefreshButton ? (
                         <View style={defaultStyles.retryContainer}>

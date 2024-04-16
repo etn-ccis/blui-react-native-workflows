@@ -87,6 +87,8 @@ export type WorkflowCardBodyProps = Partial<CardContentProps> & {
      * @default true
      */
     scrollable?: boolean;
+
+    WorkflowCardInstructionProps?: WorkflowCardInstructionProps;
 };
 
 /**

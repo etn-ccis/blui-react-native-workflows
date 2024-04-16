@@ -35,6 +35,7 @@ export const VerifyCodeScreenBase: React.FC<React.PropsWithChildren<VerifyCodeSc
     const cardBaseProps = props.WorkflowCardBaseProps || {};
     const headerProps = props.WorkflowCardHeaderProps || {};
     const instructionsProps = props.WorkflowCardInstructionProps || {};
+    const cardBodyProps = props.WorkflowCardBodyProps || {};
     const actionsProps = props.WorkflowCardActionsProps || {};
 
     const [verifyCode, setVerifyCode] = React.useState(initialValue ?? '');
@@ -77,8 +78,8 @@ export const VerifyCodeScreenBase: React.FC<React.PropsWithChildren<VerifyCodeSc
     return (
         <WorkflowCard {...cardBaseProps}>
             <WorkflowCardHeader {...headerProps} />
-            <WorkflowCardInstructions {...instructionsProps} />
-            <WorkflowCardBody>
+            {/* <WorkflowCardInstructions {...instructionsProps} /> */}
+            <WorkflowCardBody {...cardBodyProps}>
                 <ErrorManager {...errorDisplayConfig}>
                     <TextInput
                         label={verifyCodeInputLabel}
