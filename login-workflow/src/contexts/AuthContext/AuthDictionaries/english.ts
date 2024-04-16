@@ -7,7 +7,7 @@ const resources: AuthLanguageFile = {
             INSTRUCTIONS:
                 'Please enter the account email associated with the account.\n\n' +
                 'If this email has an account with Eaton, you will receive a response within <boldTag>{{time}}</boldTag>.\n\n' +
-                'For urgent account issues, please call {{phone}}.',
+                'For urgent account issues, please call <tel>{{phone}}</tel>.',
             INSTRUCTIONS_ALT:
                 'Please enter the account email associated with the account.<br/><br/>' +
                 'If this email has an account with Eaton, you will receive a response within <1>{{time}}</1>.<br/><br/>' +

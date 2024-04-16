@@ -48,6 +48,12 @@ export const ForgotPasswordScreen: React.FC<ForgotPasswordScreenProps> = (props)
         <Text style={styles.boldText}>{children}</Text>
     );
 
+    const Link = ({ children }: { children: React.ReactNode }): JSX.Element => (
+        <Text style={styles.textStyles} onPress={(): any => Linking.openURL(`tel:${contactPhone ?? ''}`)}>
+            {children}
+        </Text>
+    );
+
     const handleOnNext = useCallback(
         async (email: string): Promise<void> => {
             try {
@@ -99,13 +105,8 @@ export const ForgotPasswordScreen: React.FC<ForgotPasswordScreenProps> = (props)
                 <Trans
                     i18nKey={'bluiAuth:FORGOT_PASSWORD.INSTRUCTIONS'}
                     values={{ phone: contactPhone, time: responseTime }}
-                    components={{ boldTag: <Bold>{responseTime}</Bold> }}
-                >
-                    Please enter your email, we will respond in {responseTime}. For urgent issues please call
-                    <Text style={styles.textStyles} onPress={(): any => Linking.openURL(`tel:${contactPhone ?? ''}`)}>
-                        {contactPhone}
-                    </Text>
-                </Trans>
+                    components={{ boldTag: <Bold>{responseTime}</Bold>, tel: <Link>{contactPhone}</Link> }}
+                />
             </Text>
         ),
         ...WorkflowCardInstructionProps,
@@ -129,6 +130,7 @@ export const ForgotPasswordScreen: React.FC<ForgotPasswordScreenProps> = (props)
         previousLabel: t('bluiCommon:ACTIONS.BACK'),
         canGoNext: true,
         canGoPrevious: true,
+        totalSteps: 0,
         ...WorkflowCardActionsProps,
         onNext: (): void => {
             void handleOnNext(emailInput);
@@ -162,9 +164,7 @@ export const ForgotPasswordScreen: React.FC<ForgotPasswordScreenProps> = (props)
                                 i18nKey={'bluiAuth:FORGOT_PASSWORD.LINK_SENT'}
                                 values={{ email: emailInput }}
                                 components={{ boldTag: <Bold>{emailInput}</Bold> }}
-                            >
-                                A link to reset your password has been sent to {emailInput}.
-                            </Trans>
+                            />
                         </Text>
                     ),
                 },
