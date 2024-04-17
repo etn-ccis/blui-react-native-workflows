@@ -6,7 +6,6 @@ import {
     WorkflowCardActions,
     WorkflowCardBody,
     WorkflowCardHeader,
-    WorkflowCardInstructions,
 } from '../../components';
 import { HelperText, TextInput } from 'react-native-paper';
 
@@ -32,7 +31,6 @@ export const CreateAccountScreenBase: React.FC<CreateAccountScreenProps & { inpu
 
     const cardBaseProps = props.WorkflowCardBaseProps || {};
     const headerProps = props.WorkflowCardHeaderProps || {};
-    const instructionsProps = props.WorkflowCardInstructionProps || {};
     const cardBodyProps = props.WorkflowCardBodyProps || {};
     const actionsProps = props.WorkflowCardActionsProps || {};
 
@@ -61,7 +59,6 @@ export const CreateAccountScreenBase: React.FC<CreateAccountScreenProps & { inpu
     return (
         <WorkflowCard {...cardBaseProps}>
             <WorkflowCardHeader {...headerProps} />
-            {/* {Object.keys(instructionsProps).length !== 0 && <WorkflowCardInstructions {...instructionsProps} />} */}
             <WorkflowCardBody {...cardBodyProps}>
                 <ErrorManager {...errorDisplayConfig}>
                     <TextInput

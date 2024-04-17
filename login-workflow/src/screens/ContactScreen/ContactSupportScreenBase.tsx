@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-    WorkflowCard,
-    WorkflowCardActions,
-    WorkflowCardBody,
-    WorkflowCardHeader,
-    WorkflowCardInstructions,
-} from '../../components/WorkflowCard';
+import { WorkflowCard, WorkflowCardActions, WorkflowCardBody, WorkflowCardHeader } from '../../components/WorkflowCard';
 import { ContactSupportScreenProps } from './types';
 import { Text } from 'react-native-paper';
 import { View } from 'react-native';
@@ -37,19 +31,18 @@ export const ContactSupportScreenBase: React.FC<ContactSupportScreenProps> = (pr
     const theme = useExtendedTheme();
     const cardBaseProps = props.WorkflowCardBaseProps || {};
     const headerProps = props.WorkflowCardHeaderProps || {};
-    const instructionsProps = props.WorkflowCardInstructionProps || {};
+    const cardBodyProps = props.WorkflowCardBodyProps || {};
     const actionsProps = props.WorkflowCardActionsProps || {};
 
     return (
         <WorkflowCard {...cardBaseProps}>
             <WorkflowCardHeader {...headerProps} />
-            {Object.keys(instructionsProps).length !== 0 && <WorkflowCardInstructions {...instructionsProps} />}
             {icon && (
                 <View style={{ alignItems: 'center', marginTop: 48, marginBottom: 16 }}>
                     <Icon source={icon} size={iconSize || 24} color={theme.colors.disabled} />
                 </View>
             )}
-            <WorkflowCardBody>
+            <WorkflowCardBody {...cardBodyProps}>
                 <Text variant={'bodyLarge'} style={{ marginBottom: 8 }}>
                     {emailSupportTitle}
                 </Text>

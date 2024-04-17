@@ -16,6 +16,7 @@ export const ChangePasswordScreen: React.FC<ChangePasswordScreenProps> = (props)
         WorkflowCardBaseProps,
         WorkflowCardHeaderProps,
         WorkflowCardInstructionProps,
+        WorkflowCardBodyProps,
         WorkflowCardActionsProps,
         currentPasswordTextInputProps,
         onFinish,
@@ -137,6 +138,11 @@ export const ChangePasswordScreen: React.FC<ChangePasswordScreenProps> = (props)
         ...WorkflowCardInstructionProps,
     };
 
+    const workflowCardBodyProps = {
+        WorkflowCardInstructionProps: workflowCardInstructionProps,
+        ...WorkflowCardBodyProps,
+    };
+
     const workflowCardActionsProps = {
         showPrevious: false,
         fullWidthButton: true,
@@ -154,7 +160,7 @@ export const ChangePasswordScreen: React.FC<ChangePasswordScreenProps> = (props)
         <ChangePasswordScreenBase
             WorkflowCardBaseProps={workflowCardBaseProps}
             WorkflowCardHeaderProps={workflowCardHeaderProps}
-            WorkflowCardInstructionProps={workflowCardInstructionProps}
+            WorkflowCardBodyProps={workflowCardBodyProps}
             WorkflowCardActionsProps={workflowCardActionsProps}
             currentPasswordLabel={currentPasswordLabel}
             currentPasswordChange={(currentPwd): void => {

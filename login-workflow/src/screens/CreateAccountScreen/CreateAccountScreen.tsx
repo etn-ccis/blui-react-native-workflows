@@ -91,6 +91,11 @@ export const CreateAccountScreen: React.FC<CreateAccountScreenProps> = (props) =
         ...WorkflowCardInstructionProps,
     };
 
+    const workflowCardBodyProps = {
+        WorkflowCardInstructionProps: workflowCardInstructionProps,
+        ...WorkflowCardBodyProps,
+    };
+
     const workflowCardActionsProps = {
         showNext: true,
         nextLabel: t('bluiCommon:ACTIONS.NEXT'),
@@ -111,11 +116,6 @@ export const CreateAccountScreen: React.FC<CreateAccountScreenProps> = (props) =
         },
     };
 
-    const workflowCardBodyProps = {
-        WorkflowCardInstructionProps: workflowCardInstructionProps,
-        ...WorkflowCardBodyProps,
-    };
-
     const onEmailInputValueChange = (e: any): void => {
         setEmailInputValue(e);
     };
@@ -125,14 +125,13 @@ export const CreateAccountScreen: React.FC<CreateAccountScreenProps> = (props) =
             WorkflowCardBaseProps={workflowCardBaseProps}
             WorkflowCardHeaderProps={workflowCardHeaderProps}
             WorkflowCardBodyProps={workflowCardBodyProps}
-            WorkflowCardInstructionProps={workflowCardInstructionProps}
+            WorkflowCardActionsProps={workflowCardActionsProps}
             emailLabel={emailLabel}
             initialValue={
                 screenData.CreateAccount.emailAddress.length > 0 ? screenData.CreateAccount.emailAddress : initialValue
             }
             emailTextFieldProps={{ ...emailTextFieldProps, onChangeText: onEmailInputValueChange }}
             emailValidator={emailValidator}
-            WorkflowCardActionsProps={workflowCardActionsProps}
             errorDisplayConfig={errorDisplayConfig}
         />
     );

@@ -4,7 +4,6 @@ import {
     WorkflowCard,
     WorkflowCardHeader,
     WorkflowCardBody,
-    WorkflowCardInstructions,
     SetPassword,
     WorkflowCardActions,
     ErrorManager,
@@ -23,7 +22,7 @@ import { SuccessScreenBase, SuccessScreenProps } from '../SuccessScreen';
 export const ResetPasswordScreenBase: React.FC<ResetPasswordScreenProps> = (props) => {
     const cardBaseProps = props.WorkflowCardBaseProps || {};
     const headerProps = props.WorkflowCardHeaderProps || {};
-    const instructionsProps = props.WorkflowCardInstructionProps || {};
+    const cardBodyProps = props.WorkflowCardBodyProps || {};
     const actionsProps = props.WorkflowCardActionsProps || {};
     const passwordProps = props.PasswordProps || { onPasswordChange: () => ({}) };
     const { showSuccessScreen, SuccessScreen, SuccessScreenProps: successScreenProps, errorDisplayConfig } = props;
@@ -40,8 +39,7 @@ export const ResetPasswordScreenBase: React.FC<ResetPasswordScreenProps> = (prop
             ) : (
                 <WorkflowCard {...cardBaseProps}>
                     <WorkflowCardHeader {...headerProps} />
-                    <WorkflowCardInstructions {...instructionsProps} />
-                    <WorkflowCardBody>
+                    <WorkflowCardBody {...cardBodyProps}>
                         <ErrorManager {...errorDisplayConfig}>
                             <SetPassword {...passwordProps} />
                         </ErrorManager>

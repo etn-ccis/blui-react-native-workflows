@@ -6,7 +6,6 @@ import {
     WorkflowCardActions,
     WorkflowCardBody,
     WorkflowCardHeader,
-    WorkflowCardInstructions,
 } from '../../components';
 import { LayoutChangeEvent, ScrollView, TouchableOpacity, View, StyleSheet, ViewStyle, TextStyle } from 'react-native';
 import { Checkbox, Text } from 'react-native-paper';
@@ -14,6 +13,7 @@ import { Icon } from '@brightlayer-ui/react-native-components';
 import { WebView } from 'react-native-webview';
 import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 import { useTranslation } from 'react-i18next';
+
 const makeStyles = (
     theme: ExtendedTheme
 ): StyleSheet.NamedStyles<{
@@ -60,7 +60,6 @@ const makeStyles = (
  *
  * @category Component
  */
-
 export const EulaScreenBase: React.FC<EulaScreenProps> = (props) => {
     const {
         onEulaAcceptedChange,
@@ -75,7 +74,6 @@ export const EulaScreenBase: React.FC<EulaScreenProps> = (props) => {
 
     const cardBaseProps = props.WorkflowCardBaseProps || {};
     const headerProps = props.WorkflowCardHeaderProps || {};
-    const instructionsProps = props.WorkflowCardInstructionProps || {};
     const cardBodyProps = props.WorkflowCardBodyProps || {};
     const actionsProps = props.WorkflowCardActionsProps || {};
     const theme = useExtendedTheme();
@@ -110,14 +108,15 @@ export const EulaScreenBase: React.FC<EulaScreenProps> = (props) => {
         }
         return layoutMeasurement.height + contentOffset.y >= contentSize.height - paddingToBottom;
     };
+
     const handleLayout = (event: LayoutChangeEvent): void => {
         const { width, height } = event.nativeEvent.layout;
         contentSizeRef.current = { width, height };
     };
+
     return (
         <WorkflowCard {...cardBaseProps}>
             <WorkflowCardHeader {...headerProps} />
-            {/* {Object.keys(instructionsProps).length !== 0 && <WorkflowCardInstructions {...instructionsProps} />} */}
             <WorkflowCardBody scrollable={false} {...cardBodyProps}>
                 <View style={defaultStyles.container}>
                     {refreshConfig?.showRefreshButton ? (

@@ -1,12 +1,6 @@
 import React, { useCallback, useEffect, useRef } from 'react';
 import { TextInput, HelperText } from 'react-native-paper';
-import {
-    WorkflowCard,
-    WorkflowCardActions,
-    WorkflowCardBody,
-    WorkflowCardHeader,
-    WorkflowCardInstructions,
-} from '../../components/WorkflowCard';
+import { WorkflowCard, WorkflowCardActions, WorkflowCardBody, WorkflowCardHeader } from '../../components/WorkflowCard';
 import { AccountDetailsScreenProps } from './types';
 import { ErrorManager } from '../../components';
 import { StyleSheet, TextStyle } from 'react-native';
@@ -45,7 +39,6 @@ export const AccountDetailsScreenBase: React.FC<AccountDetailsScreenProps> = (pr
 
     const cardBaseProps = props.WorkflowCardBaseProps || {};
     const headerProps = props.WorkflowCardHeaderProps || {};
-    const instructionsProps = props.WorkflowCardInstructionProps || {};
     const cardBodyProps = props.WorkflowCardBodyProps || {};
     const actionsProps = props.WorkflowCardActionsProps || {};
 
@@ -101,7 +94,6 @@ export const AccountDetailsScreenBase: React.FC<AccountDetailsScreenProps> = (pr
     return (
         <WorkflowCard {...cardBaseProps}>
             <WorkflowCardHeader {...headerProps} />
-            {/* <WorkflowCardInstructions {...instructionsProps} /> */}
             <WorkflowCardBody {...cardBodyProps}>
                 <ErrorManager {...errorDisplayConfig}>
                     <TextInput
