@@ -79,7 +79,7 @@ export const Login: React.FC<CreatePasswordProps> = () => {
                             mode={'text'}
                             labelStyle={{ fontSize: 16 }}
                             uppercase={false}
-                            onPress={(): void => navigation.navigate('RESET_PASSWORD')}
+                            onPress={(): void => navigation.navigate('ResetPassword')}
                         >
                             [Test Reset Password]
                         </Button>
@@ -87,7 +87,7 @@ export const Login: React.FC<CreatePasswordProps> = () => {
                             mode={'text'}
                             labelStyle={{ fontSize: 16 }}
                             uppercase={false}
-                            onPress={(): void => navigation.navigate('SUPPORT')}
+                            onPress={(): void => navigation.navigate('ContactSupport')}
                         >
                             [Test Contact Support]
                         </Button>

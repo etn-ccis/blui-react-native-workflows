@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import { LoginScreenProps, LoginScreenBase } from '@brightlayer-ui/react-native-auth-workflow';
 import { Image } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { useApp } from '../contexts/AppContextProvider';
+import { DebugComponent } from '../components/DebugComponent';
 
 export const LoginBaseExample: React.FC<React.PropsWithChildren<LoginScreenProps>> = (props) => {
     const [rememberMe, setRememberMe] = useState(false);
     const EMAIL_REGEX = /^[A-Z0-9._%+'-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+    const navigation = useNavigation();
+    const app = useApp();
 
     const {
         usernameLabel = 'EMAIL',
@@ -34,16 +39,22 @@ export const LoginBaseExample: React.FC<React.PropsWithChildren<LoginScreenProps
         showForgotPassword = true,
         forgotPasswordLabel = 'FORGOT PASSWORD',
         // eslint-disable-next-line no-console
-        onForgotPassword = (): void => console.log('forgot password pressed'),
+        onForgotPassword = (): void => {
+            navigation.navigate('ForgotPassword');
+        },
         showSelfRegistration = true,
         selfRegisterInstructions = 'NEED ACCOUNT',
         selfRegisterButtonLabel = 'CREATE ACCOUNT',
         // eslint-disable-next-line no-console
-        onSelfRegister = (): void => console.log('self registration pressed'),
+        onSelfRegister = (): void => {
+            navigation.navigate('RegistrationProviderExample', { screen: 'SelfRegister' });
+        },
         showContactSupport = true,
         contactSupportLabel = 'CONTACT',
         // eslint-disable-next-line no-console
-        onContactSupport = (): void => console.log('self registration pressed'),
+        onContactSupport = (): void => {
+            navigation.navigate('ContactSupport');
+        },
         showCyberSecurityBadge = true,
         header,
         footer,
@@ -66,7 +77,15 @@ export const LoginBaseExample: React.FC<React.PropsWithChildren<LoginScreenProps
             loginButtonLabel={loginButtonLabel}
             onLogin={(user: string | undefined, pass: string | undefined): void =>
                 // eslint-disable-next-line no-console
-                console.log('loginPressed', user, pass)
+                {
+                    app.onUserAuthenticated({
+                        email: 'Test@test.com',
+                        userId: user || '',
+                        rememberMe: false,
+                    });
+                    console.log('LoginBaseExample onLogin', user, pass);
+                    navigation.navigate('AppProviderExample');
+                }
             }
             showForgotPassword={showForgotPassword}
             forgotPasswordLabel={forgotPasswordLabel}
@@ -86,7 +105,7 @@ export const LoginBaseExample: React.FC<React.PropsWithChildren<LoginScreenProps
                     source={require('../assets/images/eaton_stacked_logo.png')}
                 />
             }
-            header={header}
+            header={<DebugComponent />}
             footer={footer}
         />
     );

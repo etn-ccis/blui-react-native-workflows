@@ -35,7 +35,7 @@ export const UserMenuExample: React.FC<UserMenuExampleProps> = (props) => {
     const { onToggleRTL, onToggleTheme } = props;
     const theme = useExtendedTheme();
     const { i18n } = useTranslation();
-    const nav = useNavigation();
+    const navigation = useNavigation();
     const app = useApp();
     const route = useRoute().name;
     const handleLanguageChange = (newLanguage: string): void => {
@@ -47,13 +47,10 @@ export const UserMenuExample: React.FC<UserMenuExampleProps> = (props) => {
         app.onUserNotAuthenticated();
         // app.setAuthenticated(false);
         app.setLoginData({ email: '', rememberMe: false });
-        nav.navigate('LOGIN');
+        navigation.navigate('Login'); // Updated code
     };
     const changePassword = (): void => {
-        nav.navigate({
-            name: 'ChangePassword',
-            params: { previousScreen: route },
-        });
+        navigation.navigate('ChangePassword', { previousScreen: route });
     };
     const languageOptions = [
         { label: 'English', value: 'en' },
