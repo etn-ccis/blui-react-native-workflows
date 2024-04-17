@@ -18,7 +18,6 @@ import { SuccessScreenBase, SuccessScreenProps } from '../SuccessScreen';
  * @category Component
  *
  */
-
 export const ResetPasswordScreenBase: React.FC<ResetPasswordScreenProps> = (props) => {
     const cardBaseProps = props.WorkflowCardBaseProps || {};
     const headerProps = props.WorkflowCardHeaderProps || {};

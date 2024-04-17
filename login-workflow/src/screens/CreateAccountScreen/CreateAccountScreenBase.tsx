@@ -17,7 +17,6 @@ import { HelperText, TextInput } from 'react-native-paper';
  *
  * @category Component
  */
-
 export const CreateAccountScreenBase: React.FC<CreateAccountScreenProps & { inputRef?: any }> = (props) => {
     const {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars

@@ -23,7 +23,6 @@ const makeStyles = (): StyleSheet.NamedStyles<{
  *
  * @category Component
  */
-
 export const ChangePasswordScreenBase: React.FC<ChangePasswordScreenProps> = (props) => {
     const {
         currentPasswordLabel,

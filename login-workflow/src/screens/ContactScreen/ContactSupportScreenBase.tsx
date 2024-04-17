@@ -14,7 +14,6 @@ import { useExtendedTheme } from '@brightlayer-ui/react-native-themes';
  *
  * @category Component
  */
-
 export const ContactSupportScreenBase: React.FC<ContactSupportScreenProps> = (props) => {
     const {
         icon,

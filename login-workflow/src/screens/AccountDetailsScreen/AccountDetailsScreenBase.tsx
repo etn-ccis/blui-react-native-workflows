@@ -22,7 +22,6 @@ const makeStyles = (): StyleSheet.NamedStyles<{
  *
  * @category Component
  */
-
 export const AccountDetailsScreenBase: React.FC<AccountDetailsScreenProps> = (props) => {
     const {
         firstNameLabel,

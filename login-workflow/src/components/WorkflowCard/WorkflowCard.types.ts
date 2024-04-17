@@ -88,6 +88,9 @@ export type WorkflowCardBodyProps = Partial<CardContentProps> & {
      */
     scrollable?: boolean;
 
+    /**
+     * Props for WorkflowCardInstructions component
+     */
     WorkflowCardInstructionProps?: WorkflowCardInstructionProps;
 };
 

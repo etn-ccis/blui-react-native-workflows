@@ -23,7 +23,6 @@ const makeStyles = (): StyleSheet.NamedStyles<{
  *
  * @category Component
  */
-
 export const SuccessScreenBase: React.FC<SuccessScreenProps> = (props) => {
     const { dismissButtonLabel = '', canDismiss, onDismiss, EmptyStateProps } = props;
 
