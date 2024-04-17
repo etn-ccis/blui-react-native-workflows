@@ -22,12 +22,20 @@ const makeStyles = (
         },
     });
 
+/**
+ * Component renders a screen with forgot password for support with the application.
+ *
+ * @param {ForgotPasswordScreenProps} props - props of Forgot Password Screen
+ *
+ * @category Component
+ */
 export const ForgotPasswordScreen: React.FC<ForgotPasswordScreenProps> = (props) => {
     const { t } = useTranslation();
     const { actions, navigate, routeConfig } = useAuthContext();
     const { triggerError, errorManagerConfig } = useErrorManager();
     const theme = useExtendedTheme();
     const styles = makeStyles(theme);
+    const EMAIL_REGEX = /^[A-Z0-9._%+'-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 
     const {
         emailLabel = t('bluiCommon:LABELS.EMAIL'),
@@ -60,8 +68,6 @@ export const ForgotPasswordScreen: React.FC<ForgotPasswordScreenProps> = (props)
     const [isLoading, setIsLoading] = useState(false);
     const [showSuccessScreen, setShowSuccessScreen] = useState(false);
 
-    const EMAIL_REGEX = /^[A-Z0-9._%+'-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-
     const Bold = ({ children }: { children: React.ReactNode }): JSX.Element => (
         <Text style={styles.boldText}>{children}</Text>
     );
@@ -93,7 +99,6 @@ export const ForgotPasswordScreen: React.FC<ForgotPasswordScreenProps> = (props)
     );
 
     const clearEmailInput = (): void => {
-        console.log('Test clear email Input');
         setEmailInput('');
     };
 
@@ -126,11 +131,6 @@ export const ForgotPasswordScreen: React.FC<ForgotPasswordScreenProps> = (props)
         ...WorkflowCardHeaderProps,
     };
 
-    const emailInputProps = {
-        onChangeText: (email: string): void => setEmailInput(email),
-        ...emailTextInputProps,
-    };
-
     const workflowCardActionsProps = {
         showNext: true,
         showPrevious: true,
@@ -149,6 +149,11 @@ export const ForgotPasswordScreen: React.FC<ForgotPasswordScreenProps> = (props)
             WorkflowCardActionsProps?.onPrevious?.();
             clearEmailInput();
         },
+    };
+
+    const emailInputProps = {
+        ...emailTextInputProps,
+        onChangeText: (email: string): void => setEmailInput(email),
     };
 
     return (
@@ -189,7 +194,6 @@ export const ForgotPasswordScreen: React.FC<ForgotPasswordScreenProps> = (props)
                         clearEmailInput();
                         navigate(routeConfig.LOGIN as string);
                         setShowSuccessScreen(false);
-                        console.log('Test onNext in Succes screen', emailInput);
                     },
                 },
                 ...SuccessScreenProps,

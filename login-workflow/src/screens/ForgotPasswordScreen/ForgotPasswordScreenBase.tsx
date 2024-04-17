@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import {
     ErrorManager,
     WorkflowCard,
@@ -34,9 +34,7 @@ export const ForgotPasswordScreenBase: React.FC<React.PropsWithChildren<ForgotPa
         emailTextInputProps,
     } = props;
 
-    console.log('base initialValue', initialEmailValue);
     const [emailInput, setEmailInput] = useState(initialEmailValue ?? '');
-    console.log('base emailState', emailInput);
 
     const cardBaseProps = props.WorkflowCardBaseProps || {};
     const headerProps = props.WorkflowCardHeaderProps || {};
@@ -64,12 +62,18 @@ export const ForgotPasswordScreenBase: React.FC<React.PropsWithChildren<ForgotPa
         _successScreen?: (props: SuccessScreenProps) => JSX.Element
     ): JSX.Element => (_successScreen ? _successScreen(_props) : <SuccessScreenBase {..._props} />);
 
+    const clearScreenData = (): void => {
+        setEmailInput('');
+        setEmailError('');
+        setIsEmailValid(true);
+    };
+
     const handleOnNext = (): void => {
-        const { onNext, onPrevious } = actionsProps;
+        const { onNext } = actionsProps;
         if (onNext) {
             onNext({ email: emailInput });
         }
-        setEmailInput('');
+        clearScreenData();
     };
 
     const handleOnBack = (): void => {
@@ -77,9 +81,7 @@ export const ForgotPasswordScreenBase: React.FC<React.PropsWithChildren<ForgotPa
         if (onPrevious) {
             onPrevious();
         }
-        setEmailInput('');
-        setEmailError('');
-        setIsEmailValid(true);
+        clearScreenData();
     };
 
     const handleCloseIconPress = (): void => {
@@ -87,9 +89,7 @@ export const ForgotPasswordScreenBase: React.FC<React.PropsWithChildren<ForgotPa
         if (onIconPress) {
             onIconPress();
         }
-        setEmailInput('');
-        setEmailError('');
-        setIsEmailValid(true);
+        clearScreenData();
     };
 
     return (
@@ -122,7 +122,6 @@ export const ForgotPasswordScreenBase: React.FC<React.PropsWithChildren<ForgotPa
                                 }}
                                 onSubmitEditing={(): void => {
                                     if (emailInput.length > 0 && isEmailValid && actionsProps.canGoNext) {
-                                        // actionsProps.onNext?.();
                                         handleOnNext();
                                     }
                                 }}

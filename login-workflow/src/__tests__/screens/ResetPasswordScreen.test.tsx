@@ -35,7 +35,7 @@ describe('Reset Password Screen Tests', () => {
 
     it('clicking on close Icon test', () => {
         renderer();
-        const closeIcon = screen.getByTestId('workflow-card-icon');
+        const closeIcon = screen.getByTestId('blui-workflow-card-header-icon');
         fireEvent.press(closeIcon);
         expect(render).toBeTruthy();
     });
@@ -46,7 +46,7 @@ describe('Reset Password Screen Tests', () => {
                 onPrevious: mockFunction(),
             },
         });
-        const prevButton = screen.getByTestId('workflow-card-previous-button');
+        const prevButton = screen.getByTestId('blui-workflow-card-actions-previous-button');
         fireEvent.press(prevButton);
         expect(mockFunction).toHaveBeenCalled();
     });
@@ -55,18 +55,18 @@ describe('Reset Password Screen Tests', () => {
         renderer({
             showSuccessScreen: false,
         });
-        const passwordInput = screen.getByTestId('password');
+        const passwordInput = screen.getByTestId('blui-set-password-password-text-field');
         expect(passwordInput.props.value).toBe('');
-        const confirmInput = screen.getByTestId('confirm');
+        const confirmInput = screen.getByTestId('blui-set-password-confirm-password-text-field');
         expect(confirmInput.props.value).toBe('');
-        const nextButton = screen.getByTestId('workflow-card-next-button');
+        const nextButton = screen.getByTestId('blui-workflow-card-actions-next-button');
         expect(nextButton).toBeDisabled();
 
         fireEvent.changeText(passwordInput, 'Test@123');
         fireEvent.changeText(confirmInput, 'Test@123');
         expect(nextButton).toBeEnabled();
         fireEvent.press(nextButton);
-        expect(screen.getByTestId('spinner')).toBeOnTheScreen();
+        expect(screen.getByTestId('blui-spinner')).toBeOnTheScreen();
     });
 
     it('when passed empty password requirements', () => {
@@ -75,25 +75,25 @@ describe('Reset Password Screen Tests', () => {
                 passwordRequirements: [],
             },
         });
-        const passwordInput = screen.getByTestId('password');
+        const passwordInput = screen.getByTestId('blui-set-password-password-text-field');
         expect(passwordInput.props.value).toBe('');
-        const confirmInput = screen.getByTestId('confirm');
+        const confirmInput = screen.getByTestId('blui-set-password-confirm-password-text-field');
         expect(confirmInput.props.value).toBe('');
-        const nextButton = screen.getByTestId('workflow-card-next-button');
+        const nextButton = screen.getByTestId('blui-workflow-card-actions-next-button');
         expect(nextButton).toBeDisabled();
 
         fireEvent.changeText(passwordInput, 'Test@123');
         fireEvent.changeText(confirmInput, 'Test@123');
         expect(nextButton).toBeEnabled();
         fireEvent.press(nextButton);
-        expect(screen.getByTestId('spinner')).toBeOnTheScreen();
+        expect(screen.getByTestId('blui-spinner')).toBeOnTheScreen();
     });
 
     it('should return false when password is not matching as per requirements', () => {
         renderer();
-        const passwordInput = screen.getByTestId('password');
+        const passwordInput = screen.getByTestId('blui-set-password-password-text-field');
         expect(passwordInput.props.value).toBe('');
-        const confirmInput = screen.getByTestId('confirm');
+        const confirmInput = screen.getByTestId('blui-set-password-confirm-password-text-field');
         expect(confirmInput.props.value).toBe('');
 
         fireEvent.changeText(passwordInput, 'test@123');
@@ -103,15 +103,15 @@ describe('Reset Password Screen Tests', () => {
 
     it('should call onSubmit callBack function', async () => {
         renderer();
-        const passwordInput = screen.getByTestId('password');
+        const passwordInput = screen.getByTestId('blui-set-password-password-text-field');
         expect(passwordInput.props.value).toBe('');
-        const confirmInput = screen.getByTestId('confirm');
+        const confirmInput = screen.getByTestId('blui-set-password-confirm-password-text-field');
         expect(confirmInput.props.value).toBe('');
 
         fireEvent.changeText(passwordInput, 'Test@123');
         fireEvent.changeText(confirmInput, 'Test@123');
         fireEvent(confirmInput, 'submitEditing');
-        expect(screen.getByTestId('spinner')).toBeOnTheScreen();
+        expect(screen.getByTestId('blui-spinner')).toBeOnTheScreen();
         await waitFor(() => {
             fireEvent.press(screen.getByText('Done'));
         });

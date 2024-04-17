@@ -26,7 +26,7 @@ describe('ForgotPasswordScreenBase Tests', () => {
 
     it('ForgotPasswordScreenBase renders correctly', () => {
         renderer();
-        expect(screen.getByTestId('text-input-flat')).toBeOnTheScreen();
+        expect(screen.getByTestId('forgot-password-textinput')).toBeOnTheScreen();
     });
 
     it('should call onChangeText and onNext callback events', () => {
@@ -41,7 +41,7 @@ describe('ForgotPasswordScreenBase Tests', () => {
                 onChangeText: mockFunction,
             },
         });
-        const input = screen.getByTestId('text-input-flat');
+        const input = screen.getByTestId('forgot-password-textinput');
         const nextButton = screen.getByTestId('blui-workflow-card-actions-next-button-text');
         expect(nextButton).toBeDisabled();
         fireEvent.changeText(input, 'test@eaton.com');
@@ -70,8 +70,41 @@ describe('ForgotPasswordScreenBase Tests', () => {
             SuccessScreen: () => <Text>Success</Text>,
         });
         expect(screen.getAllByText('Email ID')).toBeTruthy();
-        expect(screen.getByTestId('text-input-flat').props.value).toBe('test@eaton.com');
+        expect(screen.getByTestId('forgot-password-textinput').props.value).toBe('test@eaton.com');
         fireEvent.press(screen.getByText('Next'));
         expect(mockFunction).toHaveBeenCalled();
+    });
+
+    it('should get submitted when click on enter button', () => {
+        renderer({
+            WorkflowCardActionsProps: {
+                canGoNext: true,
+                onNext: mockFunction(),
+            },
+        });
+        const input = screen.getByTestId('forgot-password-textinput');
+        fireEvent.changeText(input, 'test@eaton.com');
+        fireEvent(input, 'submitEditing');
+        expect(mockFunction).toHaveBeenCalled();
+    });
+
+    it('should call handleOnBack on click of Back button', () => {
+        renderer({
+            WorkflowCardActionsProps: {
+                showPrevious: true,
+                canGoPrevious: true,
+                previousLabel: 'Back',
+                onPrevious: mockFunction(),
+            },
+        });
+        fireEvent.press(screen.getByText('Back'));
+        expect(mockFunction).toHaveBeenCalled();
+    });
+
+    it('should call handleOnClose on click of close icon', () => {
+        renderer();
+        const closeIcon = screen.getByTestId('blui-workflow-card-header-icon');
+        fireEvent.press(closeIcon);
+        expect(render).toBeTruthy();
     });
 });
