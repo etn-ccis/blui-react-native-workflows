@@ -7,8 +7,9 @@ import SelectDropdown from 'react-native-select-dropdown';
 import { useTranslation } from 'react-i18next';
 import { useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 import { useApp } from '../contexts/AppContextProvider';
-import { useNavigation, useRoute } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { LocalStorage } from '../store/local-storage';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 const SwapIcon: IconFamily = {
     family: 'material',
@@ -38,9 +39,15 @@ export const UserMenuExample: React.FC<UserMenuExampleProps> = (props) => {
     const navigation = useNavigation();
     const app = useApp();
     const route = useRoute().name;
-    const handleLanguageChange = (newLanguage: string): void => {
+    const handleLanguageChange = async (newLanguage: string): Promise<any> => {
         app.setLanguage(newLanguage);
         void i18n.changeLanguage(newLanguage);
+        try {
+            await AsyncStorage.setItem('userLanguage', newLanguage);
+        } catch (error) {
+            // eslint-disable-next-line no-console
+            console.error('Error setting new language:', error);
+        }
     };
     const logout = (): void => {
         LocalStorage.clearAuthCredentials();
@@ -73,6 +80,7 @@ export const UserMenuExample: React.FC<UserMenuExampleProps> = (props) => {
             rightComponent: (
                 <SelectDropdown
                     defaultValue={languageOptions.find((option) => option.value === i18n.language)}
+                    // eslint-disable-next-line
                     onSelect={(item) => handleLanguageChange(item.value)}
                     data={languageOptions}
                     buttonStyle={{ backgroundColor: theme.colors.background }}
