@@ -10,7 +10,7 @@ import i18nAppInstance from '../../translations/i18n';
 import { NavigationDrawer } from './navigation-drawer';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
-import Home from '../screens/home';
+import { Home } from '../screens/Home';
 import { View } from 'react-native';
 import { LoginBaseExample } from '../screens/LoginBaseExample';
 import { ForgotPasswordScreenBaseExample } from '../components/ForgotPasswordScreenBaseExample';
