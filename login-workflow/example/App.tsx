@@ -56,6 +56,7 @@ export const App = (): JSX.Element => {
         };
         // eslint-disable-next-line
         initialize();
+        // eslint-disable-next-line
     }, []);
 
     return isLoading ? (

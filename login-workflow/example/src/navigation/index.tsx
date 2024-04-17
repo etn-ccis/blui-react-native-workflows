@@ -1,16 +1,17 @@
 import React, { ReactNode } from 'react';
-import { NavigationContainer, createNavigationContainerRef } from '@react-navigation/native';
+import { NavigationContainer, createNavigationContainerRef, useNavigation } from '@react-navigation/native';
 import { useApp } from '../contexts/AppContextProvider';
 import {
     AuthContextProvider,
     ContactSupportScreen,
     ResetPasswordScreen,
+    RegistrationContextProvider,
 } from '@brightlayer-ui/react-native-auth-workflow';
 import i18nAppInstance from '../../translations/i18n';
 import { NavigationDrawer } from './navigation-drawer';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
-import { Home } from '../screens/Home';
+import { Home } from '../screens/home';
 import { View } from 'react-native';
 import { LoginBaseExample } from '../screens/LoginBaseExample';
 import { ForgotPasswordScreenBaseExample } from '../components/ForgotPasswordScreenBaseExample';
@@ -19,9 +20,6 @@ import { ChangePassword } from '../screens/ChangePassword';
 import { Registration } from '../screens/Registration';
 import Locations from '../screens/Locations';
 import Dashboard from '../screens/Dashboard';
-
-import { RegistrationContextProvider } from '@brightlayer-ui/react-native-auth-workflow';
-import { useNavigation } from '@react-navigation/native';
 import { ProjectRegistrationUIActions } from '../actions/RegistrationUIActions';
 import { RegistrationInvite } from '../screens/RegistrationInvite';
 
@@ -146,20 +144,18 @@ const RegistrationRouter = (): any => {
         </>
     );
 };
-export const MainRouter = (): any => {
-    return (
-        <NavigationContainer ref={navigationRef}>
-            <Stack.Navigator
-                initialRouteName="AuthProviderExample"
-                screenOptions={{
-                    headerShown: false,
-                    animationEnabled: false,
-                }}
-            >
-                <Stack.Screen name="AppProviderExample" component={AppRouter} />
-                <Stack.Screen name="AuthProviderExample" component={AuthRouter} />
-                <Stack.Screen name="RegistrationProviderExample" component={RegistrationRouter} />
-            </Stack.Navigator>
-        </NavigationContainer>
-    );
-};
+export const MainRouter = (): any => (
+    <NavigationContainer ref={navigationRef}>
+        <Stack.Navigator
+            initialRouteName="AuthProviderExample"
+            screenOptions={{
+                headerShown: false,
+                animationEnabled: false,
+            }}
+        >
+            <Stack.Screen name="AppProviderExample" component={AppRouter} />
+            <Stack.Screen name="AuthProviderExample" component={AuthRouter} />
+            <Stack.Screen name="RegistrationProviderExample" component={RegistrationRouter} />
+        </Stack.Navigator>
+    </NavigationContainer>
+);

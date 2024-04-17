@@ -56,7 +56,7 @@ export const LoginBaseExample: React.FC<React.PropsWithChildren<LoginScreenProps
             navigation.navigate('ContactSupport');
         },
         showCyberSecurityBadge = true,
-        header,
+        header = <DebugComponent />,
         footer,
     } = props;
 
@@ -75,18 +75,16 @@ export const LoginBaseExample: React.FC<React.PropsWithChildren<LoginScreenProps
             rememberMeInitialValue={rememberMeInitialValue}
             onRememberMeChanged={onRememberMeChanged}
             loginButtonLabel={loginButtonLabel}
-            onLogin={(user: string | undefined, pass: string | undefined): void =>
+            onLogin={(user: string | undefined, pass: string | undefined): void => {
+                app.onUserAuthenticated({
+                    email: 'Test@test.com',
+                    userId: user || '',
+                    rememberMe: false,
+                });
                 // eslint-disable-next-line no-console
-                {
-                    app.onUserAuthenticated({
-                        email: 'Test@test.com',
-                        userId: user || '',
-                        rememberMe: false,
-                    });
-                    console.log('LoginBaseExample onLogin', user, pass);
-                    navigation.navigate('AppProviderExample');
-                }
-            }
+                console.log('LoginBaseExample onLogin', user, pass);
+                navigation.navigate('AppProviderExample');
+            }}
             showForgotPassword={showForgotPassword}
             forgotPasswordLabel={forgotPasswordLabel}
             onForgotPassword={onForgotPassword}
@@ -105,7 +103,7 @@ export const LoginBaseExample: React.FC<React.PropsWithChildren<LoginScreenProps
                     source={require('../assets/images/eaton_stacked_logo.png')}
                 />
             }
-            header={<DebugComponent />}
+            header={header}
             footer={footer}
         />
     );

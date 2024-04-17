@@ -19,7 +19,6 @@ export const ChangePassword = (): JSX.Element => {
             onFinish={(): void => logOut()}
             WorkflowCardHeaderProps={{
                 onIconPress: (): void => {
-                    console.log('routes', nav.getState()?.routes);
                     nav.navigate('AppProviderExample', { screen: params?.previousScreen });
                 },
             }}
