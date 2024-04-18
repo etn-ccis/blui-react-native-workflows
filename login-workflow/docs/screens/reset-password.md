@@ -19,6 +19,7 @@ import { AuthContextProvider, ResetPasswordScreen } from '@brightlayer-ui/react-
 
 | Prop Name          | Type                                         | Description                                                     | Default                 |
 | ------------------ | -------------------------------------------- | --------------------------------------------------------------- | ----------------------- |
+| accountParams      | `{code?: string; email?: string;}`           | Pass code and email for Reset Password Screen action calls      |                         |
 | errorDisplayConfig | `ErrorManagerProps`                          | See [Error Management](../error-management.md)                  |                         |
 | PasswordProps      | `SetPasswordProps`                           | See [Set Password](../components/set-password.md)               |                         |
 | showSuccessScreen  | `boolean`                                    | If true, a success screen will appear after submitting the form | `true`                  |
