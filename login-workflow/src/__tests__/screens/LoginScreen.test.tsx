@@ -18,13 +18,13 @@ describe('LoginScreen', () => {
                 </PaperProvider>
             </AuthContextProvider>
         );
-        expect(getByTestId('usernameTextField')).toBeTruthy();
-        expect(getByTestId('passwordTextField')).toBeTruthy();
-        expect(getByTestId('rememberMeCheckbox')).toBeTruthy();
-        expect(getByTestId('loginButton')).toBeTruthy();
-        expect(getByTestId('forgotPasswordLabel')).toBeTruthy();
-        expect(getByTestId('selfRegisterLabel')).toBeTruthy();
-        expect(getByTestId('contactSupportLabel')).toBeTruthy();
+        expect(getByTestId('blui-login-username-text-field')).toBeTruthy();
+        expect(getByTestId('blui-login-password-text-field')).toBeTruthy();
+        expect(getByTestId('blui-login-remember-me-checkbox')).toBeTruthy();
+        expect(getByTestId('blui-login-login-button')).toBeTruthy();
+        expect(getByTestId('blui-login-forgot-password-label')).toBeTruthy();
+        expect(getByTestId('blui-login-self-register-label')).toBeTruthy();
+        expect(getByTestId('blui-login-contact-support-label')).toBeTruthy();
     });
 
     test('triggers forgot password function when forgot password label is pressed', () => {
@@ -36,7 +36,7 @@ describe('LoginScreen', () => {
                 </PaperProvider>
             </AuthContextProvider>
         );
-        fireEvent.press(getByTestId('forgotPasswordLabel'));
+        fireEvent.press(getByTestId('blui-login-forgot-password-label'));
         expect(mockNavigate).toHaveBeenCalled();
     });
 
@@ -49,7 +49,7 @@ describe('LoginScreen', () => {
                 </PaperProvider>
             </AuthContextProvider>
         );
-        fireEvent.press(getByTestId('selfRegisterLabel'));
+        fireEvent.press(getByTestId('blui-login-self-register-label'));
         expect(mockNavigate).toHaveBeenCalled();
     });
 
@@ -62,7 +62,7 @@ describe('LoginScreen', () => {
                 </PaperProvider>
             </AuthContextProvider>
         );
-        fireEvent.press(getByTestId('contactSupportLabel'));
+        fireEvent.press(getByTestId('blui-login-contact-support-label'));
         expect(mockNavigate).toHaveBeenCalled();
     });
 
@@ -74,7 +74,7 @@ describe('LoginScreen', () => {
                 </PaperProvider>
             </AuthContextProvider>
         );
-        const checkbox = getByTestId('rememberMeCheckbox');
+        const checkbox = getByTestId('blui-login-remember-me-checkbox');
 
         fireEvent.press(checkbox);
         expect(checkbox).toBeChecked();
@@ -88,8 +88,8 @@ describe('LoginScreen', () => {
                 </PaperProvider>
             </AuthContextProvider>
         );
-        const usernameInput = getByTestId('usernameTextField');
-        fireEvent.changeText(getByTestId('usernameTextField'), 'email@email.com');
+        const usernameInput = getByTestId('blui-login-username-text-field');
+        fireEvent.changeText(getByTestId('blui-login-username-text-field'), 'email@email.com');
 
         fireEvent(usernameInput, 'submitEditing');
 
@@ -104,8 +104,8 @@ describe('LoginScreen', () => {
                 </PaperProvider>
             </AuthContextProvider>
         );
-        const passwordInput = getByTestId('passwordTextField');
-        fireEvent.changeText(getByTestId('passwordTextField'), 'testpassword');
+        const passwordInput = getByTestId('blui-login-password-text-field');
+        fireEvent.changeText(getByTestId('blui-login-password-text-field'), 'testpassword');
 
         fireEvent(passwordInput, 'submitEditing');
 

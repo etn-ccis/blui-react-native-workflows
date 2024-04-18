@@ -26,7 +26,7 @@ describe('ForgotPasswordScreenBase Tests', () => {
 
     it('ForgotPasswordScreenBase renders correctly', () => {
         renderer();
-        expect(screen.getByTestId('forgot-password-textinput')).toBeOnTheScreen();
+        expect(screen.getByTestId('blui-forgot-password-textinput')).toBeOnTheScreen();
     });
 
     it('should call onChangeText and onNext callback events', () => {
@@ -41,7 +41,7 @@ describe('ForgotPasswordScreenBase Tests', () => {
                 onChangeText: mockFunction,
             },
         });
-        const input = screen.getByTestId('forgot-password-textinput');
+        const input = screen.getByTestId('blui-forgot-password-textinput');
         const nextButton = screen.getByTestId('blui-workflow-card-actions-next-button-text');
         expect(nextButton).toBeDisabled();
         fireEvent.changeText(input, 'test@eaton.com');
@@ -70,7 +70,7 @@ describe('ForgotPasswordScreenBase Tests', () => {
             SuccessScreen: () => <Text>Success</Text>,
         });
         expect(screen.getAllByText('Email ID')).toBeTruthy();
-        expect(screen.getByTestId('forgot-password-textinput').props.value).toBe('test@eaton.com');
+        expect(screen.getByTestId('blui-forgot-password-textinput').props.value).toBe('test@eaton.com');
         fireEvent.press(screen.getByText('Next'));
         expect(mockFunction).toHaveBeenCalled();
     });
@@ -82,7 +82,7 @@ describe('ForgotPasswordScreenBase Tests', () => {
                 onNext: mockFunction(),
             },
         });
-        const input = screen.getByTestId('forgot-password-textinput');
+        const input = screen.getByTestId('blui-forgot-password-textinput');
         fireEvent.changeText(input, 'test@eaton.com');
         fireEvent(input, 'submitEditing');
         expect(mockFunction).toHaveBeenCalled();

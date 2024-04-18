@@ -56,7 +56,7 @@ describe('Forgot Password Screen Tests', () => {
 
     it('Clicking on next button should call handleOnNext callback function', async () => {
         renderer();
-        const emailInput = screen.getByTestId('forgot-password-textinput');
+        const emailInput = screen.getByTestId('blui-forgot-password-textinput');
         const nextButton = screen.getByTestId('blui-workflow-card-actions-next-button-text');
         expect(nextButton).toBeDisabled();
 
