@@ -59,7 +59,7 @@ describe('Reset Password Screen Tests', () => {
         expect(passwordInput.props.value).toBe('');
         const confirmInput = screen.getByTestId('blui-set-password-confirm-password-text-field');
         expect(confirmInput.props.value).toBe('');
-        const nextButton = screen.getByTestId('blui-workflow-card-actions-next-button-text');
+        const nextButton = screen.getByTestId('blui-workflow-card-actions-next-button');
         expect(nextButton).toBeDisabled();
 
         fireEvent.changeText(passwordInput, 'Test@123');

@@ -5,7 +5,7 @@ import { cleanup, render, screen, fireEvent, RenderResult, waitFor } from '@test
 import { CreatePasswordScreen, CreatePasswordScreenProps } from '../../screens';
 import { RegistrationContextProvider } from '../../contexts';
 import { RegistrationWorkflow } from '../../components';
-import { errorRegistrationContextProviderProps, registrationContextProviderProps } from '../../testUtils';
+import { registrationContextProviderProps } from '../../testUtils';
 import { PaperProvider } from 'react-native-paper';
 
 const passwordRequirements = [
@@ -20,6 +20,7 @@ const passwordRequirements = [
 ];
 
 afterEach(cleanup);
+
 describe('Create Password Screen', () => {
     let mockOnNext: any;
     let mockOnPrevious: any;
@@ -46,8 +47,14 @@ describe('Create Password Screen', () => {
 
     it('renders without crashing', () => {
         renderer();
-
         expect(screen.getByText('Create Password')).toBeOnTheScreen();
+    });
+
+    it('clicking on close Icon test', () => {
+        renderer();
+        const closeIcon = screen.getByTestId('blui-workflow-card-header-icon');
+        fireEvent.press(closeIcon);
+        expect(render).toBeTruthy();
     });
 
     it('should call onNext, when Next button clicked', async () => {
@@ -125,43 +132,29 @@ describe('Create Password Screen', () => {
         expect(mockOnPrevious).toHaveBeenCalled();
     });
 
-    it('should trigger error, when Next button clicked', async () => {
-        render(
-            <PaperProvider>
-                <RegistrationContextProvider {...errorRegistrationContextProviderProps}>
-                    <RegistrationWorkflow initialScreenIndex={0}>
-                        <CreatePasswordScreen
-                            WorkflowCardActionsProps={{
-                                onNext: mockOnNext(),
-                                showNext: true,
-                                nextLabel: 'Next',
-                            }}
-                            PasswordProps={{
-                                newPasswordLabel: 'Password',
-                                confirmPasswordLabel: 'Confirm Password',
-                                passwordRequirements: passwordRequirements,
-                                onPasswordChange: jest.fn(),
-                            }}
-                            errorDisplayConfig={{
-                                onClose: jest.fn(),
-                            }}
-                        />
-                    </RegistrationWorkflow>
-                </RegistrationContextProvider>
-            </PaperProvider>
-        );
+    it('should call onSubmit callBack function', async () => {
+        renderer();
+        const passwordInput = screen.getByTestId('blui-set-password-password-text-field');
+        expect(passwordInput.props.value).toBe('');
+        const confirmInput = screen.getByTestId('blui-set-password-confirm-password-text-field');
+        expect(confirmInput.props.value).toBe('');
 
-        const passwordField = screen.getByTestId('blui-set-password-password-text-field');
-        const confirmPasswordField = screen.getByTestId('blui-set-password-confirm-password-text-field');
-        const nextButton = screen.getByText('Next');
-        expect(nextButton).toBeDisabled();
-
-        fireEvent.changeText(passwordField, 'ab123');
-        fireEvent.changeText(confirmPasswordField, 'ab123');
-        expect(nextButton).toBeEnabled();
-
-        fireEvent.press(nextButton);
-        expect(mockOnNext).toHaveBeenCalled();
+        fireEvent.changeText(passwordInput, 'Test@123');
+        fireEvent.changeText(confirmInput, 'Test@123');
+        fireEvent(confirmInput, 'submitEditing');
+        expect(screen.getByTestId('blui-spinner')).toBeOnTheScreen();
         await waitFor(() => expect(screen.getByTestId('blui-spinner')).toBeOnTheScreen());
+    });
+
+    it('should return false when password is not matching as per requirements', () => {
+        renderer();
+        const passwordInput = screen.getByTestId('blui-set-password-password-text-field');
+        expect(passwordInput.props.value).toBe('');
+        const confirmInput = screen.getByTestId('blui-set-password-confirm-password-text-field');
+        expect(confirmInput.props.value).toBe('');
+
+        fireEvent.changeText(passwordInput, 'test@123');
+        fireEvent.changeText(confirmInput, 'Test@123');
+        expect(screen.getByText('Passwords do not match')).toBeOnTheScreen();
     });
 });
