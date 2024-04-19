@@ -97,7 +97,7 @@ export const ForgotPasswordScreenBase: React.FC<React.PropsWithChildren<ForgotPa
                 getSuccessScreen(successScreenProps ?? {}, SuccessScreen)
             ) : (
                 <WorkflowCard {...cardBaseProps}>
-                    <WorkflowCardHeader {...headerProps} />
+                    <WorkflowCardHeader {...headerProps} onIconPress={handleCloseIconPress} />
                     <WorkflowCardBody {...cardBodyProps}>
                         <ErrorManager {...errorDisplayConfig}>
                             <TextInput
