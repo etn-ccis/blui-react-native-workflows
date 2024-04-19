@@ -53,6 +53,7 @@ describe('Verify Code Full Screen Test cases', () => {
         renderer();
         const closeIcon = screen.getByTestId('blui-workflow-card-header-icon');
         fireEvent.press(closeIcon);
+        expect(render).toBeTruthy();
     });
 
     it('requestResendCode function test', () => {

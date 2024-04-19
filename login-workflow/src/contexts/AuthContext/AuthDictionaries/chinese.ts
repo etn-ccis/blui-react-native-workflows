@@ -6,14 +6,14 @@ const resources: AuthLanguageFile = {
             ERROR: '目前无法重置您的密码。',
             INSTRUCTIONS:
                 '请输入账户邮箱地址。\n\n' +
-                '如果伊顿系统中存在此邮箱地址注册的账号的话，您会在<b>{{time}}</b>内收到我们的回复。\n\n' +
-                '如遇紧急账户问题，请拨打联系电话{{phone}}。',
+                '如果伊顿系统中存在此邮箱地址注册的账号的话，您会在<boldTag>{{time}}</boldTag>内收到我们的回复。\n\n' +
+                '如遇紧急账户问题，请拨打联系电话 <tel>{{phone}}</tel>。',
             INSTRUCTIONS_ALT:
                 '请输入账户邮箱地址。<br/><br/>' +
                 '如果伊顿系统中存在此邮箱地址注册的账号的话，您会在<1>{{time}}</1>内收到我们的回复。<br/><br/>' +
                 '如遇紧急账户问题，请拨打联系电话<4>{{phone}}</4>。',
             RESET_CODE_ERROR: '您的密码重置链接无效。',
-            LINK_SENT: '已向<b>{{email}}</b>发送了密码重置链接。',
+            LINK_SENT: '已向 <boldTag>{{email}}</boldTag> 发送了密码重置链接。',
             LINK_SENT_ALT: '已向<1>{{email}}</1>发送了密码重置链接。',
             RESPONSE_TIME: '一个工作日',
         },

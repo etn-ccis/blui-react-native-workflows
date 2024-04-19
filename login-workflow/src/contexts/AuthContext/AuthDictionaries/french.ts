@@ -6,14 +6,14 @@ const resources: AuthLanguageFile = {
             ERROR: "Impossible de réinitialiser votre mot de passe pour l'instant",
             INSTRUCTIONS:
                 "Entrez l'adresse e-mail du compte associée au compte.\n\n" +
-                'Si ce courrier électronique a un compte chez Eaton, vous recevrez une réponse sous <b>{{time}}</b>.\n\n' +
-                'Pour les problèmes de compte urgents, veuillez appeler le {{phone}}.',
+                'Si ce courrier électronique a un compte chez Eaton, vous recevrez une réponse sous <boldTag>{{time}}</boldTag>.\n\n' +
+                'Pour les problèmes de compte urgents, veuillez appeler le <tel>{{phone}}</tel>.',
             INSTRUCTIONS_ALT:
                 `Entrez l'adresse e-mail du compte associée au compte.<br/><br/>` +
                 `Si ce courrier électronique a un compte chez Eaton, vous recevrez une réponse sous <1>{{time}}</1>.<br/><br/>` +
                 `Pour les problèmes de compte urgents, veuillez appeler le <4>{{phone}}</4>.`,
             RESET_CODE_ERROR: `Une erreur s'est produite avec votre code de réinitialisation. `,
-            LINK_SENT: 'Un lien pour réinitialiser votre mot de passe a été envoyé à <b>{{email}}</b>.',
+            LINK_SENT: 'Un lien pour réinitialiser votre mot de passe a été envoyé à <boldTag>{{email}}</boldTag>.',
             LINK_SENT_ALT: 'Un lien pour réinitialiser votre mot de passe a été envoyé à <1>{{email}}</1>.',
             RESPONSE_TIME: 'un jour ouvrable',
         },
