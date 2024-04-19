@@ -6,14 +6,14 @@ const resources: AuthLanguageFile = {
             ERROR: 'Could not reset your password at this time.',
             INSTRUCTIONS:
                 'Please enter the account email associated with the account.\n\n' +
-                'If this email has an account with Eaton, you will receive a response within <b>{{time}}</b>.\n\n' +
-                'For urgent account issues, please call {{phone}}.',
+                'If this email has an account with Eaton, you will receive a response within <boldTag>{{time}}</boldTag>.\n\n' +
+                'For urgent account issues, please call <tel>{{phone}}</tel>.',
             INSTRUCTIONS_ALT:
                 'Please enter the account email associated with the account.<br/><br/>' +
                 'If this email has an account with Eaton, you will receive a response within <1>{{time}}</1>.<br/><br/>' +
                 'For urgent account issues, please call <4>{{phone}}</4>.',
             RESET_CODE_ERROR: 'There was an error with your reset code. ',
-            LINK_SENT: 'A link to reset your password has been sent to <b>{{email}}</b>.',
+            LINK_SENT: 'A link to reset your password has been sent to <boldTag>{{email}}</boldTag>.',
             LINK_SENT_ALT: 'A link to reset your password has been sent to <1>{{email}}</1>.',
             RESPONSE_TIME: 'one business day',
         },
