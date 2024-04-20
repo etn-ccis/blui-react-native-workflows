@@ -4,8 +4,8 @@ import { useNavigation } from '@react-navigation/native';
 import { DebugComponent } from '../components/DebugComponent';
 import { LoginScreenProps, LoginScreen } from '@brightlayer-ui/react-native-auth-workflow';
 
-export const Login: React.FC<React.PropsWithChildren<LoginScreenProps>> = (props) => {
-    const nav = useNavigation();
+export const Login: React.FC<React.PropsWithChildren<LoginScreenProps>> = () => {
+    const navigation = useNavigation();
 
     return (
         <LoginScreen
@@ -18,10 +18,10 @@ export const Login: React.FC<React.PropsWithChildren<LoginScreenProps>> = (props
             }
             header={<DebugComponent />}
             onLogin={() => {
-                nav.navigate('AppProviderExample', { screen: 'Home' });
+                navigation.navigate('AppProviderExample', { screen: 'Home' });
             }}
             onSelfRegister={() => {
-                nav.navigate('RegistrationProviderExample', { screen: 'Registration' });
+                navigation.navigate('RegistrationProviderExample', { screen: 'Registration' });
             }}
         />
     );
