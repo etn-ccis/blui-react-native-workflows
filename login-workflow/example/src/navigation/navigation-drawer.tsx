@@ -5,6 +5,7 @@ import { RootStackParamList } from './index';
 import { DrawerActions } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 import { IconFamily } from '@brightlayer-ui/react-native-components/core/__types__';
+import { Homepage } from '../screens/Homepage';
 
 export type NavDrawerProps = {
     navigation: StackNavigationProp<RootStackParamList, 'NavigationDrawer'>;
@@ -14,7 +15,7 @@ export const NavigationDrawer: React.FC<NavDrawerProps> = ({ navigation }) => {
     const [selected, setSelected] = useState('Home');
     const { t } = useTranslation();
 
-    const Home: IconFamily = { family: 'material', name: 'home', direction: 'ltr' };
+    const Homepage: IconFamily = { family: 'material', name: 'home', direction: 'ltr' };
     const Dashboard: IconFamily = { family: 'material', name: 'dashboard', direction: 'ltr' };
     const Notifications: IconFamily = { family: 'material', name: 'notifications', direction: 'ltr' };
     const selectItem = useCallback(
@@ -27,8 +28,8 @@ export const NavigationDrawer: React.FC<NavDrawerProps> = ({ navigation }) => {
     const navGroupItems: NavItem[] = [
         {
             title: `${t('TOOLBAR_MENU.HOME_PAGE')}`,
-            itemID: 'Home',
-            icon: Home,
+            itemID: 'Homepage',
+            icon: Homepage,
         },
         {
             title: `${t('DRAWER_MENU.DASHBOARD')}`,

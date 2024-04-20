@@ -76,7 +76,7 @@ const toggleRTL = (): void => {
     }
     RNRestart.Restart();
 };
-export const Home: React.FC<AppProps> = ({ navigation }): JSX.Element => {
+export const Homepage: React.FC<AppProps> = ({ navigation }): JSX.Element => {
     const theme = useExtendedTheme();
     const { t } = useTranslation();
     const { theme: themeType, setTheme } = useThemeContext();

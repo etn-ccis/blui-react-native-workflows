@@ -22,7 +22,7 @@ export const DebugComponent = (): JSX.Element => {
                 </Button>
             </View>
             {debugMode && (
-                <View>
+                <View style={{ paddingBottom: 2 }}>
                     <Button
                         mode={'text'}
                         labelStyle={{ fontSize: 16 }}

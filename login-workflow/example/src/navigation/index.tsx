@@ -6,29 +6,32 @@ import {
     ContactSupportScreen,
     ResetPasswordScreen,
     RegistrationContextProvider,
+    ForgotPasswordScreen,
 } from '@brightlayer-ui/react-native-auth-workflow';
 import i18nAppInstance from '../../translations/i18n';
 import { NavigationDrawer } from './navigation-drawer';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
-import { Home } from '../screens/home';
 import { View } from 'react-native';
-import { LoginBaseExample } from '../screens/LoginBaseExample';
-import { ForgotPasswordScreenBaseExample } from '../components/ForgotPasswordScreenBaseExample';
+
 import { ProjectAuthUIActions } from '../actions/AuthUIActions';
+import { ProjectRegistrationUIActions } from '../actions/RegistrationUIActions';
+
+import { Login } from '../screens/Login';
 import { ChangePassword } from '../screens/ChangePassword';
 import { Registration } from '../screens/Registration';
+import { RegistrationInvite } from '../screens/RegistrationInvite';
+
+import { Homepage } from '../screens/Homepage';
 import Locations from '../screens/Locations';
 import Dashboard from '../screens/Dashboard';
-import { ProjectRegistrationUIActions } from '../actions/RegistrationUIActions';
-import { RegistrationInvite } from '../screens/RegistrationInvite';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 const navigationRef = createNavigationContainerRef();
 
 export type RootStackParamList = {
-    Home: undefined;
+    Homepage: undefined;
     Dashboard: undefined;
     Locations: undefined;
     RegistrationProviderExample: undefined;
@@ -48,7 +51,7 @@ const CustomDrawerContent = (props: any): any => (
 );
 const AppRouter = (): any => (
     <Drawer.Navigator
-        initialRouteName="Home"
+        initialRouteName="Homepage"
         screenOptions={{
             headerShown: false,
             drawerType: 'front',
@@ -56,7 +59,7 @@ const AppRouter = (): any => (
         }}
         drawerContent={(props: any): ReactNode => <CustomDrawerContent {...props} />}
     >
-        <RootStack.Screen name="Home" component={Home} />
+        <RootStack.Screen name="Homepage" component={Homepage} />
         <RootStack.Screen name="Locations" component={Locations} />
         <RootStack.Screen name="Dashboard" component={Dashboard} />
     </Drawer.Navigator>
@@ -92,8 +95,8 @@ const AuthRouter = (): any => {
                     }}
                     initialRouteName="Login"
                 >
-                    <Stack.Screen name="Login" component={LoginBaseExample} />
-                    <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreenBaseExample} />
+                    <Stack.Screen name="Login" component={Login} />
+                    <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
                     <Stack.Screen name="ResetPassword" component={ResetPasswordScreen} />
                     <Stack.Screen name="ContactSupport" component={ContactSupportScreen} />
                     {app.isAuthenticated && <Stack.Screen name="ChangePassword" component={ChangePassword} />}
