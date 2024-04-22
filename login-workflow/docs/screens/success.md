@@ -16,14 +16,11 @@ import { SuccessScreenBase } from '@brightlayer-ui/react-native-auth-workflow';
 
 ## API
 
-| Prop Name | Type | Description | Default |
-|---|---|---|---|
-| canDismiss | `boolean / (()=>boolean)` | A boolean determining if the screen can be dismissed. |  |
-| dismissButtonLabel | `string` | The label of the dismiss button. |  |
-| icon | [`IconSource`](https://github.com/etn-ccis/blui-react-native-component-library/blob/master/docs/Icons.md#icon-object) | The icon to be displayed on the screen. |  |
-| message | `string` | The success message to be displayed on the screen. |  |
-| messageTitle | `string` | The title of the success message. |  |
-| onDismiss | `() => void` | A function to be called when the screen is dismissed. |  |
+| Prop Name          | Type                      | Description                                                                         | Default |
+| ------------------ | ------------------------- | ----------------------------------------------------------------------------------- | ------- |
+| canDismiss         | `boolean / (()=>boolean)` | A boolean determining if the screen can be dismissed.                               |         |
+| dismissButtonLabel | `string`                  | The label of the dismiss button.                                                    |         |
+| EmptyStateProps    | `EmptyStateProps`         | EmptyStateProps, which include properties such as icon, title, and description etc. |         |
+| onDismiss          | `() => void`              | A function to be called when the screen is dismissed.                               |         |
 
 This screen also extends the `WorkflowCardProps` type for updating the title, instructions, buttons, etc. See [Workflow Card](../components/workflow-card.md) for more details.
-  
