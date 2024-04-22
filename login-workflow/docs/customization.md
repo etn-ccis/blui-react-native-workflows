@@ -99,7 +99,14 @@ You may provide a custom success screen to be shown upon successful completion o
 import { SuccessScreenBase } from '@brightlayer-ui/react-native-auth-workflow';
 
 const MyCustomSuccessScreen = () => {
-    return <SuccessScreenBase messageTitle={'Congratulations!'} message={'You have been registered successfully'} />;
+    return (
+        <SuccessScreenBase
+            EmptyStateProps={{
+                title: 'Congratulations!',
+                description: 'You have been registered successfully',
+            }}
+        />
+    );
 };
 
 <RegistrationWorkflow successScreen={<MyCustomSuccessScreen />} />;
