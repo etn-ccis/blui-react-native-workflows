@@ -38,18 +38,18 @@ export const WorkflowCardBody: React.FC<WorkflowCardBodyProps> = (props) => {
     const defaultStyles = makeStyles(isTablet);
 
     return (
-        <KeyboardAwareScrollView
-            contentInsetAdjustmentBehavior="automatic"
-            bounces={false}
-            keyboardShouldPersistTaps={'handled'}
-        >
+        <>
             {scrollable ? (
-                <>
+                <KeyboardAwareScrollView
+                    contentInsetAdjustmentBehavior="always"
+                    bounces={false}
+                    keyboardShouldPersistTaps={'handled'}
+                >
                     <WorkflowCardInstructions {...WorkflowCardInstructionProps} />
                     <Card.Content style={[defaultStyles.workflowBody, style]} {...otherCardContentProps}>
                         {children}
                     </Card.Content>
-                </>
+                </KeyboardAwareScrollView>
             ) : (
                 <>
                     <WorkflowCardInstructions {...WorkflowCardInstructionProps} />
@@ -58,6 +58,6 @@ export const WorkflowCardBody: React.FC<WorkflowCardBodyProps> = (props) => {
                     </Card.Content>
                 </>
             )}
-        </KeyboardAwareScrollView>
+        </>
     );
 };
