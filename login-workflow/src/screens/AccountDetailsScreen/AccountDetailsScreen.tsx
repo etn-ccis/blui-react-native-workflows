@@ -58,10 +58,11 @@ export const AccountDetailsScreen: React.FC<AccountDetailsScreenProps> = (props)
     }, [firstName, lastName, previousScreen]);
 
     const {
+        WorkflowCardBaseProps,
         WorkflowCardHeaderProps,
         WorkflowCardInstructionProps,
+        WorkflowCardBodyProps,
         WorkflowCardActionsProps,
-        WorkflowCardBaseProps,
         firstNameLabel = t('bluiCommon:FORMS.FIRST_NAME'),
         lastNameLabel = t('bluiCommon:FORMS.LAST_NAME'),
         firstNameValidator = (name: string): boolean | string => {
@@ -82,6 +83,11 @@ export const AccountDetailsScreen: React.FC<AccountDetailsScreenProps> = (props)
         initialLastName = screenData.AccountDetails.lastName,
     } = props;
 
+    const workflowCardBaseProps = {
+        loading: isLoading,
+        ...WorkflowCardBaseProps,
+    };
+
     const workflowCardHeaderProps = {
         title: t('bluiRegistration:REGISTRATION.STEPS.ACCOUNT_DETAILS'),
         onIconPress: (): void => {
@@ -96,9 +102,9 @@ export const AccountDetailsScreen: React.FC<AccountDetailsScreenProps> = (props)
         ...WorkflowCardInstructionProps,
     };
 
-    const workflowCardBaseProps = {
-        loading: isLoading,
-        ...WorkflowCardBaseProps,
+    const workflowCardBodyProps = {
+        WorkflowCardInstructionProps: workflowCardInstructionProps,
+        ...WorkflowCardBodyProps,
     };
 
     const workflowCardActionsProps = {
@@ -132,7 +138,8 @@ export const AccountDetailsScreen: React.FC<AccountDetailsScreenProps> = (props)
         <AccountDetailsScreenBase
             WorkflowCardBaseProps={workflowCardBaseProps}
             WorkflowCardHeaderProps={workflowCardHeaderProps}
-            WorkflowCardInstructionProps={workflowCardInstructionProps}
+            WorkflowCardBodyProps={workflowCardBodyProps}
+            WorkflowCardActionsProps={workflowCardActionsProps}
             initialFirstName={firstName.length > 0 ? firstName : initialFirstName}
             initialLastName={lastName.length > 0 ? lastName : initialLastName}
             firstNameLabel={firstNameLabel}
@@ -141,7 +148,6 @@ export const AccountDetailsScreen: React.FC<AccountDetailsScreenProps> = (props)
             lastNameLabel={lastNameLabel}
             lastNameTextInputProps={{ ...lastNameTextInputProps, onChangeText: onLastNameInputChange }}
             lastNameValidator={lastNameValidator}
-            WorkflowCardActionsProps={workflowCardActionsProps}
             errorDisplayConfig={errorDisplayConfig}
         />
     );

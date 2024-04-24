@@ -35,7 +35,7 @@ export const WorkflowCardInstructions: React.FC<WorkflowCardInstructionProps> = 
     const { instructions, divider = true, style, ...otherProps } = props;
     const { isTablet } = useScreenDimensions();
     const styles = makeStyles(isTablet);
-    return (
+    return instructions ? (
         <>
             <View style={[styles.container]}>
                 {typeof instructions === 'string' ? (
@@ -46,7 +46,7 @@ export const WorkflowCardInstructions: React.FC<WorkflowCardInstructionProps> = 
                     instructions
                 )}
             </View>
-            {divider && <Divider />}
+            {divider && <Divider bold />}
         </>
-    );
+    ) : null;
 };
