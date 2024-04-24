@@ -24,10 +24,6 @@ export const NavigationDrawer: React.FC<NavDrawerProps> = ({ navigation }) => {
         },
         [navigation]
     );
-    useEffect(() => {
-        const id = navGroupItems[navigationState.index].itemID;
-        setSelected(id);
-    }, [navigationState.index]);
 
     const navGroupItems: NavItem[] = [
         {
@@ -46,6 +42,11 @@ export const NavigationDrawer: React.FC<NavDrawerProps> = ({ navigation }) => {
             icon: Notifications,
         },
     ];
+
+    useEffect(() => {
+        const id = navGroupItems[navigationState.index].itemID;
+        setSelected(id);
+    }, [navigationState.index, navGroupItems]);
 
     return (
         <Drawer activeItem={selected} onItemSelect={(id: string): void => selectItem(id)}>

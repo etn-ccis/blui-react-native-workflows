@@ -109,7 +109,7 @@ const AuthRouter = (): any => {
                     {!app.isAuthenticated && <Stack.Screen name="Login" component={Login} />}
                     {!app.isAuthenticated && <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />}
                     {!app.isAuthenticated && <Stack.Screen name="ResetPassword" component={ResetPasswordScreen} />}
-                    <Stack.Screen name="ContactSupport" component={ContactSupportScreen} />
+                    {!app.isAuthenticated && <Stack.Screen name="ContactSupport" component={ContactSupportScreen} />}
                     {app.isAuthenticated && <Stack.Screen name="ChangePassword" component={ChangePassword} />}
                 </Stack.Navigator>
             </AuthContextProvider>
