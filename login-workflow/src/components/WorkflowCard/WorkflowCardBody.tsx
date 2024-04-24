@@ -1,8 +1,10 @@
 import React from 'react';
-import { ScrollView, StyleSheet, View, ViewStyle } from 'react-native';
+import { StyleSheet, View, ViewStyle } from 'react-native';
 import { useScreenDimensions } from '../../hooks/useScreenDimensions';
 import { WorkflowCardBodyProps } from './WorkflowCard.types';
 import { Card } from 'react-native-paper';
+import { WorkflowCardInstructions } from './WorkflowCardInstructions';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 const makeStyles = (
     isTablet: boolean
@@ -31,25 +33,30 @@ const makeStyles = (
  * @category Component
  */
 export const WorkflowCardBody: React.FC<WorkflowCardBodyProps> = (props) => {
-    const { children, style, scrollable = true, ...otherCardContentProps } = props;
+    const { children, style, scrollable = true, WorkflowCardInstructionProps, ...otherCardContentProps } = props;
     const { isTablet } = useScreenDimensions();
     const defaultStyles = makeStyles(isTablet);
+
     return (
         <>
             {scrollable ? (
-                <ScrollView
-                    contentInsetAdjustmentBehavior="automatic"
+                <KeyboardAwareScrollView
+                    contentInsetAdjustmentBehavior="always"
                     bounces={false}
                     keyboardShouldPersistTaps={'handled'}
                 >
+                    <WorkflowCardInstructions {...WorkflowCardInstructionProps} />
                     <Card.Content style={[defaultStyles.workflowBody, style]} {...otherCardContentProps}>
                         {children}
                     </Card.Content>
-                </ScrollView>
+                </KeyboardAwareScrollView>
             ) : (
-                <Card.Content style={[defaultStyles.workflowBody, style]} {...otherCardContentProps}>
-                    <View style={defaultStyles.viewContainer}>{children}</View>
-                </Card.Content>
+                <>
+                    <WorkflowCardInstructions {...WorkflowCardInstructionProps} />
+                    <Card.Content style={[defaultStyles.workflowBody, style]} {...otherCardContentProps}>
+                        <View style={defaultStyles.viewContainer}>{children}</View>
+                    </Card.Content>
+                </>
             )}
         </>
     );

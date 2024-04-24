@@ -32,6 +32,7 @@ export const CreatePasswordScreen: React.FC<CreatePasswordScreenProps> = (props)
         WorkflowCardBaseProps,
         WorkflowCardHeaderProps,
         WorkflowCardInstructionProps,
+        WorkflowCardBodyProps,
         WorkflowCardActionsProps,
         PasswordProps,
     } = props;
@@ -140,6 +141,11 @@ export const CreatePasswordScreen: React.FC<CreatePasswordScreenProps> = (props)
         ...WorkflowCardInstructionProps,
     };
 
+    const workflowCardBodyProps = {
+        WorkflowCardInstructionProps: workflowCardInstructionProps,
+        ...WorkflowCardBodyProps,
+    };
+
     const workflowCardActionsProps = {
         showNext: true,
         nextLabel: t('bluiCommon:ACTIONS.NEXT'),
@@ -162,10 +168,10 @@ export const CreatePasswordScreen: React.FC<CreatePasswordScreenProps> = (props)
 
     return (
         <CreatePasswordScreenBase
-            WorkflowCardActionsProps={workflowCardActionsProps}
             WorkflowCardBaseProps={workflowCardBaseProps}
             WorkflowCardHeaderProps={workflowCardHeaderProps}
-            WorkflowCardInstructionProps={workflowCardInstructionProps}
+            WorkflowCardBodyProps={workflowCardBodyProps}
+            WorkflowCardActionsProps={workflowCardActionsProps}
             PasswordProps={passwordProps}
             errorDisplayConfig={errorDisplayConfig}
         />

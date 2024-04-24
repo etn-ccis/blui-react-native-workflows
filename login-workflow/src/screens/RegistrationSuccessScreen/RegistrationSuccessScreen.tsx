@@ -105,8 +105,8 @@ export const RegistrationSuccessScreen: React.FC<SuccessScreenProps> = (props) =
     return (
         <SuccessScreenBase
             WorkflowCardHeaderProps={workflowCardHeaderProps}
-            WorkflowCardActionsProps={workflowCardActionsProps}
             WorkflowCardBodyProps={workflowCardBodyProps}
+            WorkflowCardActionsProps={workflowCardActionsProps}
             EmptyStateProps={emptyStatesProps}
             {...otherRegistrationSuccessScreenProps}
         />

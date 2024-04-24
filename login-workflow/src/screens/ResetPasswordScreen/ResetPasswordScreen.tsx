@@ -30,6 +30,7 @@ export const ResetPasswordScreen: React.FC<ResetPasswordScreenProps> = (props) =
         WorkflowCardBaseProps,
         WorkflowCardHeaderProps,
         WorkflowCardInstructionProps,
+        WorkflowCardBodyProps,
         WorkflowCardActionsProps,
         PasswordProps,
         SuccessScreen,
@@ -127,6 +128,11 @@ export const ResetPasswordScreen: React.FC<ResetPasswordScreenProps> = (props) =
         ...WorkflowCardInstructionProps,
     };
 
+    const workflowCardBodyProps = {
+        WorkflowCardInstructionProps: workflowCardInstructionProps,
+        ...WorkflowCardBodyProps,
+    };
+
     const workflowCardActionsProps = {
         showNext: true,
         showPrevious: true,
@@ -173,7 +179,7 @@ export const ResetPasswordScreen: React.FC<ResetPasswordScreenProps> = (props) =
         <ResetPasswordScreenBase
             WorkflowCardBaseProps={workflowCardBaseProps}
             WorkflowCardHeaderProps={workflowCardHeaderProps}
-            WorkflowCardInstructionProps={workflowCardInstructionProps}
+            WorkflowCardBodyProps={workflowCardBodyProps}
             WorkflowCardActionsProps={workflowCardActionsProps}
             PasswordProps={passwordProps}
             showSuccessScreen={showSuccessScreen}

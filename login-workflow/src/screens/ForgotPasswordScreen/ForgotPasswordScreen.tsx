@@ -48,6 +48,7 @@ export const ForgotPasswordScreen: React.FC<ForgotPasswordScreenProps> = (props)
         WorkflowCardBaseProps,
         WorkflowCardHeaderProps,
         WorkflowCardInstructionProps,
+        WorkflowCardBodyProps,
         WorkflowCardActionsProps,
         showSuccessScreen: enableSuccessScreen = true,
         SuccessScreen,
@@ -107,6 +108,15 @@ export const ForgotPasswordScreen: React.FC<ForgotPasswordScreenProps> = (props)
         ...WorkflowCardBaseProps,
     };
 
+    const workflowCardHeaderProps = {
+        title: t('bluiAuth:HEADER.FORGOT_PASSWORD'),
+        onIconPress: (): void => {
+            navigate(-1);
+            clearEmailInput();
+        },
+        ...WorkflowCardHeaderProps,
+    };
+
     const workflowCardInstructionProps = {
         instructions: description ? (
             <View> {description(responseTime)} </View>
@@ -122,13 +132,9 @@ export const ForgotPasswordScreen: React.FC<ForgotPasswordScreenProps> = (props)
         ...WorkflowCardInstructionProps,
     };
 
-    const workflowCardHeaderProps = {
-        title: t('bluiAuth:HEADER.FORGOT_PASSWORD'),
-        onIconPress: (): void => {
-            navigate(-1);
-            clearEmailInput();
-        },
-        ...WorkflowCardHeaderProps,
+    const workflowCardBodyProps = {
+        WorkflowCardInstructionProps: workflowCardInstructionProps,
+        ...WorkflowCardBodyProps,
     };
 
     const workflowCardActionsProps = {
@@ -160,7 +166,7 @@ export const ForgotPasswordScreen: React.FC<ForgotPasswordScreenProps> = (props)
         <ForgotPasswordScreenBase
             WorkflowCardBaseProps={workflowCardBaseProps}
             WorkflowCardHeaderProps={workflowCardHeaderProps}
-            WorkflowCardInstructionProps={workflowCardInstructionProps}
+            WorkflowCardBodyProps={workflowCardBodyProps}
             WorkflowCardActionsProps={workflowCardActionsProps}
             emailLabel={emailLabel}
             initialEmailValue={emailInput}
