@@ -2,9 +2,9 @@ name: CI Run
 
 on:
   push:
-    branches: [ "release/R31", "dev", "master" ]
+    branches: [ "dev", "master" ]
   pull_request:
-    branches: [ "release/R31", "dev", "master" ]
+    branches: [ "dev", "master" ]
   pull_request_target:
     types:
       - opened
