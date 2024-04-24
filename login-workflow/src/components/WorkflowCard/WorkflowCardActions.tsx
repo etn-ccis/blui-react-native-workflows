@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { Button, Divider } from 'react-native-paper';
 import { StyleSheet, ViewStyle, View } from 'react-native';
 import { WorkflowCardActionsProps } from './WorkflowCard.types';
@@ -55,7 +54,7 @@ export const WorkflowCardActions: React.FC<WorkflowCardActionsProps> = (props) =
     const showStepperDots = totalSteps !== 0 && !fullWidthButton;
     return (
         <View {...otherProps} style={style}>
-            {divider && <Divider testID="blui-workflow-card-action-divider" />}
+            {divider && <Divider testID="blui-workflow-card-action-divider" bold />}
             <MobileStepper
                 styles={{
                     root: [

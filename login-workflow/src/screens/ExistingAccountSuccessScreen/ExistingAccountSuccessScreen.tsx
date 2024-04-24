@@ -3,6 +3,7 @@ import { useRegistrationContext, useRegistrationWorkflowContext } from '../../co
 import { SuccessScreenBase, SuccessScreenProps } from '../SuccessScreen';
 import { useTranslation } from 'react-i18next';
 import { IconFamily } from '@brightlayer-ui/react-native-components/core/__types__';
+
 /**
  * Full screen component that renders a Success Screen for the accounts that already exists in the records
  *

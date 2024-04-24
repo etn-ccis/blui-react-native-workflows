@@ -6,7 +6,6 @@ import {
     WorkflowCardActions,
     WorkflowCardBody,
     WorkflowCardHeader,
-    WorkflowCardInstructions,
 } from '../../components';
 import { HelperText, TextInput } from 'react-native-paper';
 
@@ -18,7 +17,6 @@ import { HelperText, TextInput } from 'react-native-paper';
  *
  * @category Component
  */
-
 export const CreateAccountScreenBase: React.FC<CreateAccountScreenProps & { inputRef?: any }> = (props) => {
     const {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -32,7 +30,7 @@ export const CreateAccountScreenBase: React.FC<CreateAccountScreenProps & { inpu
 
     const cardBaseProps = props.WorkflowCardBaseProps || {};
     const headerProps = props.WorkflowCardHeaderProps || {};
-    const instructionsProps = props.WorkflowCardInstructionProps || {};
+    const cardBodyProps = props.WorkflowCardBodyProps || {};
     const actionsProps = props.WorkflowCardActionsProps || {};
 
     const [emailInput, setEmailInput] = React.useState(initialValue ? initialValue : '');
@@ -60,8 +58,7 @@ export const CreateAccountScreenBase: React.FC<CreateAccountScreenProps & { inpu
     return (
         <WorkflowCard {...cardBaseProps}>
             <WorkflowCardHeader {...headerProps} />
-            {Object.keys(instructionsProps).length !== 0 && <WorkflowCardInstructions {...instructionsProps} />}
-            <WorkflowCardBody>
+            <WorkflowCardBody {...cardBodyProps}>
                 <ErrorManager {...errorDisplayConfig}>
                     <TextInput
                         ref={inputRef}

@@ -11,14 +11,12 @@ import {
     WorkflowCard,
     WorkflowCardHeader,
     WorkflowCardBody,
-    WorkflowCardInstructions,
     WorkflowCardActions,
 } from '@brightlayer-ui/react-native-auth-workflow';
 
 <WorkflowCard {...cardBaseProps}>
     <WorkflowCardHeader {...headerProps} />
-    <WorkflowCardInstructions {...instructionsProps} />
-    <WorkflowCardBody>{/* Your Screen Contents */}</WorkflowCardBody>
+    <WorkflowCardBody {...cardBodyProps}>{/* Your Screen Contents */}</WorkflowCardBody>
     <WorkflowCardActions {...actionsProps} />
 </WorkflowCard>;
 ```
@@ -46,9 +44,10 @@ The properties of the underlying React Native [ImageBackground](https://reactnat
 
 This component is a simple wrapper that is used for layout. Your main screen contents should be children of this component.
 
-| Prop Name  | Type      | Description                                                     | Default |
-| ---------- | --------- | --------------------------------------------------------------- | ------- |
-| scrollable | `boolean` | A boolean that indicates whether the body should be scrollable. | `true`  |
+| Prop Name                    | Type                           | Description                                                     | Default                                                                     |
+| ---------------------------- | ------------------------------ | --------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| scrollable                   | `boolean`                      | A boolean that indicates whether the body should be scrollable. | `true`                                                                      |
+| WorkflowCardInstructionProps | `WorkflowCardInstructionProps` | Props for WorkflowCardInstructions component.                   | See [WorkflowCardInstructions](#workflowcardinstructions) for more details. |
 
 The properties of the underlying React Native Paper [Card.Content](https://callstack.github.io/react-native-paper/docs/components/Card/CardContent) component are also available.
 

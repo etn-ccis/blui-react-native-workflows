@@ -108,7 +108,6 @@ const makeStyles = (
  *
  * @category Component
  */
-
 export const LoginScreenBase: React.FC<React.PropsWithChildren<LoginScreenProps>> = (props) => {
     const {
         usernameLabel,
