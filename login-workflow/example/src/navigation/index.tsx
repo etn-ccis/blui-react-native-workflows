@@ -25,6 +25,7 @@ import { RegistrationInvite } from '../screens/RegistrationInvite';
 import { Homepage } from '../screens/Homepage';
 import Locations from '../screens/Locations';
 import Dashboard from '../screens/Dashboard';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -34,12 +35,13 @@ export type RootStackParamList = {
     Homepage: undefined;
     Dashboard: undefined;
     Locations: undefined;
-    RegistrationProviderExample: undefined;
-    AuthProviderExample: undefined;
-    ResetPasswordScreenBaseExample: undefined;
-    ForgotPasswordScreenBaseExample: undefined;
-    Contact: undefined;
-    ChangePassword: undefined;
+    NavigationDrawer: undefined;
+};
+
+export type AuthStackParamList = {
+    Homepage: undefined;
+    Dashboard: undefined;
+    Locations: undefined;
 };
 
 const RootStack = createStackNavigator<RootStackParamList>();
@@ -49,24 +51,27 @@ const CustomDrawerContent = (props: any): any => (
         <NavigationDrawer {...props} />
     </View>
 );
-const AppRouter = (): any => (
-    <Drawer.Navigator
-        initialRouteName="Homepage"
-        screenOptions={{
-            headerShown: false,
-            drawerType: 'front',
-            drawerStyle: { backgroundColor: 'transparent' },
-        }}
-        drawerContent={(props: any): ReactNode => <CustomDrawerContent {...props} />}
-    >
-        <RootStack.Screen name="Homepage" component={Homepage} />
-        <RootStack.Screen name="Locations" component={Locations} />
-        <RootStack.Screen name="Dashboard" component={Dashboard} />
-    </Drawer.Navigator>
-);
+const AppRouter = (): any => {
+    const app = useApp();
+    return (
+        <Drawer.Navigator
+            initialRouteName="Homepage"
+            screenOptions={{
+                headerShown: false,
+                drawerType: 'front',
+                drawerStyle: { backgroundColor: 'transparent' },
+            }}
+            drawerContent={(props: any): ReactNode => <CustomDrawerContent {...props} />}
+        >
+            {app.isAuthenticated && <RootStack.Screen name="Homepage" component={Homepage} />}
+            {app.isAuthenticated && <RootStack.Screen name="Locations" component={Locations} />}
+            {app.isAuthenticated && <RootStack.Screen name="Dashboard" component={Dashboard} />}
+        </Drawer.Navigator>
+    );
+};
 const AuthRouter = (): any => {
     const app = useApp();
-    const navigation = useNavigation();
+    const navigation = useNavigation<NativeStackNavigationProp<any>>();
     return (
         <>
             <AuthContextProvider
@@ -75,8 +80,19 @@ const AuthRouter = (): any => {
                 i18n={i18nAppInstance}
                 navigate={(destination: -1 | string) => {
                     if (typeof destination === 'string') {
-                        navigation.navigate(destination);
-                    } else {
+                        switch (destination) {
+                            case 'SelfRegister':
+                            case 'RegisterInvite':
+                                navigation.navigate('RegistrationProviderExample', { screen: destination });
+                                break;
+                            case 'Home':
+                                navigation.navigate('AppProviderExample', { screen: destination });
+                                break;
+                            default:
+                                navigation.navigate(destination);
+                                break;
+                        }
+                    } else if (destination === -1) {
                         navigation.goBack();
                     }
                 }}
@@ -87,6 +103,7 @@ const AuthRouter = (): any => {
                     REGISTER_INVITE: 'RegisterInvite',
                     REGISTER_SELF: 'SelfRegister',
                     SUPPORT: 'ContactSupport',
+                    LANDING_PAGE: 'Home',
                 }}
             >
                 <Stack.Navigator
@@ -95,9 +112,9 @@ const AuthRouter = (): any => {
                     }}
                     initialRouteName="Login"
                 >
-                    <Stack.Screen name="Login" component={Login} />
-                    <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
-                    <Stack.Screen name="ResetPassword" component={ResetPasswordScreen} />
+                    {!app.isAuthenticated && <Stack.Screen name="Login" component={Login} />}
+                    {!app.isAuthenticated && <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />}
+                    {!app.isAuthenticated && <Stack.Screen name="ResetPassword" component={ResetPasswordScreen} />}
                     <Stack.Screen name="ContactSupport" component={ContactSupportScreen} />
                     {app.isAuthenticated && <Stack.Screen name="ChangePassword" component={ChangePassword} />}
                 </Stack.Navigator>
@@ -108,7 +125,7 @@ const AuthRouter = (): any => {
 
 const RegistrationRouter = (): any => {
     const app = useApp();
-    const navigation = useNavigation();
+    const navigation = useNavigation<NativeStackNavigationProp<any>>();
     const RegistrationStack = createStackNavigator();
     return (
         <>
@@ -123,11 +140,23 @@ const RegistrationRouter = (): any => {
                     REGISTER_INVITE: 'RegisterInvite',
                     REGISTER_SELF: 'SelfRegister',
                     SUPPORT: 'ContactSupport',
+                    LANDING_PAGE: 'Home',
                 }}
                 navigate={(destination: -1 | string) => {
                     if (typeof destination === 'string') {
-                        navigation.navigate(destination);
-                    } else {
+                        switch (destination) {
+                            case 'SelfRegister':
+                            case 'RegisterInvite':
+                                navigation.navigate('RegistrationProviderExample', { screen: destination });
+                                break;
+                            case 'Home':
+                                navigation.navigate('AppProviderExample', { screen: destination });
+                                break;
+                            default:
+                                navigation.navigate(destination);
+                                break;
+                        }
+                    } else if (destination === -1) {
                         navigation.goBack();
                     }
                 }}
@@ -136,29 +165,40 @@ const RegistrationRouter = (): any => {
                     screenOptions={{
                         headerShown: false,
                     }}
+                    initialRouteName="SelfRegister"
                 >
-                    <RegistrationStack.Screen name="SelfRegister" component={Registration}></RegistrationStack.Screen>
-                    <RegistrationStack.Screen
-                        name="RegisterInvite"
-                        component={RegistrationInvite}
-                    ></RegistrationStack.Screen>
+                    {!app.isAuthenticated && (
+                        <RegistrationStack.Screen
+                            name="SelfRegister"
+                            component={Registration}
+                        ></RegistrationStack.Screen>
+                    )}
+                    {!app.isAuthenticated && (
+                        <RegistrationStack.Screen
+                            name="RegisterInvite"
+                            component={RegistrationInvite}
+                        ></RegistrationStack.Screen>
+                    )}
                 </RegistrationStack.Navigator>
             </RegistrationContextProvider>
         </>
     );
 };
-export const MainRouter = (): any => (
-    <NavigationContainer ref={navigationRef}>
-        <Stack.Navigator
-            initialRouteName="AuthProviderExample"
-            screenOptions={{
-                headerShown: false,
-                animationEnabled: false,
-            }}
-        >
-            <Stack.Screen name="AppProviderExample" component={AppRouter} />
-            <Stack.Screen name="AuthProviderExample" component={AuthRouter} />
-            <Stack.Screen name="RegistrationProviderExample" component={RegistrationRouter} />
-        </Stack.Navigator>
-    </NavigationContainer>
-);
+export const MainRouter = (): any => {
+    const app = useApp();
+    return (
+        <NavigationContainer ref={navigationRef}>
+            <Stack.Navigator
+                initialRouteName={app.isAuthenticated ? 'AppProviderExample' : 'AuthProviderExample'}
+                screenOptions={{
+                    headerShown: false,
+                    animationEnabled: false,
+                }}
+            >
+                <Stack.Screen name="AppProviderExample" component={AppRouter} />
+                <Stack.Screen name="AuthProviderExample" component={AuthRouter} />
+                <Stack.Screen name="RegistrationProviderExample" component={RegistrationRouter} />
+            </Stack.Navigator>
+        </NavigationContainer>
+    );
+};

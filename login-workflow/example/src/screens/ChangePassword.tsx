@@ -12,6 +12,9 @@ export const ChangePassword = (): JSX.Element => {
     const logOut = (): void => {
         LocalStorage.clearAuthCredentials();
         app.onUserNotAuthenticated();
+        app.setAuthenticated(false);
+        app.setLoginData({ email: '', rememberMe: false });
+        nav.navigate('AuthProviderExample', { screen: 'Login' });
     };
 
     return (

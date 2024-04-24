@@ -96,6 +96,7 @@ export const LoginScreen: React.FC<React.PropsWithChildren<LoginScreenProps>> = 
                     try {
                         setIsLoading(true);
                         await actions.logIn(username, password, rememberMe);
+                        await navigate(routeConfig.LANDING_PAGE as string);
                         await props.onLogin?.(username, password, rememberMe);
                     } catch (_error) {
                         triggerError(_error as Error);

@@ -10,6 +10,7 @@ import { useApp } from '../contexts/AppContextProvider';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { LocalStorage } from '../store/local-storage';
 import { useNavigation, useRoute } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 const SwapIcon: IconFamily = {
     family: 'material',
@@ -36,7 +37,7 @@ export const UserMenuExample: React.FC<UserMenuExampleProps> = (props) => {
     const { onToggleRTL, onToggleTheme } = props;
     const theme = useExtendedTheme();
     const { i18n } = useTranslation();
-    const navigation = useNavigation();
+    const navigation = useNavigation<NativeStackNavigationProp<any>>();
     const app = useApp();
     const route = useRoute().name;
     const handleLanguageChange = async (newLanguage: string): Promise<any> => {
@@ -52,9 +53,9 @@ export const UserMenuExample: React.FC<UserMenuExampleProps> = (props) => {
     const logout = (): void => {
         LocalStorage.clearAuthCredentials();
         app.onUserNotAuthenticated();
-        // app.setAuthenticated(false);
+        app.setAuthenticated(false);
         app.setLoginData({ email: '', rememberMe: false });
-        navigation.navigate('Login'); // Updated code
+        navigation.navigate('AuthProviderExample', { screen: 'Login' });
     };
     const changePassword = (): void => {
         navigation.navigate('ChangePassword', { previousScreen: route });
