@@ -1,5 +1,5 @@
 import { Drawer, DrawerBody, DrawerHeader, DrawerNavGroup, NavItem } from '@brightlayer-ui/react-native-components';
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from './index';
 import { DrawerActions } from '@react-navigation/native';
@@ -13,7 +13,7 @@ export type NavDrawerProps = {
 export const NavigationDrawer: React.FC<NavDrawerProps> = ({ navigation }) => {
     const [selected, setSelected] = useState('Home');
     const { t } = useTranslation();
-
+    const navigationState = navigation.getState();
     const Homepage: IconFamily = { family: 'material', name: 'home', direction: 'ltr' };
     const Dashboard: IconFamily = { family: 'material', name: 'dashboard', direction: 'ltr' };
     const Notifications: IconFamily = { family: 'material', name: 'notifications', direction: 'ltr' };
@@ -24,6 +24,11 @@ export const NavigationDrawer: React.FC<NavDrawerProps> = ({ navigation }) => {
         },
         [navigation]
     );
+    useEffect(() => {
+        const id = navGroupItems[navigationState.index].itemID;
+        setSelected(id);
+    }, [navigationState.index]);
+
     const navGroupItems: NavItem[] = [
         {
             title: `${t('TOOLBAR_MENU.HOME_PAGE')}`,

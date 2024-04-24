@@ -38,12 +38,6 @@ export type RootStackParamList = {
     NavigationDrawer: undefined;
 };
 
-export type AuthStackParamList = {
-    Homepage: undefined;
-    Dashboard: undefined;
-    Locations: undefined;
-};
-
 const RootStack = createStackNavigator<RootStackParamList>();
 
 const CustomDrawerContent = (props: any): any => (
@@ -64,8 +58,8 @@ const AppRouter = (): any => {
             drawerContent={(props: any): ReactNode => <CustomDrawerContent {...props} />}
         >
             {app.isAuthenticated && <RootStack.Screen name="Homepage" component={Homepage} />}
-            {app.isAuthenticated && <RootStack.Screen name="Locations" component={Locations} />}
             {app.isAuthenticated && <RootStack.Screen name="Dashboard" component={Dashboard} />}
+            {app.isAuthenticated && <RootStack.Screen name="Locations" component={Locations} />}
         </Drawer.Navigator>
     );
 };
