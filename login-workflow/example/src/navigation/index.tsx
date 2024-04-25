@@ -45,24 +45,24 @@ const CustomDrawerContent = (props: any): any => (
         <NavigationDrawer {...props} />
     </View>
 );
-const AppRouter = (): any => {
-    const app = useApp();
-    return (
-        <Drawer.Navigator
-            initialRouteName="Homepage"
-            screenOptions={{
-                headerShown: false,
-                drawerType: 'front',
-                drawerStyle: { backgroundColor: 'transparent' },
-            }}
-            drawerContent={(props: any): ReactNode => <CustomDrawerContent {...props} />}
-        >
-            {app.isAuthenticated && <RootStack.Screen name="Homepage" component={Homepage} />}
-            {app.isAuthenticated && <RootStack.Screen name="Dashboard" component={Dashboard} />}
-            {app.isAuthenticated && <RootStack.Screen name="Locations" component={Locations} />}
-        </Drawer.Navigator>
-    );
-};
+// const AppRouter = (): any => {
+//     const app = useApp();
+//     return (
+//         <Drawer.Navigator
+//             initialRouteName="Homepage"
+//             screenOptions={{
+//                 headerShown: false,
+//                 drawerType: 'front',
+//                 drawerStyle: { backgroundColor: 'transparent' },
+//             }}
+//             drawerContent={(props: any): ReactNode => <CustomDrawerContent {...props} />}
+//         >
+//             {app.isAuthenticated && <RootStack.Screen name="Homepage" component={Homepage} />}
+//             {app.isAuthenticated && <RootStack.Screen name="Dashboard" component={Dashboard} />}
+//             {app.isAuthenticated && <RootStack.Screen name="Locations" component={Locations} />}
+//         </Drawer.Navigator>
+//     );
+// };
 const AuthRouter = (): any => {
     const app = useApp();
     const navigation = useNavigation<NativeStackNavigationProp<any>>();
@@ -79,9 +79,6 @@ const AuthRouter = (): any => {
                             case 'RegisterInvite':
                                 navigation.navigate('RegistrationProviderExample', { screen: destination });
                                 break;
-                            case 'Home':
-                                navigation.navigate('AppProviderExample', { screen: destination });
-                                break;
                             default:
                                 navigation.navigate(destination);
                                 break;
@@ -97,34 +94,68 @@ const AuthRouter = (): any => {
                     REGISTER_INVITE: 'RegisterInvite',
                     REGISTER_SELF: 'SelfRegister',
                     SUPPORT: 'ContactSupport',
-                    LANDING_PAGE: 'Home',
                 }}
                 rememberMeDetails={app.loginData}
             >
-                <Stack.Navigator
+                <Drawer.Navigator
                     screenOptions={{
                         headerShown: false,
+                        drawerType: 'front',
+                        drawerStyle: { backgroundColor: 'transparent' },
                     }}
+                    drawerContent={(props: any): ReactNode => <CustomDrawerContent {...props} />}
+                    backBehavior="history"
                     initialRouteName="Login"
                 >
-                    {!app.isAuthenticated && <Stack.Screen name="Login" component={Login} />}
-                    {!app.isAuthenticated && <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />}
-                    {!app.isAuthenticated && <Stack.Screen name="ResetPassword" component={ResetPasswordScreen} />}
                     {!app.isAuthenticated && (
-                        <Stack.Screen
-                            name="ContactSupport"
-                            navigationKey={app.isAuthenticated ? 'user' : 'guest'}
-                            component={ContactSupportScreen}
+                        <Drawer.Screen
+                            options={{
+                                swipeEnabled: false,
+                            }}
+                            name="Login"
+                            component={Login}
                         />
                     )}
+                    {!app.isAuthenticated && (
+                        <Drawer.Screen
+                            options={{
+                                swipeEnabled: false,
+                            }}
+                            name="ForgotPassword"
+                            component={ForgotPasswordScreen}
+                        />
+                    )}
+                    {!app.isAuthenticated && (
+                        <Drawer.Screen
+                            options={{
+                                swipeEnabled: false,
+                            }}
+                            name="ResetPassword"
+                            component={ResetPasswordScreen}
+                        />
+                    )}
+
+                    {app.isAuthenticated && <Drawer.Screen name="Homepage" component={Homepage} />}
+                    {app.isAuthenticated && <Drawer.Screen name="Dashboard" component={Dashboard} />}
+                    {app.isAuthenticated && <Drawer.Screen name="Locations" component={Locations} />}
+
+                    <Drawer.Screen
+                        name="ContactSupport"
+                        options={{
+                            swipeEnabled: false,
+                        }}
+                        component={ContactSupportScreen}
+                    />
                     {app.isAuthenticated && (
-                        <Stack.Screen
+                        <Drawer.Screen
                             name="ChangePassword"
-                            navigationKey={app.isAuthenticated ? 'user' : 'guest'}
+                            options={{
+                                swipeEnabled: false,
+                            }}
                             component={ChangePassword}
                         />
                     )}
-                </Stack.Navigator>
+                </Drawer.Navigator>
             </AuthContextProvider>
         </>
     );
@@ -147,7 +178,6 @@ const RegistrationRouter = (): any => {
                     REGISTER_INVITE: 'RegisterInvite',
                     REGISTER_SELF: 'SelfRegister',
                     SUPPORT: 'ContactSupport',
-                    LANDING_PAGE: 'Home',
                 }}
                 navigate={(destination: -1 | string) => {
                     if (typeof destination === 'string') {
@@ -155,9 +185,6 @@ const RegistrationRouter = (): any => {
                             case 'SelfRegister':
                             case 'RegisterInvite':
                                 navigation.navigate('RegistrationProviderExample', { screen: destination });
-                                break;
-                            case 'Home':
-                                navigation.navigate('AppProviderExample', { screen: destination });
                                 break;
                             default:
                                 navigation.navigate(destination);
@@ -197,27 +224,19 @@ export const MainRouter = (): any => {
     return (
         <NavigationContainer ref={navigationRef}>
             <Stack.Navigator
-                initialRouteName={app.isAuthenticated ? 'AppProviderExample' : 'AuthProviderExample'}
+                initialRouteName={'AuthProviderExample'}
                 screenOptions={{
                     headerShown: false,
                     animationEnabled: false,
                 }}
             >
-                <Stack.Screen
+                {/* <Stack.Screen
                     name="AppProviderExample"
-                    navigationKey={app.isAuthenticated ? 'user' : 'guest'}
+                    // navigationKey={app.isAuthenticated ? 'user' : 'guest'}
                     component={AppRouter}
-                />
-                <Stack.Screen
-                    name="AuthProviderExample"
-                    navigationKey={app.isAuthenticated ? 'user' : 'guest'}
-                    component={AuthRouter}
-                />
-                <Stack.Screen
-                    name="RegistrationProviderExample"
-                    navigationKey={app.isAuthenticated ? 'user' : 'guest'}
-                    component={RegistrationRouter}
-                />
+                /> */}
+                <Stack.Screen name="AuthProviderExample" component={AuthRouter} />
+                <Stack.Screen name="RegistrationProviderExample" component={RegistrationRouter} />
             </Stack.Navigator>
         </NavigationContainer>
     );

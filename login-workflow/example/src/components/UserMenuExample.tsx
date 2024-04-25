@@ -58,10 +58,9 @@ export const UserMenuExample: React.FC<UserMenuExampleProps> = (props) => {
     const logout = (): void => {
         LocalStorage.clearAuthCredentials();
         app.onUserNotAuthenticated();
-        navigation.navigate('AuthProviderExample', { screen: 'Login' });
     };
     const changePassword = (): void => {
-        navigation.navigate('ChangePassword', { previousScreen: route });
+        navigation.navigate('ChangePassword');
     };
     const languageOptions = [
         { label: 'English', value: 'en' },

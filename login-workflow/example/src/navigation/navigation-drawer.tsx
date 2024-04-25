@@ -44,8 +44,10 @@ export const NavigationDrawer: React.FC<NavDrawerProps> = ({ navigation }) => {
     ];
 
     useEffect(() => {
-        const id = navGroupItems[navigationState.index].itemID;
-        setSelected(id);
+        const id = navGroupItems[navigationState.index]?.itemID;
+        if (id) {
+            setSelected(id);
+        }
     }, [navigationState.index, navGroupItems]);
 
     return (

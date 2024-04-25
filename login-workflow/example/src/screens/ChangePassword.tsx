@@ -12,19 +12,19 @@ export const ChangePassword = (): JSX.Element => {
     const logOut = (): void => {
         LocalStorage.clearAuthCredentials();
         app.onUserNotAuthenticated();
-        app.setAuthenticated(false);
+        // app.setAuthenticated(false);
         app.setLoginData({ email: '', rememberMe: false });
-        nav.navigate('AuthProviderExample', { screen: 'Login' });
+        // nav.navigate('AuthProviderExample', { screen: 'Login' });
     };
 
     return (
         <ChangePasswordScreen
             onFinish={(): void => logOut()}
-            WorkflowCardHeaderProps={{
-                onIconPress: (): void => {
-                    nav.navigate('AppProviderExample', { screen: params?.previousScreen });
-                },
-            }}
+            // WorkflowCardHeaderProps={{
+            //     onIconPress: (): void => {
+            //         nav.navigate('AuthProviderExample', { screen: params?.previousScreen });
+            //     },
+            // }}
             showSuccessScreen
         />
     );
