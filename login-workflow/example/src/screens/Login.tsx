@@ -1,14 +1,17 @@
 import React from 'react';
-import { View } from 'react-native';
-import { Text } from 'react-native-paper';
+import { Image } from 'react-native';
+import { DebugComponent } from '../components/DebugComponent';
+import { LoginScreenProps, LoginScreen } from '@brightlayer-ui/react-native-auth-workflow';
 
-export const Login: React.FC = (): JSX.Element => {
-    const Text1 = 'Login Page';
-    return (
-        <View>
-            <Text style={{ alignSelf: 'center', marginTop: 100 }} variant="titleLarge">
-                {Text1}
-            </Text>
-        </View>
-    );
-};
+export const Login: React.FC<React.PropsWithChildren<LoginScreenProps>> = () => (
+    <LoginScreen
+        projectImage={
+            <Image
+                style={{ width: '100%' }}
+                resizeMode="contain"
+                source={require('../assets/images/eaton_stacked_logo.png')}
+            />
+        }
+        header={<DebugComponent />}
+    />
+);

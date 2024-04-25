@@ -8,6 +8,9 @@ import { useTranslation } from 'react-i18next';
 import { useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 import { useApp } from '../contexts/AppContextProvider';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { LocalStorage } from '../store/local-storage';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 const SwapIcon: IconFamily = {
     family: 'material',
@@ -19,9 +22,14 @@ const InvertColorsIcon: IconFamily = {
     name: 'invert-colors',
     direction: 'ltr',
 };
-const CancelIcon: IconFamily = {
+const ExitToAppIcon: IconFamily = {
     family: 'material',
-    name: 'cancel',
+    name: 'exit-to-app',
+    direction: 'ltr',
+};
+const LockIcon: IconFamily = {
+    family: 'material',
+    name: 'lock',
     direction: 'ltr',
 };
 
@@ -34,7 +42,9 @@ export const UserMenuExample: React.FC<UserMenuExampleProps> = (props) => {
     const { onToggleRTL, onToggleTheme } = props;
     const theme = useExtendedTheme();
     const { i18n } = useTranslation();
+    const navigation = useNavigation<NativeStackNavigationProp<any>>();
     const app = useApp();
+    const route = useRoute().name;
     const handleLanguageChange = async (newLanguage: string): Promise<any> => {
         app.setLanguage(newLanguage);
         void i18n.changeLanguage(newLanguage);
@@ -44,6 +54,14 @@ export const UserMenuExample: React.FC<UserMenuExampleProps> = (props) => {
             // eslint-disable-next-line no-console
             console.error('Error setting new language:', error);
         }
+    };
+    const logout = (): void => {
+        LocalStorage.clearAuthCredentials();
+        app.onUserNotAuthenticated();
+        navigation.navigate('AuthProviderExample', { screen: 'Login' });
+    };
+    const changePassword = (): void => {
+        navigation.navigate('ChangePassword', { previousScreen: route });
     };
     const languageOptions = [
         { label: 'English', value: 'en' },
@@ -79,7 +97,8 @@ export const UserMenuExample: React.FC<UserMenuExampleProps> = (props) => {
                 />
             ),
         },
-        { title: 'Cancel', icon: CancelIcon },
+        { title: 'Change Password', icon: LockIcon, onPress: (): void => changePassword() },
+        { title: 'Logout', icon: ExitToAppIcon, onPress: (): void => logout() },
     ];
 
     return (

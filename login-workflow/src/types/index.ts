@@ -5,4 +5,5 @@ export type RouteConfig = {
     REGISTER_INVITE?: string;
     REGISTER_SELF?: string;
     SUPPORT?: string;
+    LANDING_PAGE?: string;
 };
