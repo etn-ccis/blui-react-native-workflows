@@ -1,4 +1,3 @@
-
 # Setting up Routing
 
 While this workflow library will work with different routing providers, we generally recommend using [React Navigation](https://reactnavigation.org/) and will do so in all of the examples.
@@ -9,61 +8,230 @@ Because this workflow package is router-agnostic, you will be required to set up
 
 The Workflow support only Portrait mode in mobile devices and should be used only in Portrait mode
 
+### Authentication
 
+The **Authentication** workflow screens are rendered individually on separate routes. For more information on the `AuthContextProvider`, refer to the [Authentication Workflow](./authentication-workflow.md) Guide.
+
+#### Example Setup
+
+```tsx
+import React, { ReactNode } from 'react';
+import { NavigationContainer, createNavigationContainerRef, useNavigation } from '@react-navigation/native';
+import {
+    AuthContextProvider,
+    ContactSupportScreen,
+    ResetPasswordScreen,
+    ForgotPasswordScreen,
+} from '@brightlayer-ui/react-native-auth-workflow';
+import { NavigationDrawer } from './navigation-drawer';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createStackNavigator } from '@react-navigation/stack';
+import { Dimensions, View } from 'react-native';
+import { ProjectAuthUIActions } from '../actions/AuthUIActions';
+import { Login } from '../screens/Login';
+import { ChangePassword } from '../screens/ChangePassword';
+
+const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
+const navigationRef = createNavigationContainerRef();
+
+const CustomDrawerContent = (props: any): any => (
+    <View style={{ height: '100%' }}>
+        <NavigationDrawer {...props} />
+    </View>
+);
+
+export const routes: RouteConfig = {
+    LOGIN: 'Login',
+    FORGOT_PASSWORD: 'ForgotPassword',
+    RESET_PASSWORD: 'ResetPassword',
+    REGISTER_INVITE: 'RegisterInvite',
+    REGISTER_SELF: 'SelfRegister',
+    SUPPORT: 'ContactSupport',
+};
+
+// Retrieve data that you are storing about the logged-in status of the user
+const getAuthState = () => ({
+    isAuthenticated: true;
+})
+
+const AuthRouter = (): any => {
+    const authState = getAuthState();
+    const navigation = useNavigation();
+    const navigate = useCallback((destination: -1 | string) => {
+        navigation(destination as To);
+    }, []);
+    return (
+        <>
+            <AuthContextProvider
+                language={'en'}
+                actions={ProjectAuthUIActions}
+                navigate={navigate}
+                routeConfig={routes}
+            >
+                <Drawer.Navigator
+                    screenOptions={{
+                        headerShown: false,
+                        drawerType: 'front',
+                        drawerStyle: { backgroundColor: 'transparent' },
+                    }}
+                    drawerContent={(props: any): ReactNode => <CustomDrawerContent {...props} />}
+                    backBehavior="history"
+                    initialRouteName="Login"
+                >
+                    {!authState && (
+                        <Drawer.Screen
+                            options={{
+                                swipeEnabled: false,
+                            }}
+                            name="Login"
+                            component={Login}
+                        />
+                    )}
+                    {!authState && (
+                        <Drawer.Screen
+                            options={{
+                                swipeEnabled: false,
+                            }}
+                            name="ForgotPassword"
+                            component={ForgotPasswordScreen}
+                        />
+                    )}
+                    {!authState && (
+                        <Drawer.Screen
+                            options={{
+                                swipeEnabled: false,
+                            }}
+                            name="ResetPassword"
+                            component={ResetPasswordScreen}
+                        />
+                    )}
+
+                    <Drawer.Screen
+                        name="ContactSupport"
+                        options={{
+                            swipeEnabled: false,
+                        }}
+                        component={ContactSupportScreen}
+                    />
+                    {authState && (
+                        <Drawer.Screen
+                            name="ChangePassword"
+                            options={{
+                                swipeEnabled: false,
+                            }}
+                            component={ChangePassword}
+                        />
+                    )}
+                </Drawer.Navigator>
+            </AuthContextProvider>
+        </>
+    );
+};
+
+export const MainRouter = (): any => {
+    const { height, width } = Dimensions.get('screen');
+    return (
+        <NavigationContainer ref={navigationRef}>
+            <Stack.Navigator
+                initialRouteName={'AuthProviderExample'}
+                screenOptions={{
+                    headerShown: false,
+                    orientation: width >= 768 && height >= 768 ? 'all' : 'portrait',
+                }}
+            >
+                <Stack.Screen name="AuthProviderExample" component={AuthRouter} />
+            </Stack.Navigator>
+        </NavigationContainer>
+    );
+};
+```
 
 ### Registration
 
 The **Registration** workflow is intended to be used on a _single_ route because the screens work together and share data, etc. This single route renders a component that manages the transitions between the screens.
 
 For more information on the `RegistrationContextProvider`, refer to the [Registration Workflow](./registration-workflow.md) Guide.
-<!-- @Todo add Auth guard and Guest guard in example when implementented -->
+
 #### Example Usage
 
 ```tsx
 import React from 'react';
-import { Dimensions} from 'react-native';
-import { NavigationContainer, createNavigationContainerRef } from '@react-navigation/native';
-import { RegistrationWorkflow, RegistrationContextProvider } from '@brightlayer-ui/react-native-auth-workflow';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NavigationContainer, createNavigationContainerRef, useNavigation } from '@react-navigation/native';
+import { RegistrationContextProvider } from '@brightlayer-ui/react-native-auth-workflow';
+import { createStackNavigator } from '@react-navigation/stack';
+import { ProjectRegistrationUIActions } from '../actions/RegistrationUIActions';
+import { Registration } from '../screens/Registration';
+import { RegistrationInvite } from '../screens/RegistrationInvite';
+import { Dimensions } from 'react-native';
 
 const Stack = createNativeStackNavigator();
 const navigationRef = createNavigationContainerRef();
 
+export const routes: RouteConfig = {
+    LOGIN: 'Login',
+    FORGOT_PASSWORD: 'ForgotPassword',
+    RESET_PASSWORD: 'ResetPassword',
+    REGISTER_INVITE: 'RegisterInvite',
+    REGISTER_SELF: 'SelfRegister',
+    SUPPORT: 'ContactSupport',
+};
 
+// Retrieve data that you are storing about the logged-in status of the user
+const getAuthState = () => ({
+    isAuthenticated: true;
+})
 const RegistrationRouter = (): any => {
-const { height, width } = Dimensions.get('screen');
+    const authState = getAuthState();
+    const navigation = useNavigation();
+    const navigate = useCallback((destination: -1 | string) => {
+        navigation(destination as To);
+    }, []);
     return (
-        <RegistrationContextProvider
-            language={language}
-            actions={Actions()}
-            i18n={i18n}
-            routeConfig={routes}
-            navigate={navigationRef.navigate}
-        >
+        <>
+            <RegistrationContextProvider
+                language={'en'}
+                actions={ProjectRegistrationUIActions()}
+                routeConfig={routes}
+                navigate={navigate}
+            >
+                <Stack.Navigator
+                    screenOptions={{
+                        headerShown: false,
+                    }}
+                    initialRouteName="SelfRegister"
+                >
+                    {!authState && (
+                        <Stack.Screen
+                            name="SelfRegister"
+                            component={Registration}
+                        ></Stack.Screen>
+                    )}
+                    {!authState && (
+                        <Stack.Screen
+                            name="RegisterInvite"
+                            component={RegistrationInvite}
+                        ></Stack.Screen>
+                    )}
+                </Stack.Navigator>
+            </RegistrationContextProvider>
+        </>
+    );
+};
+export const MainRouter = (): any => {
+    const { height, width } = Dimensions.get('screen');
+    return (
+        <NavigationContainer ref={navigationRef}>
             <Stack.Navigator
+                initialRouteName={'RegistrationProviderExample'}
                 screenOptions={{
                     headerShown: false,
                     orientation: width >= 768 && height >= 768 ? 'all' : 'portrait',
                 }}
             >
-                <Stack.Screen name="REGISTER_SELF">{() => <RegistrationWorkflow />}</Stack.Screen>
-                <Stack.Screen name="REGISTER_INVITE">
-                    {() => <RegistrationWorkflow isInviteRegistration />}
-                </Stack.Screen>
+                <Stack.Screen name="RegistrationProviderExample" component={RegistrationRouter} />
             </Stack.Navigator>
-        </RegistrationContextProvider>
-    );
-};
-export const MainRouter = (): any => {
-    return (
-        <NavigationContainer ref={navigationRef}>
-            <RegistrationRouter />
-            <LoginRouter />
         </NavigationContainer>
     );
 };
-
 ```
-
-<!-- @Todo  add Protected Routing when auth workflow is done-->
-<!-- @TODO setting up deep links/universal links and add a link to the React Navigation guide for that. -->
