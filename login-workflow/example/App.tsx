@@ -21,8 +21,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const App = (): JSX.Element => {
     const [theme, setTheme] = useState<ThemeType>('light');
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [language, setLanguage] = useState('en');
+    const [isAuthenticated, setAuthenticated] = useState<AppContextType['isAuthenticated']>(false);
     const [loginData, setLoginData] = useState<AppContextType['loginData']>({
         email: '',
         rememberMe: false,
@@ -46,7 +46,7 @@ export const App = (): JSX.Element => {
             try {
                 const userData = await LocalStorage.readAuthData();
                 setLoginData({ email: userData.rememberMeData.user, rememberMe: userData.rememberMeData.rememberMe });
-                setIsAuthenticated(Boolean(userData.userId));
+                setAuthenticated(Boolean(userData.userId));
                 await getLanguage();
             } catch (e) {
                 // handle any error state, rejected promises, etc..
@@ -68,17 +68,18 @@ export const App = (): JSX.Element => {
                     value={{
                         isAuthenticated,
                         onUserAuthenticated: (userData): void => {
-                            setIsAuthenticated(true);
+                            setAuthenticated(true);
                             setLoginData(userData);
                         },
                         // eslint-disable-next-line
                         onUserNotAuthenticated: (userData): void => {
-                            setIsAuthenticated(false);
+                            setAuthenticated(false);
                         },
                         loginData,
                         setLoginData,
                         language,
                         setLanguage,
+                        setAuthenticated,
                     }}
                 >
                     <ThemeProvider theme={theme === 'light' ? blue : blueDark}>

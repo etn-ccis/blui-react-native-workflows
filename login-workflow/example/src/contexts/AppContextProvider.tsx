@@ -13,6 +13,7 @@ export type AppContextType = {
     language: string;
     setLanguage: (language: string) => void;
     setLoginData: (args: LoginData) => void;
+    setAuthenticated: (isAuthenticated: boolean) => void;
 };
 
 export const AppContext = createContext<AppContextType | null>(null);

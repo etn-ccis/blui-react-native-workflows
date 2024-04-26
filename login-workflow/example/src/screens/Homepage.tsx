@@ -9,8 +9,7 @@ import {
     Easing,
     I18nManager,
 } from 'react-native';
-import { Button } from 'react-native-paper';
-import { Header } from '@brightlayer-ui/react-native-components';
+import { EmptyState, Header } from '@brightlayer-ui/react-native-components';
 import RNRestart from 'react-native-restart';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../navigation';
@@ -18,6 +17,8 @@ import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-th
 import { UserMenuExample } from '../components/UserMenuExample';
 import { useThemeContext } from '../contexts/ThemeContext';
 import { useTranslation } from 'react-i18next';
+import { IconFamily } from '@brightlayer-ui/react-native-components/core/__types__';
+import { DrawerActions } from '@react-navigation/native';
 
 const styles = (
     theme: ExtendedTheme
@@ -65,10 +66,10 @@ const styles = (
     });
 
 type AppProps = {
-    navigation: StackNavigationProp<RootStackParamList, 'Home'>;
+    navigation: StackNavigationProp<RootStackParamList, 'Homepage'>;
 };
 
-export const toggleRTL = (): void => {
+const toggleRTL = (): void => {
     if (I18nManager.isRTL) {
         I18nManager.forceRTL(false);
     } else {
@@ -76,13 +77,14 @@ export const toggleRTL = (): void => {
     }
     RNRestart.Restart();
 };
-const Home: React.FC<AppProps> = ({ navigation }): JSX.Element => {
+export const Homepage: React.FC<AppProps> = ({ navigation }): JSX.Element => {
     const theme = useExtendedTheme();
     const { t } = useTranslation();
     const { theme: themeType, setTheme } = useThemeContext();
 
     const defaultStyles = styles(theme);
     const spinValue = new Animated.Value(0);
+    const Event: IconFamily = { family: 'material', name: 'event', direction: 'ltr' };
     Animated.loop(
         Animated.timing(spinValue, {
             toValue: 1,
@@ -98,7 +100,7 @@ const Home: React.FC<AppProps> = ({ navigation }): JSX.Element => {
                 title={`${t('TOOLBAR_MENU.HOME_PAGE')}`}
                 icon={{ name: 'menu' }}
                 onIconPress={(): void => {
-                    navigation.openDrawer();
+                    navigation.dispatch(DrawerActions.openDrawer());
                 }}
                 actionItems={[
                     {
@@ -114,14 +116,20 @@ const Home: React.FC<AppProps> = ({ navigation }): JSX.Element => {
                 ]}
             />
             <SafeAreaView style={defaultStyles.content}>
-                <ScrollView>
-                    <Button onPress={() => navigation.navigate('RegistrationProviderExample')}>
-                        Registration Provider Example
-                    </Button>
+                <ScrollView
+                    contentContainerStyle={{
+                        flex: 1,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                    }}
+                >
+                    <EmptyState
+                        icon={Event}
+                        title={`${t('TOOLBAR_MENU.HOME_PAGE')}`}
+                        description={`${t('PAGE_DETAILS.AUTHORISED_MESSAGE')}`}
+                    />
                 </ScrollView>
             </SafeAreaView>
         </>
     );
 };
-
-export default Home;
