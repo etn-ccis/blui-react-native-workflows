@@ -57,7 +57,7 @@ const getAuthState = () => ({
 
 const AuthRouter = (): any => {
     const authState = getAuthState();
-    const navigation = useNavigation;
+    const navigation = useNavigation();
     const navigate = useCallback((destination: -1 | string) => {
         navigation(destination as To);
     }, []);
@@ -183,7 +183,7 @@ const getAuthState = () => ({
 })
 const RegistrationRouter = (): any => {
     const authState = getAuthState();
-    const navigation = useNavigation;
+    const navigation = useNavigation();
     const navigate = useCallback((destination: -1 | string) => {
         navigation(destination as To);
     }, []);
