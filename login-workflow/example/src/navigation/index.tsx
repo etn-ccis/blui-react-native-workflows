@@ -45,26 +45,10 @@ const CustomDrawerContent = (props: any): any => (
         <NavigationDrawer {...props} />
     </View>
 );
-// const AppRouter = (): any => {
-//     const app = useApp();
-//     return (
-//         <Drawer.Navigator
-//             initialRouteName="Homepage"
-//             screenOptions={{
-//                 headerShown: false,
-//                 drawerType: 'front',
-//                 drawerStyle: { backgroundColor: 'transparent' },
-//             }}
-//             drawerContent={(props: any): ReactNode => <CustomDrawerContent {...props} />}
-//         >
-//             {app.isAuthenticated && <RootStack.Screen name="Homepage" component={Homepage} />}
-//             {app.isAuthenticated && <RootStack.Screen name="Dashboard" component={Dashboard} />}
-//             {app.isAuthenticated && <RootStack.Screen name="Locations" component={Locations} />}
-//         </Drawer.Navigator>
-//     );
-// };
+
 const AuthRouter = (): any => {
     const app = useApp();
+    const { email, rememberMe } = app.loginData;
     const navigation = useNavigation<NativeStackNavigationProp<any>>();
     return (
         <>
@@ -95,7 +79,7 @@ const AuthRouter = (): any => {
                     REGISTER_SELF: 'SelfRegister',
                     SUPPORT: 'ContactSupport',
                 }}
-                rememberMeDetails={app.loginData}
+                rememberMeDetails={{ email: rememberMe ? email : '', rememberMe: rememberMe }}
             >
                 <Drawer.Navigator
                     screenOptions={{
@@ -220,7 +204,6 @@ const RegistrationRouter = (): any => {
 };
 export const MainRouter = (): any => {
     const app = useApp();
-    console.log('app.isAuthenticated', app.isAuthenticated);
     return (
         <NavigationContainer ref={navigationRef}>
             <Stack.Navigator
@@ -230,11 +213,6 @@ export const MainRouter = (): any => {
                     animationEnabled: false,
                 }}
             >
-                {/* <Stack.Screen
-                    name="AppProviderExample"
-                    // navigationKey={app.isAuthenticated ? 'user' : 'guest'}
-                    component={AppRouter}
-                /> */}
                 <Stack.Screen name="AuthProviderExample" component={AuthRouter} />
                 <Stack.Screen name="RegistrationProviderExample" component={RegistrationRouter} />
             </Stack.Navigator>

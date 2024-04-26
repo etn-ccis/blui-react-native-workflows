@@ -18,6 +18,7 @@ import { UserMenuExample } from '../components/UserMenuExample';
 import { useThemeContext } from '../contexts/ThemeContext';
 import { useTranslation } from 'react-i18next';
 import { IconFamily } from '@brightlayer-ui/react-native-components/core/__types__';
+import { DrawerActions } from '@react-navigation/native';
 
 const styles = (
     theme: ExtendedTheme
@@ -99,7 +100,7 @@ const Dashboard: React.FC<AppProps> = ({ navigation }): JSX.Element => {
                 title={`${t('DRAWER_MENU.DASHBOARD')}`}
                 icon={{ name: 'menu' }}
                 onIconPress={(): void => {
-                    navigation.openDrawer();
+                    navigation.dispatch(DrawerActions.openDrawer());
                 }}
                 actionItems={[
                     {

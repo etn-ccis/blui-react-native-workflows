@@ -18,6 +18,7 @@ import { UserMenuExample } from '../components/UserMenuExample';
 import { useThemeContext } from '../contexts/ThemeContext';
 import { useTranslation } from 'react-i18next';
 import { IconFamily } from '@brightlayer-ui/react-native-components/core/__types__';
+import { DrawerActions } from '@react-navigation/native';
 
 const styles = (
     theme: ExtendedTheme
@@ -65,7 +66,7 @@ const styles = (
     });
 
 type AppProps = {
-    navigation: StackNavigationProp<RootStackParamList, 'Home'>;
+    navigation: StackNavigationProp<RootStackParamList, 'Homepage'>;
 };
 
 const toggleRTL = (): void => {
@@ -99,7 +100,7 @@ export const Homepage: React.FC<AppProps> = ({ navigation }): JSX.Element => {
                 title={`${t('TOOLBAR_MENU.HOME_PAGE')}`}
                 icon={{ name: 'menu' }}
                 onIconPress={(): void => {
-                    navigation.openDrawer();
+                    navigation.dispatch(DrawerActions.openDrawer());
                 }}
                 actionItems={[
                     {
