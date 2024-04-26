@@ -9,7 +9,7 @@ import { useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 import { useApp } from '../contexts/AppContextProvider';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { LocalStorage } from '../store/local-storage';
-import { useNavigation, useRoute } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 const SwapIcon: IconFamily = {
@@ -44,7 +44,6 @@ export const UserMenuExample: React.FC<UserMenuExampleProps> = (props) => {
     const { i18n } = useTranslation();
     const navigation = useNavigation<NativeStackNavigationProp<any>>();
     const app = useApp();
-    const route = useRoute().name;
     const handleLanguageChange = async (newLanguage: string): Promise<any> => {
         app.setLanguage(newLanguage);
         void i18n.changeLanguage(newLanguage);

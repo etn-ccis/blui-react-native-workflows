@@ -12,7 +12,7 @@ import i18nAppInstance from '../../translations/i18n';
 import { NavigationDrawer } from './navigation-drawer';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
-import { View } from 'react-native';
+import { Dimensions, View } from 'react-native';
 
 import { ProjectAuthUIActions } from '../actions/AuthUIActions';
 import { ProjectRegistrationUIActions } from '../actions/RegistrationUIActions';
@@ -25,9 +25,9 @@ import { RegistrationInvite } from '../screens/RegistrationInvite';
 import { Homepage } from '../screens/Homepage';
 import Locations from '../screens/Locations';
 import Dashboard from '../screens/Dashboard';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { NativeStackNavigationProp, createNativeStackNavigator } from '@react-navigation/native-stack';
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 const navigationRef = createNavigationContainerRef();
 
@@ -37,8 +37,6 @@ export type RootStackParamList = {
     Locations: undefined;
     NavigationDrawer: undefined;
 };
-
-const RootStack = createStackNavigator<RootStackParamList>();
 
 const CustomDrawerContent = (props: any): any => (
     <View style={{ height: '100%' }}>
@@ -203,14 +201,14 @@ const RegistrationRouter = (): any => {
     );
 };
 export const MainRouter = (): any => {
-    const app = useApp();
+    const { height, width } = Dimensions.get('screen');
     return (
         <NavigationContainer ref={navigationRef}>
             <Stack.Navigator
                 initialRouteName={'AuthProviderExample'}
                 screenOptions={{
                     headerShown: false,
-                    animationEnabled: false,
+                    orientation: width >= 768 && height >= 768 ? 'all' : 'portrait',
                 }}
             >
                 <Stack.Screen name="AuthProviderExample" component={AuthRouter} />
