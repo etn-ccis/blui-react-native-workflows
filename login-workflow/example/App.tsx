@@ -18,6 +18,7 @@ import { AppContext, AppContextType } from './src/contexts/AppContextProvider';
 import { LocalStorage } from './src/store/local-storage';
 import { Spinner } from '@brightlayer-ui/react-native-auth-workflow';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { NativeModules, Platform } from 'react-native';
 
 export const App = (): JSX.Element => {
     const [theme, setTheme] = useState<ThemeType>('light');
@@ -33,9 +34,18 @@ export const App = (): JSX.Element => {
         try {
             const storedLanguage = await AsyncStorage.getItem('userLanguage');
             if (storedLanguage !== null) {
+                console.log('qqq',storedLanguage)
                 setLanguage(storedLanguage);
                 void i18n.changeLanguage(storedLanguage);
             }
+            else{
+                const locale =
+    Platform.OS === 'ios'
+        ? NativeModules.SettingsManager.settings.AppleLocale
+        : NativeModules.I18nManager.localeIdentifier;
+        setLanguage(locale.substring(0, 2))
+            }
+            
         } catch (error) {
             console.error('Error getting language from Async Storage:', error);
         }
