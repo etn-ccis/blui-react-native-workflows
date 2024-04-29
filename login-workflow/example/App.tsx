@@ -34,18 +34,15 @@ export const App = (): JSX.Element => {
         try {
             const storedLanguage = await AsyncStorage.getItem('userLanguage');
             if (storedLanguage !== null) {
-                console.log('qqq',storedLanguage)
                 setLanguage(storedLanguage);
                 void i18n.changeLanguage(storedLanguage);
-            }
-            else{
+            } else {
                 const locale =
-    Platform.OS === 'ios'
-        ? NativeModules.SettingsManager.settings.AppleLocale
-        : NativeModules.I18nManager.localeIdentifier;
-        setLanguage(locale.substring(0, 2))
+                    Platform.OS === 'ios'
+                        ? NativeModules.SettingsManager.settings.AppleLocale
+                        : NativeModules.I18nManager.localeIdentifier;
+                setLanguage(locale.substring(0, 2));
             }
-            
         } catch (error) {
             console.error('Error getting language from Async Storage:', error);
         }

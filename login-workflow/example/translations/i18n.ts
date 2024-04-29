@@ -13,15 +13,10 @@ void i18next
         {
             lng: locale.substring(0, 2),
             fallbackLng: 'en',
-            initImmediate:false,
+            initImmediate: false,
             ns: ['app'],
             defaultNS: 'app',
             load: 'languageOnly',
-            detection: {
-                order: ['AsyncStorage'],
-                caches: ['AsyncStorage'],
-                lookupAsyncStorage: 'app-i18nextLng',
-            },
             react: { useSuspense: false },
             interpolation: { escapeValue: false },
             resources: {
