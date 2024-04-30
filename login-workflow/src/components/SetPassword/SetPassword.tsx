@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import PasswordRequirements from './PasswordRequirements';
 import { SetPasswordProps } from './types';
 import { HelperText } from 'react-native-paper';
@@ -58,6 +58,11 @@ export const SetPassword: React.FC<React.PropsWithChildren<SetPasswordProps>> = 
     const { isTablet } = useScreenDimensions();
     const theme = useExtendedTheme();
     const defaultStyle = makeStyles(isTablet, theme);
+
+    useEffect(() => {
+        setPasswordInput(initialNewPasswordValue);
+        setConfirmInput(initialConfirmPasswordValue);
+    }, [initialNewPasswordValue, initialConfirmPasswordValue]);
 
     const onPassChange = useCallback(
         (newPassword: any) => {
