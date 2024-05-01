@@ -15,11 +15,6 @@ export const i18nRegistrationInstance = i18next.createInstance(
         ns: ['bluiRegistration', 'bluiCommon'],
         defaultNS: 'bluiRegistration',
         load: 'languageOnly',
-        detection: {
-            order: ['AsyncStorage'],
-            caches: ['AsyncStorage'],
-            lookupAsyncStorage: 'app-i18nextLng',
-        },
         react: { useSuspense: false },
         interpolation: { escapeValue: false },
         resources: {

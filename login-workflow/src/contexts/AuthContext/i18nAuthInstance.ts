@@ -15,11 +15,6 @@ export const i18nAuthInstance = i18next.createInstance(
         ns: ['bluiAuth', 'bluiCommon'],
         defaultNS: 'bluiAuth',
         load: 'languageOnly',
-        detection: {
-            order: ['AsyncStorage'],
-            caches: ['AsyncStorage'],
-            lookupAsyncStorage: 'app-i18nextLng',
-        },
         react: { useSuspense: false },
         interpolation: { escapeValue: false },
         resources: {
