@@ -14,6 +14,9 @@ export type AppTranslations = {
         LOG_OUT: string;
         CHANGE_PASSWORD: string;
         MY_ACCOUNT: string;
+        TOGGLE_RTL: string;
+        TOGGLE_THEME: string;
+        LANGUAGE: string;
     };
     ORGANAIZATION_DETAILS: {
         NAME: string;

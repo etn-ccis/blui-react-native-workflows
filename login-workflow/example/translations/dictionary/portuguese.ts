@@ -17,6 +17,9 @@ const resources: AppTranslationsFile = {
             LOG_OUT: 'Sair',
             CHANGE_PASSWORD: 'alterar a senha',
             MY_ACCOUNT: 'Minha conta',
+            TOGGLE_RTL: 'Alternar RTL',
+            TOGGLE_THEME: 'Alternar tema',
+            LANGUAGE: 'Linguagem ',
         },
         ORGANAIZATION_DETAILS: {
             NAME: 'Nome da organização',

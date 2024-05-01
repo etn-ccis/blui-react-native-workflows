@@ -41,7 +41,7 @@ type UserMenuExampleProps = {
 export const UserMenuExample: React.FC<UserMenuExampleProps> = (props) => {
     const { onToggleRTL, onToggleTheme } = props;
     const theme = useExtendedTheme();
-    const { i18n } = useTranslation();
+    const { i18n, t } = useTranslation();
     const navigation = useNavigation<NativeStackNavigationProp<any>>();
     const app = useApp();
     const handleLanguageChange = async (newLanguage: string): Promise<any> => {
@@ -70,14 +70,14 @@ export const UserMenuExample: React.FC<UserMenuExampleProps> = (props) => {
     ];
 
     const menuItems: InfoListItemProps[] = [
-        { title: 'Toggle RTL', icon: SwapIcon, onPress: (): void => onToggleRTL() },
+        { title: t('USER_MENU.TOGGLE_RTL'), icon: SwapIcon, onPress: (): void => onToggleRTL() },
         {
-            title: 'Toggle Theme',
+            title: t('USER_MENU.TOGGLE_THEME'),
             icon: InvertColorsIcon,
             onPress: (): void => onToggleTheme(),
         },
         {
-            title: 'Language',
+            title: t('USER_MENU.LANGUAGE'),
             icon: { name: 'translate' },
             rightComponent: (
                 <SelectDropdown
@@ -95,8 +95,8 @@ export const UserMenuExample: React.FC<UserMenuExampleProps> = (props) => {
                 />
             ),
         },
-        { title: 'Change Password', icon: LockIcon, onPress: (): void => changePassword() },
-        { title: 'Logout', icon: ExitToAppIcon, onPress: (): void => logout() },
+        { title: t('USER_MENU.CHANGE_PASSWORD'), icon: LockIcon, onPress: (): void => changePassword() },
+        { title: t('USER_MENU.LOG_OUT'), icon: ExitToAppIcon, onPress: (): void => logout() },
     ];
 
     return (
