@@ -69,9 +69,10 @@ const makeStyles = (
             display: 'flex',
             flex: 1,
             justifyContent: 'flex-end',
+            flexDirection: 'row',
         },
         loginButton: {
-            width: '100%',
+            width: '80%',
         },
         forgotPasswordWrapper: {
             display: 'flex',
