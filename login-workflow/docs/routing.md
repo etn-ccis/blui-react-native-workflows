@@ -6,7 +6,25 @@ While this workflow library will work with different routing providers, we gener
 
 Because this workflow package is router-agnostic, you will be required to set up your routing solution and configure which of the workflow screens will appear on each of your routes.
 
-The Workflow support only Portrait mode in mobile devices and should be used only in Portrait mode
+The Workflow support only Portrait mode in mobile devices and should be used only in Portrait mode. We have locked the workflow to support only in Portrait mode, because when soft keyboard gets open in Landscape mode text input is getting pushed under the header.
+
+<img width="400" alt="Account Details" src="../media/landscape-mode.png">
+
+We need to pass logic to `orientation` attribute which is present inside `screenOptions` prop of `Stack.Navigator`.
+
+```tsx
+<NavigationContainer ref={navigationRef}>
+    <Stack.Navigator
+        initialRouteName={'AuthProviderExample'}
+        screenOptions={{
+            headerShown: false,
+            orientation: width >= 768 && height >= 768 ? 'all' : 'portrait',
+        }}
+    >
+        <Stack.Screen name="AuthProviderExample" component={AuthRouter} />
+    </Stack.Navigator>
+</NavigationContainer>
+```
 
 ### Authentication
 
