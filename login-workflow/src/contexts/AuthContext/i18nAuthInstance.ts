@@ -10,7 +10,7 @@ const locale =
 
 export const i18nAuthInstance = i18next.createInstance(
     {
-        lng: locale.substring(0, 2),
+        lng: locale?.substring(0, 2) || 'en',
         fallbackLng: 'en',
         ns: ['bluiAuth', 'bluiCommon'],
         defaultNS: 'bluiAuth',

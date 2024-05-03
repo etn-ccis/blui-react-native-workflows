@@ -11,7 +11,7 @@ void i18next
     .use(initReactI18next) // passes i18n down to react-i18next
     .init(
         {
-            lng: locale.substring(0, 2),
+            lng: locale?.substring(0, 2) || 'en',
             fallbackLng: 'en',
             initImmediate: false,
             ns: ['app'],
