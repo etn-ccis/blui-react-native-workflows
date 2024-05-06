@@ -18,9 +18,11 @@ const makeStyles = (
         },
         previousButton: {
             alignSelf: 'flex-start',
+            minWidth: '32%',
         },
         nextButton: {
             alignSelf: 'flex-end',
+            minWidth: '32%',
         },
     });
 
@@ -60,7 +62,7 @@ export const WorkflowCardActions: React.FC<WorkflowCardActionsProps> = (props) =
                     root: [
                         {
                             flex: 0,
-                            justifyContent: 'space-between',
+                            justifyContent: !showStepperDots ? 'space-between' : 'center',
                             paddingHorizontal: isTablet ? 8 : 0,
                             paddingVertical: isTablet ? 8 : 0,
                         },
