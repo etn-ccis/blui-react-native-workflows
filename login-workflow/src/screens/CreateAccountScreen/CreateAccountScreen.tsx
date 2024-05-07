@@ -119,6 +119,7 @@ export const CreateAccountScreen: React.FC<CreateAccountScreenProps> = (props) =
     const emailInputProps = {
         ...emailTextFieldProps,
         onChangeText: (email: string): void => {
+            // eslint-disable-next-line
             emailTextFieldProps?.onChangeText && emailTextFieldProps?.onChangeText(email);
             setEmailInputValue(email);
         },
