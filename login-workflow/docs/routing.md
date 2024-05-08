@@ -6,7 +6,7 @@ While this workflow library will work with different routing providers, we gener
 
 Because this workflow package is router-agnostic, you will be required to set up your routing solution and configure which of the workflow screens will appear on each of your routes.
 
-The Workflow support only Portrait mode in mobile devices and should be used only in Portrait mode. We have locked the workflow to support only in Portrait mode, because when soft keyboard gets open in Landscape mode text input is getting pushed under the header.
+The Login Workflow has been set up to only support Portrait mode on mobile devices. It is important to use Portrait mode because when the soft keyboard is opened in Landscape mode, the text input fields can get pushed under the workflow card header in certain views, causing inconvenience. We have locked the Login Workflow to support Portrait mode to prevent this issue.
 
 <img width="400" alt="Account Details" src="../media/landscape-mode.png">
 
