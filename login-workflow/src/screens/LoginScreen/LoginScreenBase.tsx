@@ -72,7 +72,7 @@ const makeStyles = (
             flexDirection: 'row',
         },
         loginButton: {
-            width: '80%',
+            width: '100%',
         },
         forgotPasswordWrapper: {
             display: 'flex',
