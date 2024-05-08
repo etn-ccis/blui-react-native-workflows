@@ -10,7 +10,7 @@ The Login Workflow has been set up to only support Portrait mode on mobile devic
 
 <img width="400" alt="Account Details" src="../media/landscape-mode.png">
 
-We need to pass the logic to `orientation` attribute which is present inside `screenOptions` prop of `Stack.Navigator`. Please refer to the example below.
+To update the router to lock the orientation, we need to pass the logic to `orientation` attribute which is present inside `screenOptions` prop of `Stack.Navigator`. Please refer to the example below.
 
 ```tsx
 <NavigationContainer ref={navigationRef}>
