@@ -248,7 +248,7 @@ export const RegistrationWorkflow: React.FC<React.PropsWithChildren<Registration
                 ) : (
                     <PagerView
                         style={styles.pagerView}
-                        initialPage={initialScreenIndex}
+                        initialPage={currentScreen ?? initialScreenIndex}
                         ref={viewPagerRef}
                         scrollEnabled={false}
                         key={viewPagerIndex}
