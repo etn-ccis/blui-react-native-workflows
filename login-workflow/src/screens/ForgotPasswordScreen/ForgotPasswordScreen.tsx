@@ -159,7 +159,11 @@ export const ForgotPasswordScreen: React.FC<ForgotPasswordScreenProps> = (props)
 
     const emailInputProps = {
         ...emailTextInputProps,
-        onChangeText: (email: string): void => setEmailInput(email),
+        onChangeText: (email: string): void => {
+            // eslint-disable-next-line
+            emailTextInputProps?.onChangeText && emailTextInputProps?.onChangeText(email);
+            setEmailInput(email);
+        },
     };
 
     return (

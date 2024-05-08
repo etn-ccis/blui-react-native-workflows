@@ -10,7 +10,7 @@ const locale =
 
 export const i18nRegistrationInstance = i18next.createInstance(
     {
-        lng: locale.substring(0, 2),
+        lng: locale?.substring(0, 2) || 'en',
         fallbackLng: 'en',
         ns: ['bluiRegistration', 'bluiCommon'],
         defaultNS: 'bluiRegistration',
