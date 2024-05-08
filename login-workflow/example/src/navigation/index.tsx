@@ -11,7 +11,6 @@ import {
 import i18nAppInstance from '../../translations/i18n';
 import { NavigationDrawer } from './navigation-drawer';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { createStackNavigator } from '@react-navigation/stack';
 import { Dimensions, View } from 'react-native';
 
 import { ProjectAuthUIActions } from '../actions/AuthUIActions';
@@ -48,6 +47,7 @@ const AuthRouter = (): any => {
     const app = useApp();
     const { email, rememberMe } = app.loginData;
     const navigation = useNavigation<NativeStackNavigationProp<any>>();
+
     return (
         <>
             <AuthContextProvider
@@ -146,7 +146,8 @@ const AuthRouter = (): any => {
 const RegistrationRouter = (): any => {
     const app = useApp();
     const navigation = useNavigation<NativeStackNavigationProp<any>>();
-    const RegistrationStack = createStackNavigator();
+    const RegistrationStack = createNativeStackNavigator();
+
     return (
         <>
             <RegistrationContextProvider
