@@ -19,6 +19,7 @@ const makeStyles = (
     rememberMeLoginRowWrapper: ViewStyle;
     rememberMeWrapper: ViewStyle;
     loginButtonWrapper: ViewStyle;
+    rememberMeText: ViewStyle;
     loginButton: ViewStyle;
     forgotPasswordWrapper: ViewStyle;
     selfRegisterWrapper: ViewStyle;
@@ -70,6 +71,10 @@ const makeStyles = (
             flex: 1,
             justifyContent: 'flex-end',
             flexDirection: 'row',
+        },
+        rememberMeText: {
+            display: 'flex',
+            flex: 1,
         },
         loginButton: {
             width: '100%',
@@ -295,7 +300,11 @@ export const LoginScreenBase: React.FC<React.PropsWithChildren<LoginScreenProps>
                                 onPress={() => handleRememberMeChanged(!rememberMe)}
                                 testID={'blui-login-remember-me-checkbox'}
                             />
-                            <Text variant="bodyLarge" testID={'blui-login-remember-me-login'}>
+                            <Text
+                                variant="bodyLarge"
+                                testID={'blui-login-remember-me-login'}
+                                style={defaultStyles.rememberMeText}
+                            >
                                 {rememberMeLabel || 'Remember Me'}
                             </Text>
                         </View>

@@ -38,7 +38,7 @@ type UserMenuExampleProps = {
     onToggleTheme: () => void;
 };
 
-export const UserMenuExample: React.FC<UserMenuExampleProps> = (props) => {
+export const UserMenuComponent: React.FC<UserMenuExampleProps> = (props) => {
     const { onToggleRTL, onToggleTheme } = props;
     const theme = useExtendedTheme();
     const { i18n, t } = useTranslation();
