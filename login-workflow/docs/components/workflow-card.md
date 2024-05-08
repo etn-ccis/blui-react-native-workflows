@@ -27,7 +27,7 @@ import {
 | ---------------------------- | ------------------------------ | --------------------------------------------------------------------------- | ------- |
 | WorkflowCardActionsProps     | `WorkflowCardActionsProps`     | See [WorkflowCardActions](#workflowcardactions) for more details.           |         |
 | WorkflowCardBaseProps        | `WorkflowCardBaseProps`        | See [WorkflowCardBase](#workflowcardbaseprops) for more details.            |         |
-| WorkflowCardBodyProps        | `WorkflowCardBodyProps`        | See [WorkflowCardBase](#workflowcardbodyprops) for more details.            |         |
+| WorkflowCardBodyProps        | `WorkflowCardBodyProps`        | See [WorkflowCardBody](#workflowcardbodyprops) for more details.            |         |
 | WorkflowCardHeaderProps      | `WorkflowCardHeaderProps`      | See [WorkflowCardHeader](#workflowcardheader) for more details.             |         |
 | WorkflowCardInstructionProps | `WorkflowCardInstructionProps` | See [WorkflowCardInstructions](#workflowcardinstructions) for more details. |         |
 
