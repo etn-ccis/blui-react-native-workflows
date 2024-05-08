@@ -116,8 +116,13 @@ export const CreateAccountScreen: React.FC<CreateAccountScreenProps> = (props) =
         },
     };
 
-    const onEmailInputValueChange = (e: any): void => {
-        setEmailInputValue(e);
+    const emailInputProps = {
+        ...emailTextFieldProps,
+        onChangeText: (email: string): void => {
+            // eslint-disable-next-line
+            emailTextFieldProps?.onChangeText && emailTextFieldProps?.onChangeText(email);
+            setEmailInputValue(email);
+        },
     };
 
     return (
@@ -130,7 +135,7 @@ export const CreateAccountScreen: React.FC<CreateAccountScreenProps> = (props) =
             initialValue={
                 screenData.CreateAccount.emailAddress.length > 0 ? screenData.CreateAccount.emailAddress : initialValue
             }
-            emailTextFieldProps={{ ...emailTextFieldProps, onChangeText: onEmailInputValueChange }}
+            emailTextFieldProps={emailInputProps}
             emailValidator={emailValidator}
             errorDisplayConfig={errorDisplayConfig}
         />
