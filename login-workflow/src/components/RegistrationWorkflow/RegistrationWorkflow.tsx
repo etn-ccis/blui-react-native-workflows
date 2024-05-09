@@ -35,7 +35,6 @@ const styles = StyleSheet.create({
  *
  * @category Component
  */
-
 export const RegistrationWorkflow: React.FC<React.PropsWithChildren<RegistrationWorkflowProps>> = (props) => {
     const { errorDisplayConfig: registrationWorkflowErrorConfig } = props;
     const [isAccountExist, setIsAccountExist] = useState(false);
@@ -249,7 +248,7 @@ export const RegistrationWorkflow: React.FC<React.PropsWithChildren<Registration
                 ) : (
                     <PagerView
                         style={styles.pagerView}
-                        initialPage={initialScreenIndex}
+                        initialPage={currentScreen ?? initialScreenIndex}
                         ref={viewPagerRef}
                         scrollEnabled={false}
                         key={viewPagerIndex}

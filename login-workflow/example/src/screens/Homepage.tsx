@@ -14,7 +14,7 @@ import RNRestart from 'react-native-restart';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../navigation';
 import { ExtendedTheme, useExtendedTheme } from '@brightlayer-ui/react-native-themes';
-import { UserMenuExample } from '../components/UserMenuExample';
+import { UserMenuComponent } from '../components/UserMenuComponent';
 import { useThemeContext } from '../contexts/ThemeContext';
 import { useTranslation } from 'react-i18next';
 import { IconFamily } from '@brightlayer-ui/react-native-components/core/__types__';
@@ -107,7 +107,7 @@ export const Homepage: React.FC<AppProps> = ({ navigation }): JSX.Element => {
                         icon: { name: 'more' },
                         onPress: (): void => {},
                         component: (
-                            <UserMenuExample
+                            <UserMenuComponent
                                 onToggleRTL={toggleRTL}
                                 onToggleTheme={(): void => setTheme(themeType === 'light' ? 'dark' : 'light')}
                             />

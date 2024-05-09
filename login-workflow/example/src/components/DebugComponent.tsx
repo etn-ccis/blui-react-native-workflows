@@ -33,7 +33,6 @@ export const DebugComponent = (): JSX.Element => {
                     >
                         [Test Invite Register]
                     </Button>
-
                     <Button
                         mode={'text'}
                         labelStyle={{ fontSize: 16 }}
