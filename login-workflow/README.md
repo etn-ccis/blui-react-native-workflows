@@ -28,7 +28,16 @@ To install the latest version of this package, run:
 npm install --save @brightlayer-ui/react-native-auth-workflow
 // or
 yarn add @brightlayer-ui/react-native-auth-workflow
+
 ```
+
+# Compatibility
+
+This package has a peer dependency on React Native Paper.
+
+-   @brightlayer-ui/react-auth-workflow @1.x --> react-native-paper @3.x
+-   @brightlayer-ui/react-auth-workflow @2.x --> react-native-paper @4.x
+-   new requirement --> react-native-paper v5
 
 ### Peer Dependencies
 
