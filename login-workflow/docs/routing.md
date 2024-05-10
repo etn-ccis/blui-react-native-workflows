@@ -6,11 +6,11 @@ While this workflow library will work with different routing providers, we gener
 
 Because this workflow package is router-agnostic, you will be required to set up your routing solution and configure which of the workflow screens will appear on each of your routes.
 
-The Login Workflow has been set up to only support Portrait mode on mobile devices. It is important to use Portrait mode because when the soft keyboard is opened in Landscape mode, the text input fields can get pushed under the workflow card header in certain views, causing inconvenience. We have locked the Login Workflow to support Portrait mode to prevent this issue.
+The Login Workflow has been set up to only support Portrait mode on mobile devices. It is important to use Portrait mode because when the soft keyboard is opened in Landscape mode, the text input fields can get pushed under the workflow card header in certain views, causing inconvenience.
 
 <img width="400" alt="Account Details" src="../media/landscape-mode.png">
 
-To update the router to lock the orientation, we need to pass the logic to `orientation` attribute which is present inside `screenOptions` prop of `Stack.Navigator`. Please refer to the example below.
+To update the router to lock the orientation, you need to pass the logic to `orientation` attribute which is present inside `screenOptions` prop of `Stack.Navigator`. Please refer to the example below.
 
 ```tsx
 <NavigationContainer ref={navigationRef}>
