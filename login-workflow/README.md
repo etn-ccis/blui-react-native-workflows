@@ -17,8 +17,8 @@ This package is flexible, allowing you to use the Login and Registration flows i
 
 These workflows are back-end agnostic, meaning you can use them with any back-end API you wish. You simply need to provide an implementation for several key functions (actions) that are called at various points within the workflows based on user interaction.
 
-* TODO add login png
-* TODO add create password png
+<img width="400" alt="Login" src="../login-workflow/media/screens/login.png">
+<img width="400" alt="Create Password" src="../login-workflow/media/screens/create-password.png">
 
 # Installation
 
@@ -28,7 +28,16 @@ To install the latest version of this package, run:
 npm install --save @brightlayer-ui/react-native-auth-workflow
 // or
 yarn add @brightlayer-ui/react-native-auth-workflow
+
 ```
+
+# Compatibility
+
+This package has a peer dependency on React Native Paper.
+
+-   @brightlayer-ui/react-native-auth-workflow @1.x --> react-native-paper @3.x
+-   @brightlayer-ui/react-native-auth-workflow @2.x --> react-native-paper @4.x
+-   @brightlayer-ui/react-native-auth-workflow @4.x --> react-native-paper @5.x
 
 ### Peer Dependencies
 

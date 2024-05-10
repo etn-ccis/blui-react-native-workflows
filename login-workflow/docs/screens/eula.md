@@ -18,22 +18,24 @@ import { RegistrationContextProvider, EulaScreen } from '@brightlayer-ui/react-n
 
 ## API
 
-| Prop Name | Type | Description | Default |
-|---|---|---|---|
-| checkboxLabel | `string` | The text to render for the acceptance checkbox. |  |
-| checkboxProps | `CheckboxProps` | Props to spread to the React Native Paper [CheckboxItem](https://callstack.github.io/react-native-paper/docs/components/Checkbox/CheckboxItem) component |  |
-| eulaContent | `string \| JSX.Element` | The content to render for the EULA. Can be a plain string or HTML. | |
-| errorDisplayConfig | `ErrorManagerProps` | See [Error Management](../../components/error-manager.md) |  |
-| html | `boolean` | True if the EULA should be rendered as HTML, false for plain text | `false` |
-| initialCheckboxValue | `boolean` | Used to pre-populate the checked/unchecked checkbox when the screen loads. | `false` |
-| onEulaAcceptedChange | `(accepted: boolean) => void` | Called when the acceptance checkbox clicked. |  |
-| refreshConfig | `RefreshConfigProps` | configuration for refresh screen |  |
+| Prop Name            | Type                          | Description                                                                                                                                              | Default |
+| -------------------- | ----------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| checkboxLabel        | `string`                      | The text to render for the acceptance checkbox.                                                                                                          |         |
+| checkboxProps        | `CheckboxProps`               | Props to spread to the React Native Paper [CheckboxItem](https://callstack.github.io/react-native-paper/docs/components/Checkbox/CheckboxItem) component |         |
+| eulaContent          | `string \| JSX.Element`       | The content to render for the EULA. Can be a plain string or HTML.                                                                                       |         |
+| errorDisplayConfig   | `ErrorManagerProps`           | See [Error Management](../../components/error-manager.md)                                                                                                |         |
+| html                 | `boolean`                     | True if the EULA should be rendered as HTML, false for plain text                                                                                        | `false` |
+| initialCheckboxValue | `boolean`                     | Used to pre-populate the checked/unchecked checkbox when the screen loads.                                                                               | `false` |
+| onEulaAcceptedChange | `(accepted: boolean) => void` | Called when the acceptance checkbox clicked.                                                                                                             |         |
+| errorDisplayConfig   | `ErrorManagerProps`           | See [Error Management](../error-management.md)                                                                                                           |
+| refreshConfig        | `RefreshConfigProps`          | configuration for refresh screen                                                                                                                         |         |
 
 This screen also extends the `WorkflowCardProps` type for updating the title, instructions, buttons, etc. See [Workflow Card](../components/workflow-card.md) for more details.
 
 ### RefreshConfigProps
-| Prop Name | Type | Description | Default |
-|---|---|---|---|
-| onRefresh | `() => void` | Function to refresh Eula content |  |
-| refreshButtonLabel | `string` | Label of refresh button | `t('bluiCommon:MESSAGES.RETRY') // "Retry"` |
-| showRefreshButton | `boolean` | the refresh button to be rendered |  |
+
+| Prop Name          | Type         | Description                       | Default                                     |
+| ------------------ | ------------ | --------------------------------- | ------------------------------------------- |
+| onRefresh          | `() => void` | Function to refresh Eula content  |                                             |
+| refreshButtonLabel | `string`     | Label of refresh button           | `t('bluiCommon:MESSAGES.RETRY') // "Retry"` |
+| showRefreshButton  | `boolean`    | the refresh button to be rendered |                                             |
