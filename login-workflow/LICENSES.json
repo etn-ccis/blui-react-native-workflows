@@ -1,20 +1,14 @@
 {
-    "@brightlayer-ui/react-auth-shared@4.0.0-alpha.2": {
-        "licenses": "BSD-3-Clause",
-        "repository": "https://github.com/etn-ccis/blui-react-auth-shared/tree/master",
-        "licenseUrl": "https://github.com/etn-ccis/blui-react-auth-shared/tree/master",
+    "color@4.2.3": {
+        "licenses": "MIT",
+        "repository": "https://github.com/Qix-/color",
+        "licenseUrl": "https://github.com/Qix-/color/raw/master/LICENSE",
         "parents": "@brightlayer-ui/react-native-auth-workflow"
     },
     "lodash.clonedeep@4.5.0": {
         "licenses": "MIT",
         "repository": "https://github.com/lodash/lodash",
         "licenseUrl": "https://github.com/lodash/lodash/raw/master/LICENSE",
-        "parents": "@brightlayer-ui/react-native-auth-workflow"
-    },
-    "react-native-status-bar-height@2.6.0": {
-        "licenses": "MIT",
-        "repository": "https://github.com/ovr/react-native-status-bar-height",
-        "licenseUrl": "https://github.com/ovr/react-native-status-bar-height/raw/master/LICENSE",
         "parents": "@brightlayer-ui/react-native-auth-workflow"
     }
 }
