@@ -45,7 +45,7 @@ export const WorkflowCardActions: React.FC<WorkflowCardActionsProps> = (props) =
         currentStep = 0,
         totalSteps = 5,
         fullWidthButton,
-        stepperVariant = 'dots',
+        stepperVariant = 'text',
         style,
         ...otherProps
     } = props;
@@ -62,7 +62,7 @@ export const WorkflowCardActions: React.FC<WorkflowCardActionsProps> = (props) =
                     root: [
                         {
                             flex: 0,
-                            justifyContent: !showStepperDots ? 'space-between' : 'center',
+                            justifyContent: 'space-between',
                             paddingHorizontal: isTablet ? 8 : 0,
                             paddingVertical: isTablet ? 8 : 0,
                         },
