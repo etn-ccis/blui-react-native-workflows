@@ -18,11 +18,9 @@ const makeStyles = (
         },
         previousButton: {
             alignSelf: 'flex-start',
-            minWidth: '32%',
         },
         nextButton: {
             alignSelf: 'flex-end',
-            minWidth: '32%',
         },
     });
 
@@ -62,7 +60,7 @@ export const WorkflowCardActions: React.FC<WorkflowCardActionsProps> = (props) =
                     root: [
                         {
                             flex: 0,
-                            justifyContent: !showStepperDots ? 'space-between' : 'center',
+                            justifyContent: 'space-between',
                             paddingHorizontal: isTablet ? 8 : 0,
                             paddingVertical: isTablet ? 8 : 0,
                         },
@@ -85,6 +83,7 @@ export const WorkflowCardActions: React.FC<WorkflowCardActionsProps> = (props) =
                             testID={'blui-workflow-card-actions-previous-button'}
                             style={[defaultStyles.previousButton, defaultStyles.button]}
                             onPress={onPrevious}
+                            labelStyle={{ marginHorizontal: 10 }}
                         >
                             {previousLabel}
                         </Button>
@@ -100,6 +99,7 @@ export const WorkflowCardActions: React.FC<WorkflowCardActionsProps> = (props) =
                             onPress={onNext}
                             testID={'blui-workflow-card-actions-next-button'}
                             style={[defaultStyles.nextButton, defaultStyles.button]}
+                            labelStyle={{ marginHorizontal: 10 }}
                         >
                             {nextLabel}
                         </Button>
