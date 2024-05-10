@@ -15,10 +15,10 @@ const resources: AppTranslationsFile = {
         },
         USER_MENU: {
             LOG_OUT: 'Se déconnecter',
-            CHANGE_PASSWORD: 'changer le mot de passe',
+            CHANGE_PASSWORD: 'Changer le mot de passe',
             MY_ACCOUNT: 'Mon compte',
-            TOGGLE_RTL: 'basculer RTL',
-            TOGGLE_THEME: 'basculer le thème',
+            TOGGLE_RTL: 'Basculer RTL',
+            TOGGLE_THEME: 'Basculer le thème',
             LANGUAGE: 'Langue',
         },
         ORGANAIZATION_DETAILS: {
