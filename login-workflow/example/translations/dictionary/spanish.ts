@@ -15,7 +15,7 @@ const resources: AppTranslationsFile = {
         },
         USER_MENU: {
             LOG_OUT: 'Cerrar sesión',
-            CHANGE_PASSWORD: 'cambiar la contraseña',
+            CHANGE_PASSWORD: 'Cambiar la contraseña',
             MY_ACCOUNT: 'Mi cuenta',
             TOGGLE_RTL: 'Alternar RTL',
             TOGGLE_THEME: 'Alternar tema',
