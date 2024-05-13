@@ -9,6 +9,5 @@
         target: 80%
         threshold: 5%
         informational: true
-    coverage:
-      ignore:
-        - "testUtils"
+    ignore:
+        - "login-workflow/src/testUtils"
