@@ -9,3 +9,5 @@
         target: 80%
         threshold: 5%
         informational: true
+    ignore:
+      - "testUtils"
