@@ -10,4 +10,4 @@
         threshold: 5%
         informational: true
     ignore:
-        - "login-workflow/src/testUtils"
+      - "login-workflow/src/testUtils/**/*"
