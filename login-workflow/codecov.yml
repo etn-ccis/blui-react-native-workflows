@@ -3,7 +3,7 @@ codecov:
 coverage:
   status:
     project:
-      default:
+      default: false
         target: 80%
         threshold: 5%
         informational: true
