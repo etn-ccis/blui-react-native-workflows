@@ -129,6 +129,9 @@
     "jest": {
         "coverageDirectory": "./coverage/",
         "collectCoverage": true,
+        "coveragePathIgnorePatterns": [
+            "./login-workflow/src/testUtils/index.ts"
+        ],
         "coverageThreshold": {
             "global": {
                 "lines": 80

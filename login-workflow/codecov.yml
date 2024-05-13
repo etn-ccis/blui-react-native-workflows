@@ -1,3 +1,4 @@
+coverage:
   status:
     project:
       default:
@@ -9,5 +10,3 @@
         target: 80%
         threshold: 5%
         informational: true
-    ignore:
-      - "login-workflow/src/testUtils/**/*"
