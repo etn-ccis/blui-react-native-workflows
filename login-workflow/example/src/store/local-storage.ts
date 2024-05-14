@@ -30,21 +30,21 @@ async function readAuthData(): Promise<AuthData> {
     return {
         userId: userData.userId,
         email: userData.user,
-        rememberMeData: rememberMeData,
+        rememberMeData,
     };
 }
 
 function saveAuthCredentials(user: string, userId: string): void {
     const userData = {
-        user: user,
-        userId: userId,
+        user,
+        userId,
     };
     void window.localStorage.setItem(LOCAL_USER_DATA, JSON.stringify(userData));
 }
 function saveRememberMeData(user: string, rememberMe: boolean): void {
     const RememberMeData = {
         user: rememberMe ? user : '',
-        rememberMe: rememberMe,
+        rememberMe,
     };
     void window.localStorage.setItem(REMEMBER_ME_DATA, JSON.stringify(RememberMeData));
 }

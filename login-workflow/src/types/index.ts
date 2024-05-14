@@ -1,16 +1,9 @@
-export type RegistrationPage = {
-    name: string;
-    pageTitle: string;
-    pageBody: JSX.Element;
-    canGoForward: boolean;
-    canGoBack: boolean;
-};
-
-export type CustomRegistrationDetailsGroup = {
-    [key: number]: {
-        values: {
-            [key: string]: string | number | boolean;
-        };
-        valid: boolean;
-    };
+export type RouteConfig = {
+    LOGIN?: string;
+    FORGOT_PASSWORD?: string;
+    RESET_PASSWORD?: string;
+    REGISTER_INVITE?: string;
+    REGISTER_SELF?: string;
+    SUPPORT?: string;
+    LANDING_PAGE?: string;
 };

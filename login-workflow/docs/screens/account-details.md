@@ -1,0 +1,33 @@
+# AccountDetailsScreen
+
+A screen that displays text fields to collect the user's basic account details (first name and last name). The AccountDetailsScreen must be used within a `RegistrationContextProvider`.
+
+<img width="400" alt="Account Details" src="../../media/screens/account-details.png">
+
+## Usage
+
+```tsx
+import { RegistrationContextProvider, AccountDetailsScreen } from '@brightlayer-ui/react-native-auth-workflow';
+
+...
+
+<RegistrationContextProvider {...props}>
+    <AccountDetailsScreen />
+</RegistrationContextProvider>
+```
+
+## API
+
+| Prop Name | Type | Description | Default |
+|---|---|---|---|
+| errorDisplayConfig | `ErrorManagerProps` | See [Error Management](../error-management.md) |  |
+| firstNameLabel | `string` | Label for the firstName text field | `t('bluiCommon:FORMS.FIRST_NAME') // "First Name"` |
+| firstNameTextInputProps | `TextFieldProps` | Props to pass to the firstName component. See React Native Paper's [TextInputProps API](https://callstack.github.io/react-native-paper/docs/components/TextInput/#props). |  |
+| firstNameValidator | `(firstName: string) => boolean \| string` | A function to validate the first name input value | required to be > 0 characters |
+| initialFirstName | `string` | Initial value to populate in the firstName text field |  |
+| initialLastName | `string` | Initial value to populate in the lastName text field |  |
+| lastNameLabel | `string` | Label for the lastName text field | `t('bluiCommon:FORMS.LAST_NAME') // "Last Name"` |
+| lastNameTextInputProps | `TextFieldProps` | Props to pass to the lastName component. See React Native Paper's [TextInputProps API](https://callstack.github.io/react-native-paper/docs/components/TextInput/#props). |  |
+| lastNameValidator | `(lastName: string) => boolean \| string` | A function to validate the last name input value | required to be > 0 characters |
+
+This screen also extends the `WorkflowCardProps` type for updating the title, instructions, buttons, etc. See [Workflow Card](../components/workflow-card.md) for more details.
