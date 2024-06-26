@@ -38,7 +38,7 @@
         "react-native-screens": "^3.29.0",
         "react-native-select-dropdown": "^3.4.0",
         "@brightlayer-ui/icons-svg": "^1.14.0",
-        "@brightlayer-ui/react-native-auth-workflow": "5.0.0",
+        "@brightlayer-ui/react-native-auth-workflow": "6.0.0",
         "@react-native-community/masked-view": "^0.1.10",
         "date-fns": "^2.19.0",
         "react-native-keyboard-aware-scroll-view": "^0.9.3",
