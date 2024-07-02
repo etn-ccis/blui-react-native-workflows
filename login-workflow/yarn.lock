@@ -1251,11 +1251,11 @@
   integrity sha512-EYm3+V7Qd+oYEF+8FadsXAZqXryEHHbGnrV1BMp9selhABjceqUqXPVE4Sn3SKWQdBNJ3En2A3EzgrzRbvRTaw==
 
 "@brightlayer-ui/react-native-components@^8.0.2":
-  version "8.0.2"
-  resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-native-components/-/react-native-components-8.0.2.tgz#9fa61eef52d743e12e1770c1e4b6e2dc2a76e8bd"
-  integrity sha512-QojULgfseoMNfIzp/KVwKcefU5IHDi+vQcrERuhDG6rmwnbFlxF/FPkh0ETjcQA043jVkolothuXjCtmR/eDMA==
+  version "8.0.3"
+  resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-native-components/-/react-native-components-8.0.3.tgz#0b5c27f5f231c7147dc12c52558897beadacab95"
+  integrity sha512-gs4yVm8fy47ld3Lbkac2ECvOB/U6xjWjzuuCLu19F8W3fG4X9LQH1/5Vg8Pp/C0PV8B9qFEfgtMAltOVWmbZMw==
   dependencies:
-    "@brightlayer-ui/react-native-themes" "7.0.0"
+    "@brightlayer-ui/react-native-themes" "7.0.1"
     color "^4.2.3"
     react-native-collapsible "^1.6.0"
     react-native-keyboard-aware-scroll-view "^0.9.5"
@@ -1266,6 +1266,14 @@
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-native-themes/-/react-native-themes-7.0.0.tgz#5a61f853d9f308453174802a404dbb2332f75174"
   integrity sha512-2CYetnzjawvXjspHxw3wVv5PyDu3dKPfEQ2RkJpxV5+/ixjqJAUM5kryO63cdNTEuMYvjQEz5R3vRaHnj/uxVA==
+  dependencies:
+    "@brightlayer-ui/colors" "4.0.0"
+    color "^4.2.3"
+
+"@brightlayer-ui/react-native-themes@7.0.1":
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-native-themes/-/react-native-themes-7.0.1.tgz#0276c5264c9d00f86fd8bcac51dfddaeb912f8d5"
+  integrity sha512-KQTT5q1Ekq/aIoGNYyEZ3pmtTfZNiWBXw5uvvIJPGL2xVvxs3lGCZjZKC/XS+sXNH2C6s5wnzF8sjNLPCYtMLQ==
   dependencies:
     "@brightlayer-ui/colors" "4.0.0"
     color "^4.2.3"
