@@ -1516,6 +1516,13 @@
   dependencies:
     regenerator-runtime "^0.14.0"
 
+"@babel/runtime@^7.23.2":
+  version "7.24.7"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.24.7.tgz#f4f0d5530e8dbdf59b3451b9b3e594b6ba082e12"
+  integrity sha512-UwgBRMjJP+xv857DCngvqXI3Iq6J4v0wXmwc6sapg+zyhbwmQX67LUEFrkK5tbyJ30jGuG3ZvWpBiB9LCy1kWw==
+  dependencies:
+    regenerator-runtime "^0.14.0"
+
 "@babel/template@^7.0.0", "@babel/template@^7.22.15", "@babel/template@^7.3.3":
   version "7.22.15"
   resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.22.15.tgz#09576efc3830f0430f4548ef971dde1350ef2f38"
@@ -1700,19 +1707,13 @@
   resolved "https://registry.yarnpkg.com/@brightlayer-ui/prettier-config/-/prettier-config-1.0.3.tgz#e40a7ae7435c6fd5118acbf249080e0aa81e93af"
   integrity sha512-EYm3+V7Qd+oYEF+8FadsXAZqXryEHHbGnrV1BMp9selhABjceqUqXPVE4Sn3SKWQdBNJ3En2A3EzgrzRbvRTaw==
 
-"@brightlayer-ui/react-auth-shared@^3.7.3":
-  version "3.8.0"
-  resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-auth-shared/-/react-auth-shared-3.8.0.tgz#8a7be29e93103fcbbfdc683ae0155836dab14ac8"
-  integrity sha512-RjilcA3axEZK4Pe3tSe0h1P2HVDTNy0m6acwklnhrI4MBO8NQowP3xwbb3v+Ogg/n/tinlUqX/TxMFpO7rc+Jw==
-
-"@brightlayer-ui/react-native-auth-workflow@5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-native-auth-workflow/-/react-native-auth-workflow-5.0.0.tgz#0a7184402b6c3b4b253afc1686c0b168742af17c"
-  integrity sha512-7r2gx1CWsftOgkvOouoj3KLg7syvJXZ4AXs5bZgVMQt8VTytzPSmd2Vngcqabt4n00kaIymuoTkQrIwWy9Dq+w==
+"@brightlayer-ui/react-native-auth-workflow@6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-native-auth-workflow/-/react-native-auth-workflow-6.0.0.tgz#c47908851deefb12024dd40549fb1d0874d941ef"
+  integrity sha512-bS00LNOQytAxVFuSMnx5dLynhVbtwLCaBOqKC0K6AHfSkzhwqv8/J9+cNmJKoZTxBgJlTNYo452obMgC/YAMzQ==
   dependencies:
-    "@brightlayer-ui/react-auth-shared" "^3.7.3"
+    color "^4.2.3"
     lodash.clonedeep "^4.5.0"
-    react-native-status-bar-height "^2.5.0"
 
 "@brightlayer-ui/react-native-components@^8.0.2":
   version "8.0.2"
@@ -7390,11 +7391,6 @@ react-native-select-dropdown@^3.4.0:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/react-native-select-dropdown/-/react-native-select-dropdown-3.4.0.tgz#3ce31dc2e5ffa1abf4c47e3297bf0da7144f1ea3"
   integrity sha512-9xK1z4tYpwMxp3hsM0y1+xfqq/JoMh+l7sBsJ81b2eikFwT6ZbndFBqupQXrsQ1akce9hgC/10Nkzj0LjVjeXQ==
-
-react-native-status-bar-height@^2.5.0:
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/react-native-status-bar-height/-/react-native-status-bar-height-2.6.0.tgz#b6afd25b6e3d533c43d0fcdcfd5cafd775592cea"
-  integrity sha512-z3SGLF0mHT+OlJDq7B7h/jXPjWcdBT3V14Le5L2PjntjjWM3+EJzq2BcXDwV+v67KFNJic5pgA26cCmseYek6w==
 
 react-native-svg-transformer@^1.3.0:
   version "1.3.0"
