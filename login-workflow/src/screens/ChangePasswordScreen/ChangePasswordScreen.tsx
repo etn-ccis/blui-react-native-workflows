@@ -70,8 +70,9 @@ export const ChangePasswordScreen: React.FC<ChangePasswordScreenProps> = (props)
                 await actions.changePassword(currentInput, passwordInput);
                 if (props.showSuccessScreen === false) {
                     onFinish?.();
+                } else {
+                    setShowSuccessScreen(true);
                 }
-                setShowSuccessScreen(true);
             } catch (_error) {
                 triggerError(_error as Error);
             } finally {

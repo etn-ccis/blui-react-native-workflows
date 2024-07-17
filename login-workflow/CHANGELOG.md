@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## v6.0.1 (Unreleased)
 
+### Fixed
+
+-   Incorrect Screenshot for ChangePassword Screen [500](https://github.com/etn-ccis/blui-react-native-workflows/issues/500).
+-   Able to see Success Screen in ChangePassword Screen even if showSuccessScreen set to false [501](https://github.com/etn-ccis/blui-react-native-workflows/issues/501).
+
 ### Changed
 
 -   Updated the peer dependencies.
