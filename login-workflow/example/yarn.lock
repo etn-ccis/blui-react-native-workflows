@@ -1509,7 +1509,7 @@
   resolved "https://registry.yarnpkg.com/@babel/regjsgen/-/regjsgen-0.8.0.tgz#f0ba69b075e1f05fb2825b7fad991e7adbb18310"
   integrity sha512-x/rqGMdzj+fWZvCOYForTghzbtqPDZ5gPwaoNGHdgDfF2QA/XZbCBp4Moo5scrkAMPhB7z26XM/AaHuIJdgauA==
 
-"@babel/runtime@^7.0.0", "@babel/runtime@^7.20.0", "@babel/runtime@^7.21.0", "@babel/runtime@^7.22.5", "@babel/runtime@^7.23.2", "@babel/runtime@^7.8.4":
+"@babel/runtime@^7.0.0", "@babel/runtime@^7.20.0", "@babel/runtime@^7.21.0", "@babel/runtime@^7.22.5", "@babel/runtime@^7.8.4":
   version "7.24.5"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.24.5.tgz#230946857c053a36ccc66e1dd03b17dd0c4ed02c"
   integrity sha512-Nms86NXrsaeU9vbBJKni6gXiEXZ4CVpYVzEjDH9Sb8vmZ3UljyA1GSOJl/6LGPO8EHLuSF9H+IxNXHPX8QHJ4g==
@@ -1715,27 +1715,19 @@
     color "^4.2.3"
     lodash.clonedeep "^4.5.0"
 
-"@brightlayer-ui/react-native-components@^8.0.2":
-  version "8.0.2"
-  resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-native-components/-/react-native-components-8.0.2.tgz#9fa61eef52d743e12e1770c1e4b6e2dc2a76e8bd"
-  integrity sha512-QojULgfseoMNfIzp/KVwKcefU5IHDi+vQcrERuhDG6rmwnbFlxF/FPkh0ETjcQA043jVkolothuXjCtmR/eDMA==
+"@brightlayer-ui/react-native-components@^8.0.4":
+  version "8.0.4"
+  resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-native-components/-/react-native-components-8.0.4.tgz#96a1932289b9111b3c23777673530c01a1bcd2b6"
+  integrity sha512-1dZ0E6IMWNYPA2sRVrMP6WLkJJ4r58aTP1snrTLZPrhOgXJNZRIXBGHPZw5Kahl7HjFeNnytZLYUNVVfNBY2Jw==
   dependencies:
-    "@brightlayer-ui/react-native-themes" "7.0.0"
+    "@brightlayer-ui/react-native-themes" "7.0.1"
     color "^4.2.3"
     react-native-collapsible "^1.6.0"
     react-native-keyboard-aware-scroll-view "^0.9.5"
     react-native-modal ">=13.0.1"
     react-native-reanimated "^3.6.1"
 
-"@brightlayer-ui/react-native-themes@7.0.0":
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-native-themes/-/react-native-themes-7.0.0.tgz#5a61f853d9f308453174802a404dbb2332f75174"
-  integrity sha512-2CYetnzjawvXjspHxw3wVv5PyDu3dKPfEQ2RkJpxV5+/ixjqJAUM5kryO63cdNTEuMYvjQEz5R3vRaHnj/uxVA==
-  dependencies:
-    "@brightlayer-ui/colors" "4.0.0"
-    color "^4.2.3"
-
-"@brightlayer-ui/react-native-themes@^7.0.1":
+"@brightlayer-ui/react-native-themes@7.0.1", "@brightlayer-ui/react-native-themes@^7.0.1":
   version "7.0.1"
   resolved "https://registry.yarnpkg.com/@brightlayer-ui/react-native-themes/-/react-native-themes-7.0.1.tgz#0276c5264c9d00f86fd8bcac51dfddaeb912f8d5"
   integrity sha512-KQTT5q1Ekq/aIoGNYyEZ3pmtTfZNiWBXw5uvvIJPGL2xVvxs3lGCZjZKC/XS+sXNH2C6s5wnzF8sjNLPCYtMLQ==
