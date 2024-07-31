@@ -11,3 +11,4 @@ export * from './ForgotPasswordScreen';
 export * from './ChangePasswordScreen';
 export * from './ContactScreen';
 export * from './LoginScreen';
+export * from './OktaLoginScreen';
