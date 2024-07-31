@@ -78,7 +78,7 @@ import { AuthContextProvider, LoginScreen } from '@brightlayer-ui/react-native-a
 | Prop Name | Type | Description | Default |
 |---|---|---|---|
 | showCyberSecurityBadge | `boolean` | Whether or not to show the cyber security badge. | `true` |
-| cyberSecurityBadgeSize | `object` | Prop for adding custom height and width to cyber security badge. |  |
+| cyberSecurityBadgeSize | `{height?: number \| string, width?: number \| string}` | Prop for adding custom height and width to cyber security badge. |  |
 | projectImage | `ReactNode` | Image to display at the top of the screen. |  |
 | header | `ReactNode` | Custom content to display at the top of the screen. |  |
 | footer | `ReactNode` | Custom content to display at the bottom of the screen. |  |
