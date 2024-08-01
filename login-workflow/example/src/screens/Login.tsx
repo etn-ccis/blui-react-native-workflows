@@ -14,8 +14,11 @@ export const Login: React.FC<React.PropsWithChildren<OktaLoginScreenProps>> = ()
         showSelfRegistration={true}
         showContactSupport={true}
         showCyberSecurityBadge={true}
+        //eslint-disable-next-line
         onLogin={() => console.log('Login Pressed')}
+        //eslint-disable-next-line
         onSelfRegister={() => console.log('Self Register Pressed')}
+        //eslint-disable-next-line
         onContactSupport={() => console.log('Contact Support Pressed')}
     />
 );

@@ -86,7 +86,6 @@ export const OktaLoginScreenBase: React.FC<React.PropsWithChildren<OktaLoginScre
         showContactSupport,
         contactSupportLabel,
         onContactSupport,
-        errorDisplayConfig,
         showCyberSecurityBadge,
         cyberSecurityBadgeSize,
         projectImage,
@@ -108,8 +107,15 @@ export const OktaLoginScreenBase: React.FC<React.PropsWithChildren<OktaLoginScre
         if (onContactSupport) onContactSupport();
     };
 
+    const handleLoginWrapper = async (): Promise<void> => {
+        if (onLogin) await onLogin();
+    };
+
+    // Synchronous wrapper for the asynchronous handleLogin function
     const handleLogin = (): void => {
-        if (onLogin) onLogin();
+        handleLoginWrapper().catch((error) => {
+            console.error('Login failed:', error);
+        });
     };
 
     return (
