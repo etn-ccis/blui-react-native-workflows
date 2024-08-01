@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`OktaLoginScreenBase renders Okta Login Screen Base component 1`] = `<OktaLoginScreenBase />`;
+
+exports[`OktaLoginScreenBase renders footer content: Footer Content 1`] = `
+<View>
+  Footer Content
+</View>
+`;
+
+exports[`OktaLoginScreenBase renders self-register button if selfRegisterButtonLabel is provided 1`] = `null`;

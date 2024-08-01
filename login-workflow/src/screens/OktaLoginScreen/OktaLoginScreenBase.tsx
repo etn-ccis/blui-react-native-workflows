@@ -165,7 +165,7 @@ export const OktaLoginScreenBase: React.FC<React.PropsWithChildren<OktaLoginScre
                     </View>
                 )}
 
-                <View style={defaultStyles.footerWrapper}>{footer}</View>
+                <View testID={'blui-okta-login-footer'} style={defaultStyles.footerWrapper}>{footer}</View>
 
                 {showCyberSecurityBadge && (
                     <View
@@ -176,6 +176,7 @@ export const OktaLoginScreenBase: React.FC<React.PropsWithChildren<OktaLoginScre
                             style={{ ...cyberSecurityBadgeSize }}
                             resizeMode="contain"
                             source={require('../../assets/images/cybersecurity_certified.png')}
+                            testID={'blui-okta-login-cyber-security-badge-image'}
                         />
                     </View>
                 )}
