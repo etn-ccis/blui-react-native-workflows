@@ -64,7 +64,7 @@ const makeStyles = (
             flexDirection: 'column',
             marginTop: 16,
             alignContent: 'center',
-            marginBottom: isTablet ? 32 : 16,
+            marginBottom: isTablet ? 32 : 24,
         },
         contactSupportWrapper: {
             display: 'flex',
@@ -72,7 +72,7 @@ const makeStyles = (
             marginTop: 8,
             alignContent: 'center',
             alignItems: 'center',
-            marginBottom: isTablet ? 52 : 16,
+            marginBottom: isTablet ? 52 : 24,
         },
         footerWrapper: { display: 'flex', justifyContent: 'center' },
         cyberSecurityBadgeWrapper: {
@@ -143,7 +143,7 @@ export const OktaLoginScreenBase: React.FC<React.PropsWithChildren<OktaLoginScre
 
     return (
         <WorkflowCard testID="blui-okta-login-workflow-card" {...otherProps}>
-            <WorkflowCardBody style={{ flex: 1, justifyContent: 'space-around' }}>
+            <WorkflowCardBody>
                 {header}
                 <View style={defaultStyles.projectImageWrapper} testID="blui-okta-login-project-image-wrapper">
                     {projectImage}
@@ -218,7 +218,7 @@ export const OktaLoginScreenBase: React.FC<React.PropsWithChildren<OktaLoginScre
                         </View>
                     )}
 
-                    <View style={defaultStyles.footerWrapper}>{footer}</View>
+                    <View testID={'blui-okta-login-footer'} style={defaultStyles.footerWrapper}>{footer}</View>
 
                     {showCyberSecurityBadge && (
                         <View
@@ -226,6 +226,7 @@ export const OktaLoginScreenBase: React.FC<React.PropsWithChildren<OktaLoginScre
                             testID={'blui-okta-login-cyber-security-badge-wrapper'}
                         >
                             <Image
+                                testID={'blui-okta-login-cyber-security-badge-image'}
                                 style={{ ...cyberSecurityBadgeSize }}
                                 resizeMode="contain"
                                 source={require('../../assets/images/cybersecurity_certified.png')}
