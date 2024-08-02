@@ -16,7 +16,6 @@ import { Dimensions, View } from 'react-native';
 import { ProjectAuthUIActions } from '../actions/AuthUIActions';
 import { ProjectRegistrationUIActions } from '../actions/RegistrationUIActions';
 
-import { Login } from '../screens/Login';
 import { ChangePassword } from '../screens/ChangePassword';
 import { Registration } from '../screens/Registration';
 import { RegistrationInvite } from '../screens/RegistrationInvite';
