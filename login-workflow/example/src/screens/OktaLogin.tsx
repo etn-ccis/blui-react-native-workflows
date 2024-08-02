@@ -14,6 +14,9 @@ export const OktaLogin: React.FC<React.PropsWithChildren<OktaLoginScreenProps>> 
         showSelfRegistration={true}
         showContactSupport={true}
         showCyberSecurityBadge={true}
+        showForgotPassword={true}
+        //eslint-disable-next-line
+        onForgotPassword={() => console.log('Forgot password Pressed')}
         //eslint-disable-next-line
         onLogin={() => console.log('Login Pressed')}
         //eslint-disable-next-line

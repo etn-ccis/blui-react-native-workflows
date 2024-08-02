@@ -14,6 +14,23 @@ export type OktaLoginScreenProps = WorkflowCardBaseProps & {
      */
     onLogin?: () => Promise<void> | void;
 
+    // configure Forgot Password
+    /**
+     * whether or not to show the 'forgot password' link
+     */
+    showForgotPassword?: boolean;
+
+    /**
+     * The label for the 'forgot password' link
+     */
+    forgotPasswordLabel?: string;
+
+    /**
+     * The callback function that is called when the 'forgot password' link is clicked
+     * @returns void
+     */
+    onForgotPassword?: () => void;
+
     // configure Self Registration
     /**
      * whether or not to show the 'self registration' link
@@ -82,5 +99,5 @@ export type OktaLoginScreenProps = WorkflowCardBaseProps & {
     /**
      * The size of the cyber security image
      */
-    cyberSecurityBadgeSize?: {height?: number | string, width?: number | string};
+    cyberSecurityBadgeSize?: { height?: number | string; width?: number | string };
 };

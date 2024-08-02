@@ -6,6 +6,7 @@ import { Image, View, StyleSheet, ViewStyle } from 'react-native';
 import { Button, Text } from 'react-native-paper';
 import { useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 import { useScreenDimensions } from '../../hooks/useScreenDimensions';
+import { ErrorManager } from '../../components';
 
 const makeStyles = (
     isTablet: boolean
@@ -14,10 +15,12 @@ const makeStyles = (
     projectImageWrapper: ViewStyle;
     loginButtonWrapper: ViewStyle;
     loginButton: ViewStyle;
+    forgotPasswordWrapper: ViewStyle;
     selfRegisterWrapper: ViewStyle;
     contactSupportWrapper: ViewStyle;
     footerWrapper: ViewStyle;
     cyberSecurityBadgeWrapper: ViewStyle;
+    bottomBodyWrapper: ViewStyle;
 }> =>
     StyleSheet.create({
         container: {
@@ -33,14 +36,26 @@ const makeStyles = (
         },
         loginButtonWrapper: {
             display: 'flex',
-            flex: 1,
             justifyContent: 'flex-end',
             flexDirection: 'row',
-            marginTop: isTablet ? 240: 60,
-            marginBottom: isTablet ? 96 : 72,
+            marginTop: isTablet ? 72 : 60,
+            marginBottom: isTablet ? 80 : 72,
         },
         loginButton: {
             width: '100%',
+        },
+        bottomBodyWrapper: {
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-around',
+            flex: 1,
+        },
+        forgotPasswordWrapper: {
+            display: 'flex',
+            justifyContent: 'center',
+            alignContent: 'center',
+            alignItems: 'center',
+            marginBottom: isTablet ? 32 : 24,
         },
         selfRegisterWrapper: {
             display: 'flex',
@@ -49,22 +64,22 @@ const makeStyles = (
             flexDirection: 'column',
             marginTop: 16,
             alignContent: 'center',
-            marginBottom: isTablet ? 32 : 24,
+            marginBottom: isTablet ? 32 : 16,
         },
         contactSupportWrapper: {
             display: 'flex',
             justifyContent: 'center',
-            marginTop: 40,
+            marginTop: 8,
             alignContent: 'center',
             alignItems: 'center',
-            marginBottom: isTablet ? 32 : 24,
+            marginBottom: isTablet ? 52 : 16,
         },
         footerWrapper: { display: 'flex', justifyContent: 'center' },
         cyberSecurityBadgeWrapper: {
             display: 'flex',
             flexDirection: 'row',
             justifyContent: 'center',
-            marginTop: 40,
+            marginTop: 8,
         },
     });
 
@@ -79,6 +94,10 @@ export const OktaLoginScreenBase: React.FC<React.PropsWithChildren<OktaLoginScre
     const {
         loginButtonLabel,
         onLogin,
+        showForgotPassword,
+        forgotPasswordLabel,
+        onForgotPassword,
+        errorDisplayConfig,
         showSelfRegistration,
         selfRegisterButtonLabel,
         selfRegisterInstructions,
@@ -118,73 +137,101 @@ export const OktaLoginScreenBase: React.FC<React.PropsWithChildren<OktaLoginScre
         });
     };
 
+    const handleForgotPassword = (): void => {
+        if (onForgotPassword) onForgotPassword();
+    };
+
     return (
         <WorkflowCard testID="blui-okta-login-workflow-card" {...otherProps}>
-            <WorkflowCardBody>
+            <WorkflowCardBody style={{ flex: 1, justifyContent: 'space-around' }}>
                 {header}
                 <View style={defaultStyles.projectImageWrapper} testID="blui-okta-login-project-image-wrapper">
                     {projectImage}
                 </View>
 
-                <View
-                    style={[defaultStyles.loginButtonWrapper, { width: '100%' }]}
-                    testID={'blui-okta-login-login-button-wrapper'}
-                >
-                    <Button
-                        testID={'blui-okta-login-login-button'}
-                        onPress={handleLogin}
-                        disabled={!onLogin}
-                        mode="contained"
-                        style={defaultStyles.loginButton}
-                    >
-                        {loginButtonLabel || 'Sign In with Okta'}
-                    </Button>
-                </View>
-
-                <View>
-                {showSelfRegistration && (
-                    <View style={defaultStyles.selfRegisterWrapper} testID={'blui-okta-login-self-register-wrapper'}>
-                        <Text variant="bodyMedium" testID={'blui-okta-login-self-register-instruction-label'}>
-                            {selfRegisterInstructions || 'Need an account?'}
-                        </Text>
-                        <Text
-                            variant="labelLarge"
-                            style={{ color: theme.colors.primary }}
-                            onPress={handleSelfRegister}
-                            testID={'blui-okta-login-self-register-label'}
-                        >
-                            {selfRegisterButtonLabel || 'Register now!'}
-                        </Text>
-                    </View>
-                )}
-
-                {showContactSupport && (
-                    <View style={defaultStyles.contactSupportWrapper} testID={'blui-okta-login-contact-support-wrapper'}>
-                        <Text
-                            variant="labelLarge"
-                            style={{ color: theme.colors.primary }}
-                            onPress={handleContactSupport}
-                            testID={'blui-okta-login-contact-support-label'}
-                        >
-                            {contactSupportLabel || 'Contact Support'}
-                        </Text>
-                    </View>
-                )}
-
-                <View style={defaultStyles.footerWrapper}>{footer}</View>
-
-                {showCyberSecurityBadge && (
+                <ErrorManager {...errorDisplayConfig}>
                     <View
-                        style={defaultStyles.cyberSecurityBadgeWrapper}
-                        testID={'blui-okta-login-cyber-security-badge-wrapper'}
+                        style={[defaultStyles.loginButtonWrapper, { width: '100%' }]}
+                        testID={'blui-okta-login-login-button-wrapper'}
                     >
-                        <Image
-                            style={{ ...cyberSecurityBadgeSize }}
-                            resizeMode="contain"
-                            source={require('../../assets/images/cybersecurity_certified.png')}
-                        />
+                        <Button
+                            testID={'blui-okta-login-login-button'}
+                            onPress={handleLogin}
+                            disabled={!onLogin}
+                            mode="contained"
+                            style={defaultStyles.loginButton}
+                        >
+                            {loginButtonLabel || 'Sign In with Okta'}
+                        </Button>
                     </View>
-                )}
+                </ErrorManager>
+
+                <View style={defaultStyles.bottomBodyWrapper} testID={'blui-okta-login-bottom-body-wrapper'}>
+                    {showForgotPassword && (
+                        <View
+                            style={defaultStyles.forgotPasswordWrapper}
+                            testID={'blui-okta-login-forgot-password-wrapper'}
+                        >
+                            <Text
+                                variant="labelLarge"
+                                style={{ color: theme.colors.primary }}
+                                onPress={handleForgotPassword}
+                                testID={'blui-login-forgot-password-label'}
+                            >
+                                {forgotPasswordLabel || 'Forgot your password?'}
+                            </Text>
+                        </View>
+                    )}
+
+                    {showSelfRegistration && (
+                        <View
+                            style={defaultStyles.selfRegisterWrapper}
+                            testID={'blui-okta-login-self-register-wrapper'}
+                        >
+                            <Text variant="bodyMedium" testID={'blui-okta-login-self-register-instruction-label'}>
+                                {selfRegisterInstructions || 'Need an account?'}
+                            </Text>
+                            <Text
+                                variant="labelLarge"
+                                style={{ color: theme.colors.primary }}
+                                onPress={handleSelfRegister}
+                                testID={'blui-okta-login-self-register-label'}
+                            >
+                                {selfRegisterButtonLabel || 'Register now!'}
+                            </Text>
+                        </View>
+                    )}
+
+                    {showContactSupport && (
+                        <View
+                            style={defaultStyles.contactSupportWrapper}
+                            testID={'blui-okta-login-contact-support-wrapper'}
+                        >
+                            <Text
+                                variant="labelLarge"
+                                style={{ color: theme.colors.primary }}
+                                onPress={handleContactSupport}
+                                testID={'blui-okta-login-contact-support-label'}
+                            >
+                                {contactSupportLabel || 'Contact Support'}
+                            </Text>
+                        </View>
+                    )}
+
+                    <View style={defaultStyles.footerWrapper}>{footer}</View>
+
+                    {showCyberSecurityBadge && (
+                        <View
+                            style={defaultStyles.cyberSecurityBadgeWrapper}
+                            testID={'blui-okta-login-cyber-security-badge-wrapper'}
+                        >
+                            <Image
+                                style={{ ...cyberSecurityBadgeSize }}
+                                resizeMode="contain"
+                                source={require('../../assets/images/cybersecurity_certified.png')}
+                            />
+                        </View>
+                    )}
                 </View>
             </WorkflowCardBody>
         </WorkflowCard>
