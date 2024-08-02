@@ -44,7 +44,6 @@ export const WorkflowCardBody: React.FC<WorkflowCardBodyProps> = (props) => {
                     contentInsetAdjustmentBehavior="always"
                     bounces={false}
                     keyboardShouldPersistTaps={'handled'}
-                    // contentContainerStyle={defaultStyles.viewContainer}
                 >
                     <WorkflowCardInstructions {...WorkflowCardInstructionProps} />
                     <Card.Content style={[defaultStyles.workflowBody, style]} {...otherCardContentProps}>
