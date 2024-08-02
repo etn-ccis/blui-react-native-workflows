@@ -25,6 +25,7 @@ import { Homepage } from '../screens/Homepage';
 import Locations from '../screens/Locations';
 import Dashboard from '../screens/Dashboard';
 import { NativeStackNavigationProp, createNativeStackNavigator } from '@react-navigation/native-stack';
+import { OktaLogin } from '../screens/OktaLogin';
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -95,7 +96,7 @@ const AuthRouter = (): any => {
                                 swipeEnabled: false,
                             }}
                             name="Login"
-                            component={Login}
+                            component={OktaLogin}
                         />
                     )}
                     {!app.isAuthenticated && (

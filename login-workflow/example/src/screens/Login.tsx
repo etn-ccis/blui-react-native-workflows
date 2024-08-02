@@ -1,9 +1,10 @@
 import React from 'react';
 import { Image } from 'react-native';
-import { OktaLoginScreenProps, OktaLoginScreenBase } from '@brightlayer-ui/react-native-auth-workflow';
+import { DebugComponent } from '../components/DebugComponent';
+import { LoginScreenProps, LoginScreen } from '@brightlayer-ui/react-native-auth-workflow';
 
-export const Login: React.FC<React.PropsWithChildren<OktaLoginScreenProps>> = () => (
-    <OktaLoginScreenBase
+export const Login: React.FC<React.PropsWithChildren<LoginScreenProps>> = () => (
+    <LoginScreen
         projectImage={
             <Image
                 style={{ width: '100%' }}
@@ -11,14 +12,6 @@ export const Login: React.FC<React.PropsWithChildren<OktaLoginScreenProps>> = ()
                 source={require('../assets/images/eaton_stacked_logo.png')}
             />
         }
-        showSelfRegistration={true}
-        showContactSupport={true}
-        showCyberSecurityBadge={true}
-        //eslint-disable-next-line
-        onLogin={() => console.log('Login Pressed')}
-        //eslint-disable-next-line
-        onSelfRegister={() => console.log('Self Register Pressed')}
-        //eslint-disable-next-line
-        onContactSupport={() => console.log('Contact Support Pressed')}
+        header={<DebugComponent />}
     />
 );
