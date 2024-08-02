@@ -100,4 +100,9 @@ export type OktaLoginScreenProps = WorkflowCardBaseProps & {
      * The size of the cyber security image
      */
     cyberSecurityBadgeSize?: { height?: number | string; width?: number | string };
+
+    /**
+     * oktaConfigObject is an object containing configuration settings required for integrating with Okta.
+     */
+    oktaConfigObject?: {clientId: string; redirectUri: string; endSessionRedirectUri: string; discoveryUri: string; scopes: string[]; requireHardwareBackedKeyStore: boolean}
 };

@@ -57,6 +57,7 @@ android/main.jsbundle
 **/**/Thumbs.db
 
 # Local Environment Config
+.env
 **/**/.env.local
 **/**/.env.development.local
 **/**/.env.test.local
