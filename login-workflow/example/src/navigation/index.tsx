@@ -48,8 +48,6 @@ const AuthRouter = (): any => {
     const { email, rememberMe } = app.loginData;
     const navigation = useNavigation<NativeStackNavigationProp<any>>();
 
-    const AuthStack = createNativeStackNavigator();
-
     return (
         <>
             <AuthContextProvider
@@ -81,75 +79,65 @@ const AuthRouter = (): any => {
                 }}
                 rememberMeDetails={{ email: rememberMe ? email : '', rememberMe: rememberMe }}
             >
-                <AuthStack.Navigator
+                <Drawer.Navigator
                     screenOptions={{
                         headerShown: false,
-                        // drawerType: 'front',
-                        // drawerStyle: { backgroundColor: 'transparent' },
+                        drawerType: 'front',
+                        drawerStyle: { backgroundColor: 'transparent' },
                     }}
-                    // drawerContent={(props: any): ReactNode => <CustomDrawerContent {...props} />}
-                    // backBehavior="history"
+                    drawerContent={(props: any): ReactNode => <CustomDrawerContent {...props} />}
+                    backBehavior="history"
                     initialRouteName="Login"
                 >
                     {!app.isAuthenticated && (
-                        <AuthStack.Screen
-                            options={
-                                {
-                                    // swipeEnabled: false,
-                                }
-                            }
+                        <Drawer.Screen
+                            options={{
+                                swipeEnabled: false,
+                            }}
                             name="Login"
                             component={Login}
                         />
                     )}
-                    {!app.isAuthenticated && (
-                        <AuthStack.Screen
-                            options={
-                                {
-                                    // swipeEnabled: false,
-                                }
-                            }
+                    {/* {!app.isAuthenticated && (
+                        <Drawer.Screen
+                            options={{
+                                swipeEnabled: false,
+                            }}
                             name="ForgotPassword"
                             component={ForgotPasswordScreen}
                         />
                     )}
                     {!app.isAuthenticated && (
-                        <AuthStack.Screen
-                            options={
-                                {
-                                    // swipeEnabled: false,
-                                }
-                            }
+                        <Drawer.Screen
+                            options={{
+                                swipeEnabled: false,
+                            }}
                             name="ResetPassword"
                             component={ResetPasswordScreen}
                         />
-                    )}
+                    )} */}
 
-                    {app.isAuthenticated && <AuthStack.Screen name="Homepage" component={Homepage} />}
-                    {app.isAuthenticated && <AuthStack.Screen name="Dashboard" component={Dashboard} />}
-                    {app.isAuthenticated && <AuthStack.Screen name="Locations" component={Locations} />}
+                    {app.isAuthenticated && <Drawer.Screen name="Homepage" component={Homepage} />}
+                    {app.isAuthenticated && <Drawer.Screen name="Dashboard" component={Dashboard} />}
+                    {app.isAuthenticated && <Drawer.Screen name="Locations" component={Locations} />}
 
-                    <AuthStack.Screen
+                    {/* <Drawer.Screen
                         name="ContactSupport"
-                        options={
-                            {
-                                // swipeEnabled: false,
-                            }
-                        }
+                        options={{
+                            swipeEnabled: false,
+                        }}
                         component={ContactSupportScreen}
-                    />
+                    /> */}
                     {app.isAuthenticated && (
-                        <AuthStack.Screen
+                        <Drawer.Screen
                             name="ChangePassword"
-                            options={
-                                {
-                                    // swipeEnabled: false,
-                                }
-                            }
+                            options={{
+                                swipeEnabled: false,
+                            }}
                             component={ChangePassword}
                         />
                     )}
-                </AuthStack.Navigator>
+                </Drawer.Navigator>
             </AuthContextProvider>
         </>
     );
@@ -159,6 +147,8 @@ const UserHome = () => {
     const app = useApp();
     const navigation = useNavigation<NativeStackNavigationProp<any>>();
     const { email, rememberMe } = app.loginData;
+
+    const AuthStack = createNativeStackNavigator();
 
     return (
         <AuthContextProvider
@@ -191,19 +181,44 @@ const UserHome = () => {
             }}
             rememberMeDetails={{ email: rememberMe ? email : '', rememberMe: rememberMe }}
         >
-            <Drawer.Navigator
+            <AuthStack.Navigator
                 screenOptions={{
-                    drawerType: 'front',
-                    drawerStyle: { backgroundColor: 'transparent' },
+                    headerShown: false,
                 }}
-                drawerContent={(props: any): ReactNode => <CustomDrawerContent {...props} />}
-                backBehavior="history"
                 initialRouteName="Homepage"
             >
-                {app.isAuthenticated && <Drawer.Screen name="Homepage" component={Homepage} />}
-                {app.isAuthenticated && <Drawer.Screen name="Dashboard" component={Dashboard} />}
-                {app.isAuthenticated && <Drawer.Screen name="Locations" component={Locations} />}
-            </Drawer.Navigator>
+                {!app.isAuthenticated && (
+                    <AuthStack.Screen
+                        options={
+                            {
+                                // swipeEnabled: false,
+                            }
+                        }
+                        name="ForgotPassword"
+                        component={ForgotPasswordScreen}
+                    />
+                )}
+                {!app.isAuthenticated && (
+                    <AuthStack.Screen
+                        options={
+                            {
+                                // swipeEnabled: false,
+                            }
+                        }
+                        name="ResetPassword"
+                        component={ResetPasswordScreen}
+                    />
+                )}
+                <AuthStack.Screen
+                    name="ContactSupport"
+                    options={
+                        {
+                            // swipeEnabled: false,
+                        }
+                    }
+                    component={ContactSupportScreen}
+                />
+            </AuthStack.Navigator>
         </AuthContextProvider>
     );
 };
@@ -278,7 +293,7 @@ export const MainRouter = (): any => {
                 }}
             >
                 <Stack.Screen name="AuthProviderExample" component={AuthRouter} />
-                {/* <Stack.Screen name="UserHomeExample" component={UserHome} /> */}
+                <Stack.Screen name="UserHomeExample" component={UserHome} />
                 <Stack.Screen name="RegistrationProviderExample" component={RegistrationRouter} />
             </Stack.Navigator>
         </NavigationContainer>
