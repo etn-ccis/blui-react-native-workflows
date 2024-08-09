@@ -24,7 +24,7 @@ import { Homepage } from '../screens/Homepage';
 import Locations from '../screens/Locations';
 import Dashboard from '../screens/Dashboard';
 import { NativeStackNavigationProp, createNativeStackNavigator } from '@react-navigation/native-stack';
-import { OktaLogin } from '../screens/OktaLogin';
+import { Login } from '../screens/Login';
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -95,10 +95,10 @@ const AuthRouter = (): any => {
                                 swipeEnabled: false,
                             }}
                             name="Login"
-                            component={OktaLogin}
+                            component={Login}
                         />
                     )}
-                    {!app.isAuthenticated && (
+                    {/* {!app.isAuthenticated && (
                         <Drawer.Screen
                             options={{
                                 swipeEnabled: false,
@@ -115,19 +115,19 @@ const AuthRouter = (): any => {
                             name="ResetPassword"
                             component={ResetPasswordScreen}
                         />
-                    )}
+                    )} */}
 
                     {app.isAuthenticated && <Drawer.Screen name="Homepage" component={Homepage} />}
                     {app.isAuthenticated && <Drawer.Screen name="Dashboard" component={Dashboard} />}
                     {app.isAuthenticated && <Drawer.Screen name="Locations" component={Locations} />}
 
-                    <Drawer.Screen
+                    {/* <Drawer.Screen
                         name="ContactSupport"
                         options={{
                             swipeEnabled: false,
                         }}
                         component={ContactSupportScreen}
-                    />
+                    /> */}
                     {app.isAuthenticated && (
                         <Drawer.Screen
                             name="ChangePassword"
@@ -140,6 +140,86 @@ const AuthRouter = (): any => {
                 </Drawer.Navigator>
             </AuthContextProvider>
         </>
+    );
+};
+
+const UserHome = () => {
+    const app = useApp();
+    const navigation = useNavigation<NativeStackNavigationProp<any>>();
+    const { email, rememberMe } = app.loginData;
+
+    const AuthStack = createNativeStackNavigator();
+
+    return (
+        <AuthContextProvider
+            language={app.language}
+            actions={ProjectAuthUIActions(app)}
+            i18n={i18nAppInstance}
+            navigate={(destination: -1 | string) => {
+                if (typeof destination === 'string') {
+                    switch (destination) {
+                        case 'SelfRegister':
+                        case 'RegisterInvite':
+                            navigation.navigate('RegistrationProviderExample', { screen: destination });
+                            break;
+                        default:
+                            navigation.navigate(destination);
+                            break;
+                    }
+                } else if (destination === -1) {
+                    navigation.goBack();
+                }
+            }}
+            routeConfig={{
+                LOGIN: 'Login',
+                FORGOT_PASSWORD: 'ForgotPassword',
+                RESET_PASSWORD: 'ResetPassword',
+                REGISTER_INVITE: 'RegisterInvite',
+                REGISTER_SELF: 'SelfRegister',
+                SUPPORT: 'ContactSupport',
+                LANDING_PAGE: 'Homepage',
+            }}
+            rememberMeDetails={{ email: rememberMe ? email : '', rememberMe: rememberMe }}
+        >
+            <AuthStack.Navigator
+                screenOptions={{
+                    headerShown: false,
+                }}
+                initialRouteName="Homepage"
+            >
+                {!app.isAuthenticated && (
+                    <AuthStack.Screen
+                        options={
+                            {
+                                // swipeEnabled: false,
+                            }
+                        }
+                        name="ForgotPassword"
+                        component={ForgotPasswordScreen}
+                    />
+                )}
+                {!app.isAuthenticated && (
+                    <AuthStack.Screen
+                        options={
+                            {
+                                // swipeEnabled: false,
+                            }
+                        }
+                        name="ResetPassword"
+                        component={ResetPasswordScreen}
+                    />
+                )}
+                <AuthStack.Screen
+                    name="ContactSupport"
+                    options={
+                        {
+                            // swipeEnabled: false,
+                        }
+                    }
+                    component={ContactSupportScreen}
+                />
+            </AuthStack.Navigator>
+        </AuthContextProvider>
     );
 };
 
@@ -213,6 +293,7 @@ export const MainRouter = (): any => {
                 }}
             >
                 <Stack.Screen name="AuthProviderExample" component={AuthRouter} />
+                <Stack.Screen name="UserHomeExample" component={UserHome} />
                 <Stack.Screen name="RegistrationProviderExample" component={RegistrationRouter} />
             </Stack.Navigator>
         </NavigationContainer>
