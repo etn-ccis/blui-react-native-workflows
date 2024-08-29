@@ -57,12 +57,15 @@ export const OktaLoginScreen: React.FC<React.PropsWithChildren<OktaLoginScreenPr
         void actions.initiateSecurity();
 
         EventEmitter.addListener('signInSuccess', () => {
+            // eslint-disable-next-line no-console
             console.log('signInSuccess');
         });
         EventEmitter.addListener('signOutSuccess', () => {
+            // eslint-disable-next-line no-console
             console.log('signOutSuccess');
         });
         EventEmitter.addListener('onError', (e: Event) => {
+            // eslint-disable-next-line no-console
             console.log(e);
         });
         EventEmitter.addListener('onCancelled', (e: Event) => {
@@ -70,7 +73,7 @@ export const OktaLoginScreen: React.FC<React.PropsWithChildren<OktaLoginScreenPr
             console.log(e);
         });
 
-        createOktaConfig();
+        void createOktaConfig();
 
         return () => {
             EventEmitter.removeAllListeners('signInSuccess');
@@ -91,8 +94,8 @@ export const OktaLoginScreen: React.FC<React.PropsWithChildren<OktaLoginScreenPr
                     } catch (_error) {
                         triggerError(_error as Error);
                     } finally {
-                        getAccessToken()
-                            .then((token) => console.log(token))
+                        getAccessToken()// eslint-disable-next-line no-console
+                            .then((token) => console.log(token))// eslint-disable-next-line no-console
                             .catch((error) => console.log('token error', error));
                     }
                 }) as any
