@@ -8,6 +8,7 @@ export const OktaLogin: React.FC<React.PropsWithChildren<OktaLoginScreenProps>> 
         try {
             await signInWithBrowser();
         } catch (_error) {
+            // eslint-disable-next-line no-console
             console.log(_error as Error);
         } finally {
             getAccessToken() // eslint-disable-next-line no-console
