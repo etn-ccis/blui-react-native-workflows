@@ -33,6 +33,7 @@
         "react": "18.2.0",
         "react-i18next": "^14.0.0",
         "react-native": "0.73.2",
+        "react-native-dotenv": "^3.4.11",
         "react-native-gesture-handler": "^2.14.1",
         "react-native-keyboard-aware-scroll-view": "^0.9.3",
         "react-native-modal": "^12.0.2",

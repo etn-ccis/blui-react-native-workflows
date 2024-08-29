@@ -1,3 +1,4 @@
+
 export default {
         clientId: process.env.OKTA_CLIENT_ID ?? '',
         redirectUri: process.env.OKTA_REDIRECT_URI ?? '',

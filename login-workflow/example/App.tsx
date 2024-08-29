@@ -19,6 +19,8 @@ import { LocalStorage } from './src/store/local-storage';
 import { Spinner } from '@brightlayer-ui/react-native-auth-workflow';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NativeModules, Platform } from 'react-native';
+import { createConfig } from '@okta/okta-react-native';
+import oktaConfig from './okta.config';
 
 export const App = (): JSX.Element => {
     const [theme, setTheme] = useState<ThemeType>('light');
@@ -47,6 +49,15 @@ export const App = (): JSX.Element => {
             console.error('Error getting language from Async Storage:', error);
         }
     };
+
+    const createOktaConfig = async (): Promise<void> => {
+        await createConfig(oktaConfig)
+    };
+
+    useEffect(() => {
+        void createOktaConfig();
+    }, []);
+
     // handle initialization of auth data on first load
     useEffect(() => {
         const initialize = async (): Promise<void> => {
