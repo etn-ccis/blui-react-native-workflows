@@ -6,7 +6,6 @@ import { Image, View, StyleSheet, ViewStyle } from 'react-native';
 import { Button, Text } from 'react-native-paper';
 import { useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 import { useScreenDimensions } from '../../hooks/useScreenDimensions';
-import { ErrorManager } from '../../components';
 
 const makeStyles = (
     isTablet: boolean
@@ -97,7 +96,6 @@ export const OktaLoginScreenBase: React.FC<React.PropsWithChildren<OktaLoginScre
         showForgotPassword,
         forgotPasswordLabel,
         onForgotPassword,
-        errorDisplayConfig,
         showSelfRegistration,
         selfRegisterButtonLabel,
         selfRegisterInstructions,
@@ -149,7 +147,6 @@ export const OktaLoginScreenBase: React.FC<React.PropsWithChildren<OktaLoginScre
                     {projectImage}
                 </View>
 
-                <ErrorManager {...errorDisplayConfig}>
                     <View
                         style={[defaultStyles.loginButtonWrapper, { width: '100%' }]}
                         testID={'blui-okta-login-login-button-wrapper'}
@@ -164,7 +161,6 @@ export const OktaLoginScreenBase: React.FC<React.PropsWithChildren<OktaLoginScre
                             {loginButtonLabel || 'Sign In with Okta'}
                         </Button>
                     </View>
-                </ErrorManager>
 
                 <View style={defaultStyles.bottomBodyWrapper} testID={'blui-okta-login-bottom-body-wrapper'}>
                     {showForgotPassword && (

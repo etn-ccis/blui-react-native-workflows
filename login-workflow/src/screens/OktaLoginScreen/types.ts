@@ -1,5 +1,4 @@
 import { WorkflowCardBaseProps } from '../../components/WorkflowCard/WorkflowCard.types';
-import { ErrorManagerProps } from '../../components/Error';
 
 export type OktaLoginScreenProps = WorkflowCardBaseProps & {
     // configure Login
@@ -70,12 +69,6 @@ export type OktaLoginScreenProps = WorkflowCardBaseProps & {
      */
     onContactSupport?: () => void;
 
-    // configure visual customizations
-    /**
-     * The configuration for customizing how errors are displayed
-     */
-    errorDisplayConfig?: ErrorManagerProps;
-
     /**
      * whether or not to show the cyber security badge
      */
@@ -100,4 +93,9 @@ export type OktaLoginScreenProps = WorkflowCardBaseProps & {
      * The size of the cyber security image
      */
     cyberSecurityBadgeSize?: { height?: number | string; width?: number | string };
+
+    /**
+     * oktaConfigObject is an object containing configuration settings required for integrating with Okta.
+     */
+    oktaConfigObject?: {clientId: string; redirectUri: string; endSessionRedirectUri: string; discoveryUri: string; scopes: string[]; requireHardwareBackedKeyStore: boolean}
 };
