@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image } from 'react-native';
-import { OktaLoginScreenProps, OktaLoginScreen } from '@brightlayer-ui/react-native-auth-workflow';
+import { OktaLoginScreenProps, OktaRedirectLoginScreen } from '@brightlayer-ui/react-native-auth-workflow';
 import { getAccessToken, signInWithBrowser } from '@okta/okta-react-native';
 
 export const OktaLogin: React.FC<React.PropsWithChildren<OktaLoginScreenProps>> = () => {
@@ -17,7 +17,7 @@ export const OktaLogin: React.FC<React.PropsWithChildren<OktaLoginScreenProps>> 
         }
     };
     return (
-        <OktaLoginScreen
+        <OktaRedirectLoginScreen
             projectImage={
                 <Image
                     style={{ width: '100%' }}

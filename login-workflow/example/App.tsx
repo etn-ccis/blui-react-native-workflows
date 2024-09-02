@@ -15,11 +15,10 @@ import { blue, blueDark } from '@brightlayer-ui/react-native-themes';
 import i18nAppInstance from './translations/i18n';
 import { I18nextProvider, useTranslation } from 'react-i18next';
 import { AppContext, AppContextType } from './src/contexts/AppContextProvider';
-import { LocalStorage } from './src/store/local-storage';
 import { Spinner } from '@brightlayer-ui/react-native-auth-workflow';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NativeModules, Platform } from 'react-native';
-import { createConfig } from '@okta/okta-react-native';
+import { createConfig, isAuthenticated as isOktaAuthenticated, EventEmitter } from '@okta/okta-react-native';
 import oktaConfig from './okta.config';
 
 export const App = (): JSX.Element => {
@@ -55,16 +54,27 @@ export const App = (): JSX.Element => {
     };
 
     useEffect(() => {
+        EventEmitter.addListener('signInSuccess', () => {
+            setAuthenticated(Boolean(true));
+        });
+
         void createOktaConfig();
+
+        return () => {
+            EventEmitter.removeAllListeners('signInSuccess');
+        }
     }, []);
 
     // handle initialization of auth data on first load
     useEffect(() => {
+        
         const initialize = async (): Promise<void> => {
             try {
-                const userData = await LocalStorage.readAuthData();
-                setLoginData({ email: userData.rememberMeData.user, rememberMe: userData.rememberMeData.rememberMe });
-                setAuthenticated(Boolean(userData.userId));
+                const authState = await isOktaAuthenticated();
+                // below line is not need for okta workflow
+                // const userData = await LocalStorage.readAuthData();
+                // setLoginData({ email: userData.rememberMeData.user, rememberMe: userData.rememberMeData.rememberMe });
+                setAuthenticated(Boolean(authState?.authenticated));
                 await getLanguage();
             } catch (e) {
                 // handle any error state, rejected promises, etc..

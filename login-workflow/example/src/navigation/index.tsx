@@ -7,6 +7,7 @@ import {
     ResetPasswordScreen,
     RegistrationContextProvider,
     ForgotPasswordScreen,
+    OktaAuthContextProvider,
 } from '@brightlayer-ui/react-native-auth-workflow';
 import i18nAppInstance from '../../translations/i18n';
 import { NavigationDrawer } from './navigation-drawer';
@@ -79,6 +80,33 @@ const AuthRouter = (): any => {
                 }}
                 rememberMeDetails={{ email: rememberMe ? email : '', rememberMe: rememberMe }}
             >
+                <OktaAuthContextProvider
+                language={app.language}
+                i18n={i18nAppInstance}
+                navigate={(destination: -1 | string) => {
+                    if (typeof destination === 'string') {
+                        switch (destination) {
+                            case 'SelfRegister':
+                            case 'RegisterInvite':
+                                navigation.navigate('RegistrationProviderExample', { screen: destination });
+                                break;
+                            default:
+                                navigation.navigate(destination);
+                                break;
+                        }
+                    } else if (destination === -1) {
+                        navigation.goBack();
+                    }
+                }}
+                routeConfig={{
+                    LOGIN: 'Login',
+                    FORGOT_PASSWORD: 'ForgotPassword',
+                    RESET_PASSWORD: 'ResetPassword',
+                    REGISTER_INVITE: 'RegisterInvite',
+                    REGISTER_SELF: 'SelfRegister',
+                    SUPPORT: 'ContactSupport',
+                }}
+                >
                 <Drawer.Navigator
                     screenOptions={{
                         headerShown: false,
@@ -138,6 +166,7 @@ const AuthRouter = (): any => {
                         />
                     )}
                 </Drawer.Navigator>
+                </OktaAuthContextProvider>
             </AuthContextProvider>
         </>
     );

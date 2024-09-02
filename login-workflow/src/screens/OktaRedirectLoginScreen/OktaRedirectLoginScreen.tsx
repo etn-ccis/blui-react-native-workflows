@@ -1,7 +1,7 @@
 import React from 'react';
 import { OktaLoginScreenProps } from './types';
-import { OktaLoginScreenBase } from './OktaLoginScreenBase';
-import { useAuthContext } from '../../contexts';
+import { OktaRedirectLoginScreenBase } from './OktaRedirectLoginScreenBase';
+import { useOktaAuthContext } from '../../contexts';
 import { useTranslation } from 'react-i18next';
 
 /**
@@ -12,10 +12,9 @@ import { useTranslation } from 'react-i18next';
  * @category Component
  */
 
-export const OktaLoginScreen: React.FC<React.PropsWithChildren<OktaLoginScreenProps>> = (props) => {
+export const OktaRedirectLoginScreen: React.FC<React.PropsWithChildren<OktaLoginScreenProps>> = (props) => {
     const { t } = useTranslation();
-    const auth = useAuthContext();
-    const { navigate, routeConfig } = auth;
+    const { navigate, routeConfig } = useOktaAuthContext();
 
     const {
         loginButtonLabel = t('bluiCommon:ACTIONS.OKTA_SIGN_IN'),
@@ -38,7 +37,7 @@ export const OktaLoginScreen: React.FC<React.PropsWithChildren<OktaLoginScreenPr
     } = props;
 
     return (
-        <OktaLoginScreenBase
+        <OktaRedirectLoginScreenBase
             loginButtonLabel={loginButtonLabel}
             onLogin={onLogin}
             showForgotPassword={showForgotPassword}

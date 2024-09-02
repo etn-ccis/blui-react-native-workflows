@@ -89,7 +89,7 @@ const makeStyles = (
  *
  * @category Component
  */
-export const OktaLoginScreenBase: React.FC<React.PropsWithChildren<OktaLoginScreenProps>> = (props) => {
+export const OktaRedirectLoginScreenBase: React.FC<React.PropsWithChildren<OktaLoginScreenProps>> = (props) => {
     const {
         loginButtonLabel,
         onLogin,
