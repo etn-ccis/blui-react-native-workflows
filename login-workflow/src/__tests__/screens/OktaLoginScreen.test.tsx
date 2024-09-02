@@ -10,8 +10,8 @@ jest.mock('../../contexts', () => ({
 
 // Mock the useTranslation hook
 jest.mock('react-i18next', () => ({
-    useTranslation: () => ({
-        t: (key: string) => key,
+    useTranslation: (): { t: (key: string) => string } => ({
+        t: (key: string): string => key,
     }),
 }));
 
