@@ -50,7 +50,7 @@ export const App = (): JSX.Element => {
     };
 
     const createOktaConfig = async (): Promise<void> => {
-        await createConfig(oktaConfig)
+        await createConfig(oktaConfig?.oidc)
     };
 
     useEffect(() => {

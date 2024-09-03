@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`OktaRedirectLoginScreenBase renders the footer: Footer 1`] = `
+<Text>
+  Footer
+</Text>
+`;
