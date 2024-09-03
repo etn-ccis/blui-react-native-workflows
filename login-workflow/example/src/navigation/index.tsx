@@ -49,14 +49,17 @@ const AuthRouter = (): any => {
     const { email, rememberMe } = app.loginData;
     const navigation = useNavigation<NativeStackNavigationProp<any>>();
 
-    const LoginNavigatorComponent = useCallback(() => (
+    const LoginNavigatorComponent = useCallback(
+        () => (
             <LoginStack.Navigator screenOptions={{ headerShown: false }}>
                 <LoginStack.Screen name="Login" component={OktaLogin} />
                 <LoginStack.Screen name="ForgotPassword" component={ForgotPasswordScreen} />
                 <LoginStack.Screen name="ResetPassword" component={ResetPasswordScreen} />
                 <LoginStack.Screen name="ContactSupport" component={ContactSupportScreen} />
             </LoginStack.Navigator>
-        ), [app.isAuthenticated]);
+        ),
+        []
+    );
 
     const DrawerNavigatorComponent = (): any => (
         <Drawer.Navigator
