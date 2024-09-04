@@ -159,65 +159,7 @@ const AuthRouter = (): any => {
                     SUPPORT: 'ContactSupport',
                 }}
                 >
-                <Drawer.Navigator
-                    screenOptions={{
-                        headerShown: false,
-                        drawerType: 'front',
-                        drawerStyle: { backgroundColor: 'transparent' },
-                    }}
-                    drawerContent={(props: any): ReactNode => <CustomDrawerContent {...props} />}
-                    backBehavior="history"
-                    initialRouteName="Login"
-                >
-                    {!app.isAuthenticated && (
-                        <Drawer.Screen
-                            options={{
-                                swipeEnabled: false,
-                            }}
-                            name="Login"
-                            component={OktaLogin}
-                        />
-                    )}
-                    {!app.isAuthenticated && (
-                        <Drawer.Screen
-                            options={{
-                                swipeEnabled: false,
-                            }}
-                            name="ForgotPassword"
-                            component={ForgotPasswordScreen}
-                        />
-                    )}
-                    {!app.isAuthenticated && (
-                        <Drawer.Screen
-                            options={{
-                                swipeEnabled: false,
-                            }}
-                            name="ResetPassword"
-                            component={ResetPasswordScreen}
-                        />
-                    )}
-
-                    {app.isAuthenticated && <Drawer.Screen name="Homepage" component={Homepage} />}
-                    {app.isAuthenticated && <Drawer.Screen name="Dashboard" component={Dashboard} />}
-                    {app.isAuthenticated && <Drawer.Screen name="Locations" component={Locations} />}
-
-                    <Drawer.Screen
-                        name="ContactSupport"
-                        options={{
-                            swipeEnabled: false,
-                        }}
-                        component={ContactSupportScreen}
-                    />
-                    {app.isAuthenticated && (
-                        <Drawer.Screen
-                            name="ChangePassword"
-                            options={{
-                                swipeEnabled: false,
-                            }}
-                            component={ChangePassword}
-                        />
-                    )}
-                </Drawer.Navigator>
+                {DrawerNavigatorComponent()}
                 </OktaAuthContextProvider>
             </AuthContextProvider>
         </>
