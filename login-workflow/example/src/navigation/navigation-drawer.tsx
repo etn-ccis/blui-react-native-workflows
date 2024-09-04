@@ -1,5 +1,5 @@
 import { Drawer, DrawerBody, DrawerHeader, DrawerNavGroup, NavItem } from '@brightlayer-ui/react-native-components';
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, useMemo } from 'react';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from './index';
 import { DrawerActions } from '@react-navigation/native';
@@ -25,23 +25,27 @@ export const NavigationDrawer: React.FC<NavDrawerProps> = ({ navigation }) => {
         [navigation]
     );
 
-    const navGroupItems: NavItem[] = [
-        {
-            title: `${t('TOOLBAR_MENU.HOME_PAGE')}`,
-            itemID: 'Homepage',
-            icon: Homepage,
-        },
-        {
-            title: `${t('DRAWER_MENU.DASHBOARD')}`,
-            itemID: 'Dashboard',
-            icon: Dashboard,
-        },
-        {
-            title: `${t('DRAWER_MENU.LOCATIONS')}`,
-            itemID: 'Locations',
-            icon: Notifications,
-        },
-    ];
+    const navGroupItems = useMemo(
+        (): NavItem[] => [
+            {
+                title: `${t('TOOLBAR_MENU.HOME_PAGE')}`,
+                itemID: 'Homepage',
+                icon: Homepage,
+            },
+            {
+                title: `${t('DRAWER_MENU.DASHBOARD')}`,
+                itemID: 'Dashboard',
+                icon: Dashboard,
+            },
+            {
+                title: `${t('DRAWER_MENU.LOCATIONS')}`,
+                itemID: 'Locations',
+                icon: Notifications,
+            },
+        ],
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        []
+    );
 
     useEffect(() => {
         const id = navGroupItems[navigationState.index]?.itemID;
