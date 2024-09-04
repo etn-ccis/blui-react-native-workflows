@@ -107,7 +107,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Download lib
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4.1.7
         with:
           name: lib
           path: login-workflow/lib
