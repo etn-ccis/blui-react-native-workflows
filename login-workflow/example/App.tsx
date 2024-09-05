@@ -50,6 +50,7 @@ export const App = (): JSX.Element => {
     };
 
     const createOktaConfig = async (): Promise<void> => {
+        // eslint-disable-next-line
         await createConfig(oktaConfig?.oidc)
     };
 
