@@ -2,7 +2,7 @@
 
 Component that renders a login screen that prompts a user an option to login using okta redirect. The LoginScreen must be used within an `OktaAuthContextProvider` .
 
-<img width="400" alt="Login" src="../../media/screens/login.png">
+<img width="400" alt="Login" src="../../media/screens/okta-login.png">
 
 ## Usage
 
