@@ -49,10 +49,11 @@ export const App = (): JSX.Element => {
     };
 
     useEffect(() => {
-        const handleSignInSuccess = () => {
+        const handleSignInSuccess = (): any => {
             setAuthenticated(true);
             try {
-                getAccessToken().then((res) => console.log(res));
+                // eslint-disable-next-line no-console
+                getAccessToken().then((res) => console.log(res)).catch((err) => console.log(err));
             } catch (error) {
                 console.error('Error getting access token:', error);
             }

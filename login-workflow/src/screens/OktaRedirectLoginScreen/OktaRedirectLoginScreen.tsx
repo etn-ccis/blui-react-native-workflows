@@ -53,6 +53,7 @@ export const OktaRedirectLoginScreen: React.FC<React.PropsWithChildren<OktaLogin
 
     useEffect(() => {
         void createOktaConfig();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     
     return (
