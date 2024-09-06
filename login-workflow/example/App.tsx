@@ -52,10 +52,10 @@ export const App = (): JSX.Element => {
         const handleSignInSuccess = (): any => {
             setAuthenticated(true);
             try {
-                // eslint-disable-next-line no-console
+                // eslint-disable-next-line
                 getAccessToken().then((res) => console.log(res)).catch((err) => console.log(err));
             } catch (error) {
-                // eslint-disable-next-line no-console
+                // eslint-disable-next-line
                 console.error('Error getting access token:', error);
             }
         };
