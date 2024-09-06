@@ -30,8 +30,9 @@ This project now includes an Okta redirect login screen for authentication. To u
     OKTA_LOGOUT_REDIRECT_URI=<your-okta-logout-redirect-uri>
     OKTA_ISSUER=<your-okta-issuer-url>
     ```
-3. Create an okta confg file and export it, for using it while creating config for okta in your application.
-4. Initialize your okta in the app using createConfig function provided by okta by passing the okta config object as an argument.
+3. Create an okta confg file and export it.
+4. At OktaRedirectLoginScreen pass the okta config file in the prop 'oktaConfigObject'.
+5. Access the signin status using EventEmitter provided by @okta/okta-react-native package by adding a listener 'signInSuccess'.
 
 **Note: The Okta login screen will be automatically presented to the user if they are not authenticated. The user can log in using their Okta credentials. Once authenticated, they will be redirected to the Home screen.**
 
