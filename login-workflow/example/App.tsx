@@ -56,7 +56,7 @@ export const App = (): JSX.Element => {
                 getAccessToken().then((res) => console.log(res)).catch((err) => console.log(err));
             } catch (error) {
                 // eslint-disable-next-line
-                console.error('Error getting access token:', error);
+                console.log('Error getting access token:', error);
             }
         };
 
