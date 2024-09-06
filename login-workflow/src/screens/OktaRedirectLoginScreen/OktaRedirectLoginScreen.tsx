@@ -41,6 +41,7 @@ export const OktaRedirectLoginScreen: React.FC<React.PropsWithChildren<OktaLogin
             await signInWithBrowser();
             EventEmitter.emit('signInSuccess');
         } catch (_error) {
+            // eslint-disable-next-line no-console
             console.log(_error as Error);
         }
     };
