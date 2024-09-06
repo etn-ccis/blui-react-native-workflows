@@ -50,6 +50,25 @@ Each feature/screen from the Auth Workflow that you wish to use should be render
 </AuthContextProvider>
 ```
 
+## Okta Example Usage
+
+Here is an example of how you would set up the Okta Login workflow.
+
+Each feature/screen from the Auth Workflow that you wish to use should be rendered on a separate route.
+
+```tsx
+<AuthContextProvider actions={actions} language={'en'} navigate={navigate} routeConfig={{}} rememberMeDetails={{}}>
+    <ErrorContextProvider>
+        <OktaAuthContextProvider language={'en'} navigate={navigate} routeConfig={{}}>
+            <OktaLogin />
+        </OktaAuthContextProvider>
+        <ForgotPasswordScreen />
+        <ContactSupportScreen />
+        <ResetPasswordScreen />
+    </ErrorContextProvider>
+</AuthContextProvider>
+```
+
 ## API
 
 ### AuthContextProviderProps
