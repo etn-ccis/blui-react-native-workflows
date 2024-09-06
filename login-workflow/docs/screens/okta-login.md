@@ -9,7 +9,6 @@ Component that renders a login screen that prompts a user an option to login usi
 ```tsx
 import { OktaRedirectLoginScreen } from '@brightlayer-ui/react-native-auth-workflow';
 
-...
 
   <OktaRedirectLoginScreen />
 ```
@@ -61,7 +60,6 @@ import { OktaRedirectLoginScreen } from '@brightlayer-ui/react-native-auth-workf
 | projectImage | `ReactNode` | Image to display at the top of the screen. |  |
 | header | `ReactNode` | Custom content to display at the top of the screen. |  |
 | footer | `ReactNode` | Custom content to display at the bottom of the screen. |  |
-| errorDisplayConfig | `ErrorManagerProps` | See [Error Management](../error-management.md) |  |
 |  |  |  |  |
 
 This screen also extends the `WorkflowCardProps` type for updating the title, instructions, buttons, etc. See [Workflow Card](../components/workflow-card.md) for more details.
