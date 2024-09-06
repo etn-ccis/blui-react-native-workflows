@@ -48,16 +48,19 @@ export const App = (): JSX.Element => {
         }
     };
 
+    const handleSignInSuccess = (): any => {
+        setAuthenticated(true);
+        try {
+            getAccessToken() // eslint-disable-next-line
+                .then((res) => console.log(res.access_token)) // eslint-disable-next-line
+                .catch((err) => console.log(err));
+        } catch (error) { // eslint-disable-next-line
+            console.error('Okta error for access token', error);
+        }
+    };
+
     useEffect(() => {
-        const handleSignInSuccess = (): any => {
-            setAuthenticated(true);
-            try {
-                // eslint-disable-next-line no-console
-                getAccessToken().then((res) => console.log(res)).catch((err) => console.log(err));
-            } catch (error) {
-                // console.log('Error getting access token:', error);
-            }
-        };
+        
 
         EventEmitter.addListener('signInSuccess', handleSignInSuccess);
 
@@ -68,7 +71,6 @@ export const App = (): JSX.Element => {
 
     // handle initialization of auth data on first load
     useEffect(() => {
-        
         const initialize = async (): Promise<void> => {
             try {
                 const authState = await isOktaAuthenticated();
