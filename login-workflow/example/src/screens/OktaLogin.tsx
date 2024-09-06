@@ -1,28 +1,16 @@
 import React from 'react';
 import { Image } from 'react-native';
 import { OktaAuthContextProvider, OktaLoginScreenProps, OktaRedirectLoginScreen } from '@brightlayer-ui/react-native-auth-workflow';
-import { getAccessToken, signInWithBrowser } from '@okta/okta-react-native';
 import { useApp } from '../contexts/AppContextProvider';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import i18nAppInstance from '../../translations/i18n';
+import oktaConfig from '../../okta.config';
 
 export const OktaLogin: React.FC<React.PropsWithChildren<OktaLoginScreenProps>> = () => {
     const app = useApp();
     const navigation = useNavigation<NativeStackNavigationProp<any>>();
 
-    const onLogin = async (): Promise<void> => {
-        try {
-            await signInWithBrowser();
-        } catch (_error) {
-            // eslint-disable-next-line no-console
-            console.log(_error as Error);
-        } finally {
-            getAccessToken() // eslint-disable-next-line no-console
-                .then((token) => console.log(token)) // eslint-disable-next-line no-console
-                .catch((error) => console.log('token error', error));
-        }
-    };
     return (
         <OktaAuthContextProvider
                 language={app.language}
@@ -59,7 +47,8 @@ export const OktaLogin: React.FC<React.PropsWithChildren<OktaLoginScreenProps>> 
                 source={require('../assets/images/eaton_stacked_logo.png')}
                 />
             }
-            onLogin={onLogin}
+            // eslint-disable-next-line
+            oktaConfigObject={oktaConfig.oidc}
             />
             </OktaAuthContextProvider>
     );

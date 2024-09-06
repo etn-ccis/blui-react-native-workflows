@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { OktaLoginScreenProps } from './types';
 import { OktaRedirectLoginScreenBase } from './OktaRedirectLoginScreenBase';
 import { useOktaAuthContext } from '../../contexts';
 import { useTranslation } from 'react-i18next';
-
+import { createConfig, EventEmitter, signInWithBrowser } from '@okta/okta-react-native';
 /**
  * Component that renders a okta login screen that prompts a user to redirect to okta login sign in page.
  *
@@ -33,9 +33,27 @@ export const OktaRedirectLoginScreen: React.FC<React.PropsWithChildren<OktaLogin
         header,
         footer,
         cyberSecurityBadgeSize,
-        onLogin,
+        oktaConfigObject,
     } = props;
 
+    const onLogin = async (): Promise<void> => {
+        try {
+            await signInWithBrowser();
+            EventEmitter.emit('signInSuccess');
+        } catch (_error) {
+            console.log(_error as Error);
+        }
+    };
+
+    const createOktaConfig = async (): Promise<void> => {
+        // eslint-disable-next-line
+        await createConfig(oktaConfigObject);
+    };
+
+    useEffect(() => {
+        void createOktaConfig();
+    }, []);
+    
     return (
         <OktaRedirectLoginScreenBase
             loginButtonLabel={loginButtonLabel}

@@ -18,8 +18,7 @@ import { AppContext, AppContextType } from './src/contexts/AppContextProvider';
 import { Spinner } from '@brightlayer-ui/react-native-auth-workflow';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NativeModules, Platform } from 'react-native';
-import { createConfig, isAuthenticated as isOktaAuthenticated, EventEmitter } from '@okta/okta-react-native';
-import oktaConfig from './okta.config';
+import { isAuthenticated as isOktaAuthenticated, EventEmitter, getAccessToken } from '@okta/okta-react-native';
 
 export const App = (): JSX.Element => {
     const [theme, setTheme] = useState<ThemeType>('light');
@@ -49,21 +48,21 @@ export const App = (): JSX.Element => {
         }
     };
 
-    const createOktaConfig = async (): Promise<void> => {
-        // eslint-disable-next-line
-        await createConfig(oktaConfig?.oidc)
-    };
-
     useEffect(() => {
-        EventEmitter.addListener('signInSuccess', () => {
-            setAuthenticated(Boolean(true));
-        });
+        const handleSignInSuccess = () => {
+            setAuthenticated(true);
+            try {
+                getAccessToken().then((res) => console.log(res));
+            } catch (error) {
+                console.error('Error getting access token:', error);
+            }
+        };
 
-        void createOktaConfig();
+        EventEmitter.addListener('signInSuccess', handleSignInSuccess);
 
         return () => {
             EventEmitter.removeAllListeners('signInSuccess');
-        }
+        };
     }, []);
 
     // handle initialization of auth data on first load
