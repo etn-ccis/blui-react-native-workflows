@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`OktaLoginScreenBase renders the footer: Footer 1`] = `
-<Text>
-  Footer
-</Text>
-`;

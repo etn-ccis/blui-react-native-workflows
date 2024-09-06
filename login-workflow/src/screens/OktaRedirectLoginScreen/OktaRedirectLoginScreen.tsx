@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { OktaLoginScreenProps } from './types';
-import { OktaLoginScreenBase } from './OktaLoginScreenBase';
-import { useAuthContext } from '../../contexts';
+import { OktaRedirectLoginScreenBase } from './OktaRedirectLoginScreenBase';
+import { useOktaAuthContext } from '../../contexts';
 import { useTranslation } from 'react-i18next';
-
+import { createConfig, EventEmitter, signInWithBrowser } from '@okta/okta-react-native';
 /**
  * Component that renders a okta login screen that prompts a user to redirect to okta login sign in page.
  *
@@ -12,10 +12,9 @@ import { useTranslation } from 'react-i18next';
  * @category Component
  */
 
-export const OktaLoginScreen: React.FC<React.PropsWithChildren<OktaLoginScreenProps>> = (props) => {
+export const OktaRedirectLoginScreen: React.FC<React.PropsWithChildren<OktaLoginScreenProps>> = (props) => {
     const { t } = useTranslation();
-    const auth = useAuthContext();
-    const { navigate, routeConfig } = auth;
+    const { navigate, routeConfig } = useOktaAuthContext();
 
     const {
         loginButtonLabel = t('bluiCommon:ACTIONS.OKTA_SIGN_IN'),
@@ -34,11 +33,31 @@ export const OktaLoginScreen: React.FC<React.PropsWithChildren<OktaLoginScreenPr
         header,
         footer,
         cyberSecurityBadgeSize,
-        onLogin,
+        oktaConfigObject,
     } = props;
 
+    const onLogin = async (): Promise<void> => {
+        try {
+            await signInWithBrowser();
+            EventEmitter.emit('signInSuccess');
+        } catch (_error) {
+            // eslint-disable-next-line no-console
+            console.log(_error as Error);
+        }
+    };
+
+    const createOktaConfig = async (): Promise<void> => {
+        // eslint-disable-next-line
+        await createConfig(oktaConfigObject);
+    };
+
+    useEffect(() => {
+        void createOktaConfig();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+    
     return (
-        <OktaLoginScreenBase
+        <OktaRedirectLoginScreenBase
             loginButtonLabel={loginButtonLabel}
             onLogin={onLogin}
             showForgotPassword={showForgotPassword}

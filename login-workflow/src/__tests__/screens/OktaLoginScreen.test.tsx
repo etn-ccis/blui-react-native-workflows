@@ -1,11 +1,11 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react-native';
-import { useAuthContext } from '../../contexts';
-import { OktaLoginScreen } from 'src/screens';
+import { useOktaAuthContext } from '../../contexts';
+import { OktaRedirectLoginScreen } from 'src/screens';
 
 // Mock the useAuthContext hook
 jest.mock('../../contexts', () => ({
-    useAuthContext: jest.fn(),
+    useOktaAuthContext: jest.fn(),
 }));
 
 // Mock the useTranslation hook
@@ -15,7 +15,7 @@ jest.mock('react-i18next', () => ({
     }),
 }));
 
-describe('OktaLoginScreen', () => {
+describe('OktaRedirectLoginScreen', () => {
     const mockNavigate = jest.fn();
     const mockRouteConfig = {
         FORGOT_PASSWORD: '/forgot-password',
@@ -24,7 +24,7 @@ describe('OktaLoginScreen', () => {
     };
 
     beforeEach(() => {
-        (useAuthContext as jest.Mock).mockReturnValue({
+        (useOktaAuthContext as jest.Mock).mockReturnValue({
             navigate: mockNavigate,
             routeConfig: mockRouteConfig,
         });
@@ -36,19 +36,19 @@ describe('OktaLoginScreen', () => {
 
 
     it('should call navigate with FORGOT_PASSWORD route when forgot password is clicked', () => {
-        render(<OktaLoginScreen />);
+        render(<OktaRedirectLoginScreen />);
         fireEvent.press(screen.getByText('bluiCommon:LABELS.FORGOT_PASSWORD'));
         expect(mockNavigate).toHaveBeenCalledWith(mockRouteConfig.FORGOT_PASSWORD);
     });
 
     it('should call navigate with REGISTER_SELF route when self register is clicked', () => {
-        render(<OktaLoginScreen />);
+        render(<OktaRedirectLoginScreen />);
         fireEvent.press(screen.getByText('bluiCommon:ACTIONS.CREATE_ACCOUNT'));
         expect(mockNavigate).toHaveBeenCalledWith(mockRouteConfig.REGISTER_SELF);
     });
 
     it('should call navigate with SUPPORT route when contact support is clicked', () => {
-        render(<OktaLoginScreen />);
+        render(<OktaRedirectLoginScreen />);
         fireEvent.press(screen.getByText('bluiCommon:MESSAGES.CONTACT'));
         expect(mockNavigate).toHaveBeenCalledWith(mockRouteConfig.SUPPORT);
     });
@@ -61,7 +61,7 @@ describe('OktaLoginScreen', () => {
             contactSupportLabel: 'Custom Contact Support',
         };
 
-        render(<OktaLoginScreen {...customProps} />);
+        render(<OktaRedirectLoginScreen {...customProps} />);
         expect(screen.getByText('Custom Login').props.children).toBe('Custom Login');
         expect(screen.getByText('Custom Forgot Password').props.children).toBe('Custom Forgot Password');
         expect(screen.getByText('Custom Register').props.children).toBe('Custom Register');
