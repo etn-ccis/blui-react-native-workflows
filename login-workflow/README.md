@@ -18,7 +18,7 @@ This package is flexible, allowing you to use the Login and Registration flows i
 
 These workflows are back-end agnostic, meaning you can use them with any back-end API you wish. You simply need to provide an implementation for several key functions (actions) that are called at various points within the workflows based on user interaction.
 
-<img width="400" alt="Login" src="https://github.com/etn-ccis/blui-react-native-workflows/blob/master/login-workflow/media/screens/login.png?raw=true">
+<img width="400" alt="Login" src="https://github.com/etn-ccis/blui-react-native-workflows/blob/master/login-workflow/media/screens/okta-login.png?raw=true">
 <img width="400" alt="Create Password" src="https://github.com/etn-ccis/blui-react-native-workflows/blob/master/login-workflow/media/screens/create-password.png?raw=true">
 
 # Installation
