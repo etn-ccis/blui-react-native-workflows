@@ -15,10 +15,10 @@ import { blue, blueDark } from '@brightlayer-ui/react-native-themes';
 import i18nAppInstance from './translations/i18n';
 import { I18nextProvider, useTranslation } from 'react-i18next';
 import { AppContext, AppContextType } from './src/contexts/AppContextProvider';
-import { LocalStorage } from './src/store/local-storage';
 import { Spinner } from '@brightlayer-ui/react-native-auth-workflow';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NativeModules, Platform } from 'react-native';
+import { isAuthenticated as isOktaAuthenticated, EventEmitter, getAccessToken } from '@okta/okta-react-native';
 
 export const App = (): JSX.Element => {
     const [theme, setTheme] = useState<ThemeType>('light');
@@ -47,13 +47,37 @@ export const App = (): JSX.Element => {
             console.error('Error getting language from Async Storage:', error);
         }
     };
+
+    const handleSignInSuccess = (): any => {
+        setAuthenticated(true);
+        try {
+            getAccessToken() // eslint-disable-next-line
+                .then((res) => console.log(res.access_token)) // eslint-disable-next-line
+                .catch((err) => console.log(err));
+        } catch (error) { // eslint-disable-next-line
+            console.error('Okta error for access token', error);
+        }
+    };
+
+    useEffect(() => {
+        
+
+        EventEmitter.addListener('signInSuccess', handleSignInSuccess);
+
+        return () => {
+            EventEmitter.removeAllListeners('signInSuccess');
+        };
+    }, []);
+
     // handle initialization of auth data on first load
     useEffect(() => {
         const initialize = async (): Promise<void> => {
             try {
-                const userData = await LocalStorage.readAuthData();
-                setLoginData({ email: userData.rememberMeData.user, rememberMe: userData.rememberMeData.rememberMe });
-                setAuthenticated(Boolean(userData.userId));
+                const authState = await isOktaAuthenticated();
+                // below line is not need for okta workflow
+                // const userData = await LocalStorage.readAuthData();
+                // setLoginData({ email: userData.rememberMeData.user, rememberMe: userData.rememberMeData.rememberMe });
+                setAuthenticated(Boolean(authState?.authenticated));
                 await getLanguage();
             } catch (e) {
                 // handle any error state, rejected promises, etc..

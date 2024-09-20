@@ -74,6 +74,7 @@ export const LoginScreen: React.FC<React.PropsWithChildren<LoginScreenProps>> = 
         projectImage,
         header,
         footer,
+        cyberSecurityBadgeSize,
     } = props;
 
     return (
@@ -119,6 +120,7 @@ export const LoginScreen: React.FC<React.PropsWithChildren<LoginScreenProps>> = 
             projectImage={projectImage}
             header={header}
             footer={footer}
+            cyberSecurityBadgeSize={cyberSecurityBadgeSize}
         />
     );
 };

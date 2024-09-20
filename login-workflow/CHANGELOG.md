@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v7.0.0 (September 20, 2024)
+
+### Fixed
+
+-   Make cybersecurity badge size configurable [497](https://github.com/etn-ccis/blui-react-native-workflows/issues/497).
+-   Screen transition when clicking on the "forgot password" button [227](https://github.com/etn-ccis/blui-react-native-workflows/issues/227)
+
+### Added 
+
+-   Okta redirect-compatible login screen.
+
 ## v6.0.1 (July 23, 2024)
 
 ### Fixed

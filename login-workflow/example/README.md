@@ -18,6 +18,25 @@ npm start
 yarn start
 ```
 
+This project now includes an Okta redirect login screen for authentication. To use the Okta redirect login screen, you need to configure your Okta application and update the environment variables in your project.
+
+## Okta Configuration
+
+1. Create an application in Okta.
+2. Update the `.env` file in your project directory with the following variables:
+    ```
+    OKTA_CLIENT_ID=<your-okta-client-id>
+    OKTA_REDIRECT_URI=<your-okta-redirect-uri>
+    OKTA_LOGOUT_REDIRECT_URI=<your-okta-logout-redirect-uri>
+    OKTA_ISSUER=<your-okta-issuer-url>
+    ```
+3. Create an okta confg file and export it.
+4. At OktaRedirectLoginScreen pass the okta config file in the prop 'oktaConfigObject'.
+5. Access the signin status using EventEmitter provided by @okta/okta-react-native package by adding a listener 'signInSuccess'.
+
+**Note: The Okta login screen will be automatically presented to the user if they are not authenticated. The user can log in using their Okta credentials. Once authenticated, they will be redirected to the Home screen.**
+
+
 ## Step 2: Start your Application
 
 Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:

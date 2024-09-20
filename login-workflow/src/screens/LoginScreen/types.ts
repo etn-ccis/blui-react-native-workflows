@@ -166,4 +166,9 @@ export type LoginScreenProps = WorkflowCardBaseProps & {
      * The footer to display at the bottom of the screen
      */
     footer?: JSX.Element;
+
+    /**
+     * The size of the cyber security image
+     */
+    cyberSecurityBadgeSize?: {height?: number | string, width?: number | string};
 };

@@ -6,6 +6,7 @@ The React Native Auth Workflow package provides a consistent UI implementation o
 
 The package is intended to provide a standard, out-of-the-box experience for capabilities such as:
 
+-   Okta Login
 -   Login
 -   Forgot / Reset Password
 -   Change Password
@@ -17,7 +18,7 @@ This package is flexible, allowing you to use the Login and Registration flows i
 
 These workflows are back-end agnostic, meaning you can use them with any back-end API you wish. You simply need to provide an implementation for several key functions (actions) that are called at various points within the workflows based on user interaction.
 
-<img width="400" alt="Login" src="https://github.com/etn-ccis/blui-react-native-workflows/blob/master/login-workflow/media/screens/login.png?raw=true">
+<img width="400" alt="Login" src="https://github.com/etn-ccis/blui-react-native-workflows/blob/master/login-workflow/media/screens/okta-login.png?raw=true">
 <img width="400" alt="Create Password" src="https://github.com/etn-ccis/blui-react-native-workflows/blob/master/login-workflow/media/screens/create-password.png?raw=true">
 
 # Installation
@@ -44,9 +45,9 @@ This package has a peer dependency on React Native Paper.
 This package also has a number of peer dependency requirements that you will need to install in your project. To install the latest version of all of these peer dependencies, run the following command in your project root:
 
 ```
-npm install --save @brightlayer-ui/react-native-components @brightlayer-ui/react-native-vector-icons i18next react react-i18next react-native react-native-gesture-handler react-native-keyboard-aware-scroll-view react-native-pager-view react-native-paper react-native-reanimated react-native-safe-area-context react-native-svg react-native-svg-transformer react-native-vector-icons react-native-webview
+npm install --save @brightlayer-ui/react-native-components @brightlayer-ui/react-native-vector-icons @okta/okta-react-native i18next react react-i18next react-native react-native-gesture-handler react-native-keyboard-aware-scroll-view react-native-pager-view react-native-paper react-native-reanimated react-native-safe-area-context react-native-svg react-native-svg-transformer react-native-vector-icons react-native-webview
 // or
-yarn add @brightlayer-ui/react-native-components @brightlayer-ui/react-native-vector-icons i18next react react-i18next react-native react-native-gesture-handler react-native-keyboard-aware-scroll-view react-native-pager-view react-native-paper react-native-reanimated react-native-safe-area-context react-native-svg react-native-svg-transformer react-native-vector-icons react-native-webview
+yarn add @brightlayer-ui/react-native-components @brightlayer-ui/react-native-vector-icons @okta/okta-react-native i18next react react-i18next react-native react-native-gesture-handler react-native-keyboard-aware-scroll-view react-native-pager-view react-native-paper react-native-reanimated react-native-safe-area-context react-native-svg react-native-svg-transformer react-native-vector-icons react-native-webview
 ```
 
 # Usage

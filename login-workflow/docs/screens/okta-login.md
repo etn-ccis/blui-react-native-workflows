@@ -1,19 +1,16 @@
-# LoginScreen
+# OktaRedirectLoginScreen
 
-Component that renders a login screen that prompts a user to enter a username and password to login. The LoginScreen must be used within an `AuthContextProvider` .
+Component that renders a login screen that prompts a user an option to login using okta redirect. The LoginScreen must be used within an `OktaAuthContextProvider` .
 
-<img width="400" alt="Login" src="../../media/screens/login.png">
+<img width="400" alt="Login" src="../../media/screens/okta-login.png">
 
 ## Usage
 
 ```tsx
-import { AuthContextProvider, LoginScreen } from '@brightlayer-ui/react-native-auth-workflow';
+import { OktaRedirectLoginScreen } from '@brightlayer-ui/react-native-auth-workflow';
 
-...
 
-<AuthContextProvider {...props}>
-  <LoginScreen />
-</AuthContextProvider>
+  <OktaRedirectLoginScreen />
 ```
 
 ## API
@@ -22,26 +19,7 @@ import { AuthContextProvider, LoginScreen } from '@brightlayer-ui/react-native-a
 
 | Prop Name | Type | Description | Default |
 |---|---|---|---|
-| usernameLabel | `string` | Label for the username field. | `t('bluiCommon:LABELS.EMAIL') // 'Email Address'` |
-| usernameTextFieldProps | `TextFieldProps` | Props to pass to the React Native Paper's [TextInputProps API](https://callstack.github.io/react-native-paper/docs/components/TextInput/#props) component. |  |
-| usernameValidator | `(username: string) => boolean \| string` | A function that validates the username text field input. | checks against valid email regex |
-| initialUsernameValue | `string` | Username used to pre-populate the field. |  |
-| passwordLabel | `string` | Label for the password field. | `t('bluiCommon:LABELS.EMAIL') // 'Email Address'` |
-| passwordTextFieldProps | `TextFieldProps` | Props to pass to the React Native Paper's [TextInputProps API](https://callstack.github.io/react-native-paper/docs/components/TextInput/#props) component. |  |
-| passwordValidator | `(password: string) => boolean \| string` | A function that validates the password text field input. | checks against valid email regex |
-| initialUsernameValue | `string` | Username used to pre-populate the field. |  |
-| loginButtonLabel | `string` | Label for the login button. | `t('bluiCommon:ACTIONS.LOG_IN') // 'Log In'` |
-| onLogin | `(username: string, password: string, rememberMe: boolean) => Promise<void>` | Callback function that is called when the login button is clicked. |  |
-|  |  |  |  |
-
-### Remember Me Configuration
-
-| Prop Name | Type | Description | Default |
-|---|---|---|---|
-| showRememberMe | `boolean` | Whether or not to show the 'remember me' checkbox. | `true` |
-| rememberMeLabel | `string` | Label for the 'remember me' checkbox. | `t('bluiCommon:ACTIONS.REMEMBER') // 'Remember Me'` |
-| rememberMeInitialValue | `boolean` | Whether or not the 'remember me' checkbox should be checked by default. | `false` |
-| onRememberMeChanged | `(value: boolean) => void` | Callback function that is called when the 'remember me' checkbox is changed. |  |
+| loginButtonLabel | `string` | Label for the login button. | `t('bluiCommon:ACTIONS.OKTA_SIGN_IN') // 'Sign In with Okta'` |
 |  |  |  |  |
 
 
@@ -82,7 +60,6 @@ import { AuthContextProvider, LoginScreen } from '@brightlayer-ui/react-native-a
 | projectImage | `ReactNode` | Image to display at the top of the screen. |  |
 | header | `ReactNode` | Custom content to display at the top of the screen. |  |
 | footer | `ReactNode` | Custom content to display at the bottom of the screen. |  |
-| errorDisplayConfig | `ErrorManagerProps` | See [Error Management](../error-management.md) |  |
 |  |  |  |  |
 
 This screen also extends the `WorkflowCardProps` type for updating the title, instructions, buttons, etc. See [Workflow Card](../components/workflow-card.md) for more details.

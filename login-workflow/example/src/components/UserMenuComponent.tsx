@@ -11,6 +11,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { LocalStorage } from '../store/local-storage';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { revokeAccessToken, clearTokens } from '@okta/okta-react-native';
 
 const SwapIcon: IconFamily = {
     family: 'material',
@@ -54,9 +55,22 @@ export const UserMenuComponent: React.FC<UserMenuExampleProps> = (props) => {
             console.error('Error setting new language:', error);
         }
     };
-    const logout = (): void => {
+    const logout = async (): Promise<void> => {
         LocalStorage.clearAuthCredentials();
+        try {
+        await revokeAccessToken();
+        await clearTokens();
+        } catch (_error) {
+            // eslint-disable-next-line no-console
+            console.log(_error as Error);
+        } 
         app.onUserNotAuthenticated();
+    };
+    const handleLogout = (): void => {
+        logout().catch((error) => {
+            // Handle any errors here if needed
+            console.error(error);
+        });
     };
     const changePassword = (): void => {
         navigation.navigate('ChangePassword');
@@ -96,7 +110,7 @@ export const UserMenuComponent: React.FC<UserMenuExampleProps> = (props) => {
             ),
         },
         { title: t('USER_MENU.CHANGE_PASSWORD'), icon: LockIcon, onPress: (): void => changePassword() },
-        { title: t('USER_MENU.LOG_OUT'), icon: ExitToAppIcon, onPress: (): void => logout() },
+        { title: t('USER_MENU.LOG_OUT'), icon: ExitToAppIcon, onPress: handleLogout },
     ];
 
     return (

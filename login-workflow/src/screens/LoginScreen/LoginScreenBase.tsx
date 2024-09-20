@@ -104,7 +104,7 @@ const makeStyles = (
             marginBottom: isTablet ? 32 : 24,
         },
         footerWrapper: { display: 'flex', justifyContent: 'center' },
-        cyberSecurityBadgeWrapper: { display: 'flex', justifyContent: 'center', marginTop: 2 },
+        cyberSecurityBadgeWrapper: { display: 'flex', flexDirection: 'row', justifyContent: 'center', marginTop: 2 },
     });
 
 /**
@@ -144,6 +144,7 @@ export const LoginScreenBase: React.FC<React.PropsWithChildren<LoginScreenProps>
         projectImage,
         header,
         footer,
+        cyberSecurityBadgeSize,
         ...otherProps
     } = props;
 
@@ -380,7 +381,7 @@ export const LoginScreenBase: React.FC<React.PropsWithChildren<LoginScreenProps>
                         testID={'blui-login-cyber-security-badge-wrapper'}
                     >
                         <Image
-                            style={{ width: '100%' }}
+                            style={{...cyberSecurityBadgeSize}}
                             resizeMode="contain"
                             source={require('../../assets/images/cybersecurity_certified.png')}
                         />
