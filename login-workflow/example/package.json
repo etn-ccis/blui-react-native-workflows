@@ -51,7 +51,7 @@
     },
     "devDependencies": {
         "@babel/core": "^7.20.0",
-        "@babel/preset-env": "^7.20.0",
+        "@babel/preset-env": "^7.25.4",
         "@babel/runtime": "^7.20.0",
         "@brightlayer-ui/eslint-config": "^3.0.1",
         "@brightlayer-ui/prettier-config": "^1.0.3",
