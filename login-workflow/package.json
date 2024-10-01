@@ -115,7 +115,7 @@
         "npm-license-crawler": "^0.2.1",
         "prettier": "^2.0.4",
         "react": "^18.0.0",
-        "react-i18next": "^14.0.1",
+        "react-i18next": "^15.0.2",
         "react-native": "^0.70.0",
         "react-native-dotenv": "^3.4.11",
         "react-native-gesture-handler": "^1.6.1",
