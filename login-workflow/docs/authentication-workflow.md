@@ -27,6 +27,46 @@ The example project includes a skeleton implementation of all required functions
 2. You might also want to copy over the `example/src/store` and `example/src/constants` folders, which provide a very basic mechanism for storing important data using LocalStorage
     -   You will want to switch this out for a more secure approach before going to production with your application.
 
+## Okta Example Usage
+
+### OktaAuthContextProvider
+
+The login screen in this workflow accesses shared data / configuration / API definitions through an `OktaAuthContextProvider` which should wrap the screen. We recommend using Okta to manage the additional password-related screens (Forgot / Reset / Change), but if you prefer to use those screens from this workflow, you'll need to wrap those screens with the `AuthContextProvider` (see custom workflow below).
+
+You must supply the `OktaAuthContextProvider` with the following props / data:
+-   `language`: configures the language displayed on the screens
+-   `navigate`: a function that can be called to navigate to a new route
+-   `routeConfig`: an object describing the URLs you are using for the relevant routes so the workflow can correctly navigate between screens
+
+More information about the required and optional props can found in the [API](#okta-auth-context-provider-api) section.
+
+### Example
+
+Each feature/screen from the Okta Auth Workflow that you wish to use should be rendered on a separate route.
+
+```tsx
+ <OktaAuthContextProvider 
+    language={'en'} 
+    navigate={navigate} 
+    routeConfig={{}}
+ >
+    <OktaRedirectLoginScreen />
+ </OktaAuthContextProvider>
+```
+
+For a detailed explanation of setting up routes, see the [Routing](./routing.md) guide.
+
+### Okta Auth Context Provider API
+
+### OktaAuthContextProviderProps
+
+| Prop Name | Type | Description | Default |
+|---|---|---|---|
+| language* | `string` | The language code specifying which language to use for the UI | `'en'` |
+| navigate* | `(url: string) => void` | A function that is used to navigate to a new URL. This is used to navigate to the various screens of the authentication workflow. |  |
+| routeConfig* | `RouteConfig` | An object that defines the various routes for the authentication workflow. See [RouteConfig](#routeconfig) for more information. |  |
+| i18n | `i18n` | An optional i18n object that is used to translate the UI. This is only needed if you want to use custom translation keys / languages inside any of the workflow screens |  |
+
 ## Example Usage
 
 Here is an example of how you would set up the Login workflow.
@@ -43,25 +83,6 @@ Each feature/screen from the Auth Workflow that you wish to use should be render
 >
     <ErrorContextProvider>
         <Login />
-        <ForgotPasswordScreen />
-        <ContactSupportScreen />
-        <ResetPasswordScreen />
-    </ErrorContextProvider>
-</AuthContextProvider>
-```
-
-## Okta Example Usage
-
-Here is an example of how you would set up the Okta Login workflow.
-
-Each feature/screen from the Auth Workflow that you wish to use should be rendered on a separate route.
-
-```tsx
-<AuthContextProvider actions={actions} language={'en'} navigate={navigate} routeConfig={{}} rememberMeDetails={{}}>
-    <ErrorContextProvider>
-        <OktaAuthContextProvider language={'en'} navigate={navigate} routeConfig={{}}>
-            <OktaLogin />
-        </OktaAuthContextProvider>
         <ForgotPasswordScreen />
         <ContactSupportScreen />
         <ResetPasswordScreen />
