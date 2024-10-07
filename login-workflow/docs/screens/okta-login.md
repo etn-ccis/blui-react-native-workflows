@@ -20,6 +20,7 @@ import { OktaRedirectLoginScreen } from '@brightlayer-ui/react-native-auth-workf
 | Prop Name | Type | Description | Default |
 |---|---|---|---|
 | loginButtonLabel | `string` | Label for the login button. | `t('bluiCommon:ACTIONS.OKTA_SIGN_IN') // 'Sign In with Okta'` |
+| oktaConfigObject | `object` | Object for okta configuration. | |
 |  |  |  |  |
 
 
