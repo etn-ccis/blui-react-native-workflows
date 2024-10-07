@@ -50,7 +50,7 @@ Each feature/screen from the Okta Auth Workflow that you wish to use should be r
     navigate={navigate} 
     routeConfig={{}}
  >
-    <OktaLogin />
+    <OktaRedirectLoginScreen />
  </OktaAuthContextProvider>
 ```
 
