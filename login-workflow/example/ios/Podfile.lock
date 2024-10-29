@@ -1930,15 +1930,15 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
-  boost: 4cb898d0bf20404aab1850c656dcea009429d6c1
-  DoubleConversion: fea03f2699887d960129cc54bba7e52542b6f953
+  boost: cc68e236c186a196d6fe6085761ccb1904c34867
+  DoubleConversion: 5182171af377511a55c338814e25dc37b81ee795
   FBLazyVector: 38bb611218305c3bc61803e287b8a81c6f63b619
-  fmt: 4c2741a687cc09f0634a2e2c72a838b99f1ff120
-  glog: c5d68082e772fa1c511173d6b30a9de2c05a69a2
-  hermes-engine: 3b6e0717ca847e2fc90a201e59db36caf04dee88
+  fmt: a6c801b99d31c19967708364b5b596d1591fc28d
+  glog: c61fe39ec44ac2b1c0513e767d663b7fbb13774c
+  hermes-engine: cd5c2b21e30b96d696520696a4db1951fbdd719c
   OktaOidc: 15fb3d494103d4f07ba8a523b3347d02c4d30486
   OktaSdkBridgeReactNative: f9c6a7c26f208f874af2a903bf4eaed547c9d2c4
-  RCT-Folly: 4464f4d875961fce86008d45f4ecf6cef6de0740
+  RCT-Folly: d8dc89a80e7eaf92a638ac3ba0344a616e1a4ae1
   RCTDeprecation: 34cbf122b623037ea9facad2e92e53434c5c7422
   RCTRequired: 24c446d7bcd0f517d516b6265d8df04dc3eb1219
   RCTTypeSafety: ef5e91bd791abd3a99b2c75fd565791102a66352
