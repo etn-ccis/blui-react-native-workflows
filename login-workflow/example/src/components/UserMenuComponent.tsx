@@ -11,7 +11,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { LocalStorage } from '../store/local-storage';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { revokeAccessToken, clearTokens } from '@okta/okta-react-native';
+import { revokeAccessToken, clearTokens, signOut } from '@okta/okta-react-native';
 
 const SwapIcon: IconFamily = {
     family: 'material',
@@ -58,6 +58,7 @@ export const UserMenuComponent: React.FC<UserMenuExampleProps> = (props) => {
     const logout = async (): Promise<void> => {
         LocalStorage.clearAuthCredentials();
         try {
+        await signOut();
         await revokeAccessToken();
         await clearTokens();
         } catch (_error) {
