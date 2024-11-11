@@ -96,8 +96,8 @@ export const LoginScreen: React.FC<React.PropsWithChildren<LoginScreenProps>> = 
                 (async (username: string, password: string, rememberMe: boolean): Promise<void> => {
                     try {
                         setIsLoading(true);
-                        await actions.logIn(username, password, rememberMe);
                         await props.onLogin?.(username, password, rememberMe);
+                        await actions.logIn(username, password, rememberMe);
                     } catch (_error) {
                         triggerError(_error as Error);
                     } finally {
