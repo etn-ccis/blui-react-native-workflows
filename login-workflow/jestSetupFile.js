@@ -5,6 +5,9 @@ jest.mock('react-i18next', () => ({
     ...jest.requireActual('react-i18next'),
 }));
 jest.mock('react-native-reanimated', () => require('react-native-reanimated/mock'));
+jest.mock('@brightlayer-ui/react-native-components/node_modules/react-native-reanimated', () =>
+    require('react-native-reanimated/mock')
+);
 jest.mock('react-native-safe-area-context', () => mockSafeAreaContext);
 jest.mock('react-native-webview', () => {
     const { View } = require('react-native');
@@ -28,3 +31,9 @@ jest.mock('react-native-keyboard-aware-scroll-view', () => {
     return { KeyboardAwareScrollView };
 });
 jest.mock('react-native/Libraries/EventEmitter/NativeEventEmitter');
+
+jest.mock('@okta/okta-react-native', () => ({
+    createConfig: jest.fn().mockImplementation(() => {
+        return Promise.resolve();
+    }),
+}));
