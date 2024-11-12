@@ -3,7 +3,7 @@ import { LoginScreenProps } from './types';
 import { WorkflowCard } from '../../components/WorkflowCard';
 import { WorkflowCardBody } from '../../components/WorkflowCard/WorkflowCardBody';
 import { ErrorManager, PasswordTextField } from '../../components';
-import { Image, View, StyleSheet, ViewStyle } from 'react-native';
+import { Image, View, StyleSheet, ViewStyle, Keyboard } from 'react-native';
 import { Button, Checkbox, HelperText, Text, TextInput } from 'react-native-paper';
 import { useExtendedTheme } from '@brightlayer-ui/react-native-themes';
 import { useScreenDimensions } from '../../hooks/useScreenDimensions';
@@ -200,6 +200,7 @@ export const LoginScreenBase: React.FC<React.PropsWithChildren<LoginScreenProps>
     };
 
     const handleRememberMeChanged = (value: boolean): void => {
+        Keyboard.dismiss();
         if (onRememberMeChanged) {
             onRememberMeChanged(value);
             setRememberMe(value);
@@ -213,6 +214,7 @@ export const LoginScreenBase: React.FC<React.PropsWithChildren<LoginScreenProps>
         isPasswordValid;
 
     const handleLogin = (): void => {
+        Keyboard.dismiss();
         if (isFormValid() && onLogin) void onLogin(username, password, rememberMe);
     };
     const handleLoginSubmit = (): void => {
