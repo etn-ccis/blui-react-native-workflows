@@ -383,7 +383,7 @@ export const LoginScreenBase: React.FC<React.PropsWithChildren<LoginScreenProps>
                         testID={'blui-login-cyber-security-badge-wrapper'}
                     >
                         <Image
-                            style={{...cyberSecurityBadgeSize}}
+                            style={{ ...cyberSecurityBadgeSize }}
                             resizeMode="contain"
                             source={require('../../assets/images/cybersecurity_certified.png')}
                         />

@@ -58,13 +58,13 @@ export const UserMenuComponent: React.FC<UserMenuExampleProps> = (props) => {
     const logout = async (): Promise<void> => {
         LocalStorage.clearAuthCredentials();
         try {
-        await signOut();
-        await revokeAccessToken();
-        await clearTokens();
+            await signOut();
+            await revokeAccessToken();
+            await clearTokens();
         } catch (_error) {
             // eslint-disable-next-line no-console
             console.log(_error as Error);
-        } 
+        }
         app.onUserNotAuthenticated();
     };
     const handleLogout = (): void => {

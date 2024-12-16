@@ -147,20 +147,20 @@ export const OktaRedirectLoginScreenBase: React.FC<React.PropsWithChildren<OktaL
                     {projectImage}
                 </View>
 
-                    <View
-                        style={[defaultStyles.loginButtonWrapper, { width: '100%' }]}
-                        testID={'blui-okta-login-login-button-wrapper'}
+                <View
+                    style={[defaultStyles.loginButtonWrapper, { width: '100%' }]}
+                    testID={'blui-okta-login-login-button-wrapper'}
+                >
+                    <Button
+                        testID={'blui-okta-login-login-button'}
+                        onPress={handleLogin}
+                        disabled={!onLogin}
+                        mode="contained"
+                        style={defaultStyles.loginButton}
                     >
-                        <Button
-                            testID={'blui-okta-login-login-button'}
-                            onPress={handleLogin}
-                            disabled={!onLogin}
-                            mode="contained"
-                            style={defaultStyles.loginButton}
-                        >
-                            {loginButtonLabel || 'Sign In with Okta'}
-                        </Button>
-                    </View>
+                        {loginButtonLabel || 'Sign In with Okta'}
+                    </Button>
+                </View>
 
                 <View style={defaultStyles.bottomBodyWrapper} testID={'blui-okta-login-bottom-body-wrapper'}>
                     {showForgotPassword && (
@@ -214,7 +214,9 @@ export const OktaRedirectLoginScreenBase: React.FC<React.PropsWithChildren<OktaL
                         </View>
                     )}
 
-                    <View testID={'blui-okta-login-footer'} style={defaultStyles.footerWrapper}>{footer}</View>
+                    <View testID={'blui-okta-login-footer'} style={defaultStyles.footerWrapper}>
+                        {footer}
+                    </View>
 
                     {showCyberSecurityBadge && (
                         <View

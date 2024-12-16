@@ -54,14 +54,13 @@ export const App = (): JSX.Element => {
             getAccessToken() // eslint-disable-next-line
                 .then((res) => console.log(res.access_token)) // eslint-disable-next-line
                 .catch((err) => console.log(err));
-        } catch (error) { // eslint-disable-next-line
+        } catch (error) {
+            // eslint-disable-next-line
             console.error('Okta error for access token', error);
         }
     };
 
     useEffect(() => {
-        
-
         EventEmitter.addListener('signInSuccess', handleSignInSuccess);
 
         return () => {

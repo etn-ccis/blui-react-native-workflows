@@ -24,7 +24,7 @@ import { timeOutDelay } from '../../constants';
 
 const styles = StyleSheet.create({
     pagerView: {
-        flex: 1
+        flex: 1,
     },
 });
 
@@ -264,7 +264,9 @@ export const RegistrationWorkflow: React.FC<React.PropsWithChildren<Registration
                         }}
                     >
                         {screens.map((screen, index) => (
-                            <View style={{flex:1}} key={index + 1}>{screen}</View>
+                            <View style={{ flex: 1 }} key={index + 1}>
+                                {screen}
+                            </View>
                         ))}
                     </PagerView>
                 )}
