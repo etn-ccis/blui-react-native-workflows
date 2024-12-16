@@ -97,5 +97,12 @@ export type OktaLoginScreenProps = WorkflowCardBaseProps & {
     /**
      * oktaConfigObject is an object containing configuration settings required for integrating with Okta.
      */
-    oktaConfigObject?: {clientId: string; redirectUri: string; endSessionRedirectUri: string; discoveryUri: string; scopes: string[]; requireHardwareBackedKeyStore: boolean}
+    oktaConfigObject?: {
+        clientId: string;
+        redirectUri: string;
+        endSessionRedirectUri: string;
+        discoveryUri: string;
+        scopes: string[];
+        requireHardwareBackedKeyStore: boolean;
+    };
 };

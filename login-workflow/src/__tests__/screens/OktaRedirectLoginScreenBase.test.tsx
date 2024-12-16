@@ -73,7 +73,9 @@ describe('OktaRedirectLoginScreenBase', () => {
 
     test('calls handleContactSupport when contact support label is pressed', () => {
         const handleContactSupport = jest.fn();
-        const { getByTestId } = render(<OktaRedirectLoginScreenBase showContactSupport={true} onContactSupport={handleContactSupport} />);
+        const { getByTestId } = render(
+            <OktaRedirectLoginScreenBase showContactSupport={true} onContactSupport={handleContactSupport} />
+        );
         const contactSupportLabel = getByTestId('blui-okta-login-contact-support-label');
         fireEvent.press(contactSupportLabel);
         expect(handleContactSupport).toHaveBeenCalled();

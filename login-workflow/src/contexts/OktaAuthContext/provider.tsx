@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { OktaAuthContextProviderProps } from './types';
 import { OktaAuthContext } from './context';
@@ -9,9 +8,9 @@ import { SharedDictionaries } from '../SharedDictionaries';
 import { ErrorManagerProps } from '../../components/Error/types';
 import { i18nAuthInstance } from '../AuthContext/i18nAuthInstance';
 
-const OktaAuthContextProviderContent: React.FC<
-    React.PropsWithChildren<Omit<OktaAuthContextProviderProps, 'i18n'>>
-> = (props) => {
+const OktaAuthContextProviderContent: React.FC<React.PropsWithChildren<Omit<OktaAuthContextProviderProps, 'i18n'>>> = (
+    props
+) => {
     const { children, errorConfig, ...oktaAuthContextProps } = props;
     const { t } = useTranslation();
     const mergedErrorConfig: ErrorManagerProps = {
@@ -32,9 +31,7 @@ const OktaAuthContextProviderContent: React.FC<
     );
 };
 
-export const OktaAuthContextProvider: React.FC<
-    React.PropsWithChildren<OktaAuthContextProviderProps>
-> = (props) => {
+export const OktaAuthContextProvider: React.FC<React.PropsWithChildren<OktaAuthContextProviderProps>> = (props) => {
     const i18nInstance = props.i18n ?? i18nAuthInstance;
     const { language, i18n = i18nInstance, children, ...other } = props;
 

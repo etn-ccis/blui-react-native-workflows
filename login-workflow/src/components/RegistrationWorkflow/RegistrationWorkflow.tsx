@@ -251,6 +251,7 @@ export const RegistrationWorkflow: React.FC<React.PropsWithChildren<Registration
                         initialPage={currentScreen ?? initialScreenIndex}
                         ref={viewPagerRef}
                         scrollEnabled={false}
+                        collapsable={false}
                         key={viewPagerIndex}
                         onPageSelected={(e) => {
                             selectedPage.current = e.nativeEvent.position;
@@ -263,7 +264,9 @@ export const RegistrationWorkflow: React.FC<React.PropsWithChildren<Registration
                         }}
                     >
                         {screens.map((screen, index) => (
-                            <View key={index + 1}>{screen}</View>
+                            <View style={{ flex: 1 }} key={index + 1}>
+                                {screen}
+                            </View>
                         ))}
                     </PagerView>
                 )}

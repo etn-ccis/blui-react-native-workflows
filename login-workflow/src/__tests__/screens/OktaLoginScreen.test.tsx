@@ -34,7 +34,6 @@ describe('OktaRedirectLoginScreen', () => {
         jest.clearAllMocks();
     });
 
-
     it('should call navigate with FORGOT_PASSWORD route when forgot password is clicked', () => {
         render(<OktaRedirectLoginScreen />);
         fireEvent.press(screen.getByText('bluiCommon:LABELS.FORGOT_PASSWORD'));

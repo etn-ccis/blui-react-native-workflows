@@ -170,5 +170,5 @@ export type LoginScreenProps = WorkflowCardBaseProps & {
     /**
      * The size of the cyber security image
      */
-    cyberSecurityBadgeSize?: {height?: number | string, width?: number | string};
+    cyberSecurityBadgeSize?: { height?: number | string; width?: number | string };
 };
