@@ -11,10 +11,10 @@ export const ChangePassword = (): JSX.Element => {
         try {
             await revokeAccessToken();
             await clearTokens();
-            } catch (_error) {
-                // eslint-disable-next-line no-console
-                console.log(_error as Error);
-            } 
+        } catch (_error) {
+            // eslint-disable-next-line no-console
+            console.log(_error as Error);
+        }
         app.onUserNotAuthenticated();
         // below line is not need for okta workflow
         // app.setLoginData({ email: '', rememberMe: false });

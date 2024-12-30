@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v7.0.1 (December 27, 2024)
+
+### Fixed
+
+- Android - Registration workflow not loading [546](https://github.com/etn-ccis/blui-react-native-workflows/issues/546).
+- Pressing login does not dismiss keyboard and can obscure error modal [514](https://github.com/etn-ccis/blui-react-native-workflows/issues/514).
+
 ## v7.0.0 (September 20, 2024)
 
 ### Fixed

@@ -55,7 +55,7 @@ export const OktaRedirectLoginScreen: React.FC<React.PropsWithChildren<OktaLogin
         void createOktaConfig();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-    
+
     return (
         <OktaRedirectLoginScreenBase
             loginButtonLabel={loginButtonLabel}
