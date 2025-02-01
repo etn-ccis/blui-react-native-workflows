@@ -93,7 +93,7 @@
         "@react-native-async-storage/async-storage": "^2.0.0",
         "@react-native-community/bob": "^0.10.0",
         "@react-native-community/masked-view": "^0.1.10",
-        "@react-native/eslint-config": "0.75.2",
+        "@react-native/eslint-config": "0.77.0",
         "@react-native/metro-config": "0.76.3",
         "@react-native/typescript-config": "0.75.2",
         "@react-navigation/drawer": "^6.6.6",
