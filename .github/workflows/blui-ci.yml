@@ -59,7 +59,7 @@ jobs:
     - run: yarn test --coverage --watchAll=false
       working-directory: login-workflow
     - name: Upload to Codecov
-      uses: codecov/codecov-action@v3
+      uses: codecov/codecov-action@v5
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
         directory: ./login-workflow/coverage/
