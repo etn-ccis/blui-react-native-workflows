@@ -5,3 +5,7 @@ This repository contains reusable, multi-screen workflows that can dramatically 
 We currently have workflows available for:
 
 - [Login & User Registration](/login-workflow)
+
+> **Important Migration Notice:**
+>
+> This repository has been migrated to a monorepo to consolidate All the React Native libraries developed by Brightlayer Team into a single workspace. Future development and updates will now occur in the following location: [https://github.com/etn-ccis/blui-react-native/tree/dev/packages/auth-workflows]. Please update your bookmarks and contribute to the monorepo for the latest changes.
